@@ -8,6 +8,7 @@
     <meta name="HandheldFriendly" content="true">
 </head>
 <script src="script/FormValidation.js" defer></script>
+<script src="script/FormValidationMobile.js" defer></script>
 <body>
     <div style="display: inline-flex;">
     <div class="HomePageLeft" style="background: url('images/AboutMe/HomePage3.jpg');">
@@ -71,8 +72,8 @@
                 <tr style="display:inline-flex;">
                  <td> <a class="LabelForContactFullName">Full name</a>
                     <div>
-                        <input type="text" name="name" class="inputFullName" id="name">
-                        <div id = "nameValidation" class="error-hintFullname hidden fadeAboutMe">This is Mandatory field</div>
+                        <input type="text" name="name1" class="inputFullName" id="name1">
+                        <div id = "nameValidation1" class="error-hintFullname hidden fadeAboutMe">This is Mandatory field</div>
                     </div></td>
                     
                 </tr>
@@ -82,9 +83,9 @@
                     <td>
                         <a class="LabelForContactEmail">Email</a>
                         <div>
-                            <input name="email" class="inputEmail" id="email">
-                            <div id="emailValidation" class="error-hintEmail hidden fadeAboutMe">This is Mandatory field</div>
-                            <div id="emailValidationHiddenRegex" class="error-hintEmail hiddenRegex fadeAboutMe">Please enter a vaild mail</div>
+                            <input name="email1" class="inputEmail" id="email">
+                            <div id="emailValidation1" class="error-hintEmail hidden fadeAboutMe">This is Mandatory field</div>
+                            <div id="emailValidationHiddenRegex1" class="error-hintEmail hiddenRegex1 fadeAboutMe">Please enter a vaild mail</div>
                         </div></td>
                
                 </tr>
@@ -93,9 +94,9 @@
                 <tr>
                  <td> <a class="LabelForContactBody">Message</a>
                     <div>
-                        <textarea  name="textarea" class="inputBody" name="textarea"></textarea>
+                        <textarea  name="textarea1" class="inputBody" name="textarea"></textarea>
                     </div>
-                    <div id="bodyValidation" class="error-hintBody hidden fadeAboutMe">This is Mandatory field</div>
+                    <div id="bodyValidation1" class="error-hintBody hidden fadeAboutMe">This is Mandatory field</div>
                 </td>
                    
                     </td>
@@ -135,4 +136,5 @@
 </div>
      <!-- <script src="https://smtpjs.com/v3/smtp.js"></script> -->
 </body>
+
 </html>
