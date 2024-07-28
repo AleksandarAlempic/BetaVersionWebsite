@@ -1,20 +1,7 @@
 
-let songs = [
+const playLists = [];
 
-   {
-      name: 'Alone (Solo)',
-      path: 'audio/Alone (Solo).mp3',
-      artist: 'IL DIVO',
-      cover: 'images/audio/Alone.jpg'
-   },
-
-   {
-      name: 'The Power Of Love',
-      path: 'audio/IL DIVO - The Power Of Love (La Fuerza Mayor) (Live Video).mp3',
-      artist: 'IL DIVO',
-      cover: 'images/audio/IlDivo.jpg'
-    },
-  
+let introSongs = [
    {
       name: 'Waka waka',
       path: 'audio/Waka Waka (Esto es Africa).mp3',
@@ -22,25 +9,24 @@ let songs = [
       cover: 'images/audio/WakaWaka.jpg'
    },
    {
-      name: 'We Are One',
-      path: 'audio/We Are One (Ole Ola) [The Official 2014 FIFA World Cup Song].mp3',
-      artist: 'Pitbull feat J.Lopez&C.Leitte ',
-      cover: 'images/audio/WeAreOne.jpg'
-   },
-
-   {
       name: 'Wavin Flag',
       path: 'audio/Wavin Flag (Spanish Version) - Knaan & David Bisbal - World Cup 2010 theme song (128 kbps).mp3',
       artist: 'Knaan & David Bisbal',
       cover: 'images/audio/World Cup 2010 theme song.jpg'
    },
-
    {
       name: 'La la la',
       path: 'audio/Shakira - La La La (Brazil 2014) ft. Carlinhos Brown.mp3',
       artist: 'Shakira ft. Carlinhos Brown',
       cover: 'images/audio/Shakira.jpg'
    },
+   {
+      name: 'We Are One',
+      path: 'audio/We Are One (Ole Ola) [The Official 2014 FIFA World Cup Song].mp3',
+      artist: 'Pitbull feat J.Lopez&C.Leitte ',
+      cover: 'images/audio/WeAreOne.jpg'
+   },
+  
  
    {
       name: 'Walk',
@@ -48,27 +34,34 @@ let songs = [
       artist: 'Kwabs',
       cover: 'images/audio/Kwabs.jpg'
    },
+   {
+      name: 'Say It Right',
+      path: 'audio/Nelly Furtado - Say It Right (Official Music Video).mp3',
+      artist: 'Nelly Furtado',
+      cover: 'images/audio/NellyFurtado.jpg'
+   }, 
+     
+   {
+      name: 'Out of Touch',
+      path: 'audio/Hall & Oates  - Out of Touch.mp3',
+      artist: 'Hall & Oates',
+      cover: 'images/audio/Hall & Oates.jpg'
+   },
+
   
    {
-      name: 'Jutro je',
-      path: 'audio/Nada Topcagic - Jutro je - (Audio 1990) HD (128 kbps).mp3',
-      artist: 'Nada Topcagic',
-      cover: 'images/audio/NadaTopcagic.jpg'
-   },
+      name: 'The Power Of Love',
+      path: 'audio/IL DIVO - The Power Of Love (La Fuerza Mayor) (Live Video).mp3',
+      artist: 'IL DIVO',
+      cover: 'images/audio/IlDivo.jpg'
+    },
 
    {
-      name: 'U inat proslosti',
-      path: 'audio/Aleksandra Radovic & The Beatshakers - Who Gonna Stop Me Now (Official HD Video).mp3',
-      artist: 'Aleksandra Radovic',
-      cover: 'images/audio/AleksandraRadovic.jpg'
-   },
-
-   {
-      name: 'Devet Zivota',
-      path: 'audio/ALEKSANDRA PRIJOVIC - DEVET ZIVOTA (OFFICIAL VIDEO).mp3',
-      artist: 'Aleksandra Prijovic',
-      cover: 'images/audio/AleksandraPrijovic.jpg'
-   },
+      name: 'Alone (Solo)',
+      path: 'audio/Alone (Solo).mp3',
+      artist: 'IL DIVO',
+      cover: 'images/audio/Alone.jpg'
+   }, 
 
    {
       name: 'Vracaju se dani pobede',
@@ -76,7 +69,24 @@ let songs = [
       artist: '',
       cover: 'images/audio/GrupaJNA.jpg'
    },
-
+   {
+      name: 'U inat proslosti',
+      path: 'audio/Aleksandra Radovic & The Beatshakers - Who Gonna Stop Me Now (Official HD Video).mp3',
+      artist: 'Aleksandra Radovic',
+      cover: 'images/audio/AleksandraRadovic.jpg'
+   },
+   {
+      name: 'Devet Zivota',
+      path: 'audio/ALEKSANDRA PRIJOVIC - DEVET ZIVOTA (OFFICIAL VIDEO).mp3',
+      artist: 'Aleksandra Prijovic',
+      cover: 'images/audio/AleksandraPrijovic.jpg'
+   },
+   {
+      name: 'Jutro je',
+      path: 'audio/Nada Topcagic - Jutro je - (Audio 1990) HD (128 kbps).mp3',
+      artist: 'Nada Topcagic',
+      cover: 'images/audio/NadaTopcagic.jpg'
+   },
    {
       name: 'Ne Pitaj',
       path: 'audio/LegendE _ Ne pitaj - (LIVE) - (Sava centar 2005) (128 kbps).mp3',
@@ -96,20 +106,6 @@ let songs = [
       artist: 'The Script',
       cover: 'images/audio/TheScript.jpg'
    },
-
-   {
-      name: 'Out of Touch',
-      path: 'audio/Hall & Oates  - Out of Touch.mp3',
-      artist: 'Hall & Oates',
-      cover: 'images/audio/Hall & Oates.jpg'
-   },
-
-   {
-      name: 'Say It Right',
-      path: 'audio/Nelly Furtado - Say It Right (Official Music Video).mp3',
-      artist: 'Nelly Furtado',
-      cover: 'images/audio/NellyFurtado.jpg'
-   }, 
    
    {
       name: 'Calling On Me',
@@ -134,3 +130,89 @@ let songs = [
    },
    
 ]
+
+playLists.push(introSongs);
+
+let classicSongs = [
+
+   {
+      name: 'Alone (Solo)',
+      path: 'audio/Alone (Solo).mp3',
+      artist: 'IL DIVO',
+      cover: 'images/audio/Alone.jpg'
+   },
+
+   {
+      name: 'The Power Of Love',
+      path: 'audio/IL DIVO - The Power Of Love (La Fuerza Mayor) (Live Video).mp3',
+      artist: 'IL DIVO',
+      cover: 'images/audio/IlDivo.jpg'
+    },
+  {
+      name: 'We Are One',
+      path: 'audio/We Are One (Ole Ola) [The Official 2014 FIFA World Cup Song].mp3',
+      artist: 'Pitbull feat J.Lopez&C.Leitte ',
+      cover: 'images/audio/WeAreOne.jpg'
+   },
+   
+]
+
+playLists.push(classicSongs);
+
+let narodnjaciSongs = [
+
+   {
+      name: 'Jutro je',
+      path: 'audio/Nada Topcagic - Jutro je - (Audio 1990) HD (128 kbps).mp3',
+      artist: 'Nada Topcagic',
+      cover: 'images/audio/NadaTopcagic.jpg'
+   },
+
+   {
+      name: 'U inat proslosti',
+      path: 'audio/Aleksandra Radovic & The Beatshakers - Who Gonna Stop Me Now (Official HD Video).mp3',
+      artist: 'Aleksandra Radovic',
+      cover: 'images/audio/AleksandraRadovic.jpg'
+   },
+
+   {
+      name: 'Devet Zivota',
+      path: 'audio/ALEKSANDRA PRIJOVIC - DEVET ZIVOTA (OFFICIAL VIDEO).mp3',
+      artist: 'Aleksandra Prijovic',
+      cover: 'images/audio/AleksandraPrijovic.jpg'
+   },
+  {
+      name: 'We Are One',
+      path: 'audio/We Are One (Ole Ola) [The Official 2014 FIFA World Cup Song].mp3',
+      artist: 'Pitbull feat J.Lopez&C.Leitte ',
+      cover: 'images/audio/WeAreOne.jpg'
+   },
+   
+]
+
+playLists.push(narodnjaciSongs);
+
+let danceSongs = [
+   {
+      name: 'Aint Your Mama',
+      path: 'audio/Jennifer Lopez - Aint Your Mama (Lyrics) we used to be crazy in love.mp3',
+      artist: 'Jennifer Lopez',
+      cover: 'images/audio/JenniferLopez.jpg'
+   }, 
+   {
+      name: 'Ni Tu Ni Yo',
+      path: 'audio/Jennifer Lopez - Ni Tu Ni Yo (Official Audio) ft. Gente de Zona.mp3',
+      artist: 'J Lopez ft. Gente de Zona',
+      cover: 'images/audio/NiTuNiJo.jpg'
+   }, 
+  
+  {
+      name: 'Amor, Amor',
+      path: 'audio/Jennifer Lopez - Amor, Amor, Amor (Official Video) ft. Wisin.mp3',
+      artist: 'J.Lopez ft. Wisin',
+      cover: 'images/audio/JeniferLopezAmor.jpg'
+   },
+   
+]
+
+playLists.push(danceSongs);
