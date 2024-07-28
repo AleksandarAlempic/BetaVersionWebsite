@@ -1173,6 +1173,30 @@ for the disk in the Middle
  margin-left: 20px;
 }
 
+
+.next-btnPlayList{
+  position: relative;
+  /* background: url('../images/audio/NextButton.png'); */
+  cursor: pointer;
+  border:none;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  margin-left: 20px;
+  z-index: 2;
+ }
+
+ .previous-btnPlayList{
+  width: 110px;
+  height: 110px;
+  background: url('../images/audio/PreviousButton.png');
+  border-radius: 50%;
+  margin-right: 30px;
+  border:none;
+  cursor: pointer;
+  z-index: 2;
+ }
+
 /* .play-btn{
  position: relative;
  width: 140px;
@@ -1182,6 +1206,14 @@ for the disk in the Middle
  cursor: pointer;
  border:none;
 } */
+
+.newNextAndPreviousButtons{
+  display: inline-flex; position: absolute; margin-top: 30%; margin-left: 5%
+}
+
+.kindOfMusic{
+  z-index: 2;
+}
 
 .pervious-btn img{
  position: relative;
