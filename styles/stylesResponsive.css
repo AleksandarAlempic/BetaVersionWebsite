@@ -51,8 +51,8 @@
      .newNextAndPreviousButtons{
       display: inline-flex;
       position: absolute;
-      margin-top: 36%;
-      margin-left: 33%;
+      margin-top: 28%;
+        margin-left: 4%;
     }
     .audioContainer {
       position: absolute;
