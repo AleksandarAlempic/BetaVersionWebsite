@@ -28,6 +28,16 @@
       
    }
 
+   @media only screen and (min-width:100px) and (max-width:500px){
+     
+    .newNextAndPreviousButtons{
+       display: inline-flex;
+       position: absolute;
+       margin-top: 121%;
+       margin-left: 33%;
+      }
+    }
+
   @media only screen and (min-width:1000px){
     html, body{
       display: flexbox;
@@ -40,9 +50,9 @@
      } 
      .newNextAndPreviousButtons{
       display: inline-flex;
-        position: absolute;
-        margin-top: 28%;
-        margin-left: 5%;
+      position: absolute;
+      margin-top: 36%;
+      margin-left: 33%;
     }
     .audioContainer {
       position: absolute;
