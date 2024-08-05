@@ -148,12 +148,13 @@ let classicSongs = [
       artist: 'IL DIVO',
       cover: 'images/audio/IlDivo.jpg'
     },
-  {
-      name: 'We Are One',
-      path: 'audio/We Are One (Ole Ola) [The Official 2014 FIFA World Cup Song].mp3',
-      artist: 'Pitbull feat J.Lopez&C.Leitte ',
-      cover: 'images/audio/WeAreOne.jpg'
+    {
+      name: 'Hall of Fame',
+      path: 'audio/The Script - Hall of Fame (Official Video) ft. will.i.am.mp3',
+      artist: 'The Script - ft. will.i.am',
+      cover: 'images/audio/HallOfFame.jpg '
    },
+
    
 ]
 
@@ -174,20 +175,51 @@ let narodnjaciSongs = [
       artist: 'Aleksandra Radovic',
       cover: 'images/audio/AleksandraRadovic.jpg'
    },
+   {
+      name: 'Molitva',
+      path: 'audio/MARIJA SERIFOVIC - MOLITVA - (OFFICIAL VIDEO 2020).mp3',
+      artist: 'Marija Serifovic',
+      cover: 'images/audio/MarijaSerifovic.jpg'
+   },
 
+  {
+      name: 'Sve po starom',
+      path: 'audio/ALEKSANDRA PRIJOVIC - SVE PO STAROM (OFFICIAL VIDEO).mp3',
+      artist: 'Aleksandra Prijovic',
+      cover: 'images/audio/PrijovicSvePoStarom.jpg'
+   },
    {
       name: 'Devet Zivota',
       path: 'audio/ALEKSANDRA PRIJOVIC - DEVET ZIVOTA (OFFICIAL VIDEO).mp3',
       artist: 'Aleksandra Prijovic',
       cover: 'images/audio/AleksandraPrijovic.jpg'
    },
-  {
-      name: 'We Are One',
-      path: 'audio/We Are One (Ole Ola) [The Official 2014 FIFA World Cup Song].mp3',
-      artist: 'Pitbull feat J.Lopez&C.Leitte ',
-      cover: 'images/audio/WeAreOne.jpg'
+   {
+      name: 'Boli Boli',
+      path: 'audio/Ivana Selakov x Amar Gile - BOLI BOLI ( Official Video 2020 ).mp3',
+      artist: 'Ivana Selakov & Amar Gile',
+      cover: 'images/audio/BoliBoliOvaBol.jpg'
    },
-   
+
+   {
+      name: 'Vracaju se dani pobede',
+      path: 'audio/Grupa JNA - Vracaju se dani pobede.mp3',
+      artist: '',
+      cover: 'images/audio/GrupaJNA.jpg'
+   },
+  
+   {
+      name: 'Ruzo Rumena',
+      path: 'audio/RUZO RUMENA - Dragan Jovanovic.mp3',
+      artist: 'Dragan Jovanovic',
+      cover: 'images/audio/RuzoRumena.jpeg'
+   },
+   {
+      name: 'Ne Pitaj',
+      path: 'audio/LegendE _ Ne pitaj - (LIVE) - (Sava centar 2005) (128 kbps).mp3',
+      artist: 'Legende',
+      cover: 'images/audio/LegendeNePitaj.jpg'
+   },
 ]
 
 playLists.push(narodnjaciSongs);
