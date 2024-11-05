@@ -19,8 +19,15 @@
         </div>
         <div class="HomePageLeft">
             <div class="Projects">
-                <h1 class="labelProjects">Projects</h1>
-                <div class="divForPortfolio">
+                <p id="labelPlatform" class=" fadeLeftBackground labelforPlatform">Platform</p>  
+                <div style="display: inline-flex; margin-left: 6%;"> 
+                    <a id="previousButtonProjects" class="platformShift" style="color: white;"><</a>
+                    <div class="kindOfMusic platformClass" id="mendixPlatform">Mendix</div>
+                    <div class="kindOfMusic platformClass" style="display: none;" id="javascriptPlatform">Javascript</div>
+                    <div class="kindOfMusic platformClass" style="display: none;" id="javaPlatform">Java</div>
+                    <a id="nextButtonProjects" class="platformShift" style="color: white;">></a></div>
+                <p id="labelForProjects" class="labelProjects">Projects</p>
+                <div id = "divForMendixProjects" class="divForPortfolio">
                     <div class="Iframe1">
      <a href="https://houserenovationapp-sandbox.mxapps.io/login.html?profile=Responsive" target="_blank"></a>
      <label class="labelforProject"><a class="projectLinkClass" href="https://docs.google.com/document/d/1Xo6VZXcFGtOVlnthZvppAA2SxxRqqDwxMDs2aAyTDOA/edit?usp=sharing" target="_blank"> <img class="portfolioImg" src="images/Projects/Verbouwformule.jpg">House Renovation</a></label>
@@ -32,6 +39,12 @@
                     <div class="Iframe3">
                         <a href="https://timemanagementapp-sandbox.mxapps.io/index.html?profile=Responsive" target="_blank"></a>
                         <label class="labelforProject"><a class="projectLinkClass" href="https://drive.google.com/drive/folders/1JgqFHP2DD40uUO3RF4nMsfWnvKq9IsPS?usp=sharing" target="_blank"> <img class="portfolioImg" src="images/Projects/TimeManagementLogin.jpeg">Time Management</a></label> 
+                    </div>
+                </div>
+                <div id="divForJavascriptProjects" style="display: none;" class="divForPortfolio">
+                    <div id="javascriptDiv" class="Iframe1" style="margin-top: 22%;">
+     <a href="https://houserenovationapp-sandbox.mxapps.io/login.html?profile=Responsive" target="_blank"></a>
+     <label class="labelforProject" style="margin-right: 14%;"><a class="projectLinkClass"href="https://github.com/AleksandarAlempic/Calculator" target="_blank"> <img class="portfolioImg" src="images/Portfolio/Calculator.webp">Calculator</a></label>
                     </div>
                 </div>
             </div>
@@ -67,4 +80,5 @@
 </body>
 <script src="script/jsRightBackground.js"></script>
 <script src="script/jsLeftBackground.js"></script>
+<script src="script/PortofolioPlatformProjectsSlide.js"></script>
 </html>
