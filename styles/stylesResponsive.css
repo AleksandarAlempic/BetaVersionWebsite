@@ -15,7 +15,7 @@
       margin-top: 25%;
       margin-left: 4%;
     }
-   } 
+   }
 
    @media (min-width: 1600px) and (max-width: 1660px) {
        
@@ -28,12 +28,12 @@
       
    }
 
-    @media only screen and (min-width:50px) and (max-width:500px){
+   @media only screen and (min-width:50px) and (max-width:500px){
      
     .newNextAndPreviousButtons{
        display: inline-flex;
        position: absolute;
-       margin-top: 117%;
+       margin-top: 116%;
        margin-left: 33%;
       }
     }
@@ -6534,6 +6534,11 @@ img { max-width: 100%; height: auto; }
 
  @media (min-width: 374px) and (max-width: 376px) {
    
+   .labelProjects{
+    background: yellow;
+   }
+
+
   .Technologies{
     width: 1400px;
     height: 375px;
@@ -6707,10 +6712,49 @@ img { max-width: 100%; height: auto; }
     background: rgb(30,21,20);
     
   }
-   
+  .labelforPlatform{
+    background: yellow;
+    margin-top: 10%;
+   }
+   .platformShift{
+    margin-top: 30%;
+   }
+
+   .platformClass{
+    margin-top: 60%;
+    margin-left: 20%;
+  }
+ 
  }
 
  @media only screen and (max-width: 393px){
+   
+  .platformClass{
+    margin-top: 60%;
+    margin-left: 20%;
+  }
+
+  .platformShift{
+    margin-top: 55%;
+    margin-left:40%;
+   }
+
+   .mendixPlatform{
+    margin-top: 55%;
+   }
+
+   .javascriptPlatform{
+    margin-top: 55%;
+   }
+
+
+   
+  .labelforPlatform{
+    background: yellow;
+    margin-top: 10%;
+   }
+
+
 .labelForCertification {
     position: absolute;
     margin-left: 9%;
@@ -6728,11 +6772,23 @@ img { max-width: 100%; height: auto; }
 
 
 @media (min-width: 315px) and (max-width: 325px) {
+
+  .platformClass{
+    margin-top: 60%;
+    margin-left: 20%;
+  }
+
   .divForPortfolio{
     display: inline-block;
 }
 
-
+.labelforPlatform{
+  background: yellow;
+  margin-top: 10%;
+ }
+ .platformShift{
+  margin-top: 30%;
+ }
 
 .Iframe1 {
   text-align: end;

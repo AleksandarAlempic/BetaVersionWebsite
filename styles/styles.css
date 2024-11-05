@@ -25,6 +25,12 @@ html, body{
  */
 } 
 
+
+.platformClass{
+  font-weight: bold; font-size: 92px; color: white; margin-top: 1%;
+  
+}
+
 ul {
  list-style-type: none;
 }
@@ -192,10 +198,33 @@ ul {
              height: 725px;
            }
 
+           .platformShift{
+              font-size: 125px;
+              font-weight: bold;
+              color: white;
+              margin-left: 250px;
+              top: 50%;
+              text-align: center;
+              width: 160px;
+              height: 130px;
+              padding: 16px;
+              margin-top: -22px;
+              margin-left: 50px;
+              margin-right: 25px;
+              transition: 0.6s ease;
+              border-radius: 0 3px 3px 0;
+              user-select: none;
+              z-index: 5;
+           }
+
+           .platformShift:hover {
+            background-color: rgba(0,0,0,0.4);
+           }
+
            .labelProjects{
              position: relative;
              margin-left: 8.3%;
-             margin-top: 10%;
+             margin-top: 1%;
              width: 9%;
              font-size: 95px;
              color: white;
@@ -224,7 +253,20 @@ ul {
              opacity: 0.7;
              background: rgb(25,21,20); 
              background: rgba(0, 0, 0, 0.6);
+         
            }
+
+           .labelforPlatform{
+            width: 9%;
+            margin-top: 10%;
+            margin-left: 8.5%;
+            font-size: 95px;
+            color: white;
+            opacity: 0.7;
+            background: rgb(25,21,20); 
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 10000;
+          }
 
            .labelForIntro{
              position: absolute;
