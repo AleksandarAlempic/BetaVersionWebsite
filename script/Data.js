@@ -148,6 +148,13 @@ let classicSongs = [
       artist: 'IL DIVO',
       cover: 'images/audio/IlDivo.jpg'
     },
+
+    {
+      name: 'E.K. Nachtmusik',
+      path: 'audio/Eine Kleine Nachtmusik - Mozart.mp3',
+      artist: 'Mozart',
+      cover: 'images/audio/Wolfgang-Amadeus-Mozart-scaled.jpeg'
+   },
     {
       name: 'Hall of Fame',
       path: 'audio/The Script - Hall of Fame (Official Video) ft. will.i.am.mp3',
@@ -163,12 +170,20 @@ playLists.push(classicSongs);
 let narodnjaciSongs = [
 
    {
+      name: 'Kazni me',
+      path: 'audio/Vesna Zmijanac - Kazni me - (Audio 1989) HD (mp3cut.net).mp3',
+      artist: 'Vesna Zmijanac',
+      cover: 'images/audio/KazniMeKazni.jpg'
+   },
+
+   {
       name: 'Jutro je',
       path: 'audio/Nada Topcagic - Jutro je - (Audio 1990) HD (128 kbps).mp3',
       artist: 'Nada Topcagic',
       cover: 'images/audio/NadaTopcagic.jpg'
    },
-
+  
+ 
    {
       name: 'U inat proslosti',
       path: 'audio/Aleksandra Radovic & The Beatshakers - Who Gonna Stop Me Now (Official HD Video).mp3',
@@ -188,6 +203,14 @@ let narodnjaciSongs = [
       artist: 'Aleksandra Prijovic',
       cover: 'images/audio/PrijovicSvePoStarom.jpg'
    },
+   
+   {
+      name: 'Legitimno',
+      path: 'audio/ALEKSANDRA PRIJOVIC - LEGITIMNO (OFFICIAL VIDEO 2020).mp3',
+      artist: 'Aleksandra Prijovic',
+      cover: 'images/audio/Legitimno.jpg'
+   },
+   
    {
       name: 'Devet Zivota',
       path: 'audio/ALEKSANDRA PRIJOVIC - DEVET ZIVOTA (OFFICIAL VIDEO).mp3',
@@ -207,7 +230,13 @@ let narodnjaciSongs = [
       artist: '',
       cover: 'images/audio/GrupaJNA.jpg'
    },
-  
+   {
+      name: 'Imam jedan zivot',
+      path: 'audio/Ana Bekuta - Imam jedan zivot (Sava Centar 22.02.2012.).mp3',
+      artist: 'Ana Bekuta',
+      cover: 'images/audio/AnaBekuta.jpg'
+   },
+
    {
       name: 'Ruzo Rumena',
       path: 'audio/RUZO RUMENA - Dragan Jovanovic.mp3',
