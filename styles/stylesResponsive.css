@@ -15,7 +15,10 @@
       margin-top: 25%;
       margin-left: 4%;
     }
-   }
+    body, html{
+      transform: scale(50%);
+     }
+   } 
 
    @media (min-width: 1600px) and (max-width: 1660px) {
        
@@ -4713,6 +4716,10 @@
   .divForPortfolio{
        display: inline-block;
    }
+
+   body, html{
+    transform: scale(50%);
+   }
  
    .mySlidesContactMe{
      display: inline-block;
@@ -5284,7 +5291,11 @@
   .divForPortfolio{
        display: inline-block;
    }
- 
+    
+   body, html{
+    transform: scale(50%);
+   }
+
    .mySlidesContactMe{
      display: inline-block;
    } 
@@ -5292,22 +5303,7 @@
    
    .classForIntroExpirience{
      font-size: 60px;
-   }
-   
-   /* html, body{
-     display: flexbox;
-     transform: scale(50%);
-     transform-origin: top left; 
-     min-width: 200%;
-     overflow-y: scroll; 
-     overflow-x: hidden;
-     /* height: 200%;
-     min-width: 8000px; */ 
-     /* transform-origin: top left; */
-     /* transform: scale(50%);
-     */
-  
- 
+   } 
  
    .main{
      display: inline-flex;
@@ -5943,6 +5939,9 @@ img { max-width: 100%; height: auto; }
   .divForPortfolio{
        display: inline-block;
    }
+   body, html{
+    transform: scale(50%);
+   }
  
    .mySlidesContactMe{
      display: inline-block;
@@ -6534,11 +6533,6 @@ img { max-width: 100%; height: auto; }
 
  @media (min-width: 374px) and (max-width: 376px) {
    
-   .labelProjects{
-    background: yellow;
-   }
-
-
   .Technologies{
     width: 1400px;
     height: 375px;
@@ -6712,49 +6706,10 @@ img { max-width: 100%; height: auto; }
     background: rgb(30,21,20);
     
   }
-  .labelforPlatform{
-    background: yellow;
-    margin-top: 10%;
-   }
-   .platformShift{
-    margin-top: 30%;
-   }
-
-   .platformClass{
-    margin-top: 60%;
-    margin-left: 20%;
-  }
- 
+   
  }
 
  @media only screen and (max-width: 393px){
-   
-  .platformClass{
-    margin-top: 60%;
-    margin-left: 20%;
-  }
-
-  .platformShift{
-    margin-top: 55%;
-    margin-left:40%;
-   }
-
-   .mendixPlatform{
-    margin-top: 55%;
-   }
-
-   .javascriptPlatform{
-    margin-top: 55%;
-   }
-
-
-   
-  .labelforPlatform{
-    background: yellow;
-    margin-top: 10%;
-   }
-
-
 .labelForCertification {
     position: absolute;
     margin-left: 9%;
@@ -6768,27 +6723,18 @@ img { max-width: 100%; height: auto; }
     z-index: 3;
     width: 350%;
 }
+body, html{
+  transform: scale(50%);
+ }
  }
 
 
 @media (min-width: 315px) and (max-width: 325px) {
-
-  .platformClass{
-    margin-top: 60%;
-    margin-left: 20%;
-  }
-
   .divForPortfolio{
     display: inline-block;
 }
 
-.labelforPlatform{
-  background: yellow;
-  margin-top: 10%;
- }
- .platformShift{
-  margin-top: 30%;
- }
+
 
 .Iframe1 {
   text-align: end;
