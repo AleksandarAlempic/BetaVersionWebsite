@@ -15,9 +15,7 @@
       margin-top: 25%;
       margin-left: 4%;
     }
-    body, html{
-      transform: scale(50%);
-     }
+  
    } 
 
    @media (min-width: 1600px) and (max-width: 1660px) {
@@ -4717,15 +4715,6 @@
        display: inline-block;
    }
 
-   html, body {
-    display: flexbox;
-    transform: scale(57%);
-    transform-origin: top left;
-    min-width: 200%;
-    height: 200%;
-    margin: 0;
-    overflow-x: hidden;
-}
  
  
    .mySlidesContactMe{
@@ -5299,15 +5288,7 @@
        display: inline-block;
    }
     
-   html, body {
-    display: flexbox;
-    transform: scale(57%);
-    transform-origin: top left;
-    min-width: 200%;
-    height: 200%;
-    margin: 0;
-    overflow-x: hidden;
-}
+   
 
    .mySlidesContactMe{
      display: inline-block;
@@ -5952,8 +5933,8 @@ img { max-width: 100%; height: auto; }
   .divForPortfolio{
        display: inline-block;
    }
+  
  
-
    .mySlidesContactMe{
      display: inline-block;
    } 
@@ -5965,7 +5946,7 @@ img { max-width: 100%; height: auto; }
    
    html, body{
      display: flexbox;
-     transform: scale(57%);
+     transform: scale(50%);
      transform-origin: top left; 
      min-width: 200%;
      overflow-y: scroll; 
@@ -6560,16 +6541,6 @@ img { max-width: 100%; height: auto; }
     background: rgba(0, 0, 0, 0.9);
   }
 
-  html, body {
-    display: flexbox;
-    transform: scale(57%);
-    transform-origin: top left;
-    min-width: 200%;
-    height: 200%;
-    margin: 0;
-    overflow-x: hidden;
-}
-
   .labelForExpirience {
     position: absolute;
     margin-left: 13.5%;
@@ -6744,15 +6715,6 @@ img { max-width: 100%; height: auto; }
     z-index: 3;
     width: 350%;
 }
-html, body {
-  display: flexbox;
-  transform: scale(57%);
-  transform-origin: top left;
-  min-width: 200%;
-  height: 200%;
-  margin: 0;
-  overflow-x: hidden;
-}
 
  }
 
@@ -6762,15 +6724,7 @@ html, body {
     display: inline-block;
 }
 
-html, body {
-  display: flexbox;
-  transform: scale(57%);
-  transform-origin: top left;
-  min-width: 200%;
-  height: 200%;
-  margin: 0;
-  overflow-x: hidden;
-}
+
 
 .Iframe1 {
   text-align: end;
@@ -6943,7 +6897,7 @@ html, body {
 
 html, body{
   display: flexbox;
-  transform: scale(57%);
+  transform: scale(50%);
   transform-origin: top left; 
   min-width: 200%;
   overflow-y: scroll; 
