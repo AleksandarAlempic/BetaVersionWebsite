@@ -1532,7 +1532,19 @@
 
     @media (min-width: 700px) and (max-width: 850px) {
   
-  
+      html, body {
+        transform: scale(59.8%);
+        display: block;
+        transform-origin: top left;
+        width: 200%;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    
+
       .contentLeftSide{
         margin-bottom: 124.7%;
           display: flex;
@@ -1702,7 +1714,19 @@
     
       @media (min-width: 850px) and (max-width: 900px) {
   
-  
+html, body {
+  transform: scale(56%);
+  display: block;
+  transform-origin: top left;
+  width: 200%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+
         .contentLeftSide{
           margin-bottom: 124.7%;
             display: flex;
@@ -2863,6 +2887,17 @@
         
  @media (min-width: 427px) and (max-width: 429px) {
   
+  html, body {
+    transform: scale(52%);
+    display: block;
+    transform-origin: top left;
+    width: 200%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
 
   .divContactMe {
     width: 2300px;
@@ -3262,6 +3297,19 @@
  }
 
         @media (max-width: 415px) and (min-width: 410px) {
+
+          html, body {
+            transform: scale(53.9%);
+            display: block;
+            transform-origin: top left;
+            width: 200%;
+            height: auto;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
           .ContactMeOnContacMe{
             width: 1525px;
             border-radius: 3%;
@@ -5933,6 +5981,12 @@ img { max-width: 100%; height: auto; }
   .divForPortfolio{
        display: inline-block;
    }
+
+   
+
+
+
+
   
  
    .mySlidesContactMe{
@@ -6702,6 +6756,19 @@ img { max-width: 100%; height: auto; }
  }
 
  @media only screen and (max-width: 393px){
+  html, body {
+    transform: scale(52%);
+    display: block;
+    transform-origin: top left;
+    width: 200%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+  
 .labelForCertification {
     position: absolute;
     margin-left: 9%;
