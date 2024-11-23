@@ -3297,7 +3297,7 @@ html, body {
  }
 
         @media (max-width: 415px) and (min-width: 410px) {
-
+           
           html, body {
             transform: scale(53.9%);
             display: block;
@@ -3339,9 +3339,21 @@ html, body {
             background: rgb(30,21,20);
             background: rgba(0, 0, 0, 0.9);
         } 
-                  
-        
+
+        .labelForCertification {
+          position: absolute;
+          margin-left: 6%;
+          margin-top: 64.2%;
+          font-size: 87px;
+          font-style: normal;
+          color: white;
+          opacity: 0.9;
+          background: rgb(25, 21, 20);
+          background: rgba(0, 0, 0, 0.8);
+          z-index: 3;
+          width: 66%;
         }
+      }
 
         @media only screen and (min-width:2048px){
           html, body{
@@ -4763,7 +4775,9 @@ html, body {
        display: inline-block;
    }
 
- 
+ .audioContainer{
+  margin-right: 5%;
+ }
  
    .mySlidesContactMe{
      display: inline-block;
@@ -4813,7 +4827,7 @@ html, body {
    z-index: 1;
    color: white;
    text-decoration: none;
-   font-size: 75px;
+   font-size: 68px;
  }
  
   .labelProjects{
@@ -4864,7 +4878,7 @@ html, body {
  
    .labelForExpirience{
      position: absolute;
-     margin-left: 28.5%;
+     margin-left: 24.5%;
      margin-top: 24%;
      font-size: 95px;
      font-style: normal;
@@ -4929,6 +4943,15 @@ html, body {
      opacity: 0.9;
      z-index: 3;
    }
+
+   .newNextAndPreviousButtons {
+    display: inline-flex;
+    position: absolute;
+    margin-top: 116%;
+    margin-left: 30%;
+}
+
+
    .ContactMe{
      border-radius: 3%;
      width: 1325px;
@@ -4960,7 +4983,7 @@ html, body {
     
    .labelForCertification{
      position: absolute;
-     margin-left: 9%;
+     margin-left: 10.5%;
      margin-top: 64.2%;
      font-size: 87px;
      font-style: normal;
@@ -4969,7 +4992,7 @@ html, body {
      background: rgb(25,21,20);
      background: rgba(0, 0, 0, 0.8);
      z-index: 3;
-     width: 82%;
+     width: 66%;
    }
  
    .labelForHobbies{
@@ -5042,7 +5065,7 @@ html, body {
    .audioContainer{
      position: absolute;
      float: left;
-     margin-left: 21%;
+     margin-left: 18%;
      margin-top: 124%;
      width: 875px;
      height: 715px;
@@ -5106,7 +5129,7 @@ html, body {
  
    .labelForTechnologies{
      position: absolute;
-     margin-left: 33%;
+     margin-left: 31%;
      margin-top: 77.8%;
      font-size: 100px;
      font-style: normal;
@@ -5990,7 +6013,9 @@ img { max-width: 100%; height: auto; }
        display: inline-block;
    }
   
- 
+
+
+
    .mySlidesContactMe{
      display: inline-block;
    } 
@@ -6103,7 +6128,7 @@ img { max-width: 100%; height: auto; }
  
    .labelForExpirience{
      position: absolute;
-     margin-left: 28.5%;
+     margin-left: 27.5%;
      margin-top: 24%;
      font-size: 95px;
      font-style: normal;
@@ -6289,7 +6314,7 @@ img { max-width: 100%; height: auto; }
    .audioContainer{
      position: absolute;
      float: left;
-     margin-left: 21%;
+     margin-left: 18%;
      margin-top: 130%;
      width: 875px;
      height: 715px;
@@ -6591,6 +6616,8 @@ img { max-width: 100%; height: auto; }
 
  @media (min-width: 374px) and (max-width: 376px) {
    
+
+
   .Technologies{
     width: 1400px;
     height: 375px;
@@ -6607,10 +6634,14 @@ img { max-width: 100%; height: auto; }
     background: rgba(0, 0, 0, 0.9);
   }
 
+.newNextAndPreviousButtons{
+  margin-top: 112%;
+}
+
   .labelForExpirience {
     position: absolute;
     margin-left: 13.5%;
-    margin-top: 3.85%;
+    margin-top: 23.85%;
     font-size: 100px;
     font-style: normal;
     color: white;
@@ -6783,7 +6814,7 @@ img { max-width: 100%; height: auto; }
   
 .labelForCertification {
     position: absolute;
-    margin-left: 9%;
+    margin-left: 12%;
     margin-top: 64.2%;
     font-size: 87px;
     font-style: normal;
@@ -6793,6 +6824,18 @@ img { max-width: 100%; height: auto; }
     background: rgba(0, 0, 0, 0.9);
     z-index: 3;
     width: 70%;
+}
+
+.labelForExpirience{
+  margin-left: 24%;
+}
+
+.audioContainer{
+  margin-left: 18%;
+}
+
+.newNextAndPreviousButtons{
+  margin-left: 31%;
 }
 
  }
