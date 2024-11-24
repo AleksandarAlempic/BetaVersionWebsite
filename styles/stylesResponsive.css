@@ -5555,7 +5555,7 @@ html, body {
  
    .labelForIntro{
      position: absolute;
-     margin-left: 34.1%;
+     margin-left: 30.1%;
      margin-top: 23.5%;
      font-size: 100px;
      font-style: normal;
@@ -5710,7 +5710,7 @@ html, body {
  
    .labelForTechnologies{
      position: absolute;
-     margin-left: 33%;
+     margin-left: 22%;
      margin-top: 77.8%;
      font-size: 100px;
      font-style: normal;
@@ -5935,6 +5935,8 @@ html, body {
   width: 1350px;
  }
 
+ 
+
  }
  
 
@@ -6077,7 +6079,7 @@ img { max-width: 100%; height: auto; }
    z-index: 1;
    color: white;
    text-decoration: none;
-   font-size: 75px;
+   font-size: 66px;
  }
  
   .labelProjects{
@@ -6223,7 +6225,7 @@ img { max-width: 100%; height: auto; }
  
    .labelForIntro{
      position: absolute;
-     margin-left: 34.1%;
+     margin-left: 32.1%;
      margin-top: 23.5%;
      font-size: 100px;
      font-style: normal;
@@ -6378,7 +6380,7 @@ img { max-width: 100%; height: auto; }
  
    .labelForTechnologies{
      position: absolute;
-     margin-left: 33%;
+     margin-left: 30%;
      margin-top: 77.8%;
      font-size: 100px;
      font-style: normal;
@@ -6823,7 +6825,7 @@ img { max-width: 100%; height: auto; }
     background: rgb(30,21,20); 
     background: rgba(0, 0, 0, 0.9);
     z-index: 3;
-    width: 70%;
+    width: 73%;
 }
 
 .labelForExpirience{
