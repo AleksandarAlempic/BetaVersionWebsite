@@ -824,7 +824,7 @@
     background: rgb(25,21,20);
     background: rgba(0, 0, 0, 0.8);
     z-index: 3;
-    width: 77%;
+    width: 83%;
 }
 .audioContainer{
   position: absolute;
@@ -851,6 +851,7 @@
 .labelForOther{
   display: none;
 }
+
 
 
 
@@ -995,7 +996,7 @@
     background: rgb(25,21,20);
     background: rgba(0, 0, 0, 0.8);
     z-index: 3;
-    width: 71.5%;
+    width: 75.5%;
 }
 .audioContainer{
   position: absolute;
@@ -1164,7 +1165,7 @@
     background: rgb(25,21,20);
     background: rgba(0, 0, 0, 0.8);
     z-index: 3;
-    width: 58.5%;
+    width: 64.5%;
 }
 .audioContainer{
   position: absolute;
@@ -1331,7 +1332,7 @@
       background: rgb(25,21,20);
       background: rgba(0, 0, 0, 0.8);
       z-index: 3;
-      width: 58.5%;
+      width: 64.5%;
   }
 
   .audioContainer{
@@ -1499,7 +1500,7 @@
         background: rgb(25,21,20);
         background: rgba(0, 0, 0, 0.8);
         z-index: 3;
-        width: 58.5%;
+        width: 64.5%;
     }
   
     .audioContainer{
@@ -1681,7 +1682,7 @@
           background: rgb(25,21,20);
           background: rgba(0, 0, 0, 0.8);
           z-index: 3;
-          width: 58.5%;
+          width: 64.5%;
       }
     
       .audioContainer{
@@ -1861,7 +1862,7 @@ html, body {
             background: rgb(25,21,20);
             background: rgba(0, 0, 0, 0.8);
             z-index: 3;
-            width: 30.5%;
+            width: 35.5%;
         }
       
         .audioContainer{
@@ -2028,7 +2029,7 @@ html, body {
               background: rgb(25,21,20);
               background: rgba(0, 0, 0, 0.8);
               z-index: 3;
-              width: 30.5%;
+              width: 35.5%;
           }
         
           .audioContainer{
@@ -2199,7 +2200,7 @@ html, body {
               background: rgb(25,21,20);
               background: rgba(0, 0, 0, 0.8);
               z-index: 3;
-              width: 25.5%;
+              width: 30.5%;
           }
         
           .audioContainer{
@@ -2363,7 +2364,7 @@ html, body {
                 background: rgb(25,21,20);
                 background: rgba(0, 0, 0, 0.8);
                 z-index: 3;
-                width: 25.5%;
+                width: 30.5%;
             }
           
             .audioContainer{
@@ -2526,7 +2527,7 @@ html, body {
                   background: rgb(25,21,20);
                   background: rgba(0, 0, 0, 0.8);
                   z-index: 3;
-                  width: 25.5%;
+                  width: 30.5%;
               }
             
               .audioContainer{
@@ -2689,7 +2690,7 @@ html, body {
                     background: rgb(25,21,20);
                     background: rgba(0, 0, 0, 0.8);
                     z-index: 3;
-                    width: 22.5%;
+                    width: 28.5%;
                 }
               
                 .audioContainer{
@@ -2852,7 +2853,7 @@ html, body {
                       background: rgb(25,21,20);
                       background: rgba(0, 0, 0, 0.8);
                       z-index: 3;
-                      width: 22.5%;
+                      width: 28.5%;
                   }
                 
                   .audioContainer{
@@ -3256,7 +3257,7 @@ html, body {
     background: rgb(25,21,20);
     background: rgba(0, 0, 0, 0.8);
     z-index: 3;
-    width: 77%;
+    width: 83%;
 }
 
   .OtherExpirience{
@@ -3351,8 +3352,10 @@ html, body {
           background: rgb(25, 21, 20);
           background: rgba(0, 0, 0, 0.8);
           z-index: 3;
-          width: 66%;
+          width: 71%;
         }
+
+
       }
 
         @media only screen and (min-width:2048px){
@@ -4865,7 +4868,7 @@ html, body {
  
    .LabelForContactMeForm{
      position: absolute;
-     margin-left: 30%;
+     margin-left: 26%;
      margin-top: 24%;
      font-size: 100px;
      font-style: normal;
@@ -4923,7 +4926,7 @@ html, body {
  
    .labelForContactMe{
      position: absolute;
-     margin-left: 33%;
+     margin-left: 30%;
      margin-top: 65%;
      font-size: 100px;
      font-style: normal;
@@ -4992,7 +4995,7 @@ html, body {
      background: rgb(25,21,20);
      background: rgba(0, 0, 0, 0.8);
      z-index: 3;
-     width: 66%;
+     width: 72%;
    }
  
    .labelForHobbies{
@@ -5415,7 +5418,7 @@ html, body {
  
   .labelProjects{
      margin-left: 58%;
-     margin-top: 34.5%;
+     margin-top: -1.5%;
      width: 41.5%;
      font-size: 115px;
      color: white;
@@ -5448,7 +5451,7 @@ html, body {
  
    .LabelForContactMeForm{
      position: absolute;
-     margin-left: 30%;
+     margin-left: 27%;
      margin-top: 24%;
      font-size: 100px;
      font-style: normal;
@@ -5517,7 +5520,7 @@ html, body {
  
    .labelForContactMe{
      position: absolute;
-     margin-left: 33%;
+     margin-left: 31%;
      margin-top: 65%;
      font-size: 100px;
      font-style: normal;
@@ -5577,7 +5580,7 @@ html, body {
      background: rgb(25,21,20);
      background: rgba(0, 0, 0, 0.8);
      z-index: 3;
-     width: 82%;
+     width: 87%;
    }
  
    .labelForHobbies{
@@ -6084,7 +6087,7 @@ img { max-width: 100%; height: auto; }
  
   .labelProjects{
      margin-left: 58%;
-     margin-top: 34.5%;
+     margin-top: -1.2%;
      width: 41.5%;
      font-size: 115px;
      color: white;
@@ -6117,7 +6120,7 @@ img { max-width: 100%; height: auto; }
  
    .LabelForContactMeForm{
      position: absolute;
-     margin-left: 30%;
+     margin-left: 26%;
      margin-top: 24%;
      font-size: 100px;
      font-style: normal;
@@ -6187,7 +6190,7 @@ img { max-width: 100%; height: auto; }
  
    .labelForContactMe{
      position: absolute;
-     margin-left: 33%;
+     margin-left: 30%;
      margin-top: 65%;
      font-size: 100px;
      font-style: normal;
@@ -6247,7 +6250,7 @@ img { max-width: 100%; height: auto; }
      background: rgb(25,21,20);
      background: rgba(0, 0, 0, 0.8);
      z-index: 3;
-     width: 70%;
+     width: 80%;
    }
  
    .labelForHobbies{
@@ -6764,7 +6767,7 @@ img { max-width: 100%; height: auto; }
     background: rgb(25,21,20);
     background: rgba(0, 0, 0, 0.8);
     z-index: 3;
-    width: 70%;
+    width: 80%;
   }
   
   .Introduction {
@@ -6813,6 +6816,35 @@ img { max-width: 100%; height: auto; }
     overflow-y: auto;
 }
 
+.platformShift{
+  font-size: 125px;
+  font-weight: bold;
+  color: white;
+  margin-left: 250px;
+  top: 50%;
+  text-align: center;
+  width: 160px;
+  height: 130px;
+  padding: 16px;
+  margin-top: 50%;
+  margin-left: 37%;
+  margin-right: 25px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  z-index: 5;
+}
+
+
+
+.platformClass {
+  font-weight: bold;
+  font-size: 92px;
+  color: white;
+  margin-top: 55%;
+  margin-left: 19%;
+}
+
   
 .labelForCertification {
     position: absolute;
@@ -6825,7 +6857,7 @@ img { max-width: 100%; height: auto; }
     background: rgb(30,21,20); 
     background: rgba(0, 0, 0, 0.9);
     z-index: 3;
-    width: 73%;
+    width: 83%;
 }
 
 .labelForExpirience{
@@ -6959,7 +6991,7 @@ img { max-width: 100%; height: auto; }
   background: rgb(25,21,20);
   background: rgba(0, 0, 0, 0.8);
   z-index: 3;
-  width: 94%;
+  width: 100%;
 }
 
 .Introduction {
@@ -7108,7 +7140,7 @@ font-size: 75px;
 
 .labelProjects{
   margin-left: 49%;
-  margin-top: 34.5%;
+  margin-top: -1.5%;
   width: 41.5%;
   font-size: 115px;
   color: white;
@@ -7270,7 +7302,7 @@ font-size: 75px;
   background: rgb(25,21,20);
   background: rgba(0, 0, 0, 0.8);
   z-index: 3;
-  width: 90%;
+  width: 100%;
 }
 
 .labelForHobbies{
