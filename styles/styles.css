@@ -23,7 +23,8 @@ textarea{
 /* }    */
 
 html, body {
-  display: block;
+  transform: scale(50%);
+  display: flexbox;
   transform-origin: top left;
   width: 200%;
   height: auto;
@@ -1301,3 +1302,5 @@ for the disk in the Middle
  height: 110px;
  border-radius: 50%;
 }
+
+
