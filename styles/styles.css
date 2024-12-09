@@ -23,15 +23,13 @@ textarea{
 /* }    */
 
 html, body {
-  transform: scale(50%);
-  display: flexbox;
-  transform-origin: top left;
-  width: 200%;
-  height: auto;
+  transform: scale(0.5); /* Scale content by 50% */
+  transform-origin: top left; /* Anchor scaling to the top-left corner */
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
+  width: 200%; /* Adjust width to account for scaling */
+  height: 200%; /* Adjust height to account for scaling */
+  overflow: hidden; /* Disable both horizontal and vertical scrolling */
 }
 
 
