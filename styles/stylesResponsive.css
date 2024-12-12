@@ -6051,7 +6051,7 @@ img { max-width: 100%; height: auto; }
      transform: scale(50%);
      transform-origin: top left; 
      min-width: 200%;
-     overflow-y: scroll; 
+     overflow-y: hidden;
      overflow-x: hidden;
      /* height: 200%;
      min-width: 8000px; */ 
@@ -7093,7 +7093,7 @@ html, body{
   transform: scale(50%);
   transform-origin: top left; 
   min-width: 200%;
-  overflow-y: scroll; 
+  overflow-y: hidden; 
   overflow-x: hidden;
   /* height: 200%;
   min-width: 8000px; */ 
