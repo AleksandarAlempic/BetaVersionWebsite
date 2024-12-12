@@ -1542,7 +1542,7 @@
         margin: 0;
         padding: 0;
         overflow-x: hidden;
-        overflow-y: auto;
+        overflow-y: hidden;
     }
     
 
@@ -1724,7 +1724,7 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 
@@ -2897,7 +2897,7 @@ html, body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: hidden;
 }
 
   .divContactMe {
@@ -3308,7 +3308,7 @@ html, body {
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            overflow-y: auto;
+            overflow-y: hidden;
         }
 
         .platformShift{
@@ -6834,7 +6834,7 @@ img { max-width: 100%; height: auto; }
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: hidden;
 }
 
 .platformShift{
