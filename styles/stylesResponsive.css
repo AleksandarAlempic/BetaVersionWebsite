@@ -47,7 +47,8 @@
       min-width: 200%;
       overflow-y: hidden; 
       overflow-x: hidden; 
-
+      touch-action: none; /* Prevent any swipe gestures */
+      overscroll-behavior: none; /* Prevent pull-to-refresh and overscrolling */
      } 
      .newNextAndPreviousButtons{
       display: inline-flex;
@@ -88,6 +89,8 @@
         min-width: 200%;
         overflow-y: hidden;
         overflow-x: hidden;
+        touch-action: none; /* Prevent any swipe gestures */
+        overscroll-behavior: none; /* Prevent pull-to-refresh and overscrolling */
         /* transform-origin: top left; */
         /* transform: scale(50%); */
     }
@@ -388,6 +391,8 @@
           min-width: 200%;
           overflow-y: hidden;
           overflow-x: hidden;
+          touch-action: none; /* Prevent any swipe gestures */
+    overscroll-behavior: none; /* Prevent pull-to-refresh and overscrolling */
           /* transform-origin: top left; */
           /* transform: scale(50%); */
       }
@@ -1543,6 +1548,8 @@
         padding: 0;
         overflow-x: hidden;
         overflow-y: hidden;
+        touch-action: none; /* Prevent any swipe gestures */
+    overscroll-behavior: none; /* Prevent pull-to-refresh and overscrolling */
     }
     
 
@@ -1725,6 +1732,8 @@ html, body {
   padding: 0;
   overflow-x: hidden;
   overflow-y: hidden;
+  touch-action: none; /* Prevent any swipe gestures */
+    overscroll-behavior: none; /* Prevent pull-to-refresh and overscrolling */
 }
 
 
@@ -2898,6 +2907,8 @@ html, body {
     padding: 0;
     overflow-x: hidden;
     overflow-y: hidden;
+    touch-action: none; /* Prevent any swipe gestures */
+    overscroll-behavior: none; /* Prevent pull-to-refresh and overscrolling */
 }
 
   .divContactMe {
@@ -3309,6 +3320,8 @@ html, body {
             padding: 0;
             overflow-x: hidden;
             overflow-y: hidden;
+            touch-action: none; /* Prevent any swipe gestures */
+    overscroll-behavior: none; /* Prevent pull-to-refresh and overscrolling */
         }
 
         .platformShift{
@@ -3380,7 +3393,8 @@ html, body {
             min-width: 200%;
             overflow-y: hidden; 
             overflow-x: hidden; 
-      
+            touch-action: none; /* Prevent any swipe gestures */
+            overscroll-behavior: none; /* Prevent pull-to-refresh and overscrolling */
            }
 
 
@@ -3659,7 +3673,8 @@ html, body {
               min-width: 200%;
               overflow-y: hidden; 
               overflow-x: hidden; 
-        
+              touch-action: none; /* Prevent any swipe gestures */
+              overscroll-behavior: none; /* Prevent pull-to-refresh and overscrolling */
              } 
 
              .Certification {
@@ -3938,7 +3953,8 @@ html, body {
                 min-width: 200%;
                 overflow-y: hidden; 
                 overflow-x: hidden; 
-          
+                touch-action: none; /* Prevent any swipe gestures */
+                overscroll-behavior: none; /* Prevent pull-to-refresh and overscrolling */
                } 
                
                .Certification {
@@ -4233,7 +4249,8 @@ html, body {
                     min-width: 200%;
                     overflow-y: hidden; 
                     overflow-x: hidden; 
-              
+                    touch-action: none; /* Prevent any swipe gestures */
+                    overscroll-behavior: none; /* Prevent pull-to-refresh and overscrolling */
                    }
         
         
@@ -4512,7 +4529,8 @@ html, body {
                       min-width: 200%;
                       overflow-y: hidden; 
                       overflow-x: hidden; 
-                
+                      touch-action: none; /* Prevent any swipe gestures */
+                      overscroll-behavior: none; /* Prevent pull-to-refresh and overscrolling */
                      } 
         
                      .Certification {
@@ -6053,6 +6071,8 @@ img { max-width: 100%; height: auto; }
      min-width: 200%;
      overflow-y: hidden;
      overflow-x: hidden;
+     touch-action: none; /* Prevent any swipe gestures */
+    overscroll-behavior: none; /* Prevent pull-to-refresh and overscrolling */
      /* height: 200%;
      min-width: 8000px; */ 
      /* transform-origin: top left; */
@@ -6835,6 +6855,8 @@ img { max-width: 100%; height: auto; }
     padding: 0;
     overflow-x: hidden;
     overflow-y: hidden;
+    touch-action: none; /* Prevent any swipe gestures */
+    overscroll-behavior: none; /* Prevent pull-to-refresh and overscrolling */
 }
 
 .platformShift{
@@ -7095,6 +7117,8 @@ html, body{
   min-width: 200%;
   overflow-y: hidden; 
   overflow-x: hidden;
+  touch-action: none; /* Prevent any swipe gestures */
+    overscroll-behavior: none; /* Prevent pull-to-refresh and overscrolling */
   /* height: 200%;
   min-width: 8000px; */ 
   /* transform-origin: top left; */
