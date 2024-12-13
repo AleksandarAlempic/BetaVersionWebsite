@@ -1,0 +1,91 @@
+
+input[type="text"] { 
+
+    font-size: 24px; 
+    font-weight: 700; 
+    color: rgb(27, 70, 84);
+    background: lightgray;
+  
+}
+
+
+.classicButton{
+    width: 100%;
+    background: #D0D0D0;
+    font-weight: 790;
+    border-radius: 12%;
+}
+
+.backroundbody{
+    background: #3C4853;
+}
+
+.calculatorMonitor{
+    width: 131%;
+    height: 50px;
+    border-radius: 4.5%;
+    margin-top: 2%;
+    text-align: center;
+}
+
+.fade-in-input {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s ease-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+.tableClass{
+    margin-left: 40%; 
+    border: 1px solid;
+}
+
+.classForC{
+   width: 75.95%
+}
+
+.classForCButton{
+    background: red; width: 98%;
+    border-radius: 5%;
+    font-weight: 800;
+}
+
+.tdForDebaultButtons{
+    width:10.95%;
+   
+}
+
+.plusMinusEqualButton{
+    width: 11.1%;
+}
+
+.content {
+    margin-left:40%;
+    margin-top: 1.5%;
+    width: 240px;
+    height: 220px;
+    border-radius: 10px;
+    background-color: orange;
+    box-shadow: 15px 15px 19px rgba(163, 166, 198, 0.848), -15px -15px 19px rgba(163, 198, 191, 0.414);
+
+}
+
+.contentH1{
+    margin-top: 13%;
+    margin-left:37.5%;
+    color: orange;
+}
+
+
+
+/*  */

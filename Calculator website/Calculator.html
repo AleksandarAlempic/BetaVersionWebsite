@@ -1,0 +1,63 @@
+
+<html>
+  <head>
+    <link rel="stylesheet" href="Classes.css">
+    <script src="JavaScript.js" defer></script>
+  </head>
+    <body class="backroundbody">
+      <h1 class="contentH1 fade-in-input">Welcome to Calculator</h1>
+      <div class="content">
+        <div style="margin-left:1.5%; margin-top: 10%">
+            <table>
+              <tr style="height: 100%">
+                <td ><input id="Monitor" type="text" class="calculatorMonitor "></td>
+              </tr>
+              <tr>
+                <td class="classForC""><button onclick="clearMonitor()" class="classForCButton">C</button></td>
+                <td><button style="width: 92%;"  class="classicButton"  onclick="sqrt()">Sqrt</button></td>
+               
+              </tr>
+            </table>
+            <table>
+                <td id="button1" class="tdForDebaultButtons"><button class="classicButton" onclick="getNumberFromCalculator(1)">1</button></td>
+                <td id="button2" class="tdForDebaultButtons"><button class="classicButton" onclick="getNumberFromCalculator(2)">2</button></td>
+                <td id="button3" class="tdForDebaultButtons"><button class="classicButton" onclick="getNumberFromCalculator(3)">3</button></td>
+                <td id="buttonDiv" class="tdForDebaultButtons"><button class="classicButton" onclick="divide()">:</button></td>
+            </tr>
+          </tr>
+          <tr>
+            <table>
+              <tr>
+                <td id="button4" class="tdForDebaultButtons"><button class="classicButton" onclick="getNumberFromCalculator(4)">4</button></td>
+                <td id="button5" class="tdForDebaultButtons"><button class="classicButton" onclick="getNumberFromCalculator(5)">5</button></td>
+                <td id="button6" class="tdForDebaultButtons"><button class="classicButton" onclick="getNumberFromCalculator(6)">6</button></td>
+                <td id="buttonMultiple" class="tdForDebaultButtons"><button class="classicButton" onclick="multiple()">*</button></td>
+              </tr>
+            </table>
+          </tr>
+          <tr>
+            <table>  
+              <tr>
+                <td id="button7" class="tdForDebaultButtons"><button class="classicButton" onclick="getNumberFromCalculator(7)">7</button></td>
+                <td id="button8" class="tdForDebaultButtons"><button class="classicButton" onclick="getNumberFromCalculator(8)">8</button></td>
+                <td id="button9" class="tdForDebaultButtons"><button class="classicButton" onclick="getNumberFromCalculator(9)">9</button></td>
+                <td id="buttonFullstop"class="tdForDebaultButtons"><button class="classicButton" onclick="fullStop()">.</button></td>
+              </tr>
+            </table>
+          </tr>
+          <tr>
+            <table>  
+              <tr>
+                <td id="button0" class="plusMinusEqualButton" onclick="getNumberFromCalculator(0)"><button class="classicButton">0</button></td>
+                <td id="buttonPlus" class="plusMinusEqualButton"><button class="classicButton"  onclick="plusFunction11()">+</button></td>
+                <td id="buttonMinus" class="plusMinusEqualButton"><button class="classicButton" onclick="minusFunction()">-</button></td>
+                <td id="buttonEqual" class="plusMinusEqualButton"><button class="classicButton" onclick="testFunction()">=</button></td>
+              </tr>
+            </table>
+          </tr>
+          </table>
+        </div>
+        </div>
+    </body>
+</html>
+
