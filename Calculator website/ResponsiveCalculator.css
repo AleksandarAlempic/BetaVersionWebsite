@@ -2,18 +2,26 @@
 /* Desktop Layout */
 
 
+.contentH1 {
+  margin-top: 13%;
+  margin-left: 29.5%;
+  color: orange;
+  font-size: 150px;
+}
+
 .content {
-  margin-left: 40%;
-  margin-top: 1.5%;
+  margin-left: 36%;
   width: 240px;
-  height: 220px;
+  height: 322px;
   border-radius: 10px;
   background-color: orange;
   box-shadow: 15px 15px 19px rgba(163, 166, 198, 0.848), -15px -15px 19px rgba(163, 198, 191, 0.414);
   scale: 268%;
-  margin-top: 50px;
-  scale: 130%;
+  margin-top: 9%;
+  scale: 530%;
 }
+
+
 
 @media only screen and (min-width:768px){
   /* html, body{
