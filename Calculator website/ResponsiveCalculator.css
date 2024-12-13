@@ -50,14 +50,14 @@
     }
   
     .content{
-      margin-left: 40%;
+      margin-left: 37.5%;
       margin-top: 1.5%;
       width: 240px;
       height: 220px;
       border-radius: 10px;
       background-color: orange;
       box-shadow: 15px 15px 19px rgba(163, 166, 198, 0.848), -15px -15px 19px rgba(163, 198, 191, 0.414);
-      scale: 268%;
+      scale: 375%;
       margin-top: 500px;
     }
    } 
@@ -68,15 +68,15 @@
      
   
       .content{
-        margin-left: 40%;
-        margin-top: 1.5%;
-        width: 240px;
-        height: 220px;
-        border-radius: 10px;
-        background-color: orange;
-        box-shadow: 15px 15px 19px rgba(163, 166, 198, 0.848), -15px -15px 19px rgba(163, 198, 191, 0.414);
-        scale: 268%;
-        margin-top: 500px;
+        margin-left: 37.5%;
+    margin-top: 1.5%;
+    width: 240px;
+    height: 220px;
+    border-radius: 10px;
+    background-color: orange;
+    box-shadow: 15px 15px 19px rgba(163, 166, 198, 0.848), -15px -15px 19px rgba(163, 198, 191, 0.414);
+    scale: 375%;
+    margin-top: 500px;
       }
 
     }
@@ -104,14 +104,14 @@
 @media (min-width: 458px) and (max-width: 550px) {
      
   .content{
-    margin-left: 40%;
+    margin-left: 37.5%;
     margin-top: 1.5%;
     width: 240px;
     height: 220px;
     border-radius: 10px;
     background-color: orange;
     box-shadow: 15px 15px 19px rgba(163, 166, 198, 0.848), -15px -15px 19px rgba(163, 198, 191, 0.414);
-    scale: 268%;
+    scale: 375%;
     margin-top: 500px;
   }
 }
@@ -119,14 +119,14 @@
 @media (min-width: 550px) and (max-width: 600px) {
   
   .content{
-    margin-left: 40%;
+    margin-left: 37.5%;
     margin-top: 1.5%;
     width: 240px;
     height: 220px;
     border-radius: 10px;
     background-color: orange;
     box-shadow: 15px 15px 19px rgba(163, 166, 198, 0.848), -15px -15px 19px rgba(163, 198, 191, 0.414);
-    scale: 268%;
+    scale: 375%;
     margin-top: 500px;
   }
 
@@ -136,14 +136,14 @@
 @media (min-width: 600px) and (max-width: 650px) {
   
   .content{
-    margin-left: 40%;
+    margin-left: 37.5%;
     margin-top: 1.5%;
     width: 240px;
     height: 220px;
     border-radius: 10px;
     background-color: orange;
     box-shadow: 15px 15px 19px rgba(163, 166, 198, 0.848), -15px -15px 19px rgba(163, 198, 191, 0.414);
-    scale: 268%;
+    scale: 375%;
     margin-top: 500px;
   }
   
@@ -152,14 +152,14 @@
   @media (min-width: 650px) and (max-width: 700px) {
   
     .content{
-      margin-left: 40%;
+      margin-left: 37.5%;
       margin-top: 1.5%;
       width: 240px;
       height: 220px;
       border-radius: 10px;
       background-color: orange;
       box-shadow: 15px 15px 19px rgba(163, 166, 198, 0.848), -15px -15px 19px rgba(163, 198, 191, 0.414);
-      scale: 268%;
+      scale: 375%;
       margin-top: 500px;
     }
     
@@ -168,14 +168,14 @@
     @media (min-width: 700px) and (max-width: 850px) {
   
       .content{
-        margin-left: 40%;
+        margin-left: 37.5%;
         margin-top: 1.5%;
         width: 240px;
         height: 220px;
         border-radius: 10px;
         background-color: orange;
         box-shadow: 15px 15px 19px rgba(163, 166, 198, 0.848), -15px -15px 19px rgba(163, 198, 191, 0.414);
-        scale: 268%;
+        scale: 375%;
         margin-top: 500px;
       }
       
@@ -184,14 +184,14 @@
       @media (min-width: 850px) and (max-width: 900px) {
   
         .content{
-          margin-left: 40%;
+          margin-left: 37.5%;
           margin-top: 1.5%;
           width: 240px;
           height: 220px;
           border-radius: 10px;
           background-color: orange;
           box-shadow: 15px 15px 19px rgba(163, 166, 198, 0.848), -15px -15px 19px rgba(163, 198, 191, 0.414);
-          scale: 268%;
+          scale: 375%;
           margin-top: 500px;
         }
         
@@ -233,14 +233,14 @@
   
   
             .content{
-              margin-left: 40%;
+              margin-left: 37.5%;
               margin-top: 1.5%;
               width: 240px;
               height: 220px;
               border-radius: 10px;
               background-color: orange;
               box-shadow: 15px 15px 19px rgba(163, 166, 198, 0.848), -15px -15px 19px rgba(163, 198, 191, 0.414);
-              scale: 268%;
+              scale: 375%;
               margin-top: 500px;
             }
             
@@ -250,14 +250,14 @@
   
   
               .content{
-                margin-left: 40%;
+                margin-left: 37.5%;
                 margin-top: 1.5%;
                 width: 240px;
                 height: 220px;
                 border-radius: 10px;
                 background-color: orange;
                 box-shadow: 15px 15px 19px rgba(163, 166, 198, 0.848), -15px -15px 19px rgba(163, 198, 191, 0.414);
-                scale: 268%;
+                scale: 375%;
                 margin-top: 500px;
               }
               
@@ -270,14 +270,14 @@
  @media (min-width: 427px) and (max-width: 429px) {
   
   .content{
-    margin-left: 40%;
+    margin-left: 37.5%;
     margin-top: 1.5%;
     width: 240px;
     height: 220px;
     border-radius: 10px;
     background-color: orange;
     box-shadow: 15px 15px 19px rgba(163, 166, 198, 0.848), -15px -15px 19px rgba(163, 198, 191, 0.414);
-    scale: 268%;
+    scale: 375%;
     margin-top: 500px;
   }
 
@@ -323,14 +323,14 @@
     font-size: 80px;
 }
   .content{
-    margin-left: 40%;
+    margin-left: 37.5%;
     margin-top: 1.5%;
     width: 240px;
     height: 220px;
     border-radius: 10px;
     background-color: orange;
     box-shadow: 15px 15px 19px rgba(163, 166, 198, 0.848), -15px -15px 19px rgba(163, 198, 191, 0.414);
-    scale: 268%;
+    scale: 375%;
     margin-top: 500px;
   }
 
@@ -416,14 +416,14 @@ img { max-width: 100%; height: auto; }
 }
 
   .content{
-    margin-left: 40%;
+    margin-left: 37.5%;
     margin-top: 1.5%;
     width: 240px;
     height: 220px;
     border-radius: 10px;
     background-color: orange;
     box-shadow: 15px 15px 19px rgba(163, 166, 198, 0.848), -15px -15px 19px rgba(163, 198, 191, 0.414);
-    scale: 268%;
+    scale: 375%;
     margin-top: 500px;
   }
 
@@ -443,14 +443,14 @@ img { max-width: 100%; height: auto; }
 
 
   .content{
-    margin-left: 40%;
+    margin-left: 37.5%;
     margin-top: 1.5%;
     width: 240px;
     height: 220px;
     border-radius: 10px;
     background-color: orange;
     box-shadow: 15px 15px 19px rgba(163, 166, 198, 0.848), -15px -15px 19px rgba(163, 198, 191, 0.414);
-    scale: 268%;
+    scale: 375%;
     margin-top: 500px;
   }   
 
@@ -467,14 +467,14 @@ img { max-width: 100%; height: auto; }
 
 
   .content{
-    margin-left: 40%;
+    margin-left: 37,5%;
     margin-top: 1.5%;
     width: 240px;
     height: 220px;
     border-radius: 10px;
     background-color: orange;
     box-shadow: 15px 15px 19px rgba(163, 166, 198, 0.848), -15px -15px 19px rgba(163, 198, 191, 0.414);
-    scale: 268%;
+    scale: 375%;
     margin-top: 246px;
   }
 
@@ -492,20 +492,23 @@ img { max-width: 100%; height: auto; }
 }
  
   .content{
-    margin-left: 40%;
+    margin-left: 37.5%;
     margin-top: 1.5%;
     width: 240px;
     height: 220px;
     border-radius: 10px;
     background-color: orange;
     box-shadow: 15px 15px 19px rgba(163, 166, 198, 0.848), -15px -15px 19px rgba(163, 198, 191, 0.414);
-    scale: 268%;
+    scale: 375%;
     margin-top: 500px;
+
+    
   }
 
 }
  
  
+
  /* Samsung Galaxy S20 Xiaomi Mi 11i Huawei P30 */
  /* @media only screen and (min-width: 800 and max-width:851px){
  
