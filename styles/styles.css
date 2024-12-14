@@ -10,6 +10,10 @@ textarea{
    padding: 25px;
 }
 
+.labelForPlatform1{
+  display: inline-flex;
+      margin-left: 4%;
+}
 
 /* html, body{
  display: flexbox;
@@ -1300,3 +1304,5 @@ for the disk in the Middle
  height: 110px;
  border-radius: 50%;
 }
+
+
