@@ -7786,6 +7786,269 @@ background: url('../images/HomePage/HomePageRight1.jpg');
      display: flex;
    }
  }  */
+
+
+
+/* Target only iPhone 13 Pro Max */
+
+@media only screen and (min-width: 426px) and (max-width: 428px)
+       and (min-height: 744px) and (max-height: 748px) {
+        .portfolioImg {
+          margin-top: -55px;
+        width: 69%;
+        height: 390px;
+      }
+
+
+
+      .Iframe1 {
+        text-align: end;
+        width: 580px;
+        padding-bottom: 2%;
+        margin-left: -14%;
+        margin-top: 13.05%;
+        z-index: 25;
+        flex: 30%;
+    }
+
+    .Iframe2 {
+      text-align: end;
+      width: 580px;
+      padding-bottom: 2%;
+      margin-left: -101%;
+      margin-top: 44.05%;
+      z-index: 25;
+      flex: 30%;
+  }
+
+.Iframe3 {
+  text-align: end;
+  width: 339px;
+  /* height: 87%; */
+  padding-bottom: 2%;
+  margin-left: -99%;
+  margin-right: 10%;
+  margin-top: 78%;
+  z-index: 25;
+  flex: 30%;
+}
+
+.labelProjects {
+  position: relative;
+  margin-left: 39.3%;
+  margin-top: 0%;
+  width: 28%;
+  font-size: 95px;
+  color: white;
+  z-index: 35;
+  background: rgb(25, 21, 20);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.labelForPlatform1{
+  display: inline-flex;
+      margin-left: 23%;
+}
+  
+  /* .Iframe2{
+    text-align: end;
+    width: 980px;
+    height: 2%;
+    padding-bottom: 2%;
+    margin-left: 1%;
+    z-index: 1;
+    flex: 30%;
+  }
+  
+  .Iframe3{
+    text-align: end;
+    width: 980px;
+    padding-bottom: 1.5%;
+    margin-left: 1.7%;
+    z-index: 1;
+    flex: 30%;
+  } */
+  
+  .portfolioImg{
+    margin-top: -55px;
+    width: 75%;
+    height: 290px;
+  }
+  
+}
+
+@media only screen and (min-width: 426px) and (max-width: 430px)
+       and (min-height: 750px) and (max-height: 760px) {
+        .portfolioImg {
+          margin-top: -55px;
+        width: 69%;
+        height: 390px;
+      }
+
+
+
+      .Iframe1 {
+        text-align: end;
+        width: 580px;
+        padding-bottom: 2%;
+        margin-left: -14%;
+        margin-top: 13.05%;
+        z-index: 25;
+        flex: 30%;
+    }
+
+    .Iframe2 {
+      text-align: end;
+      width: 580px;
+      padding-bottom: 2%;
+      margin-left: -101%;
+      margin-top: 44.05%;
+      z-index: 25;
+      flex: 30%;
+  }
+
+.Iframe3 {
+  text-align: end;
+  width: 339px;
+  /* height: 87%; */
+  padding-bottom: 2%;
+  margin-left: -99%;
+  margin-right: 10%;
+  margin-top: 78%;
+  z-index: 25;
+  flex: 30%;
+}
+
+.labelProjects {
+  position: relative;
+  margin-left: 39.3%;
+  margin-top: 0%;
+  width: 28%;
+  font-size: 95px;
+  color: white;
+  z-index: 35;
+  background: rgb(25, 21, 20);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.labelForPlatform1{
+  display: inline-flex;
+      margin-left: 23%;
+}
+  
+  /* .Iframe2{
+    text-align: end;
+    width: 980px;
+    height: 2%;
+    padding-bottom: 2%;
+    margin-left: 1%;
+    z-index: 1;
+    flex: 30%;
+  }
+  
+  .Iframe3{
+    text-align: end;
+    width: 980px;
+    padding-bottom: 1.5%;
+    margin-left: 1.7%;
+    z-index: 1;
+    flex: 30%;
+  } */
+  
+  .portfolioImg{
+    margin-top: -55px;
+    width: 75%;
+    height: 290px;
+  }
+  
+}
+
+@media only screen and (min-width: 426px) and (max-width: 430px)
+       and (min-height: 740px) and (max-height: 745px) {
+        .portfolioImg {
+          margin-top: -55px;
+        width: 69%;
+        height: 390px;
+      }
+
+
+
+      .Iframe1 {
+        text-align: end;
+        width: 580px;
+        padding-bottom: 2%;
+        margin-left: -14%;
+        margin-top: 13.05%;
+        z-index: 25;
+        flex: 30%;
+    }
+
+    .Iframe2 {
+      text-align: end;
+      width: 580px;
+      padding-bottom: 2%;
+      margin-left: -101%;
+      margin-top: 44.05%;
+      z-index: 25;
+      flex: 30%;
+  }
+
+.Iframe3 {
+  text-align: end;
+  width: 339px;
+  /* height: 87%; */
+  padding-bottom: 2%;
+  margin-left: -99%;
+  margin-right: 10%;
+  margin-top: 78%;
+  z-index: 25;
+  flex: 30%;
+}
+
+.labelProjects {
+  position: relative;
+  margin-left: 39.3%;
+  margin-top: 0%;
+  width: 28%;
+  font-size: 95px;
+  color: white;
+  z-index: 35;
+  background: rgb(25, 21, 20);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.labelForPlatform1{
+  display: inline-flex;
+      margin-left: 23%;
+}
+  
+  /* .Iframe2{
+    text-align: end;
+    width: 980px;
+    height: 2%;
+    padding-bottom: 2%;
+    margin-left: 1%;
+    z-index: 1;
+    flex: 30%;
+  }
+  
+  .Iframe3{
+    text-align: end;
+    width: 980px;
+    padding-bottom: 1.5%;
+    margin-left: 1.7%;
+    z-index: 1;
+    flex: 30%;
+  } */
+  
+  .portfolioImg{
+    margin-top: -55px;
+    width: 75%;
+    height: 290px;
+  }
+  
+}
+
  /* 
  @media (max-device-width:800px) {
    img[data-src-800px] {
