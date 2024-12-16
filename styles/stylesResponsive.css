@@ -5077,7 +5077,7 @@ html, body {
     text-align: center;
     margin-left: 27%;
     width: 85%;
-    font-size: 95px;
+    font-size: 75px;
     color: white;
     opacity: 0.7;
     background: rgb(25, 21, 20);
@@ -7192,7 +7192,7 @@ img { max-width: 100%; height: auto; }
   text-align: center;
   margin-left: 27%;
   width: 85%;
-  font-size: 70px;
+  font-size: 75px;
   color: white;
   opacity: 0.7;
   background: rgb(25, 21, 20);
@@ -7290,7 +7290,7 @@ img { max-width: 100%; height: auto; }
 
 .labelforWarehouse {
   margin-left: 20%; /* Only this property changes */
-  font-size: 70px;
+  font-size: 75px;
 }
  }
 
