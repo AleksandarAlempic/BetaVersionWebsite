@@ -700,7 +700,7 @@
   .newNextAndPreviousButtons{
     display: inline-flex;
     position: absolute;
-    margin-top: 108%;
+    margin-top: 113%;
     margin-left: 35%;
     }
 
@@ -3012,10 +3012,10 @@ html, body {
 
 
   .Technologies{
-    width: 1400px;
+    width: 1550px;
     height: 455px;
     font-size: 70px;
-    margin-left: 3%;
+    margin-left: 1%;
     border-radius: 3%;
     margin-top: 79.5%;
     position: absolute;
@@ -3046,8 +3046,8 @@ html, body {
 
   .labelForExpirience {
     position: absolute;
-    margin-left: 32.5%;
-    margin-top: 26.85%;
+    margin-left: 27.5%;
+    margin-top: 19.85%;
     font-size: 100px;
     font-style: normal;
     color: white;
@@ -3055,6 +3055,7 @@ html, body {
     background: rgb(25,21,20);
     background: rgba(0, 0, 0, 0.8);
     z-index: 3;
+   
 }
 
 .labelForOther{
@@ -3198,11 +3199,11 @@ html, body {
 
   .Expirience{
     border-radius: 3%;
-    width: 1600px;
-    height: 580px;
-    font-size: 70px;
-    margin-left: 3%;
-    margin-top: 35.5%;
+        width: 1550px;
+        height: 580px;
+        font-size: 70px;
+        margin-left: 1%;
+        margin-top: 29.5%;
     position: absolute;
     opacity: 0.75;
     overflow: hidden;
@@ -3229,7 +3230,7 @@ html, body {
     position: absolute;
     float: left;
     margin-left: 25%;
-    margin-top: 123%;
+    margin-top: 120%;
     width: 875px;
     height: 715px;
     background: rgb(25,21,20); /* Fallback color */
@@ -3260,15 +3261,15 @@ html, body {
   .labelForCertification {
     position: absolute;
     margin-left: 14.5%;
-    margin-top: 72.5%;
+    margin-top: 66.5%;
     font-size: 87px;
     font-style: normal;
     color: white;
     opacity: 0.9;
-    background: rgb(25,21,20);
+    background: rgb(25, 21, 20);
     background: rgba(0, 0, 0, 0.8);
     z-index: 3;
-    width: 83%;
+    width: 73%;
 }
 
   .OtherExpirience{
@@ -3277,10 +3278,10 @@ html, body {
   
   .Introduction {
     border-radius: 3%;
-    width: 1600px;
+    width: 1550px;
     height: 575px;
     font-size: 90px;
-    margin-left: 2.65%;
+    margin-left: 1%;
     margin-top: 34%;
     position: absolute;
     opacity: 0.75;
@@ -3292,18 +3293,18 @@ html, body {
   }
   
   .Certification{
-    width: 1600px;
+    width: 1550px;
     height: 650px;
     font-size: 70px;
-    margin-left: 4%;
-    margin-top: 81.5%;
+    margin-left: 1%;
+    margin-top: 75.5%;
     position: absolute;
     border-radius: 3%;
     opacity: 0.75;
     overflow: hidden;
     z-index: 3;
     color: white;
-    background: rgb(30,21,20);
+    background: rgb(30, 21, 20);
     background: rgba(0, 0, 0, 0.9);
   }
  }
@@ -4914,7 +4915,7 @@ html, body {
    .labelForExpirience{
      position: absolute;
      margin-left: 24.5%;
-     margin-top: 24%;
+     margin-top: 20%;
      font-size: 95px;
      font-style: normal;
      color: white;
@@ -4982,7 +4983,7 @@ html, body {
    .newNextAndPreviousButtons {
     display: inline-flex;
     position: absolute;
-    margin-top: 116%;
+    margin-top: 101%;
     margin-left: 30%;
 }
 
@@ -5006,7 +5007,7 @@ html, body {
    .labelForIntro{
      position: absolute;
      margin-left: 34.1%;
-     margin-top: 23.5%;
+     margin-top: 20.5%;
      font-size: 100px;
      font-style: normal;
      color: white;
@@ -5019,7 +5020,7 @@ html, body {
    .labelForCertification{
      position: absolute;
      margin-left: 10.5%;
-     margin-top: 64.2%;
+     margin-top: 56.2%;
      font-size: 87px;
      font-style: normal;
      color: white;
@@ -5044,7 +5045,7 @@ html, body {
      height: 615px;
      font-size: 70px;
      margin-left: 4.2%;
-     margin-top: 33.2%;
+     margin-top: 28.2%;
      border-radius: 3%;
      position: absolute;
      opacity: 0.75;
@@ -5065,7 +5066,7 @@ html, body {
      height: 400px;
      font-size: 70px;
      margin-left: 3%;
-     margin-top: 34%;
+     margin-top: 30%;
      position: absolute;
      opacity: 0.75;
      overflow: hidden;
@@ -5101,7 +5102,7 @@ html, body {
      position: absolute;
      float: left;
      margin-left: 18%;
-     margin-top: 124%;
+     margin-top: 108%;
      width: 875px;
      height: 715px;
      background: rgb(25,21,20); /* Fallback color */
@@ -5152,7 +5153,7 @@ html, body {
      font-size: 70px;
      margin-left: 3.5%;
      border-radius: 3%;
-     margin-top: 87.5%;
+     margin-top: 72.7%;
      position: absolute;
      opacity: 0.75;
      overflow: hidden;
@@ -5164,8 +5165,8 @@ html, body {
  
    .labelForTechnologies{
      position: absolute;
-     margin-left: 31%;
-     margin-top: 77.8%;
+     margin-left: 33%;
+     margin-top: 65.8%;
      font-size: 100px;
      font-style: normal;
      color: white;
@@ -5249,7 +5250,7 @@ html, body {
      height: 550px;
      font-size: 70px;
      margin-left: 4%;
-     margin-top: 73.2%;
+     margin-top: 65.2%;
      position: absolute;
      border-radius: 3%;
      opacity: 0.75;
@@ -5503,6 +5504,7 @@ html, body {
      background: rgb(25,21,20); 
      background: rgba(0, 0, 0, 0.8);
      z-index: 3;
+     margin-top: 20%;
    }
  
    .labelForOther{
@@ -5589,7 +5591,7 @@ html, body {
    .labelForIntro{
      position: absolute;
      margin-left: 30.1%;
-     margin-top: 23.5%;
+     margin-top: 20.5%;
      font-size: 100px;
      font-style: normal;
      color: white;
@@ -5610,7 +5612,7 @@ html, body {
      background: rgb(25,21,20);
      background: rgba(0, 0, 0, 0.8);
      z-index: 3;
-     width: 87%;
+     width: 73%;
    }
  
    .labelForHobbies{
@@ -5623,7 +5625,7 @@ html, body {
      height: 615px;
      font-size: 70px;
      margin-left: 3.5%;
-     margin-top: 33.2%;
+     margin-top: 29.2%;
      border-radius: 3%;
      position: absolute;
      opacity: 0.75;
@@ -5644,7 +5646,7 @@ html, body {
      height: 400px;
      font-size: 70px;
      margin-left: 3.5%;
-     margin-top: 34%;
+     margin-top: 29%;
      position: absolute;
      opacity: 0.75;
      overflow: hidden;
@@ -5727,11 +5729,11 @@ html, body {
  
    .Technologies{
      width: 1450px;
-     height: 500px;
+     height: 350px;
      font-size: 70px;
      margin-left: 3.5%;
      border-radius: 3%;
-     margin-top: 87.5%;
+     margin-top: 82.5%;
      position: absolute;
      opacity: 0.75;
      overflow: hidden;
@@ -5743,8 +5745,8 @@ html, body {
  
    .labelForTechnologies{
      position: absolute;
-     margin-left: 22%;
-     margin-top: 77.8%;
+     margin-left: 28%;
+     margin-top: 72.8%;
      font-size: 100px;
      font-style: normal;
      color: white;
@@ -5828,7 +5830,7 @@ html, body {
      height: 550px;
      font-size: 70px;
      margin-left: 3.5%;
-     margin-top: 73.2%;
+     margin-top: 66.2%;
      position: absolute;
      border-radius: 3%;
      opacity: 0.75;
@@ -6178,7 +6180,7 @@ img { max-width: 100%; height: auto; }
    .labelForExpirience{
      position: absolute;
      margin-left: 27.5%;
-     margin-top: 24%;
+     margin-top: 25%;
      font-size: 95px;
      font-style: normal;
      color: white;
@@ -6273,7 +6275,7 @@ img { max-width: 100%; height: auto; }
    .labelForIntro{
      position: absolute;
      margin-left: 32.1%;
-     margin-top: 23.5%;
+     margin-top: 21.5%;
      font-size: 100px;
      font-style: normal;
      color: white;
@@ -6307,7 +6309,7 @@ img { max-width: 100%; height: auto; }
      height: 615px;
      font-size: 70px;
      margin-left: 3%;
-     margin-top: 33.2%;
+     margin-top: 30.2%;
      border-radius: 3%;
      position: absolute;
      opacity: 0.75;
@@ -6328,7 +6330,7 @@ img { max-width: 100%; height: auto; }
      height: 400px;
      font-size: 70px;
      margin-left: 3%;
-     margin-top: 34%;
+     margin-top: 30%;
      position: absolute;
      opacity: 0.75;
      overflow: hidden;
@@ -6411,11 +6413,11 @@ img { max-width: 100%; height: auto; }
  
    .Technologies{
     width: 1255px;
-     height: 500px;
+     height: 350px;
      font-size: 70px;
      margin-left: 3%;
      border-radius: 3%;
-     margin-top: 87.5%;
+     margin-top: 84%;
      position: absolute;
      opacity: 0.75;
      overflow: hidden;
@@ -6428,7 +6430,7 @@ img { max-width: 100%; height: auto; }
    .labelForTechnologies{
      position: absolute;
      margin-left: 30%;
-     margin-top: 77.8%;
+     margin-top: 74.8%;
      font-size: 100px;
      font-style: normal;
      color: white;
@@ -6514,7 +6516,7 @@ img { max-width: 100%; height: auto; }
      height: 550px;
      font-size: 70px;
      margin-left: 4%;
-     margin-top: 73.2%;
+     margin-top: 67.2%;
      position: absolute;
      border-radius: 3%;
      opacity: 0.75;
@@ -6678,7 +6680,7 @@ img { max-width: 100%; height: auto; }
     font-size: 70px;
     margin-left: 3%;
     border-radius: 3%;
-    margin-top: 88.5%;
+    margin-top: 81.5%;
     position: absolute;
     opacity: 0.75;
     overflow: hidden;
@@ -6764,7 +6766,7 @@ img { max-width: 100%; height: auto; }
     height: 400px;
     font-size: 70px;
     margin-left: 3%;
-    margin-top: 34%;
+    margin-top: 30%;
     position: absolute;
     opacity: 0.75;
     overflow: hidden;
@@ -6772,6 +6774,7 @@ img { max-width: 100%; height: auto; }
     color: white;
     background: rgb(30,21,20); 
     background: rgba(0, 0, 0, 0.9);
+
   }
 
   .audioContainer{
@@ -6795,7 +6798,7 @@ img { max-width: 100%; height: auto; }
   .labelForIntro{
     position: absolute;
     margin-left: 32.5%;
-    margin-top: 25.9%;
+    margin-top: 22.9%;
     font-size: 100px;
     font-style: normal;
     color: white;
@@ -6808,7 +6811,7 @@ img { max-width: 100%; height: auto; }
   .labelForCertification{
     position: absolute;
     margin-left: 4.5%;
-    margin-top: 65.5%;
+    margin-top: 58.2%;
     font-size: 87px;
     font-style: normal;
     color: white;
@@ -6824,7 +6827,7 @@ img { max-width: 100%; height: auto; }
     height: 600px;
     font-size: 90px;
     margin-left: 2.65%;
-    margin-top: 36%;
+    margin-top: 32%;
     position: absolute;
     opacity: 0.75;
     overflow: hidden;
@@ -6839,7 +6842,7 @@ img { max-width: 100%; height: auto; }
     height: 550px;
     font-size: 70px;
     margin-left: 4%;
-    margin-top: 74.5%;
+    margin-top: 66.5%;
     position: absolute;
     border-radius: 3%;
     opacity: 0.75;
@@ -6897,7 +6900,7 @@ img { max-width: 100%; height: auto; }
 .labelForCertification {
     position: absolute;
     margin-left: 12%;
-    margin-top: 64.2%;
+    margin-top: 58.2%;
     font-size: 87px;
     font-style: normal;
     color: white;
@@ -6905,19 +6908,22 @@ img { max-width: 100%; height: auto; }
     background: rgb(30,21,20); 
     background: rgba(0, 0, 0, 0.9);
     z-index: 3;
-    width: 83%;
+    width: 73%;
 }
 
 .labelForExpirience{
   margin-left: 24%;
+  margin-top: 21%;
 }
 
 .audioContainer{
   margin-left: 18%;
+  margin-top: 113%;
 }
 
 .newNextAndPreviousButtons{
   margin-left: 31%;
+  margin-top: 105%;
 }
 
 .labelProjects{
@@ -7062,6 +7068,8 @@ img { max-width: 100%; height: auto; }
 }
 
 .Introduction {
+
+  
   width: 1200px;
   height: 600px;
   font-size: 90px;
@@ -7081,7 +7089,7 @@ img { max-width: 100%; height: auto; }
   height: 550px;
   font-size: 70px;
   margin-left: 4%;
-  margin-top: 83.5%;
+  margin-top: 63%;
   position: absolute;
   border-radius: 3%;
   opacity: 0.75;
@@ -7264,6 +7272,7 @@ font-size: 75px;
   background: rgb(25,21,20); 
   background: rgba(0, 0, 0, 0.8);
   z-index: 3;
+
 }
 
 .labelForOther{
