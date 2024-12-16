@@ -6344,7 +6344,7 @@ img { max-width: 100%; height: auto; }
     text-align: center;
     margin-left: 27%;
     width: 85%;
-    font-size: 95px;
+    font-size: 80px;
     color: white;
     opacity: 0.7;
     background: rgb(25, 21, 20);
@@ -7171,6 +7171,8 @@ img { max-width: 100%; height: auto; }
    
  }
 
+
+
  @media only screen and (max-width: 393px){
   html, body {
     transform: scale(52%);
@@ -7188,9 +7190,9 @@ img { max-width: 100%; height: auto; }
 
 .labelforWarehouse {
   text-align: center;
-  margin-left: 20%;
+  margin-left: 27%;
   width: 85%;
-  font-size: 95px;
+  font-size: 80px;
   color: white;
   opacity: 0.7;
   background: rgb(25, 21, 20);
@@ -7269,6 +7271,26 @@ img { max-width: 100%; height: auto; }
   margin-left: 6%;
 }
 
+ }
+
+ @media only screen and (max-width: 383px){
+  html, body {
+    transform: scale(52%);
+    display: block;
+    transform-origin: top left;
+    width: 200%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    touch-action: none; /* Prevent any swipe gestures */
+    overscroll-behavior: none; /* Prevent pull-to-refresh and overscrolling */
+}
+
+.labelforWarehouse {
+  margin-left: 20%; /* Only this property changes */
+}
  }
 
 
