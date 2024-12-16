@@ -267,14 +267,7 @@ ul {
            .IndividualTextFonts{
              font-size: 92px;
            }
-           .labelforWarehouse{
-             margin-left: 30%;
-             font-size: 95px;
-             color: white;
-             opacity: 0.7;
-             background: rgb(25,21,20); 
-             background: rgba(0, 0, 0, 0.6);
-           }
+         
            
            .labelforProject{
              margin-left: 18%;
@@ -282,9 +275,9 @@ ul {
              font-size: 95px;
              color: white;
              opacity: 0.7;
+             width: 100%;
              background: rgb(25,21,20); 
              background: rgba(0, 0, 0, 0.6);
-         
            }
 
            .labelforPlatform{
@@ -1305,4 +1298,13 @@ for the disk in the Middle
  border-radius: 50%;
 }
 
-
+.labelforWarehouse {
+  text-align: center;
+  margin-left: 27%;
+  width: 85%;
+  font-size: 95px;
+  color: white;
+  opacity: 0.7;
+  background: rgb(25, 21, 20);
+  background: rgba(0, 0, 0, 0.6);
+}
