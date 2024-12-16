@@ -7304,7 +7304,7 @@ img { max-width: 100%; height: auto; }
 
 .labelforWarehouse {
   text-align: center;
-  margin-left: 27%;
+  margin-left: 20%;
   width: 85%;
   font-size: 95px;
   color: white;
@@ -8090,17 +8090,6 @@ background: url('../images/HomePage/HomePageRight1.jpg');
   margin-top: -55px;
   width: 75%;
   height: 290px;
-}
-
-.labelforWarehouse {
-  text-align: center;
-  margin-left: 27%;
-  width: 85%;
-  font-size: 95px;
-  color: white;
-  opacity: 0.7;
-  background: rgb(25, 21, 20);
-  background: rgba(0, 0, 0, 0.6);
 }
 
 }
