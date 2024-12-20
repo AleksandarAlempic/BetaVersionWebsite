@@ -3,9 +3,9 @@
 
 .contentH1 {
   margin-top: 13%;
-  margin-left: 30.5%;
+  margin-left: 37.5%;
   color: orange;
-  font-size: 500%;
+  font-size: 200%;
 }
 
 .content {
@@ -295,6 +295,20 @@
 
       }
 
+      @media (min-width: 405px) and (max-width: 425px) {
+
+        .contentH1 {
+          margin-top: 13%;
+          margin-left: 37.5%;
+          color: orange;
+          font-size: 500%;
+          
+      }
+       
+    
+      
+      }
+
       /* Mobile Layout 11i Huawei P30 */ */
 /* 
 @media only screen and (max-width:415px){
@@ -535,6 +549,8 @@ img { max-width: 100%; height: auto; }
   }
 
 }
+
+
  
  
 
