@@ -289,7 +289,7 @@
               
               }
         
- @media (min-width: 427px) and (max-width: 429px) {
+ @media (min-width: 427px) and (max-width: 432px) {
   
   .content{
     margin-left: 37.5%;
@@ -304,6 +304,13 @@
     touch-action: none; /* Prevent any swipe gestures */
     overscroll-behavior: none; /* Prevent pull-to-refresh and overscrolling */
   }
+  .contentH1 {
+    margin-top: 13%;
+    margin-left: 30.5%;
+    color: orange;
+    font-size: 500%;
+
+}
 
       }
 
