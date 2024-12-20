@@ -288,6 +288,38 @@
             
               
               }
+
+              @media (max-width: 720px) {
+                .contentH1 {
+                  margin-top: 13%;
+                  margin-left: 30.5%;
+                  color: orange;
+                  font-size: 500%;
+              
+              }
+            }
+            
+            /* For larger screens (landscape) or medium devices */
+            @media (min-width: 721px) and (max-width: 1600px) {
+              .contentH1 {
+                margin-top: 13%;
+                margin-left: 30.5%;
+                color: orange;
+                font-size: 500%;
+            
+            }
+            }
+            
+            /* For devices with wider screens (larger than 1600px) */
+            @media (min-width: 1601px) {
+              .contentH1 {
+                margin-top: 13%;
+                margin-left: 30.5%;
+                color: orange;
+                font-size: 500%;
+            
+            }
+            }
         
  @media (min-width: 427px) and (max-width: 432px) {
   
