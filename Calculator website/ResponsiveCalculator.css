@@ -3,9 +3,9 @@
 
 .contentH1 {
   margin-top: 13%;
-  margin-left: 38.5%;
+  margin-left: 30.5%;
   color: orange;
-  font-size: 200%;
+  font-size: 500%;
 }
 
 .content {
@@ -333,6 +333,7 @@
     margin-left: 30.5%;
     color: orange;
     font-size: 80px;
+    padding-bottom: 10%;
 }
   .content{
     margin-left: 37.5%;
@@ -427,6 +428,7 @@ img { max-width: 100%; height: auto; }
     margin-left: 30.5%;
     color: orange;
     font-size: 80px;
+    padding-bottom: 10%;
 }
 
   .content{
@@ -455,6 +457,7 @@ img { max-width: 100%; height: auto; }
     margin-left: 30.5%;
     color: orange;
     font-size: 80px;
+    padding-bottom: 10%;
 }
 
 
@@ -481,7 +484,10 @@ img { max-width: 100%; height: auto; }
     margin-left: 30.5%;
     color: orange;
     font-size: 80px;
+    padding-bottom: 10%;
 }
+
+
 
 
   .content{
@@ -509,6 +515,7 @@ img { max-width: 100%; height: auto; }
     margin-left: 30.5%;
     color: orange;
     font-size: 80px;
+    padding-bottom: 10%;
 }
  
   .content{
@@ -530,6 +537,13 @@ img { max-width: 100%; height: auto; }
 }
  
  
+
+/* @media only screen and (max-width: 393px) {
+
+
+} */
+
+
 
  /* Samsung Galaxy S20 Xiaomi Mi 11i Huawei P30 */
  /* @media only screen and (min-width: 800 and max-width:851px){
