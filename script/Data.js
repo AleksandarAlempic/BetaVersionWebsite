@@ -27,7 +27,6 @@ let introSongs = [
       cover: 'images/audio/WeAreOne.jpg'
    },
   
- 
    {
       name: 'Walk',
       path: 'audio/Kwabs - Walk (Official Video).mp3',
@@ -101,7 +100,8 @@ let introSongs = [
       cover: 'images/audio/HallOfFame.jpg '
    },
 
-   {      name: 'Superheroes',
+   {   
+      name: 'Superheroes',
       path: 'audio/The Script - Superheroes (Official Video).mp3',
       artist: 'The Script',
       cover: 'images/audio/TheScript.jpg'
@@ -183,58 +183,18 @@ let narodnjaciSongs = [
       cover: 'images/audio/NadaTopcagic.jpg'
    },
   
- 
-   {
-      name: 'U inat proslosti',
-      path: 'audio/Aleksandra Radovic & The Beatshakers - Who Gonna Stop Me Now (Official HD Video).mp3',
-      artist: 'Aleksandra Radovic',
-      cover: 'images/audio/AleksandraRadovic.jpg'
-   },
-   {
-      name: 'Molitva',
-      path: 'audio/MARIJA SERIFOVIC - MOLITVA - (OFFICIAL VIDEO 2020).mp3',
-      artist: 'Marija Serifovic',
-      cover: 'images/audio/MarijaSerifovic.jpg'
-   },
-
-  {
-      name: 'Sve po starom',
-      path: 'audio/ALEKSANDRA PRIJOVIC - SVE PO STAROM (OFFICIAL VIDEO).mp3',
-      artist: 'Aleksandra Prijovic',
-      cover: 'images/audio/PrijovicSvePoStarom.jpg'
-   },
-   
-   {
-      name: 'Legitimno',
-      path: 'audio/ALEKSANDRA PRIJOVIC - LEGITIMNO (OFFICIAL VIDEO 2020).mp3',
-      artist: 'Aleksandra Prijovic',
-      cover: 'images/audio/Legitimno.jpg'
-   },
-   
-   {
-      name: 'Devet Zivota',
-      path: 'audio/ALEKSANDRA PRIJOVIC - DEVET ZIVOTA (OFFICIAL VIDEO).mp3',
-      artist: 'Aleksandra Prijovic',
-      cover: 'images/audio/AleksandraPrijovic.jpg'
-   },
-   {
-      name: 'Boli Boli',
-      path: 'audio/Ivana Selakov x Amar Gile - BOLI BOLI ( Official Video 2020 ).mp3',
-      artist: 'Ivana Selakov & Amar Gile',
-      cover: 'images/audio/BoliBoliOvaBol.jpg'
-   },
-
-   {
-      name: 'Vracaju se dani pobede',
-      path: 'audio/Grupa JNA - Vracaju se dani pobede.mp3',
-      artist: '',
-      cover: 'images/audio/GrupaJNA.jpg'
-   },
    {
       name: 'Imam jedan zivot',
       path: 'audio/Ana Bekuta - Imam jedan zivot (Sava Centar 22.02.2012.).mp3',
       artist: 'Ana Bekuta',
       cover: 'images/audio/AnaBekuta.jpg'
+   },
+
+   {
+      name: 'Veseli se srpski rode',
+      path: 'audio/Veseli se srpski rode.mp3',
+      artist: 'Danica Crnogorcevic',
+      cover: 'images/audio/Danica.jpg'
    },
 
    {
@@ -249,6 +209,55 @@ let narodnjaciSongs = [
       artist: 'Legende',
       cover: 'images/audio/LegendeNePitaj.jpg'
    },
+
+   {
+      name: 'Molitva',
+      path: 'audio/MARIJA SERIFOVIC - MOLITVA - (OFFICIAL VIDEO 2020).mp3',
+      artist: 'Marija Serifovic',
+      cover: 'images/audio/MarijaSerifovic.jpg'
+   },
+   
+   {
+      name: 'U inat proslosti',
+      path: 'audio/Aleksandra Radovic & The Beatshakers - Who Gonna Stop Me Now (Official HD Video).mp3',
+      artist: 'Aleksandra Radovic',
+      cover: 'images/audio/AleksandraRadovic.jpg'
+   },
+
+   {
+      name: 'Boli Boli',
+      path: 'audio/Ivana Selakov x Amar Gile - BOLI BOLI ( Official Video 2020 ).mp3',
+      artist: 'Ivana Selakov & Amar Gile',
+      cover: 'images/audio/BoliBoliOvaBol.jpg'
+   },
+ 
+  {
+      name: 'Sve po starom',
+      path: 'audio/ALEKSANDRA PRIJOVIC - SVE PO STAROM (OFFICIAL VIDEO).mp3',
+      artist: 'Aleksandra Prijovic',
+      cover: 'images/audio/PrijovicSvePoStarom.jpg'
+   },
+   
+   {
+      name: 'Legitimno',
+      path: 'audio/ALEKSANDRA PRIJOVIC - LEGITIMNO (OFFICIAL VIDEO 2020).mp3',
+      artist: 'Aleksandra Prijovic',
+      cover: 'images/audio/Legitimno.jpg'
+   },
+   {
+      name: 'Placebo',
+      path: 'audio/ALEKSANDRA PRIJOVIC - PLACEBO (OFFICIAL VIDEO) (1).mp3',
+      artist: 'Aleksandra Prijovic',
+      cover: 'images/audio/Placebo.jpg'
+   },
+
+   {
+      name: 'Vracaju se dani pobede',
+      path: 'audio/Grupa JNA - Vracaju se dani pobede.mp3',
+      artist: '',
+      cover: 'images/audio/GrupaJNA.jpg'
+   }
+  
 ]
 
 playLists.push(narodnjaciSongs);
@@ -260,19 +269,41 @@ let danceSongs = [
       artist: 'Jennifer Lopez',
       cover: 'images/audio/JenniferLopez.jpg'
    }, 
+
    {
-      name: 'Ni Tu Ni Yo',
-      path: 'audio/Jennifer Lopez - Ni Tu Ni Yo (Official Audio) ft. Gente de Zona.mp3',
-      artist: 'J Lopez ft. Gente de Zona',
-      cover: 'images/audio/NiTuNiJo.jpg'
+      name: 'Vivir Mi Vida',
+      path: 'audio/Marc Anthony - Vivir Mi Vida (Official Video).mp3',
+      artist: 'Marc Anthony',
+      cover: 'images/audio/MarchAnthony.jpg'
    }, 
-  
+
   {
       name: 'Amor, Amor',
       path: 'audio/Jennifer Lopez - Amor, Amor, Amor (Official Video) ft. Wisin.mp3',
       artist: 'J.Lopez ft. Wisin',
       cover: 'images/audio/JeniferLopezAmor.jpg'
    },
+
+   {
+      name: 'Ni Tu Ni Yo',
+      path: 'audio/Jennifer Lopez - Ni Tu Ni Yo (Official Audio) ft. Gente de Zona.mp3',
+      artist: 'J Lopez ft. Gente de Zona',
+      cover: 'images/audio/NiTuNiJo.jpg'
+   }, 
+ 
+   {
+      name: 'We Are One',
+      path: 'audio/We Are One (Ole Ola) [The Official 2014 FIFA World Cup Song].mp3',
+      artist: 'Pitbull feat J.Lopez&C.Leitte ',
+      cover: 'images/audio/WeAreOne.jpg'
+   },
+  
+   {
+      name: 'Walk',
+      path: 'audio/Kwabs - Walk (Official Video).mp3',
+      artist: 'Kwabs',
+      cover: 'images/audio/Kwabs.jpg'
+   }
    
 ]
 
