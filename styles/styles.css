@@ -1056,114 +1056,48 @@ img {vertical-align: middle;}
  align-items: center;
  margin: auto;
 }
-
-
-/* Hide the video by default */
-.video-container {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1; /* Video stays in the background */
-}
-
-/* Show video only on mobile */
-@media screen and (max-width: 768px) {
-  .video-container {
-      display: block;
-      width: 100%;
-      height: 100%;
+   /* Hide the video by default */
+     .video-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;   /* Ensure full width */
+      height: 100%;  /* Ensure full height */
+      object-fit: cover;  /* Ensure video covers the entire screen */
+      z-index: -1; /* Video stays in the background */
   }
-}
 
-/* Video container styling */
-.video-container video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensure the video covers the entire area */
-}
-
-/* Optional - Add an overlay to improve readability */
-.video-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4); /* Dark overlay */
-  z-index: 0; /* Overlay below the text */
-}
-
-/* Main content above the video */
-.HomepageMobileView {
-  display: flex;
-  justify-content: center;  /* Horizontally center content */
-  align-items: center;      /* Vertically center content */
-  position: relative;
-  height: 100vh;            /* Ensure full viewport height */
-  padding: 0 20px;          /* Padding to prevent text overflow */
-  box-sizing: border-box;
-}
-
-/* Content styling */
-.content {
-  position: relative;
-  z-index: 1;  /* Ensures content stays above the video and overlay */
-  color: white;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  padding: 20px;
-  max-width: 90%;
-  box-sizing: border-box;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-/* Header text styling */
-.content h1 {
-  font-size: 2em;  /* Medium size for main heading */
-  font-weight: bold;
-  margin: 0;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
-}
-
-/* Subheader text styling */
-.content h4 {
-  font-size: 1.2em;  /* Reduced size for subheading */
-  font-weight: normal;
-  margin-top: 10px;
-  letter-spacing: 0.5px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-/* Responsive font size adjustments */
-@media screen and (max-width: 480px) {
-  .content h1 {
-      font-size: 1.5em;  /* Smaller font for mobile */
+  /* Show video only on mobile */
+  @media screen and (max-width: 768px) {
+      .video-container {
+          display: block; /* Show the video only on mobile */
+          width: 100%;    /* Full width */
+          height: 100%;   /* Full height */
+      }
   }
-  .content h4 {
-      font-size: 1em;  /* Smaller subheading for mobile */
-  }
-}
 
-@media screen and (min-width: 768px) {
-  .content h1 {
-      font-size: 2.5em;  /* Larger font on tablet/desktop */
+  /* Main content above the video */
+  .content {
+      position: relative;
+      z-index: 1;
+      padding: 20px;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;  /* Center content for better readability */
   }
-  .content h4 {
-      font-size: 1.3em;  /* Larger subheading on tablet/desktop */
+
+  .content h1, .content h4 {
+      margin: 10px;
   }
+
+  .video-container video {
+position: absolute;
+top: 0;
+left: 0; /* Align the video to the left */
+width: 100%; /* Adjust width as needed */
+height: 100%; /* Adjust height as needed */
+object-fit: cover; /* Make sure it covers the area */
 }
 
 .play-btn{
