@@ -9,7 +9,10 @@ input {
 textarea{
    padding: 25px;
 }
-
+  .homepage{
+    margin-right: 20%;
+    color: #F5D81A;
+  }
 .labelForPlatform1{
   display: inline-flex;
       margin-left: 4%;
