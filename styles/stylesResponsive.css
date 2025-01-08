@@ -5587,16 +5587,17 @@ html, body {
      border-color: white;
    }
  
-  .homePageLeftDefaultBackground{
-     width: 100%;
-   height: 100%;
-   background: url('../images/HomePage/HomePageRight1.jpg');
-   }
+ 
+.homePageLeftDefaultBackground{
+  width: 100%;
+height: 100%;
+background: url('../images/HomePage/HomePage1Mobile.jpg');
+}
  
    .homePageLeftSecondBackground{
      width: 100%;
      height: 100%;
-     background: url('../images/HomePage/HomePage1Mobile.jpg');
+     background: url('../images/HomePage/HomePageRight1.jpg');
    }
  
    .homePageLeftThirdBackground{
@@ -6167,16 +6168,17 @@ html, body {
      border-color: white;
    }
  
-  .homePageLeftDefaultBackground{
-     width: 100%;
-   height: 100%;
-   background: url('../images/HomePage/HomePageRight1.jpg');
-   }
+
+.homePageLeftDefaultBackground{
+  width: 100%;
+height: 100%;
+background: url('../images/HomePage/HomePage1Mobile.jpg');
+}
  
    .homePageLeftSecondBackground{
      width: 100%;
      height: 100%;
-     background: url('../images/HomePage/HomePage1Mobile.jpg');
+     background: url('../images/HomePage/HomePageRight1.jpg');
    }
  
    .homePageLeftThirdBackground{
@@ -6861,16 +6863,17 @@ img { max-width: 100%; height: auto; }
      border-color: white;
    }
  
-  .homePageLeftDefaultBackground{
-     width: 100%;
-   height: 100%;
-   background: url('../images/HomePage/HomePageRight1.jpg');
-   }
+ 
+.homePageLeftDefaultBackground{
+  width: 100%;
+height: 100%;
+background: url('../images/HomePage/HomePage1Mobile.jpg');
+}
  
    .homePageLeftSecondBackground{
      width: 100%;
      height: 100%;
-     background: url('../images/HomePage/HomePage1Mobile.jpg');
+     background: url('../images/HomePage/HomePageRight1.jpg');
    }
  
    .homePageLeftThirdBackground{
@@ -8028,16 +8031,17 @@ font-size: 75px;
   border-color: white;
 }
 
+
 .homePageLeftDefaultBackground{
   width: 100%;
 height: 100%;
-background: url('../images/HomePage/HomePageRight1.jpg');
+background: url('../images/HomePage/HomePage1Mobile.jpg');
 }
 
 .homePageLeftSecondBackground{
   width: 100%;
   height: 100%;
-  background: url('../images/HomePage/HomePage1Mobile.jpg');
+  background: url('../images/HomePage/HomePageRight1.jpg');
 }
 
 .homePageLeftThirdBackground{
