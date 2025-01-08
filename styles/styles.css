@@ -946,7 +946,7 @@ ul {
 
 
 .textForIntro{
- font-size: 80px;
+ font-size: 85px;
  color: white;
  /* font-weight: 900; */
  opacity: 0.9;
@@ -956,7 +956,7 @@ ul {
  color: white;
  opacity: 0.9;
  z-index: 3;
- margin-left: 2.8%;
+/*  margin-left: 2.8%; */
 }
 
 .mySlides .mySlidesRightBackground .mySlidesLeftBackgroundIntro .mySlidesLeftBackgroundExpirience 
