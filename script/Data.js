@@ -155,13 +155,18 @@ let classicSongs = [
       artist: 'Mozart',
       cover: 'images/audio/Wolfgang-Amadeus-Mozart-scaled.jpeg'
    },
+   {
+      name: 'La finta giardiniera',
+      path: 'audio/Mozart_ Overture - La finta giardiniera.mp3',
+      artist: 'Mozart',
+      cover: 'images/audio/Wolfgang-Amadeus-Mozart-scaled.jpeg'
+   },
     {
       name: 'Hall of Fame',
       path: 'audio/The Script - Hall of Fame (Official Video) ft. will.i.am.mp3',
       artist: 'The Script - ft. will.i.am',
       cover: 'images/audio/HallOfFame.jpg '
-   },
-
+   },  
    
 ]
 
@@ -251,12 +256,19 @@ let narodnjaciSongs = [
       cover: 'images/audio/Placebo.jpg'
    },
 
+ 
+   // {
+   //    name: 'Devet Zivota',
+   //    path: 'audio/ALEKSANDRA PRIJOVIC - DEVET ZIVOTA (OFFICIAL VIDEO).mp3',
+   //    artist: 'Aleksandra Prijovic',
+   //    cover: 'images/audio/AleksandraPrijovic.jpg'
+   // },
    {
       name: 'Vracaju se dani pobede',
       path: 'audio/Grupa JNA - Vracaju se dani pobede.mp3',
       artist: '',
       cover: 'images/audio/GrupaJNA.jpg'
-   }
+   },
   
 ]
 
@@ -269,14 +281,13 @@ let danceSongs = [
       artist: 'Jennifer Lopez',
       cover: 'images/audio/JenniferLopez.jpg'
    }, 
-
    {
-      name: 'Vivir Mi Vida',
-      path: 'audio/Marc Anthony - Vivir Mi Vida (Official Video).mp3',
-      artist: 'Marc Anthony',
-      cover: 'images/audio/MarchAnthony.jpg'
+      name: 'Say It Right',
+      path: 'audio/Nelly Furtado - Say It Right (Official Music Video).mp3',
+      artist: 'Nelly Furtado',
+      cover: 'images/audio/NellyFurtado.jpg'
    }, 
-
+  
   {
       name: 'Amor, Amor',
       path: 'audio/Jennifer Lopez - Amor, Amor, Amor (Official Video) ft. Wisin.mp3',
@@ -285,11 +296,11 @@ let danceSongs = [
    },
 
    {
-      name: 'Ni Tu Ni Yo',
-      path: 'audio/Jennifer Lopez - Ni Tu Ni Yo (Official Audio) ft. Gente de Zona.mp3',
-      artist: 'J Lopez ft. Gente de Zona',
-      cover: 'images/audio/NiTuNiJo.jpg'
-   }, 
+      name: 'Vivir Mi Vida',
+      path: 'audio/Marc Anthony - Vivir Mi Vida (Official Video).mp3',
+      artist: 'Marc Anthony',
+      cover: 'images/audio/MarchAnthony.jpg'
+   },
  
    {
       name: 'We Are One',
@@ -297,13 +308,26 @@ let danceSongs = [
       artist: 'Pitbull feat J.Lopez&C.Leitte ',
       cover: 'images/audio/WeAreOne.jpg'
    },
-  
+   {
+      name: 'Ni Tu Ni Yo',
+      path: 'audio/Jennifer Lopez - Ni Tu Ni Yo (Official Audio) ft. Gente de Zona.mp3',
+      artist: 'J Lopez ft. Gente de Zona',
+      cover: 'images/audio/NiTuNiJo.jpg'
+   }, 
    {
       name: 'Walk',
       path: 'audio/Kwabs - Walk (Official Video).mp3',
       artist: 'Kwabs',
       cover: 'images/audio/Kwabs.jpg'
-   }
+   },
+  
+   // {
+   //    name: 'Hey DJ',
+   //    path: 'audio/CNCO, Meghan Trainor, Sean Paul - Hey DJ (Remix) [Official Video].mp3',
+   //    artist: 'CNCO, Meghan Trainor',
+   //    cover: 'images/audio/CNCO.jpg'
+   // },
+   
    
 ]
 
