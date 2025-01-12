@@ -10,6 +10,7 @@ let divForJavaScriptProjects = document.getElementById("divForJavascriptProjects
 
 let labelForProjects = document.getElementById("labelForProjects");
 let labelForPlatform = document.getElementById("labelPlatform");
+let labelForPlatform1 = document.getElementById("labelForPlatform1");
 
 let currentPlatform = 0;
 let ListForMendixJavaScriptInnerHtml;
@@ -38,6 +39,8 @@ const mediaQuery = window.matchMedia('(max-width: 768px)')
 if (mediaQuery.matches) {
   // Then trigger an alert
 //   alert('Media Query Matched!');
+
+labelForPlatform1.style.marginTop = "0%";
 
   nextButton.addEventListener('click', () => {
 
