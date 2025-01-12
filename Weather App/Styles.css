@@ -10,12 +10,12 @@ body {
 }
 
 .weather-app {
-    background: white;
+    background-image: url('Latest1.jpg');
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 500px;
+    width: 100%;
+    max-width: 700px;
 }
 
 .search {
@@ -67,3 +67,22 @@ body {
 #forecast .forecast-day img {
     width: 50px;
 }
+
+
+.fade-in-input {
+    opacity: 0;
+    transform: translateY(1%);
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
