@@ -2,6 +2,7 @@
 const playLists = [];
 
 let introSongs = [
+
    {
       name: 'Waka waka',
       path: 'audio/Waka Waka (Esto es Africa).mp3',
@@ -9,17 +10,19 @@ let introSongs = [
       cover: 'images/audio/WakaWaka.jpg'
    },
    {
-      name: 'Wavin Flag',
-      path: 'audio/Wavin Flag (Spanish Version) - Knaan & David Bisbal - World Cup 2010 theme song (128 kbps).mp3',
-      artist: 'Knaan & David Bisbal',
-      cover: 'images/audio/World Cup 2010 theme song.jpg'
-   },
-   {
       name: 'La la la',
       path: 'audio/Shakira - La La La (Brazil 2014) ft. Carlinhos Brown.mp3',
       artist: 'Shakira ft. Carlinhos Brown',
       cover: 'images/audio/Shakira.jpg'
    },
+
+   {
+      name: 'Wavin Flag',
+      path: 'audio/Wavin Flag (Spanish Version) - Knaan & David Bisbal - World Cup 2010 theme song (128 kbps).mp3',
+      artist: 'Knaan & David Bisbal',
+      cover: 'images/audio/World Cup 2010 theme song.jpg'
+   },
+ 
    {
       name: 'We Are One',
       path: 'audio/We Are One (Ole Ola) [The Official 2014 FIFA World Cup Song].mp3',
@@ -161,6 +164,14 @@ let classicSongs = [
       artist: 'Mozart',
       cover: 'images/audio/Wolfgang-Amadeus-Mozart-scaled.jpeg'
    },
+
+   {
+      name: 'Symphony No 2',
+      path: 'audio/Symphony No 2, Reinhold Gliere DCS 2024- 25 Symphony Concert 2.mp3',
+      artist: 'Reinhold Gliere',
+      cover: 'images/audio/ClassicHitNew1.jpg'
+   },
+
     {
       name: 'Hall of Fame',
       path: 'audio/The Script - Hall of Fame (Official Video) ft. will.i.am.mp3',
@@ -203,19 +214,6 @@ let narodnjaciSongs = [
    },
 
    {
-      name: 'Ruzo Rumena',
-      path: 'audio/RUZO RUMENA - Dragan Jovanovic.mp3',
-      artist: 'Dragan Jovanovic',
-      cover: 'images/audio/RuzoRumena.jpeg'
-   },
-   {
-      name: 'Ne Pitaj',
-      path: 'audio/LegendE _ Ne pitaj - (LIVE) - (Sava centar 2005) (128 kbps).mp3',
-      artist: 'Legende',
-      cover: 'images/audio/LegendeNePitaj.jpg'
-   },
-
-   {
       name: 'Molitva',
       path: 'audio/MARIJA SERIFOVIC - MOLITVA - (OFFICIAL VIDEO 2020).mp3',
       artist: 'Marija Serifovic',
@@ -227,13 +225,6 @@ let narodnjaciSongs = [
       path: 'audio/Aleksandra Radovic & The Beatshakers - Who Gonna Stop Me Now (Official HD Video).mp3',
       artist: 'Aleksandra Radovic',
       cover: 'images/audio/AleksandraRadovic.jpg'
-   },
-
-   {
-      name: 'Boli Boli',
-      path: 'audio/Ivana Selakov x Amar Gile - BOLI BOLI ( Official Video 2020 ).mp3',
-      artist: 'Ivana Selakov & Amar Gile',
-      cover: 'images/audio/BoliBoliOvaBol.jpg'
    },
  
   {
@@ -255,6 +246,26 @@ let narodnjaciSongs = [
       artist: 'Aleksandra Prijovic',
       cover: 'images/audio/Placebo.jpg'
    },
+   {
+      name: 'Boli Boli',
+      path: 'audio/Ivana Selakov x Amar Gile - BOLI BOLI ( Official Video 2020 ).mp3',
+      artist: 'Ivana Selakov & Amar Gile',
+      cover: 'images/audio/BoliBoliOvaBol.jpg'
+   },
+
+   {
+      name: 'Ruzo Rumena',
+      path: 'audio/RUZO RUMENA - Dragan Jovanovic.mp3',
+      artist: 'Dragan Jovanovic',
+      cover: 'images/audio/RuzoRumena.jpeg'
+   },
+   // {
+   //    name: 'Ne Pitaj',
+   //    path: 'audio/LegendE _ Ne pitaj - (LIVE) - (Sava centar 2005) (128 kbps).mp3',
+   //    artist: 'Legende',
+   //    cover: 'images/audio/LegendeNePitaj.jpg'
+   // },
+
 
  
    // {
@@ -332,3 +343,21 @@ let danceSongs = [
 ]
 
 playLists.push(danceSongs);
+
+let rockSongs = [
+   {
+      name: 'Out of Touch',
+      path: 'audio/Hall & Oates  - Out of Touch.mp3',
+      artist: 'Hall & Oates',
+      cover: 'images/audio/Hall & Oates.jpg'
+   },
+   {
+      name: 'Gimme! Gimme!',
+      path: 'audio/ABBA - Gimme! Gimme! Gimme! (A Man After Midnight).mp3',
+      artist: 'ABBA',
+      cover: 'images/audio/ABBA-GimmeGimmeGimme-video.png'
+    },
+
+]
+
+playLists.push(rockSongs);
