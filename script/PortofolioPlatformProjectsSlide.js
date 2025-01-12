@@ -12,6 +12,9 @@ let labelForProjects = document.getElementById("labelForProjects");
 let labelForPlatform = document.getElementById("labelPlatform");
 let labelForPlatform1 = document.getElementById("labelForPlatform1");
 
+let iframe2 = document.getElementById("Iframe2");
+let iframe3 = document.getElementById("Iframe3");
+
 let currentPlatform = 0;
 let ListForMendixJavaScriptInnerHtml;
 
@@ -28,12 +31,6 @@ ListForDivOfProjects = [divForMendixProjects, divForJavaScriptProjects];
 let itterator = 0;
 
 
-  
-
-
-
-
-
 const mediaQuery = window.matchMedia('(max-width: 768px)')
 // Check if the media query is true
 if (mediaQuery.matches) {
@@ -41,6 +38,11 @@ if (mediaQuery.matches) {
 //   alert('Media Query Matched!');
 
 labelForPlatform1.style.marginTop = "0%";
+javascriptDiv1.style.marginTop = "-5%";
+
+iframe2.style.marginTop = " 5%";
+iframe3.style.marginTop = " 5%";
+
 
   nextButton.addEventListener('click', () => {
 
@@ -69,7 +71,7 @@ labelForPlatform1.style.marginTop = "0%";
         labelForPlatform.style.marginTop= "32%";
         labelForPlatform.style.marginLeft= "25%";
         javascriptDiv.style.marginTop = "-10%";
-        javascriptDiv1.style.marginTop = "-10%";
+        
         
 
 
