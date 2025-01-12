@@ -29,15 +29,6 @@ async function fetchWeather(city) {
     }
 }
 
-// Display the weather data
-function displayWeather(data) {
-    const texts = translations[currentLang]; // Use the current language
-    document.getElementById('cityName').textContent = `${data.name}, ${data.sys.country}`;
-    document.getElementById('description').textContent = `${texts.description}: ${data.weather[0].description}`;
-    document.getElementById('temperature').textContent = `${texts.temperature}: ${data.main.temp} °C`;
-    document.getElementById('humidity').textContent = `${texts.humidity}: ${data.main.humidity}%`;
-    document.getElementById('wind').textContent = `${texts.wind}: ${data.wind.speed} m/s`;
-}
 
 // Fetch the 7-day forecast
 async function fetchForecast(city) {
@@ -55,28 +46,6 @@ async function fetchForecast(city) {
     }
 }
 
-// Display the forecast data
-function displayForecast(data) {
-    const forecastContainer = document.getElementById('forecast');
-    forecastContainer.innerHTML = `<h3>${translations[currentLang].forecast}</h3>`; // Reset forecast title
-    const dailyData = data.list.filter((item) => item.dt_txt.includes('12:00:00')); // Midday forecasts
-    dailyData.forEach((day) => {
-        const date = new Date(day.dt_txt).toDateString();
-        const temp = day.main.temp;
-        const description = day.weather[0].description;
-        const icon = day.weather[0].icon;
-
-        const forecastDiv = document.createElement('div');
-        forecastDiv.className = 'forecast-day';
-        forecastDiv.innerHTML = `
-            <h4>${date}</h4>
-            <img src="http://openweathermap.org/img/wn/${icon}.png" alt="${description}" />
-            <p>${description}</p>
-            <p>${translations[currentLang].temp}: ${temp} °C</p>
-        `;
-        forecastContainer.appendChild(forecastDiv);
-    });
-}
 
 // Translations object
 const translations = {
@@ -207,6 +176,7 @@ function displayWeather(data) {
     document.getElementById('humidity').textContent = `${texts.humidity}: ${data.main.humidity}%`;
     document.getElementById('wind').textContent = `${texts.wind}: ${data.wind.speed} m/s`;
 }
+
 function displayForecast(data) {
     const forecastContainer = document.getElementById('forecast');
     forecastContainer.innerHTML = `<h3>${translations[currentLang].forecast}</h3>`; // Reset forecast title
@@ -216,7 +186,7 @@ function displayForecast(data) {
     if (dailyData.length === 0) {
         forecastContainer.innerHTML += `<p>${translations[currentLang].noForecast}</p>`;
         return;
-    }
+    }   
 
     dailyData.forEach((day) => {
         const date = new Date(day.dt_txt).toDateString();
