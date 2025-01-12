@@ -346,16 +346,29 @@ playLists.push(danceSongs);
 
 let rockSongs = [
    {
+      name: 'Give It Up',
+      path: 'audio/KC and The Sunshine Band - Give It Up.mp3',
+      artist: 'KC & The Sunshine Band',
+      cover: 'images/audio/GiveItUp.jpg'
+   },
+   {
       name: 'Out of Touch',
       path: 'audio/Hall & Oates  - Out of Touch.mp3',
       artist: 'Hall & Oates',
       cover: 'images/audio/Hall & Oates.jpg'
    },
+ 
    {
       name: 'Gimme! Gimme!',
       path: 'audio/ABBA - Gimme! Gimme! Gimme! (A Man After Midnight).mp3',
       artist: 'ABBA',
       cover: 'images/audio/ABBA-GimmeGimmeGimme-video.png'
+    },
+    {
+      name: 'Voulez-Vous',
+      path: 'audio/ABBA - Voulez-Vous (Lyric Video).mp3',
+      artist: 'ABBA',
+      cover: 'images/audio/Voulez-Vous.jpg'
     },
 
 ]
