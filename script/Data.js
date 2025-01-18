@@ -166,10 +166,16 @@ let classicSongs = [
    },
 
    {
-      name: 'Symphony No 2',
-      path: 'audio/Symphony No 2, Reinhold Gliere DCS 2024- 25 Symphony Concert 2.mp3',
-      artist: 'Reinhold Gliere',
-      cover: 'images/audio/ClassicHitNew1.jpg'
+      name: 'Concerto No.4',
+      path: 'audio/Antonio Vivaldi - Concerto No.4 in F minor.mp3',
+      artist: 'Antonio Vivaldi',
+      cover: 'images/audio/AntonioVivaldi.jpg'
+   },
+   {
+      name: 'The Riders of Rohan',
+      path: 'audio/The Lord Of The Rings - The Riders of Rohan - Erhu & Violin cover.mp3',
+      artist: 'The Lord Of The Rings',
+      cover: 'images/audio/RidersOfRohan.jpg'
    },
 
     {
