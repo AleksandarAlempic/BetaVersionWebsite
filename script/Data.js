@@ -178,12 +178,28 @@ let classicSongs = [
       cover: 'images/audio/RidersOfRohan.jpg'
    },
 
-    {
+   {
       name: 'Hall of Fame',
       path: 'audio/The Script - Hall of Fame (Official Video) ft. will.i.am.mp3',
       artist: 'The Script - ft. will.i.am',
       cover: 'images/audio/HallOfFame.jpg '
    },  
+
+    {
+      name: 'Der letzte Mohikaner',
+      path: 'audio/Der letzte Mohikaner.mp3',
+      artist: 'Leo Rohas',
+      cover: 'images/audio/LeoRohas.jpg'
+   },  
+
+   {
+      name: 'Der einsame Hirte',
+      path: 'audio/Leo_Rojas_-_Der_einsame_Hirte_Videoclip.mp3',
+      artist: 'Leo Rohas',
+      cover: 'images/audio/LeoRohas1.jpg'
+   },  
+
+ 
    
 ]
 
