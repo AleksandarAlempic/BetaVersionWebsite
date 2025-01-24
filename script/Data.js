@@ -396,3 +396,34 @@ let rockSongs = [
 ]
 
 playLists.push(rockSongs);
+
+let classicArab = [
+   {
+      name: 'Sandal Maker',
+      path: 'audio/Sandal Maker.mp3',
+      artist: 'Stronghold Crusader',
+      cover: 'images/audio/SandalMaker.jpg'
+    },
+   {
+      name: 'Ahwak',
+      path: 'audio/National Arab Orchestra - Ahwak  - Chadi Kassem.mp3',
+      artist: 'National Arab Orchestra',
+      cover: 'images/audio/Ahwak.jpg'
+   },
+ 
+   {
+      name: 'Sandal Maker',
+      path: 'audio/Sandal Maker.mp3',
+      artist: 'Stronghold Crusader',
+      cover: 'images/audio/SandalMaker.jpg'
+    },
+   //  {
+   //    name: 'Voulez-Vous',
+   //    path: 'audio/ABBA - Voulez-Vous (Lyric Video).mp3',
+   //    artist: 'ABBA',
+   //    cover: 'images/audio/Voulez-Vous.jpg'
+   //  },
+
+]
+
+playLists.push(classicArab);
