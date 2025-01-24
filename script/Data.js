@@ -399,10 +399,10 @@ playLists.push(rockSongs);
 
 let classicArab = [
    {
-      name: 'Sandal Maker',
-      path: 'audio/Sandal Maker.mp3',
-      artist: 'Stronghold Crusader',
-      cover: 'images/audio/SandalMaker.jpg'
+      name: 'Inta Umri',
+      path: 'audio/National Arab Orchestra -  Inta Umri  - Mai Farouk.mp3',
+      artist: 'National Arab Orchestra',
+      cover: 'images/audio/Mai Farouk.jpg'
     },
    {
       name: 'Ahwak',
@@ -410,6 +410,12 @@ let classicArab = [
       artist: 'National Arab Orchestra',
       cover: 'images/audio/Ahwak.jpg'
    },
+   {
+      name: 'Alf Leila wi Leila',
+      path: 'audio/National Arab Orchestra - Alf Leila wi Leila - Mai Farouk.mp3',
+      artist: 'National Arab Orchestra',
+      cover: 'images/audio/NationalArabOrchestra.jpg'
+    },
  
    {
       name: 'Sandal Maker',
@@ -417,13 +423,23 @@ let classicArab = [
       artist: 'Stronghold Crusader',
       cover: 'images/audio/SandalMaker.jpg'
     },
-   //  {
-   //    name: 'Voulez-Vous',
-   //    path: 'audio/ABBA - Voulez-Vous (Lyric Video).mp3',
-   //    artist: 'ABBA',
-   //    cover: 'images/audio/Voulez-Vous.jpg'
-   //  },
+    {
+      name: 'Belisarius',
+      path: 'audio/Justinian-Epic Symphony - Belisarius.mp3',
+      artist: 'Justinian Epic Symphony',
+      cover: 'images/audio/Justinian.jpg'
+    },
+
+    {
+      name: 'Digenis and Death',
+      path: 'audio/Digenis and Death - Epic Byzantine Music.mp3',
+      artist: 'Byzantine Epic Music',
+      cover: 'images/audio/Digenis and Death.jpg'
+    },
+   
 
 ]
+
+
 
 playLists.push(classicArab);
