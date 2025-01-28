@@ -139,11 +139,13 @@ playLists.push(introSongs);
 let classicSongs = [
 
    {
-      name: 'Alone (Solo)',
-      path: 'audio/Alone (Solo).mp3',
-      artist: 'IL DIVO',
-      cover: 'images/audio/Alone.jpg'
+      name: 'La finta giardiniera',
+      path: 'audio/Mozart_ Overture - La finta giardiniera.mp3',
+      artist: 'Mozart',
+      cover: 'images/audio/Wolfgang-Amadeus-Mozart-scaled.jpeg'
    },
+
+  
 
    {
       name: 'The Power Of Love',
@@ -151,6 +153,12 @@ let classicSongs = [
       artist: 'IL DIVO',
       cover: 'images/audio/IlDivo.jpg'
     },
+    {
+      name: 'Alone (Solo)',
+      path: 'audio/Alone (Solo).mp3',
+      artist: 'IL DIVO',
+      cover: 'images/audio/Alone.jpg'
+   },
 
     {
       name: 'E.K. Nachtmusik',
@@ -158,12 +166,7 @@ let classicSongs = [
       artist: 'Mozart',
       cover: 'images/audio/Wolfgang-Amadeus-Mozart-scaled.jpeg'
    },
-   {
-      name: 'La finta giardiniera',
-      path: 'audio/Mozart_ Overture - La finta giardiniera.mp3',
-      artist: 'Mozart',
-      cover: 'images/audio/Wolfgang-Amadeus-Mozart-scaled.jpeg'
-   },
+ 
 
    {
       name: 'Concerto No.4',
@@ -178,12 +181,12 @@ let classicSongs = [
       cover: 'images/audio/RidersOfRohan.jpg'
    },
 
-   {
-      name: 'Hall of Fame',
-      path: 'audio/The Script - Hall of Fame (Official Video) ft. will.i.am.mp3',
-      artist: 'The Script - ft. will.i.am',
-      cover: 'images/audio/HallOfFame.jpg '
-   },  
+   // {
+   //    name: 'Hall of Fame',
+   //    path: 'audio/The Script - Hall of Fame (Official Video) ft. will.i.am.mp3',
+   //    artist: 'The Script - ft. will.i.am',
+   //    cover: 'images/audio/HallOfFame.jpg '
+   // },  
 
     {
       name: 'Der letzte Mohikaner',
@@ -228,12 +231,12 @@ let narodnjaciSongs = [
       cover: 'images/audio/AnaBekuta.jpg'
    },
 
-   {
-      name: 'Veseli se srpski rode',
-      path: 'audio/Veseli se srpski rode.mp3',
-      artist: 'Danica Crnogorcevic',
-      cover: 'images/audio/Danica.jpg'
-   },
+   // {
+   //    name: 'Veseli se srpski rode',
+   //    path: 'audio/Veseli se srpski rode.mp3',
+   //    artist: 'Danica Crnogorcevic',
+   //    cover: 'images/audio/Danica.jpg'
+   // },
 
    {
       name: 'Molitva',
@@ -296,12 +299,6 @@ let narodnjaciSongs = [
    //    artist: 'Aleksandra Prijovic',
    //    cover: 'images/audio/AleksandraPrijovic.jpg'
    // },
-   {
-      name: 'Vracaju se dani pobede',
-      path: 'audio/Grupa JNA - Vracaju se dani pobede.mp3',
-      artist: '',
-      cover: 'images/audio/GrupaJNA.jpg'
-   },
   
 ]
 
@@ -329,12 +326,17 @@ let danceSongs = [
    },
 
    {
+      name: 'Ni Tu Ni Yo',
+      path: 'audio/Jennifer Lopez - Ni Tu Ni Yo (Official Audio) ft. Gente de Zona.mp3',
+      artist: 'J Lopez ft. Gente de Zona',
+      cover: 'images/audio/NiTuNiJo.jpg'
+   }, 
+   {
       name: 'Vivir Mi Vida',
       path: 'audio/Marc Anthony - Vivir Mi Vida (Official Video).mp3',
       artist: 'Marc Anthony',
       cover: 'images/audio/MarchAnthony.jpg'
    },
- 
    {
       name: 'We Are One',
       path: 'audio/We Are One (Ole Ola) [The Official 2014 FIFA World Cup Song].mp3',
@@ -342,16 +344,16 @@ let danceSongs = [
       cover: 'images/audio/WeAreOne.jpg'
    },
    {
-      name: 'Ni Tu Ni Yo',
-      path: 'audio/Jennifer Lopez - Ni Tu Ni Yo (Official Audio) ft. Gente de Zona.mp3',
-      artist: 'J Lopez ft. Gente de Zona',
-      cover: 'images/audio/NiTuNiJo.jpg'
-   }, 
-   {
       name: 'Walk',
       path: 'audio/Kwabs - Walk (Official Video).mp3',
       artist: 'Kwabs',
       cover: 'images/audio/Kwabs.jpg'
+   },
+   {
+      name: 'La la la',
+      path: 'audio/Shakira - La La La (Brazil 2014) ft. Carlinhos Brown.mp3',
+      artist: 'Shakira ft. Carlinhos Brown',
+      cover: 'images/audio/Shakira.jpg'
    },
   
    // {
@@ -393,6 +395,13 @@ let rockSongs = [
       cover: 'images/audio/Voulez-Vous.jpg'
     },
 
+    {
+      name: 'Vracaju se dani pobede',
+      path: 'audio/Grupa JNA - Vracaju se dani pobede.mp3',
+      artist: '',
+      cover: 'images/audio/GrupaJNA.jpg'
+   },
+
 ]
 
 playLists.push(rockSongs);
@@ -423,6 +432,14 @@ let classicArab = [
       artist: 'Stronghold Crusader',
       cover: 'images/audio/SandalMaker.jpg'
     },
+
+    {
+      name: 'Caravan Ambient',
+      path: 'audio/Caravan Ambient.mp3',
+      artist: 'Stronghold Crusader',
+      cover: 'images/audio/Caravan Ambient.jpg'
+    },
+
     {
       name: 'Belisarius',
       path: 'audio/Justinian-Epic Symphony - Belisarius.mp3',
