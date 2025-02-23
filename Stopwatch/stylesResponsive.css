@@ -2041,10 +2041,10 @@ img { max-width: 100%; height: auto; }
  .stopwatchDiv {
   background: lightgray;
   min-width: 300px;
-  min-height: 550px;
+  min-height: 570px;
   transform: scale(2); 
    margin-top: 90%;
-   
+ 
  }
 }
 
@@ -2052,11 +2052,21 @@ img { max-width: 100%; height: auto; }
   .stopwatchDiv {
     background: lightgray;
     min-width: 300px;
-    min-height: 550px;
-    transform: scale(2); 
+    min-height: 590px;
+    transform: scale(2.2); 
      margin-top: 90%;
      
    }
+
+   .displayTime{
+    margin-top: 13%;
+   }
+
+   .tableClass{
+    margin-left: -23%;
+    margin-top: 50%;
+   }
+  
 }
  
  
