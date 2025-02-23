@@ -15,6 +15,7 @@
   scale: 130%;
 }
 
+
 @media only screen and (min-width:768px){
   /* html, body{
     /* display: flexbox;
@@ -2032,6 +2033,31 @@ img { max-width: 100%; height: auto; }
        content: attr(data-src-800px, url);
    }
  } */
+
+ 
+
+ @media (max-device-width:600px) {
+  
+ .stopwatchDiv {
+  background: lightgray;
+  min-width: 300px;
+  min-height: 550px;
+  transform: scale(2); 
+   margin-top: 90%;
+   
+ }
+}
+
+@media (max-width: 1024px) {
+  .stopwatchDiv {
+    background: lightgray;
+    min-width: 300px;
+    min-height: 550px;
+    transform: scale(2); 
+     margin-top: 90%;
+     
+   }
+}
  
  
- 
+
