@@ -71,9 +71,7 @@ iframe3.style.marginTop = " 5%";
         labelForPlatform.style.marginTop= "32%";
         labelForPlatform.style.marginLeft= "25%";
         javascriptDiv.style.marginTop = "-10%";
-        
-        
-
+        iframe3.style.marginTop = "50.5%";
 
     }
     // else if(itterator >0){     CODE EXAMPLE WHEN YOU DECIDE TO SWITCH
@@ -130,7 +128,8 @@ previousButton.addEventListener('click', () => {
         labelForPlatform.style.marginTop= "32%";
         labelForPlatform.style.marginLeft= "25%";
         javascriptDiv.style.marginTop = "3%";
-        javascriptDiv1.style.marginTop = "20%";
+        javascriptDiv1.style.marginTop = "10%";
+        iframe3.style.marginTop = "50.5%";
     }
     // else if(itterator >0){     CODE EXAMPLE WHEN YOU DECIDE TO SWITCH
  
@@ -149,6 +148,7 @@ previousButton.addEventListener('click', () => {
         previousButton.style.marginLeft = "30%";
         nextButton.style.marginLeft = "35%";
         labelForProjects.style.marginLeft = "50%";
+        
     }
    
 
@@ -168,7 +168,7 @@ previousButton.style.marginLeft= "22%";
 previousButton.style.marginTop = "-82%";
 labelForProjects.style.marginTop = "-10%";
 divForJavaScriptProjects.style.marginTop = "-20%";
-javascriptPlatform.style.marginTop = "-53%";
+javascriptPlatform.style.marginTop = "-79%";
 
 nextButton.addEventListener('click', () => {
 
@@ -182,20 +182,23 @@ nextButton.addEventListener('click', () => {
             ListForDivOfProjects[itterator+1].style.display = "flex";
             itterator++;
             mendixPlatform.style.marginLeft = "7%";
-        nextButton.style.marginTop = "-56%";
+            nextButton.style.marginTop = "-83%";
         nextButton.style.marginLeft = "2%";
-        previousButton.style.marginTop = "-56%";
+        previousButton.style.marginTop = "-83%";
         previousButton.style.marginLeft = "25%";
-        labelForProjects.style.marginLeft = "13%";
-        labelForProjects.style.marginTop = "-8%";
+        labelForProjects.style.marginLeft = "8%";
+        labelForProjects.style.marginTop = "-12%";
 
         labelForProjects.style.width = "13%";
-        labelForPlatform.style.width= "14%";
+        labelForPlatform.style.width= "9%";
         labelForPlatform.style.position= "relative";
-        labelForPlatform.style.marginTop= "15%";
-        labelForPlatform.style.marginLeft= "13%";
-        javascriptDiv.style.marginTop = "20%";
-        javascriptDiv1.style.marginTop = "20%";
+        labelForPlatform.style.marginTop= "10%";
+        labelForPlatform.style.marginLeft= "8%";
+        javascriptDiv.style.marginTop = "21%";
+        javascriptDiv1.style.marginTop = "21%";
+       
+       
+       
       
         }
         // else if(itterator >0){     CODE EXAMPLE WHEN YOU DECIDE TO SWITCH
@@ -214,6 +217,7 @@ nextButton.addEventListener('click', () => {
                     labelForPlatform.style.marginLeft= "8%";
                     previousButton.style.marginLeft = "19%";
                     labelForProjects.style.marginTop = "-12%";
+                    javascriptDiv1.style.marginTop = "41%";
             
         }
        
@@ -234,37 +238,39 @@ previousButton.addEventListener('click', () => {
         ListForDivOfProjects[itterator+1].style.display = "flex";
         itterator++;
         mendixPlatform.style.marginLeft = "7%";
-    nextButton.style.marginTop = "-56%";
+        nextButton.style.marginTop = "-83%";
     nextButton.style.marginLeft = "2%";
-    previousButton.style.marginTop = "-56%";
+    previousButton.style.marginTop = "-83%";
     previousButton.style.marginLeft = "25%";
-    labelForProjects.style.marginLeft = "13%";
-    labelForProjects.style.marginTop = "-8%";
-                
+    labelForProjects.style.marginLeft = "8%";
+    labelForProjects.style.marginTop = "-12%";
+
     labelForProjects.style.width = "13%";
-    labelForPlatform.style.width= "14%";
+    labelForPlatform.style.width= "9%";
     labelForPlatform.style.position= "relative";
-    labelForPlatform.style.marginTop= "15%";
-    labelForPlatform.style.marginLeft= "13%";
-    javascriptDiv.style.marginTop = "20%";
-    javascriptDiv1.style.marginTop = "20%";
+    labelForPlatform.style.marginTop= "10%";
+    labelForPlatform.style.marginLeft= "8%";
+    javascriptDiv.style.marginTop = "21%";
+    javascriptDiv1.style.marginTop = "21%";
     }
     // else if(itterator >0){     CODE EXAMPLE WHEN YOU DECIDE TO SWITCH
  
     else{
         List[itterator-1].style.display = "flex";
-        ListForDivOfProjects[itterator-1].style.display = "flex";
-        itterator--;
-        mendixPlatform.style.marginTop = "-90%";
-                nextButton.style.marginTop = "-94%";
-                previousButton.style.marginTop = "-94%";
-                labelForProjects.style.marginLeft = "8%";
-                labelForProjects.style.width = "9%";
-                labelForPlatform.style.width= "9.03%";
-                labelForPlatform.style.marginTop= "10%";
-                labelForPlatform.style.marginLeft= "8%";
-                previousButton.style.marginLeft = "21%";
-                labelForProjects.style.marginTop = "-12%";
+            ListForDivOfProjects[itterator-1].style.display = "flex";
+            itterator--;
+            mendixPlatform.style.marginTop = "-90%";
+                    nextButton.style.marginTop = "-93%";
+                    previousButton.style.marginTop = "-94%";
+                    labelForProjects.style.marginLeft = "8%";
+                    labelForProjects.style.width = "9%";
+                    labelForPlatform.style.width= "9.03%";
+                    labelForPlatform.style.marginTop= "10%";
+                    labelForPlatform.style.marginLeft= "8%";
+                    previousButton.style.marginLeft = "19%";
+                    labelForProjects.style.marginTop = "-12%";
+                    javascriptDiv1.style.marginTop = "41%";
+                
         
     }
    
