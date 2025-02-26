@@ -71,7 +71,7 @@ iframe3.style.marginTop = " 5%";
         labelForPlatform.style.marginTop= "32%";
         labelForPlatform.style.marginLeft= "25%";
         javascriptDiv.style.marginTop = "-10%";
-        iframe3.style.marginTop = "50.5%";
+       
 
     }
     // else if(itterator >0){     CODE EXAMPLE WHEN YOU DECIDE TO SWITCH
