@@ -305,10 +305,19 @@ body{
     background: gray;
 }
 
+.trackDiv{
+    background: lightgray;
+    max-width: 500px;
+    min-height: 550px;
+    margin-left: 65%;
+    margin-top: 105px;
+}
+
 .stopwatchDiv{
     background: lightgray;
     min-width: 300px;
     min-height: 550px;
+    margin-top: -54%;
 }
 
 .button{
@@ -1584,10 +1593,6 @@ body{
 }
 
 
- 
-
-
-
 
 .switch {
     position: absolute;
@@ -1646,9 +1651,17 @@ body{
   }
 
   .labelForMusicSlider {
-    position: absolute; margin-left: 40%; margin-top: 150%;
+    position: absolute; margin-left: 30%; margin-top: 150%;
   }
 
   .labelForMusicPlayer{
-    position: absolute; margin-left: 10%; margin-top: 152%;
+    position: absolute; margin-left: 3%; margin-top: 154%;
+  }
+
+  .labelForRootSlider {
+    position: absolute; margin-left: 65%; margin-top: 150%;
+  }
+
+  .labelForMusicRoot{
+    position: absolute; margin-left: 53%; margin-top: 152%;
   }
