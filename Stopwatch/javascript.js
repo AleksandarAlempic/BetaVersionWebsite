@@ -1,6 +1,12 @@
 const musicPlayer = document.getElementById("checkboxMusicPlayer");
+const checkboxRoot = document.getElementById("checkboxRoot");
 const audioContainer = document.getElementById("audioContainer");
 const newNextAndPreviousButtons = document.getElementById("newNextAndPreviousButtons");
+const stopwatchLabel = document.getElementById("stopwatchLabel");
+
+const Root = document.getElementById("map-content");
+
+const Map = document.getElementById("map");
 
 const timer = document.getElementById("timer");
 const stopwatch = document.getElementById("stopwatch");
@@ -289,7 +295,7 @@ else if(seconds === 0 & hours < 1 & minutes < 1) {
    });
    
    
-
+   
 
 // Music player toggle for UI visibility
 musicPlayer.addEventListener('click', () => {
@@ -309,5 +315,32 @@ musicPlayer.addEventListener('click', () => {
       input.style.marginTop = "120%";
    }
 });
+
+// Music player toggle for UI visibility
+checkboxRoot.addEventListener('click', () => {
+   if (checkboxRoot.checked){
+      Root.style.display = "none";
+      stopwatchLabel.style.marginTop = "11%"
+   } else {
+      Root.style.display = "block";
+     stopwatchLabel.style.marginTop = "5.6%"
+   }
+});
+
+
+const mediaQuery = window.matchMedia('(max-width: 768px)');
+
+if (mediaQuery.matches & !checkboxRoot.checked) {
+   Root.style.width = "600px";
+   Map.style.width = "700px";
+   Map.style.height = "900px";
+   Map.style.marginLeft = "25%";
+   Map.style.position = "absolute";
+
+}
+else{
+   stopwatchLabel.style.display = "block";
+
+}
 
 
