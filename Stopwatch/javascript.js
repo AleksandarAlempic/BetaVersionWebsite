@@ -7,6 +7,7 @@ const stopwatchLabel = document.getElementById("stopwatchLabel");
 const Root = document.getElementById("map-content");
 
 const Map = document.getElementById("map");
+const mapContent = document.getElementById("map-content");
 
 const timer = document.getElementById("timer");
 const stopwatch = document.getElementById("stopwatch");
@@ -336,11 +337,15 @@ if (mediaQuery.matches & !checkboxRoot.checked) {
    Map.style.height = "1000px";
    Map.style.marginLeft = "25%";
    Map.style.position = "absolute";
-
+   mapContent.style.width = "100%";
+   mapContent.style.height = "100vh";
+   mapContent.style.position = "relative";
+   mapContent.style.overflow = "hidden";
 }
 else{
    stopwatchLabel.style.display = "block";
 
 }
+
 
 

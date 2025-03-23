@@ -1665,3 +1665,52 @@ body{
   .labelForMusicRoot{
     position: absolute; margin-left: 53%; margin-top: 152%;
   }
+  #map-content {
+    width: 100%;   /* Ensure map container takes full width */
+    height: 100vh; /* Ensure map container takes full height */
+    margin: 0;     /* Remove any margin */
+    padding: 0;    /* Remove any padding */
+    position: relative;
+    overflow-x: hidden;  /* Prevent horizontal scroll */
+}
+
+#map {
+    width: 100%;  /* Ensure map fills the container width */
+    height: 100%; /* Ensure map fills the container height */
+    margin: 0;    /* Remove margins */
+    padding: 0;   /* Remove padding */
+    position: relative;
+}
+
+#map, #map-content {
+    padding: 0;
+    margin: 0;
+}
+
+@media (max-width: 1000px) {
+    #map-content {
+        width: 100%; /* Full width */
+        height: 100vh; /* Full height */
+        margin: 0; /* Ensure no margins */
+        padding: 0; /* Ensure no padding */
+        position: relative;
+        overflow: hidden; /* No overflow */
+    }
+
+    #map {
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        margin: 0; /* No margin */
+        padding: 0; /* No padding */
+        position: absolute; /* Ensure the map doesn't move */
+    }
+}
+
+* {
+    box-sizing: border-box; /* Ensure no overflow due to padding/borders */
+}
+
+#map {
+    transform: translateX(0); /* Ensure no unwanted offset */
+}
+
