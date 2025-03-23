@@ -328,12 +328,12 @@ checkboxRoot.addEventListener('click', () => {
 });
 
 
-const mediaQuery = window.matchMedia('(max-width: 768px)');
+const mediaQuery = window.matchMedia('(max-width: 900px)');
 
 if (mediaQuery.matches & !checkboxRoot.checked) {
-   Root.style.width = "600px";
-   Map.style.width = "700px";
-   Map.style.height = "900px";
+   Root.style.width = "700px";
+   Map.style.width = "860px";
+   Map.style.height = "1000px";
    Map.style.marginLeft = "25%";
    Map.style.position = "absolute";
 
