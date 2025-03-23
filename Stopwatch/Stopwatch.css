@@ -1687,45 +1687,4 @@ body{
     margin: 0;
 }
 
-#checkboxRoot {
-    position: absolute;
-    z-index: 9999; /* Ensures the checkbox is clickable above other elements */
-    top: 10%; /* Adjust position as necessary */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%);
-    padding: 10px;
-    font-size: 18px;
-    display: block;
- }
- 
- #map {
-    pointer-events: none; /* Disable interaction with the map, allowing clicks to pass through */
- }
- 
- #checkboxRoot {
-    pointer-events: auto; /* Enable interaction with the checkbox */
- }
- 
- #map-container {
-    position: relative;
-    z-index: 1; /* Ensure map is below the checkbox */
- }
- 
- #map-content {
-    width: 100%;
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
- }
- 
- #Root {
-    position: relative;
-    z-index: 1000; /* Higher than the map */
- }
- 
-
-
-
-
-
 

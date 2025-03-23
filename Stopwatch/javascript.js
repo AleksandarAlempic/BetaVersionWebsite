@@ -339,29 +339,12 @@ if (mediaQuery.matches & !checkboxRoot.checked) {
    Map.style.position = "absolute";
    mapContent.style.width = "100%";
    mapContent.style.height = "100vh";
-   mapContent.style.position = "relative";
-   mapContent.style.overflow = "hidden";
+   
+   mapContent.style.height = "100vh";
 }
 else{
    stopwatchLabel.style.display = "block";
 
 }
-
-
-
-// For map or other draggable elements
-map.addEventListener('touchstart', function(e) {
-   e.stopPropagation(); // Prevent touch events from propagating to other elements
-});
-
-// For checkbox or other interactive elements
-checkboxRoot.addEventListener('touchstart', function(e) {
-   e.stopPropagation(); // Prevent touch events from propagating
-});
-
-checkboxRoot.addEventListener('touchstart', function(e) {
-   // Handle the checkbox click on touch
-   console.log("Checkbox clicked on touch device");
-});
 
 
