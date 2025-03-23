@@ -349,3 +349,17 @@ else{
 
 
 
+// For map or other draggable elements
+map.addEventListener('touchstart', function(e) {
+   e.stopPropagation(); // Prevent touch events from propagating to other elements
+});
+
+// For checkbox or other interactive elements
+checkboxRoot.addEventListener('touchstart', function(e) {
+   e.stopPropagation(); // Prevent touch events from propagating
+});
+
+checkboxRoot.addEventListener('touchstart', function(e) {
+   // Handle the checkbox click on touch
+   console.log("Checkbox clicked on touch device");
+});

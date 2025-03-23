@@ -1714,3 +1714,19 @@ body{
     transform: translateX(0); /* Ensure no unwanted offset */
 }
 
+#map-content {
+    z-index: 1; /* Ensure the map container is above the background */
+}
+
+#map {
+    z-index: 2; /* Ensure the map itself is above other containers */
+}
+
+#checkboxRoot {
+    z-index: 3; /* Make sure the checkbox is on top and clickable */
+}
+
+#map-content, #map, #checkboxRoot {
+    pointer-events: auto;
+}
+
