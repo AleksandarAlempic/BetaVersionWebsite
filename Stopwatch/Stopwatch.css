@@ -1688,127 +1688,44 @@ body{
 }
 
 #checkboxRoot {
-    position: relative;  /* Ensure it's positioned on top of other elements */
-    z-index: 9999;       /* Ensure it's clickable by placing it on top */
- }
-
- #map-container {
-    position: relative;
-    z-index: 1; /* Ensure the map itself has a lower z-index */
- }
- 
- #checkboxRoot {
     position: absolute;
-    z-index: 1000; /* Ensure this is above the map and other elements */
-    top: 10%; /* Adjust as necessary */
-    left: 50%; /* Adjust as necessary */
+    z-index: 9999; /* Ensures the checkbox is clickable above other elements */
+    top: 10%; /* Adjust position as necessary */
+    left: 50%; /* Center horizontally */
     transform: translateX(-50%);
- }
-
- #map {
-    pointer-events: none;  /* Disable interaction with the map */
- }
- 
- #checkboxRoot {
-    pointer-events: auto; /* Allow interaction with the checkbox */
- }
-
- #checkboxRoot {
     padding: 10px;
     font-size: 18px;
     display: block;
  }
  
+ #map {
+    pointer-events: none; /* Disable interaction with the map, allowing clicks to pass through */
+ }
+ 
+ #checkboxRoot {
+    pointer-events: auto; /* Enable interaction with the checkbox */
+ }
+ 
+ #map-container {
+    position: relative;
+    z-index: 1; /* Ensure map is below the checkbox */
+ }
+ 
+ #map-content {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+ }
+ 
+ #Root {
+    position: relative;
+    z-index: 1000; /* Higher than the map */
+ }
  
 
-@media (max-width: 1000px) {
-    #map-content {
-        width: 100%; /* Full width */
-        height: 100vh; /* Full height */
-        margin: 0; /* Ensure no margins */
-        padding: 0; /* Ensure no padding */
-        position: relative;
-        overflow: hidden; /* No overflow */
-    }
-
-    #map {
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        margin: 0; /* No margin */
-        padding: 0; /* No padding */
-        position: absolute; /* Ensure the map doesn't move */
-        z-index: -1; /* Lower the map's z-index to make sure UI elements like checkbox are clickable */
-    }
-
-   .trackDiv{
-    margin-left: 10%;
-   }
-   
-
-  
-     #checkboxRoot {
-        z-index: 10; /* Make sure checkbox is above map */
-        position: absolute; /* Make sure checkbox is positioned correctly */
-        top: 20px;
-        left: 20px; /* Adjust as needed */
-     }
-}
-
-* {
-    box-sizing: border-box; /* Ensure no overflow due to padding/borders */
-}
-
-#map {
-    transform: translateX(0); /* Ensure no unwanted offset */
-}
-
-#map-content {
-    z-index: 1; /* Ensure the map container is above the background */
-}
-
-#map {
-    z-index: 1; /* Ensure the map itself is above other containers */
-}
-
-#checkboxRoot {
-    z-index: 300; /* Make sure the checkbox is on top and clickable */
-}
-
-#map-content, #map, #checkboxRoot {
-    pointer-events: auto;
-}
 
 
-/* Ensure no overflow and better layout */
-* {
-    box-sizing: border-box; 
-}
 
-/* Map styles */
-#map {
-    width: 100%; /* Full width for the map */
-    height: 100vh; /* Map takes full height */
-    transform: translateX(0); /* Remove any unwanted offset */
-    z-index: 1; /* Ensure map is above background */
-}
 
-#map-content {
-    position: relative; /* To allow absolute positioning for the checkbox */
-    min-height: 100vh; /* Ensure map content takes full height */
-}
-
-/* Positioning for checkbox */
-#checkboxRoot {
-    z-index: 1000; /* Make sure checkbox is above the map */
-    position: absolute; /* Allow placement above the map */
-    top: 10px; /* Adjust the position as needed */
-    left: 10px; /* Adjust the position as needed */
-    pointer-events: auto; /* Ensure checkbox is clickable */
-}
-
-#map-content, #map, #checkboxRoot {
-    pointer-events:
-    
-    auto;
-}
 
