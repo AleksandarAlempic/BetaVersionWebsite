@@ -1703,7 +1703,21 @@ body{
         margin: 0; /* No margin */
         padding: 0; /* No padding */
         position: absolute; /* Ensure the map doesn't move */
+        z-index: -1; /* Lower the map's z-index to make sure UI elements like checkbox are clickable */
     }
+
+   .trackDiv{
+    margin-left: 10%;
+   }
+   
+
+  
+     #checkboxRoot {
+        z-index: 10; /* Make sure checkbox is above map */
+        position: absolute; /* Make sure checkbox is positioned correctly */
+        top: 20px;
+        left: 20px; /* Adjust as needed */
+     }
 }
 
 * {
@@ -1728,5 +1742,39 @@ body{
 
 #map-content, #map, #checkboxRoot {
     pointer-events: auto;
+}
+
+
+/* Ensure no overflow and better layout */
+* {
+    box-sizing: border-box; 
+}
+
+/* Map styles */
+#map {
+    width: 100%; /* Full width for the map */
+    height: 100vh; /* Map takes full height */
+    transform: translateX(0); /* Remove any unwanted offset */
+    z-index: 1; /* Ensure map is above background */
+}
+
+#map-content {
+    position: relative; /* To allow absolute positioning for the checkbox */
+    min-height: 100vh; /* Ensure map content takes full height */
+}
+
+/* Positioning for checkbox */
+#checkboxRoot {
+    z-index: 1000; /* Make sure checkbox is above the map */
+    position: absolute; /* Allow placement above the map */
+    top: 10px; /* Adjust the position as needed */
+    left: 10px; /* Adjust the position as needed */
+    pointer-events: auto; /* Ensure checkbox is clickable */
+}
+
+#map-content, #map, #checkboxRoot {
+    pointer-events:
+    
+    auto;
 }
 

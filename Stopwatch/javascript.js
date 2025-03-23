@@ -363,3 +363,5 @@ checkboxRoot.addEventListener('touchstart', function(e) {
    // Handle the checkbox click on touch
    console.log("Checkbox clicked on touch device");
 });
+
+
