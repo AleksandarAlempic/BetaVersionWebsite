@@ -328,7 +328,7 @@ checkboxRoot.addEventListener('click', () => {
 });
 
 
-const mediaQuery = window.matchMedia('(max-width: 900px)');
+const mediaQuery = window.matchMedia('(max-width: 1000px)');
 
 if (mediaQuery.matches & !checkboxRoot.checked) {
    Root.style.width = "700px";
