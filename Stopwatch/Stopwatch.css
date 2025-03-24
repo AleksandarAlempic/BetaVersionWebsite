@@ -1718,34 +1718,11 @@ body{
 }
 
 
-@media (max-width: 1000px) {
-    /* Ensure that map and container don't block touch events */
-    #map {
-        pointer-events: none; /* Make the map non-interactive */
-    }
-
-    /* Enable pointer-events for the elements you need to interact with */
-    #checkboxRoot, #checkboxMusicPlayer, #start, #stop, #reset, #audioContainer, #newNextAndPreviousButtons {
-        pointer-events: auto; /* Ensure these elements are clickable */
-    }
-
-    /* Ensure proper stacking order for mobile */
-    #checkboxRoot, #checkboxMusicPlayer, #start, #stop, #reset {
-        z-index: 1000000;  /* Ensure these are in front of other layers */
-    }
-
-    /* Adjust map position and size if needed */
-    #map-container {
-        position: relative;
-        z-index: 1;
-    }
-}
-
-
 
 
 #map-content{
     z-index: 1000000;
+    max-height: 500px;
 }
 
 /* Root checkbox - also above the map */
