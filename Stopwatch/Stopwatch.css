@@ -1688,3 +1688,85 @@ body{
 }
 
 
+/* Make sure the map has a lower z-index */
+#map {
+    position: relative;
+    z-index: 1; /* Set this lower than other interactive elements */
+}
+
+/* Increase the z-index of interactive elements to make them clickable */
+.interactive-element {
+    position: relative;
+    z-index: 9999;
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Other elements should be positioned outside of the map area */
+.interactive-element {
+    position: relative;
+    z-index: 9999; /* Make sure it's on top of the map */
+    /* Add margins or padding if necessary to avoid overlap */
+}
+
+#map {
+    position: absolute;  /* or fixed */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Ensures the map stays behind other elements */
+}
+
+/* Interactive elements should have a higher z-index */
+.interactive-element {
+    position: relative;
+    z-index: 9999;
+}
+
+#map {
+    pointer-events: none; /* Disable interaction with the map */
+}
+
+/* Ensure checkboxRoot is clickable and above other elements */
+#checkboxRoot {
+    position: absolute;
+    z-index: 9999; /* Ensure it's above the map */
+    top: 10%; /* Adjust position as necessary */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%);
+    pointer-events: auto; /* Enable interaction */
+}
+
+/* Ensure music player checkbox is clickable and above other elements */
+#checkboxMusicPlayer {
+    position: absolute;
+    z-index: 9999; /* Ensure it's above the map */
+    top: 20%; /* Adjust position as necessary */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%);
+    pointer-events: auto; /* Enable interaction */
+}
+
+/* Ensure the map container and any other elements don't block interactions */
+#map-container {
+    position: relative;
+    z-index: 1; /* Ensure it's below the checkbox */
+}
+
+/* Additional fixes for any other elements that may overlap */
+#musicPlayer, #stopwatchLabel, #start, #stop, #reset {
+    z-index: 10000; /* Ensure buttons are clickable if necessary */
+}
+
+/* If you want to keep the checkbox visually at the top, ensure it's not hidden */
+#checkboxRoot, #checkboxMusicPlayer {
+    position: relative; /* Prevent being hidden by other elements */
+    visibility: visible;
+}
