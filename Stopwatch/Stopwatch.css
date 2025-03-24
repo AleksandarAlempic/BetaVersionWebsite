@@ -1717,9 +1717,6 @@ body{
     pointer-events: auto;  /* Enable interaction */
 }
 
-.Root{
-    z-index: 1000000;
-}
 
 #map-content{
     z-index: 1000000;

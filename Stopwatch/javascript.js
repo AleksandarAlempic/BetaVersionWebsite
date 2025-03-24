@@ -339,6 +339,7 @@ if (mediaQuery.matches & !checkboxRoot.checked) {
    Map.style.position = "absolute";
    mapContent.style.width = "100%";
    mapContent.style.height = "100vh";
+   Root.style.zIndex = "1000000";
    
    mapContent.style.height = "100vh";
 }
