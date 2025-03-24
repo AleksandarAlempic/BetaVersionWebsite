@@ -340,6 +340,7 @@ if (mediaQuery.matches & !checkboxRoot.checked) {
    mapContent.style.width = "100%";
    mapContent.style.height = "100vh";
    Root.style.zIndex = "1000000";
+   checkboxRoot.style.zIndex = "10000000";
    
    mapContent.style.height = "100vh";
 }
