@@ -1725,38 +1725,22 @@ body{
     max-height: 500px;
 }
 
-/* Root checkbox - also above the map */
-#checkboxRoot {
-    position: absolute;
-    z-index: 9999;  /* Ensure it's above the map */
-    top: 10%;  /* Adjust position as needed */
-    left: 50%;  /* Center horizontally */
-    transform: translateX(-50%);
-    pointer-events: auto;  /* Enable interaction */
-}
-
-/* Ensure the music player and map container elements have the correct z-index */
-#musicPlayer, #stopwatchLabel, #start, #stop, #reset {
-    z-index: 10000;  /* Ensure buttons are clickable if necessary */
-}
-
-/* Map container should stay behind the checkboxes */
-#map-container {
-    position: relative;
-    z-index: 1;  /* Map is below the checkboxes */
-}
-
-/* The map content container */
-#map-content {
-    width: 100%;
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
-    z-index: 2; /* Make sure map content stays above the music player */
-}
-
-/* Optional - If you want the music player container to be visible below */
-#musicPlayerContainer {
-    z-index: 1;  /* Ensure it's below the map */
-    position: relative;
-}
+/* Ensure the map doesn't block the buttons on mobile */
+@media (max-width: 1000px) {
+    /* Disable map interaction temporarily */
+    #map {
+        pointer-events: none; /* Prevent interaction with the map */
+    }
+ 
+    /* Enable pointer-events for buttons and checkboxes */
+    #checkboxRoot, #checkboxMusicPlayer, #start, #stop, #reset, #audioContainer, #newNextAndPreviousButtons {
+        pointer-events: auto; /* Ensure buttons are clickable */
+        z-index: 9999;  /* Make sure buttons are above the map */
+    }
+    
+    /* Ensure the map container is in the background */
+    #map-container {
+        position: relative;
+        z-index: 1;  /* Map container behind buttons */
+    }
+ }

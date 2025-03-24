@@ -350,3 +350,29 @@ else{
 }
 
 
+
+
+
+// Ensure that when the Root checkbox or other elements are clicked, the map interaction is disabled
+checkboxRoot.addEventListener('click', () => {
+   if (checkboxRoot.checked) {
+       // Disable map interaction when the checkbox is checked
+       document.getElementById("map").style.pointerEvents = "none";
+   } else {
+       // Enable map interaction when the checkbox is unchecked
+       document.getElementById("map").style.pointerEvents = "auto";
+   }
+});
+
+// Ensure the same for the music player checkbox if needed
+musicPlayer.addEventListener('click', () => {
+   if (musicPlayer.checked) {
+       // Disable map interaction when the music player is toggled off
+       document.getElementById("map").style.pointerEvents = "none";
+   } else {
+       // Enable map interaction again
+       document.getElementById("map").style.pointerEvents = "auto";
+   }
+});
+
+
