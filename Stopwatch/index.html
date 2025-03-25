@@ -180,15 +180,15 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet-routing-machine@3.2.4/dist/leaflet-routing-machine.js"></script>
 <script>
-    // Initialize the map with a default center (starting point)
+    // Initialize the map with a default center
     const map = L.map('map').setView([45.1150, 19.8740], 13); // Default to Kraljevci (near Ruma)
 
     // Set up the tile layer for the map appearance
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
 
-    // Create routing control, initially with no waypoints
+    // Create routing control with no waypoints initially
     const routeControl = L.Routing.control({
-        waypoints: [],  // Start with an empty route
+        waypoints: [],
         routeWhileDragging: true,  // Allow dragging the route
         createMarker: function() { return null; }  // Prevent waypoint markers
     }).addTo(map);
@@ -197,11 +197,8 @@
     let currentLocation = [45.1150, 19.8740]; // Starting point (Kraljevci)
     let currentLocationMarker = L.marker([currentLocation[0], currentLocation[1]]).addTo(map);
 
-    // Initialize an array to store the waypoints (route)
+    // Array to hold waypoints for the route
     let waypoints = [];
-
-    // A flag to check if we have initialized the route
-    let routeInitialized = false;
 
     // Function to update the user's location and update the route
     function updateLocation(position) {
@@ -213,17 +210,11 @@
         // Update or create the marker at the new location
         currentLocationMarker.setLatLng([lat, lon]);
 
-        // Check if the route has already been initialized
-        if (!routeInitialized) {
-            // Set the initial waypoint and initialize the route
-            routeControl.setWaypoints([L.latLng(lat, lon)]);
-            waypoints.push(L.latLng(lat, lon)); // Add initial waypoint to array
-            routeInitialized = true;
-        } else {
-            // Append the new location as a new waypoint
-            waypoints.push(L.latLng(lat, lon));  // Add the new waypoint to the array
-            routeControl.setWaypoints(waypoints); // Update the route with the updated waypoints
-        }
+        // Add the new location as a new waypoint
+        waypoints.push(L.latLng(lat, lon));  // Add the new waypoint
+
+        // Update the route control with the new waypoints
+        routeControl.setWaypoints(waypoints); // This will update the route dynamically
 
         // Re-center the map on the current location
         map.setView([lat, lon], 15);
@@ -242,7 +233,6 @@
         timeout: 10000             // Timeout after 10 seconds if no location data is found
     });
 </script>
-
                
         </div>
     </div>
