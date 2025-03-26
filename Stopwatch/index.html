@@ -180,7 +180,7 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet-routing-machine@3.2.4/dist/leaflet-routing-machine.js"></script>
 <script>
-    // Initialize the map with a default center
+    // Initialize the map with a default center (starting point)
     const map = L.map('map').setView([45.1150, 19.8740], 13); // Default to Kraljevci (near Ruma)
 
     // Set up the tile layer for the map appearance
@@ -188,7 +188,7 @@
 
     // Create routing control with no waypoints initially
     const routeControl = L.Routing.control({
-        waypoints: [],
+        waypoints: [],  // Start with an empty route
         routeWhileDragging: true,  // Allow dragging the route
         createMarker: function() { return null; }  // Prevent waypoint markers
     }).addTo(map);
@@ -200,42 +200,33 @@
     // Array to hold waypoints for the route
     let waypoints = [];
 
-    // Variable to track the last update time (to limit how often the route is updated)
-    let lastUpdateTime = 0;
+    // Variable to track if the route has already started
+    let routeStarted = false;
 
     // Function to update the user's location and update the route
     function updateLocation(position) {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
 
-        // Get the current timestamp
-        const currentTime = Date.now();
-
-        // Only update every 1 second (1000ms) to limit how often the route is updated
-        if (currentTime - lastUpdateTime < 1000) {
-            return; // Skip if it's been less than 1 second since the last update
-        }
-
-        // Log the coordinates for debugging
-        console.log(`Current Location: Latitude: ${lat}, Longitude: ${lon}`);
+        console.log(`Current Location: Latitude: ${lat}, Longitude: ${lon}`); // Log coordinates for debugging
 
         // Update or create the marker at the new location
         currentLocationMarker.setLatLng([lat, lon]);
 
-        // Add the new location as a new waypoint
-        waypoints.push(L.latLng(lat, lon));  // Add the new waypoint
+        // Add the new location as a new waypoint if the route hasn't started yet
+        if (!routeStarted) {
+            waypoints.push(L.latLng(lat, lon));  // Add the new waypoint
+            routeStarted = true;
+        } else {
+            // Add the new location as a new waypoint (only append)
+            waypoints.push(L.latLng(lat, lon));  // Add the new waypoint to the waypoints array
+        }
 
         // Update the route control with the new waypoints
         routeControl.setWaypoints(waypoints); // This will update the route dynamically
 
-        // Re-center the map on the current location (but only if it's significantly different)
-        const currentCenter = map.getCenter();
-        if (currentCenter.lat !== lat || currentCenter.lng !== lon) {
-            map.setView([lat, lon], 15);
-        }
-
-        // Update the last update time
-        lastUpdateTime = currentTime;
+        // Re-center the map on the current location
+        map.setView([lat, lon], 15);
     }
 
     // Function to handle location errors
@@ -250,7 +241,7 @@
         maximumAge: 0,             // Disables using cached location data
         timeout: 10000             // Timeout after 10 seconds if no location data is found
     });
-</script>  
+</script>
         </div>
     </div>
     </body>
