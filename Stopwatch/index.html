@@ -200,12 +200,24 @@
     // Array to hold waypoints for the route
     let waypoints = [];
 
+    // Variable to track the last update time (to limit how often the route is updated)
+    let lastUpdateTime = 0;
+
     // Function to update the user's location and update the route
     function updateLocation(position) {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
 
-        console.log(`Current Location: Latitude: ${lat}, Longitude: ${lon}`); // Log coordinates for debugging
+        // Get the current timestamp
+        const currentTime = Date.now();
+
+        // Only update every 1 second (1000ms) to limit how often the route is updated
+        if (currentTime - lastUpdateTime < 1000) {
+            return; // Skip if it's been less than 1 second since the last update
+        }
+
+        // Log the coordinates for debugging
+        console.log(`Current Location: Latitude: ${lat}, Longitude: ${lon}`);
 
         // Update or create the marker at the new location
         currentLocationMarker.setLatLng([lat, lon]);
@@ -216,8 +228,14 @@
         // Update the route control with the new waypoints
         routeControl.setWaypoints(waypoints); // This will update the route dynamically
 
-        // Re-center the map on the current location
-        map.setView([lat, lon], 15);
+        // Re-center the map on the current location (but only if it's significantly different)
+        const currentCenter = map.getCenter();
+        if (currentCenter.lat !== lat || currentCenter.lng !== lon) {
+            map.setView([lat, lon], 15);
+        }
+
+        // Update the last update time
+        lastUpdateTime = currentTime;
     }
 
     // Function to handle location errors
@@ -232,8 +250,7 @@
         maximumAge: 0,             // Disables using cached location data
         timeout: 10000             // Timeout after 10 seconds if no location data is found
     });
-</script>
-               
+</script>  
         </div>
     </div>
     </body>
