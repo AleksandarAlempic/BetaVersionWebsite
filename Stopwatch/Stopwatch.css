@@ -1593,6 +1593,23 @@ body{
 }
 
 
+#startRouteButton {
+    position: absolute;
+   
+    z-index: 1000000000;  /* Ensure it's on top */
+
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#startRouteButton:focus {
+    outline: none; /* Remove focus outline */
+}
+
 
 .switch {
     position: absolute;
