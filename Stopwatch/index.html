@@ -179,8 +179,14 @@
 <script src="https://unpkg.com/leaflet-routing-machine@3.2.4/dist/leaflet-routing-machine.js"></script>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet-routing-machine@3.2.4/dist/leaflet-routing-machine.js"></script>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+<button style="z-index: 1000000000; position: absolute;  color: black;" id="startRouteButton">Start Route</button>
 <script>
-    // Initialize map
+    // Initialize the map with a default center (starting point)
     const map = L.map('map').setView([45.1150, 19.8740], 13); // Default to Kraljevci (near Ruma)
 
     // Set up the tile layer for the map
@@ -190,67 +196,63 @@
     const routeControl = L.Routing.control({
         waypoints: [],  // Start with an empty route
         routeWhileDragging: true,  // Allow dragging the route
-        createMarker: function() { return null; }  // Disable marker creation
+        createMarker: function() { return null; }  // Prevent creating markers for waypoints
     }).addTo(map);
 
-    // Initialize the current location marker
+    // Initialize current location and marker
     let currentLocation = [45.1150, 19.8740];  // Starting point (Kraljevci)
     let currentLocationMarker = L.marker([currentLocation[0], currentLocation[1]]).addTo(map);
 
-    // Array to store waypoints for the route
+    // Array to hold waypoints for the route
     let waypoints = [];
 
-    // Flag to track if the route has started
+    // Variable to track if the route has started
     let routeStarted = false;
 
-    // Function to update user's location and update route
+    // Function to update the user's location and update the route
     function updateLocation(position) {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
 
-        console.log(`Current Location: Latitude: ${lat}, Longitude: ${lon}`);  // Debugging log
-
-        // Update the marker's position to the new location
+        // Update the location marker to the new coordinates
         currentLocationMarker.setLatLng([lat, lon]);
 
-        // Add waypoints to the route only after the route has started
+        // Only add new waypoints if the route has started
         if (routeStarted) {
-            waypoints.push(L.latLng(lat, lon));  // Add new waypoint
-            routeControl.setWaypoints(waypoints);  // Update the route on the map
+            waypoints.push(L.latLng(lat, lon));  // Add new waypoint to the array
+            routeControl.setWaypoints(waypoints);  // Update the route with new waypoints
         }
 
-        // Optionally, update the map view if the user moves a certain distance
+        // Optionally, update the map view if the user moves a significant distance
         if (map.getCenter().distanceTo([lat, lon]) > 50) {
             map.setView([lat, lon], map.getZoom());  // Keep the current zoom level
         }
     }
 
-    // Function to handle errors with geolocation
+    // Function to handle geolocation errors
     function handleError(error) {
         console.error('Error fetching location: ', error);
         alert("Error retrieving your location.");
     }
 
-    // Function to start the route
+    // Start the route manually
     function startRoute() {
-        routeStarted = true;  // Mark the route as started
+        routeStarted = true;  // Set the route as started
         waypoints.push(L.latLng(currentLocation[0], currentLocation[1]));  // Start route at current location
-        routeControl.setWaypoints(waypoints);  // Set the initial waypoint on the route
+        routeControl.setWaypoints(waypoints);  // Initialize route control with the first waypoint
         alert("Route started! Moving now will update the route.");
     }
 
-    // Add event listener for the "Start Route" button
+    // Set up the button click event to start the route
     document.getElementById("startRouteButton").addEventListener("click", startRoute);
 
-    // Watch for the user's location continuously using geolocation
+    // Continuously update the user's location using geolocation
     navigator.geolocation.watchPosition(updateLocation, handleError, {
         enableHighAccuracy: true,  // Use GPS for accurate location
-        maximumAge: 0,             // Do not use cached location data
+        maximumAge: 0,             // Disables using cached location data
         timeout: 10000             // Timeout after 10 seconds if no location data is found
     });
 </script>
-
-
         </div>
     </div>
     </body>
