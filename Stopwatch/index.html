@@ -225,8 +225,11 @@
         // Update the route control with the new waypoints
         routeControl.setWaypoints(waypoints); // This will update the route dynamically
 
-        // Re-center the map on the current location
-        map.setView([lat, lon], 15);
+        // Only change the map view if the user has moved enough distance
+        // You can set a threshold to avoid constant zooming/centering
+        if (map.getCenter().distanceTo([lat, lon]) > 50) { // If the user has moved more than 50 meters
+            map.setView([lat, lon], map.getZoom()); // Keep the current zoom level
+        }
     }
 
     // Function to handle location errors
@@ -242,6 +245,8 @@
         timeout: 10000             // Timeout after 10 seconds if no location data is found
     });
 </script>
+
+
         </div>
     </div>
     </body>
