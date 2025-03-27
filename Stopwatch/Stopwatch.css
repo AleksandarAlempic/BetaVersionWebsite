@@ -1595,16 +1595,17 @@ body{
 
 #startRouteButton {
     position: absolute;
-   
     z-index: 1000000000;  /* Ensure it's on top */
-
     background-color: #4CAF50;
     color: white;
     font-size: 18px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: -50%;
 }
+
+
 
 #startRouteButton:focus {
     outline: none; /* Remove focus outline */
