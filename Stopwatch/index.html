@@ -186,83 +186,85 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
 
-<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
-
 <script>
-// Initialize the map with a default center (starting point)
-const map = L.map('map').setView([45.1150, 19.8740], 13); // Default to Kraljevci (near Ruma)
-
-// Set up the tile layer for the map
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
-
-// Initialize routing control with no waypoints initially
-const routeControl = L.Routing.control({
-    waypoints: [],  // Start with an empty route
-    routeWhileDragging: true,  // Allow dragging the route
-    createMarker: function() { return null; }  // Prevent creating markers for waypoints
-}).addTo(map);
-
-// Initialize current location and marker
-let currentLocation = [45.1150, 19.8740];  // Starting point (Kraljevci)
-let currentLocationMarker = L.marker([currentLocation[0], currentLocation[1]]).addTo(map);
-
-// Variable to track if the route has started
-let routeStarted = false;  // Initially, the route is not started
-
-// Array to hold waypoints for the route
-let waypoints = [];
-
-// Function to update the user's location and update the route
-function updateLocation(position) {
-    const lat = position.coords.latitude;
-    const lon = position.coords.longitude;
-
-    // Update the location marker to the new coordinates
-    currentLocationMarker.setLatLng([lat, lon]);
-
-    // Only add new waypoints if the route has started
-    if (routeStarted) {
-        waypoints.push(L.latLng(lat, lon));  // Add new waypoint to the array
-        routeControl.setWaypoints(waypoints);  // Update the route with new waypoints
-        console.log("Updated waypoints:", waypoints);  // Debugging log
+    // Default location is set to Begeč
+    const defaultLat = 45.2764;
+    const defaultLon = 19.8244;
+    
+    // Initialize the map, center on Begeč by default
+    const map = L.map('map').setView([defaultLat, defaultLon], 13);
+    
+    // Set up the tile layer for the map
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
+    
+    // Initialize routing control with no waypoints initially
+    const routeControl = L.Routing.control({
+        waypoints: [],  // Start with an empty route
+        routeWhileDragging: true,  // Allow dragging the route
+        createMarker: function() { return null; }  // Prevent creating markers for waypoints
+    }).addTo(map);
+    
+    // Initialize current location and marker
+    let currentLocation = [defaultLat, defaultLon];  // Default to Begeč
+    let currentLocationMarker = L.marker([currentLocation[0], currentLocation[1]]).addTo(map);
+    
+    // Variable to track if the route has started
+    let routeStarted = false;  // Initially, the route is not started
+    
+    // Array to hold waypoints for the route
+    let waypoints = [];
+    
+    // Function to update the user's location and update the route
+    function updateLocation(position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+    
+        // Update the location marker to the new coordinates
+        currentLocationMarker.setLatLng([lat, lon]);
+    
+        // Only add new waypoints if the route has started
+        if (routeStarted) {
+            // If the new position is sufficiently different from the last, update the route
+            if (waypoints.length === 0 || waypoints[waypoints.length - 1].lat !== lat || waypoints[waypoints.length - 1].lng !== lon) {
+                waypoints.push(L.latLng(lat, lon));  // Add new waypoint to the array
+                routeControl.setWaypoints(waypoints);  // Update the route with new waypoints
+            }
+        }
+    
+        // Optionally, update the map view if the user moves a significant distance
+        if (map.getCenter().distanceTo([lat, lon]) > 50) {
+            map.setView([lat, lon], map.getZoom());  // Keep the current zoom level
+        }
     }
-
-    // Optionally, update the map view if the user moves a significant distance
-    if (map.getCenter().distanceTo([lat, lon]) > 50) {
-        map.setView([lat, lon], map.getZoom());  // Keep the current zoom level
+    
+    // Function to handle geolocation errors
+    function handleError(error) {
+        console.error('Error fetching location: ', error);
+        alert("Error retrieving your location.");
     }
-}
-
-// Function to handle geolocation errors
-function handleError(error) {
-    console.error('Error fetching location: ', error);
-    alert("Error retrieving your location.");
-}
-
-// Start the route manually (Triggered when the user clicks the button)
-function startRoute() {
-    if (!routeStarted) {
-        routeStarted = true;  // Set the route as started
-        waypoints = [];  // Clear any existing waypoints before starting
-        waypoints.push(L.latLng(currentLocation[0], currentLocation[1]));  // Start route at the current location
-        routeControl.setWaypoints(waypoints);  // Initialize route control with the first waypoint
-        console.log("Route started at:", currentLocation);  // Debugging log
-        alert("Route started! Moving now will update the route.");
+    
+    // Start the route manually (Triggered when the user clicks the button)
+    function startRoute() {
+        if (!routeStarted) {
+            routeStarted = true;  // Set the route as started
+            waypoints = [];  // Clear any existing waypoints before starting
+            waypoints.push(L.latLng(currentLocation[0], currentLocation[1]));  // Start route at the current location
+            routeControl.setWaypoints(waypoints);  // Initialize route control with the first waypoint
+            console.log("Route started at:", currentLocation);  // Debugging log
+            alert("Route started! Moving now will update the route.");
+        }
     }
-}
-
-// Add event listener for the Start Route button click
-document.getElementById("startRouteButton").addEventListener("click", startRoute);
-
-// Continuously update the user's location using geolocation
-navigator.geolocation.watchPosition(updateLocation, handleError, {
-    enableHighAccuracy: true,  // Use GPS for accurate location
-    maximumAge: 0,             // Disables using cached location data
-    timeout: 10000             // Timeout after 10 seconds if no location data is found
-});
+    
+    // Add event listener for the Start Route button click
+    document.getElementById("startRouteButton").addEventListener("click", startRoute);
+    
+    // Continuously update the user's location using geolocation
+    navigator.geolocation.watchPosition(updateLocation, handleError, {
+        enableHighAccuracy: true,  // Use GPS for accurate location
+        maximumAge: 0,             // Disables using cached location data
+        timeout: 10000             // Timeout after 10 seconds if no location data is found
+    });
 </script>
-
         </div>
     </div>
     </body>
