@@ -1602,7 +1602,6 @@ body{
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  
 }
 
 
@@ -1749,6 +1748,29 @@ body{
    #map {
        pointer-events: none; /* Prevent interaction with the map */
    }
+
+   #startRouteButton {
+    position: absolute;
+    z-index: 1000000000;  /* Ensure it's on top */
+    background-color: white;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 45%;
+    min-height: 50px;
+}
+
+#map-content {
+    width: 100%;   /* Ensure map container takes full width */
+    height: 100vh; /* Ensure map container takes full height */
+    margin: 0;     /* Remove any margin */
+    padding: 0;    /* Remove any padding */
+    position: relative;
+    overflow-x: hidden;  /* Prevent horizontal scroll */
+    margin-left: -5%;
+}
 
    /* Enable pointer-events for buttons and checkboxes */
    #checkboxRoot, #checkboxMusicPlayer, #start, #stop, #reset, #audioContainer, #newNextAndPreviousButtons {
