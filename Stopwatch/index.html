@@ -186,8 +186,11 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
 
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+
 <script>
-  // Initialize the map with a default center (starting point)
+// Initialize the map with a default center (starting point)
 const map = L.map('map').setView([45.1150, 19.8740], 13); // Default to Kraljevci (near Ruma)
 
 // Set up the tile layer for the map
@@ -222,6 +225,7 @@ function updateLocation(position) {
     if (routeStarted) {
         waypoints.push(L.latLng(lat, lon));  // Add new waypoint to the array
         routeControl.setWaypoints(waypoints);  // Update the route with new waypoints
+        console.log("Updated waypoints:", waypoints);  // Debugging log
     }
 
     // Optionally, update the map view if the user moves a significant distance
@@ -243,6 +247,7 @@ function startRoute() {
         waypoints = [];  // Clear any existing waypoints before starting
         waypoints.push(L.latLng(currentLocation[0], currentLocation[1]));  // Start route at the current location
         routeControl.setWaypoints(waypoints);  // Initialize route control with the first waypoint
+        console.log("Route started at:", currentLocation);  // Debugging log
         alert("Route started! Moving now will update the route.");
     }
 }
@@ -256,8 +261,8 @@ navigator.geolocation.watchPosition(updateLocation, handleError, {
     maximumAge: 0,             // Disables using cached location data
     timeout: 10000             // Timeout after 10 seconds if no location data is found
 });
-
 </script>
+
         </div>
     </div>
     </body>
