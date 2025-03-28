@@ -214,23 +214,39 @@
     // Array to hold waypoints for the route
     let waypoints = [];
     
+    // Polyline to track the route on the map
+    let polyline;
+    
     // Function to update the user's location and update the route
     function updateLocation(position) {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
-    
+
         // Update the location marker to the new coordinates
         currentLocationMarker.setLatLng([lat, lon]);
-    
+
         // Only add new waypoints if the route has started
         if (routeStarted) {
             // If the new position is sufficiently different from the last, update the route
             if (waypoints.length === 0 || waypoints[waypoints.length - 1].lat !== lat || waypoints[waypoints.length - 1].lng !== lon) {
-                waypoints.push(L.latLng(lat, lon));  // Add new waypoint to the array
+                // Add new waypoint to the array
+                waypoints.push(L.latLng(lat, lon));  
                 routeControl.setWaypoints(waypoints);  // Update the route with new waypoints
+
+                // If the polyline is not yet created, create it
+                if (!polyline) {
+                    polyline = L.polyline([ [lat, lon] ], {
+                        color: 'blue',  // You can choose any color
+                        weight: 5,      // Line thickness
+                        opacity: 0.7    // Line transparency
+                    }).addTo(map);  // Add the polyline to the map
+                } else {
+                    // Update the polyline by adding the new point
+                    polyline.addLatLng([lat, lon]);
+                }
             }
         }
-    
+
         // Optionally, update the map view if the user moves a significant distance
         if (map.getCenter().distanceTo([lat, lon]) > 50) {
             map.setView([lat, lon], map.getZoom());  // Keep the current zoom level
@@ -265,6 +281,7 @@
         timeout: 10000             // Timeout after 10 seconds if no location data is found
     });
 </script>
+
 
 
         </div>
