@@ -200,9 +200,11 @@
     const defaultLat = 45.2764;
     const defaultLon = 19.8244;
 
-    // Initialize the map, center on Begeč by default
     const map = L.map('map', {
-    zoomControl: true,  // Enable zoom controls explicitly
+    zoomControl: true,  // Ensure zoom controls are active
+    touchZoom: true,    // Enable touch zoom on mobile
+    scrollWheelZoom: true, // Allow zoom with scroll wheel
+    dragging: true,     // Allow dragging on mobile
 }).setView([defaultLat, defaultLon], 13);
 
 
@@ -314,26 +316,34 @@
         alert("Error retrieving your location.");
     }
 
-    // Stop the route (Triggered when the user clicks the button)
-    function stopRoute() {
-        if (routeStarted) {
-            routeStarted = false;  // Stop the route
-            console.log("Route stopped.");
-            alert("Route stopped.");
-        }
-    }
-
-    // Start the route manually (Triggered when the user clicks the button)
     function startRoute() {
-        if (!routeStarted) {
-            routeStarted = true;  // Set the route as started
-            waypoints = [];  // Clear any existing waypoints before starting
-            waypoints.push(L.latLng(currentLocation[0], currentLocation[1]));  // Start route at the current location
-            routeControl.setWaypoints(waypoints);  // Initialize route control with the first waypoint
-            console.log("Route started at:", currentLocation);  // Debugging log
-            alert("Route started! Moving now will update the route.");
-        }
+    if (!routeStarted) {
+        routeStarted = true;
+        waypoints = [];
+        waypoints.push(L.latLng(currentLocation[0], currentLocation[1]));
+        routeControl.setWaypoints(waypoints);
+
+        // Disable map interactions while route is being created
+        map.dragging.disable();
+        map.scrollWheelZoom.disable();
+        map.touchZoom.disable();
+
+        console.log("Route started!");
     }
+}
+
+function stopRoute() {
+    if (routeStarted) {
+        routeStarted = false;
+
+        // Re-enable map interactions after route is stopped
+        map.dragging.enable();
+        map.scrollWheelZoom.enable();
+        map.touchZoom.enable();
+
+        console.log("Route stopped!");
+    }
+}
 
     // Add event listener for the Start Route button click
     document.getElementById("startRouteButton").addEventListener("click", startRoute);
