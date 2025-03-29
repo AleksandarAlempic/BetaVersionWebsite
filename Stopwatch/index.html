@@ -201,7 +201,11 @@
     const defaultLon = 19.8244;
 
     // Initialize the map, center on Begeč by default
-    const map = L.map('map').setView([defaultLat, defaultLon], 13);
+    const map = L.map('map', {
+    zoomControl: true,  // Enable zoom controls explicitly
+}).setView([defaultLat, defaultLon], 13);
+
+
 
     // Set up the tile layer for the map
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);

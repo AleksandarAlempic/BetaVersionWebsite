@@ -1834,6 +1834,67 @@ body{
     margin-top: 17%;
 }
 
+/* Make sure the zoom control is always on top of other map elements */
+.leaflet-control-zoom {
+    z-index: 5000; /* Ensure zoom controls are above all other map elements */
+}
+
+#map {
+    z-index: 1;  /* Keep the map background at a lower z-index */
+}
+
+.leaflet-control-zoom {
+    z-index: 1000; /* Ensure the zoom control is above other elements */
+}
+
+
+   
+
+#map {
+    position: relative;  /* Ensure map is positioned correctly */
+    z-index: 0;  /* Default layer for the map */
+    transform: none; /* Make sure no scaling or transforms are applied */
+}
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+    font-size: 30px; /* Increase size of zoom buttons */
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.leaflet-control-zoom-in:hover,
+.leaflet-control-zoom-out:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Position the zoom controls in the top-left corner */
+.leaflet-top.leaflet-left {
+    top: 10px;
+    left: 10px;
+}
+
+
+.leaflet-control-zoom {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 5000;  /* Place zoom controls above other map elements */
+}
+
+/* Optionally adjust the zoom button size */
+.leaflet-control-zoom-in, .leaflet-control-zoom-out {
+    font-size: 20px;  /* Adjust button size if necessary */
+    width: 40px;
+    height: 40px;
+}
+
+
+
 #map-content {
     width: 100%;   /* Ensure map container takes full width */
     height: 100vh; /* Ensure map container takes full height */
