@@ -1602,11 +1602,30 @@ body{
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-left: 10%;
 }
 
 
 
 #startRouteButton:focus {
+    outline: none; /* Remove focus outline */
+}
+
+#stopRouteButton {
+    position: absolute;
+    z-index: 1000000000;  /* Ensure it's on top */
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 18%;
+}
+
+
+
+#stopRouteButton:focus {
     outline: none; /* Remove focus outline */
 }
 
@@ -1742,6 +1761,30 @@ body{
     max-height: 650px;
 }
 
+.speed{
+    margin-left: 10%;
+    position: absolute;
+    margin-left: 1%; margin-top: 6%; font-weight: bold;
+}
+
+.distance{
+    margin-left: 1%; margin-top: 6%; font-weight: bold;
+    position: absolute;
+}
+
+
+
+.speed{
+    position: absolute;
+    margin-left: 49%; margin-top: 40%; font-weight: bold;
+    font-size: 30px;
+}
+
+.distance{
+    margin-left: 49%; margin-top: 37%;  font-weight: bold;
+    font-size: 30px;
+    position: absolute;
+}
 
 @media (max-width: 1000px) {
    /* Disable map interaction temporarily */
@@ -1758,18 +1801,48 @@ body{
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 45%;
+    margin-left: 38%;
     min-height: 50px;
+    margin-top: 17%;
+}
+
+.speed{
+    position: absolute;
+    margin-top: 6%; font-weight: bold;
+    font-size: 40px;
+    margin-left: 58%;
+}
+
+.distance{
+     margin-top: 6%; font-weight: bold;
+    font-size: 40px;
+    position: absolute;
+    margin-left: 18%;
+}
+
+#stopRouteButton {
+    position: absolute;
+    z-index: 1000000000;  /* Ensure it's on top */
+    background-color: white;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 52%;
+    min-height: 50px;
+    margin-top: 17%;
 }
 
 #map-content {
     width: 100%;   /* Ensure map container takes full width */
     height: 100vh; /* Ensure map container takes full height */
-    margin: 0;     /* Remove any margin */
-    padding: 0;    /* Remove any padding */
-    position: relative;
-    overflow-x: hidden;  /* Prevent horizontal scroll */
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    overflow-x: hidden;
     margin-left: -5%;
+    margin-top: 15%;
 }
 
    /* Enable pointer-events for buttons and checkboxes */
