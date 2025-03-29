@@ -4,6 +4,8 @@ const audioContainer = document.getElementById("audioContainer");
 const newNextAndPreviousButtons = document.getElementById("newNextAndPreviousButtons");
 const stopwatchLabel = document.getElementById("stopwatchLabel");
 
+const startRouteButton = document.getElementById("startRouteButton");
+
 const Root = document.getElementById("map-content");
 
 const Map = document.getElementById("map");
@@ -342,11 +344,12 @@ if (mediaQuery.matches & !checkboxRoot.checked) {
    Root.style.zIndex = "1000000";
    checkboxRoot.style.zIndex = "10000000";
    
+   
    mapContent.style.height = "100vh";
 }
 else{
    stopwatchLabel.style.display = "block";
-
+  
 }
 
 
@@ -358,9 +361,11 @@ checkboxRoot.addEventListener('click', () => {
    if (checkboxRoot.checked) {
        // Disable map interaction when the checkbox is checked
        document.getElementById("map").style.pointerEvents = "none";
+       startRouteButton.style.display = "none";
    } else {
        // Enable map interaction when the checkbox is unchecked
        document.getElementById("map").style.pointerEvents = "auto";
+       startRouteButton.style.display = "block";
    }
 });
 
