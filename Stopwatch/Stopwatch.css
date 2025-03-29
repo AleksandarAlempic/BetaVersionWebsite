@@ -1602,7 +1602,8 @@ body{
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 10%;
+    margin-left: 8%;
+    margin-top: 3%;
 }
 
 
@@ -1620,7 +1621,8 @@ body{
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 18%;
+    margin-left: 17%;
+    margin-top: 3%;
 }
 
 
@@ -1767,21 +1769,17 @@ body{
     margin-left: 1%; margin-top: 6%; font-weight: bold;
 }
 
-.distance{
-    margin-left: 1%; margin-top: 6%; font-weight: bold;
-    position: absolute;
-}
 
 
 
 .speed{
     position: absolute;
-    margin-left: 49%; margin-top: 40%; font-weight: bold;
+    margin-left: 44.5%; margin-top: 40%; font-weight: bold;
     font-size: 30px;
 }
 
 .distance{
-    margin-left: 49%; margin-top: 37%;  font-weight: bold;
+    margin-left: 44.5%; margin-top: 37%;  font-weight: bold;
     font-size: 30px;
     position: absolute;
 }
