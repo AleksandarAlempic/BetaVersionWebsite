@@ -274,6 +274,9 @@
             routeStarted = false;  // Stop the route
             console.log("Route stopped.");
             alert("Route stopped.");
+
+            // Optionally, clear the polyline when the route is stopped
+            // polyline.clearLayers();  // Uncomment this line to remove the polyline completely
         }
     }
 
@@ -302,6 +305,7 @@
         timeout: 10000             // Timeout after 10 seconds if no location data is found
     });
 </script>
+
 
 
         </div>
