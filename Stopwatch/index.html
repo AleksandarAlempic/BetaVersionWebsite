@@ -165,14 +165,13 @@
         </div>
         <button style="z-index: 1000000000; position: absolute;  color: black; background: white; min-height: 5%;" id="startRouteButton">Start Route</button>
         <button style="z-index: 1000000000; position: absolute; color: black; background: white; min-height: 5%;" id="stopRouteButton">Stop Route</button>
-        <div class="speed" style="margin-top: 1%;">Speed</div>
-        <div style="margin-left: 20%; margin-top: 1%;" class="distance">Distance</div>
-        <!-- <table style="margin-top: 3%; position:absolute;">
-            <tr>
-                <td class="speed"><div class="speed">Speed</div></td>
-                <td class="speed"> <div style="margin-left: 10%;" class="distance">Distance</div></td>
-            </tr>
-        </table> -->
+        <div id="speed" class="speed">
+            <strong>Speed:</strong> <span id="speedValue">0.00</span> km/h
+        </div>
+        <div id="distance" class="distance">
+            <strong>Distance:</strong> <span id="distanceValue">0.00</span> m
+        </div>
+
         <div class="Root" id="map-content">
       
         <div id="map" style="margin-top: 100px;" class="trackDiv">
@@ -196,35 +195,28 @@
 <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
 
 <script>
-    // Default location is set to Begeč
     const defaultLat = 45.2764;
     const defaultLon = 19.8244;
 
-    // Initialize the map, center on Begeč by default
     const map = L.map('map').setView([defaultLat, defaultLon], 13);
 
-    // Set up the tile layer for the map
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
 
-    // Initialize routing control with no waypoints initially
     const routeControl = L.Routing.control({
         waypoints: [],  // Start with an empty route
         routeWhileDragging: true,  // Allow dragging the route
         createMarker: function() { return null; }  // Prevent creating markers for waypoints
     }).addTo(map);
 
-    // Initialize current location and marker
     let currentLocation = [defaultLat, defaultLon];  // Default to Begeč
     let currentLocationMarker = L.marker([currentLocation[0], currentLocation[1]]).addTo(map);
 
-    // Variable to track if the route has started
     let routeStarted = false;  // Initially, the route is not started
-
-    // Array to hold waypoints for the route
     let waypoints = [];
-
-    // Polyline to track the route on the map
     let polyline;
+    
+    let lastTime = null;  // To store the timestamp of the last position update
+    let totalDistance = 0;  // To store the total distance traveled
 
     // Function to update the user's location and update the route
     function updateLocation(position) {
@@ -236,7 +228,6 @@
 
         // Only add new waypoints and update polyline if the route has started
         if (routeStarted) {
-            // If the new position is sufficiently different from the last, update the route
             if (waypoints.length === 0 || waypoints[waypoints.length - 1].lat !== lat || waypoints[waypoints.length - 1].lng !== lon) {
                 // Add new waypoint to the array
                 waypoints.push(L.latLng(lat, lon));  
@@ -253,6 +244,8 @@
                     // Update the polyline by adding the new point
                     polyline.addLatLng([lat, lon]);
                 }
+
+                calculateDistanceAndSpeed(lat, lon);
             }
         }
 
@@ -260,6 +253,28 @@
         if (map.getCenter().distanceTo([lat, lon]) > 50) {
             map.setView([lat, lon], map.getZoom());  // Keep the current zoom level
         }
+    }
+
+    function calculateDistanceAndSpeed(lat, lon) {
+        if (waypoints.length < 2) return;
+
+        const lastWaypoint = waypoints[waypoints.length - 2];
+        const currentWaypoint = waypoints[waypoints.length - 1];
+
+        const distance = lastWaypoint.distanceTo(currentWaypoint); // in meters
+        totalDistance += distance;
+
+        // Calculate speed: distance / time (in km/h)
+        const currentTime = new Date();
+        if (lastTime) {
+            const timeDiff = (currentTime - lastTime) / 1000; // time in seconds
+            const speed = (distance / timeDiff) * 3.6; // speed in km/h
+            document.getElementById('speedValue').textContent = speed.toFixed(2); 
+        }
+        lastTime = currentTime;
+
+        // Update total distance in meters
+        document.getElementById('distanceValue').textContent = speed.toFixed(2); 
     }
 
     // Function to handle geolocation errors
@@ -279,6 +294,8 @@
             // polyline.clearLayers();  // Uncomment this line to remove the polyline completely
         }
     }
+
+   
 
     // Start the route manually (Triggered when the user clicks the button)
     function startRoute() {
@@ -305,8 +322,6 @@
         timeout: 10000             // Timeout after 10 seconds if no location data is found
     });
 </script>
-
-
 
         </div>
     </div>
