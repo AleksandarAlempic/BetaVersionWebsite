@@ -274,7 +274,6 @@ function haversine(lat1, lon1, lat2, lon2) {
 
 let lastLatLng = null;
 
-
 function calculateDistanceAndSpeed(lat, lon) {
     // Ensure we have a valid previous position to calculate the distance from
     if (lastLatLng) {
@@ -302,7 +301,7 @@ function calculateDistanceAndSpeed(lat, lon) {
     lastLatLng = { lat: lat, lng: lon }; // Update the last position
 
     // Update total distance in meters (or kilometers if preferred)
-    document.getElementById('distanceValue').textContent = totalDistance.toFixed(2); // Display distance in meters
+    document.getElementById('distanceValue').textContent = (totalDistance / 1000).toFixed(2); // Display distance in kilometers
 }
 
     // Function to handle geolocation errors
@@ -319,11 +318,9 @@ function calculateDistanceAndSpeed(lat, lon) {
             alert("Route stopped.");
 
             // Optionally, clear the polyline when the route is stopped
-            // polyline.clearLayers();  // Uncomment this line to remove the polyline completely
+            polyline.clearLayers();  // Remove polyline completely when stopping the route
         }
     }
-
-   
 
     // Start the route manually (Triggered when the user clicks the button)
     function startRoute() {
@@ -350,6 +347,7 @@ function calculateDistanceAndSpeed(lat, lon) {
         timeout: 10000             // Timeout after 10 seconds if no location data is found
     });
 </script>
+
 
         </div>
     </div>
