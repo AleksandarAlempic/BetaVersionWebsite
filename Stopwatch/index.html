@@ -269,12 +269,20 @@
         if (lastTime) {
             const timeDiff = (currentTime - lastTime) / 1000; // time in seconds
             const speed = (distance / timeDiff) * 3.6; // speed in km/h
-            document.getElementById('speedValue').textContent = speed.toFixed(2);
+            if (!isNaN(speed) && isFinite(speed)) {
+                document.getElementById('speedValue').textContent = speed.toFixed(2); // Update speed dynamically
+            } else {
+                document.getElementById('speedValue').textContent = "0.00"; // Fallback if speed is invalid
+            }
         }
         lastTime = currentTime;
 
         // Update total distance in meters
-        document.getElementById('distanceValue').textContent = speed.toFixed(2); 
+        if (!isNaN(totalDistance) && isFinite(totalDistance)) {
+        document.getElementById('distanceValue').textContent = totalDistance.toFixed(2); // Update distance dynamically
+    } else {
+        document.getElementById('distanceValue').textContent = "0.00"; // Fallback if distance is invalid
+    }
     }
 
     // Function to handle geolocation errors
