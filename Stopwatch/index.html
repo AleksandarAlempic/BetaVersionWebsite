@@ -163,10 +163,10 @@
                 </tr>
             </table>
         </div>
-        <button style="z-index: 1000000000; position: absolute;  color: black; background: white; min-height: 5%;" id="startRouteButton">Start Route</button>
-        <button style="z-index: 1000000000; position: absolute; color: black; background: white; min-height: 5%;" id="stopRouteButton">Stop Route</button>
-        <div class="speed">Speed: </div>
-        <div class="distance">Distance: </div>
+        <button style="z-index: 1000000000; position: absolute; margin-top: 3.5%;  color: black; background: white; min-height: 5%;" id="startRouteButton">Start Route</button>
+        <button style="z-index: 1000000000; position: absolute; margin-top: 3.5%;   color: black; background: white; min-height: 5%;" id="stopRouteButton">Stop Route</button>
+        <div class="speed">Speed</div>
+        <div class="distance">Distance</div>
         <!-- <table style="margin-top: 3%; position:absolute;">
             <tr>
                 <td class="speed"><div class="speed">Speed</div></td>
@@ -200,14 +200,8 @@
     const defaultLat = 45.2764;
     const defaultLon = 19.8244;
 
-    const map = L.map('map', {
-    zoomControl: true,  // Ensure zoom controls are active
-    touchZoom: true,    // Enable touch zoom on mobile
-    scrollWheelZoom: true, // Allow zoom with scroll wheel
-    dragging: true,     // Allow dragging on mobile
-}).setView([defaultLat, defaultLon], 13);
-
-
+    // Initialize the map, center on Begeč by default
+    const map = L.map('map').setView([defaultLat, defaultLon], 13);
 
     // Set up the tile layer for the map
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
@@ -232,28 +226,6 @@
     // Polyline to track the route on the map
     let polyline;
 
-    // Variables for speed and distance calculations
-    let lastLocation = null;
-    let totalDistance = 0;
-    let lastUpdateTime = null;
-
-    // Function to calculate the distance between two points using Haversine formula
-    function calculateDistance(lat1, lon1, lat2, lon2) {
-        const R = 6371e3; // Earth's radius in meters
-        const φ1 = lat1 * Math.PI / 180;
-        const φ2 = lat2 * Math.PI / 180;
-        const Δφ = (lat2 - lat1) * Math.PI / 180;
-        const Δλ = (lon2 - lon1) * Math.PI / 180;
-
-        const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-                  Math.cos(φ1) * Math.cos(φ2) *
-                  Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
-
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-        return R * c; // Distance in meters
-    }
-
     // Function to update the user's location and update the route
     function updateLocation(position) {
         const lat = position.coords.latitude;
@@ -261,26 +233,6 @@
 
         // Update the location marker to the new coordinates
         currentLocationMarker.setLatLng([lat, lon]);
-
-        // Calculate distance if this is not the first update
-        if (lastLocation) {
-            const distance = calculateDistance(lastLocation.lat, lastLocation.lon, lat, lon);
-            totalDistance += distance;
-
-            // If the last update time is available, calculate speed
-            if (lastUpdateTime) {
-                const timeDiff = (Date.now() - lastUpdateTime) / 1000; // Time difference in seconds
-                const speed = (distance / timeDiff) * 3.6; // Speed in km/h
-                document.querySelector('.speed').innerText = `Speed: ${speed.toFixed(2)} km/h`;
-            }
-
-            // Update the total distance on the page
-            document.querySelector('.distance').innerText = `Distance: ${(totalDistance / 1000).toFixed(2)} km`;
-        }
-
-        // Update the last known location and time
-        lastLocation = { lat, lon };
-        lastUpdateTime = Date.now();
 
         // Only add new waypoints if the route has started
         if (routeStarted) {
@@ -316,34 +268,26 @@
         alert("Error retrieving your location.");
     }
 
+    // Stop the route (Triggered when the user clicks the button)
+    function stopRoute() {
+        if (routeStarted) {
+            routeStarted = false;  // Stop the route
+            console.log("Route stopped.");
+            alert("Route stopped.");
+        }
+    }
+
+    // Start the route manually (Triggered when the user clicks the button)
     function startRoute() {
-    if (!routeStarted) {
-        routeStarted = true;
-        waypoints = [];
-        waypoints.push(L.latLng(currentLocation[0], currentLocation[1]));
-        routeControl.setWaypoints(waypoints);
-
-        // Disable map interactions while route is being created
-        map.dragging.disable();
-        map.scrollWheelZoom.disable();
-        map.touchZoom.disable();
-
-        console.log("Route started!");
+        if (!routeStarted) {
+            routeStarted = true;  // Set the route as started
+            waypoints = [];  // Clear any existing waypoints before starting
+            waypoints.push(L.latLng(currentLocation[0], currentLocation[1]));  // Start route at the current location
+            routeControl.setWaypoints(waypoints);  // Initialize route control with the first waypoint
+            console.log("Route started at:", currentLocation);  // Debugging log
+            alert("Route started! Moving now will update the route.");
+        }
     }
-}
-
-function stopRoute() {
-    if (routeStarted) {
-        routeStarted = false;
-
-        // Re-enable map interactions after route is stopped
-        map.dragging.enable();
-        map.scrollWheelZoom.enable();
-        map.touchZoom.enable();
-
-        console.log("Route stopped!");
-    }
-}
 
     // Add event listener for the Start Route button click
     document.getElementById("startRouteButton").addEventListener("click", startRoute);
@@ -358,7 +302,6 @@ function stopRoute() {
         timeout: 10000             // Timeout after 10 seconds if no location data is found
     });
 </script>
-
 
         </div>
     </div>
