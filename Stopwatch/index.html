@@ -255,35 +255,55 @@
         }
     }
 
-    function calculateDistanceAndSpeed(lat, lon) {
-        if (waypoints.length < 2) return;
+  // Function to calculate distance between two geographical points (in meters) using the Haversine formula
+function haversine(lat1, lon1, lat2, lon2) {
+    const R = 6371e3; // Radius of Earth in meters
+    const φ1 = lat1 * Math.PI / 180; // Latitude in radians
+    const φ2 = lat2 * Math.PI / 180; // Latitude in radians
+    const Δφ = (lat2 - lat1) * Math.PI / 180; // Difference in latitude in radians
+    const Δλ = (lon2 - lon1) * Math.PI / 180; // Difference in longitude in radians
 
-        const lastWaypoint = waypoints[waypoints.length - 2];
-        const currentWaypoint = waypoints[waypoints.length - 1];
+    // Haversine formula
+    const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+        Math.cos(φ1) * Math.cos(φ2) *
+        Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c; // Distance in meters
+    return distance;
+}
 
-        const distance = lastWaypoint.distanceTo(currentWaypoint); // in meters
-        totalDistance += distance;
+let lastLatLng = null;
+
+
+function calculateDistanceAndSpeed(lat, lon) {
+    // Ensure we have a valid previous position to calculate the distance from
+    if (lastLatLng) {
+        const distance = haversine(lastLatLng.lat, lastLatLng.lng, lat, lon); // Calculate distance between last and current position in meters
+        totalDistance += distance; // Add to the total distance
 
         // Calculate speed: distance / time (in km/h)
         const currentTime = new Date();
         if (lastTime) {
-            const timeDiff = (currentTime - lastTime) / 1000; // time in seconds
-            const speed = (distance / timeDiff) * 3.6; // speed in km/h
-            if (!isNaN(speed) && isFinite(speed)) {
-                document.getElementById('speedValue').textContent = speed.toFixed(2); // Update speed dynamically
-            } else {
-                document.getElementById('speedValue').textContent = "0.00"; // Fallback if speed is invalid
+            const timeDiff = (currentTime - lastTime) / 1000; // Time difference in seconds
+            if (timeDiff > 0) {  // Ensure timeDiff is not zero
+                const speed = (distance / timeDiff) * 3.6; // Speed in km/h
+
+                // Only update speed if it's above a threshold (e.g., 0.5 km/h)
+                if (speed > 0.5) {
+                    document.getElementById('speedValue').textContent = speed.toFixed(2); // Update speed dynamically
+                } else {
+                    document.getElementById('speedValue').textContent = "0.00"; // Speed is 0 if stationary or moving slowly
+                }
             }
         }
-        lastTime = currentTime;
+        lastTime = currentTime;  // Store the current time for the next update
+    }
 
-        // Update total distance in meters
-        if (!isNaN(totalDistance) && isFinite(totalDistance)) {
-        document.getElementById('distanceValue').textContent = totalDistance.toFixed(2); // Update distance dynamically
-    } else {
-        document.getElementById('distanceValue').textContent = "0.00"; // Fallback if distance is invalid
-    }
-    }
+    lastLatLng = { lat: lat, lng: lon }; // Update the last position
+
+    // Update total distance in meters (or kilometers if preferred)
+    document.getElementById('distanceValue').textContent = totalDistance.toFixed(2); // Display distance in meters
+}
 
     // Function to handle geolocation errors
     function handleError(error) {
