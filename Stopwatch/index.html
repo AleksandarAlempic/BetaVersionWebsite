@@ -163,10 +163,10 @@
                 </tr>
             </table>
         </div>
-        <button style="z-index: 1000000000; position: absolute; margin-top: 3.5%;  color: black; background: white; min-height: 5%;" id="startRouteButton">Start Route</button>
-        <button style="z-index: 1000000000; position: absolute; margin-top: 3.5%;   color: black; background: white; min-height: 5%;" id="stopRouteButton">Stop Route</button>
-        <div class="speed">Speed</div>
-        <div class="distance">Distance</div>
+        <button style="z-index: 1000000000; position: absolute;  color: black; background: white; min-height: 5%;" id="startRouteButton">Start Route</button>
+        <button style="z-index: 1000000000; position: absolute; color: black; background: white; min-height: 5%;" id="stopRouteButton">Stop Route</button>
+        <div class="speed" style="margin-top: 1%;">Speed</div>
+        <div style="margin-left: 20%; margin-top: 1%;" class="distance">Distance</div>
         <!-- <table style="margin-top: 3%; position:absolute;">
             <tr>
                 <td class="speed"><div class="speed">Speed</div></td>
@@ -234,7 +234,7 @@
         // Update the location marker to the new coordinates
         currentLocationMarker.setLatLng([lat, lon]);
 
-        // Only add new waypoints if the route has started
+        // Only add new waypoints and update polyline if the route has started
         if (routeStarted) {
             // If the new position is sufficiently different from the last, update the route
             if (waypoints.length === 0 || waypoints[waypoints.length - 1].lat !== lat || waypoints[waypoints.length - 1].lng !== lon) {
@@ -302,6 +302,7 @@
         timeout: 10000             // Timeout after 10 seconds if no location data is found
     });
 </script>
+
 
         </div>
     </div>
