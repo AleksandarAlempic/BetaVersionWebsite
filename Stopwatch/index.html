@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="stylesResponsive.css">
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/> 
         <meta name="viewport" content="width=device-width, initial-scale=0.5, user-scalable=no">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
         <style>
             #map table, #map h2, #map h3 {
                 visibility: hidden;
@@ -176,18 +177,12 @@
       
         <div id="map" style="margin-top: 100px;" class="trackDiv">
             <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-            <script src="https://unpkg.com/leaflet-routing-machine@3.2.5/dist/leaflet-routing-machine.js"></script>
-          
-
             <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
             <script src="https://unpkg.com/leaflet-routing-machine@3.2.5/dist/leaflet-routing-machine.js"></script>
-            <script src="https://unpkg.com/leaflet-routing-machine@3.2.4/dist/leaflet-routing-machine.js"></script>
             <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-            <script src="https://unpkg.com/leaflet-routing-machine@3.2.4/dist/leaflet-routing-machine.js"></script>
             <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet-routing-machine@3.2.4/dist/leaflet-routing-machine.js"></script>
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-<script src="https://unpkg.com/leaflet-routing-machine@3.2.4/dist/leaflet-routing-machine.js"></script>
+<!-- <script src="https://unpkg.com/leaflet-routing-machine@3.2.4/dist/leaflet-routing-machine.js"></script> -->
 
 <div id="map"></div>
 
@@ -195,30 +190,39 @@
 <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
 
 <script>
+    // Default location is set to Begeč
     const defaultLat = 45.2764;
     const defaultLon = 19.8244;
 
+    // Initialize the map, center on Begeč by default
     const map = L.map('map').setView([defaultLat, defaultLon], 13);
 
+    // Set up the tile layer for the map
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
 
+    // Initialize routing control with no waypoints initially
     const routeControl = L.Routing.control({
-        waypoints: [],  // Start with an empty route
-        routeWhileDragging: true,  // Allow dragging the route
+        waypoints: [],
+        routeWhileDragging: true,
         createMarker: function() { return null; }  // Prevent creating markers for waypoints
     }).addTo(map);
 
-    let currentLocation = [defaultLat, defaultLon];  // Default to Begeč
+    // Initialize current location and marker
+    let currentLocation = [defaultLat, defaultLon];
     let currentLocationMarker = L.marker([currentLocation[0], currentLocation[1]]).addTo(map);
 
-    let routeStarted = false;  // Initially, the route is not started
-    let waypoints = [];
-    let polyline;
-    
-    let lastTime = null;  // To store the timestamp of the last position update
-    let totalDistance = 0;  // To store the total distance traveled
+    // Variable to track if the route has started
+    let routeStarted = false;
 
-    // Function to update the user's location and update the route
+    // Array to hold waypoints for the route
+    let waypoints = [];
+
+    // Polyline to track the route on the map
+    let polyline;
+
+    let lastTime = null;
+    let totalDistance = 0;
+
     function updateLocation(position) {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
@@ -226,22 +230,18 @@
         // Update the location marker to the new coordinates
         currentLocationMarker.setLatLng([lat, lon]);
 
-        // Only add new waypoints and update polyline if the route has started
         if (routeStarted) {
             if (waypoints.length === 0 || waypoints[waypoints.length - 1].lat !== lat || waypoints[waypoints.length - 1].lng !== lon) {
-                // Add new waypoint to the array
-                waypoints.push(L.latLng(lat, lon));  
-                routeControl.setWaypoints(waypoints);  // Update the route with new waypoints
+                waypoints.push(L.latLng(lat, lon));
+                routeControl.setWaypoints(waypoints);
 
-                // If the polyline is not yet created, create it
                 if (!polyline) {
                     polyline = L.polyline([ [lat, lon] ], {
-                        color: 'blue',  // You can choose any color
-                        weight: 5,      // Line thickness
-                        opacity: 0.7    // Line transparency
-                    }).addTo(map);  // Add the polyline to the map
+                        color: 'blue',
+                        weight: 5,
+                        opacity: 0.7
+                    }).addTo(map);
                 } else {
-                    // Update the polyline by adding the new point
                     polyline.addLatLng([lat, lon]);
                 }
 
@@ -249,106 +249,64 @@
             }
         }
 
-        // Optionally, update the map view if the user moves a significant distance
         if (map.getCenter().distanceTo([lat, lon]) > 50) {
-            map.setView([lat, lon], map.getZoom());  // Keep the current zoom level
+            map.setView([lat, lon], map.getZoom());
         }
     }
 
-  // Function to calculate distance between two geographical points (in meters) using the Haversine formula
-function haversine(lat1, lon1, lat2, lon2) {
-    const R = 6371e3; // Radius of Earth in meters
-    const φ1 = lat1 * Math.PI / 180; // Latitude in radians
-    const φ2 = lat2 * Math.PI / 180; // Latitude in radians
-    const Δφ = (lat2 - lat1) * Math.PI / 180; // Difference in latitude in radians
-    const Δλ = (lon2 - lon1) * Math.PI / 180; // Difference in longitude in radians
+    function calculateDistanceAndSpeed(lat, lon) {
+        if (waypoints.length < 2) return;
 
-    // Haversine formula
-    const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-        Math.cos(φ1) * Math.cos(φ2) *
-        Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const distance = R * c; // Distance in meters
-    return distance;
-}
+        const lastWaypoint = waypoints[waypoints.length - 2];
+        const currentWaypoint = waypoints[waypoints.length - 1];
 
-let lastLatLng = null;
+        const distance = lastWaypoint.distanceTo(currentWaypoint);
+        totalDistance += distance;
 
-function calculateDistanceAndSpeed(lat, lon) {
-    // Ensure we have a valid previous position to calculate the distance from
-    if (lastLatLng) {
-        const distance = haversine(lastLatLng.lat, lastLatLng.lng, lat, lon); // Calculate distance between last and current position in meters
-        totalDistance += distance; // Add to the total distance
-
-        // Calculate speed: distance / time (in km/h)
         const currentTime = new Date();
         if (lastTime) {
-            const timeDiff = (currentTime - lastTime) / 1000; // Time difference in seconds
-            if (timeDiff > 0) {  // Ensure timeDiff is not zero
-                const speed = (distance / timeDiff) * 3.6; // Speed in km/h
-
-                // Only update speed if it's above a threshold (e.g., 0.5 km/h)
-                if (speed > 0.5) {
-                    document.getElementById('speedValue').textContent = speed.toFixed(2); // Update speed dynamically
-                } else {
-                    document.getElementById('speedValue').textContent = "0.00"; // Speed is 0 if stationary or moving slowly
-                }
-            }
+            const timeDiff = (currentTime - lastTime) / 1000;
+            const speed = (distance / timeDiff) * 3.6;
+            document.getElementById('speed').textContent = `Speed: ${speed.toFixed(2)} km/h`;
         }
-        lastTime = currentTime;  // Store the current time for the next update
+        lastTime = currentTime;
+
+        document.getElementById('distance').textContent = `Distance: ${totalDistance.toFixed(2)} m`;
     }
 
-    lastLatLng = { lat: lat, lng: lon }; // Update the last position
-
-    // Update total distance in meters (or kilometers if preferred)
-    document.getElementById('distanceValue').textContent = (totalDistance / 1000).toFixed(2); // Display distance in kilometers
-}
-
-    // Function to handle geolocation errors
     function handleError(error) {
         console.error('Error fetching location: ', error);
         alert("Error retrieving your location.");
     }
 
-    // Stop the route (Triggered when the user clicks the button)
     function stopRoute() {
         if (routeStarted) {
-            routeStarted = false;  // Stop the route
+            routeStarted = false;
             console.log("Route stopped.");
             alert("Route stopped.");
-
-            // Optionally, clear the polyline when the route is stopped
-            polyline.clearLayers();  // Remove polyline completely when stopping the route
         }
     }
 
-    // Start the route manually (Triggered when the user clicks the button)
     function startRoute() {
         if (!routeStarted) {
-            routeStarted = true;  // Set the route as started
-            waypoints = [];  // Clear any existing waypoints before starting
-            waypoints.push(L.latLng(currentLocation[0], currentLocation[1]));  // Start route at the current location
-            routeControl.setWaypoints(waypoints);  // Initialize route control with the first waypoint
-            console.log("Route started at:", currentLocation);  // Debugging log
+            routeStarted = true;
+            waypoints = [];
+            waypoints.push(L.latLng(currentLocation[0], currentLocation[1]));
+            routeControl.setWaypoints(waypoints);
+            console.log("Route started at:", currentLocation);
             alert("Route started! Moving now will update the route.");
         }
     }
 
-    // Add event listener for the Start Route button click
     document.getElementById("startRouteButton").addEventListener("click", startRoute);
-
-    // Add event listener for the Stop Route button click
     document.getElementById("stopRouteButton").addEventListener("click", stopRoute);
 
-    // Continuously update the user's location using geolocation
     navigator.geolocation.watchPosition(updateLocation, handleError, {
-        enableHighAccuracy: true,  // Use GPS for accurate location
-        maximumAge: 0,             // Disables using cached location data
-        timeout: 10000             // Timeout after 10 seconds if no location data is found
+        enableHighAccuracy: true,
+        maximumAge: 0,
+        timeout: 10000
     });
 </script>
-
-
         </div>
     </div>
     </body>
