@@ -297,29 +297,41 @@
                     alert("Error retrieving your location.");
                 }
         
-                // Stop the route (Triggered when the user clicks the button)
-                function stopRoute() {
-                    if (routeStarted) {
-                        routeStarted = false;  // Stop the route
-                        console.log("Route stopped.");
-                        alert("Route stopped.");
-        
-                        // Optionally, clear the polyline when the route is stopped
-                        polyline.clearLayers();  // Remove polyline completely when stopping the route
-                    }
-                }
-        
-                // Start the route manually (Triggered when the user clicks the button)
-                function startRoute() {
-                    if (!routeStarted) {
-                        routeStarted = true;  // Set the route as started
-                        waypoints = [];  // Clear any existing waypoints before starting
-                        waypoints.push(L.latLng(currentLocation[0], currentLocation[1]));  // Start route at the current location
-                        routeControl.setWaypoints(waypoints);  // Initialize route control with the first waypoint
-                        console.log("Route started at:", currentLocation);  // Debugging log
-                        alert("Route started! Moving now will update the route.");
-                    }
-                }
+                let totalTime = 0;  // Track the total time in seconds
+let routeStartTime = null;  // Time when the route started
+
+// Function to start the route manually
+function startRoute() {
+    if (!routeStarted) {
+        routeStarted = true;  // Set the route as started
+        waypoints = [];  // Clear any existing waypoints before starting
+        waypoints.push(L.latLng(currentLocation[0], currentLocation[1]));  // Start route at the current location
+        routeControl.setWaypoints(waypoints);  // Initialize route control with the first waypoint
+        console.log("Route started at:", currentLocation);  // Debugging log
+        routeStartTime = new Date();  // Record the time when the route started
+        alert("Route started! Moving now will update the route.");
+    }
+}
+
+// Function to stop the route
+function stopRoute() {
+    if (routeStarted) {
+        routeStarted = false;  // Stop the route
+        console.log("Route stopped.");
+        alert("Route stopped.");
+
+        // Calculate the total time and average speed
+        const routeEndTime = new Date();  // Time when the route ended
+        totalTime = (routeEndTime - routeStartTime) / 1000;  // Total time in seconds
+
+        // Calculate the average speed in km/h
+        const averageSpeed = (totalDistance / 1000) / (totalTime / 3600);  // Distance in kilometers, time in hours
+        document.getElementById('averageSpeedValue').textContent = averageSpeed.toFixed(2);  // Display the average speed
+
+        // Optionally, clear the polyline when the route is stopped
+        polyline.clearLayers();  // Remove polyline completely when stopping the route
+    }
+}
         
                 // Add event listener for the Start Route button click
                 document.getElementById("startRouteButton").addEventListener("click", startRoute);
