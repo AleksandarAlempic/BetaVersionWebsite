@@ -171,7 +171,9 @@
         <div id="distance" class="distance">
             <strong>Distance:</strong> <span id="distanceValue">0.00</span> m
         </div>
-
+        <div  id="averageSpeed" class="speed">
+            <strong>Avg Speed:</strong> <span id="averageSpeedValue">0.00</span> km/h
+        </div>
         <div class="Root" id="map-content">
             <div id="map" style="margin-top: 100px;" class="trackDiv"></div>
         
@@ -182,12 +184,16 @@
             <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
         
             <script>
+
+                document.getElementById('averageSpeed').style = "display: none";
+
                 const defaultLat = 45.2764;
                 const defaultLon = 19.8244;
         
                 const map = L.map('map').setView([defaultLat, defaultLon], 13);
         
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
+
         
                 const routeControl = L.Routing.control({
                     waypoints: [],  // Start with an empty route
@@ -207,41 +213,39 @@
         
                 // Function to update the user's location and update the route
                 function updateLocation(position) {
-                    const lat = position.coords.latitude;
-                    const lon = position.coords.longitude;
-        
-                    // Update the location marker to the new coordinates
-                    currentLocationMarker.setLatLng([lat, lon]);
-        
-                    // Only add new waypoints and update polyline if the route has started
-                    if (routeStarted) {
-                        if (waypoints.length === 0 || waypoints[waypoints.length - 1].lat !== lat || waypoints[waypoints.length - 1].lng !== lon) {
-                            // Add new waypoint to the array
-                            waypoints.push(L.latLng(lat, lon));  
-                            routeControl.setWaypoints(waypoints);  // Update the route with new waypoints
-        
-                            // If the polyline is not yet created, create it
-                            if (!polyline) {
-                                polyline = L.polyline([ [lat, lon] ], {
-                                    color: 'blue',  // You can choose any color
-                                    weight: 5,      // Line thickness
-                                    opacity: 0.7    // Line transparency
-                                }).addTo(map);  // Add the polyline to the map
-                            } else {
-                                // Update the polyline by adding the new point
-                                polyline.addLatLng([lat, lon]);
-                            }
-        
-                            calculateDistanceAndSpeed(lat, lon);
-                        }
-                    }
-        
-                    // Optionally, update the map view if the user moves a significant distance
-                    if (map.getCenter().distanceTo([lat, lon]) > 50) {
-                        map.setView([lat, lon], map.getZoom());  // Keep the current zoom level
-                    }
-                }
-        
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+
+    // Update the location marker to the new coordinates
+    currentLocationMarker.setLatLng([lat, lon]);
+
+    // Only add new waypoints and update polyline if the route has started
+    if (routeStarted) {
+        if (waypoints.length === 0 || waypoints[waypoints.length - 1].lat !== lat || waypoints[waypoints.length - 1].lng !== lon) {
+            // Add new waypoint to the array
+            waypoints.push(L.latLng(lat, lon));
+            routeControl.setWaypoints(waypoints);  // Update the route with new waypoints
+
+            // If the polyline is not yet created, create it
+            if (!polyline) {
+    polyline = L.polyline([ [lat, lon] ], {
+        color: 'blue',
+        weight: 5,
+        opacity: 0.7
+    }).addTo(map);  // Add polyline to map
+} else {
+    polyline.addLatLng([lat, lon]);  // Add new point to existing polyline
+}
+
+            calculateDistanceAndSpeed(lat, lon);
+        }
+    }
+
+    // Optionally, update the map view if the user moves a significant distance
+    if (map.getCenter().distanceTo([lat, lon]) > 50) {
+        map.setView([lat, lon], map.getZoom());  // Keep the current zoom level
+    }
+}
                 // Function to calculate distance between two geographical points (in meters) using the Haversine formula
                 function haversine(lat1, lon1, lat2, lon2) {
                     const R = 6371e3; // Radius of Earth in meters
@@ -273,7 +277,6 @@
                             const timeDiff = (currentTime - lastTime) / 1000; // Time difference in seconds
                             if (timeDiff > 0) {  // Ensure timeDiff is not zero
                                 const speed = (distance / timeDiff) * 3.6; // Speed in km/h
-        
                                 // Only update speed if it's above a threshold (e.g., 0.5 km/h)
                                 if (speed > 0.5) {
                                     document.getElementById('speedValue').textContent = speed.toFixed(2); // Update speed dynamically
@@ -310,9 +313,13 @@ function startRoute() {
         console.log("Route started at:", currentLocation);  // Debugging log
         routeStartTime = new Date();  // Record the time when the route started
         alert("Route started! Moving now will update the route.");
+
+        document.getElementById('speed').style = "display: block";
+        document.getElementById('averageSpeed').style = "display: none";
     }
 }
 
+// Function to stop the route
 // Function to stop the route
 function stopRoute() {
     if (routeStarted) {
@@ -325,13 +332,52 @@ function stopRoute() {
         totalTime = (routeEndTime - routeStartTime) / 1000;  // Total time in seconds
 
         // Calculate the average speed in km/h
+        document.getElementById('speed').style = "display: none";
+
         const averageSpeed = (totalDistance / 1000) / (totalTime / 3600);  // Distance in kilometers, time in hours
         document.getElementById('averageSpeedValue').textContent = averageSpeed.toFixed(2);  // Display the average speed
 
-        // Optionally, clear the polyline when the route is stopped
-        polyline.clearLayers();  // Remove polyline completely when stopping the route
+        document.getElementById('averageSpeed').style = "display: block";
+
+        // Remove the polyline if it exists (using remove instead of clearLayers)
+        if (polyline instanceof L.Polyline) {
+            console.log('Removing polyline:', polyline);  // Debug log for polyline
+            polyline.remove();  // Correct method to remove the polyline from the map
+
+            const polylineCoordinates = polyline.getLatLngs();  // Get all points of the polyline
+            console.log("Polyline coordinates: ", polylineCoordinates);
+
+            // Send the data to the server
+            fetch('http://localhost:4000/api/save-run', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+        user_id: 1,
+        root: "Vojvodina Trčanje",
+        distance: totalDistance / 1000,
+        speed: averageSpeed,
+        time: totalTime,
+        polyline: polylineCoordinates,
+        startLat: waypoints[0].lat,
+        startLng: waypoints[0].lng,
+        location: "Some location" // Optional
+    }),
+})
+.then(response => response.json())
+.then(data => {
+    console.log('Run data saved:', data);
+})
+.catch(error => {
+    console.error('Error saving run data:', error);
+});
+        } else {
+            console.error('Error: polyline is not a valid Leaflet polyline.');
+        }
     }
 }
+
+
+
         
                 // Add event listener for the Start Route button click
                 document.getElementById("startRouteButton").addEventListener("click", startRoute);
@@ -345,6 +391,18 @@ function stopRoute() {
                     maximumAge: 0,             // Disables using cached location data
                     timeout: 10000             // Timeout after 10 seconds if no location data is found
                 });
+
+//                 navigator.geolocation.getCurrentPosition((position) => {
+//     const { latitude, longitude } = position.coords;
+
+//     fetch(`http://localhost:5000/api/routes-nearby?lat=${latitude}&lng=${longitude}`)
+//         .then(response => response.json())
+//         .then(data => {
+//             console.log("Routes near me:", data);
+//             // Ovde možeš da ih prikažeš na mapi ili u listi
+//         });
+// });
+
             </script>
         </div>
     </div>
