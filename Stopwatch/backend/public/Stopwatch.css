@@ -1,0 +1,1936 @@
+
+
+.audioContainer{
+    position: absolute;
+    float: left;
+    margin-left: 62px;
+    margin-top: 20%;
+    min-width: 75px;
+    min-height: 75px;
+    opacity: 1;
+    /* background: rgb(25,21,20); 
+    background: rgba(0, 0, 0, 0.5); 
+    box-shadow:  0 40px 100px rgba(255,255,255, 0.01); */
+    overflow: hidden;
+    color: #d5eebb;
+    margin-bottom: 1200px;
+    border-radius: 0.1%;
+    z-index: 2;
+    border-radius: 10%;
+   }
+
+   .disk{
+    position: relative;
+    display: block;
+    margin: 40px auto;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-image: url('audio/IlDivo.jpg');
+    background-size: cover;
+    box-shadow: 0 0 0 10px rgba(255,255,255, 0.08);
+    animation: rotate 20s linear infinite;
+    animation-play-state: paused;
+    margin-top: 27px;
+   }
+   
+   .disk.play{
+    animation-play-state: running;
+   }
+   
+   .controls{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+   }
+      /* Hide the video by default */
+        .video-container {
+         display: none;
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;   /* Ensure full width */
+         height: 100%;  /* Ensure full height */
+         object-fit: cover;  /* Ensure video covers the entire screen */
+         z-index: -1; /* Video stays in the background */
+     }
+   
+    
+   
+     /* Main content above the video */
+     .content {
+         position: relative;
+         z-index: 1;
+         padding: 20px;
+         color: white;
+         font-family: Arial, sans-serif;
+         text-align: center;  /* Center content for better readability */
+     }
+   
+     .content h1, .content h4 {
+         margin: 10px;
+     }
+   
+     .video-container video {
+   position: absolute;
+   top: 0;
+   left: 0; /* Align the video to the left */
+   width: 100%; /* Adjust width as needed */
+   height: 100%; /* Adjust height as needed */
+   object-fit: cover; /* Make sure it covers the area */
+   }
+   
+   .play-btn{
+    margin-top: 25%;
+    position: relative;
+    width: 45px;
+    height: 40px;
+    border-radius: 50%;
+    background: #d5eebb;
+    cursor: pointer;
+    border:none;
+    background: url(audio/Ahwak.jpg);
+   }
+   
+   .play-btn span{
+    position: absolute;
+    top: 50%;
+    left: 33%;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 25px;
+    border-radius: 2px;
+    background: #5f7a61;
+    transition: .5s;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+   }
+   
+   .play-btn span:nth-child(2){
+    left: 55%;
+    transform-origin: center;
+   }
+   
+   .play-btn.pause span:nth-child(2){
+    transform: translateY(-50%) scaleY(0);
+   }
+   
+   .play-btn.pause span:nth-child(1){
+    left: 63%;
+    top: 63%;
+    width: 20px;
+    transform: translate(-70%, -70%);
+    border-radius: 0;
+    clip-path: polygon(0 0, 100% 53%, 100% 50%, 0% 100%);
+   }
+   
+   .play-btn.pause {
+    animation: pulse 2s linear infinite;
+    background: white;
+   }
+   
+   .play-btn.play {
+    animation: pulse 2s linear infinite;
+    background: white;
+   }
+   
+   @keyframes pulse {
+    0%{
+       box-shadow: 0;
+    }
+    50%{
+      box-shadow: 0 0 0 11px rgba(255, 255, 255, 0.1);
+    } 
+    100%{
+      box-shadow: 0 0 0 11px rgba(255, 255, 255, 0.4);
+    }
+   }
+   
+   @keyframes rotate {
+    0%{
+      transform: rotate(0);
+    }
+    100%{
+      transform: rotate(360deg);
+    }
+   }
+   
+   .songName, .artistName{
+    text-align: center;
+    text-transform: capitalize;
+   }
+   
+   .songName{
+    font-size: 20px;
+    font-weight: 500;
+   }
+   
+   .artistName{
+    font-size: 20px;
+   }
+
+   
+   
+   
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    padding: 16px;
+    margin-top: -22px;
+    margin-left: 50px;
+    margin-right: 25px;
+    color: white;
+    font-weight: bold;
+    font-size: 75px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    z-index: 5;
+   }
+   
+
+   .next {
+    right: 33.8%;
+    border-radius: 3px 0 0 3px;
+   }
+   
+   .pervious-btn{
+    margin-top: 40%;
+    width: 39px;
+    height: 35px;
+    border-radius: 50%;
+    margin-right: 7%;
+    border: none;
+   }
+   
+   .next-btn{
+    margin-top: 40%;
+    
+    position: relative;
+    cursor: pointer;
+    border:none;
+    width: 39px;
+    height: 35px;
+    border-radius: 50%;
+    margin-left: 7%;
+   }
+   
+   
+   .next-btnPlayList{
+     position: relative;
+     /* background: url('/audio/NextButton.png'); */
+     cursor: pointer;
+     border:none;
+     width: 43px;
+     height: 35px;
+     border-radius: 50%;
+     z-index: 2;
+     margin-top: -39%;
+     margin-left: 7%;
+    }
+   
+    .previous-btnPlayList{
+     position: absolute;
+     margin-top:-39%;
+     width: 35px;
+     height: 35px;
+     border-radius: 50%;
+     margin-left: -36%;
+     border:none;
+     cursor: pointer;
+     z-index: 2;
+    }
+   
+   .play-btn{
+    position: relative;
+    width: 45px;
+    height: 40px;
+    
+    border-radius: 50%;
+    background: #d5eebb;
+    cursor: pointer;
+    border:none;
+   }
+   
+ .newNextAndPreviousButtons{
+      position: absolute; margin-left: 5%; 
+   } 
+
+   @media only screen and (min-width: 768px) {
+    .newNextAndPreviousButtons {
+        display: inline-flex;
+        position: absolute;
+        margin-top: 3%;
+        margin-left: 30%;
+    }
+}
+   
+   .kindOfMusic{
+     z-index: 2;
+   }
+   
+   .pervious-btn img{
+    position: relative;
+    cursor: pointer;
+    border:none;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    margin-right: 10px;
+    background: url('audio/PreviousButton.png');
+   }
+   
+   .next-btn img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+   }
+   
+
+
+.stopwatchLabel{
+    position: absolute; 
+    color: yellow;
+    margin-left: 42%;
+    margin-top: 6%;
+}
+
+body{
+    background: gray;
+}
+
+.trackDiv{
+    background: lightgray;
+    max-width: 500px;
+    min-height: 550px;
+    margin-left: 65%;
+    margin-top: 105px;
+}
+
+.stopwatchDiv{
+    background: lightgray;
+    min-width: 300px;
+    min-height: 550px;
+    margin-top: -54%;
+}
+
+.button{
+    background: #FFBE00;
+}
+
+.songNameAndArtist{
+    position:absolute; margin-top:50%; 
+    list-style-type: none;
+    font-weight: 700;
+    min-width: 200px;
+    margin-left: -45%;
+}
+
+.input{
+    margin-top: 120%;
+    margin-left: 17%;
+    border-radius: 3%;
+    max-width: 200px;
+    min-height: 50px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 25px;
+    background:#FFBE00;
+    color: black;
+    border: 1px white solid;
+}
+
+.timer{
+    position: absolute;
+    margin-top: 108%;
+    margin-left: 25%;
+    min-width: 75px;
+    min-height: 30px;
+    font-weight: 600;
+    background: none;
+    color: #001d35;
+    border-radius: 10%;
+    border: none;
+ }
+
+ .timer:hover{
+    background: #A3C5FF;
+ }
+ 
+ .stopwatch{
+    position: absolute;
+    margin-top: 108%;
+    margin-left: 50%;
+    min-width: 75px;
+    min-height: 30px;
+    font-weight: 600;
+    background: none;
+    color: #001d35;
+    border-radius: 10%;
+    border: none;
+ }
+
+ .stopwatch:hover{
+    background: #A3C5FF;
+ }
+
+.divForButtons{
+    position: absolute;
+    margin-top: 5%;
+    margin-left: 25%;
+}
+
+.numberTwelve{
+    margin-left: 44%;
+    margin-top: 3%;
+    position: absolute;
+    font-size: 38px;
+    
+    /* color: white; */
+}
+
+.numberOne{
+    margin-left: 68%;
+    margin-top: 12%;
+    position: absolute;
+    font-size: 28px;
+    font-family: Arial, Helvetica, sans-serif, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    /* color: white; */
+}
+
+.numberTwo{
+    margin-left: 81%;
+    margin-top: 23%;
+    position: absolute;
+    font-size: 28px;
+    font-family: Arial, Helvetica, sans-serif, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    /* color: white; */
+}
+
+.numberThree{
+    margin-left: 87%;
+    margin-top: 38%;
+    position: absolute;
+    font-size: 38px;
+    /* color: white; */
+}
+
+.numberFour{
+    margin-left: 81%;
+    margin-top: 57%;
+    position: absolute;
+    font-size: 28px;
+    font-family: Arial, Helvetica, sans-serif, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    /* color: white; */
+}
+
+.numberFive{
+    margin-left: 69%;
+    margin-top: 70%;
+    position: absolute;
+    font-size: 28px;
+    font-family: Arial, Helvetica, sans-serif, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    /* color: white; */
+}
+
+.numberSix{
+    margin-left: 47.9%;
+    margin-top: 75%;
+    position: absolute;
+    font-size: 38px;
+
+    /* color: white; */
+}
+
+.stopwatchH1{
+    color: #FFBE00;;
+    margin-left: 25%;
+}
+
+.numberSeven{
+    margin-left: 28.3%;
+    margin-top: 71%;
+    position: absolute;
+    font-size: 28px;
+    font-family: Arial, Helvetica, sans-serif, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    /* color: white; */
+}
+
+.numberEight{
+    margin-left: 14%;
+    margin-top: 57.7%;
+    position: absolute;
+    font-size: 28px;
+    font-family: Arial, Helvetica, sans-serif, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    /* color: white; */
+}
+
+.numberNine{
+    margin-left: 7.5%;
+    margin-top: 37.9%;
+    position: absolute;
+    font-size: 38px;
+   
+    /* color: white; */
+}
+
+.numberTen{
+    margin-left: 12.2%;
+    margin-top: 23.2%;
+    position: absolute;
+    font-size: 27px;
+    font-family: Arial, Helvetica, sans-serif, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    /* color: white; */
+}
+
+
+
+.numberEleven{
+    margin-left: 27.3%;
+    margin-top: 10.9%;
+    position: absolute;
+    font-size: 27px;
+    font-family: Arial, Helvetica, sans-serif, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    /* color: white; */
+}
+
+.secondZero {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 48.7%;
+    margin-top: 22.9%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(-89deg); 
+    color: black;
+    background: white;
+}
+
+.secondOne {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 52%;
+    margin-top: 22.9%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(-78deg); 
+    color: black;
+    background: white;
+}
+.secondTwo {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 54.8%;
+    margin-top: 23.6%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(-70deg); 
+    color: black;
+    background: white;
+}
+
+.secondThree {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 57.1%;
+    margin-top: 24.4%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(-65deg); 
+    color: white;
+    background: white;
+}
+
+.secondFour {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 59.4%;
+    margin-top: 25.4%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(-60deg); 
+    color: black;
+    background: white;
+}
+
+.secondSix {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 61.5%;
+    margin-top: 26.7%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(-55deg); 
+    color: black;
+    background: white;
+}
+
+.secondSeven {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 64%;
+    margin-top: 28%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(-50deg); 
+    color: black;
+    background: white;
+}
+
+.secondEight {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 66.4%;
+    margin-top: 29.5%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(-45deg); 
+    color: black;
+    background: white;
+}
+
+.secondNine {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 68.7%;
+    margin-top: 31.6%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(-40deg); 
+    color: black;
+    background: white;
+}
+
+.secondTen {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 70.6%;
+    margin-top: 33.8%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(-35deg); 
+    color: black;
+    background: white;
+}
+
+.secondEleven {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 72.4%;
+    margin-top: 36%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(-30deg); 
+    color: black;
+    background: white;
+}
+
+.secondTwelve {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 73.7%;
+    margin-top: 38.4%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(-25deg); 
+    color: black;
+    background: white;
+}
+
+.secondThirteen {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 74.5%;
+    margin-top: 41%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(-20deg); 
+    color: black;
+    background: white;
+}
+
+.secondFourthteen {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 75.3%;
+    margin-top: 43.7%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(-15deg); 
+    color: black;
+    background: white;
+}
+
+.secondFifteen {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 75.8%;
+    margin-top: 46.2%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(-3deg); 
+    color: black;
+    background: white;
+}
+
+.secondSixteen {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 75.5%;
+    margin-top: 48.9%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(3deg); 
+    color: black;
+    background: white;
+}
+
+.secondSixteen {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 75.5%;
+    margin-top: 48.9%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(3deg); 
+    color: black;
+    background: white;
+}
+
+
+.secondSeventeen {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 75.3%;
+    margin-top: 51.6%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(7deg); 
+    color: black;
+    background: white;
+}
+
+.secondEitheen {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 74.8%;
+    margin-top: 54.2%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(12deg); 
+    color: black;
+    background: white;
+}
+
+.secondEitheen {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 74.8%;
+    margin-top: 54.2%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(12deg); 
+    color: black;
+    background: white;
+}
+
+.secondNinteen {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 74.1%;
+    margin-top: 56.9%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(17deg); 
+    color: black;
+    background: white;
+}
+
+.secondTwenty {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 73.1%;
+    margin-top: 59.3%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(22deg); 
+    color: black;
+    background: white;
+}
+
+.secondTwentyOne {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 71.8%;
+    margin-top: 61.8%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(27deg); 
+    color: black;
+    background: white;
+}
+
+.secondTwentyTwo {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 70.3%;
+    margin-top: 63.9%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(33deg); 
+    color: black;
+    background: white;
+}
+
+.secondTwentyThree {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 70.3%;
+    margin-top: 63.8%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(38deg); 
+    color: black;
+    background: white;
+}
+
+.secondTwentyFour {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 67.6%;
+    margin-top: 66.1%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(43deg); 
+    color: black;
+    background: white;
+}
+
+.secondTwentyFive {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 65%;
+    margin-top: 67.8%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(53deg); 
+    color: black;
+    background: white;
+}
+
+.secondTwentySix {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 61.9%;
+    margin-top: 69.3%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(56deg); 
+    color: black;
+    background: white;
+}
+
+.secondTwentySeven {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 59%;
+    margin-top: 70.6%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(62deg); 
+    color: black;
+    background: white;
+}
+
+.secondTwentyEight {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 56%;
+    margin-top: 71.3%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(69deg); 
+    color: black;
+    background: white;
+}
+
+.secondTwentyNine {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 52.9%;
+    margin-top: 72.2%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(78deg); 
+    color: black;
+    background: white;
+}
+
+.secondThirty {
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 49.3%;
+    margin-top: 72.5%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(90deg); 
+    color: black;
+    background: white;
+}
+
+.secondThirtyOne{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 46%;
+    margin-top: 72.5%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(97deg); 
+    color: black;
+    background: white;
+}
+
+.secondThirtyTwo{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 43.1%;
+    margin-top: 72.3%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(103deg); 
+    color: black;
+    background: white;
+}
+
+.secondThirtyThree{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 40.1%;
+    margin-top: 71.7%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(108deg); 
+    color: black;
+    background: white;
+}
+
+.secondThirtyFour{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 37%;
+    margin-top: 70.5%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(113deg); 
+    color: black;
+    background: white;
+}
+
+.secondThirtyFive{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 34.4%;
+    margin-top: 69.4%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(120deg); 
+    color: black;
+    background: white;
+}
+
+.secondThirtySix{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 32%;
+    margin-top: 67.9%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(126deg); 
+    color: black;
+    background: white;
+}
+
+.secondThirtySeven{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 29.8%;
+    margin-top: 66.1%   ;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(126deg); 
+    color: black;
+    background: white;
+}
+
+.secondThirtyEight{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 27.8%;
+    margin-top: 64.3%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(132deg); 
+    color: black;
+    background: white;
+}
+
+.secondThirtyNine{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 25.9%;
+    margin-top: 62.8%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(138deg); 
+    color: black;
+    background: white;
+}
+
+.secondFourthty{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 24.3%;
+    margin-top: 60.7%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(148deg); 
+    color: black;
+    background: white;
+}
+
+.secondFourthtyOne{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 23.3%;
+    margin-top: 58.3%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(160deg); 
+    color: black;
+    background: white;
+}
+
+.secondFourthtyTwo{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 22.7%;
+    margin-top: 56.1%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(168deg); 
+    color: black;
+    background: white;
+}
+
+.secondFourthtyThree{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 22%;
+    margin-top: 53.3%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(173deg); 
+    color: black;
+    background: white;
+}
+
+.secondFourthtyFour{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 21.7%;
+    margin-top: 50.5%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(174deg); 
+    color: black;
+    background: white;
+}
+
+.secondFourthtyFive{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 21.8%;
+    margin-top: 48%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(180deg); 
+    color: black;
+    background: white;
+}
+
+.secondFourthtySix{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 21.7%;
+    margin-top: 45.8%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(185deg); 
+    color: black;
+    background: white;
+}
+
+.secondFourthtySeven{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 22.2%;
+    margin-top: 43.2%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(192deg); 
+    color: black;
+    background: white;
+}
+
+.secondFourthtyEight{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 22.7%;
+    margin-top: 40.6%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(198deg); 
+    color: black;
+    background: white;
+}
+
+.secondFourthtyEight{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 22.7%;
+    margin-top: 40.6%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(198deg); 
+    color: black;
+    background: white;
+}
+
+.secondFourthtyNine{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 23.7%;
+    margin-top: 38.1%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(202deg); 
+    color: black;
+    background: white;
+}
+
+.secondFifty{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 25.3%;
+    margin-top: 35.6%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(210deg); 
+    color: black;
+    background: white;
+}
+
+.secondFiftyOne{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 26.8%;
+    margin-top: 33.6%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(215deg); 
+    color: black;
+    background: white; 
+}
+
+.secondFiftyTwo{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 28.4%;
+    margin-top: 31.6%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(222deg); 
+    color: black;
+    background: white; 
+}
+
+
+.secondFiftyThree{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 30.4%;
+    margin-top: 29.9%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(228deg); 
+    color: black;
+    background: white; 
+}
+
+.secondFiftyFour{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 32.3%;
+    margin-top: 28.3%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(237deg); 
+    color: black;
+    background: white; 
+}
+
+.secondFiftyFive{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 34.7%;
+    margin-top: 26.7%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(245deg); 
+    color: black;
+    background: white; 
+}
+
+.secondFiftySix{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 37%;
+    margin-top: 25.8%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(251deg); 
+    color: black;
+    background: white; 
+}
+
+.secondFiftySeven{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 39.6%;
+    margin-top: 24.8%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(256deg); 
+    color: black;
+    background: white; 
+}
+
+.secondFiftyEight{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 42.4%;
+    margin-top: 24%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(262deg); 
+    color: black;
+    background: white; 
+}
+
+.secondFiftyNine{
+    content: "";
+    z-index: 100;
+    max-width: 13px;
+    max-height: 10px;
+    margin-left: 45.2%;
+    margin-top: 23.2%;
+    position: absolute;
+    background: white;
+    width: 60px; /* Adjust width of the line */
+    height: 2px; /* Adjust thickness of the line */
+    transform: rotate(266deg); 
+    color: black;
+    background: white; 
+}
+
+.displayTime{
+    margin-left: 7%;
+    margin-top: 13%;
+    min-width: 240px;
+    min-height: 230px;
+    border-radius: 60%;
+    font-weight: 500;
+    background: #F9D001;
+    position: absolute;
+    font-size: large;
+    border: 3.5px white solid;
+    position: absolute;
+    
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pulse {
+    animation: pulse 1s infinite ease-in-out;
+}
+
+.hourHand, .minuteHand, .secondHand {
+    position: relative;
+    width: 2px;
+    background-color: black;
+    top: 50%;
+    left: 50%;
+    transform-origin: 50% 100%;
+    transform: translate(-50%, -100%);
+}
+
+.hourHand {
+    height: 60px;
+    background-color: #FFBE00;
+    animation: rotateHour 43200s infinite linear; 
+    margin-top: 1%;;
+}
+
+.minuteHand {
+    z-index: 100000;
+    height: 75px;
+    width: 5px;
+    background-color:white;
+    animation: rotateMinute 3600s infinite linear; /* 1-hour rotation */
+    margin-top: -10%;
+}
+
+/* Create the arrowhead */
+.minuteHand::before {
+    content: "";
+    position: absolute;
+    top: -10px; /* Move the arrowhead above the line */
+    left: -3px; /* Align the arrow to the center of the line */
+    border-left: 6px solid transparent; /* Left side of the arrow */
+    border-right: 6px solid transparent; /* Right side of the arrow */
+    border-bottom: 10px solid white; /* Bottom of the arrow (the actual arrowhead) */
+}
+
+/* Create the arrowhead */
+.secondHand::before {
+    content: "";
+    position: absolute;
+    top: -10px; /* Move the arrowhead above the line */
+    left: -3px; /* Align the arrow to the center of the line */
+    border-left: 6px solid transparent; /* Left side of the arrow */
+    border-right: 6px solid transparent; /* Right side of the arrow */
+    border-bottom: 10px solid white; /* Bottom of the arrow (the actual arrowhead) */
+}
+
+
+.secondHand {
+    z-index: 100000;
+    height: 90px;
+    width: 5px;
+    background-color: white;
+    animation: rotateSecond 60s linear infinite;
+    margin-bottom: -25%;
+    margin-top: -36.5%;
+}
+
+@keyframes rotateHour {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes rotateMinute {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes rotateSecond {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+#startRouteButton {
+    position: absolute;
+    z-index: 1000000000;  /* Ensure it's on top */
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 8%;
+    margin-top: 3%;
+}
+
+
+
+#startRouteButton:focus {
+    outline: none; /* Remove focus outline */
+}
+
+#stopRouteButton {
+    position: absolute;
+    z-index: 1000000000;  /* Ensure it's on top */
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 17%;
+    margin-top: 3%;
+}
+
+
+
+#stopRouteButton:focus {
+    outline: none; /* Remove focus outline */
+}
+
+
+.switch {
+    position: absolute;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #FFBE00;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+
+  /* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+  }
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .labelForMusicSlider {
+    position: absolute; margin-left: 30%; margin-top: 150%;
+  }
+
+  .labelForMusicPlayer{
+    position: absolute; margin-left: 3%; margin-top: 154%;
+  }
+
+  .labelForRootSlider {
+    position: absolute; margin-left: 65%; margin-top: 150%;
+  }
+
+  .labelForMusicRoot{
+    position: absolute; margin-left: 53%; margin-top: 152%;
+  }
+  #map-content {
+    width: 100%;   /* Ensure map container takes full width */
+    height: 100vh; /* Ensure map container takes full height */
+    margin: 0;     /* Remove any margin */
+    padding: 0;    /* Remove any padding */
+    position: relative;
+    overflow-x: hidden;  /* Prevent horizontal scroll */
+}
+
+#map {
+    width: 100%;  /* Ensure map fills the container width */
+    height: 100%; /* Ensure map fills the container height */
+    margin: 0;    /* Remove margins */
+    padding: 0;   /* Remove padding */
+    position: relative;
+}
+
+#map, #map-content {
+    padding: 0;
+    margin: 0;
+}
+
+
+/* Make sure the map has a lower z-index */
+#map {
+    position: relative;
+    z-index: 1; /* Set this lower than other interactive elements */
+    pointer-events: none; /* Disable interaction with the map */
+}
+
+
+/* Map should be in front of the music player */
+#map {
+    pointer-events: auto;  /* Ensure map can still interact */
+    z-index: 2;  /* Map's z-index should be lower than the checkboxes */
+    position: absolute; /* To position map on top of other elements */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Music player checkbox - should be above map */
+#checkboxMusicPlayer {
+    position: absolute;
+    z-index: 9999;  /* Ensure checkbox is above the map */
+    top: 20%;  /* Adjust the position as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: auto;  /* Enable interaction */
+}
+
+
+
+
+#map-content{
+    z-index: 1000000;
+    max-height: 650px;
+}
+
+.speed{
+    margin-left: 10%;
+    position: absolute;
+    margin-left: 1%; margin-top: 6%; font-weight: bold;
+}
+
+
+
+
+.speed{
+    position: absolute;
+    margin-left: 44.5%; margin-top: 40%; font-weight: bold;
+    font-size: 30px;
+}
+
+.distance{
+    margin-left: 44.5%; margin-top: 37%;  font-weight: bold;
+    font-size: 30px;
+    position: absolute;
+}
+
+
+@media (max-width: 1000px) {
+   /* Disable map interaction temporarily */
+   #map {
+       pointer-events: none; /* Prevent interaction with the map */
+   }
+
+   #startRouteButton {
+    position: absolute;
+    z-index: 1000000000;  /* Ensure it's on top */
+    background-color: white;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 38%;
+    min-height: 50px;
+    margin-top: 17%;
+}
+
+.speed{
+    position: absolute;
+    margin-top: 6%; font-weight: bold;
+    font-size: 44px;
+    margin-left: 53%;
+}
+
+.distance{
+     margin-top: 6%; font-weight: bold;
+    font-size: 44px;
+    position: absolute;
+    margin-left: 3%;
+}
+
+#stopRouteButton {
+    position: absolute;
+    z-index: 1000000000;  /* Ensure it's on top */
+    background-color: white;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 52%;
+    min-height: 50px;
+    margin-top: 17%;
+}
+
+/* Make sure the zoom control is always on top of other map elements */
+.leaflet-control-zoom {
+    z-index: 5000; /* Ensure zoom controls are above all other map elements */
+}
+
+#map {
+    z-index: 1;  /* Keep the map background at a lower z-index */
+}
+
+.leaflet-control-zoom {
+    z-index: 1000; /* Ensure the zoom control is above other elements */
+}
+
+#map {
+    position: relative;
+    z-index: 0;
+}
+
+.leaflet-control-zoom {
+    z-index: 5000;  /* Make sure zoom controls are on top */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* Optionally, make buttons larger for mobile */
+.leaflet-control-zoom-in, .leaflet-control-zoom-out {
+    width: 50px;  /* Make buttons more clickable */
+    height: 50px;
+    font-size: 25px;  /* Adjust size for easier tap */
+}
+   
+
+#map {
+    position: relative;  /* Ensure map is positioned correctly */
+    z-index: 0;  /* Default layer for the map */
+    transform: none; /* Make sure no scaling or transforms are applied */
+}
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+    font-size: 30px; /* Increase size of zoom buttons */
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.leaflet-control-zoom-in:hover,
+.leaflet-control-zoom-out:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Position the zoom controls in the top-left corner */
+.leaflet-top.leaflet-left {
+    top: 10px;
+    left: 10px;
+}
+
+
+.leaflet-control-zoom {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 5000;  /* Place zoom controls above other map elements */
+}
+
+/* Optionally adjust the zoom button size */
+.leaflet-control-zoom-in, .leaflet-control-zoom-out {
+    font-size: 20px;  /* Adjust button size if necessary */
+    width: 40px;
+    height: 40px;
+}
+
+
+
+#map-content {
+    width: 100%;   /* Ensure map container takes full width */
+    height: 100vh; /* Ensure map container takes full height */
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    overflow-x: hidden;
+    margin-left: -5%;
+    margin-top: 15%;
+}
+
+   /* Enable pointer-events for buttons and checkboxes */
+   #checkboxRoot, #checkboxMusicPlayer, #start, #stop, #reset, #audioContainer, #newNextAndPreviousButtons {
+       pointer-events: auto; /* Ensure buttons are clickable */
+       z-index: 9999;  /* Make sure buttons are above the map */
+   }
+   
+   /* Ensure the map container is in the background */
+   #map-container {
+       position: relative;
+       z-index: 1;  /* Map container behind buttons */
+   }
+}
