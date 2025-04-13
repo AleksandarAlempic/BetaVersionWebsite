@@ -1,5 +1,0 @@
-DATABASE_URL=postgres://postgres:admin@localhost:5432/stopwatchdb
-
-SUPABASE_URL=https://mcuhtmzkszuhhyhydivj.supabase.co
-SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1jdWh0bXprc3p1aGh5aHlkaXZqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM5NTIzMDIsImV4cCI6MjA1OTUyODMwMn0.UYL-lVnxir4WBpbU-MWRwP1jAl7S21S-z_mVwUgt8xE
-PORT=4000
