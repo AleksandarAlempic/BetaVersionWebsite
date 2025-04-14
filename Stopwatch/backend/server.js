@@ -81,12 +81,9 @@
 // // This will serve your index.html if it is placed inside the 'public' folder
 // app.get('/', (req, res) => {
 //   res.sendFile(path.join(__dirname, 'public', 'index.html'));
-// });
-
-// // Server listening
-// app.listen(port, () => {
-//   console.log(`Server is running on http://localhost:${port}`);
 // }); Old code
+
+
 
 /// Integration with Supabase
 
@@ -179,6 +176,11 @@ app.get('/api/routes-nearby', async (req, res) => {
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Server listening
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });
 
 
