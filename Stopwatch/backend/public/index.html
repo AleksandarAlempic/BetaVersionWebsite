@@ -349,7 +349,7 @@ function stopRoute() {
             console.log("Polyline coordinates: ", polylineCoordinates);
 
             // Send the data to the server
-            fetch('http://localhost:4000/api/save-run', {
+            fetch('https://betaversionwebsite.onrender.com/api/save-run', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
