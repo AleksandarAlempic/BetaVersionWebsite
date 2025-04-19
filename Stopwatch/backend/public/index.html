@@ -323,57 +323,61 @@ function startRoute() {
 // Function to stop the route
 // Function to stop the route
 function stopRoute() {
-    if (routeStarted) {
-        routeStarted = false;  // Stop the route
-        console.log("Route stopped.");
-        alert("Route stopped.");
+    if (!routeStarted) return;
 
-        // Calculate the total time and average speed
-        const routeEndTime = new Date();  // Time when the route ended
-        totalTime = (routeEndTime - routeStartTime) / 1000;  // Total time in seconds
+    // Step 1: Ask for confirmation
+    const confirmSave = confirm("Do you want to save a Route?");
+    
+    // Step 2: Stop the route regardless
+    routeStarted = false;
+    console.log("Route stopped.");
+    alert("Route stopped.");
 
-        // Calculate the average speed in km/h
-        document.getElementById('speed').style = "display: none";
+    // Calculate time and average speed
+    const routeEndTime = new Date();
+    totalTime = (routeEndTime - routeStartTime) / 1000;
 
-        const averageSpeed = (totalDistance / 1000) / (totalTime / 3600);  // Distance in kilometers, time in hours
-        document.getElementById('averageSpeedValue').textContent = averageSpeed.toFixed(2);  // Display the average speed
+    document.getElementById('speed').style = "display: none";
 
-        document.getElementById('averageSpeed').style = "display: block";
+    const averageSpeed = (totalDistance / 1000) / (totalTime / 3600);
+    document.getElementById('averageSpeedValue').textContent = averageSpeed.toFixed(2);
+    document.getElementById('averageSpeed').style = "display: block";
 
-        // Remove the polyline if it exists (using remove instead of clearLayers)
-        if (polyline instanceof L.Polyline) {
-            console.log('Removing polyline:', polyline);  // Debug log for polyline
-            polyline.remove();  // Correct method to remove the polyline from the map
+    // Remove the polyline if it exists
+    if (polyline instanceof L.Polyline) {
+        console.log('Removing polyline:', polyline);
+        const polylineCoordinates = polyline.getLatLngs();  // Save before removing
+        polyline.remove();
 
-            const polylineCoordinates = polyline.getLatLngs();  // Get all points of the polyline
-            console.log("Polyline coordinates: ", polylineCoordinates);
-
-            // Send the data to the server
+        // Step 3: Save route only if confirmed
+        if (confirmSave) {
             fetch('https://betaversionwebsite.onrender.com/api/save-run', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-        user_id: 1,
-        root: "Vojvodina Trčanje",
-        distance: totalDistance / 1000,
-        speed: averageSpeed,
-        time: totalTime,
-        polyline: polylineCoordinates,
-        startLat: waypoints[0].lat,
-        startLng: waypoints[0].lng,
-        location: "Some location" // Optional
-    }),
-})
-.then(response => response.json())
-.then(data => {
-    console.log('Run data saved:', data);
-})
-.catch(error => {
-    console.error('Error saving run data:', error);
-});
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    user_id: 1,
+                    root: "Vojvodina Trčanje",
+                    distance: totalDistance / 1000,
+                    speed: averageSpeed,
+                    time: totalTime,
+                    polyline: polylineCoordinates,
+                    startLat: waypoints[0].lat,
+                    startLng: waypoints[0].lng,
+                    location: "Some location"
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Run data saved:', data);
+            })
+            .catch(error => {
+                console.error('Error saving run data:', error);
+            });
         } else {
-            console.error('Error: polyline is not a valid Leaflet polyline.');
+            console.log("User chose not to save the route.");
         }
+    } else {
+        console.error('Error: polyline is not a valid Leaflet polyline.');
     }
 }
 
