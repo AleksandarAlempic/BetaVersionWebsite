@@ -381,6 +381,11 @@ musicPlayer.addEventListener('click', () => {
 });
 
 function drawNearbyRoutesOnLeaflet(routes) {
+   if (!Array.isArray(routes)) {
+       console.error("drawNearbyRoutesOnLeaflet received non-array:", routes);
+       return;
+   }
+
    routes.forEach(route => {
        const latlngs = route.polyline.map(coord => L.latLng(coord.lat, coord.lng));
        const polyline = L.polyline(latlngs, {
@@ -398,11 +403,16 @@ function fetchNearbyRoutes(lat, lng) {
        .then(res => res.json())
        .then(data => {
            console.log("Nearby routes fetched:", data);
-           drawNearbyRoutesOnLeaflet(data);
+
+           // ✅ Check if the response is an array before trying to draw
+           if (Array.isArray(data)) {
+               drawNearbyRoutesOnLeaflet(data);
+           } else {
+               console.error("Expected an array but got:", data);
+           }
        })
        .catch(err => {
            console.error("Failed to fetch nearby routes:", err);
        });
 }
-
 
