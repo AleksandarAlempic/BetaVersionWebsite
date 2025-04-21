@@ -150,16 +150,28 @@ app.get('/api/routes-nearby', async (req, res) => {
   const { lat, lng } = req.query;
 
   try {
-    const radius = 0.5;  // 500 meters
+    const radius = 0.5; // 500 meters
 
-    // Haversine formula to find nearby routes
+    // ✅ Parse query params as floats
+    const latNum = parseFloat(lat);
+    const lngNum = parseFloat(lng);
+
+    if (isNaN(latNum) || isNaN(lngNum)) {
+      return res.status(400).json({ error: "Invalid latitude or longitude" });
+    }
+
+    const latMin = latNum - radius;
+    const latMax = latNum + radius;
+    const lngMin = lngNum - radius;
+    const lngMax = lngNum + radius;
+
     const { data, error } = await supabase
       .from('runs')
       .select('*')
-      .filter('start_lat', 'gte', lat - radius)  // Example filter
-      .filter('start_lng', 'gte', lng - radius)
-      .filter('start_lat', 'lte', lat + radius)
-      .filter('start_lng', 'lte', lng + radius);
+      .gte('start_lat', latMin)
+      .lte('start_lat', latMax)
+      .gte('start_lng', lngMin)
+      .lte('start_lng', lngMax);
 
     if (error) {
       console.error("Error fetching nearby routes:", error);
