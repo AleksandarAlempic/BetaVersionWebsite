@@ -398,7 +398,10 @@ function drawNearbyRoutesOnLeaflet(routes) {
    });
 }
 
+
+
 function fetchNearbyRoutes(lat, lng) {
+    console.log("Fetching nearby routes for:", lat, lng);
     fetch(`https://betaversionwebsite.onrender.com/api/routes-nearby?lat=${lat}&lng=${lng}`)
         .then(res => res.json())
         .then(data => {
