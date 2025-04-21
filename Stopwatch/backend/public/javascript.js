@@ -380,4 +380,29 @@ musicPlayer.addEventListener('click', () => {
    }
 });
 
+function drawNearbyRoutesOnLeaflet(routes) {
+   routes.forEach(route => {
+       const latlngs = route.polyline.map(coord => L.latLng(coord.lat, coord.lng));
+       const polyline = L.polyline(latlngs, {
+           color: 'red',
+           weight: 4,
+           opacity: 0.7
+       }).addTo(map);
+
+       polyline.bindPopup(`<b>${route.routeName}</b>`);
+   });
+}
+
+function fetchNearbyRoutes(lat, lng) {
+   fetch(`https://betaversionwebsite.onrender.com/api/routes-nearby?lat=${lat}&lng=${lng}`)
+       .then(res => res.json())
+       .then(data => {
+           console.log("Nearby routes fetched:", data);
+           drawNearbyRoutesOnLeaflet(data);
+       })
+       .catch(err => {
+           console.error("Failed to fetch nearby routes:", err);
+       });
+}
+
 
