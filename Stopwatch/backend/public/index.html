@@ -166,9 +166,6 @@
         </div>
         <button style="z-index: 1000000000; position: absolute;  color: black; background: white; min-height: 5%;" id="startRouteButton">Start Route</button>
         <button style="z-index: 1000000000; position: absolute; color: black; background: white; min-height: 5%;" id="stopRouteButton">Stop Route</button>
-        <button id="fetchNearbyRoutesButton" style="z-index: 1000000000; position: absolute; background: white; color: black; min-height: 5%;">
-            Show Nearby Routes
-        </button>
         <div id="speed" class="speed">
             <strong>Speed:</strong> <span id="speedValue">0.00</span> km/h
         </div>
@@ -394,12 +391,13 @@ function stopRoute() {
                 document.getElementById("stopRouteButton").addEventListener("click", stopRoute);
         
 
-                document.getElementById("fetchNearbyRoutesButton").addEventListener("click", () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-        const { latitude, longitude } = position.coords;
-        fetchNearbyRoutes(latitude, longitude);
-    }, handleError);
-});
+                navigator.geolocation.getCurrentPosition((position) => {
+    const { latitude, longitude } = position.coords;
+    console.log("Sending coords:", latitude, longitude); // ✅ Add this for debugging
+
+    fetchNearbyRoutes(latitude, longitude); // 💡 This fetches and displays saved routes near the user
+}, handleError);
+
                 // Continuously update the user's location using geolocation
                 navigator.geolocation.watchPosition(updateLocation, handleError, {
                     enableHighAccuracy: true,  // Use GPS for accurate location
