@@ -387,15 +387,18 @@ function drawNearbyRoutesOnLeaflet(routes) {
    }
 
    routes.forEach(route => {
-       const latlngs = route.polyline.map(coord => L.latLng(coord.lat, coord.lng));
-       const polyline = L.polyline(latlngs, {
-           color: 'red',
-           weight: 4,
-           opacity: 0.7
-       }).addTo(map);
-
-       polyline.bindPopup(`<b>${route.routeName}</b>`);
-   });
+   try {
+  const parsedPolyline = JSON.parse(route.polyline);
+  const latlngs = parsedPolyline.map(coord => L.latLng(coord.lat, coord.lng));
+  const polyline = L.polyline(latlngs, {
+    color: 'red',
+    weight: 4,
+    opacity: 0.7
+  }).addTo(map);
+  polyline.bindPopup(`<b>${route.routeName || "Unnamed Route"}</b>`);
+} catch (e) {
+  console.warn("Invalid polyline format for route:", route);
+} });
 }
 
 
