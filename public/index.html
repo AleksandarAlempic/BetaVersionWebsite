@@ -1,0 +1,445 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="Stopwatch.css">
+        <link rel="stylesheet" href="stylesResponsive.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/> 
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.35.6/dist/umd/supabase.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=0.5, user-scalable=no">
+        <style>
+            #map table, #map h2, #map h3 {
+                visibility: hidden;
+            }
+            
+        </style>
+    </head>
+    <body> 
+        <div id="stopwatchLabel" class="stopwatchLabel">
+            <table class="tableClass">
+                <tr>
+                    <audio id="audio" src="audio/" ></audio>
+                    <audio id="audio1" src="../audio/OLD Grandfather's Clock SLOW with sound version 3.mp3"></audio>
+                    <td><h1 class="stopwatchH1">Stopwatch</h1></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="stopwatchDiv">
+                        <div id="displayTime" class="displayTime"> 
+                            <div id="audioContainer" class="audioContainer">
+                                <div>
+                                  <div class="disk play "></div>
+                                  <div class="controls">
+                                      <button class="btn pervious-btn"><img src="images/audio/PreviousButton.png"></button>
+                                      <button style="margin-top: 39%;" class="play-btn play">
+                                         <span></span>
+                                         <span></span>
+                                      </button>
+                                      <button class="btn next-btn"><img src="images/audio/NextButton.png"></button>
+                                  </div>
+                                </div> 
+                          </div>
+                          <div id="newNextAndPreviousButtons" class="newNextAndPreviousButtons">
+                            <button class="btn previous-btnPlayList"><img src="images/audio/PreviousButtonPlayList.png"></button>
+                            <div class="kindOfMusic" id="kindOfMusic1" style="font-size: 25px; min-width: 70px; color: white; margin-top: -37%;">Promo</div>
+                            <div class="kindOfMusic" id="kindOfMusic2" style="display: none; ">Classics</div>
+                            <div class="kindOfMusic" id="kindOfMusic3" style="display: none; ">Narodna</div>
+                            <div class="kindOfMusic" id="kindOfMusic4" style="display: none; ">Dance</div>
+                            <div class="kindOfMusic" id="kindOfMusic5" style="display: none; ">Calm Rock</div>
+                            <div class="kindOfMusic" id="kindOfMusic6" style="display: none; ">Desert Classic</div>
+                            <div class="kindOfMusic" id="kindOfMusic7" style="display: none"; color: white;">Promo</div>
+                            <button class="btn next-btnPlayList"><img src="images/audio/NextButtonPlayList.jpg"></button>
+                        </div>
+                             <h3 class=" secondZero"></h3>
+                             <h3 class=" secondOne"></h3>
+                             <h3 class=" secondTwo"></h3>
+                             <h3 class=" secondThree"></h3>
+                             <h3 class=" secondFour"></h3>
+                             <h3 class=" secondSix"></h3> 
+                             <h3 class=" secondSeven"></h3>
+                             <h3 class=" secondEight"></h3>
+                             <h3 class=" secondNine"></h3>
+                             <h3 class=" secondTen"></h3> 
+                             <h3 class=" secondEleven"></h3> 
+                             <h3 class=" secondTwelve"></h3> 
+                             <h3 class=" secondThirteen"></h3> 
+                             <h3 class=" secondFourthteen"></h3> 
+                             <h3 class=" secondFifteen"></h3>
+                             <h3 class=" secondSixteen"></h3>
+                             <h3 class=" secondSeventeen"></h3>
+                             <h3 class=" secondEitheen"></h3>
+                             <h3 class=" secondNinteen"></h3>
+                             <h3 class=" secondTwenty"></h3>
+                             <h3 class=" secondTwentyOne"></h3>
+                             <h3 class=" secondTwentyTwo"></h3>
+                             <h3 class=" secondTwentyThree"></h3>
+                             <h3 class=" secondTwentyFour"></h3>
+                             <h3 class=" secondTwentyFive"></h3>
+                             <h3 class=" secondTwentySix"></h3>
+                             <h3 class=" secondTwentySeven"></h3>
+                             <h3 class=" secondTwentyEight"></h3>
+                             <h3 class=" secondTwentyNine"></h3>
+                             <h3 class=" secondThirty"></h3>
+                             <h3 class="secondThirtyOne"></h3>
+                             <h3 class="secondThirtyTwo"></h3>
+                             <h3 class="secondThirtyThree"></h3>
+                             <h3 class="secondThirtyFour"></h3>
+                             <h3 class="secondThirtyFive"></h3>
+                             <h3 class="secondThirtySix"></h3>
+                             <h3 class="secondThirtySeven"></h3>
+                             <h3 class="secondThirtyEight"></h3>
+                             <h3 class="secondThirtyNine"></h3>
+                             <h3 class="secondFourthty"></h3>
+                             <h3 class="secondFourthtyOne"></h3>
+                             <h3 class="secondFourthtyTwo"></h3>
+                             <h3 class="secondFourthtyThree"></h3>
+                             <h3 class="secondFourthtyFour"></h3>
+                             <h3 class="secondFourthtyFive"></h3>
+                             <h3 class="secondFourthtySix"></h3>
+                             <h3 class="secondFourthtySeven"></h3>
+                             <h3 class="secondFourthtyEight"></h3>
+                             <h3 class="secondFourthtyNine"></h3>
+                             <h3 class="secondFifty"></h3>
+                             <h3 class="secondFiftyOne"></h3>
+                             <h3 class="secondFiftyTwo"></h3>
+                             <h3 class="secondFiftyThree"></h3>
+                             <h3 class=" secondFiftyFour"></h3>
+                             <h3 class=" secondFiftyFive"></h3>
+                             <h3 class=" secondFiftySix"></h3>
+                             <h3 class=" secondFiftySeven"></h3>
+                             <h3 class=" secondFiftyEight"></h3>
+                             <h3 class="  secondFiftyNine"></h3>    
+                            <h3 class="numberTwelve">12</h3>
+                            <h3 class="numberOne">1</h3>
+                            <h3 class="numberTwo">2</h3>
+                            <h3 class="numberThree">3</h3>
+                            <h3 class="numberFour">4</h3>
+                            <h3 class="numberFive">5</h3>
+                            <h3 class="numberSix">6</h3>
+                            <h3 class="numberSeven">7</h3>
+                            <h3 class="numberEight">8</h3>
+                            <h3 class="numberNine">9</h3>
+                            <h3 class="numberTen">10</h3>
+                            <h3 class="numberEleven">11</h3>
+                            <div class="hourHand"></div>
+                            <div class="minuteHand"></div>
+                            <div id="secondHand"  class="secondHand"></div>
+                        </div>
+                        <button id="timer" class="timer">Timer</button>
+                        <button id="stopwatch" class="stopwatch">Stopwatch</button>
+                        <table>
+                            <tr>
+                                <td>
+                                <label class="switch labelForMusicSlider">
+                                <input id="checkboxMusicPlayer" type="checkbox">
+                                <span class="slider round"></span>
+                              </label>
+                           
+                            <p class="labelForMusicPlayer">Music Player</p>
+                        </td>
+                            <td><label style="z-index: 10000000;" class="switch labelForRootSlider">
+                                <input style="z-index: 10000000;" id="checkboxRoot" type="checkbox">
+                                <span style="z-index: 10000000;" class="slider round"></span>
+                              </label>
+                        <p class="labelForMusicRoot">Root</p>
+                    </td></tr>
+                    </table>
+                        <input id="input" class="input" value="00:00:00">
+                        <div  class="divForButtons">
+                            <ul style="display: grid;" id="songNameAndArtist" class="songNameAndArtist">
+                                <li class="songName" id="songName">Song Name</li>
+                                <li class="artistName">Artist</li>
+                            </ul>
+                            <div id="StopwatchOptions">
+                                <button id="start" onclick="setInterval1Stopwatch();" class="button">Start</button>
+                                <button id="stop"  onclick="myStopStopwatch()" class="button">Stop</button>
+                                <button id="reset" onclick= "resetFunctionStopwatch()" class="button"button">Reset</button>
+                            </div>
+                            <div id="TimerOptions" style="display: none;">
+                                <button id="start" onclick="setInterval1Timer();" class="button">Start</button>
+                                <button id="stop"  onclick="myStopTimer()" class="button">Stop</button>
+                                <button id="reset" onclick= "resetFunction()" class="button"button">Reset</button>
+                            </div> 
+                        </div>
+                    </div>
+                   </td>
+                </tr>
+            </table>
+        </div>
+        <button style="z-index: 1000000000; position: absolute;  color: black; background: white; min-height: 5%;" id="startRouteButton">Start Route</button>
+        <button style="z-index: 1000000000; position: absolute; color: black; background: white; min-height: 5%;" id="stopRouteButton">Stop Route</button>
+        <button style="z-index: 1000000000; position: absolute; color: black; background: white; min-height: 5%;" id="nearbyRoutesButton">Show Nearby Routes</button>
+        <div id="speed" class="speed">
+            <strong>Speed:</strong> <span id="speedValue">0.00</span> km/h
+        </div>
+        <div id="distance" class="distance">
+            <strong>Distance:</strong> <span id="distanceValue">0.00</span> m
+        </div>
+        <div  id="averageSpeed" class="speed">
+            <strong>Avg Speed:</strong> <span id="averageSpeedValue">0.00</span> km/h
+        </div>
+        <div class="Root" id="map-content">
+            <div id="map" style="margin-top: 100px;" class="trackDiv"></div>
+        
+            <!-- Leaflet JS -->
+            <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        
+            <!-- Leaflet Routing Machine JS -->
+            <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+        
+            <script>
+
+                document.getElementById('averageSpeed').style = "display: none";
+
+                const defaultLat = 45.2764;
+                const defaultLon = 19.8244;
+        
+                const map = L.map('map').setView([defaultLat, defaultLon], 13);
+        
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
+
+        
+                const routeControl = L.Routing.control({
+                    waypoints: [],  // Start with an empty route
+                    routeWhileDragging: true,  // Allow dragging the route
+                    createMarker: function() { return null; }  // Prevent creating markers for waypoints
+                }).addTo(map);
+        
+                let currentLocation = [defaultLat, defaultLon];  // Default to Begeč
+                let currentLocationMarker = L.marker([currentLocation[0], currentLocation[1]]).addTo(map);
+        
+                let routeStarted = false;  // Initially, the route is not started
+                let waypoints = [];
+                let polyline;
+        
+                let lastTime = null;  // To store the timestamp of the last position update
+                let totalDistance = 0;  // To store the total distance traveled
+        
+                // Function to update the user's location and update the route
+                function updateLocation(position) {
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+
+    // Update the location marker to the new coordinates
+    currentLocationMarker.setLatLng([lat, lon]);
+
+    // Only add new waypoints and update polyline if the route has started
+    if (routeStarted) {
+        if (waypoints.length === 0 || waypoints[waypoints.length - 1].lat !== lat || waypoints[waypoints.length - 1].lng !== lon) {
+            // Add new waypoint to the array
+            waypoints.push(L.latLng(lat, lon));
+            routeControl.setWaypoints(waypoints);  // Update the route with new waypoints
+
+            // If the polyline is not yet created, create it
+            if (!polyline) {
+    polyline = L.polyline([ [lat, lon] ], {
+        color: 'blue',
+        weight: 5,
+        opacity: 0.7
+    }).addTo(map);  // Add polyline to map
+} else {
+    polyline.addLatLng([lat, lon]);  // Add new point to existing polyline
+}
+
+            calculateDistanceAndSpeed(lat, lon);
+        }
+    }
+
+    // Optionally, update the map view if the user moves a significant distance
+    if (map.getCenter().distanceTo([lat, lon]) > 50) {
+        map.setView([lat, lon], map.getZoom());  // Keep the current zoom level
+    }
+}
+                // Function to calculate distance between two geographical points (in meters) using the Haversine formula
+                function haversine(lat1, lon1, lat2, lon2) {
+                    const R = 6371e3; // Radius of Earth in meters
+                    const φ1 = lat1 * Math.PI / 180; // Latitude in radians
+                    const φ2 = lat2 * Math.PI / 180; // Latitude in radians
+                    const Δφ = (lat2 - lat1) * Math.PI / 180; // Difference in latitude in radians
+                    const Δλ = (lon2 - lon1) * Math.PI / 180; // Difference in longitude in radians
+        
+                    // Haversine formula
+                    const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+                        Math.cos(φ1) * Math.cos(φ2) *
+                        Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+                    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                    const distance = R * c; // Distance in meters
+                    return distance;
+                }
+        
+                let lastLatLng = null;
+        
+                function calculateDistanceAndSpeed(lat, lon) {
+                    // Ensure we have a valid previous position to calculate the distance from
+                    if (lastLatLng) {
+                        const distance = haversine(lastLatLng.lat, lastLatLng.lng, lat, lon); // Calculate distance between last and current position in meters
+                        totalDistance += distance; // Add to the total distance
+        
+                        // Calculate speed: distance / time (in km/h)
+                        const currentTime = new Date();
+                        if (lastTime) {
+                            const timeDiff = (currentTime - lastTime) / 1000; // Time difference in seconds
+                            if (timeDiff > 0) {  // Ensure timeDiff is not zero
+                                const speed = (distance / timeDiff) * 3.6; // Speed in km/h
+                                // Only update speed if it's above a threshold (e.g., 0.5 km/h)
+                                if (speed > 0.5) {
+                                    document.getElementById('speedValue').textContent = speed.toFixed(2); // Update speed dynamically
+                                } else {
+                                    document.getElementById('speedValue').textContent = "0.00"; // Speed is 0 if stationary or moving slowly
+                                }
+                            }
+                        }
+                        lastTime = currentTime;  // Store the current time for the next update
+                    }
+        
+                    lastLatLng = { lat: lat, lng: lon }; // Update the last position
+        
+                    // Update total distance in meters (or kilometers if preferred)
+                    document.getElementById('distanceValue').textContent = (totalDistance / 1000).toFixed(2); // Display distance in kilometers
+                }
+        
+                // Function to handle geolocation errors
+                function handleError(error) {
+                    console.error('Error fetching location: ', error);
+                    alert("Error retrieving your location.");
+                }
+        
+                let totalTime = 0;  // Track the total time in seconds
+let routeStartTime = null;  // Time when the route started
+
+// Function to start the route manually
+function startRoute() {
+    if (!routeStarted) {
+        routeStarted = true;  // Set the route as started
+        waypoints = [];  // Clear any existing waypoints before starting
+        waypoints.push(L.latLng(currentLocation[0], currentLocation[1]));  // Start route at the current location
+        routeControl.setWaypoints(waypoints);  // Initialize route control with the first waypoint
+        console.log("Route started at:", currentLocation);  // Debugging log
+        routeStartTime = new Date();  // Record the time when the route started
+        alert("Route started! Moving now will update the route.");
+
+        document.getElementById('speed').style = "display: block";
+        document.getElementById('averageSpeed').style = "display: none";
+    }
+}
+
+// Function to stop the route
+// Function to stop the route
+function stopRoute() {
+    if (!routeStarted) return;
+
+    // Step 1: Ask for confirmation
+    const confirmSave = confirm("Do you want to save a Route?");
+    
+    // Step 2: Stop the route regardless
+    routeStarted = false;
+    console.log("Route stopped.");
+    alert("Route stopped.");
+
+    // Calculate time and average speed
+    const routeEndTime = new Date();
+    totalTime = (routeEndTime - routeStartTime) / 1000;
+
+    document.getElementById('speed').style = "display: none";
+
+    const averageSpeed = (totalDistance / 1000) / (totalTime / 3600);
+    document.getElementById('averageSpeedValue').textContent = averageSpeed.toFixed(2);
+    document.getElementById('averageSpeed').style = "display: block";
+
+    // Remove the polyline if it exists
+    if (polyline instanceof L.Polyline) {
+        console.log('Removing polyline:', polyline);
+        const polylineCoordinates = polyline.getLatLngs();  // Save before removing
+        polyline.remove();
+
+        // Step 3: Save route only if confirmed
+        if (confirmSave) {
+            fetch('https://betaversionwebsite.onrender.com/api/save-run', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    user_id: 1,
+                    root: "Vojvodina Trčanje",
+                    distance: totalDistance / 1000,
+                    speed: averageSpeed,
+                    time: totalTime,
+                    polyline: polylineCoordinates,
+                    startLat: waypoints[0].lat,
+                    startLng: waypoints[0].lng,
+                    location: "Some location"
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Run data saved:', data);
+            })
+            .catch(error => {
+                console.error('Error saving run data:', error);
+            });
+        } else {
+            console.log("User chose not to save the route.");
+        }
+    } else {
+        console.error('Error: polyline is not a valid Leaflet polyline.');
+    }
+}
+        
+                // Add event listener for the Start Route button click
+                document.getElementById("startRouteButton").addEventListener("click", startRoute);
+        
+                // Add event listener for the Stop Route button click
+                document.getElementById("stopRouteButton").addEventListener("click", stopRoute);
+        
+                // Continuously update the user's location using geolocation
+                navigator.geolocation.watchPosition(updateLocation, handleError, {
+                    enableHighAccuracy: true,  // Use GPS for accurate location
+                    maximumAge: 0,             // Disables using cached location data
+                    timeout: 10000             // Timeout after 10 seconds if no location data is found
+                });
+
+                document.getElementById('nearbyRoutesButton').addEventListener('click', () => {
+                navigator.geolocation.getCurrentPosition(position => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+//aaa
+    fetch(`/api/routes-nearby?lat=${latitude}&lng=${longitude}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch nearby routes");
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (!Array.isArray(data)) {
+          console.error("Expected an array but got:", data);
+          return;
+        }
+        drawNearbyRoutesOnLeaflet(data);
+      })
+      .catch(error => {
+        console.error("Error fetching nearby routes:", error);
+        alert("Could not load nearby routes.");
+      });
+  });
+});
+
+function drawNearbyRoutesOnLeaflet(routes) {
+    routes.forEach(route => {
+        const latlngs = route.polyline.map(coord => L.latLng(coord.lat, coord.lng));
+
+        const polyline = L.polyline(latlngs, {
+            color: 'red',
+            weight: 4,
+            opacity: 0.7
+        }).addTo(map);
+
+        // Optional popup with route name
+        polyline.bindPopup(`<b>${route.routeName}</b>`);
+    });
+}
+            </script>
+        </div>
+    </div>
+    </body>
+    <script defer src="Data.js"></script>
+    <script defer src="MusicPlayer.js"></script>
+    <script defer src="javascript.js"></script>
+</html>
