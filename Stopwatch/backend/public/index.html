@@ -397,7 +397,8 @@ function stopRoute() {
                 document.getElementById("fetchNearbyRoutesButton").addEventListener("click", () => {
     navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude } = position.coords;
-        fetchNearbyRoutes(latitude, longitude);
+        // fetchNearbyRoutes(latitude, longitude); // Real function
+        fetchNearbyRoutes(45.0092566, 19.8200371); // Hardcoded for testing
     }, handleError);
 });
                 // Continuously update the user's location using geolocation
