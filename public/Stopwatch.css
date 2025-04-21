@@ -19,6 +19,16 @@
     border-radius: 10%;
    }
 
+   .nearbyRoutesShow{
+    z-index: 1000000000;
+    position: absolute; 
+    color: black; 
+    background: white; 
+    min-height: 5%;
+    margin-left: 25.5%;
+    margin-top: 3%;
+   }
+
    .disk{
     position: relative;
     display: block;
