@@ -399,20 +399,28 @@ function drawNearbyRoutesOnLeaflet(routes) {
 }
 
 function fetchNearbyRoutes(lat, lng) {
-   fetch(`https://betaversionwebsite.onrender.com/api/routes-nearby?lat=${lat}&lng=${lng}`)
-       .then(res => res.json())
-       .then(data => {
-           console.log("Nearby routes fetched:", data);
+    fetch(`https://betaversionwebsite.onrender.com/api/routes-nearby?lat=${lat}&lng=${lng}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log("Fetched nearby routes data:", data);
 
-           // ✅ Check if the response is an array before trying to draw
-           if (Array.isArray(data)) {
-               drawNearbyRoutesOnLeaflet(data);
-           } else {
-               console.error("Expected an array but got:", data);
-           }
-       })
-       .catch(err => {
-           console.error("Failed to fetch nearby routes:", err);
-       });
+            // Check if the response has an error
+            if (data.error) {
+                console.error("API Error:", data.error);
+                return;
+            }
+
+            // Check if data is an array
+            if (Array.isArray(data)) {
+                drawNearbyRoutesOnLeaflet(data);
+            } else if (Array.isArray(data.routes)) {
+                drawNearbyRoutesOnLeaflet(data.routes);
+            } else {
+                console.error("Unexpected API response:", data);
+            }
+        })
+        .catch(err => {
+            console.error("Network or parsing error:", err);
+        });
 }
 
