@@ -1784,9 +1784,22 @@ body{
     position: absolute;
 }
 
+.nearbyRouteButton{
+    z-index: 1000000000; position: absolute; background: white; color: black; min-height: 5%; margin-left: 25%; margin-top: 3%;
+  }
 
 @media (max-width: 1000px) {
    /* Disable map interaction temporarily */
+  .nearbyRouteButton{
+    z-index: 1000000000;
+    position: absolute;
+    background: white;
+    color: black;
+    min-height: 5%;
+    margin-left: 66%;
+    margin-top: 17%;
+  }
+ 
    #map {
        pointer-events: none; /* Prevent interaction with the map */
    }
