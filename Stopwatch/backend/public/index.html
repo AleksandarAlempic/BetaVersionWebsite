@@ -235,7 +235,7 @@
     polyline = L.polyline([ [lat, lon] ], {
         color: 'blue',
         weight: 5,
-        opacity: 0.7
+        opacity: 0.7    
     }).addTo(map);  // Add polyline to map
 } else {
     polyline.addLatLng([lat, lon]);  // Add new point to existing polyline
@@ -323,20 +323,15 @@ function startRoute() {
     }
 }
 
-// Function to stop the route
-// Function to stop the route
 function stopRoute() {
     if (!routeStarted) return;
 
-    // Step 1: Ask for confirmation
     const confirmSave = confirm("Do you want to save a Route?");
     
-    // Step 2: Stop the route regardless
+    // Stop tracking regardless
     routeStarted = false;
-    console.log("Route stopped.");
     alert("Route stopped.");
 
-    // Calculate time and average speed
     const routeEndTime = new Date();
     totalTime = (routeEndTime - routeStartTime) / 1000;
 
@@ -346,47 +341,67 @@ function stopRoute() {
     document.getElementById('averageSpeedValue').textContent = averageSpeed.toFixed(2);
     document.getElementById('averageSpeed').style = "display: block";
 
-    // Remove the polyline if it exists
     if (polyline instanceof L.Polyline) {
-        console.log('Removing polyline:', polyline);
-        const polylineCoordinates = polyline.getLatLngs();  // Save before removing
+        const polylineCoordinates = polyline.getLatLngs();
         polyline.remove();
 
-        // Step 3: Save route only if confirmed
         if (confirmSave) {
-            fetch('https://betaversionwebsite.onrender.com/api/save-run', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    user_id: 1,
-                    root: "Vojvodina Trčanje",
-                    distance: totalDistance / 1000,
-                    speed: averageSpeed,
-                    time: totalTime,
-                    polyline: polylineCoordinates,
-                    startLat: waypoints[0].lat,
-                    startLng: waypoints[0].lng,
-                    location: "Some location"
-                }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Run data saved:', data);
-            })
-            .catch(error => {
-                console.error('Error saving run data:', error);
-            });
-        } else {
-            console.log("User chose not to save the route.");
+            // Show username input popup
+            document.getElementById("usernamePopup").style.display = "block";
+            // Store route data temporarily
+            window.routeDataToSave = {
+                distance: totalDistance / 1000,
+                speed: averageSpeed,
+                time: totalTime,
+                polyline: polylineCoordinates,
+                startLat: waypoints[0].lat,
+                startLng: waypoints[0].lng,
+                location: "Some location"
+            };
         }
-    } else {
-        console.error('Error: polyline is not a valid Leaflet polyline.');
     }
+}[]     
+
+function submitRoute() {
+    const username = document.getElementById("usernameInput").value.trim();
+
+    if (!username) {
+        alert("Username is required.");
+        return;
+    }
+
+    // Hide the popup
+    document.getElementById("usernamePopup").style.display = "none";
+
+    // Get saved route data
+    const data = window.routeDataToSave;
+
+    fetch('https://betaversionwebsite.onrender.com/api/save-run', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            user_id: 1, // Replace if dynamic
+            root: "Vojvodina Trčanje",
+            distance: data.distance,
+            speed: data.speed,
+            time: data.time,
+            polyline: data.polyline,
+            startLat: data.startLat,
+            startLng: data.startLng,
+            location: data.location,
+            username: username // Include username
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Run data saved:', data);
+        alert("Route saved successfully!");
+    })
+    .catch(error => {
+        console.error('Error saving run data:', error);
+        alert("Failed to save route.");
+    });
 }
-
-
-
-        
                 // Add event listener for the Start Route button click
                 document.getElementById("startRouteButton").addEventListener("click", startRoute);
         
@@ -408,19 +423,13 @@ function stopRoute() {
                     timeout: 10000             // Timeout after 10 seconds if no location data is found
                 });
 
-//                 navigator.geolocation.getCurrentPosition((position) => {
-//     const { latitude, longitude } = position.coords;
-
-//     fetch(`http://localhost:5000/api/routes-nearby?lat=${latitude}&lng=${longitude}`)
-//         .then(response => response.json())
-//         .then(data => {
-//             console.log("Routes near me:", data);
-//             // Ovde možeš da ih prikažeš na mapi ili u listi
-//         });
-// });
-
             </script>
         </div>
+    </div>
+    <div id="usernamePopup" style="display: none; position: fixed; top: 30%; left: 50%; transform: translateX(-50%); background: white; padding: 20px; z-index: 1000000001; box-shadow: 0px 0px 10px rgba(0,0,0,0.5); border-radius: 8px;">
+        <label for="usernameInput"> Enter Name </label>
+        <input type="text" id="usernameInput" placeholder="Name" style="margin-top: 10px; padding: 5px; width: 100%;" /><br><br>
+        <button onclick="submitRoute()" style="margin-left: 30%; padding: 8px 16px;">Save Route</button>
     </div>
     </body>
     <script defer src="Data.js"></script>
