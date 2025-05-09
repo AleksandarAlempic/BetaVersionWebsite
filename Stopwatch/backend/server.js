@@ -110,11 +110,16 @@ const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;  // Set this in your .e
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 app.post('/api/save-run', async (req, res) => {
-  const { user_id, root, distance, speed, time, polyline, startLat, startLng, location = "Unknown Location" } = req.body;
+  const { user_id, root, distance, speed, time, polyline, startLat, startLng, location = "Unknown Location", username } = req.body;
 
   if (!user_id) {
     return res.status(400).json({ error: "User ID is required" });
   }
+
+  if (!username) {
+    return res.status(400).json({ error: "Username is required" });
+  }
+
 
   try {
     const { data, error } = await supabase
@@ -122,6 +127,7 @@ app.post('/api/save-run', async (req, res) => {
       .insert([
         {
           user_id,
+          username,
           distance,
           time_seconds: time,
           speed,
