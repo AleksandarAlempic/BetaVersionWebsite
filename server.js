@@ -110,11 +110,16 @@ const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;  // Set this in your .e
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 app.post('/api/save-run', async (req, res) => {
-  const { user_id, root, distance, speed, time, polyline, startLat, startLng, location = "Unknown Location" } = req.body;
+  const { user_id, root, distance, speed, time, polyline, startLat, startLng, location = "Unknown Location", username } = req.body;
 
   if (!user_id) {
     return res.status(400).json({ error: "User ID is required" });
   }
+
+  if (!username) {
+    return res.status(400).json({ error: "Username is required" });
+  }
+
 
   try {
     const { data, error } = await supabase
@@ -122,6 +127,7 @@ app.post('/api/save-run', async (req, res) => {
       .insert([
         {
           user_id,
+          username,
           distance,
           time_seconds: time,
           speed,
@@ -149,40 +155,42 @@ app.post('/api/save-run', async (req, res) => {
 app.get('/api/routes-nearby', async (req, res) => {
   const { lat, lng } = req.query;
 
-  if (!lat || !lng) {
-    return res.status(400).json({ error: "Missing lat or lng parameter" });
-  }
-
-  const userLat = parseFloat(lat);
-  const userLng = parseFloat(lng);
-  const radiusInDegrees = 0.005; // ~500m buffer (approx.)
-
   try {
+    const radius = 0.5; // 500 meters
+
+    // ✅ Parse query params as floats
+    const latNum = parseFloat(lat);
+    const lngNum = parseFloat(lng);
+
+    if (isNaN(latNum) || isNaN(lngNum)) {
+      return res.status(400).json({ error: "Invalid latitude or longitude" });
+    }
+
+    const latMin = latNum - radius;
+    const latMax = latNum + radius;
+    const lngMin = lngNum - radius;
+    const lngMax = lngNum + radius;
+
     const { data, error } = await supabase
       .from('runs')
       .select('*')
-      .gte('start_lat', userLat - radiusInDegrees)
-      .lte('start_lat', userLat + radiusInDegrees)
-      .gte('start_lng', userLng - radiusInDegrees)
-      .lte('start_lng', userLng + radiusInDegrees);
+      .gte('start_lat', latMin)
+      .lte('start_lat', latMax)
+      .gte('start_lng', lngMin)
+      .lte('start_lng', lngMax);
 
     if (error) {
       console.error("Error fetching nearby routes:", error);
       return res.status(500).json({ error: "Failed to fetch nearby routes" });
     }
 
-    const formatted = data.map(route => ({
-      id: route.id,
-      polyline: JSON.parse(route.polyline),
-      routeName: route.route || "Unnamed Route"
-    }));
-
-    res.json(formatted);
+    res.json(data);
   } catch (err) {
     console.error("Error fetching nearby routes:", err);
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));

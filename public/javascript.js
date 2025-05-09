@@ -380,5 +380,58 @@ musicPlayer.addEventListener('click', () => {
    }
 });
 
+function drawNearbyRoutesOnLeaflet(routes) {
+   if (!Array.isArray(routes)) {
+       console.error("drawNearbyRoutesOnLeaflet received non-array:", routes);
+       return;
+   }
 
+   routes.forEach(route => {
+   try {
+  const parsedPolyline = JSON.parse(route.polyline);
+  const latlngs = parsedPolyline.map(coord => L.latLng(coord.lat, coord.lng));
+  const polyline = L.polyline(latlngs, {
+    color: 'red',
+    weight: 4,
+    opacity: 0.7
+  }).addTo(map);
+  polyline.bindPopup(`<b>${route.routeName || "Unnamed Route"}</b>`);
+} catch (e) {
+  console.warn("Invalid polyline format for route:", route);
+} });
+}
+
+
+
+function fetchNearbyRoutes(lat, lng) {
+    console.log("Fetching nearby routes for:", lat, lng);
+
+    fetch(`https://betaversionwebsite.onrender.com/api/routes-nearby?lat=${lat}&lng=${lng}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log("API response:", data);
+
+            if (data.error) {
+                console.error("API Error:", data.error);
+                return;
+            }
+
+            if (!Array.isArray(data)) {
+                console.warn("Expected an array but got:", data);
+                return;
+            }
+
+            if (data.length === 0) {
+                console.log("No nearby routes found.");
+                // Optionally show this in the UI
+                alert("No nearby routes found.");
+                return;
+            }
+
+            drawNearbyRoutesOnLeaflet(data);
+        })
+        .catch(err => {
+            console.error("Fetch failed:", err);
+        });
+}
 
