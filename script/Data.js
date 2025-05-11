@@ -7,7 +7,7 @@ let introSongs = [
    path: 'audio/WakaWaka.mp3',       
    artist: 'Shakira',
    cover: 'images/audio/WakaWaka.jpg' 
-  }
+  },
    {
       name: 'La la la',
       path: '../audio/Shakira%20-%20La%20La%20La%20(Brazil%202014)%20ft.%20Carlinhos%20Brown.mp3',
