@@ -5,7 +5,7 @@ let introSongs = [
 
    {
       name: 'Waka waka',
-      path: '../audio/Waka Waka (Esto es Africa).mp3',
+      path: '../audio/WakaWaka.mp3',
       artist: 'Shakira',
       cover: 'images/audio/WakaWaka.jpg'
    },
