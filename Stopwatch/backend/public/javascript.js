@@ -381,6 +381,7 @@ musicPlayer.addEventListener('click', () => {
 });
 
 function drawNearbyRoutesOnLeaflet(routes) {
+
    if (!Array.isArray(routes)) {
        console.error("drawNearbyRoutesOnLeaflet received non-array:", routes);
        return;
@@ -401,10 +402,49 @@ function drawNearbyRoutesOnLeaflet(routes) {
 } });
 }
 
+function displayRouteWithLabel(route) {
+   const polyline = L.polyline(route.polyline, {
+       color: 'blue',
+       weight: 4,
+       opacity: 0.8
+   }).addTo(map);
+
+   // Find the top-most (highest latitude) coordinate
+   const topCoord = route.polyline.reduce((top, coord) =>
+       coord.lat > top.lat ? coord : top
+   );
+
+   // Format the label text
+   const labelText = `${route.username} | ${route.distance.toFixed(2)} km | ${route.speed.toFixed(2)} km/h`;
+
+   // Add a label/marker using a divIcon
+   const label = L.marker(topCoord, {
+       icon: L.divIcon({
+           className: 'route-label',
+           html: `<div style="
+               background: white;
+               border: 1px solid #ccc;
+               padding: 4px 8px;
+               border-radius: 5px;
+               font-size: 13px;
+               box-shadow: 0px 1px 4px rgba(0,0,0,0.3);
+               ">
+               ${labelText}
+           </div>`,
+           iconAnchor: [0, 0]
+       })
+   }).addTo(map);
+}
+
 
 
 function fetchNearbyRoutes(lat, lng) {
     console.log("Fetching nearby routes for:", lat, lng);
+
+    data.forEach(route => {
+      displayRouteWithLabel(route);  // <- add this line
+  });
+
 
     fetch(`https://betaversionwebsite.onrender.com/api/routes-nearby?lat=${lat}&lng=${lng}`)
         .then(res => res.json())
