@@ -42,7 +42,7 @@ let introSongs = [
       name: 'Out of Touch',
       path: 'audio/Hall%20&%20Oates%20-%20Out%20of%20Touch.mp3',
       artist: 'Hall & Oates',
-      cover: 'images/audio/Hall%20&%20Oates.jpg'
+      cover: 'images/audio/OutOfTouch.webp'
    },
    {
       name: 'The Power Of Love',
@@ -213,6 +213,18 @@ let narodnjaciSongs = [
       cover: 'images/audio/AnaBekuta.jpg'
    },
    {
+      name: 'Opet imam razloga da zivim',
+      path: 'audio/Ana Bekuta - Opet imam razloga da zivim.mp3',
+      artist: 'Ana Bekuta',
+      cover: 'images/audio/AnaBekuta1.jpg'
+   },
+   {
+      name: 'Srpkinja je mene majka rodila',
+      path: 'audio/Cakana & Sastav Svitanje - Srpkinja je mene majka rodila.mp3',
+      artist: 'Cakana',
+      cover: 'images/audio/SrpkinjaJeMeneMajkaRodila.jpg'
+   },
+   {
       name: 'Molitva',
       path: 'audio/MARIJA%20SERIFOVIC%20-%20MOLITVA%20-%20(OFFICIAL%20VIDEO%202020).mp3',
       artist: 'Marija Serifovic',
@@ -224,12 +236,12 @@ let narodnjaciSongs = [
       artist: 'Aleksandra Radovic',
       cover: 'images/audio/AleksandraRadovic.jpg'
    },
-   {
-      name: 'Sve po starom',
-      path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20SVE%20PO%20STAROM%20(OFFICIAL%20VIDEO).mp3',
-      artist: 'Aleksandra Prijovic',
-      cover: 'images/audio/PrijovicSvePoStarom.jpg'
-   },
+   // {
+   //    name: 'Sve po starom',
+   //    path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20SVE%20PO%20STAROM%20(OFFICIAL%20VIDEO).mp3',
+   //    artist: 'Aleksandra Prijovic',
+   //    cover: 'images/audio/PrijovicSvePoStarom.jpg'
+   // },
    {
       name: 'Legitimno',
       path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20LEGITIMNO%20(OFFICIAL%20VIDEO%202020).mp3',
@@ -242,12 +254,12 @@ let narodnjaciSongs = [
       artist: 'Aleksandra Prijovic',
       cover: 'images/audio/Placebo.jpg'
    },
-   {
-      name: 'Boli Boli',
-      path: 'audio/Ivana%20Selakov%20x%20Amar%20Gile%20-%20BOLI%20BOLI%20(Official%20Video%202020).mp3',
-      artist: 'Ivana Selakov & Amar Gile',
-      cover: 'images/audio/BoliBoliOvaBol.jpg'
-   },
+   // {
+   //    name: 'Boli Boli',
+   //    path: 'audio/Ivana%20Selakov%20x%20Amar%20Gile%20-%20BOLI%20BOLI%20(Official%20Video%202020).mp3',
+   //    artist: 'Ivana Selakov & Amar Gile',
+   //    cover: 'images/audio/BoliBoliOvaBol.jpg'
+   // },
    {
       name: 'Ruzo Rumena',
       path: 'audio/RUZO%20RUMENA%20-%20Dragan%20Jovanovic.mp3',
@@ -321,11 +333,30 @@ let rockSongs = [
       artist: 'KC & The Sunshine Band',
       cover: 'images/audio/GiveItUp.jpg'
    },
+   // {
+   //    name: 'Voulez-Vous',
+   //    path: 'audio/ABBA%20-%20Voulez-Vous%20(Lyric%20Video).mp3',
+   //    artist: 'ABBA',
+   //    cover: 'images/audio/Voulez-Vous.jpg'
+   // },
    {
       name: 'Out of Touch',
-      path: 'audio/Hall%20&%20Oates%20-%20Out%20of%20Touch.mp3',
+      path: 'audio/Out of Touch.mp3',
       artist: 'Hall & Oates',
       cover: 'images/audio/Hall%20&%20Oates.jpg'
+   },
+
+   {
+      name: 'I Will Survive',
+      path: 'audio/Gloria Gaynor - I Will Survive.mp3',
+      artist: 'Gloria Gaynor',
+      cover: 'images/audio/GloriaIWillSurvive.jpg'
+   },
+   {
+      name: 'Hot Stuff',
+      path: 'audio/Hot Stuff.mp3',
+      artist: 'Donna Summer',
+      cover: 'images/audio/Hot Stuff.jpg'
    },
    {
       name: 'Gimme! Gimme!',
@@ -334,17 +365,17 @@ let rockSongs = [
       cover: 'images/audio/ABBA-GimmeGimmeGimme-video.png'
    },
    {
-      name: 'Voulez-Vous',
-      path: 'audio/ABBA%20-%20Voulez-Vous%20(Lyric%20Video).mp3',
-      artist: 'ABBA',
-      cover: 'images/audio/Voulez-Vous.jpg'
+      name: 'Cheri Cheri Lady',
+      path: 'audio/Modern Talking - Cheri Cheri Lady (OfficialVideo).mp3',
+      artist: 'Modern Talking',
+      cover: 'images/audio/CherryCherry.jpg'
    },
    {
-      name: 'Vracaju se dani pobede',
-      path: 'audio/Grupa%20JNA%20-%20Vracaju%20se%20dani%20pobede.mp3',
-      artist: '',
-      cover: 'images/audio/GrupaJNA.jpg'
-   }
+      name: 'Bella Ciao',
+      path: 'audio/Bella Ciao.mp3',
+      artist: 'Goran Bregovic',
+      cover: 'images/audio/BellaCiao.jpg'
+   },
 ]
 
 playLists.push(rockSongs);
