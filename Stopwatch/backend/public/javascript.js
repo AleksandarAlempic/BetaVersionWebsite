@@ -403,21 +403,26 @@ function drawNearbyRoutesOnLeaflet(routes) {
 }
 
 function displayRouteWithLabel(route) {
-   const polyline = L.polyline(route.polyline, {
+   let latlngs;
+   try {
+      latlngs = JSON.parse(route.polyline).map(coord => L.latLng(coord.lat, coord.lng));
+   } catch (err) {
+      console.error("Failed to parse polyline for route:", route, err);
+      return;
+   }
+
+   const polyline = L.polyline(latlngs, {
        color: 'blue',
        weight: 4,
        opacity: 0.8
    }).addTo(map);
 
-   // Find the top-most (highest latitude) coordinate
-   const topCoord = route.polyline.reduce((top, coord) =>
+   const topCoord = latlngs.reduce((top, coord) =>
        coord.lat > top.lat ? coord : top
    );
 
-   // Format the label text
    const labelText = `${route.username} | ${route.distance.toFixed(2)} km | ${route.speed.toFixed(2)} km/h`;
 
-   // Add a label/marker using a divIcon
    const label = L.marker(topCoord, {
        icon: L.divIcon({
            className: 'route-label',
@@ -435,7 +440,6 @@ function displayRouteWithLabel(route) {
        })
    }).addTo(map);
 }
-
 
 
 function fetchNearbyRoutes(lat, lng) {
