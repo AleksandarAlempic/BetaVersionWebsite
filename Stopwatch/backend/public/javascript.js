@@ -441,9 +441,7 @@ function displayRouteWithLabel(route) {
 function fetchNearbyRoutes(lat, lng) {
     console.log("Fetching nearby routes for:", lat, lng);
 
-    data.forEach(route => {
-      displayRouteWithLabel(route);  // <- add this line
-  });
+   
 
 
     fetch(`https://betaversionwebsite.onrender.com/api/routes-nearby?lat=${lat}&lng=${lng}`)
@@ -467,6 +465,10 @@ function fetchNearbyRoutes(lat, lng) {
                 alert("No nearby routes found.");
                 return;
             }
+
+            data.forEach(route => {
+               displayRouteWithLabel(route);  // <- add this line
+           });
 
             drawNearbyRoutesOnLeaflet(data);
         })
