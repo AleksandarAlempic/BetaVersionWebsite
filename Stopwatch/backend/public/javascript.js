@@ -480,4 +480,4 @@ function fetchNearbyRoutes(lat, lng) {
             console.error("Fetch failed:", err);
         });
 }
-
+}
