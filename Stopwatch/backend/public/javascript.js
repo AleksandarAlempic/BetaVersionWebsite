@@ -429,15 +429,19 @@ const label = L.marker(topCoord, {
         html: `<div style="
             background: white;
             border: 1px solid #ccc;
-            padding: 4px 8px;
-            border-radius: 5px;
-            font-size: 13px;
-            box-shadow: 0px 1px 4px rgba(0,0,0,0.3);
-            white-space: nowrap;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0px 2px 6px rgba(0,0,0,0.25);
+            max-width: 250px;
+            display: inline-block;
+            white-space: normal;
+            line-height: 1.4;
         ">
             ${labelText}
         </div>`,
-        iconAnchor: [30, 15] // adjust based on your label's estimated size
+        iconAnchor: [30, 15] // adjust based on new size
     })
 }).addTo(map);
 
