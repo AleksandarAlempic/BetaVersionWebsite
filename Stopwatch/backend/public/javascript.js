@@ -442,6 +442,8 @@ const label = L.marker(topCoord, {
 }).addTo(map);
 
 
+}
+
 function fetchNearbyRoutes(lat, lng) {
     console.log("Fetching nearby routes for:", lat, lng);
 
@@ -480,4 +482,6 @@ function fetchNearbyRoutes(lat, lng) {
             console.error("Fetch failed:", err);
         });
 }
-}
+
+
+ 
