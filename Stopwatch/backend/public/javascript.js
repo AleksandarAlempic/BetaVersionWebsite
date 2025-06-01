@@ -423,23 +423,23 @@ function displayRouteWithLabel(route) {
 
    const labelText = `${route.username} | ${route.distance.toFixed(2)} km | ${route.speed.toFixed(2)} km/h`;
 
-   const label = L.marker(topCoord, {
-       icon: L.divIcon({
-           className: 'route-label',
-           html: `<div style="
-               background: white;
-               border: 1px solid #ccc;
-               padding: 4px 8px;
-               border-radius: 5px;
-               font-size: 13px;
-               box-shadow: 0px 1px 4px rgba(0,0,0,0.3);
-               ">
-               ${labelText}
-           </div>`,
-           iconAnchor: [0, 0]
-       })
-   }).addTo(map);
-}
+const label = L.marker(topCoord, {
+    icon: L.divIcon({
+        className: 'route-label',
+        html: `<div style="
+            background: white;
+            border: 1px solid #ccc;
+            padding: 4px 8px;
+            border-radius: 5px;
+            font-size: 13px;
+            box-shadow: 0px 1px 4px rgba(0,0,0,0.3);
+            white-space: nowrap;
+        ">
+            ${labelText}
+        </div>`,
+        iconAnchor: [30, 15] // adjust based on your label's estimated size
+    })
+}).addTo(map);
 
 
 function fetchNearbyRoutes(lat, lng) {
