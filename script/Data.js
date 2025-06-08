@@ -194,12 +194,14 @@ let classicSongs = [
 playLists.push(classicSongs);
 
 let narodnjaciSongs = [
+
    {
-      name: 'Kazni me',
-      path: 'audio/Vesna%20Zmijanac%20-%20Kazni%20me%20-%20(Audio%201989)%20HD%20(mp3cut.net).mp3',
-      artist: 'Vesna Zmijanac',
-      cover: 'images/audio/KazniMeKazni.jpg'
+      name: 'Legitimno',
+      path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20LEGITIMNO%20(OFFICIAL%20VIDEO%202020).mp3',
+      artist: 'Aleksandra Prijovic',
+      cover: 'images/audio/Legitimno.jpg'
    },
+
    {
       name: 'Jutro je',
       path: 'audio/Nada%20Topcagic%20-%20Jutro%20je%20-%20(Audio%201990)%20HD%20(128%20kbps).mp3',
@@ -224,6 +226,42 @@ let narodnjaciSongs = [
       artist: 'Cakana',
       cover: 'images/audio/SrpkinjaJeMeneMajkaRodila.jpg'
    },
+
+   {
+      name: 'Ej, dragi, dragi',
+      path: 'audio/Cakana - Ej, dragi, dragi - (Audio 2009).mp3',
+      artist: 'Cakana',
+      cover: 'images/audio/EjDragi.jpg'
+   },
+
+   {
+      name: 'Ruzo Rumena',
+      path: 'audio/RUZO%20RUMENA%20-%20Dragan%20Jovanovic.mp3',
+      artist: 'Dragan Jovanovic',
+      cover: 'images/audio/RuzoRumena.jpeg'
+   },
+
+   {
+      name: 'Malo po malo',
+      path: 'audio/Vesna Zmijanac - Malo po malo - (Official Video 1995).mp3',
+      artist: 'Vesna Zmijanac',
+      cover: 'images/audio/MaloPoMalo.jpg'
+   },
+
+   {
+      name: 'Pristajem na sve',
+      path: 'audio/Semsa Suljakovic i Juzni Vetar - Pristajem na sve (Audio 1986).mp3',
+      artist: 'Semsa Suljakovic',
+      cover: 'images/audio/SemsaSuljakovic.jpg'
+   },
+
+   {
+      name: 'Kazni me',
+      path: 'audio/Vesna%20Zmijanac%20-%20Kazni%20me%20-%20(Audio%201989)%20HD%20(mp3cut.net).mp3',
+      artist: 'Vesna Zmijanac',
+      cover: 'images/audio/KazniMeKazni.jpg'
+   },
+
    {
       name: 'Molitva',
       path: 'audio/MARIJA%20SERIFOVIC%20-%20MOLITVA%20-%20(OFFICIAL%20VIDEO%202020).mp3',
@@ -236,18 +274,7 @@ let narodnjaciSongs = [
       artist: 'Aleksandra Radovic',
       cover: 'images/audio/AleksandraRadovic.jpg'
    },
-   // {
-   //    name: 'Sve po starom',
-   //    path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20SVE%20PO%20STAROM%20(OFFICIAL%20VIDEO).mp3',
-   //    artist: 'Aleksandra Prijovic',
-   //    cover: 'images/audio/PrijovicSvePoStarom.jpg'
-   // },
-   {
-      name: 'Legitimno',
-      path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20LEGITIMNO%20(OFFICIAL%20VIDEO%202020).mp3',
-      artist: 'Aleksandra Prijovic',
-      cover: 'images/audio/Legitimno.jpg'
-   },
+ 
    {
       name: 'Placebo',
       path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20PLACEBO%20(OFFICIAL%20VIDEO)%20(1).mp3',
@@ -260,12 +287,7 @@ let narodnjaciSongs = [
    //    artist: 'Ivana Selakov & Amar Gile',
    //    cover: 'images/audio/BoliBoliOvaBol.jpg'
    // },
-   {
-      name: 'Ruzo Rumena',
-      path: 'audio/RUZO%20RUMENA%20-%20Dragan%20Jovanovic.mp3',
-      artist: 'Dragan Jovanovic',
-      cover: 'images/audio/RuzoRumena.jpeg'
-   }
+ 
 ]
 
 playLists.push(narodnjaciSongs);
