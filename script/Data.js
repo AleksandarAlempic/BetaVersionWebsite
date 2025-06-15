@@ -151,11 +151,15 @@ let classicSongs = [
       artist: 'Mozart',
       cover: 'images/audio/Wolfgang-Amadeus-Mozart-scaled.jpeg'
    },
- 
-
    {
       name: 'Concerto No.4',
       path: 'audio/Antonio Vivaldi - Concerto No.4 in F minor.mp3',
+      artist: 'Antonio Vivaldi',
+      cover: 'images/audio/AntonioVivaldi.jpg'
+   },
+    {
+      name: 'Spring ',
+      path: 'audio/Vivaldi Four Seasons_ Spring (La Primavera) Full, original. Youssefian & Voices of Music RV 269 4K.mp3',
       artist: 'Antonio Vivaldi',
       cover: 'images/audio/AntonioVivaldi.jpg'
    },
