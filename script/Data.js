@@ -129,9 +129,6 @@ let classicSongs = [
       artist: 'Mozart',
       cover: 'images/audio/Wolfgang-Amadeus-Mozart-scaled.jpeg'
    },
-
-  
-
    {
       name: 'The Power Of Love',
       path: 'audio/IL DIVO - The Power Of Love (La Fuerza Mayor) (Live Video).mp3',
@@ -143,6 +140,13 @@ let classicSongs = [
       path: 'audio/Alone (Solo).mp3',
       artist: 'IL DIVO',
       cover: 'images/audio/Alone.jpg'
+   },
+
+     {
+      name: 'The Riders of Rohan',
+      path: 'audio/The Lord Of The Rings - The Riders of Rohan - Erhu & Violin cover.mp3',
+      artist: 'The Lord Of The Rings',
+      cover: 'images/audio/RidersOfRohan.jpg'
    },
 
     {
@@ -163,12 +167,24 @@ let classicSongs = [
       artist: 'Antonio Vivaldi',
       cover: 'images/audio/AntonioVivaldi.jpg'
    },
+    {
+      name: 'Sicilienne',
+      path: 'audio/Sicilienne, Op. 78.mp3',
+      artist: 'Sicilienne, Op. 78',
+      cover: 'images/audio/Sicilienne, Op. 78.jpg'
+   },  
    {
-      name: 'The Riders of Rohan',
-      path: 'audio/The Lord Of The Rings - The Riders of Rohan - Erhu & Violin cover.mp3',
-      artist: 'The Lord Of The Rings',
-      cover: 'images/audio/RidersOfRohan.jpg'
-   },
+      name: 'The Second Waltz, Op. 99a',
+      path: 'audio/The Second Waltz, Op. 99a.mp3',
+      artist: 'The Second Waltz',
+      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
+   },  
+    {
+      name: 'Hungarian Dance No.5',
+      path: 'audio/Johannes Brahms -- Hungarian Dance No.5 - Hungarian Symphony Orchestra Budapest (1).mp3',
+      artist: 'Johannes Brahms',
+      cover: 'images/audio/Hungarian Dance No.5.jpg'
+   },  
 
    // {
    //    name: 'Hall of Fame',
