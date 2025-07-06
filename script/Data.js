@@ -141,14 +141,6 @@ let classicSongs = [
       artist: 'IL DIVO',
       cover: 'images/audio/Alone.jpg'
    },
-
-     {
-      name: 'The Riders of Rohan',
-      path: 'audio/The Lord Of The Rings - The Riders of Rohan - Erhu & Violin cover.mp3',
-      artist: 'The Lord Of The Rings',
-      cover: 'images/audio/RidersOfRohan.jpg'
-   },
-
     {
       name: 'E.K. Nachtmusik',
       path: 'audio/Eine Kleine Nachtmusik - Mozart.mp3',
@@ -167,12 +159,6 @@ let classicSongs = [
       artist: 'Antonio Vivaldi',
       cover: 'images/audio/AntonioVivaldi.jpg'
    },
-    {
-      name: 'Sicilienne',
-      path: 'audio/Sicilienne, Op. 78.mp3',
-      artist: 'Sicilienne, Op. 78',
-      cover: 'images/audio/Sicilienne, Op. 78.jpg'
-   },  
    {
       name: 'The Second Waltz, Op. 99a',
       path: 'audio/The Second Waltz, Op. 99a.mp3',
@@ -185,6 +171,19 @@ let classicSongs = [
       artist: 'Johannes Brahms',
       cover: 'images/audio/Hungarian Dance No.5.jpg'
    },  
+    {
+      name: 'Sicilienne',
+      path: 'audio/Sicilienne, Op. 78.mp3',
+      artist: 'Sicilienne, Op. 78',
+      cover: 'images/audio/Sicilienne, Op. 78.jpg'
+   },  
+
+   {
+      name: 'The Riders of Rohan',
+      path: 'audio/The Lord Of The Rings - The Riders of Rohan - Erhu & Violin cover.mp3',
+      artist: 'The Lord Of The Rings',
+      cover: 'images/audio/RidersOfRohan.jpg'
+   },
 
    // {
    //    name: 'Hall of Fame',
