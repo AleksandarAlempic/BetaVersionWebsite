@@ -192,6 +192,20 @@ let classicSongs = [
    //    cover: 'images/audio/HallOfFame.jpg '
    // },  
 
+     {
+      name: 'Victory',
+      path: 'audio/Two Steps From Hell - Victory.mp3',
+      artist: 'Two Steps From Hell',
+      cover: 'images/audio/VictoryTwoStepsFromHell.jpg'
+   },  
+
+     {
+      name: 'Victory',
+      path: 'audio/Two Steps From Hell - Victory.mp3',
+      artist: 'Two Steps From Hell',
+      cover: 'images/audio/VictoryTwoStepsFromHell.jpg'
+   }, 
+
     {
       name: 'Der letzte Mohikaner',
       path: 'audio/Der letzte Mohikaner.mp3',
