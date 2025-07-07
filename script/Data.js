@@ -159,6 +159,12 @@ let classicSongs = [
       artist: 'Antonio Vivaldi',
       cover: 'images/audio/AntonioVivaldi.jpg'
    },
+    {
+      name: 'Sicilienne',
+      path: 'audio/Sicilienne, Op. 78.mp3',
+      artist: 'Sicilienne, Op. 78',
+      cover: 'images/audio/Sicilienne, Op. 78.jpg'
+   },  
    {
       name: 'The Second Waltz, Op. 99a',
       path: 'audio/The Second Waltz, Op. 99a.mp3',
@@ -171,12 +177,7 @@ let classicSongs = [
       artist: 'Johannes Brahms',
       cover: 'images/audio/Hungarian Dance No.5.jpg'
    },  
-    {
-      name: 'Sicilienne',
-      path: 'audio/Sicilienne, Op. 78.mp3',
-      artist: 'Sicilienne, Op. 78',
-      cover: 'images/audio/Sicilienne, Op. 78.jpg'
-   },  
+
 
    {
       name: 'The Riders of Rohan',
