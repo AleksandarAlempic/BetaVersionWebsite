@@ -282,6 +282,13 @@ let narodnjaciSongs = [
       cover: 'images/audio/SemsaSuljakovic.jpg'
    },
 
+    {
+      name: 'Zar za mene nema srece',
+      path: 'audio/Zar za mene nema srece.mp3',
+      artist: 'Semsa Suljakovic',
+      cover: 'images/audio/SemsaSuljakovic.jpg'
+   },
+
    {
       name: 'Kazni me',
       path: 'audio/Vesna%20Zmijanac%20-%20Kazni%20me%20-%20(Audio%201989)%20HD%20(mp3cut.net).mp3',
