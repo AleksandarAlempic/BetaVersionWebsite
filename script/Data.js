@@ -320,28 +320,41 @@ playLists.push(narodnjaciSongs);
 
 let danceSongs = [
    {
-      name: 'Aint Your Mama',
-      path: 'audio/Jennifer%20Lopez%20-%20Aint%20Your%20Mama%20(Lyrics)%20we%20used%20to%20be%20crazy%20in%20love.mp3',
-      artist: 'Jennifer Lopez',
-      cover: 'images/audio/JenniferLopez.jpg'
+      name: 'La la la',
+      path: 'audio/Shakira%20-%20La%20La%20La%20(Brazil%202014)%20ft.%20Carlinhos%20Brown.mp3',
+      artist: 'Shakira ft. Carlinhos Brown',
+      cover: 'images/audio/Shakira.jpg'
    },
-   {
-      name: 'Say It Right',
-      path: 'audio/Nelly%20Furtado%20-%20Say%20It%20Right%20(Official%20Music%20Video).mp3',
-      artist: 'Nelly Furtado',
-      cover: 'images/audio/NellyFurtado.jpg'
+    {
+      name: 'Ni Tu Ni Yo',
+      path: 'audio/Jennifer%20Lopez%20-%20Ni%20Tu%20Ni%20Yo%20(Official%20Audio)%20ft.%20Gente%20de%20Zona.mp3',
+      artist: 'J Lopez ft. Gente de Zona',
+      cover: 'images/audio/NiTuNiJo.jpg'
    },
+  
    {
       name: 'Amor, Amor',
       path: 'audio/Jennifer%20Lopez%20-%20Amor,%20Amor,%20Amor%20(Official%20Video)%20ft.%20Wisin.mp3',
       artist: 'J.Lopez ft. Wisin',
       cover: 'images/audio/JeniferLopezAmor.jpg'
    },
+    {
+      name: 'Walk',
+      path: 'audio/Kwabs%20-%20Walk%20(Official%20Video).mp3',
+      artist: 'Kwabs',
+      cover: 'images/audio/Kwabs.jpg'
+   },
    {
-      name: 'Ni Tu Ni Yo',
-      path: 'audio/Jennifer%20Lopez%20-%20Ni%20Tu%20Ni%20Yo%20(Official%20Audio)%20ft.%20Gente%20de%20Zona.mp3',
-      artist: 'J Lopez ft. Gente de Zona',
-      cover: 'images/audio/NiTuNiJo.jpg'
+      name: 'Aint Your Mama',
+      path: 'audio/Jennifer%20Lopez%20-%20Aint%20Your%20Mama%20(Lyrics)%20we%20used%20to%20be%20crazy%20in%20love.mp3',
+      artist: 'Jennifer Lopez',
+      cover: 'images/audio/JenniferLopez.jpg'
+   }, 
+   {
+      name: 'Say It Right',
+      path: 'audio/Nelly%20Furtado%20-%20Say%20It%20Right%20(Official%20Music%20Video).mp3',
+      artist: 'Nelly Furtado',
+      cover: 'images/audio/NellyFurtado.jpg'
    },
    {
       name: 'Vivir Mi Vida',
@@ -355,18 +368,8 @@ let danceSongs = [
       artist: 'Pitbull feat J.Lopez&C.Leitte',
       cover: 'images/audio/WeAreOne.jpg'
    },
-   {
-      name: 'Walk',
-      path: 'audio/Kwabs%20-%20Walk%20(Official%20Video).mp3',
-      artist: 'Kwabs',
-      cover: 'images/audio/Kwabs.jpg'
-   },
-   {
-      name: 'La la la',
-      path: 'audio/Shakira%20-%20La%20La%20La%20(Brazil%202014)%20ft.%20Carlinhos%20Brown.mp3',
-      artist: 'Shakira ft. Carlinhos Brown',
-      cover: 'images/audio/Shakira.jpg'
-   }
+  
+  
    // Uncomment and add more songs as needed
 ]
 
