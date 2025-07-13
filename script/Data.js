@@ -215,7 +215,19 @@ let classicSongs = [
 playLists.push(classicSongs);
 
 let narodnjaciSongs = [
-
+   
+    {
+      name: 'Placebo',
+      path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20PLACEBO%20(OFFICIAL%20VIDEO)%20(1).mp3',
+      artist: 'Aleksandra Prijovic',
+      cover: 'images/audio/Placebo.jpg'
+   },
+    {
+      name: 'Pristajem na sve',
+      path: 'audio/Semsa Suljakovic i Juzni Vetar - Pristajem na sve (Audio 1986).mp3',
+      artist: 'Semsa Suljakovic',
+      cover: 'images/audio/SemsaSuljakovic.jpg'
+   },
      {
       name: 'Opet imam razloga da zivim',
       path: 'audio/Ana Bekuta - Opet imam razloga da zivim.mp3',
@@ -248,13 +260,6 @@ let narodnjaciSongs = [
       path: 'audio/Vesna%20Zmijanac%20-%20Kazni%20me%20-%20(Audio%201989)%20HD%20(mp3cut.net).mp3',
       artist: 'Vesna Zmijanac',
       cover: 'images/audio/KazniMeKazni.jpg'
-   },
-
-    {
-      name: 'Pristajem na sve',
-      path: 'audio/Semsa Suljakovic i Juzni Vetar - Pristajem na sve (Audio 1986).mp3',
-      artist: 'Semsa Suljakovic',
-      cover: 'images/audio/SemsaSuljakovic.jpg'
    },
       {
       name: 'Zar za mene nema srece',
@@ -300,12 +305,7 @@ let narodnjaciSongs = [
       artist: 'Aleksandra Prijovic',
       cover: 'images/audio/Legitimno.jpg'
    },
-   {
-      name: 'Placebo',
-      path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20PLACEBO%20(OFFICIAL%20VIDEO)%20(1).mp3',
-      artist: 'Aleksandra Prijovic',
-      cover: 'images/audio/Placebo.jpg'
-   },
+  
    // {
    //    name: 'Boli Boli',
    //    path: 'audio/Ivana%20Selakov%20x%20Amar%20Gile%20-%20BOLI%20BOLI%20(Official%20Video%202020).mp3',
