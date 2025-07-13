@@ -268,20 +268,13 @@ let narodnjaciSongs = [
       artist: 'Cakana',
       cover: 'images/audio/SrpkinjaJeMeneMajkaRodila.jpg'
    },
-   {
-      name: 'Legitimno',
-      path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20LEGITIMNO%20(OFFICIAL%20VIDEO%202020).mp3',
-      artist: 'Aleksandra Prijovic',
-      cover: 'images/audio/Legitimno.jpg'
-   },
-
-   {
+     {
       name: 'Ej, dragi, dragi',
       path: 'audio/Cakana - Ej, dragi, dragi - (Audio 2009).mp3',
       artist: 'Cakana',
       cover: 'images/audio/EjDragi.jpg'
    },
-
+   
    {
       name: 'Ruzo Rumena',
       path: 'audio/RUZO%20RUMENA%20-%20Dragan%20Jovanovic.mp3',
@@ -301,7 +294,12 @@ let narodnjaciSongs = [
       artist: 'Aleksandra Radovic',
       cover: 'images/audio/AleksandraRadovic.jpg'
    },
- 
+  {
+      name: 'Legitimno',
+      path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20LEGITIMNO%20(OFFICIAL%20VIDEO%202020).mp3',
+      artist: 'Aleksandra Prijovic',
+      cover: 'images/audio/Legitimno.jpg'
+   },
    {
       name: 'Placebo',
       path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20PLACEBO%20(OFFICIAL%20VIDEO)%20(1).mp3',
