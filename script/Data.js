@@ -141,21 +141,33 @@ let classicSongs = [
       artist: 'IL DIVO',
       cover: 'images/audio/Alone.jpg'
    },
-    {
-      name: 'E.K. Nachtmusik',
-      path: 'audio/Eine Kleine Nachtmusik - Mozart.mp3',
-      artist: 'Mozart',
-      cover: 'images/audio/Wolfgang-Amadeus-Mozart-scaled.jpeg'
+      {
+      name: 'The Riders of Rohan',
+      path: 'audio/The Lord Of The Rings - The Riders of Rohan - Erhu & Violin cover.mp3',
+      artist: 'The Lord Of The Rings',
+      cover: 'images/audio/RidersOfRohan.jpg'
    },
-   {
-      name: 'Concerto No.4',
-      path: 'audio/Antonio Vivaldi - Concerto No.4 in F minor.mp3',
+      {
+      name: 'The Second Waltz, Op. 99a',
+      path: 'audio/The Second Waltz, Op. 99a.mp3',
+      artist: 'The Second Waltz',
+      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
+   }, 
+     {
+      name: 'Spring ',
+      path: 'audio/Vivaldi Four Seasons_ Spring (La Primavera) Full, original. Youssefian & Voices of Music RV 269 4K.mp3',
       artist: 'Antonio Vivaldi',
       cover: 'images/audio/AntonioVivaldi.jpg'
    },
-    {
-      name: 'Spring ',
-      path: 'audio/Vivaldi Four Seasons_ Spring (La Primavera) Full, original. Youssefian & Voices of Music RV 269 4K.mp3',
+     {
+      name: 'Hungarian Dance No.5',
+      path: 'audio/Johannes Brahms -- Hungarian Dance No.5 - Hungarian Symphony Orchestra Budapest (1).mp3',
+      artist: 'Johannes Brahms',
+      cover: 'images/audio/Hungarian Dance No.5.jpg'
+   }, 
+      {
+      name: 'Concerto No.4',
+      path: 'audio/Antonio Vivaldi - Concerto No.4 in F minor.mp3',
       artist: 'Antonio Vivaldi',
       cover: 'images/audio/AntonioVivaldi.jpg'
    },
@@ -164,27 +176,20 @@ let classicSongs = [
       path: 'audio/Sicilienne, Op. 78.mp3',
       artist: 'Sicilienne, Op. 78',
       cover: 'images/audio/Sicilienne, Op. 78.jpg'
-   },  
-   {
-      name: 'The Second Waltz, Op. 99a',
-      path: 'audio/The Second Waltz, Op. 99a.mp3',
-      artist: 'The Second Waltz',
-      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
-   },  
+   }, 
     {
-      name: 'Hungarian Dance No.5',
-      path: 'audio/Johannes Brahms -- Hungarian Dance No.5 - Hungarian Symphony Orchestra Budapest (1).mp3',
-      artist: 'Johannes Brahms',
-      cover: 'images/audio/Hungarian Dance No.5.jpg'
-   },  
-
-
-   {
-      name: 'The Riders of Rohan',
-      path: 'audio/The Lord Of The Rings - The Riders of Rohan - Erhu & Violin cover.mp3',
-      artist: 'The Lord Of The Rings',
-      cover: 'images/audio/RidersOfRohan.jpg'
+      name: 'E.K. Nachtmusik',
+      path: 'audio/Eine Kleine Nachtmusik - Mozart.mp3',
+      artist: 'Mozart',
+      cover: 'images/audio/Wolfgang-Amadeus-Mozart-scaled.jpeg'
    },
+
+      {
+      name: 'Victory',
+      path: 'audio/Two Steps From Hell - Victory.mp3',
+      artist: 'Two Steps From Hell',
+      cover: 'images/audio/VictoryTwoStepsFromHell.jpg'
+   }, 
 
    // {
    //    name: 'Hall of Fame',
@@ -192,14 +197,6 @@ let classicSongs = [
    //    artist: 'The Script - ft. will.i.am',
    //    cover: 'images/audio/HallOfFame.jpg '
    // },  
-
-     {
-      name: 'Victory',
-      path: 'audio/Two Steps From Hell - Victory.mp3',
-      artist: 'Two Steps From Hell',
-      cover: 'images/audio/VictoryTwoStepsFromHell.jpg'
-   },  
-
     {
       name: 'Der letzte Mohikaner',
       path: 'audio/Der letzte Mohikaner.mp3',
@@ -213,9 +210,6 @@ let classicSongs = [
       artist: 'Leo Rohas',
       cover: 'images/audio/LeoRohas1.jpg'
    },  
-
- 
-   
 ]
 
 playLists.push(classicSongs);
