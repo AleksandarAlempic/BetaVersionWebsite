@@ -147,6 +147,12 @@ let classicSongs = [
       artist: 'The Lord Of The Rings',
       cover: 'images/audio/RidersOfRohan.jpg'
    },
+       {
+      name: 'Victory',
+      path: 'audio/Two Steps From Hell - Victory.mp3',
+      artist: 'Two Steps From Hell',
+      cover: 'images/audio/VictoryTwoStepsFromHell.jpg'
+   }, 
       {
       name: 'The Second Waltz, Op. 99a',
       path: 'audio/The Second Waltz, Op. 99a.mp3',
@@ -183,13 +189,6 @@ let classicSongs = [
       artist: 'Mozart',
       cover: 'images/audio/Wolfgang-Amadeus-Mozart-scaled.jpeg'
    },
-
-   //    {
-   //    name: 'Victory',
-   //    path: 'audio/Two Steps From Hell - Victory.mp3',
-   //    artist: 'Two Steps From Hell',
-   //    cover: 'images/audio/VictoryTwoStepsFromHell.jpg'
-   // }, 
 
    // {
    //    name: 'Hall of Fame',
