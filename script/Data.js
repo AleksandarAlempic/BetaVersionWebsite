@@ -184,12 +184,12 @@ let classicSongs = [
       cover: 'images/audio/Wolfgang-Amadeus-Mozart-scaled.jpeg'
    },
 
-      {
-      name: 'Victory',
-      path: 'audio/Two Steps From Hell - Victory.mp3',
-      artist: 'Two Steps From Hell',
-      cover: 'images/audio/VictoryTwoStepsFromHell.jpg'
-   }, 
+   //    {
+   //    name: 'Victory',
+   //    path: 'audio/Two Steps From Hell - Victory.mp3',
+   //    artist: 'Two Steps From Hell',
+   //    cover: 'images/audio/VictoryTwoStepsFromHell.jpg'
+   // }, 
 
    // {
    //    name: 'Hall of Fame',
@@ -216,11 +216,18 @@ playLists.push(classicSongs);
 
 let narodnjaciSongs = [
 
-   {
-      name: 'Legitimno',
-      path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20LEGITIMNO%20(OFFICIAL%20VIDEO%202020).mp3',
-      artist: 'Aleksandra Prijovic',
-      cover: 'images/audio/Legitimno.jpg'
+     {
+      name: 'Opet imam razloga da zivim',
+      path: 'audio/Ana Bekuta - Opet imam razloga da zivim.mp3',
+      artist: 'Ana Bekuta',
+      cover: 'images/audio/AnaBekuta1.jpg'
+   },
+
+     {
+      name: 'Imam jedan zivot',
+      path: 'audio/Ana%20Bekuta%20-%20Imam%20jedan%20zivot%20(Sava%20Centar%2022.02.2012.).mp3',
+      artist: 'Ana Bekuta',
+      cover: 'images/audio/AnaBekuta.jpg'
    },
 
    {
@@ -229,23 +236,43 @@ let narodnjaciSongs = [
       artist: 'Nada Topcagic',
       cover: 'images/audio/NadaTopcagic.jpg'
    },
-   {
-      name: 'Imam jedan zivot',
-      path: 'audio/Ana%20Bekuta%20-%20Imam%20jedan%20zivot%20(Sava%20Centar%2022.02.2012.).mp3',
-      artist: 'Ana Bekuta',
-      cover: 'images/audio/AnaBekuta.jpg'
+{
+      name: 'Malo po malo',
+      path: 'audio/Vesna Zmijanac - Malo po malo - (Official Video 1995).mp3',
+      artist: 'Vesna Zmijanac',
+      cover: 'images/audio/MaloPoMalo.jpg'
    },
-   {
-      name: 'Opet imam razloga da zivim',
-      path: 'audio/Ana Bekuta - Opet imam razloga da zivim.mp3',
-      artist: 'Ana Bekuta',
-      cover: 'images/audio/AnaBekuta1.jpg'
+
+    {
+      name: 'Kazni me',
+      path: 'audio/Vesna%20Zmijanac%20-%20Kazni%20me%20-%20(Audio%201989)%20HD%20(mp3cut.net).mp3',
+      artist: 'Vesna Zmijanac',
+      cover: 'images/audio/KazniMeKazni.jpg'
    },
-   {
+
+    {
+      name: 'Pristajem na sve',
+      path: 'audio/Semsa Suljakovic i Juzni Vetar - Pristajem na sve (Audio 1986).mp3',
+      artist: 'Semsa Suljakovic',
+      cover: 'images/audio/SemsaSuljakovic.jpg'
+   },
+      {
+      name: 'Zar za mene nema srece',
+      path: 'audio/Zar za mene nema srece.mp3',
+      artist: 'Semsa Suljakovic',
+      cover: 'images/audio/SemsaSuljakovic.jpg'
+   },
+      {
       name: 'Srpkinja je mene majka rodila',
       path: 'audio/Cakana & Sastav Svitanje - Srpkinja je mene majka rodila.mp3',
       artist: 'Cakana',
       cover: 'images/audio/SrpkinjaJeMeneMajkaRodila.jpg'
+   },
+   {
+      name: 'Legitimno',
+      path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20LEGITIMNO%20(OFFICIAL%20VIDEO%202020).mp3',
+      artist: 'Aleksandra Prijovic',
+      cover: 'images/audio/Legitimno.jpg'
    },
 
    {
@@ -260,34 +287,6 @@ let narodnjaciSongs = [
       path: 'audio/RUZO%20RUMENA%20-%20Dragan%20Jovanovic.mp3',
       artist: 'Dragan Jovanovic',
       cover: 'images/audio/RuzoRumena.jpeg'
-   },
-
-   {
-      name: 'Malo po malo',
-      path: 'audio/Vesna Zmijanac - Malo po malo - (Official Video 1995).mp3',
-      artist: 'Vesna Zmijanac',
-      cover: 'images/audio/MaloPoMalo.jpg'
-   },
-
-   {
-      name: 'Pristajem na sve',
-      path: 'audio/Semsa Suljakovic i Juzni Vetar - Pristajem na sve (Audio 1986).mp3',
-      artist: 'Semsa Suljakovic',
-      cover: 'images/audio/SemsaSuljakovic.jpg'
-   },
-
-    {
-      name: 'Zar za mene nema srece',
-      path: 'audio/Zar za mene nema srece.mp3',
-      artist: 'Semsa Suljakovic',
-      cover: 'images/audio/SemsaSuljakovic.jpg'
-   },
-
-   {
-      name: 'Kazni me',
-      path: 'audio/Vesna%20Zmijanac%20-%20Kazni%20me%20-%20(Audio%201989)%20HD%20(mp3cut.net).mp3',
-      artist: 'Vesna Zmijanac',
-      cover: 'images/audio/KazniMeKazni.jpg'
    },
 
    {
