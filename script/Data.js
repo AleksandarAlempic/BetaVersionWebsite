@@ -389,10 +389,35 @@ let rockSongs = [
    //    cover: 'images/audio/Voulez-Vous.jpg'
    // },
    {
+      name: 'Gimme! Gimme!',
+      path: 'audio/ABBA%20-%20Gimme!%20Gimme!%20Gimme!%20(A%20Man%20After%20Midnight).mp3',
+      artist: 'ABBA',
+      cover: 'images/audio/ABBA-GimmeGimmeGimme-video.png'
+   },
+
+     {
+      name: 'Hot Stuff',
+      path: 'audio/Hot Stuff.mp3',
+      artist: 'Donna Summer',
+      cover: 'images/audio/Hot Stuff.jpg'
+   },
+   {
       name: 'Out of Touch',
       path: 'audio/Out of Touch.mp3',
       artist: 'Hall & Oates',
       cover: 'images/audio/Hall%20&%20Oates.jpg'
+   },
+    {
+      name: 'Cheri Cheri Lady',
+      path: 'audio/Modern Talking - Cheri Cheri Lady (OfficialVideo).mp3',
+      artist: 'Modern Talking',
+      cover: 'images/audio/CherryCherry.jpg'
+   },
+     {
+      name: 'Bella Ciao',
+      path: 'audio/Bella Ciao.mp3',
+      artist: 'Goran Bregovic',
+      cover: 'images/audio/BellaCiao.jpg'
    },
 
    {
@@ -401,30 +426,7 @@ let rockSongs = [
       artist: 'Gloria Gaynor',
       cover: 'images/audio/GloriaIWillSurvive.jpg'
    },
-   {
-      name: 'Hot Stuff',
-      path: 'audio/Hot Stuff.mp3',
-      artist: 'Donna Summer',
-      cover: 'images/audio/Hot Stuff.jpg'
-   },
-   {
-      name: 'Gimme! Gimme!',
-      path: 'audio/ABBA%20-%20Gimme!%20Gimme!%20Gimme!%20(A%20Man%20After%20Midnight).mp3',
-      artist: 'ABBA',
-      cover: 'images/audio/ABBA-GimmeGimmeGimme-video.png'
-   },
-   {
-      name: 'Cheri Cheri Lady',
-      path: 'audio/Modern Talking - Cheri Cheri Lady (OfficialVideo).mp3',
-      artist: 'Modern Talking',
-      cover: 'images/audio/CherryCherry.jpg'
-   },
-   {
-      name: 'Bella Ciao',
-      path: 'audio/Bella Ciao.mp3',
-      artist: 'Goran Bregovic',
-      cover: 'images/audio/BellaCiao.jpg'
-   },
+ 
 ]
 
 playLists.push(rockSongs);
