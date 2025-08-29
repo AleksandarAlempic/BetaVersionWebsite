@@ -349,17 +349,23 @@ let danceSongs = [
       artist: 'Jennifer Lopez',
       cover: 'images/audio/JenniferLopez.jpg'
    }, 
-   {
-      name: 'Say It Right',
-      path: 'audio/Nelly%20Furtado%20-%20Say%20It%20Right%20(Official%20Music%20Video).mp3',
-      artist: 'Nelly Furtado',
-      cover: 'images/audio/NellyFurtado.jpg'
-   },
-   {
+     {
       name: 'Vivir Mi Vida',
       path: 'audio/Marc%20Anthony%20-%20Vivir%20Mi%20Vida%20(Official%20Video).mp3',
       artist: 'Marc Anthony',
       cover: 'images/audio/MarchAnthony.jpg'
+   },
+   {
+      name: 'Cheap Thrills ft. Sean Paul',
+      path: 'audio/Sia - Cheap Thrills (Official Lyric Video) ft. Sean Paul.mp3',
+      artist: 'Sia',
+      cover: 'images/audio/CheapThrils.jpg'
+   },
+    {
+      name: 'Bailando',
+      path: 'audio/Enrique Iglesias - Bailando ft. Descemer Bueno, Gente De Zona.mp3',
+      artist: 'Enrique Iglesias',
+      cover: 'images/audio/Bailando.jpg'
    },
    {
       name: 'We Are One',
@@ -367,7 +373,12 @@ let danceSongs = [
       artist: 'Pitbull feat J.Lopez&C.Leitte',
       cover: 'images/audio/WeAreOne.jpg'
    },
-  
+   {
+      name: 'Say It Right',
+      path: 'audio/Nelly%20Furtado%20-%20Say%20It%20Right%20(Official%20Music%20Video).mp3',
+      artist: 'Nelly Furtado',
+      cover: 'images/audio/NellyFurtado.jpg'
+   },
   
    // Uncomment and add more songs as needed
 ]
