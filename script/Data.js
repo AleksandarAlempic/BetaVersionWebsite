@@ -156,7 +156,19 @@ let classicSongs = [
       {
       name: 'The Second Waltz, Op. 99a',
       path: 'audio/The Second Waltz, Op. 99a.mp3',
-      artist: 'The Second Waltz',
+      artist: 'Andre Rieu',
+      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
+   }, 
+      {
+      name: 'Griechischer Wein',
+      path: 'audio/Griechischer Wein.mp3',
+      artist: 'Andre Rieu',
+      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
+   }, 
+       {
+      name: 'Viva España',
+      path: 'audio/Viva España.mp3',
+      artist: 'Andre Rieu',
       cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
    }, 
      {
