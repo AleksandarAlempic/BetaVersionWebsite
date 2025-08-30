@@ -129,6 +129,24 @@ let classicSongs = [
       artist: 'Mozart',
       cover: 'images/audio/Wolfgang-Amadeus-Mozart-scaled.jpeg'
    },
+       {
+      name: 'Viva España',
+      path: 'audio/Viva España.mp3',
+      artist: 'Andre Rieu',
+      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
+   }, 
+         {
+      name: 'The Second Waltz, Op. 99a',
+      path: 'audio/The Second Waltz, Op. 99a.mp3',
+      artist: 'Andre Rieu',
+      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
+   }, 
+      {
+      name: 'Griechischer Wein',
+      path: 'audio/Griechischer Wein.mp3',
+      artist: 'Andre Rieu',
+      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
+   }, 
    {
       name: 'The Power Of Love',
       path: 'audio/IL DIVO - The Power Of Love (La Fuerza Mayor) (Live Video).mp3',
@@ -152,24 +170,6 @@ let classicSongs = [
       path: 'audio/Two Steps From Hell - Victory.mp3',
       artist: 'Two Steps From Hell',
       cover: 'images/audio/VictoryTwoStepsFromHell.jpg'
-   }, 
-      {
-      name: 'The Second Waltz, Op. 99a',
-      path: 'audio/The Second Waltz, Op. 99a.mp3',
-      artist: 'Andre Rieu',
-      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
-   }, 
-      {
-      name: 'Griechischer Wein',
-      path: 'audio/Griechischer Wein.mp3',
-      artist: 'Andre Rieu',
-      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
-   }, 
-       {
-      name: 'Viva España',
-      path: 'audio/Viva España.mp3',
-      artist: 'Andre Rieu',
-      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
    }, 
      {
       name: 'Spring ',
