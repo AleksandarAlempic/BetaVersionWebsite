@@ -1788,6 +1788,58 @@ body{
     z-index: 1000000000; position: absolute; background: white; color: black; min-height: 5%; margin-left: 25%; margin-top: 3%;
   }
 
+  .addTrainingPopup{
+    max-width: 500px;
+    max-height: 900px;
+    background: #fad000;
+    position: relative;
+    z-index: 1000000000000;
+    margin-left: 21%;
+    border-radius: 3%;
+    margin-top: -60%;
+    display: none;
+    /* margin-bottom: 50%;  */
+  }
+
+  .saveButtonTraining{
+    min-width: 90px;
+    min-height: 30px;
+    font-size: large;
+    font-weight: 600;
+    background: lightgray;
+    margin-left: 40%;
+  }
+
+  .trainingName{
+    margin-left: 30%;
+    font-size: large;
+    font-weight: 800;
+  }
+
+  .pushUps{
+    margin-left: 30%;
+  }
+
+  .pullUps{
+    margin-left: 30%;
+  }
+
+  .sitUps{
+    margin-left: 30%;
+  }
+
+  .absCount{
+    margin-left: 30%;
+  }
+
+  .otherExercise{
+     margin-left: 30%;
+  }
+
+  .duration{
+    margin-left: 30%;
+  }
+
 @media (max-width: 1000px) {
    /* Disable map interaction temporarily */
   .nearbyRouteButton{
@@ -1796,7 +1848,7 @@ body{
     background: white;
     color: black;
     min-height: 5%;
-    margin-left: 66%;
+    margin-left: 56%;
     margin-top: 17%;
   }
  
@@ -1813,7 +1865,7 @@ body{
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 38%;
+    margin-left: 20%;
     min-height: 50px;
     margin-top: 17%;
 }
@@ -1841,7 +1893,7 @@ body{
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 52%;
+    margin-left: 39%;
     min-height: 50px;
     margin-top: 17%;
 }
