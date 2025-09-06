@@ -165,9 +165,9 @@
                 </tr>
             </table>
         </div>
-        <button style="z-index: 1000000000; position: absolute;  color: black; background: white; min-height: 5%;" id="startRouteButton">Start Route</button>
-        <button style="z-index: 1000000000; position: absolute; color: black; background: white; min-height: 5%;" id="stopRouteButton">Stop Route</button>
-        <button class="nearbyRouteButton" id="fetchNearbyRoutesButton">
+        <button class="startRoute" style="z-index: 1000000000; position: absolute;  color: black;  background: #fad000; min-height: 5%;" id="startRouteButton">Start Route</button>
+        <button class="stopRoute"  style="z-index: 1000000000; position: absolute; color: black; background: #fad000; min-height: 5%;" id="stopRouteButton">Stop Route</button>
+        <button class="nearbyRouteButton showNearbyRoutes1" style="background: #fad000;" id="fetchNearbyRoutesButton">
             Show Nearby Routes
         </button>
         <div id="speed" class="speed">
@@ -425,6 +425,43 @@ function submitRoute() {
                 });
 
             </script>
+        </div>
+            <button class="addTraningButton" id="fetchAddTrainingButton">
+            Add Traning
+        </button>
+        <div id="addTrainingPopup" class="addTrainingPopup">
+            <form action="">
+
+               <label class="trainingName" for="trainingName">Training Name:</label><br>
+      <input type="text" class="trainingName" id="trainingName" name="trainingName"><br><br>
+
+          <label class="trainingName" for="userName">User name:</label><br>
+      <input type="text" class="pushUps" id="userName" name="userName"><br><br>
+       
+       <label class="trainingName" for="pushUps">Push ups:</label><br>
+      <input type="number" class="pushUps" id="pushUps" name="pushUps"><br><br>
+
+   
+       
+       <label class="trainingName" for="pushUps">Pull ups:</label><br>
+      <input type="number" class="pullUps" id="pullUps" name="pullUps"><br><br>
+
+        <label class="trainingName" for="pushUps">Sit ups:</label><br>
+      <input type="number" class="sitUps" id="sitUps" name="sitUps"><br><br>
+
+      <label class="trainingName" for="absCount">Abs count:</label><br>
+      <input type="number" class="absCount" id="absCount" name="absCount"><br><br>
+       
+      <label class="trainingName" for="otherExercise">Other Exercise:</label><br>
+      <textarea id="otherExercise" class="otherExercise" name="otherExercise"></textarea><br><br>
+ 
+      <label class="trainingName" for="duration">Duration (min):</label><br>
+      <input type="number" id="duration" class="duration" name="duration"><br><br>
+
+      <button class="saveButtonTraining" type="submit">Save</button>
+
+            </form>
+
         </div>
     </div>
     <div id="usernamePopup" style="display: none; position: fixed; top: 30%; left: 50%; transform: translateX(-50%); background: white; padding: 20px; z-index: 1000000001; box-shadow: 0px 0px 10px rgba(0,0,0,0.5); border-radius: 8px;">
