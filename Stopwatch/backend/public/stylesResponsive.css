@@ -34,6 +34,11 @@
       margin-top: 4%;
       margin-left: 37%;
     }
+
+    .addTraningButton{
+      background: yellow;
+      color: yellow;
+    }
   
     .content{
       margin-left: 40%;
@@ -52,7 +57,10 @@
 
    @media only screen and (min-width:50px) and (max-width:500px){
      
-  
+     .addTraningButton{
+      background: yellow;
+      color: yellow;
+    }
       .content{
         margin-left: 40%;
         margin-top: 1.5%;
@@ -68,6 +76,10 @@
     }
 
   @media only screen and (min-width:1000px){
+       .addTraningButton{
+      background: yellow;
+      color: yellow;
+    }
     .content {
       margin-left: 40%;
       margin-top: 1.5%;
@@ -90,6 +102,10 @@
 
     @media only screen and (min-width:1700px){
     
+         .addTraningButton{
+      background: yellow;
+      color: yellow;
+    }
       .content{
         margin-left: 40%;
         margin-top: 1.5%;
@@ -116,7 +132,10 @@
           scale: 268%;
           margin-top: 500px;
         }
-
+   .addTraningButton{
+      background: yellow;
+      color: yellow;
+    }
 
 }
 
@@ -135,6 +154,10 @@
     scale: 268%;
     margin-top: 500px;
   }
+     .addTraningButton{
+      background: yellow;
+      color: yellow;
+    }
 }
 
 @media (min-width: 550px) and (max-width: 600px) {
@@ -345,7 +368,10 @@
             overscroll-behavior: none; /* Prevent pull-to-refresh and overscrolling */
            }
 
-
+   .addTraningButton{
+      background: yellow;
+      color: yellow;
+    }
            .Certification {
             width: 2300px;
             height: 675px;
@@ -624,6 +650,10 @@
               touch-action: none; /* Prevent any swipe gestures */
               overscroll-behavior: none; /* Prevent pull-to-refresh and overscrolling */
              } 
+                .addTraningButton{
+      background: yellow;
+      color: yellow;
+    }
 
              .Certification {
               width: 2300px;
@@ -905,6 +935,11 @@
                 overscroll-behavior: none; /* Prevent pull-to-refresh and overscrolling */
                } 
                
+                  .addTraningButton{
+      background: yellow;
+      color: yellow;
+    }
+
                .Certification {
                 width: 2300px;
                 height: 675px;
@@ -1200,7 +1235,10 @@
                     touch-action: none; /* Prevent any swipe gestures */
                     overscroll-behavior: none; /* Prevent pull-to-refresh and overscrolling */
                    }
-        
+           .addTraningButton{
+      background: yellow;
+      color: yellow;
+    }
         
                    .Certification {
                     width: 2300px;
@@ -1480,6 +1518,11 @@
                       touch-action: none; /* Prevent any swipe gestures */
                       overscroll-behavior: none; /* Prevent pull-to-refresh and overscrolling */
                      } 
+
+                        .addTraningButton{
+      background: yellow;
+      color: yellow;
+    }
         
                      .Certification {
                       width: 2300px;
@@ -1762,6 +1805,11 @@
     font-size: 80px;
 }
 
+   .addTraningButton{
+      background: yellow;
+      color: yellow;
+    }
+
   .content{
     margin-left: 40%;
     margin-top: 1.5%;
@@ -1783,7 +1831,10 @@
 /* Samsung Galaxy S20 Xiaomi Mi 11i Huawei P30 */
 @media only screen and (max-width:393px){
 
-
+   .addTraningButton{
+      background: yellow;
+      color: yellow;
+    }
   .contentH1 {
     margin-top: 13%;
     margin-left: 30.5%;
@@ -1883,6 +1934,11 @@ img { max-width: 100%; height: auto; }
     color: orange;
     font-size: 80px;
 }
+
+   .addTraningButton{
+      background: yellow;
+      color: yellow;
+    }
 
   .content{
     margin-left: 40%;
@@ -2050,6 +2106,11 @@ img { max-width: 100%; height: auto; }
    margin-top: 90%;
  
  }
+
+    .addTraningButton{
+      background: yellow;
+      color: yellow;
+    }
 }
 
 @media (max-width: 1024px) {
@@ -2061,6 +2122,32 @@ img { max-width: 100%; height: auto; }
      margin-top: 90%;
      
    }
+
+   .startRoute{
+    z-index: 1000000000; position: absolute;  color: black; font-size: 20px; font-weight: 600; margin-left: 20%; background: #fad000; min-height: 5%;
+   }
+
+   .stopRoute{
+    z-index: 1000000000; position: absolute; color: black;font-size: 20px; font-weight: 600; margin-left:43.5%; background: #fad000; min-height: 5%;
+   }
+
+   .showNearbyRoutes1{
+    z-index: 1000000000; position: absolute; color: black;font-size: 20px; font-weight: 600;  background: #fad000; min-height: 5%;
+   }
+
+      .addTraningButton{
+      background: orange;
+      color: black;
+      min-width: 140px;
+      min-height: 70px;
+      font-size: 20px;
+      font-weight: 900;
+      margin-top: 105%;
+      margin-left: 43%;
+      position: relative;
+      z-index: 100000000000;
+    }
+    
 
    .stopwatchLabel{
     margin-top: 10%;
