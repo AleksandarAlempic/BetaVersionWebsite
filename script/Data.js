@@ -2,6 +2,27 @@
 const playLists = [];
 
 let introSongs = [
+    
+   {
+      name: 'Jutro je',
+      path: 'audio/Nada%20Topcagic%20-%20Jutro%20je%20-%20(Audio%201990)%20HD%20(128%20kbps).mp3',
+      artist: 'Nada Topcagic',
+      cover: 'images/audio/NadaTopcagic.jpg'
+   },
+ 
+{
+      name: 'Malo po malo',
+      path: 'audio/Vesna Zmijanac - Malo po malo - (Official Video 1995).mp3',
+      artist: 'Vesna Zmijanac',
+      cover: 'images/audio/MaloPoMalo.jpg'
+   },
+       {
+      name: 'Ej, dragi, dragi',
+      path: 'audio/Cakana - Ej, dragi, dragi - (Audio 2009).mp3',
+      artist: 'Cakana',
+      cover: 'images/audio/EjDragi.jpg'
+   },
+  
    {
       name: 'Waka waka',
       path: 'audio/WakaWaka.mp3',
@@ -74,12 +95,7 @@ let introSongs = [
       artist: 'Aleksandra Prijovic',
       cover: 'images/audio/AleksandraPrijovic.jpg'
    },
-   {
-      name: 'Jutro je',
-      path: 'audio/Nada%20Topcagic%20-%20Jutro%20je%20-%20(Audio%201990)%20HD%20(128%20kbps).mp3',
-      artist: 'Nada Topcagic',
-      cover: 'images/audio/NadaTopcagic.jpg'
-   },
+ 
    {
       name: 'Ne Pitaj',
       path: 'audio/LegendE%20_%20Ne%20pitaj%20-%20(LIVE)%20-%20(Sava%20centar%202005)%20(128%20kbps).mp3',
@@ -129,12 +145,6 @@ let classicSongs = [
       artist: 'Mozart',
       cover: 'images/audio/Wolfgang-Amadeus-Mozart-scaled.jpeg'
    },
-       {
-      name: 'Viva España',
-      path: 'audio/Viva España.mp3',
-      artist: 'Andre Rieu',
-      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
-   }, 
          {
       name: 'The Second Waltz, Op. 99a',
       path: 'audio/The Second Waltz, Op. 99a.mp3',
@@ -147,18 +157,31 @@ let classicSongs = [
       artist: 'Andre Rieu',
       cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
    }, 
+    {
+      name: 'Sicilienne',
+      path: 'audio/Sicilienne, Op. 78.mp3',
+      artist: 'Sicilienne, Op. 78',
+      cover: 'images/audio/Sicilienne, Op. 78.jpg'
+   }, 
+    {
+      name: 'Viva España',
+      path: 'audio/Viva España.mp3',
+      artist: 'Andre Rieu',
+      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
+   }, 
+     {
+      name: 'Alone (Solo)',
+      path: 'audio/Alone (Solo).mp3',
+      artist: 'IL DIVO',
+      cover: 'images/audio/Alone.jpg'
+   },
    {
       name: 'The Power Of Love',
       path: 'audio/IL DIVO - The Power Of Love (La Fuerza Mayor) (Live Video).mp3',
       artist: 'IL DIVO',
       cover: 'images/audio/IlDivo.jpg'
     },
-    {
-      name: 'Alone (Solo)',
-      path: 'audio/Alone (Solo).mp3',
-      artist: 'IL DIVO',
-      cover: 'images/audio/Alone.jpg'
-   },
+  
       {
       name: 'The Riders of Rohan',
       path: 'audio/The Lord Of The Rings - The Riders of Rohan - Erhu & Violin cover.mp3',
@@ -177,24 +200,20 @@ let classicSongs = [
       artist: 'Antonio Vivaldi',
       cover: 'images/audio/AntonioVivaldi.jpg'
    },
-     {
-      name: 'Hungarian Dance No.5',
-      path: 'audio/Johannes Brahms -- Hungarian Dance No.5 - Hungarian Symphony Orchestra Budapest (1).mp3',
-      artist: 'Johannes Brahms',
-      cover: 'images/audio/Hungarian Dance No.5.jpg'
-   }, 
+    
+   //   {
+   //    name: 'Hungarian Dance No.5',
+   //    path: 'audio/Johannes Brahms -- Hungarian Dance No.5 - Hungarian Symphony Orchestra Budapest (1).mp3',
+   //    artist: 'Johannes Brahms',
+   //    cover: 'images/audio/Hungarian Dance No.5.jpg'
+   // }, 
       {
       name: 'Concerto No.4',
       path: 'audio/Antonio Vivaldi - Concerto No.4 in F minor.mp3',
       artist: 'Antonio Vivaldi',
       cover: 'images/audio/AntonioVivaldi.jpg'
    },
-    {
-      name: 'Sicilienne',
-      path: 'audio/Sicilienne, Op. 78.mp3',
-      artist: 'Sicilienne, Op. 78',
-      cover: 'images/audio/Sicilienne, Op. 78.jpg'
-   }, 
+  
     {
       name: 'E.K. Nachtmusik',
       path: 'audio/Eine Kleine Nachtmusik - Mozart.mp3',
