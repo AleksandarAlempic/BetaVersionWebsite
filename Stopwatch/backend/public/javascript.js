@@ -14,6 +14,8 @@ const mapContent = document.getElementById("map-content");
 const timer = document.getElementById("timer");
 const stopwatch = document.getElementById("stopwatch");
 
+const addTrainingButton = document.getElementById("fetchAddTrainingButton");
+const addTrainingPopup = document.getElementById("addTrainingPopup");
 
 const stopwatchDiv = document.getElementById("StopwatchOptions");
 const timerDiv = document.getElementById("TimerOptions");
@@ -54,6 +56,8 @@ let myInterval; // Declare a variable to store the interval ID
 
 // Start function for setting the interval and beginning the animation
 
+
+
 stopwatch.addEventListener('click', () => {
    stopwatchTriggered = true;
    timerTriggered = false;
@@ -69,7 +73,9 @@ timer.addEventListener('click', () => {
    input.value = formatTime(hours) + ":" + formatTime(minutes) + ":" + formatTime(seconds % 60);
 });
 
-
+addTrainingButton.addEventListener('click', () => {
+   addTrainingPopup.style.display = "block";
+});
 
 
 function setInterval1Stopwatch() {
