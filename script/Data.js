@@ -9,7 +9,6 @@ let introSongs = [
       artist: 'Nada Topcagic',
       cover: 'images/audio/NadaTopcagic.jpg'
    },
- 
 {
       name: 'Malo po malo',
       path: 'audio/Vesna Zmijanac - Malo po malo - (Official Video 1995).mp3',
@@ -157,17 +156,23 @@ let classicSongs = [
       artist: 'Andre Rieu',
       cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
    }, 
+        {
+      name: 'Amigos para siempre',
+      path: 'audio/Amigos para siempre.mp3',
+      artist: 'Andre Rieu',
+      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
+   }, 
+     {
+      name: 'Viva España',
+      path: 'audio/Viva España.mp3',
+      artist: 'Andre Rieu',
+      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
+   }, 
     {
       name: 'Sicilienne',
       path: 'audio/Sicilienne, Op. 78.mp3',
       artist: 'Sicilienne, Op. 78',
       cover: 'images/audio/Sicilienne, Op. 78.jpg'
-   }, 
-    {
-      name: 'Viva España',
-      path: 'audio/Viva España.mp3',
-      artist: 'Andre Rieu',
-      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
    }, 
      {
       name: 'Alone (Solo)',
