@@ -138,24 +138,19 @@ playLists.push(introSongs);
 
 let classicSongs = [
 
-   {
-      name: 'La finta giardiniera',
-      path: 'audio/Mozart_ Overture - La finta giardiniera.mp3',
-      artist: 'Mozart',
-      cover: 'images/audio/Wolfgang-Amadeus-Mozart-scaled.jpeg'
-   },
+      {
+      name: 'Der einsame Hirte',
+      path: 'audio/Leo_Rojas_-_Der_einsame_Hirte_Videoclip.mp3',
+      artist: 'Leo Rohas',
+      cover: 'images/audio/LeoRohas1.jpg'
+   }, 
   {
       name: 'The Riders of Rohan',
       path: 'audio/The Lord Of The Rings - The Riders of Rohan - Erhu & Violin cover.mp3',
       artist: 'The Lord Of The Rings',
       cover: 'images/audio/RidersOfRohan.jpg'
    },
-         {
-      name: 'The Second Waltz, Op. 99a',
-      path: 'audio/The Second Waltz, Op. 99a.mp3',
-      artist: 'Andre Rieu',
-      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
-   }, 
+        
       {
       name: 'Griechischer Wein',
       path: 'audio/Griechischer Wein.mp3',
@@ -169,16 +164,16 @@ let classicSongs = [
       cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
    }, 
      {
+      name: 'The Second Waltz, Op. 99a',
+      path: 'audio/The Second Waltz, Op. 99a.mp3',
+      artist: 'Andre Rieu',
+      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
+   }, 
+     {
       name: 'Viva España',
       path: 'audio/Viva España.mp3',
       artist: 'Andre Rieu',
       cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
-   }, 
-    {
-      name: 'Sicilienne',
-      path: 'audio/Sicilienne, Op. 78.mp3',
-      artist: 'Sicilienne, Op. 78',
-      cover: 'images/audio/Sicilienne, Op. 78.jpg'
    }, 
      {
       name: 'Alone (Solo)',
@@ -203,7 +198,8 @@ let classicSongs = [
       path: 'audio/Vivaldi Four Seasons_ Spring (La Primavera) Full, original. Youssefian & Voices of Music RV 269 4K.mp3',
       artist: 'Antonio Vivaldi',
       cover: 'images/audio/AntonioVivaldi.jpg'
-   },
+   }, 
+   
     
    //   {
    //    name: 'Hungarian Dance No.5',
@@ -230,7 +226,19 @@ let classicSongs = [
    //    path: 'audio/The Script - Hall of Fame (Official Video) ft. will.i.am.mp3',
    //    artist: 'The Script - ft. will.i.am',
    //    cover: 'images/audio/HallOfFame.jpg '
-   // },  
+   // },
+       {
+      name: 'La finta giardiniera',
+      path: 'audio/Mozart_ Overture - La finta giardiniera.mp3',
+      artist: 'Mozart',
+      cover: 'images/audio/Wolfgang-Amadeus-Mozart-scaled.jpeg'
+   },
+     {
+      name: 'Sicilienne',
+      path: 'audio/Sicilienne, Op. 78.mp3',
+      artist: 'Sicilienne, Op. 78',
+      cover: 'images/audio/Sicilienne, Op. 78.jpg'
+   }, 
     {
       name: 'Der letzte Mohikaner',
       path: 'audio/Der letzte Mohikaner.mp3',
@@ -238,12 +246,7 @@ let classicSongs = [
       cover: 'images/audio/LeoRohas.jpg'
    },  
 
-   {
-      name: 'Der einsame Hirte',
-      path: 'audio/Leo_Rojas_-_Der_einsame_Hirte_Videoclip.mp3',
-      artist: 'Leo Rohas',
-      cover: 'images/audio/LeoRohas1.jpg'
-   },  
+  
 ]
 
 playLists.push(classicSongs);
@@ -353,11 +356,17 @@ playLists.push(narodnjaciSongs);
 
 
 let danceSongs = [
-   {
-      name: 'La la la',
-      path: 'audio/Shakira%20-%20La%20La%20La%20(Brazil%202014)%20ft.%20Carlinhos%20Brown.mp3',
-      artist: 'Shakira ft. Carlinhos Brown',
-      cover: 'images/audio/Shakira.jpg'
+   // {
+   //    name: 'La la la',
+   //    path: 'audio/Shakira%20-%20La%20La%20La%20(Brazil%202014)%20ft.%20Carlinhos%20Brown.mp3',
+   //    artist: 'Shakira ft. Carlinhos Brown',
+   //    cover: 'images/audio/Shakira.jpg'
+   // },
+      {
+      name: 'Bailando',
+      path: 'audio/Enrique Iglesias - Bailando ft. Descemer Bueno, Gente De Zona.mp3',
+      artist: 'Enrique Iglesias',
+      cover: 'images/audio/Bailando.jpg'
    },
     {
       name: 'Ni Tu Ni Yo',
@@ -396,12 +405,7 @@ let danceSongs = [
       artist: 'Sia',
       cover: 'images/audio/CheapThrils.jpg'
    },
-    {
-      name: 'Bailando',
-      path: 'audio/Enrique Iglesias - Bailando ft. Descemer Bueno, Gente De Zona.mp3',
-      artist: 'Enrique Iglesias',
-      cover: 'images/audio/Bailando.jpg'
-   },
+  
    {
       name: 'We Are One',
       path: 'audio/We%20Are%20One%20(Ole%20Ola)%20[The%20Official%202014%20FIFA%20World%20Cup%20Song].mp3',
