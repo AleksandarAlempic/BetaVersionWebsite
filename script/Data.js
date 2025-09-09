@@ -144,49 +144,51 @@ let classicSongs = [
       artist: 'Leo Rohas',
       cover: 'images/audio/LeoRohas1.jpg'
    }, 
-  {
-      name: 'The Riders of Rohan',
-      path: 'audio/The Lord Of The Rings - The Riders of Rohan - Erhu & Violin cover.mp3',
-      artist: 'The Lord Of The Rings',
-      cover: 'images/audio/RidersOfRohan.jpg'
-   },
-        
-      {
-      name: 'Griechischer Wein',
-      path: 'audio/Griechischer Wein.mp3',
-      artist: 'Andre Rieu',
-      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
-   }, 
-        {
-      name: 'Amigos para siempre',
-      path: 'audio/Amigos para siempre.mp3',
-      artist: 'Andre Rieu',
-      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
-   }, 
-     {
-      name: 'The Second Waltz, Op. 99a',
-      path: 'audio/The Second Waltz, Op. 99a.mp3',
-      artist: 'Andre Rieu',
-      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
-   }, 
      {
       name: 'Viva España',
       path: 'audio/Viva España.mp3',
       artist: 'Andre Rieu',
       cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
    }, 
+
      {
+      name: 'The Second Waltz, Op. 99a',
+      path: 'audio/The Second Waltz, Op. 99a.mp3',
+      artist: 'Andre Rieu',
+      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
+   }, 
+      {
+      name: 'Griechischer Wein',
+      path: 'audio/Griechischer Wein.mp3',
+      artist: 'Andre Rieu',
+      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
+   }, 
+       {
+      name: 'Amigos para siempre',
+      path: 'audio/Amigos para siempre.mp3',
+      artist: 'Andre Rieu',
+      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
+   }, 
+       {
       name: 'Alone (Solo)',
       path: 'audio/Alone (Solo).mp3',
       artist: 'IL DIVO',
       cover: 'images/audio/Alone.jpg'
    },
-   {
+
+     {
       name: 'The Power Of Love',
       path: 'audio/IL DIVO - The Power Of Love (La Fuerza Mayor) (Live Video).mp3',
       artist: 'IL DIVO',
       cover: 'images/audio/IlDivo.jpg'
     },
+      {
+      name: 'The Riders of Rohan',
+      path: 'audio/The Lord Of The Rings - The Riders of Rohan - Erhu & Violin cover.mp3',
+      artist: 'The Lord Of The Rings',
+      cover: 'images/audio/RidersOfRohan.jpg'
+   },
+     
        {
       name: 'Victory',
       path: 'audio/Two Steps From Hell - Victory.mp3',
@@ -201,18 +203,18 @@ let classicSongs = [
    }, 
    
     
-   //   {
-   //    name: 'Hungarian Dance No.5',
-   //    path: 'audio/Johannes Brahms -- Hungarian Dance No.5 - Hungarian Symphony Orchestra Budapest (1).mp3',
-   //    artist: 'Johannes Brahms',
-   //    cover: 'images/audio/Hungarian Dance No.5.jpg'
-   // }, 
-      {
-      name: 'Concerto No.4',
-      path: 'audio/Antonio Vivaldi - Concerto No.4 in F minor.mp3',
-      artist: 'Antonio Vivaldi',
-      cover: 'images/audio/AntonioVivaldi.jpg'
-   },
+     {
+      name: 'Hungarian Dance No.5',
+      path: 'audio/Johannes Brahms -- Hungarian Dance No.5 - Hungarian Symphony Orchestra Budapest (1).mp3',
+      artist: 'Johannes Brahms',
+      cover: 'images/audio/Hungarian Dance No.5.jpg'
+   }, 
+   //    {
+   //    name: 'Concerto No.4',
+   //    path: 'audio/Antonio Vivaldi - Concerto No.4 in F minor.mp3',
+   //    artist: 'Antonio Vivaldi',
+   //    cover: 'images/audio/AntonioVivaldi.jpg'
+   // },
   
     {
       name: 'E.K. Nachtmusik',
@@ -233,6 +235,7 @@ let classicSongs = [
       artist: 'Mozart',
       cover: 'images/audio/Wolfgang-Amadeus-Mozart-scaled.jpeg'
    },
+     
      {
       name: 'Sicilienne',
       path: 'audio/Sicilienne, Op. 78.mp3',
