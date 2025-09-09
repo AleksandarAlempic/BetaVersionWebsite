@@ -433,6 +433,8 @@
             <div id="addTrainingPopup" class="addTrainingPopup">
                 <form id="trainingForm" action="">
 
+                    
+
                 <label class="trainingName" for="trainingName">Training Name:</label><br>
         <input type="text" class="trainingName" id="trainingName" name="trainingName"><br><br>
 
@@ -470,13 +472,20 @@
         document.getElementById("addTrainingPopup").style.display = "block";
     });
 
+
+let userId = localStorage.getItem('userId');
+if (!userId) {
+    userId = Date.now(); // Use timestamp as unique ID
+    localStorage.setItem('userId', userId);
+}
+
     // Handle training form submit
     document.getElementById("trainingForm").addEventListener("submit", function(e) {
     e.preventDefault(); // Prevent form from refreshing the page
 
         // Collect values from form
         const trainingData = {
-        user_id: 1, // Replace with logged-in user if dynamic
+          user_id: parseInt(userId),  // Replace with logged-in user if dynamic
         trainingName: document.getElementById("trainingName").value,
         userName: document.getElementById("userName").value,
         pushUps: parseInt(document.getElementById("pushUps").value) || 0,
