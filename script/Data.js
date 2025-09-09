@@ -144,6 +144,12 @@ let classicSongs = [
       artist: 'Mozart',
       cover: 'images/audio/Wolfgang-Amadeus-Mozart-scaled.jpeg'
    },
+  {
+      name: 'The Riders of Rohan',
+      path: 'audio/The Lord Of The Rings - The Riders of Rohan - Erhu & Violin cover.mp3',
+      artist: 'The Lord Of The Rings',
+      cover: 'images/audio/RidersOfRohan.jpg'
+   },
          {
       name: 'The Second Waltz, Op. 99a',
       path: 'audio/The Second Waltz, Op. 99a.mp3',
@@ -186,13 +192,6 @@ let classicSongs = [
       artist: 'IL DIVO',
       cover: 'images/audio/IlDivo.jpg'
     },
-  
-      {
-      name: 'The Riders of Rohan',
-      path: 'audio/The Lord Of The Rings - The Riders of Rohan - Erhu & Violin cover.mp3',
-      artist: 'The Lord Of The Rings',
-      cover: 'images/audio/RidersOfRohan.jpg'
-   },
        {
       name: 'Victory',
       path: 'audio/Two Steps From Hell - Victory.mp3',
