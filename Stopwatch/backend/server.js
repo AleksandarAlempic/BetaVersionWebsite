@@ -154,14 +154,9 @@ app.post('/api/save-run', async (req, res) => {
 app.post('/api/save-training', async (req, res) => {
   const { user_id, trainingName, userName, pushUps, pullUps, sitUps, absCount, otherExercise, duration} = req.body;
 
-  if (!user_id) {
-    return res.status(400).json({ error: "User ID is required" });
-  }
-
-  if (!userName) {
-    return res.status(400).json({ error: "Username is required" });
-  }
-
+    if (!user_id) return res.status(400).json({ error: "User ID is required" });
+  if (!userName) return res.status(400).json({ error: "Username is required" });
+  if (!trainingName) return res.status(400).json({ error: "Training name is required" });
 
   try {
     const { data, error } = await supabase
