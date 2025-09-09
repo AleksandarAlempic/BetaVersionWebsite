@@ -485,7 +485,7 @@ if (!userId) {
 
         // Collect values from form
         const trainingData = {
-          user_id: parseInt(userId),  // Replace with logged-in user if dynamic
+          user_id: parseInt(userId) || 1, // fallback  // Replace with logged-in user if dynamic
         trainingName: document.getElementById("trainingName").value,
         userName: document.getElementById("userName").value,
         pushUps: parseInt(document.getElementById("pushUps").value) || 0,
