@@ -151,6 +151,46 @@ app.post('/api/save-run', async (req, res) => {
   }
 });
 
+app.post('/api/save-training', async (req, res) => {
+  const { user_id, trainingName, userName, pushUps, pullUps, sitUps, absCount, otherExercise, duration} = req.body;
+
+  if (!user_id) {
+    return res.status(400).json({ error: "User ID is required" });
+  }
+
+  if (!userName) {
+    return res.status(400).json({ error: "Username is required" });
+  }
+
+
+  try {
+    const { data, error } = await supabase
+      .from('training')  // Assuming 'runs' is the table where you store your data
+      .insert([
+        {
+          trainingName,
+          userName,
+          pushUps,
+          pullUps,
+          sitUps,
+          absCount,
+          otherExercise,
+          duration: time
+        }
+      ]);
+
+    if (error) {
+      console.error("Error saving training:", error);
+      return res.status(500).json({ error: "Failed to save training" });
+    }
+
+    res.status(201).json({ message: "Training saved successfully.", data });
+  } catch (err) {
+    console.error("Error saving training:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 
 app.get('/api/routes-nearby', async (req, res) => {
   const { lat, lng } = req.query;
