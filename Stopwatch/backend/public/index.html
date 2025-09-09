@@ -431,7 +431,7 @@
                 Add Traning
             </button>
             <div id="addTrainingPopup" class="addTrainingPopup">
-                <form action="">
+                <form id="trainingForm" action="">
 
                 <label class="trainingName" for="trainingName">Training Name:</label><br>
         <input type="text" class="trainingName" id="trainingName" name="trainingName"><br><br>
@@ -471,8 +471,8 @@
     });
 
     // Handle training form submit
-    document.querySelector("#addTrainingPopup form").addEventListener("submit", function(e) {
-        e.preventDefault(); // Prevent form from refreshing the page
+    document.getElementById("trainingForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // Prevent form from refreshing the page
 
         // Collect values from form
         const trainingData = {
