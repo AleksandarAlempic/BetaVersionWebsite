@@ -175,7 +175,7 @@ app.post('/api/save-training', async (req, res) => {
           sitUps,
           absCount,
           otherExercise,
-          duration: time
+          duration
         }
       ]);
 
