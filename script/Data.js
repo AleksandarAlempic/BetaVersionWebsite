@@ -169,14 +169,7 @@ let classicSongs = [
       artist: 'Andre Rieu',
       cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
    }, 
-       {
-      name: 'Alone (Solo)',
-      path: 'audio/Alone (Solo).mp3',
-      artist: 'IL DIVO',
-      cover: 'images/audio/Alone.jpg'
-   },
-
-     {
+      {
       name: 'The Power Of Love',
       path: 'audio/IL DIVO - The Power Of Love (La Fuerza Mayor) (Live Video).mp3',
       artist: 'IL DIVO',
@@ -188,20 +181,32 @@ let classicSongs = [
       artist: 'The Lord Of The Rings',
       cover: 'images/audio/RidersOfRohan.jpg'
    },
-     
+       {
+      name: 'Alone (Solo)',
+      path: 'audio/Alone (Solo).mp3',
+      artist: 'IL DIVO',
+      cover: 'images/audio/Alone.jpg'
+   },
        {
       name: 'Victory',
       path: 'audio/Two Steps From Hell - Victory.mp3',
       artist: 'Two Steps From Hell',
       cover: 'images/audio/VictoryTwoStepsFromHell.jpg'
    }, 
-     {
+ 
+
+    {
+      name: 'The Beautiful Blue Danube',
+      path: 'audio/The Beautiful Blue Danube, ARV15.mp3',
+      artist: 'Andre Rieu',
+      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
+   }, 
+        {
       name: 'Spring ',
       path: 'audio/Vivaldi Four Seasons_ Spring (La Primavera) Full, original. Youssefian & Voices of Music RV 269 4K.mp3',
       artist: 'Antonio Vivaldi',
       cover: 'images/audio/AntonioVivaldi.jpg'
    }, 
-   
     
      {
       name: 'Hungarian Dance No.5',
