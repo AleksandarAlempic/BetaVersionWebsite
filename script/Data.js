@@ -157,18 +157,7 @@ let classicSongs = [
       artist: 'Andre Rieu',
       cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
    }, 
-      {
-      name: 'Griechischer Wein',
-      path: 'audio/Griechischer Wein.mp3',
-      artist: 'Andre Rieu',
-      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
-   }, 
-       {
-      name: 'Amigos para siempre',
-      path: 'audio/Amigos para siempre.mp3',
-      artist: 'Andre Rieu',
-      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
-   }, 
+ 
       {
       name: 'The Power Of Love',
       path: 'audio/IL DIVO - The Power Of Love (La Fuerza Mayor) (Live Video).mp3',
@@ -195,19 +184,19 @@ let classicSongs = [
    }, 
  
 
-    {
-      name: 'The Beautiful Blue Danube',
-      path: 'audio/The Beautiful Blue Danube, ARV15.mp3',
-      artist: 'Andre Rieu',
-      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
-   }, 
+   //  {
+   //    name: 'The Beautiful Blue Danube',
+   //    path: 'audio/The Beautiful Blue Danube, ARV15.mp3',
+   //    artist: 'Andre Rieu',
+   //    cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
+   // }, 
         {
       name: 'Spring ',
       path: 'audio/Vivaldi Four Seasons_ Spring (La Primavera) Full, original. Youssefian & Voices of Music RV 269 4K.mp3',
       artist: 'Antonio Vivaldi',
       cover: 'images/audio/AntonioVivaldi.jpg'
    }, 
-    
+
      {
       name: 'Hungarian Dance No.5',
       path: 'audio/Johannes Brahms -- Hungarian Dance No.5 - Hungarian Symphony Orchestra Budapest (1).mp3',
@@ -240,13 +229,25 @@ let classicSongs = [
       artist: 'Mozart',
       cover: 'images/audio/Wolfgang-Amadeus-Mozart-scaled.jpeg'
    },
-     
      {
-      name: 'Sicilienne',
-      path: 'audio/Sicilienne, Op. 78.mp3',
-      artist: 'Sicilienne, Op. 78',
-      cover: 'images/audio/Sicilienne, Op. 78.jpg'
+      name: 'Griechischer Wein',
+      path: 'audio/Griechischer Wein.mp3',
+      artist: 'Andre Rieu',
+      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
    }, 
+     {
+      name: 'Amigos para siempre',
+      path: 'audio/Amigos para siempre.mp3',
+      artist: 'Andre Rieu',
+      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
+   }, 
+     
+   //   {
+   //    name: 'Sicilienne',
+   //    path: 'audio/Sicilienne, Op. 78.mp3',
+   //    artist: 'Sicilienne, Op. 78',
+   //    cover: 'images/audio/Sicilienne, Op. 78.jpg'
+   // }, 
     {
       name: 'Der letzte Mohikaner',
       path: 'audio/Der letzte Mohikaner.mp3',
