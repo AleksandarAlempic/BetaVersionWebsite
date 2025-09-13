@@ -34,18 +34,18 @@ let introSongs = [
       artist: 'Shakira ft. Carlinhos Brown',
       cover: 'images/audio/Shakira.jpg'
    },
-   {
-      name: 'Wavin Flag',
-      path: 'audio/Wavin%20Flag%20(Spanish%20Version)%20-%20Knaan%20&%20David%20Bisbal%20-%20World%20Cup%202010%20theme%20song%20(128%20kbps).mp3',
-      artist: 'Knaan & David Bisbal',
-      cover: 'images/audio/World%20Cup%202010%20theme%20song.jpg'
-   },
-   {
-      name: 'We Are One',
-      path: 'audio/We%20Are%20One%20(Ole%20Ola)%20%5BThe%20Official%202014%20FIFA%20World%20Cup%20Song%5D.mp3',
-      artist: 'Pitbull feat J.Lopez&C.Leitte ',
-      cover: 'images/audio/WeAreOne.jpg'
-   },
+   // {
+   //    name: 'Wavin Flag',
+   //    path: 'audio/Wavin%20Flag%20(Spanish%20Version)%20-%20Knaan%20&%20David%20Bisbal%20-%20World%20Cup%202010%20theme%20song%20(128%20kbps).mp3',
+   //    artist: 'Knaan & David Bisbal',
+   //    cover: 'images/audio/World%20Cup%202010%20theme%20song.jpg'
+   // },
+   // {
+   //    name: 'We Are One',
+   //    path: 'audio/We%20Are%20One%20(Ole%20Ola)%20%5BThe%20Official%202014%20FIFA%20World%20Cup%20Song%5D.mp3',
+   //    artist: 'Pitbull feat J.Lopez&C.Leitte ',
+   //    cover: 'images/audio/WeAreOne.jpg'
+   // },
    {
       name: 'Walk',
       path: 'audio/Kwabs%20-%20Walk%20(Official%20Video).mp3',
@@ -272,12 +272,6 @@ let narodnjaciSongs = [
       artist: 'Semsa Suljakovic',
       cover: 'images/audio/SemsaSuljakovic.jpg'
    },
-     {
-      name: 'Opet imam razloga da zivim',
-      path: 'audio/Ana Bekuta - Opet imam razloga da zivim.mp3',
-      artist: 'Ana Bekuta',
-      cover: 'images/audio/AnaBekuta1.jpg'
-   },
 
      {
       name: 'Imam jedan zivot',
@@ -316,6 +310,13 @@ let narodnjaciSongs = [
       path: 'audio/Cakana & Sastav Svitanje - Srpkinja je mene majka rodila.mp3',
       artist: 'Cakana',
       cover: 'images/audio/SrpkinjaJeMeneMajkaRodila.jpg'
+   },
+
+   {
+      name: 'Opet imam razloga da zivim',
+      path: 'audio/Ana Bekuta - Opet imam razloga da zivim.mp3',
+      artist: 'Ana Bekuta',
+      cover: 'images/audio/AnaBekuta1.jpg'
    },
      {
       name: 'Ej, dragi, dragi',
