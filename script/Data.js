@@ -305,6 +305,13 @@ let narodnjaciSongs = [
       artist: 'Semsa Suljakovic',
       cover: 'images/audio/SemsaSuljakovic.jpg'
    },
+
+       {
+      name: 'Opet imam razloga da zivim',
+      path: 'audio/Ana Bekuta - Opet imam razloga da zivim.mp3',
+      artist: 'Ana Bekuta',
+      cover: 'images/audio/AnaBekuta1.jpg'
+   },
       {
       name: 'Srpkinja je mene majka rodila',
       path: 'audio/Cakana & Sastav Svitanje - Srpkinja je mene majka rodila.mp3',
@@ -312,12 +319,7 @@ let narodnjaciSongs = [
       cover: 'images/audio/SrpkinjaJeMeneMajkaRodila.jpg'
    },
 
-   {
-      name: 'Opet imam razloga da zivim',
-      path: 'audio/Ana Bekuta - Opet imam razloga da zivim.mp3',
-      artist: 'Ana Bekuta',
-      cover: 'images/audio/AnaBekuta1.jpg'
-   },
+
      {
       name: 'Ej, dragi, dragi',
       path: 'audio/Cakana - Ej, dragi, dragi - (Audio 2009).mp3',
