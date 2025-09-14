@@ -2127,13 +2127,14 @@ img { max-width: 100%; height: auto; }
 .addTrainingPopup{
     max-width: 550px;
     min-height: 650px;
-    background: #fad000;
+    background: #fad101;
     position: relative;
     z-index: 1000000000000;
     margin-left: 17%;
     border-radius: 3%;
     margin-top: -60%;
     display: none;
+    border: 3px solid black;
     /* margin-bottom: 50%;  */
   }
 
@@ -2142,7 +2143,7 @@ img { max-width: 100%; height: auto; }
     min-height: 45px;
     font-size: large;
     font-weight: 600;
-    background: lightgreen;
+    background: white;
     margin-left: 4%;
     border-radius: 5%;
   }
