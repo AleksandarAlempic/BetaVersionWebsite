@@ -297,8 +297,8 @@
 .stopwatchLabel{
     position: absolute; 
     color: yellow;
-    margin-left: 42%;
-    margin-top: 6%;
+    margin-left: 38%;
+    margin-top: 9%;
 }
 
 body{
@@ -1598,11 +1598,11 @@ body{
     z-index: 1000000000;  /* Ensure it's on top */
     background-color: #4CAF50;
     color: white;
-    font-size: 18px;
+    font-size: 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 8%;
+    margin-left:3.6%;
     margin-top: 3%;
 }
 
@@ -1617,11 +1617,11 @@ body{
     z-index: 1000000000;  /* Ensure it's on top */
     background-color: #4CAF50;
     color: white;
-    font-size: 18px;
+    font-size: 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 17%;
+    margin-left: 11.1%;
     margin-top: 3%;
 }
 
@@ -1774,36 +1774,57 @@ body{
 
 .speed{
     position: absolute;
-    margin-left: 44.5%; margin-top: 40%; font-weight: bold;
+     font-weight: bold;
     font-size: 30px;
+     margin-left: 41%; margin-top: 41.5%;
 }
 
 .distance{
-    margin-left: 44.5%; margin-top: 37%;  font-weight: bold;
+     font-weight: bold;
+        margin-left: 41%;
+    margin-top: 39%;
     font-size: 30px;
     position: absolute;
 }
 
 .nearbyRouteButton{
-    z-index: 1000000000; position: absolute; background: white; color: black; min-height: 5%; margin-left: 25%; margin-top: 3%;
+    z-index: 1000000000; position: absolute; background: white; color: black; min-height: 5%; margin-left: 18.5%; margin-top: 3%;
+      font-size: 15px;
+      cursor: pointer;
+  }
+
+  .addTraningButton{
+    color: black;
+     background: #fad000;
+    position: absolute;
+    margin-top: -39.2%;
+     position: absolute;
+    z-index: 1000000000;  /* Ensure it's on top */
+    min-height: 35px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 74%;
   }
 
   .addTrainingPopup{
-    max-width: 550px;
-    min-height: 650px;
+    max-width: 460px;
+    min-height: 530px;
     background: #fad000;
     position: relative;
     z-index: 1000000000000;
-    margin-left: 17%;
+    margin-left: 63%;
     border-radius: 3%;
-    margin-top: -60%;
+    margin-top: -37.9%;
     display: none;
+    
     /* margin-bottom: 50%;  */
   }
 
   .saveButtonTraining{
-    min-width: 150px;
-    min-height: 45px;
+    min-width: 120px;
+    min-height: 40px;
     font-size: large;
     font-weight: 600;
     background: lightgreen;
@@ -1812,22 +1833,22 @@ body{
   }
 
   .trainingName{
-    margin-left: 10%;
+    margin-left: 18%;
     margin-top: 3%;
-    font-size: 29.5px;
+    font-size: 19.5px;
     font-weight: 800;
-    height: 40px;
-    width: 220px;
+    height: 30px;
+    width: 155px;
     border-radius: 6%;
   }
 
 
    .userName{
-    margin-left: 10%;
-    font-size: 29.5px;
+    margin-left: 18%;
+    font-size: 19.5px;
     font-weight: 800;
-    height: 40px;
-    width: 220px;
+    height: 30px;
+    width: 155px;
     border-radius: 6%;
   
   }
@@ -1835,26 +1856,52 @@ body{
   
 
   .pushUps{
-    margin-left: 10%;
-    font-size: 29.5px;
+    margin-left: 12%;
+    font-size: 19.5px;
     font-weight: 800;
-    height: 40px;
-    width: 220px;
+    height: 30px;
+    width: 145px;
     border-radius: 6%;
-  margin-top: -1%;
+    margin-top: -17%;
+  text-align: center;
+  }
+
+  .pushUpsLabel{
+    margin-left: -1%;
+    font-size: 19.5px;
+    font-weight: 800;
+    height: 30px;
+    width: 145px;
+    border-radius: 6%;
+    position: absolute;
+  margin-top: -6%;
+  text-align: center;
   }
 
   
 
   .pullUps{
-    margin-left: 5%;
-    font-size: 29.5px;
+   margin-left: 6%;
+    font-size: 19.5px;
     font-weight: 800;
-    height: 40px;
-    width: 220px;
+    height: 30px;
+    width: 145px;1
     border-radius: 6%;
     position: absolute;
-     margin-top: -3%;
+     margin-top: -8%;
+     text-align: center;
+  }
+
+  .pullUpsLabel{
+ 
+     margin-left: 6%;
+    font-size: 19.5px;
+    font-weight: 800;
+    height: 30px;
+    width: 145px;
+    border-radius: 6%;
+    position: absolute;
+     margin-top: -6%;
   }
 
   .pullUps1{
@@ -1868,26 +1915,41 @@ body{
   }
 
   .sitUps{
-    margin-top: -5%;
-    margin-left: 5%;
+    margin-top: -12.6%;
+    margin-left: 6.5%;
     position: absolute;
   }
 
   .sitUpsInput{
-    margin-top: -9%;
+    margin-top: -29%;
+    margin-left: 12%;
   }
 
   .absCount{
-    margin-left: 30%;
+     margin-left: 18%;
+    font-size: 19.5px;
+    font-weight: 800;
+    height: 30px;
+    width: 145px;
+    border-radius: 6%;
+  margin-top: -1%;
+  text-align: center;
   }
 
   .otherExercise{
-     width: 190%;
+     width: 172%;
     height: 110px;
   }
 
   .duration{
-    margin-left: 30%;
+    margin-left: 18%;
+    margin-top: 3%;
+    font-size: 19.5px;
+    font-weight: 800;
+    height: 30px;
+    width: 145px;
+    border-radius: 6%;
+    text-align: center;
   }
 
 @media (max-width: 1000px) {
@@ -1932,6 +1994,7 @@ body{
     font-size: 44px;
     position: absolute;
     margin-left: 3%;
+    
 }
 
 #stopRouteButton {
