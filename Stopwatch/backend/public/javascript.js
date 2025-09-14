@@ -17,6 +17,13 @@ const stopwatch = document.getElementById("stopwatch");
 const addTrainingButton = document.getElementById("fetchAddTrainingButton");
 const addTrainingPopup = document.getElementById("addTrainingPopup");
 
+const stopRouteButton = document.getElementById("stopRouteButton");
+
+const fetchNearbyRoutesButton = document.getElementById("fetchNearbyRoutesButton");
+
+
+
+
 const stopwatchDiv = document.getElementById("StopwatchOptions");
 const timerDiv = document.getElementById("TimerOptions");
 
@@ -120,7 +127,7 @@ function myStopStopwatch() {
 
 // Reset function to reset the stopwatch and the rotation
 function resetFunctionStopwatch() {
-   input.value = "00" + ":" +  "00" + ":" +  "00";
+   input.value = "00" + ":" +  "00" + ":" +  "00";             
    seconds = 0;
    minutes = 0;
    hours = 0; 
@@ -329,10 +336,12 @@ musicPlayer.addEventListener('click', () => {
 checkboxRoot.addEventListener('click', () => {
    if (checkboxRoot.checked){
       Root.style.display = "none";
-      stopwatchLabel.style.marginTop = "11%"
+      stopwatchLabel.style.marginTop = "9%";
+     
    } else {
       Root.style.display = "block";
-     stopwatchLabel.style.marginTop = "5.6%"
+     stopwatchLabel.style.marginTop = "9%";
+      
    }
 });
 
@@ -368,10 +377,14 @@ checkboxRoot.addEventListener('click', () => {
        // Disable map interaction when the checkbox is checked
        document.getElementById("map").style.pointerEvents = "none";
        startRouteButton.style.display = "none";
+        stopRouteButton.style.display = "none";
+        fetchNearbyRoutesButton.style.display = "none";
    } else {
        // Enable map interaction when the checkbox is unchecked
        document.getElementById("map").style.pointerEvents = "auto";
        startRouteButton.style.display = "block";
+        stopRouteButton.style.display = "block";
+        fetchNearbyRoutesButton.style.display = "block";
    }
 });
 
