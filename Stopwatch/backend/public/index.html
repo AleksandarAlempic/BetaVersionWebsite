@@ -427,11 +427,11 @@
 
                 </script>
             </div>
-                <button class="addTraningButton" id="fetchAddTrainingButton">
+                <button style="color: black; background: #fad000;" class="addTraningButton" id="fetchAddTrainingButton">
                 Add Traning
             </button>
             <div id="addTrainingPopup" class="addTrainingPopup">
-               <form id="trainingForm" action="" style="display: flex; gap: 20px; flex-wrap: wrap;">
+               <form id="trainingForm" " action="" style="margin-top: 5%; display: flex; gap: 20px; flex-wrap: wrap;">
   <!-- LEFT COLUMN -->
   <div class="form-group" style="flex: 1; min-width: 200px;">
     <label class="trainingName" for="trainingName">Training Name:</label><br>
@@ -443,10 +443,10 @@
    
 
    
-    <label class="pushUps" for="absCount">Abs count:</label><br>
-    <input type="number" class="pushUps" id="absCount" name="absCount"><br><br>
+    <label class="absCount" for="absCount">Abs count:</label><br>
+    <input type="number" class="absCount" id="absCount" name="absCount"><br><br>
      <label class="trainingName" for="duration">Duration (min):</label><br>
-    <input type="number" id="duration" class="trainingName" name="duration"><br><br>
+    <input type="number" id="duration" class="duration" name="duration"><br><br>
      <label class="trainingName" for="otherExercise">Other Exercise:</label><br>
     <textarea id="otherExercise"  class="trainingName otherExercise" name="otherExercise"></textarea><br><br>
   </div>
@@ -457,10 +457,10 @@
      <label class="pullUps1" for="empty"><br>
     <input type="number" style="display: none;"" class="pullUps1" id="empty" name="empty"><br><br>
 
-    <label class="pushUps" for="pushUps">Push ups:</label><br>
+    <label class="pushUpsLabel" for="pushUps">Push ups:</label><br>
     <input type="number" class="pushUps" id="pushUps" name="pushUps"><br><br>
 
-    <label class="pullUps"  for="pullUps">Pull ups:</label><br>
+    <label class="pullUpsLabel"  for="pullUps">Pull ups:</label><br>
     <input type="number" class="pullUps" id="pullUps" name="pullUps"><br><br>
 
     <label class="trainingName sitUps" for="sitUps">Sit ups:</label><br>
