@@ -80,6 +80,10 @@
       background: yellow;
       color: yellow;
     }
+
+ 
+
+
     .content {
       margin-left: 40%;
       margin-top: 1.5%;
@@ -2114,6 +2118,146 @@ img { max-width: 100%; height: auto; }
 }
 
 @media (max-width: 1024px) {
+
+
+  .form-group{
+    margin-top: 5%;
+  }
+
+.addTrainingPopup{
+    max-width: 550px;
+    min-height: 650px;
+    background: #fad000;
+    position: relative;
+    z-index: 1000000000000;
+    margin-left: 17%;
+    border-radius: 3%;
+    margin-top: -60%;
+    display: none;
+    /* margin-bottom: 50%;  */
+  }
+
+  .saveButtonTraining{
+    min-width: 150px;
+    min-height: 45px;
+    font-size: large;
+    font-weight: 600;
+    background: lightgreen;
+    margin-left: 4%;
+    border-radius: 5%;
+  }
+
+  .trainingName{
+    margin-left: 10%;
+    margin-top: 3%;
+    font-size: 29.5px;
+    font-weight: 800;
+    height: 40px;
+    width: 220px;
+    border-radius: 6%;
+  }
+
+
+   .userName{
+    margin-left: 10%;
+    font-size: 29.5px;
+    font-weight: 800;
+    height: 40px;
+    width: 220px;
+    border-radius: 6%;
+  
+  }
+
+  
+
+  .pushUps{
+    margin-left: 10%;
+    font-size: 29.5px;
+    font-weight: 800;
+    height: 40px;
+    width: 220px;
+    border-radius: 6%;
+  margin-top: -1%;
+  }
+
+   .pushUpsLabel{
+     margin-left: -4%;
+    font-size: 29.5px;
+    font-weight: 800;
+    height: 40px;
+    width: 220px;
+    border-radius: 6%;
+  margin-top: -1%;
+  text-align: center;
+  }
+
+  
+
+  .pullUps{
+    margin-left: 5%;
+    font-size: 29.5px;
+    font-weight: 800;
+    height: 40px;
+    width: 220px;
+    border-radius: 6%;
+    position: absolute;
+     margin-top: -3%;
+  }
+
+     .pullUpsLabel{
+      margin-left: 5%;
+    font-size: 29.5px;
+    font-weight: 800;
+    height: 40px;
+    width: 220px;
+    border-radius: 6%;
+    position: absolute;
+     margin-top: -3%;
+  }
+
+  .pullUps1{
+    margin-left: 10%;
+    font-size: 29.5px;
+    font-weight: 800;
+    height: 40px;
+    width: 220px;
+    border-radius: 6%;
+     margin-top: 3%;
+  }
+
+  .sitUps{
+    margin-top: -5%;
+    margin-left: 5%;
+    position: absolute;
+  }
+
+  .sitUpsInput{
+    margin-top: -9%;
+  }
+
+  .absCount{
+    margin-left: 30%;
+  }
+
+  .otherExercise{
+     width: 190%;
+    height: 110px;
+  }
+
+   .duration{
+   margin-left: 10%;
+    margin-top: 3%;
+    font-size: 29.5px;
+    font-weight: 800;
+    height: 40px;
+    width: 220px;
+    border-radius: 6%;
+    text-align: center;
+  }
+
+
+
+
   .stopwatchDiv {
     background: lightgray;
     min-width: 300px;
@@ -2147,7 +2291,21 @@ img { max-width: 100%; height: auto; }
       position: relative;
       z-index: 100000000000;
     }
-    
+
+   .absCount{
+      margin-left: 10%;
+    font-size: 29.5px;
+    font-weight: 800;
+    height: 40px;
+    width: 220px;
+    border-radius: 6%;
+  margin-top: -1%;
+  text-align: center;
+   }
+
+    pushUpsDesktop{
+      margin-top: -1%;
+    }
 
    .stopwatchLabel{
     margin-top: 10%;
