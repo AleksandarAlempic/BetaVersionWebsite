@@ -1759,9 +1759,11 @@ body{
 
 
 #map-content{
-    z-index: 1000000;
+    z-index: 1;
     max-height: 650px;
 }
+
+
 
 .speed{
     margin-left: 10%;
@@ -1807,6 +1809,7 @@ body{
     cursor: pointer;
     margin-left: 74%;
   }
+
 
   .addTrainingPopup{
     max-width: 460px;
@@ -2101,14 +2104,55 @@ body{
 }
 
    /* Enable pointer-events for buttons and checkboxes */
-   #checkboxRoot, #checkboxMusicPlayer, #start, #stop, #reset, #audioContainer, #newNextAndPreviousButtons {
+  #checkboxMusicPlayer, #start, #stop, #reset, #audioContainer, #newNextAndPreviousButtons {
        pointer-events: auto; /* Ensure buttons are clickable */
        z-index: 9999;  /* Make sure buttons are above the map */
    }
-   
+
+#checkboxRoot {
+  display: none;
+  position: absolute;
+  top: 50px; /* or adjust */
+  left: 50px;
+  width: 300px;
+  z-index: 99999;
+  background: white;
+  border: 2px solid black;
+
+  pointer-events: none;
+}
+
+#checkboxRoot * {
+  pointer-events: auto;
+}
+
+
    /* Ensure the map container is in the background */
    #map-container {
        position: relative;
        z-index: 1;  /* Map container behind buttons */
    }
 }
+
+#start, #stop, #reset, #musicPlayer, #checkboxMusicPlayer {
+  position: relative;
+  z-index: 9999;  /* stay above other elements */
+  pointer-events: auto;
+}
+
+#checkboxMusicPlayer{
+  width: 20px;
+  height: 20px;
+  appearance: auto;
+  accent-color: green;
+  position: relative;
+  z-index: 9999;
+}
+
+
+
+/* #start, #stop, #reset, #checkboxMusicPlayer, #audioContainer, #newNextAndPreviousButtons {
+   
+    z-index: 9999999 !important; /* very high */
+    /* pointer-events: auto !important; */
+/* } */ 
