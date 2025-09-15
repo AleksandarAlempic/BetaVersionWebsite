@@ -2132,7 +2132,7 @@ img { max-width: 100%; height: auto; }
     z-index: 1000000000000;
     margin-left: 17%;
     border-radius: 3%;
-    margin-top: -60%;
+    margin-top: -150%;
     display: none;
     border: 3px solid black;
     /* margin-bottom: 50%;  */
@@ -2287,8 +2287,8 @@ img { max-width: 100%; height: auto; }
       min-height: 70px;
       font-size: 20px;
       font-weight: 900;
-      margin-top: 105%;
-      margin-left: 43%;
+      margin-top: 185%;
+      margin-left: 42%;
       position: relative;
       z-index: 100000000000;
     }
