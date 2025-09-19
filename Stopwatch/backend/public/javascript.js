@@ -21,7 +21,8 @@ const stopRouteButton = document.getElementById("stopRouteButton");
 
 const fetchNearbyRoutesButton = document.getElementById("fetchNearbyRoutesButton");
 
-
+const distance = document.getElementById("distance"); 
+const speed = document.getElementById("speed"); 
 
 
 const stopwatchDiv = document.getElementById("StopwatchOptions");
@@ -337,13 +338,19 @@ checkboxRoot.addEventListener('click', () => {
    if (checkboxRoot.checked){
       Root.style.display = "none";
       stopwatchLabel.style.marginTop = "9%";
+      distance.style.display = "none";
+      speed.style.display = "none";
      
    } else {
       Root.style.display = "block";
      stopwatchLabel.style.marginTop = "9%";
-      
+     distance.style.marginTop = "39.5%";
+      speed.style.marginTop = "41.5%"
+      distance.style.display = "block";
+      speed.style.display = "block";
    }
 });
+
 
 
 const mediaQuery = window.matchMedia('(max-width: 1000px)');
