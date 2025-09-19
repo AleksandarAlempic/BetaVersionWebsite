@@ -137,128 +137,102 @@ playLists.push(introSongs);
 
 
 let classicSongs = [
-
-      {
-      name: 'Der einsame Hirte',
-      path: 'audio/Leo_Rojas_-_Der_einsame_Hirte_Videoclip.mp3',
-      artist: 'Leo Rohas',
-      cover: 'images/audio/LeoRohas1.jpg'
-   }, 
-     {
-      name: 'Viva España',
-      path: 'audio/Viva España.mp3',
-      artist: 'Andre Rieu',
-      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
-   }, 
-
-     {
-      name: 'The Second Waltz, Op. 99a',
-      path: 'audio/The Second Waltz, Op. 99a.mp3',
-      artist: 'Andre Rieu',
-      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
-   }, 
- 
-   //  {
-   //    name: 'The Beautiful Blue Danube',
-   //    path: 'audio/The Beautiful Blue Danube, ARV15.mp3',
-   //    artist: 'Andre Rieu',
-   //    cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
-   // }, 
-        {
-      name: 'Spring ',
-      path: 'audio/Vivaldi Four Seasons_ Spring (La Primavera) Full, original. Youssefian & Voices of Music RV 269 4K.mp3',
-      artist: 'Antonio Vivaldi',
-      cover: 'images/audio/AntonioVivaldi.jpg'
-   }, 
-
-     {
-      name: 'Hungarian Dance No.5',
-      path: 'audio/Johannes Brahms -- Hungarian Dance No.5 - Hungarian Symphony Orchestra Budapest (1).mp3',
-      artist: 'Johannes Brahms',
-      cover: 'images/audio/Hungarian Dance No.5.jpg'
-   }, 
-   //    {
-   //    name: 'Concerto No.4',
-   //    path: 'audio/Antonio Vivaldi - Concerto No.4 in F minor.mp3',
-   //    artist: 'Antonio Vivaldi',
-   //    cover: 'images/audio/AntonioVivaldi.jpg'
-   // },
-  
-    {
-      name: 'E.K. Nachtmusik',
-      path: 'audio/Eine Kleine Nachtmusik - Mozart.mp3',
-      artist: 'Mozart',
-      cover: 'images/audio/Wolfgang-Amadeus-Mozart-scaled.jpeg'
-   },
-
-   // {
-   //    name: 'Hall of Fame',
-   //    path: 'audio/The Script - Hall of Fame (Official Video) ft. will.i.am.mp3',
-   //    artist: 'The Script - ft. will.i.am',
-   //    cover: 'images/audio/HallOfFame.jpg '
-   // },
        {
       name: 'La finta giardiniera',
       path: 'audio/Mozart_ Overture - La finta giardiniera.mp3',
       artist: 'Mozart',
       cover: 'images/audio/Wolfgang-Amadeus-Mozart-scaled.jpeg'
    },
-        {
-      name: 'The Power Of Love',
-      path: 'audio/IL DIVO - The Power Of Love (La Fuerza Mayor) (Live Video).mp3',
-      artist: 'IL DIVO',
-      cover: 'images/audio/IlDivo.jpg'
-    },
-      {
-      name: 'The Riders of Rohan',
-      path: 'audio/The Lord Of The Rings - The Riders of Rohan - Erhu & Violin cover.mp3',
-      artist: 'The Lord Of The Rings',
-      cover: 'images/audio/RidersOfRohan.jpg'
+   {
+      name: 'Spring ',
+      path: 'audio/Vivaldi Four Seasons_ Spring (La Primavera)...',
+      artist: 'Antonio Vivaldi',
+      cover: 'images/audio/AntonioVivaldi.jpg'
    },
-       {
-      name: 'Alone (Solo)',
-      path: 'audio/Alone (Solo).mp3',
-      artist: 'IL DIVO',
-      cover: 'images/audio/Alone.jpg'
+   {
+      name: 'E.K. Nachtmusik',
+      path: 'audio/Eine Kleine Nachtmusik - Mozart.mp3',
+      artist: 'Mozart',
+      cover: 'images/audio/Wolfgang-Amadeus-Mozart-scaled.jpeg'
    },
-       {
-      name: 'Victory',
-      path: 'audio/Two Steps From Hell - Victory.mp3',
-      artist: 'Two Steps From Hell',
-      cover: 'images/audio/VictoryTwoStepsFromHell.jpg'
-   }, 
-     {
+   {
+      name: 'Hungarian Dance No.5',
+      path: 'audio/Johannes Brahms -- Hungarian Dance No.5...',
+      artist: 'Johannes Brahms',
+      cover: 'images/audio/Hungarian Dance No.5.jpg'
+   },
+
+   {
+      name: 'The Second Waltz, Op. 99a',
+      path: 'audio/The Second Waltz, Op. 99a.mp3',
+      artist: 'Andre Rieu',
+      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
+   },
+   {
+      name: 'Viva España',
+      path: 'audio/Viva España.mp3',
+      artist: 'Andre Rieu',
+      cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
+   },
+   {
       name: 'Griechischer Wein',
       path: 'audio/Griechischer Wein.mp3',
       artist: 'Andre Rieu',
       cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
-   }, 
-     {
+   },
+   {
       name: 'Amigos para siempre',
       path: 'audio/Amigos para siempre.mp3',
       artist: 'Andre Rieu',
       cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
-   }, 
-     
-   //   {
-   //    name: 'Sicilienne',
-   //    path: 'audio/Sicilienne, Op. 78.mp3',
-   //    artist: 'Sicilienne, Op. 78',
-   //    cover: 'images/audio/Sicilienne, Op. 78.jpg'
-   // }, 
-    {
+   },
+   {
+      name: 'Der einsame Hirte',
+      path: 'audio/Leo_Rojas_-_Der_einsame_Hirte_Videoclip.mp3',
+      artist: 'Leo Rohas',
+      cover: 'images/audio/LeoRohas1.jpg'
+   },
+   {
       name: 'Der letzte Mohikaner',
       path: 'audio/Der letzte Mohikaner.mp3',
       artist: 'Leo Rohas',
       cover: 'images/audio/LeoRohas.jpg'
-   },  
-
-  
-]
+   },
+   {
+      name: 'The Riders of Rohan',
+      path: 'audio/The Lord Of The Rings - The Riders of Rohan...',
+      artist: 'The Lord Of The Rings',
+      cover: 'images/audio/RidersOfRohan.jpg'
+   },
+   {
+      name: 'Victory',
+      path: 'audio/Two Steps From Hell - Victory.mp3',
+      artist: 'Two Steps From Hell',
+      cover: 'images/audio/VictoryTwoStepsFromHell.jpg'
+   },
+   {
+      name: 'The Power Of Love',
+      path: 'audio/IL DIVO - The Power Of Love (La Fuerza Mayor)...',
+      artist: 'IL DIVO',
+      cover: 'images/audio/IlDivo.jpg'
+   },
+   {
+      name: 'Alone (Solo)',
+      path: 'audio/Alone (Solo).mp3',
+      artist: 'IL DIVO',
+      cover: 'images/audio/Alone.jpg'
+   }
+];
 
 playLists.push(classicSongs);
 
 let narodnjaciSongs = [
+ {
+    name: 'Molitva',
+    path: 'audio/MARIJA%20SERIFOVIC%20-%20MOLITVA%20-%20(OFFICIAL%20VIDEO%202020).mp3',
+    artist: 'Marija Šerifović',
+    cover: 'images/audio/MarijaSerifovic.jpg'
+  },
   {
     name: 'Imam jedan život',
     path: 'audio/Ana%20Bekuta%20-%20Imam%20jedan%20zivot%20(Sava%20Centar%2022.02.2012.).mp3',
@@ -343,12 +317,7 @@ let narodnjaciSongs = [
     artist: 'Aleksandra Radović',
     cover: 'images/audio/AleksandraRadovic.jpg'
   },
-  {
-    name: 'Molitva',
-    path: 'audio/MARIJA%20SERIFOVIC%20-%20MOLITVA%20-%20(OFFICIAL%20VIDEO%202020).mp3',
-    artist: 'Marija Šerifović',
-    cover: 'images/audio/MarijaSerifovic.jpg'
-  }
+ 
 ];
 
 playLists.push(narodnjaciSongs);
