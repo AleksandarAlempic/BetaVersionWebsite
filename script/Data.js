@@ -373,11 +373,12 @@ let danceSongs = [
    //    cover: 'images/audio/Shakira.jpg'
    // },
       {
-      name: 'Bailando',
-      path: 'audio/Enrique Iglesias - Bailando ft. Descemer Bueno, Gente De Zona.mp3',
-      artist: 'Enrique Iglesias',
-      cover: 'images/audio/Bailando.jpg'
-   },
+      name: 'Aint Your Mama',
+      path: 'audio/Jennifer%20Lopez%20-%20Aint%20Your%20Mama%20(Lyrics)%20we%20used%20to%20be%20crazy%20in%20love.mp3',
+      artist: 'Jennifer Lopez',
+      cover: 'images/audio/JenniferLopez.jpg'
+   }, 
+     
     {
       name: 'Ni Tu Ni Yo',
       path: 'audio/Jennifer%20Lopez%20-%20Ni%20Tu%20Ni%20Yo%20(Official%20Audio)%20ft.%20Gente%20de%20Zona.mp3',
@@ -398,10 +399,16 @@ let danceSongs = [
       cover: 'images/audio/Kwabs.jpg'
    },
    {
-      name: 'Aint Your Mama',
-      path: 'audio/Jennifer%20Lopez%20-%20Aint%20Your%20Mama%20(Lyrics)%20we%20used%20to%20be%20crazy%20in%20love.mp3',
-      artist: 'Jennifer Lopez',
-      cover: 'images/audio/JenniferLopez.jpg'
+      name: 'La Vida Tombola',
+      path: 'audio/Manu Chao - La Vida Tombola (Played for Diego Maradona).mp3',
+      artist: 'Manu Chao',
+      cover: 'images/audio/LaTombola.jpg'
+   }, 
+      {
+      name: 'Brother Louie '98',
+      path: 'audio/Modern Talking - Brother Louie '98 (OfficialVideo - New Version).mp3',
+      artist: 'Modern Talking',
+      cover: 'images/audio/BrotherLouie.jpg'
    }, 
      {
       name: 'Vivir Mi Vida',
@@ -415,6 +422,20 @@ let danceSongs = [
       artist: 'Sia',
       cover: 'images/audio/CheapThrils.jpg'
    },
+
+     {
+      name: 'Bailando',
+      path: 'audio/Enrique Iglesias - Bailando ft. Descemer Bueno, Gente De Zona.mp3',
+      artist: 'Enrique Iglesias',
+      cover: 'images/audio/Bailando.jpg'
+   },
+
+      {
+      name: 'Aint Your Mama',
+      path: 'audio/Jennifer%20Lopez%20-%20Aint%20Your%20Mama%20(Lyrics)%20we%20used%20to%20be%20crazy%20in%20love.mp3',
+      artist: 'Jennifer Lopez',
+      cover: 'images/audio/JenniferLopez.jpg'
+   }, 
   
    {
       name: 'We Are One',
