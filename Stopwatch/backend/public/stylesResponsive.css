@@ -2118,10 +2118,18 @@ img { max-width: 100%; height: auto; }
 }
 
 @media (max-width: 1024px) {
+   
 
 
+   
   .form-group{
     margin-top: 5%;
+  }
+
+  .Root{
+        z-index: 1000000;
+    min-width: 800px;
+    min-height: 800px;
   }
 
 .addTrainingPopup{
