@@ -366,33 +366,43 @@ playLists.push(narodnjaciSongs);
 
 
 let danceSongs = [
-   // {
-   //    name: 'La la la',
-   //    path: 'audio/Shakira%20-%20La%20La%20La%20(Brazil%202014)%20ft.%20Carlinhos%20Brown.mp3',
-   //    artist: 'Shakira ft. Carlinhos Brown',
-   //    cover: 'images/audio/Shakira.jpg'
-   // },
-      {
-      name: 'Aint Your Mama',
-      path: 'audio/Jennifer%20Lopez%20-%20Aint%20Your%20Mama%20(Lyrics)%20we%20used%20to%20be%20crazy%20in%20love.mp3',
-      artist: 'Jennifer Lopez',
-      cover: 'images/audio/JenniferLopez.jpg'
-   }, 
-     
-    {
+   {
+      name: 'La la la',
+      path: 'audio/Shakira%20-%20La%20La%20La%20(Brazil%202014)%20ft.%20Carlinhos%20Brown.mp3',
+      artist: 'Shakira ft. Carlinhos Brown',
+      cover: 'images/audio/Shakira.jpg'
+   },
+   {
       name: 'Ni Tu Ni Yo',
       path: 'audio/Jennifer%20Lopez%20-%20Ni%20Tu%20Ni%20Yo%20(Official%20Audio)%20ft.%20Gente%20de%20Zona.mp3',
       artist: 'J Lopez ft. Gente de Zona',
       cover: 'images/audio/NiTuNiJo.jpg'
    },
-  
    {
-      name: 'Amor, Amor',
-      path: 'audio/Jennifer%20Lopez%20-%20Amor,%20Amor,%20Amor%20(Official%20Video)%20ft.%20Wisin.mp3',
-      artist: 'J.Lopez ft. Wisin',
-      cover: 'images/audio/JeniferLopezAmor.jpg'
+      name: 'Bailando',
+      path: 'audio/Enrique Iglesias - Bailando ft. Descemer Bueno, Gente De Zona.mp3',
+      artist: 'Enrique Iglesias',
+      cover: 'images/audio/Bailando.jpg'
    },
-    {
+   {
+      name: 'Aint Your Mama',
+      path: 'audio/Jennifer%20Lopez%20-%20Aint%20Your%20Mama%20(Lyrics)%20we%20used%20to%20be%20crazy%20in%20love.mp3',
+      artist: 'Jennifer Lopez',
+      cover: 'images/audio/JenniferLopez.jpg'
+   },
+   {
+      name: 'Cheap Thrills ft. Sean Paul',
+      path: 'audio/Sia - Cheap Thrills (Official Lyric Video) ft. Sean Paul.mp3',
+      artist: 'Sia',
+      cover: 'images/audio/CheapThrils.jpg'
+   },
+   {
+      name: 'Say It Right',
+      path: 'audio/Nelly%20Furtado%20-%20Say%20It%20Right%20(Official%20Music%20Video).mp3',
+      artist: 'Nelly Furtado',
+      cover: 'images/audio/NellyFurtado.jpg'
+   },
+   {
       name: 'Walk',
       path: 'audio/Kwabs%20-%20Walk%20(Official%20Video).mp3',
       artist: 'Kwabs',
@@ -403,56 +413,32 @@ let danceSongs = [
       path: 'audio/Manu Chao - La Vida Tombola (Played for Diego Maradona).mp3',
       artist: 'Manu Chao',
       cover: 'images/audio/LaTombola.jpg'
-   }, 
-      {
+   },
+   {
       name: 'Brother Louie 98',
       path: 'audio/Modern Talking - Brother Louie 98 (OfficialVideo - New Version).mp3',
       artist: 'Modern Talking',
       cover: 'images/audio/BrotherLouie.jpg'
-   }, 
-     {
+   },
+   {
+      name: 'Amor, Amor',
+      path: 'audio/Jennifer%20Lopez%20-%20Amor,%20Amor,%20Amor%20(Official%20Video)%20ft.%20Wisin.mp3',
+      artist: 'J.Lopez ft. Wisin',
+      cover: 'images/audio/JeniferLopezAmor.jpg'
+   },
+   {
       name: 'Vivir Mi Vida',
       path: 'audio/Marc%20Anthony%20-%20Vivir%20Mi%20Vida%20(Official%20Video).mp3',
       artist: 'Marc Anthony',
       cover: 'images/audio/MarchAnthony.jpg'
    },
    {
-      name: 'Cheap Thrills ft. Sean Paul',
-      path: 'audio/Sia - Cheap Thrills (Official Lyric Video) ft. Sean Paul.mp3',
-      artist: 'Sia',
-      cover: 'images/audio/CheapThrils.jpg'
-   },
-
-     {
-      name: 'Bailando',
-      path: 'audio/Enrique Iglesias - Bailando ft. Descemer Bueno, Gente De Zona.mp3',
-      artist: 'Enrique Iglesias',
-      cover: 'images/audio/Bailando.jpg'
-   },
-
-      {
-      name: 'Aint Your Mama',
-      path: 'audio/Jennifer%20Lopez%20-%20Aint%20Your%20Mama%20(Lyrics)%20we%20used%20to%20be%20crazy%20in%20love.mp3',
-      artist: 'Jennifer Lopez',
-      cover: 'images/audio/JenniferLopez.jpg'
-   }, 
-  
-   {
       name: 'We Are One',
       path: 'audio/We%20Are%20One%20(Ole%20Ola)%20[The%20Official%202014%20FIFA%20World%20Cup%20Song].mp3',
       artist: 'Pitbull feat J.Lopez&C.Leitte',
       cover: 'images/audio/WeAreOne.jpg'
-   },
-   {
-      name: 'Say It Right',
-      path: 'audio/Nelly%20Furtado%20-%20Say%20It%20Right%20(Official%20Music%20Video).mp3',
-      artist: 'Nelly Furtado',
-      cover: 'images/audio/NellyFurtado.jpg'
-   },
-  
-   // Uncomment and add more songs as needed
-]
-
+   }
+];
 playLists.push(danceSongs);
 
 
