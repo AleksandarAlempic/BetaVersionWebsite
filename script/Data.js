@@ -259,108 +259,97 @@ let classicSongs = [
 playLists.push(classicSongs);
 
 let narodnjaciSongs = [
-   
-    {
-      name: 'Placebo',
-      path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20PLACEBO%20(OFFICIAL%20VIDEO)%20(1).mp3',
-      artist: 'Aleksandra Prijovic',
-      cover: 'images/audio/Placebo.jpg'
-   },
-    {
-      name: 'Pristajem na sve',
-      path: 'audio/Semsa Suljakovic i Juzni Vetar - Pristajem na sve (Audio 1986).mp3',
-      artist: 'Semsa Suljakovic',
-      cover: 'images/audio/SemsaSuljakovic.jpg'
-   },
-
-     {
-      name: 'Imam jedan zivot',
-      path: 'audio/Ana%20Bekuta%20-%20Imam%20jedan%20zivot%20(Sava%20Centar%2022.02.2012.).mp3',
-      artist: 'Ana Bekuta',
-      cover: 'images/audio/AnaBekuta.jpg'
-   },
-
-   {
-      name: 'Jutro je',
-      path: 'audio/Nada%20Topcagic%20-%20Jutro%20je%20-%20(Audio%201990)%20HD%20(128%20kbps).mp3',
-      artist: 'Nada Topcagic',
-      cover: 'images/audio/NadaTopcagic.jpg'
-   },
-{
-      name: 'Malo po malo',
-      path: 'audio/Vesna Zmijanac - Malo po malo - (Official Video 1995).mp3',
-      artist: 'Vesna Zmijanac',
-      cover: 'images/audio/MaloPoMalo.jpg'
-   },
-
-    {
-      name: 'Kazni me',
-      path: 'audio/Vesna%20Zmijanac%20-%20Kazni%20me%20-%20(Audio%201989)%20HD%20(mp3cut.net).mp3',
-      artist: 'Vesna Zmijanac',
-      cover: 'images/audio/KazniMeKazni.jpg'
-   },
-      {
-      name: 'Zar za mene nema srece',
-      path: 'audio/Zar za mene nema srece.mp3',
-      artist: 'Semsa Suljakovic',
-      cover: 'images/audio/SemsaSuljakovic.jpg'
-   },
-
-       {
-      name: 'Opet imam razloga da zivim',
-      path: 'audio/Ana Bekuta - Opet imam razloga da zivim.mp3',
-      artist: 'Ana Bekuta',
-      cover: 'images/audio/AnaBekuta1.jpg'
-   },
-      {
-      name: 'Srpkinja je mene majka rodila',
-      path: 'audio/Cakana & Sastav Svitanje - Srpkinja je mene majka rodila.mp3',
-      artist: 'Cakana',
-      cover: 'images/audio/SrpkinjaJeMeneMajkaRodila.jpg'
-   },
-
-
-     {
-      name: 'Ej, dragi, dragi',
-      path: 'audio/Cakana - Ej, dragi, dragi - (Audio 2009).mp3',
-      artist: 'Cakana',
-      cover: 'images/audio/EjDragi.jpg'
-   },
-   
-   {
-      name: 'Ruzo Rumena',
-      path: 'audio/RUZO%20RUMENA%20-%20Dragan%20Jovanovic.mp3',
-      artist: 'Dragan Jovanovic',
-      cover: 'images/audio/RuzoRumena.jpeg'
-   },
-
-   {
-      name: 'Molitva',
-      path: 'audio/MARIJA%20SERIFOVIC%20-%20MOLITVA%20-%20(OFFICIAL%20VIDEO%202020).mp3',
-      artist: 'Marija Serifovic',
-      cover: 'images/audio/MarijaSerifovic.jpg'
-   },
-   {
-      name: 'U inat proslosti',
-      path: 'audio/Aleksandra%20Radovic%20&%20The%20Beatshakers%20-%20Who%20Gonna%20Stop%20Me%20Now%20(Official%20HD%20Video).mp3',
-      artist: 'Aleksandra Radovic',
-      cover: 'images/audio/AleksandraRadovic.jpg'
-   },
   {
-      name: 'Legitimno',
-      path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20LEGITIMNO%20(OFFICIAL%20VIDEO%202020).mp3',
-      artist: 'Aleksandra Prijovic',
-      cover: 'images/audio/Legitimno.jpg'
-   },
-  
-   // {
-   //    name: 'Boli Boli',
-   //    path: 'audio/Ivana%20Selakov%20x%20Amar%20Gile%20-%20BOLI%20BOLI%20(Official%20Video%202020).mp3',
-   //    artist: 'Ivana Selakov & Amar Gile',
-   //    cover: 'images/audio/BoliBoliOvaBol.jpg'
-   // },
- 
-]
+    name: 'Imam jedan život',
+    path: 'audio/Ana%20Bekuta%20-%20Imam%20jedan%20zivot%20(Sava%20Centar%2022.02.2012.).mp3',
+    artist: 'Ana Bekuta',
+    cover: 'images/audio/AnaBekuta.jpg'
+  },
+  {
+    name: 'Opet imam razloga da živim',
+    path: 'audio/Ana Bekuta - Opet imam razloga da zivim.mp3',
+    artist: 'Ana Bekuta',
+    cover: 'images/audio/AnaBekuta1.jpg'
+  },
+  {
+    name: 'Pristajem na sve',
+    path: 'audio/Semsa Suljakovic i Juzni Vetar - Pristajem na sve (Audio 1986).mp3',
+    artist: 'Šemsa Suljaković',
+    cover: 'images/audio/SemsaSuljakovic.jpg'
+  },
+  {
+    name: 'Zar za mene nema sreće',
+    path: 'audio/Zar za mene nema srece.mp3',
+    artist: 'Šemsa Suljaković',
+    cover: 'images/audio/SemsaSuljakovic.jpg'
+  },
+  {
+    name: 'Kazni me',
+    path: 'audio/Vesna%20Zmijanac%20-%20Kazni%20me%20-%20(Audio%201989)%20HD%20(mp3cut.net).mp3',
+    artist: 'Vesna Zmijanac',
+    cover: 'images/audio/KazniMeKazni.jpg'
+  },
+  {
+    name: 'Malo po malo',
+    path: 'audio/Vesna Zmijanac - Malo po malo - (Official Video 1995).mp3',
+    artist: 'Vesna Zmijanac',
+    cover: 'images/audio/MaloPoMalo.jpg'
+  },
+  {
+    name: 'Takni me, takni',
+    path: 'audio/Sneki - Takni me takni.mp3',
+    artist: 'Sneki',
+    cover: 'images/audio/SnekiTakniMe.jpg'
+  },
+  {
+    name: 'Ej, dragi, dragi',
+    path: 'audio/Cakana - Ej, dragi, dragi - (Audio 2009).mp3',
+    artist: 'Cakana',
+    cover: 'images/audio/EjDragi.jpg'
+  },
+  {
+    name: 'Srpkinja je mene majka rodila',
+    path: 'audio/Cakana & Sastav Svitanje - Srpkinja je mene majka rodila.mp3',
+    artist: 'Cakana',
+    cover: 'images/audio/SrpkinjaJeMeneMajkaRodila.jpg'
+  },
+  {
+    name: 'Jutro je',
+    path: 'audio/Nada%20Topcagic%20-%20Jutro%20je%20-%20(Audio%201990)%20HD%20(128%20kbps).mp3',
+    artist: 'Nada Topčagić',
+    cover: 'images/audio/NadaTopcagic.jpg'
+  },
+  {
+    name: 'Ružo rumena',
+    path: 'audio/RUZO%20RUMENA%20-%20Dragan%20Jovanovic.mp3',
+    artist: 'Dragan Jovanović',
+    cover: 'images/audio/RuzoRumena.jpeg'
+  },
+  {
+    name: 'Legitimno',
+    path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20LEGITIMNO%20(OFFICIAL%20VIDEO%202020).mp3',
+    artist: 'Aleksandra Prijović',
+    cover: 'images/audio/Legitimno.jpg'
+  },
+  {
+    name: 'Placebo',
+    path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20PLACEBO%20(OFFICIAL%20VIDEO)%20(1).mp3',
+    artist: 'Aleksandra Prijović',
+    cover: 'images/audio/Placebo.jpg'
+  },
+  {
+    name: 'U inat prošlosti',
+    path: 'audio/Aleksandra%20Radovic%20&%20The%20Beatshakers%20-%20Who%20Gonna%20Stop%20Me%20Now%20(Official%20HD%20Video).mp3',
+    artist: 'Aleksandra Radović',
+    cover: 'images/audio/AleksandraRadovic.jpg'
+  },
+  {
+    name: 'Molitva',
+    path: 'audio/MARIJA%20SERIFOVIC%20-%20MOLITVA%20-%20(OFFICIAL%20VIDEO%202020).mp3',
+    artist: 'Marija Šerifović',
+    cover: 'images/audio/MarijaSerifovic.jpg'
+  }
+];
 
 playLists.push(narodnjaciSongs);
 
