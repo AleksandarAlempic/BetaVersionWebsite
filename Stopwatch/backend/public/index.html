@@ -131,7 +131,7 @@
                                 <tr>
                                     <td>
                                     <label class="switch labelForMusicSlider">
-                                    <input id="checkboxMusicPlayer" type="checkbox">
+                                    <input class="checkboxMusicPlayer" id="checkboxMusicPlayer" type="checkbox">
                                     <span class="slider round"></span>
                                 </label>
                             
@@ -150,8 +150,8 @@
                                     <li class="songName" id="songName">Song Name</li>
                                     <li class="artistName">Artist</li>
                                 </ul>
-                                <div id="StopwatchOptions">
-                                    <button id="start" onclick="setInterval1Stopwatch();" class="button">Start</button>
+                                <div style="z-index: 10000000 !important; " id="StopwatchOptions">
+                                    <button style="z-index: 1000000000;" id="start" onclick="setInterval1Stopwatch();" class="button">Start</button>
                                     <button id="stop"  onclick="myStopStopwatch()" class="button">Stop</button>
                                     <button id="reset" onclick= "resetFunctionStopwatch()" class="button"button">Reset</button>
                                 </div>
