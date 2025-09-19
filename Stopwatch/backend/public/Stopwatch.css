@@ -1969,7 +1969,7 @@ body{
     background: white;
     color: black;
     min-height: 5%;
-    margin-left: 56%;
+    margin-left: 53%;
     margin-top: 17%;
   }
  
@@ -1986,7 +1986,7 @@ body{
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 20%;
+    margin-left: 17%;
     min-height: 50px;
     margin-top: 17%;
 }
@@ -2015,7 +2015,7 @@ body{
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 39%;
+    margin-left: 36%;
     min-height: 50px;
     margin-top: 17%;
 }
@@ -2105,7 +2105,7 @@ body{
     padding: 0;
     position: absolute;
     overflow-x: hidden;
-    margin-left: -5%;
+    margin-left: -8%;
     margin-top: 15%;
 }
 
