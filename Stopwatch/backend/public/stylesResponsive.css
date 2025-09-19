@@ -2257,15 +2257,13 @@ img { max-width: 100%; height: auto; }
   }
 
 
-
-
   .stopwatchDiv {
     background: lightgray;
     min-width: 300px;
     min-height: 590px;
     transform: scale(2.2); 
      margin-top: 90%;
-     
+     margin-left: 26.7%
    }
 
    .startRoute{
