@@ -2118,18 +2118,16 @@ img { max-width: 100%; height: auto; }
 }
 
 @media (max-width: 1024px) {
-   
 
 
-   
+     .cancelButtonTraining {
+    position: absolute;
+    margin-top: -110%;
+    margin-left: 42%;
+}
+
   .form-group{
     margin-top: 5%;
-  }
-
-  .Root{
-        z-index: 1000000;
-    min-width: 800px;
-    min-height: 800px;
   }
 
 .addTrainingPopup{
@@ -2263,6 +2261,8 @@ img { max-width: 100%; height: auto; }
     border-radius: 6%;
     text-align: center;
   }
+
+
 
 
   .stopwatchDiv {
