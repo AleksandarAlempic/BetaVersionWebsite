@@ -381,6 +381,17 @@ body{
     border: none;
  }
 
+  .cancelButtonTraining {
+    position: absolute;
+    margin-top: -100%;
+    margin-left: 42%;
+    width: 5%;
+    height: 4%;
+}
+
+
+
+
  .stopwatch:hover{
     background: #A3C5FF;
  }
@@ -1969,7 +1980,7 @@ body{
     background: white;
     color: black;
     min-height: 5%;
-    margin-left: 53%;
+    margin-left: 56%;
     margin-top: 17%;
   }
  
@@ -1986,7 +1997,7 @@ body{
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 17%;
+    margin-left: 20%;
     min-height: 50px;
     margin-top: 17%;
 }
@@ -2015,7 +2026,7 @@ body{
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 36%;
+    margin-left: 39%;
     min-height: 50px;
     margin-top: 17%;
 }
@@ -2105,7 +2116,7 @@ body{
     padding: 0;
     position: absolute;
     overflow-x: hidden;
-    margin-left: -8%;
+    margin-left: -5%;
     margin-top: 15%;
 }
 
