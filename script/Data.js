@@ -405,8 +405,8 @@ let danceSongs = [
       cover: 'images/audio/LaTombola.jpg'
    }, 
       {
-      name: 'Brother Louie '98',
-      path: 'audio/Modern Talking - Brother Louie '98 (OfficialVideo - New Version).mp3',
+      name: 'Brother Louie 98',
+      path: 'audio/Modern Talking - Brother Louie 98 (OfficialVideo - New Version).mp3',
       artist: 'Modern Talking',
       cover: 'images/audio/BrotherLouie.jpg'
    }, 
