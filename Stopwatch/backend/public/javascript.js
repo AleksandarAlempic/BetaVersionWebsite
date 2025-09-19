@@ -349,6 +349,10 @@ checkboxRoot.addEventListener('click', () => {
    }
 });
 
+function closePage() {
+  document.getElementById("addTrainingPopup").style.display = "none";
+}
+
 
 
 const mediaQuery = window.matchMedia('(max-width: 1000px)');
