@@ -295,10 +295,15 @@
 
 
 .stopwatchLabel{
-    position: absolute; 
+    /* position: absolute;  */
     color: yellow;
-    margin-left: 38%;
+    margin-left: -2%;
     margin-top: 9%;
+       position: fixed;   /* instead of relative */
+    top: 20px;         /* adjust to where you want it */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000000;  
 }
 
 body{
@@ -1753,6 +1758,7 @@ body{
     left: 50%;
     transform: translateX(-50%);
     pointer-events: auto;  /* Enable interaction */
+    cursor: pointer;
 }
 
 
@@ -1778,15 +1784,15 @@ body{
     position: absolute;
      font-weight: bold;
     font-size: 30px;
-     margin-left: 41%; margin-top: 41.5%;
+     margin-left: 41%; margin-top: 42.5%;
 }
 
 .distance{
-     font-weight: bold;
-        margin-left: 41%;
-    margin-top: 39%;
+    font-weight: bold;
+    margin-left: 41%;
+    margin-top: 40%;
     font-size: 30px;
-    position: absolute;
+    position: fixed;
 }
 
 .nearbyRouteButton{
