@@ -344,8 +344,6 @@ checkboxRoot.addEventListener('click', () => {
    } else {
       Root.style.display = "block";
      stopwatchLabel.style.marginTop = "9%";
-     distance.style.marginTop = "39.5%";
-      speed.style.marginTop = "41.5%"
       distance.style.display = "block";
       speed.style.display = "block";
    }
