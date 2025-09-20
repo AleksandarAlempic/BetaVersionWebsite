@@ -271,9 +271,9 @@ let narodnjaciSongs = [
   },
   {
     name: 'Takni me, takni',
-    path: 'audio/Sneki - Takni me takni.mp3',
+    path: 'audio/Takni me, takni.mp3',
     artist: 'Sneki',
-    cover: 'images/audio/SnekiTakniMe.jpg'
+    cover: 'images/audio/TakniMeTakni.jpg'
   },
   {
     name: 'Ej, dragi, dragi',
