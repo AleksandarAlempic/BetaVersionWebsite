@@ -233,33 +233,15 @@ let classicSongs = [
 playLists.push(classicSongs);
 
 let narodnjaciSongs = [
- {
-    name: 'Molitva',
-    path: 'audio/MARIJA%20SERIFOVIC%20-%20MOLITVA%20-%20(OFFICIAL%20VIDEO%202020).mp3',
-    artist: 'Marija Šerifović',
-    cover: 'images/audio/MarijaSerifovic.jpg'
-  },
   {
-    name: 'Imam jedan život',
-    path: 'audio/Ana%20Bekuta%20-%20Imam%20jedan%20zivot%20(Sava%20Centar%2022.02.2012.).mp3',
-    artist: 'Ana Bekuta',
-    cover: 'images/audio/AnaBekuta.jpg'
-  },
-  {
-    name: 'Opet imam razloga da živim',
-    path: 'audio/Ana Bekuta - Opet imam razloga da zivim.mp3',
-    artist: 'Ana Bekuta',
-    cover: 'images/audio/AnaBekuta1.jpg'
+    name: 'Takni me, takni',
+    path: 'audio/Takni me, takni.mp3',
+    artist: 'Sneki',
+    cover: 'images/audio/TakniMeTakni.jpg'
   },
   {
     name: 'Pristajem na sve',
     path: 'audio/Semsa Suljakovic i Juzni Vetar - Pristajem na sve (Audio 1986).mp3',
-    artist: 'Šemsa Suljaković',
-    cover: 'images/audio/SemsaSuljakovic.jpg'
-  },
-  {
-    name: 'Zar za mene nema sreće',
-    path: 'audio/Zar za mene nema srece.mp3',
     artist: 'Šemsa Suljaković',
     cover: 'images/audio/SemsaSuljakovic.jpg'
   },
@@ -274,12 +256,6 @@ let narodnjaciSongs = [
     path: 'audio/Vesna Zmijanac - Malo po malo - (Official Video 1995).mp3',
     artist: 'Vesna Zmijanac',
     cover: 'images/audio/MaloPoMalo.jpg'
-  },
-  {
-    name: 'Takni me, takni',
-    path: 'audio/Takni me, takni.mp3',
-    artist: 'Sneki',
-    cover: 'images/audio/TakniMeTakni.jpg'
   },
   {
     name: 'Ej, dragi, dragi',
@@ -298,6 +274,30 @@ let narodnjaciSongs = [
     path: 'audio/Nada%20Topcagic%20-%20Jutro%20je%20-%20(Audio%201990)%20HD%20(128%20kbps).mp3',
     artist: 'Nada Topčagić',
     cover: 'images/audio/NadaTopcagic.jpg'
+  },
+  {
+    name: 'Zar za mene nema sreće',
+    path: 'audio/Zar za mene nema srece.mp3',
+    artist: 'Šemsa Suljaković',
+    cover: 'images/audio/SemsaSuljakovic.jpg'
+  },
+  {
+    name: 'Opet imam razloga da živim',
+    path: 'audio/Ana Bekuta - Opet imam razloga da zivim.mp3',
+    artist: 'Ana Bekuta',
+    cover: 'images/audio/AnaBekuta1.jpg'
+  },
+  {
+    name: 'Imam jedan život',
+    path: 'audio/Ana%20Bekuta%20-%20Imam%20jedan%20zivot%20(Sava%20Centar%2022.02.2012.).mp3',
+    artist: 'Ana Bekuta',
+    cover: 'images/audio/AnaBekuta.jpg'
+  },
+  {
+    name: 'Molitva',
+    path: 'audio/MARIJA%20SERIFOVIC%20-%20MOLITVA%20-%20(OFFICIAL%20VIDEO%202020).mp3',
+    artist: 'Marija Šerifović',
+    cover: 'images/audio/MarijaSerifovic.jpg'
   },
   {
     name: 'Ružo rumena',
@@ -322,8 +322,7 @@ let narodnjaciSongs = [
     path: 'audio/Aleksandra%20Radovic%20&%20The%20Beatshakers%20-%20Who%20Gonna%20Stop%20Me%20Now%20(Official%20HD%20Video).mp3',
     artist: 'Aleksandra Radović',
     cover: 'images/audio/AleksandraRadovic.jpg'
-  },
- 
+  }
 ];
 
 playLists.push(narodnjaciSongs);
