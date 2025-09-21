@@ -400,31 +400,24 @@ let danceSongs = [
 playLists.push(danceSongs);
 
 
-let rockSongs = [
-   {
+  let rockSongs = [
+         {
       name: 'Give It Up',
       path: 'audio/KC%20and%20The%20Sunshine%20Band%20-%20Give%20It%20Up.mp3',
       artist: 'KC & The Sunshine Band',
       cover: 'images/audio/GiveItUp.jpg'
    },
-   // {
-   //    name: 'Voulez-Vous',
-   //    path: 'audio/ABBA%20-%20Voulez-Vous%20(Lyric%20Video).mp3',
-   //    artist: 'ABBA',
-   //    cover: 'images/audio/Voulez-Vous.jpg'
-   // },
+   {
+      name: 'Cheri Cheri Lady',
+      path: 'audio/Modern Talking - Cheri Cheri Lady (OfficialVideo).mp3',
+      artist: 'Modern Talking',
+      cover: 'images/audio/CherryCherry.jpg'
+   },
    {
       name: 'Gimme! Gimme!',
       path: 'audio/ABBA%20-%20Gimme!%20Gimme!%20Gimme!%20(A%20Man%20After%20Midnight).mp3',
       artist: 'ABBA',
       cover: 'images/audio/ABBA-GimmeGimmeGimme-video.png'
-   },
-
-     {
-      name: 'Hot Stuff',
-      path: 'audio/Hot Stuff.mp3',
-      artist: 'Donna Summer',
-      cover: 'images/audio/Hot Stuff.jpg'
    },
    {
       name: 'Out of Touch',
@@ -432,27 +425,26 @@ let rockSongs = [
       artist: 'Hall & Oates',
       cover: 'images/audio/Hall%20&%20Oates.jpg'
    },
-    {
-      name: 'Cheri Cheri Lady',
-      path: 'audio/Modern Talking - Cheri Cheri Lady (OfficialVideo).mp3',
-      artist: 'Modern Talking',
-      cover: 'images/audio/CherryCherry.jpg'
+   {
+      name: 'Hot Stuff',
+      path: 'audio/Hot Stuff.mp3',
+      artist: 'Donna Summer',
+      cover: 'images/audio/Hot Stuff.jpg'
    },
-     {
+   {
       name: 'Bella Ciao',
       path: 'audio/Bella Ciao.mp3',
       artist: 'Goran Bregovic',
       cover: 'images/audio/BellaCiao.jpg'
    },
-
    {
       name: 'I Will Survive',
       path: 'audio/Gloria Gaynor - I Will Survive.mp3',
       artist: 'Gloria Gaynor',
       cover: 'images/audio/GloriaIWillSurvive.jpg'
-   },
- 
-]
+   }
+];
+
 
 playLists.push(rockSongs);
 
