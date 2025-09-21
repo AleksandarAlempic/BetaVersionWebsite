@@ -204,6 +204,12 @@ let classicSongs = [
       artist: 'The Lord Of The Rings',
       cover: 'images/audio/RidersOfRohan.jpg'
    },
+    {
+  name: 'Tamo daleko',
+  path: 'audio/Tamo daleko.mp3',
+  artist: 'Tradicionalna srpska',
+  cover: 'images/audio/TamoDaleko.jpg'
+},
    {
       name: 'Victory',
       path: 'audio/Two Steps From Hell - Victory.mp3',
