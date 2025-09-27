@@ -145,7 +145,7 @@ let classicSongs = [
    },
    {
       name: 'Spring ',
-      path: 'audio/Vivaldi Four Seasons_ Spring (La Primavera)...',
+      path: 'audio/Antonio Vivaldi - Four Seasons Autumn - Frederieke Saeijs.mp3',
       artist: 'Antonio Vivaldi',
       cover: 'images/audio/AntonioVivaldi.jpg'
    },
@@ -157,7 +157,7 @@ let classicSongs = [
    },
    {
       name: 'Hungarian Dance No.5',
-      path: 'audio/Johannes Brahms -- Hungarian Dance No.5...',
+      path: 'audio/Johannes Brahms -- Hungarian Dance No.5 - Hungarian Symphony Orchestra Budapest (1).mp3',
       artist: 'Johannes Brahms',
       cover: 'images/audio/Hungarian Dance No.5.jpg'
    },
@@ -200,7 +200,7 @@ let classicSongs = [
    },
    {
       name: 'The Riders of Rohan',
-      path: 'audio/The Lord Of The Rings - The Riders of Rohan...',
+      path: 'audio/The Lord Of The Rings - The Riders of Rohan - Erhu & Violin cover.mp3',
       artist: 'The Lord Of The Rings',
       cover: 'images/audio/RidersOfRohan.jpg'
    },
@@ -216,9 +216,9 @@ let classicSongs = [
       artist: 'Two Steps From Hell',
       cover: 'images/audio/VictoryTwoStepsFromHell.jpg'
    },
-   {
+      {
       name: 'The Power Of Love',
-      path: 'audio/IL DIVO - The Power Of Love (La Fuerza Mayor)...',
+      path: 'audio/IL%20DIVO%20-%20The%20Power%20Of%20Love%20(La%20Fuerza%20Mayor)%20(Live%20Video).mp3',
       artist: 'IL DIVO',
       cover: 'images/audio/IlDivo.jpg'
    },
