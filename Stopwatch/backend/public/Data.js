@@ -357,7 +357,7 @@ let danceSongs = [
       name: 'Cheap Thrills ft. Sean Paul',
       path: 'audio/Sia - Cheap Thrills (Official Lyric Video) ft. Sean Paul.mp3',
       artist: 'Sia',
-      cover: 'images/audio/CheapThrils.jpg'
+      cover: 'images/audio/CheepThrills.jpg'
    },
    {
       name: 'Say It Right',
