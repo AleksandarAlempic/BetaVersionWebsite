@@ -34,12 +34,12 @@ let introSongs = [
       artist: 'Shakira ft. Carlinhos Brown',
       cover: 'images/audio/Shakira.jpg'
    },
-   {
-      name: 'Wavin Flag',
-      path: 'audio/Wavin%20Flag%20(Spanish%20Version)%20-%20Knaan%20&%20David%20Bisbal%20-%20World%20Cup%202010%20theme%20song%20(128%20kbps).mp3',
-      artist: 'Knaan & David Bisbal',
-      cover: 'images/audio/World%20Cup%202010%20theme%20song.jpg'
-   },
+   // {
+   //    name: 'Wavin Flag',
+   //    path: 'audio/Wavin%20Flag%20(Spanish%20Version)%20-%20Knaan%20&%20David%20Bisbal%20-%20World%20Cup%202010%20theme%20song%20(128%20kbps).mp3',
+   //    artist: 'Knaan & David Bisbal',
+   //    cover: 'images/audio/World%20Cup%202010%20theme%20song.jpg'
+   // },
    {
       name: 'We Are One',
       path: 'audio/We%20Are%20One%20(Ole%20Ola)%20%5BThe%20Official%202014%20FIFA%20World%20Cup%20Song%5D.mp3',
@@ -76,12 +76,12 @@ let introSongs = [
       artist: 'IL DIVO',
       cover: 'images/audio/Alone.jpg'
    },
-   {
-      name: 'Vracaju se dani pobede',
-      path: 'audio/Grupa%20JNA%20-%20Vracaju%20se%20dani%20pobede.mp3',
-      artist: '',
-      cover: 'images/audio/GrupaJNA.jpg'
-   },
+   // {
+   //    name: 'Vracaju se dani pobede',
+   //    path: 'audio/Grupa%20JNA%20-%20Vracaju%20se%20dani%20pobede.mp3',
+   //    artist: '',
+   //    cover: 'images/audio/GrupaJNA.jpg'
+   // },
    {
       name: 'U inat proslosti',
       path: 'audio/Aleksandra%20Radovic%20&%20The%20Beatshakers%20-%20Who%20Gonna%20Stop%20Me%20Now%20(Official%20HD%20Video).mp3',
@@ -101,12 +101,12 @@ let introSongs = [
    //    artist: 'Legende',
    //    cover: 'images/audio/LegendeNePitaj.jpg'
    // },
-   {
-      name: 'Hall of Fame',
-      path: 'audio/The%20Script%20-%20Hall%20of%20Fame%20(Official%20Video)%20ft.%20will.i.am.mp3',
-      artist: 'The Script - ft. will.i.am',
-      cover: 'images/audio/HallOfFame.jpg '
-   },
+   // {
+   //    name: 'Hall of Fame',
+   //    path: 'audio/The%20Script%20-%20Hall%20of%20Fame%20(Official%20Video)%20ft.%20will.i.am.mp3',
+   //    artist: 'The Script - ft. will.i.am',
+   //    cover: 'images/audio/HallOfFame.jpg '
+   // },
    // {
    //    name: 'Superheroes',
    //    path: 'audio/The%20Script%20-%20Superheroes%20(Official%20Video).mp3',
