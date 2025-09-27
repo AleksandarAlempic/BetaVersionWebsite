@@ -34,18 +34,18 @@ let introSongs = [
       artist: 'Shakira ft. Carlinhos Brown',
       cover: 'images/audio/Shakira.jpg'
    },
-   // {
-   //    name: 'Wavin Flag',
-   //    path: 'audio/Wavin%20Flag%20(Spanish%20Version)%20-%20Knaan%20&%20David%20Bisbal%20-%20World%20Cup%202010%20theme%20song%20(128%20kbps).mp3',
-   //    artist: 'Knaan & David Bisbal',
-   //    cover: 'images/audio/World%20Cup%202010%20theme%20song.jpg'
-   // },
-   // {
-   //    name: 'We Are One',
-   //    path: 'audio/We%20Are%20One%20(Ole%20Ola)%20%5BThe%20Official%202014%20FIFA%20World%20Cup%20Song%5D.mp3',
-   //    artist: 'Pitbull feat J.Lopez&C.Leitte ',
-   //    cover: 'images/audio/WeAreOne.jpg'
-   // },
+   {
+      name: 'Wavin Flag',
+      path: 'audio/Wavin%20Flag%20(Spanish%20Version)%20-%20Knaan%20&%20David%20Bisbal%20-%20World%20Cup%202010%20theme%20song%20(128%20kbps).mp3',
+      artist: 'Knaan & David Bisbal',
+      cover: 'images/audio/World%20Cup%202010%20theme%20song.jpg'
+   },
+   {
+      name: 'We Are One',
+      path: 'audio/We%20Are%20One%20(Ole%20Ola)%20%5BThe%20Official%202014%20FIFA%20World%20Cup%20Song%5D.mp3',
+      artist: 'Pitbull feat J.Lopez&C.Leitte ',
+      cover: 'images/audio/WeAreOne.jpg'
+   },
    {
       name: 'Walk',
       path: 'audio/Kwabs%20-%20Walk%20(Official%20Video).mp3',
@@ -88,37 +88,37 @@ let introSongs = [
       artist: 'Aleksandra Radovic',
       cover: 'images/audio/AleksandraRadovic.jpg'
    },
-   {
-      name: 'Devet Zivota',
-      path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20DEVET%20ZIVOTA%20(OFFICIAL%20VIDEO).mp3',
-      artist: 'Aleksandra Prijovic',
-      cover: 'images/audio/AleksandraPrijovic.jpg'
-   },
+   // {
+   //    name: 'Devet Zivota',
+   //    path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20DEVET%20ZIVOTA%20(OFFICIAL%20VIDEO).mp3',
+   //    artist: 'Aleksandra Prijovic',
+   //    cover: 'images/audio/AleksandraPrijovic.jpg'
+   // },
  
-   {
-      name: 'Ne Pitaj',
-      path: 'audio/LegendE%20_%20Ne%20pitaj%20-%20(LIVE)%20-%20(Sava%20centar%202005)%20(128%20kbps).mp3',
-      artist: 'Legende',
-      cover: 'images/audio/LegendeNePitaj.jpg'
-   },
+   // {
+   //    name: 'Ne Pitaj',
+   //    path: 'audio/LegendE%20_%20Ne%20pitaj%20-%20(LIVE)%20-%20(Sava%20centar%202005)%20(128%20kbps).mp3',
+   //    artist: 'Legende',
+   //    cover: 'images/audio/LegendeNePitaj.jpg'
+   // },
    {
       name: 'Hall of Fame',
       path: 'audio/The%20Script%20-%20Hall%20of%20Fame%20(Official%20Video)%20ft.%20will.i.am.mp3',
       artist: 'The Script - ft. will.i.am',
       cover: 'images/audio/HallOfFame.jpg '
    },
-   {
-      name: 'Superheroes',
-      path: 'audio/The%20Script%20-%20Superheroes%20(Official%20Video).mp3',
-      artist: 'The Script',
-      cover: 'images/audio/TheScript.jpg'
-   },
-   {
-      name: 'Calling On Me',
-      path: 'audio/Sean%20Paul,%20Tove%20Lo%20-%20Calling%20On%20Me%20(128%20kbps).mp3',
-      artist: 'Sean Paul',
-      cover: 'images/audio/SeanPaul.jpg'
-   },
+   // {
+   //    name: 'Superheroes',
+   //    path: 'audio/The%20Script%20-%20Superheroes%20(Official%20Video).mp3',
+   //    artist: 'The Script',
+   //    cover: 'images/audio/TheScript.jpg'
+   // },
+   // {
+   //    name: 'Calling On Me',
+   //    path: 'audio/Sean%20Paul,%20Tove%20Lo%20-%20Calling%20On%20Me%20(128%20kbps).mp3',
+   //    artist: 'Sean Paul',
+   //    cover: 'images/audio/SeanPaul.jpg'
+   // },
    {
       name: 'Gimme! Gimme!',
       path: 'audio/ABBA%20-%20Gimme!%20Gimme!%20Gimme!%20(A%20Man%20After%20Midnight).mp3',
