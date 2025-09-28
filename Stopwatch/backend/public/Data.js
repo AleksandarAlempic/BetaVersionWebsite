@@ -62,7 +62,7 @@ let introSongs = [
       name: 'Out of Touch',
       path: 'audio/Hall%20&%20Oates%20-%20Out%20of%20Touch.mp3',
       artist: 'Hall & Oates',
-      cover: 'images/audio/OutOfTouch.webp'
+      cover: 'images/audio/Hall%20&%20Oates.jpg'
    },
    {
       name: 'The Power Of Love',
