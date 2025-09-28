@@ -145,7 +145,7 @@ let classicSongs = [
    },
    {
       name: 'Spring ',
-      path: 'audio/Vivaldi Four Seasons_ Spring (La Primavera)...',
+      path: 'audio/Vivaldi Four Seasons_ Spring (La Primavera) Full, original. Youssefian & Voices of Music RV 269 4K.mp3',
       artist: 'Antonio Vivaldi',
       cover: 'images/audio/AntonioVivaldi.jpg'
    },
@@ -200,7 +200,7 @@ let classicSongs = [
    },
    {
       name: 'The Riders of Rohan',
-      path: 'audio/The Lord Of The Rings - The Riders of Rohan...',
+      path: 'audio/The Lord Of The Rings - The Riders of Rohan - Erhu & Violin cover.mp3',
       artist: 'The Lord Of The Rings',
       cover: 'images/audio/RidersOfRohan.jpg'
    },
