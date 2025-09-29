@@ -53,20 +53,22 @@ app.post('/api/save-run', async (req, res) => {
 });
 
 app.post('/api/save-training', async (req, res) => {
-  const { user_id, userName, trainingName, pushUps, pullUps, sitUps, absCount, otherExercise, duration } = req.body;
+  const { user_id, userName, trainingName, pushUps, pullUps, sitUps, absCount, otherExercise, duration, lat, lon } = req.body;
   if (!user_id || !userName || !trainingName) return res.status(400).json({ error: "User ID, Username, and Training name are required" });
 
   try {
-    const { data, error } = await supabase.from('training').insert([{
-      trainingName,
-      userName,
-      pushUps,
-      pullUps,
-      sitUps,
-      absCount,
-      otherExercise,
-      duration
-    }]);
+   const { data, error } = await supabase.from('training').insert([{
+  trainingName,
+  userName,
+  pushUps,
+  pullUps,
+  sitUps,
+  absCount,
+  otherExercise,
+  duration,
+  lat,
+  lon
+}]);
     if (error) throw error;
     res.status(201).json({ message: "Training saved successfully.", data });
   } catch (err) {
