@@ -494,39 +494,47 @@ if (!userId) {
 }
 
     // Handle training form submit
-    document.getElementById("trainingForm").addEventListener("submit", function(e) {
-    e.preventDefault(); // Prevent form from refreshing the page
+   document.getElementById("trainingForm").addEventListener("submit", function(e) {
+    e.preventDefault(); 
 
-        // Collect values from form
+    // Dohvati geolokaciju korisnika
+    navigator.geolocation.getCurrentPosition((position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
         const trainingData = {
-          user_id: parseInt(userId) || 1, // fallback  // Replace with logged-in user if dynamic
-        trainingName: document.getElementById("trainingName").value || 0,,
-        userName: document.getElementById("userName").value || 0,,
-        pushUps: parseInt(document.getElementById("pushUps").value) || 0,
-        pullUps: parseInt(document.getElementById("pullUps").value) || 0,
-        sitUps: parseInt(document.getElementById("sitUps").value) || 0,
-        absCount: parseInt(document.getElementById("absCount").value) || 0,
-        otherExercise: document.getElementById("otherExercise").value,
-        duration: parseInt(document.getElementById("duration").value) || 0
+            user_id: parseInt(userId) || 1,
+            trainingName: document.getElementById("trainingName").value || "",
+            userName: document.getElementById("userName").value || "",
+            pushUps: parseInt(document.getElementById("pushUps").value) || 0,
+            pullUps: parseInt(document.getElementById("pullUps").value) || 0,
+            sitUps: parseInt(document.getElementById("sitUps").value) || 0,
+            absCount: parseInt(document.getElementById("absCount").value) || 0,
+            otherExercise: document.getElementById("otherExercise").value || "",
+            duration: parseInt(document.getElementById("duration").value) || 0,
+            lat: lat,   // 🔹 dodato
+            lon: lon    // 🔹 dodato
         };
 
-        // Send training data to backend API
         fetch("https://betaversionwebsite.onrender.com/api/save-training", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(trainingData),
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(trainingData),
         })
         .then(res => res.json())
         .then(data => {
-        console.log("Training saved:", data);
-        alert("Training saved successfully!");
-        document.getElementById("addTrainingPopup").style.display = "none"; // Hide popup
+            console.log("Training saved:", data);
+            alert("Training saved successfully!");
+            document.getElementById("addTrainingPopup").style.display = "none";
         })
         .catch(err => {
-        console.error("Error saving training:", err);
-        alert("Failed to save training.");
+            console.error("Error saving training:", err);
+            alert("Failed to save training.");
         });
+    }, (error) => {
+        alert("Could not get location: " + error.message);
     });
+});
     </script>
         </div>
         <div id="usernamePopup" style="display: none; position: fixed; top: 30%; left: 50%; transform: translateX(-50%); background: white; padding: 20px; z-index: 1000000001; box-shadow: 0px 0px 10px rgba(0,0,0,0.5); border-radius: 8px;">
