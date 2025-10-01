@@ -512,8 +512,8 @@ if (!userId) {
             absCount: parseInt(document.getElementById("absCount").value) || 0,
             otherExercise: document.getElementById("otherExercise").value || "",
             duration: parseInt(document.getElementById("duration").value) || 0,
-            lat: lat,   // 🔹 dodato
-            lon: lon    // 🔹 dodato
+            latitude: lat,   // 🔹 dodato
+            longitude: lon    // 🔹 dodato
         };
 
         fetch("https://betaversionwebsite.onrender.com/api/save-training", {
