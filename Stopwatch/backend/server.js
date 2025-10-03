@@ -17,17 +17,22 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Servira folder sa muzikom kao /audio
 app.use('/audio', express.static(path.join(__dirname, '../../Audio'))); 
+// ../../Audio → ide dva foldera gore do BetaVersionWebsite/Audio
 
 // Supabase client
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// Routes
+// ---------------- API ROUTES ---------------- //
+
+// Snimanje trčanja
 app.post('/api/save-run', async (req, res) => {
   const { user_id, username, root, distance, speed, time, polyline, startLat, startLng, location = "Unknown Location" } = req.body;
 
-  if (!user_id || !username) return res.status(400).json({ error: "User ID and Username are required" });
+  if (!user_id || !username) {
+    return res.status(400).json({ error: "User ID and Username are required" });
+  }
 
   try {
     const { data, error } = await supabase.from('runs').insert([{
@@ -46,14 +51,18 @@ app.post('/api/save-run', async (req, res) => {
     if (error) throw error;
     res.status(201).json({ message: "Run saved successfully.", data });
   } catch (err) {
-    console.error("Error saving run:", err);
+    console.error("❌ Error saving run:", err);
     res.status(500).json({ error: "Failed to save run" });
   }
 });
 
+// Snimanje treninga
 app.post('/api/save-training', async (req, res) => {
   const { user_id, userName, trainingName, pushUps, pullUps, sitUps, absCount, otherExercise, duration, latitude, longitude } = req.body;
-  if (!user_id || !userName || !trainingName) return res.status(400).json({ error: "User ID, Username, and Training name are required" });
+  
+  if (!user_id || !userName || !trainingName) {
+    return res.status(400).json({ error: "User ID, Username, and Training name are required" });
+  }
 
   try {
     const { data, error } = await supabase.from('training').insert([{
@@ -65,17 +74,19 @@ app.post('/api/save-training', async (req, res) => {
       absCount,
       otherExercise,
       duration,
-      latitude,    
-      longitude    
+      latitude,
+      longitude
     }]);
+
     if (error) throw error;
     res.status(201).json({ message: "Training saved successfully.", data });
   } catch (err) {
-    console.error("Error saving training:", err);
+    console.error("❌ Error saving training:", err);
     res.status(500).json({ error: "Failed to save training" });
   }
 });
 
+// Povlačenje ruta u blizini
 app.get('/api/routes-nearby', async (req, res) => {
   const { lat, lng } = req.query;
   const latNum = parseFloat(lat);
@@ -92,13 +103,21 @@ app.get('/api/routes-nearby', async (req, res) => {
 
     if (error) throw error;
 
-    const radius = 10000; // 10km
+    console.log("📡 Frontend coords:", latNum, lngNum);
+    console.log("📦 Routes from DB count:", routes?.length);
+    console.log("📦 Routes raw:", routes);
+
+    const radius = 10000; // 10 km
     const toRad = deg => (deg * Math.PI) / 180;
 
     const nearby = routes.filter(r => {
       const rLat = parseFloat(r.start_lat);
       const rLng = parseFloat(r.start_lng);
-      if (isNaN(rLat) || isNaN(rLng)) return false;
+
+      if (isNaN(rLat) || isNaN(rLng)) {
+        console.warn(`⚠️ Route ${r.id} ima nevalidne koordinate: lat=${r.start_lat}, lng=${r.start_lng}`);
+        return false;
+      }
 
       const R = 6371000;
       const dLat = toRad(latNum - rLat);
@@ -108,23 +127,25 @@ app.get('/api/routes-nearby', async (req, res) => {
       const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
       const distance = R * c;
 
+      console.log(`📍 Route ${r.id}: distance=${distance.toFixed(2)}m`);
       return distance <= radius;
     });
 
+    console.log("✅ Nearby routes found:", nearby.length);
     res.json(nearby);
 
   } catch (err) {
-    console.error("Error fetching nearby routes:", err);
+    console.error("❌ Error fetching nearby routes:", err);
     res.status(500).json({ error: "Failed to fetch nearby routes" });
   }
 });
 
-// Serve index.html
+// ---------------- FRONTEND ---------------- //
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Start server
+// ---------------- START SERVER ---------------- //
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`🚀 Server is running on http://localhost:${port}`);
 });
