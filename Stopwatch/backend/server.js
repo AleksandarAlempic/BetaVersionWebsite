@@ -141,21 +141,17 @@ app.get('/api/routes-nearby', async (req, res) => {
 });
 
 app.get('/api/all-routes', async (req, res) => {
-  try {
-    const { data: runs, error } = await supabase
-      .from('runs')
-      .select('*')
-      .order('id', { ascending: false });
-
-    if (error) throw error;
-
-    console.log("📦 All routes count:", runs.length);
-    res.json(runs);
-
-  } catch (err) {
-    console.error("❌ Error fetching all routes:", err);
-    res.status(500).json({ error: "Failed to fetch all routes", details: err.message });
-  }
+    try {
+        const { data, error } = await supabase
+            .from('runs')
+            .select('*'); // bez filtera
+        if (error) return res.status(500).json({ error });
+        console.log("Routes raw:", data);
+        res.json(data);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Server error' });
+    }
 });
 
 // ---------------- FRONTEND ---------------- //
