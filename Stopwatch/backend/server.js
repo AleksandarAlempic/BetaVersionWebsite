@@ -142,17 +142,11 @@ app.get('/api/routes-nearby', async (req, res) => {
 
 app.get('/api/all-routes', async (req, res) => {
   try {
-    const { data, error } = await supabase
-      .from('runs')
-      .select('*'); // sve kolone
-
-    if (error) throw error;
-
-    console.log("📦 All routes count:", data.length);
-    res.json(data);
-  } catch (err) {
-    console.error("Error fetching all routes:", err);
-    res.status(500).json({ error: "Failed to fetch all routes" });
+    const { rows } = await pool.query('SELECT * FROM runs'); // ili odgovarajuća tabela
+    res.json(rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Nešto nije u redu sa serverom' });
   }
 });
 
