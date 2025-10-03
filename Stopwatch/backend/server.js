@@ -104,7 +104,7 @@ app.get('/api/routes-nearby', async (req, res) => {
       return R * c;
     };
 
-    const radius = 1000; 
+    const radius = 5000; 
     const nearby = [];
 
     data.forEach(r => {
