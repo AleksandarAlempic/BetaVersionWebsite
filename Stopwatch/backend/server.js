@@ -140,6 +140,22 @@ app.get('/api/routes-nearby', async (req, res) => {
   }
 });
 
+app.get('/api/all-routes', async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from('runs')
+      .select('*'); // sve kolone
+
+    if (error) throw error;
+
+    console.log("📦 All routes count:", data.length);
+    res.json(data);
+  } catch (err) {
+    console.error("Error fetching all routes:", err);
+    res.status(500).json({ error: "Failed to fetch all routes" });
+  }
+});
+
 // ---------------- FRONTEND ---------------- //
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
