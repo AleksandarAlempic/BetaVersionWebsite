@@ -142,12 +142,19 @@ app.get('/api/routes-nearby', async (req, res) => {
 
 app.get('/api/all-routes', async (req, res) => {
   try {
-    const { rows } = await pool.query('SELECT * FROM runs');
-    console.log("All routes count:", rows.length);
-    res.json(rows);
-  } catch (error) {
-    console.error("Database query failed:", error);  // <-- detaljniji log
-    res.status(500).json({ error: 'Nešto nije u redu sa serverom', details: error.message });
+    const { data: runs, error } = await supabase
+      .from('runs')
+      .select('*')
+      .order('id', { ascending: false });
+
+    if (error) throw error;
+
+    console.log("📦 All routes count:", runs.length);
+    res.json(runs);
+
+  } catch (err) {
+    console.error("❌ Error fetching all routes:", err);
+    res.status(500).json({ error: "Failed to fetch all routes", details: err.message });
   }
 });
 
