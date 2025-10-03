@@ -81,26 +81,30 @@ app.get('/api/routes-nearby', async (req, res) => {
   const { lat, lng } = req.query;
   const latNum = parseFloat(lat);
   const lngNum = parseFloat(lng);
-  if (isNaN(latNum) || isNaN(lngNum)) return res.status(400).json({ error: "Invalid latitude or longitude" });
+
+  if (isNaN(latNum) || isNaN(lngNum)) {
+    return res.status(400).json({ error: "Invalid latitude or longitude" });
+  }
 
   try {
+    // Uzmi sve rute
     const { data, error } = await supabase.from('runs').select('*');
     if (error) throw error;
 
-    console.log("All runs in DB:", data.length);
+    // Udaljenost 500m ~ 0.005 stepeni
+    const radius = 0.005;
 
-    // filter manually
+    // Filtriraj na serveru
     const nearby = data.filter(r => {
       const rLat = parseFloat(r.start_lat);
       const rLng = parseFloat(r.start_lng);
-      return (
-        !isNaN(rLat) && !isNaN(rLng) &&
-        Math.abs(rLat - latNum) <= 0.5 &&
-        Math.abs(rLng - lngNum) <= 0.5
-      );
+
+      if (isNaN(rLat) || isNaN(rLng)) return false;
+
+      return Math.abs(rLat - latNum) <= radius && Math.abs(rLng - lngNum) <= radius;
     });
 
-    console.log("Nearby runs count:", nearby.length);
+    console.log("Found nearby runs:", nearby.length);
     res.json(nearby);
 
   } catch (err) {
