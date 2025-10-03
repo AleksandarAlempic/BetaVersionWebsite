@@ -87,7 +87,7 @@ app.post('/api/save-training', async (req, res) => {
 });
 
 app.get('/api/routes-nearby', async (req, res) => {
-  const { lat, lng, radius = 50000 } = req.query; // default 50km
+  const { lat, lng, radius = 35000 } = req.query; // default 50km
   const latNum = parseFloat(lat);
   const lngNum = parseFloat(lng);
   const radiusNum = parseFloat(radius);
