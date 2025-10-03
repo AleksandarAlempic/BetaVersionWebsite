@@ -87,21 +87,35 @@ app.get('/api/routes-nearby', async (req, res) => {
   }
 
   try {
-    // Uzmi sve rute
+    // Uzmi sve rute iz baze
     const { data, error } = await supabase.from('runs').select('*');
     if (error) throw error;
 
-    // Udaljenost 500m ~ 0.005 stepeni
-    const radius = 0.005;
+    // Funkcija za Haversine distancu (u metrima)
+    const haversineDistance = (lat1, lon1, lat2, lon2) => {
+      const R = 6371000; // radius Zemlje u metrima
+      const toRad = deg => (deg * Math.PI) / 180;
+      const dLat = toRad(lat2 - lat1);
+      const dLon = toRad(lon2 - lon1);
+      const a =
+        Math.sin(dLat / 2) ** 2 +
+        Math.cos(toRad(lat1)) *
+          Math.cos(toRad(lat2)) *
+          Math.sin(dLon / 2) ** 2;
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      return R * c;
+    };
 
-    // Filtriraj na serveru
+    // Filtriraj rute unutar 500m
+    const radius = 500; // metri
     const nearby = data.filter(r => {
       const rLat = parseFloat(r.start_lat);
       const rLng = parseFloat(r.start_lng);
 
       if (isNaN(rLat) || isNaN(rLng)) return false;
 
-      return Math.abs(rLat - latNum) <= radius && Math.abs(rLng - lngNum) <= radius;
+      const dist = haversineDistance(latNum, lngNum, rLat, rLng);
+      return dist <= radius;
     });
 
     console.log("Found nearby runs:", nearby.length);
