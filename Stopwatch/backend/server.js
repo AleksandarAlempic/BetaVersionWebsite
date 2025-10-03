@@ -86,14 +86,17 @@ app.post('/api/save-training', async (req, res) => {
   }
 });
 
-// Povlačenje ruta u blizini
 app.get('/api/routes-nearby', async (req, res) => {
-  const { lat, lng } = req.query;
+  const { lat, lng, radius = 1000 } = req.query; // default 1km
   const latNum = parseFloat(lat);
   const lngNum = parseFloat(lng);
+  const radiusNum = parseFloat(radius);
 
   if (isNaN(latNum) || isNaN(lngNum)) {
     return res.status(400).json({ error: "Invalid latitude or longitude" });
+  }
+  if (isNaN(radiusNum)) {
+    return res.status(400).json({ error: "Invalid radius" });
   }
 
   try {
@@ -102,44 +105,48 @@ app.get('/api/routes-nearby', async (req, res) => {
       .select('id, username, distance, speed, polyline, start_lat, start_lng');
 
     if (error) throw error;
+    if (!routes || routes.length === 0) {
+      console.log('No routes in DB');
+      return res.json([]);
+    }
 
-    console.log("📡 Frontend coords:", latNum, lngNum);
-    console.log("📦 Routes from DB count:", routes?.length);
-    console.log("📦 Routes raw:", routes);
+    console.log("Frontend coords:", latNum, lngNum, "radius(m):", radiusNum);
 
-    const radius = 10000; // 10 km
     const toRad = deg => (deg * Math.PI) / 180;
+    const R = 6371000; // Earth radius in meters
 
-    const nearby = routes.filter(r => {
+    const nearby = routes.reduce((acc, r) => {
+      // safety: skip if no coords
+      if (r.start_lat == null || r.start_lng == null) return acc;
+
       const rLat = parseFloat(r.start_lat);
       const rLng = parseFloat(r.start_lng);
+      if (isNaN(rLat) || isNaN(rLng)) return acc;
 
-      if (isNaN(rLat) || isNaN(rLng)) {
-        console.warn(`⚠️ Route ${r.id} ima nevalidne koordinate: lat=${r.start_lat}, lng=${r.start_lng}`);
-        return false;
-      }
+      const dLat = toRad(rLat - latNum);
+      const dLng = toRad(rLng - lngNum);
 
-      const R = 6371000;
-      const dLat = toRad(latNum - rLat);
-      const dLng = toRad(lngNum - rLng);
-
-      const a = Math.sin(dLat/2)**2 + Math.cos(toRad(latNum)) * Math.cos(toRad(rLat)) * Math.sin(dLng/2)**2;
-      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+      const a = Math.sin(dLat / 2) ** 2 +
+                Math.cos(toRad(latNum)) * Math.cos(toRad(rLat)) * Math.sin(dLng / 2) ** 2;
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
       const distance = R * c;
 
-      console.log(`📍 Route ${r.id}: distance=${distance.toFixed(2)}m`);
-      return distance <= radius;
-    });
+      console.log(`Route ${r.id}: start_lat=${rLat}, start_lng=${rLng}, distance=${Math.round(distance)}m`);
 
-    console.log("✅ Nearby routes found:", nearby.length);
+      if (distance <= radiusNum) {
+        acc.push({ ...r, _distance_m: distance });
+      }
+      return acc;
+    }, []);
+
+    console.log("Nearby routes found:", nearby.length);
     res.json(nearby);
 
   } catch (err) {
-    console.error("❌ Error fetching nearby routes:", err);
+    console.error("Error fetching nearby routes:", err);
     res.status(500).json({ error: "Failed to fetch nearby routes" });
   }
 });
-
 app.get('/api/all-routes', async (req, res) => {
     try {
         const { data, error } = await supabase
