@@ -142,11 +142,12 @@ app.get('/api/routes-nearby', async (req, res) => {
 
 app.get('/api/all-routes', async (req, res) => {
   try {
-    const { rows } = await pool.query('SELECT * FROM runs'); // ili odgovarajuća tabela
+    const { rows } = await pool.query('SELECT * FROM runs');
+    console.log("All routes count:", rows.length);
     res.json(rows);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Nešto nije u redu sa serverom' });
+    console.error("Database query failed:", error);  // <-- detaljniji log
+    res.status(500).json({ error: 'Nešto nije u redu sa serverom', details: error.message });
   }
 });
 
