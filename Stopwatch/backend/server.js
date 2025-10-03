@@ -83,22 +83,32 @@ app.get('/api/routes-nearby', async (req, res) => {
   const lngNum = parseFloat(lng);
   if (isNaN(latNum) || isNaN(lngNum)) return res.status(400).json({ error: "Invalid latitude or longitude" });
 
-  const radius = 0.5;
-  const latMin = latNum - radius, latMax = latNum + radius;
-  const lngMin = lngNum - radius, lngMax = lngNum + radius;
-
   try {
-    const { data, error } = await supabase.from('runs')
-      .select('*')
-      .gte('start_lat', latMin).lte('start_lat', latMax)
-      .gte('start_lng', lngMin).lte('start_lng', lngMax);
+    const { data, error } = await supabase.from('runs').select('*');
     if (error) throw error;
-    res.json(data);
+
+    console.log("All runs in DB:", data.length);
+
+    // filter manually
+    const nearby = data.filter(r => {
+      const rLat = parseFloat(r.start_lat);
+      const rLng = parseFloat(r.start_lng);
+      return (
+        !isNaN(rLat) && !isNaN(rLng) &&
+        Math.abs(rLat - latNum) <= 0.5 &&
+        Math.abs(rLng - lngNum) <= 0.5
+      );
+    });
+
+    console.log("Nearby runs count:", nearby.length);
+    res.json(nearby);
+
   } catch (err) {
     console.error("Error fetching nearby routes:", err);
     res.status(500).json({ error: "Failed to fetch nearby routes" });
   }
 });
+
 
 // Serve index.html
 app.get('/', (req, res) => {
