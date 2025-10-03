@@ -87,13 +87,11 @@ app.get('/api/routes-nearby', async (req, res) => {
   }
 
   try {
-    // Uzmi sve rute iz baze
     const { data, error } = await supabase.from('runs').select('*');
     if (error) throw error;
 
-    // Funkcija za Haversine distancu (u metrima)
     const haversineDistance = (lat1, lon1, lat2, lon2) => {
-      const R = 6371000; // radius Zemlje u metrima
+      const R = 6371000;
       const toRad = deg => (deg * Math.PI) / 180;
       const dLat = toRad(lat2 - lat1);
       const dLon = toRad(lon2 - lon1);
@@ -106,16 +104,20 @@ app.get('/api/routes-nearby', async (req, res) => {
       return R * c;
     };
 
-    // Filtriraj rute unutar 500m
-    const radius = 500; // metri
-    const nearby = data.filter(r => {
+    const radius = 1000; 
+    const nearby = [];
+
+    data.forEach(r => {
       const rLat = parseFloat(r.start_lat);
       const rLng = parseFloat(r.start_lng);
 
-      if (isNaN(rLat) || isNaN(rLng)) return false;
+      if (isNaN(rLat) || isNaN(rLng)) return;
 
       const dist = haversineDistance(latNum, lngNum, rLat, rLng);
-      return dist <= radius;
+      console.log(`Route ${r.id}: distance = ${dist}m`); // debug
+      if (dist <= radius) {
+        nearby.push(r);
+      }
     });
 
     console.log("Found nearby runs:", nearby.length);
