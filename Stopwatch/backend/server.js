@@ -87,40 +87,34 @@ app.get('/api/routes-nearby', async (req, res) => {
   }
 
   try {
-    const { data, error } = await supabase.from('runs').select('*');
+    // Selektujemo samo ono što je potrebno, da nema problema sa null
+    const { data: routes, error } = await supabase
+      .from('runs')
+      .select('id, username, distance, speed, polyline, start_lat, start_lng');
+
     if (error) throw error;
 
-    const haversineDistance = (lat1, lon1, lat2, lon2) => {
-      const R = 6371000;
-      const toRad = deg => (deg * Math.PI) / 180;
-      const dLat = toRad(lat2 - lat1);
-      const dLon = toRad(lon2 - lon1);
-      const a =
-        Math.sin(dLat / 2) ** 2 +
-        Math.cos(toRad(lat1)) *
-          Math.cos(toRad(lat2)) *
-          Math.sin(dLon / 2) ** 2;
-      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-      return R * c;
-    };
-
-    const radius = 5000; 
-    const nearby = [];
-
-    data.forEach(r => {
+    // Filter po Haversine formuli
+    const radius = 5000; // u metrima
+    const nearby = routes.filter(r => {
       const rLat = parseFloat(r.start_lat);
       const rLng = parseFloat(r.start_lng);
 
-      if (isNaN(rLat) || isNaN(rLng)) return;
+      if (isNaN(rLat) || isNaN(rLng)) return false;
 
-      const dist = haversineDistance(latNum, lngNum, rLat, rLng);
-      console.log(`Route ${r.id}: distance = ${dist}m`); // debug
-      if (dist <= radius) {
-        nearby.push(r);
-      }
+      const R = 6371000;
+      const toRad = deg => (deg * Math.PI) / 180;
+      const dLat = toRad(rLat - latNum);
+      const dLng = toRad(rLng - lngNum);
+
+      const a = Math.sin(dLat/2)**2 + Math.cos(toRad(latNum)) * Math.cos(toRad(rLat)) * Math.sin(dLng/2)**2;
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+      const distance = R * c;
+
+      return distance <= radius;
     });
 
-    console.log("Found nearby runs:", nearby.length);
+    console.log("Nearby routes found:", nearby.length);
     res.json(nearby);
 
   } catch (err) {
@@ -128,7 +122,6 @@ app.get('/api/routes-nearby', async (req, res) => {
     res.status(500).json({ error: "Failed to fetch nearby routes" });
   }
 });
-
 
 // Serve index.html
 app.get('/', (req, res) => {
