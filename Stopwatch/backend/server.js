@@ -105,33 +105,26 @@ app.get('/api/routes-nearby', async (req, res) => {
       .select('id, username, distance, speed, polyline, start_lat, start_lng');
 
     if (error) throw error;
-    if (!routes || routes.length === 0) {
-      console.log('No routes in DB');
-      return res.json([]);
-    }
-
-    console.log("Frontend coords:", latNum, lngNum, "radius(m):", radiusNum);
+    if (!routes || routes.length === 0) return res.json([]);
 
     const toRad = deg => (deg * Math.PI) / 180;
     const R = 6371000; // Earth radius in meters
 
     const nearby = routes.reduce((acc, r) => {
-      // safety: skip if no coords
       if (r.start_lat == null || r.start_lng == null) return acc;
 
-      const rLat = parseFloat(r.start_lat);
-      const rLng = parseFloat(r.start_lng);
-      if (isNaN(rLat) || isNaN(rLng)) return acc;
+      const lat1 = toRad(latNum);
+      const lng1 = toRad(lngNum);
+      const lat2 = toRad(parseFloat(r.start_lat));
+      const lng2 = toRad(parseFloat(r.start_lng));
 
-      const dLat = toRad(rLat - latNum);
-      const dLng = toRad(rLng - lngNum);
+      const dLat = lat2 - lat1;
+      const dLng = lng2 - lng1;
 
       const a = Math.sin(dLat / 2) ** 2 +
-                Math.cos(toRad(latNum)) * Math.cos(toRad(rLat)) * Math.sin(dLng / 2) ** 2;
+                Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) ** 2;
       const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
       const distance = R * c;
-
-      console.log(`Route ${r.id}: start_lat=${rLat}, start_lng=${rLng}, distance=${Math.round(distance)}m`);
 
       if (distance <= radiusNum) {
         acc.push({ ...r, _distance_m: distance });
@@ -139,9 +132,11 @@ app.get('/api/routes-nearby', async (req, res) => {
       return acc;
     }, []);
 
+    console.log(`Frontend coords: ${latNum} ${lngNum}, radius(m): ${radiusNum}`);
+    nearby.forEach(r => console.log(`Route ${r.id}: distance=${Math.round(r._distance_m)}m`));
     console.log("Nearby routes found:", nearby.length);
-    res.json(nearby);
 
+    res.json(nearby);
   } catch (err) {
     console.error("Error fetching nearby routes:", err);
     res.status(500).json({ error: "Failed to fetch nearby routes" });
