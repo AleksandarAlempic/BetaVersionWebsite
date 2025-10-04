@@ -22,18 +22,6 @@ let introSongs = [
       cover: 'images/audio/EjDragi.jpg'
    },
   
-   {
-      name: 'Waka waka',
-      path: 'audio/WakaWaka.mp3',
-      artist: 'Shakira',
-      cover: 'images/audio/WakaWaka.jpg'
-   },
-   {
-      name: 'La la la',
-      path: 'audio/Shakira%20-%20La%20La%20La%20(Brazil%202014)%20ft.%20Carlinhos%20Brown.mp3',
-      artist: 'Shakira ft. Carlinhos Brown',
-      cover: 'images/audio/Shakira.jpg'
-   },
    // {
    //    name: 'Wavin Flag',
    //    path: 'audio/Wavin%20Flag%20(Spanish%20Version)%20-%20Knaan%20&%20David%20Bisbal%20-%20World%20Cup%202010%20theme%20song%20(128%20kbps).mp3',
@@ -76,31 +64,43 @@ let introSongs = [
       artist: 'IL DIVO',
       cover: 'images/audio/Alone.jpg'
    },
-   {
-      name: 'Vracaju se dani pobede',
-      path: 'audio/Grupa%20JNA%20-%20Vracaju%20se%20dani%20pobede.mp3',
-      artist: '',
-      cover: 'images/audio/GrupaJNA.jpg'
+    {
+      name: 'Waka waka',
+      path: 'audio/WakaWaka.mp3',
+      artist: 'Shakira',
+      cover: 'images/audio/WakaWaka.jpg'
    },
+   {
+      name: 'La la la',
+      path: 'audio/Shakira%20-%20La%20La%20La%20(Brazil%202014)%20ft.%20Carlinhos%20Brown.mp3',
+      artist: 'Shakira ft. Carlinhos Brown',
+      cover: 'images/audio/Shakira.jpg'
+   },
+   // {
+   //    name: 'Vracaju se dani pobede',
+   //    path: 'audio/Grupa%20JNA%20-%20Vracaju%20se%20dani%20pobede.mp3',
+   //    artist: '',
+   //    cover: 'images/audio/GrupaJNA.jpg'
+   // },
    {
       name: 'U inat proslosti',
       path: 'audio/Aleksandra%20Radovic%20&%20The%20Beatshakers%20-%20Who%20Gonna%20Stop%20Me%20Now%20(Official%20HD%20Video).mp3',
       artist: 'Aleksandra Radovic',
       cover: 'images/audio/AleksandraRadovic.jpg'
    },
-   {
-      name: 'Devet Zivota',
-      path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20DEVET%20ZIVOTA%20(OFFICIAL%20VIDEO).mp3',
-      artist: 'Aleksandra Prijovic',
-      cover: 'images/audio/AleksandraPrijovic.jpg'
-   },
+   // {
+   //    name: 'Devet Zivota',
+   //    path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20DEVET%20ZIVOTA%20(OFFICIAL%20VIDEO).mp3',
+   //    artist: 'Aleksandra Prijovic',
+   //    cover: 'images/audio/AleksandraPrijovic.jpg'
+   // },
  
-   {
-      name: 'Ne Pitaj',
-      path: 'audio/LegendE%20_%20Ne%20pitaj%20-%20(LIVE)%20-%20(Sava%20centar%202005)%20(128%20kbps).mp3',
-      artist: 'Legende',
-      cover: 'images/audio/LegendeNePitaj.jpg'
-   },
+   // {
+   //    name: 'Ne Pitaj',
+   //    path: 'audio/LegendE%20_%20Ne%20pitaj%20-%20(LIVE)%20-%20(Sava%20centar%202005)%20(128%20kbps).mp3',
+   //    artist: 'Legende',
+   //    cover: 'images/audio/LegendeNePitaj.jpg'
+   // },
    {
       name: 'Hall of Fame',
       path: 'audio/The%20Script%20-%20Hall%20of%20Fame%20(Official%20Video)%20ft.%20will.i.am.mp3',
