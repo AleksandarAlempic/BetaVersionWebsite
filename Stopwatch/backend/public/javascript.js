@@ -515,5 +515,53 @@ function fetchNearbyRoutes(lat, lng) {
         });
 }
 
+async function retrieveNearbyTrainings() {
+  if (!userLat || !userLng) {
+    alert("Cannot detect location.");
+    return;
+  }
+
+  const radius = 35000; // 35 km
+  console.log(`Retrieving trainings near (${userLat}, ${userLng}) radius: ${radius}m`);
+
+  // 1️⃣ Očisti postojeće rute sa mape
+  if (window.currentPolylines) {
+    window.currentPolylines.forEach(p => map.removeLayer(p));
+    window.currentPolylines = [];
+  }
+
+  // 2️⃣ Fetch traininge
+  const url = `https://betaversionwebsite.onrender.com/api/trainings-nearby?lat=${userLat}&lng=${userLng}&radius=${radius}`;
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+
+    console.log("Nearby trainings:", data);
+
+    // 3️⃣ Dodaj markere za treninge
+    data.forEach(t => {
+      if (t.latitude && t.longitude) {
+        const marker = L.marker([t.latitude, t.longitude])
+          .addTo(map)
+          .bindPopup(`
+            <b>${t.trainingName}</b><br>
+            🏋️‍♂️ PushUps: ${t.pushUps}<br>
+            💪 PullUps: ${t.pullUps}<br>
+            🧍 SitUps: ${t.sitUps}<br>
+            ⏱ Duration: ${t.duration} min
+          `);
+      }
+    });
+
+    if (data.length === 0) {
+      alert("No trainings found nearby.");
+    }
+  } catch (err) {
+    console.error("Error retrieving trainings:", err);
+    alert("Error retrieving trainings.");
+  }
+}
+
+
 
  
