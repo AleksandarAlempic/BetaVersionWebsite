@@ -156,6 +156,52 @@ app.get('/api/all-routes', async (req, res) => {
     }
 });
 
+// GET trainings near given coordinates
+app.get('/api/trainings-nearby', async (req, res) => {
+  const { lat, lng, radius } = req.query;
+
+  if (!lat || !lng || !radius) {
+    return res.status(400).json({ error: "Missing lat, lng or radius" });
+  }
+
+  const userLat = parseFloat(lat);
+  const userLng = parseFloat(lng);
+  const searchRadius = parseFloat(radius);
+
+  try {
+    const { data: trainings, error } = await supabase
+      .from('trainings')
+      .select('*');
+
+    if (error) throw error;
+
+    const nearbyTrainings = trainings.filter(t => {
+      if (!t.latitude || !t.longitude) return false;
+
+      const R = 6371e3; // Earth radius in meters
+      const φ1 = (userLat * Math.PI) / 180;
+      const φ2 = (t.latitude * Math.PI) / 180;
+      const Δφ = ((t.latitude - userLat) * Math.PI) / 180;
+      const Δλ = ((t.longitude - userLng) * Math.PI) / 180;
+
+      const a =
+        Math.sin(Δφ / 2) ** 2 +
+        Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) ** 2;
+
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      const d = R * c; // distance in meters
+
+      return d <= searchRadius;
+    });
+
+    res.json(nearbyTrainings);
+  } catch (err) {
+    console.error("Error fetching nearby trainings:", err);
+    res.status(500).json({ error: "Error retrieving nearby trainings" });
+  }
+});
+
+
 // ---------------- FRONTEND ---------------- //
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
