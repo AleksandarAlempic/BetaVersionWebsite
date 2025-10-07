@@ -2110,14 +2110,15 @@ body{
 
 
 #map-content {
-    width: 100%;   /* Ensure map container takes full width */
-    height: 100vh; /* Ensure map container takes full height */
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    overflow-x: hidden;
-    margin-left: -5%;
-    margin-top: 15%;
+   width: 100%;
+   height: 100vh;
+   margin: 0;
+   padding: 0;
+   position: absolute;
+   overflow-x: hidden;
+   margin-left: 21%;
+   margin-top: 35%;
+   z-index: 100000000000;
 }
 
    /* Enable pointer-events for buttons and checkboxes */
