@@ -157,7 +157,7 @@ app.get('/api/all-routes', async (req, res) => {
 });
 
 // GET trainings near given coordinates
-app.get('/api/trainings-nearby', async (req, res) => {
+app.get('/api/nearby-trainings', async (req, res) => {
   const { lat, lng, radius } = req.query;
 
   if (!lat || !lng || !radius) {
