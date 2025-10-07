@@ -249,11 +249,16 @@ async function retrieveNearbyTrainings() {
         alert("No trainings found nearby.");
         return;
       }
-
+const dumbbellIcon = L.icon({
+  iconUrl: 'https://img.icons8.com/ios/50/dumbbell.png', // tvoja sportska ikona
+  iconSize: [40, 40],      // veličina ikone
+  iconAnchor: [20, 40],    // tačka na ikoni koja pokazuje lokaciju
+  popupAnchor: [0, -40]    // pozicija popup-a u odnosu na ikonu
+});
       trainings.forEach(t => {
         console.log(`🏋️ Training: ${t.trainingName || "Unnamed"}, Lat: ${t.latitude}, Lng: ${t.longitude}`);
         if (t.latitude && t.longitude) {
-          const marker = L.marker([t.latitude, t.longitude])
+            const marker = L.marker([t.latitude, t.longitude], { icon: dumbbellIcon })
             .addTo(map)
             .bindPopup(`
               <b>${t.trainingName || "Unnamed Training"}</b><br>
