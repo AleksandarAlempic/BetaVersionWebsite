@@ -2126,7 +2126,8 @@ body{
    padding: 0;
    position: absolute;
    overflow-x: hidden;
-   margin-left: 21%;
+   /* margin-left: 21%; */
+   margin-left: -10%;
    margin-top: 35%;
    z-index: 100000000000;
 }
