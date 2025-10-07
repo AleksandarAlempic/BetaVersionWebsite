@@ -57,7 +57,17 @@
          z-index: -1; /* Video stays in the background */
      }
    
-    
+    .nearbyTrainingsButton{
+            z-index: 1000000000;
+    position: absolute;
+    color: black;
+    font-size: 20px;
+    font-weight: 600;
+    background: #fad000;
+    min-height: 5%;
+    margin-left: 60%;
+    margin-top: 180%;
+    }
    
      /* Main content above the video */
      .content {
