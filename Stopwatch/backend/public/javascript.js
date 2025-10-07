@@ -235,29 +235,31 @@ async function retrieveNearbyTrainings() {
 
     try {
       const res = await fetch(`https://betaversionwebsite.onrender.com/api/trainings-nearby?lat=${latitude}&lng=${longitude}&radius=${radius}`);
-      const data = await res.json();
+    const result = await res.json();
+const trainings = result.data || result; // ako backend šalje { data: [...] }
 
-      console.log("Nearby trainings:", data);
-      if (data.length === 0) {
-        alert("No trainings found nearby.");
-        return;
-      }
+console.log("Nearby trainings:", trainings);
 
-      data.forEach(t => {
-        if (t.latitude && t.longitude) {
-          const marker = L.marker([t.latitude, t.longitude])
-            .addTo(map)
-            .bindPopup(`
-              <b>${t.trainingName}</b><br>
-              🏋️‍♂️ PushUps: ${t.pushUps}<br>
-              💪 PullUps: ${t.pullUps}<br>
-              🧍 SitUps: ${t.sitUps}<br>
-              ⏱ Duration: ${t.duration} min
-            `);
-          window.currentMarkers = window.currentMarkers || [];
-          window.currentMarkers.push(marker);
-        }
-      });
+if (!Array.isArray(trainings) || trainings.length === 0) {
+  alert("No trainings found nearby.");
+  return;
+}
+
+trainings.forEach(t => {
+  if (t.latitude && t.longitude) {
+    const marker = L.marker([t.latitude, t.longitude])
+      .addTo(map)
+      .bindPopup(`
+       <b>${t.trainingName || "Unnamed Training"}</b><br>
+🏋️‍♂️ PushUps: ${t.pushUps || 0}<br>
+💪 PullUps: ${t.pullUps || 0}<br>
+🧍 SitUps: ${t.sitUps || 0}<br>
+⏱ Duration: ${t.duration || 0} min
+      `);
+    window.currentMarkers = window.currentMarkers || [];
+    window.currentMarkers.push(marker);
+  }
+});
     } catch (err) {
       console.error("Error retrieving trainings:", err);
       alert("Error retrieving trainings.");
