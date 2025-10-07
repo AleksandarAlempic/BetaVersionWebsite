@@ -170,7 +170,7 @@ app.get('/api/trainings-nearby', async (req, res) => {
 
   try {
     const { data: trainings, error } = await supabase
-      .from('trainings')
+      .from('training')
       .select('*');
 
     if (error) throw error;
