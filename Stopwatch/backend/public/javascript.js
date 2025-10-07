@@ -222,32 +222,36 @@ function fetchNearbyRoutes(lat, lng) {
 
 // =================== TRAININGS NEARBY ===================
 async function retrieveNearbyTrainings() {
-  // Dohvati trenutnu lokaciju korisnika
+  console.log("🟢 Button clicked - retrieveNearbyTrainings triggered"); // <-- odmah na startu
+
   navigator.geolocation.getCurrentPosition(async (position) => {
     const { latitude, longitude } = position.coords;
-    const radius = 35000; // radius u metrima
-    console.log(`Retrieving trainings near (${latitude}, ${longitude}) radius: ${radius}m`);
+    console.log(`📍 User location: lat=${latitude}, lng=${longitude}`);
 
-    // Očisti prethodne markere
+    const radius = 35000; // radius u metrima
+    console.log(`🛣 Fetching trainings within radius: ${radius}m`);
+
     if (window.currentMarkers) {
       window.currentMarkers.forEach(marker => map.removeLayer(marker));
       window.currentMarkers = [];
+      console.log("🗑 Previous markers removed");
     }
 
     try {
-      // Poziv API-ja za dobijanje treninga u blizini
       const res = await fetch(`https://betaversionwebsite.onrender.com/api/nearby-trainings?lat=${latitude}&lng=${longitude}&radius=${radius}`);
-      const trainings = await res.json(); // server vraća niz direktno
+      console.log("🌐 Fetch response status:", res.status);
 
-      console.log("Nearby trainings:", trainings);
+      const trainings = await res.json();
+      console.log("📦 Trainings received from server:", trainings);
 
       if (!Array.isArray(trainings) || trainings.length === 0) {
+        console.log("⚠️ No trainings found nearby.");
         alert("No trainings found nearby.");
         return;
       }
 
-      // Dodaj markere na mapu
       trainings.forEach(t => {
+        console.log(`🏋️ Training: ${t.trainingName || "Unnamed"}, Lat: ${t.latitude}, Lng: ${t.longitude}`);
         if (t.latitude && t.longitude) {
           const marker = L.marker([t.latitude, t.longitude])
             .addTo(map)
@@ -262,11 +266,13 @@ async function retrieveNearbyTrainings() {
           window.currentMarkers.push(marker);
         }
       });
+
     } catch (err) {
-      console.error("Error retrieving trainings:", err);
+      console.error("❌ Error retrieving trainings:", err);
       alert("Error retrieving trainings.");
     }
   }, (error) => {
+    console.error("⚠️ Could not get location:", error);
     alert("Could not get location: " + error.message);
   });
 }
