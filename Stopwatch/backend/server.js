@@ -159,7 +159,7 @@ app.get('/api/all-routes', async (req, res) => {
 // GET trainings near given coordinates
 app.get('/api/nearby-trainings', async (req, res) => {
   const { lat, lng, radius } = req.query;
-
+  console.log("API /api/nearby-trainings called", req.query);
   if (!lat || !lng || !radius) {
     return res.status(400).json({ error: "Missing lat, lng or radius" });
   }
