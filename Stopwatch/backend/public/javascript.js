@@ -222,44 +222,46 @@ function fetchNearbyRoutes(lat, lng) {
 
 // =================== TRAININGS NEARBY ===================
 async function retrieveNearbyTrainings() {
+  // Dohvati trenutnu lokaciju korisnika
   navigator.geolocation.getCurrentPosition(async (position) => {
     const { latitude, longitude } = position.coords;
-    const radius = 35000;
+    const radius = 35000; // radius u metrima
     console.log(`Retrieving trainings near (${latitude}, ${longitude}) radius: ${radius}m`);
 
-    // Clear previous markers
+    // Očisti prethodne markere
     if (window.currentMarkers) {
-      window.currentMarkers.forEach(m => map.removeLayer(m));
+      window.currentMarkers.forEach(marker => map.removeLayer(marker));
       window.currentMarkers = [];
     }
 
     try {
-      const res = await fetch(`https://betaversionwebsite.onrender.com/api/trainings-nearby?lat=${latitude}&lng=${longitude}&radius=${radius}`);
-    const result = await res.json();
-const trainings = result.data || result; // ako backend šalje { data: [...] }
+      // Poziv API-ja za dobijanje treninga u blizini
+      const res = await fetch(`https://betaversionwebsite.onrender.com/api/nearby-trainings?lat=${latitude}&lng=${longitude}&radius=${radius}`);
+      const trainings = await res.json(); // server vraća niz direktno
 
-console.log("Nearby trainings:", trainings);
+      console.log("Nearby trainings:", trainings);
 
-if (!Array.isArray(trainings) || trainings.length === 0) {
-  alert("No trainings found nearby.");
-  return;
-}
+      if (!Array.isArray(trainings) || trainings.length === 0) {
+        alert("No trainings found nearby.");
+        return;
+      }
 
-trainings.forEach(t => {
-  if (t.latitude && t.longitude) {
-    const marker = L.marker([t.latitude, t.longitude])
-      .addTo(map)
-      .bindPopup(`
-       <b>${t.trainingName || "Unnamed Training"}</b><br>
-🏋️‍♂️ PushUps: ${t.pushUps || 0}<br>
-💪 PullUps: ${t.pullUps || 0}<br>
-🧍 SitUps: ${t.sitUps || 0}<br>
-⏱ Duration: ${t.duration || 0} min
-      `);
-    window.currentMarkers = window.currentMarkers || [];
-    window.currentMarkers.push(marker);
-  }
-});
+      // Dodaj markere na mapu
+      trainings.forEach(t => {
+        if (t.latitude && t.longitude) {
+          const marker = L.marker([t.latitude, t.longitude])
+            .addTo(map)
+            .bindPopup(`
+              <b>${t.trainingName || "Unnamed Training"}</b><br>
+              🏋️‍♂️ PushUps: ${t.pushUps || 0}<br>
+              💪 PullUps: ${t.pullUps || 0}<br>
+              🧍 SitUps: ${t.sitUps || 0}<br>
+              ⏱ Duration: ${t.duration || 0} min
+            `);
+          window.currentMarkers = window.currentMarkers || [];
+          window.currentMarkers.push(marker);
+        }
+      });
     } catch (err) {
       console.error("Error retrieving trainings:", err);
       alert("Error retrieving trainings.");
