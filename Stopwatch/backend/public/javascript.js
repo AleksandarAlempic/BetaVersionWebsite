@@ -163,7 +163,7 @@ checkboxRoot.addEventListener('click', () => {
 
 // =================== ICON DEFINITIONS ===================
 const runnerIcon = L.icon({
-  iconUrl: 'https://your-server.com/runner4.png', // <-- ovde stavi svoj PNG
+  iconUrl: '/images/MarkersAndRoute.png',
   iconSize: [40, 40],
   iconAnchor: [20, 40],
   popupAnchor: [0, -40]
