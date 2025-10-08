@@ -161,104 +161,91 @@ checkboxRoot.addEventListener('click', () => {
   fetchNearbyRoutesButton.style.display = checkboxRoot.checked ? "none" : "block";
 });
 
-// =================== ROUTES DISPLAY ===================
-function drawNearbyRoutesOnLeaflet(routes) {
-  if (!Array.isArray(routes)) return;
-  routes.forEach(route => {
-    try {
-      const parsedPolyline = JSON.parse(route.polyline);
-      const latlngs = parsedPolyline.map(coord => L.latLng(coord.lat, coord.lng));
-      const polyline = L.polyline(latlngs, {
-        color: 'red',
-        weight: 4,
-        opacity: 0.7
-      }).addTo(map);
-      polyline.bindPopup(`<b>${route.routeName || "Unnamed Route"}</b>`);
-    } catch (e) {
-      console.warn("Invalid polyline:", route);
+// =================== ICON DEFINITIONS ===================
+const runnerIcon = L.icon({
+  iconUrl: 'https://your-server.com/runner4.png', // <-- ovde stavi svoj PNG
+  iconSize: [40, 40],
+  iconAnchor: [20, 40],
+  popupAnchor: [0, -40]
+});
+
+const dumbbellIcon = L.icon({
+  iconUrl: 'https://img.icons8.com/ios/50/dumbbell.png',
+  iconSize: [40, 40],
+  iconAnchor: [20, 40],
+  popupAnchor: [0, -40]
+});
+
+// =================== FETCH NEARBY ROUTES ===================
+async function retrieveNearbyRoutes() {
+  navigator.geolocation.getCurrentPosition(async (position) => {
+    const { latitude, longitude } = position.coords;
+    const radius = 35000; // radius u metrima
+
+    if (window.currentRouteMarkers) {
+      window.currentRouteMarkers.forEach(marker => map.removeLayer(marker));
+      window.currentRouteMarkers = [];
     }
-  });
-}
 
-function displayRouteWithLabel(route) {
-  try {
-    const latlngs = JSON.parse(route.polyline).map(coord => L.latLng(coord.lat, coord.lng));
-    const polyline = L.polyline(latlngs, { color: 'blue', weight: 4, opacity: 0.8 }).addTo(map);
-    const topCoord = latlngs.reduce((top, coord) => (coord.lat > top.lat ? coord : top));
-    const labelText = `${route.username} | ${route.distance.toFixed(2)} km | ${route.speed.toFixed(2)} km/h`;
-    L.marker(topCoord, {
-      icon: L.divIcon({
-        className: 'route-label',
-        html: `<div style="
-          background: white;
-          border: 1px solid #ccc;
-          padding: 6px 12px;
-          border-radius: 6px;
-          font-size: 14px;
-          font-weight: 500;
-          box-shadow: 0px 2px 6px rgba(0,0,0,0.25);
-        ">${labelText}</div>`,
-        iconAnchor: [30, 15]
-      })
-    }).addTo(map);
-  } catch (err) {
-    console.error("Failed to parse polyline for route:", err);
-  }
-}
+    try {
+      const res = await fetch(`https://betaversionwebsite.onrender.com/api/routes-nearby?lat=${latitude}&lng=${longitude}&radius=${radius}`);
+      const routes = await res.json();
 
-function fetchNearbyRoutes(lat, lng) {
-  fetch(`https://betaversionwebsite.onrender.com/api/routes-nearby?lat=${lat}&lng=${lng}`)
-    .then(res => res.json())
-    .then(data => {
-      if (!Array.isArray(data) || data.length === 0) {
+      if (!Array.isArray(routes) || routes.length === 0) {
         alert("No nearby routes found.");
         return;
       }
-      data.forEach(route => displayRouteWithLabel(route));
-      drawNearbyRoutesOnLeaflet(data);
-    })
-    .catch(err => console.error("Fetch failed:", err));
+
+      routes.forEach(route => {
+        const latlngs = JSON.parse(route.polyline).map(coord => L.latLng(coord.lat, coord.lng));
+        L.polyline(latlngs, { color: 'blue', weight: 4, opacity: 0.8 }).addTo(map);
+        const topCoord = latlngs.reduce((top, coord) => (coord.lat > top.lat ? coord : top));
+
+        const marker = L.marker(topCoord, { icon: runnerIcon }).addTo(map);
+        marker.bindPopup(`
+          <b>${route.username || "Unknown User"}</b><br>
+          🛣 Distance: ${route.distance.toFixed(2)} km<br>
+          ⏱ Speed: ${route.speed.toFixed(2)} km/h<br>
+          🏃‍♂️ Route Name: ${route.routeName || "Unnamed"}
+        `);
+
+        window.currentRouteMarkers = window.currentRouteMarkers || [];
+        window.currentRouteMarkers.push(marker);
+      });
+
+    } catch (err) {
+      console.error("Error retrieving nearby routes:", err);
+      alert("Error retrieving nearby routes.");
+    }
+  }, (error) => {
+    console.error("Could not get location:", error);
+    alert("Could not get location: " + error.message);
+  });
 }
 
-// =================== TRAININGS NEARBY ===================
+// =================== FETCH NEARBY TRAININGS ===================
 async function retrieveNearbyTrainings() {
-  console.log("🟢 Button clicked - retrieveNearbyTrainings triggered"); // <-- odmah na startu
-
   navigator.geolocation.getCurrentPosition(async (position) => {
     const { latitude, longitude } = position.coords;
-    console.log(`📍 User location: lat=${latitude}, lng=${longitude}`);
-
     const radius = 35000; // radius u metrima
-    console.log(`🛣 Fetching trainings within radius: ${radius}m`);
 
-    if (window.currentMarkers) {
-      window.currentMarkers.forEach(marker => map.removeLayer(marker));
-      window.currentMarkers = [];
-      console.log("🗑 Previous markers removed");
+    if (window.currentTrainingMarkers) {
+      window.currentTrainingMarkers.forEach(marker => map.removeLayer(marker));
+      window.currentTrainingMarkers = [];
     }
 
     try {
       const res = await fetch(`https://betaversionwebsite.onrender.com/api/nearby-trainings?lat=${latitude}&lng=${longitude}&radius=${radius}`);
-      console.log("🌐 Fetch response status:", res.status);
-
       const trainings = await res.json();
-      console.log("📦 Trainings received from server:", trainings);
 
       if (!Array.isArray(trainings) || trainings.length === 0) {
-        console.log("⚠️ No trainings found nearby.");
         alert("No trainings found nearby.");
         return;
       }
-const dumbbellIcon = L.icon({
-  iconUrl: 'https://img.icons8.com/ios/50/dumbbell.png', // tvoja sportska ikona
-  iconSize: [40, 40],      // veličina ikone
-  iconAnchor: [20, 40],    // tačka na ikoni koja pokazuje lokaciju
-  popupAnchor: [0, -40]    // pozicija popup-a u odnosu na ikonu
-});
+
       trainings.forEach(t => {
-        console.log(`🏋️ Training: ${t.trainingName || "Unnamed"}, Lat: ${t.latitude}, Lng: ${t.longitude}`);
         if (t.latitude && t.longitude) {
-            const marker = L.marker([t.latitude, t.longitude], { icon: dumbbellIcon })
+          const marker = L.marker([t.latitude, t.longitude], { icon: dumbbellIcon })
             .addTo(map)
             .bindPopup(`
               <b>${t.trainingName || "Unnamed Training"}</b><br>
@@ -267,20 +254,21 @@ const dumbbellIcon = L.icon({
               🧍 SitUps: ${t.sitUps || 0}<br>
               ⏱ Duration: ${t.duration || 0} min
             `);
-          window.currentMarkers = window.currentMarkers || [];
-          window.currentMarkers.push(marker);
+          window.currentTrainingMarkers = window.currentTrainingMarkers || [];
+          window.currentTrainingMarkers.push(marker);
         }
       });
 
     } catch (err) {
-      console.error("❌ Error retrieving trainings:", err);
+      console.error("Error retrieving trainings:", err);
       alert("Error retrieving trainings.");
     }
   }, (error) => {
-    console.error("⚠️ Could not get location:", error);
+    console.error("Could not get location:", error);
     alert("Could not get location: " + error.message);
   });
 }
 
-// ✅ Jedan jedini listener
+// =================== BUTTON LISTENERS ===================
+fetchNearbyRoutesButton.addEventListener("click", retrieveNearbyRoutes);
 fetchNearbyTrainingsButton.addEventListener("click", retrieveNearbyTrainings);
