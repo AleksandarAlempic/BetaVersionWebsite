@@ -3,50 +3,87 @@ const musicPlayer = document.getElementById("checkboxMusicPlayer");
 const checkboxRoot = document.getElementById("checkboxRoot");
 const audioContainer = document.getElementById("audioContainer");
 const newNextAndPreviousButtons = document.getElementById("newNextAndPreviousButtons");
-const stopwatchLabel = document.getElementById("stopwatchLabel");
-
-const startRouteButton = document.getElementById("startRouteButton");
-const Root = document.getElementById("map-content");
-const Map = document.getElementById("map");
-const mapContent = document.getElementById("map-content");
-
-const timer = document.getElementById("timer");
-const stopwatch = document.getElementById("stopwatch");
-
-const addTrainingButton = document.getElementById("fetchAddTrainingButton");
-const addTrainingPopup = document.getElementById("addTrainingPopup");
-
-const stopRouteButton = document.getElementById("stopRouteButton");
-const fetchNearbyRoutesButton = document.getElementById("fetchNearbyRoutesButton");
-const fetchNearbyTrainingsButton = document.getElementById("fetchNearbyTrainingsButton");
-
-const distance = document.getElementById("distance");
-const speed = document.getElementById("speed");
+const songNameAndArtist = document.getElementById("songNameAndArtist");
 
 const stopwatchDiv = document.getElementById("StopwatchOptions");
 const timerDiv = document.getElementById("TimerOptions");
 const input = document.getElementById("input");
 
-let defaultTimerSecondsValue = 60;
-const songNameAndArtist = document.getElementById("songNameAndArtist");
+const startRouteButton = document.getElementById("startRouteButton");
+const stopRouteButton = document.getElementById("stopRouteButton");
+const fetchNearbyRoutesButton = document.getElementById("fetchNearbyRoutesButton");
+const fetchNearbyTrainingsButton = document.getElementById("fetchNearbyTrainingsButton");
+const addTrainingButton = document.getElementById("fetchAddTrainingButton");
+const addTrainingPopup = document.getElementById("addTrainingPopup");
 
-let stopwatchCounter = 0;
+const Root = document.getElementById("map-content");
+const Map = document.getElementById("map");
+const mapContent = document.getElementById("map-content");
+
+const distance = document.getElementById("distance");
+const speed = document.getElementById("speed");
+
+const stopwatch = document.getElementById("stopwatch");
+const timer = document.getElementById("timer");
 const start = document.getElementById("start");
 const stop = document.getElementById("stop");
 const reset = document.getElementById("reset");
 
-var minutesLabel = document.getElementById("minutes");
-var secondsLabel = document.getElementById("seconds");
-var totalSeconds = 0;
-
-let hours = 0;
-let minutes = 0;
-let seconds = 0;
-let rotationDegree = 0;
-
 const secondHand = document.getElementById('secondHand');
+const languageSelect = document.getElementById("languageSelect");
+
+let stopwatchTriggered = false;
+let timerTriggered = false;
+let hours = 0, minutes = 0, seconds = 0;
+let rotationDegree = 0;
 let myInterval;
 
+// =================== TRANSLATIONS ===================
+const translations = {
+  en: {
+    noNearbyRoutes: "No nearby routes found.",
+    noNearbyTrainings: "No trainings found nearby.",
+    couldNotGetLocation: "Could not get location: ",
+    distance: "Distance",
+    speed: "Speed",
+    routeName: "Route Name",
+    unknownUser: "Unknown User",
+    pushUps: "PushUps",
+    pullUps: "PullUps",
+    sitUps: "SitUps",
+    duration: "Duration",
+    unnamedTraining: "Unnamed Training",
+    unnamedRoute: "Unnamed"
+  },
+  sr: {
+    noNearbyRoutes: "Nema ruta u blizini.",
+    noNearbyTrainings: "Nema treninga u blizini.",
+    couldNotGetLocation: "Ne mogu da dobijem lokaciju: ",
+    distance: "Udaljenost",
+    speed: "Brzina",
+    routeName: "Naziv rute",
+    unknownUser: "Nepoznat korisnik",
+    pushUps: "Sklekovi",
+    pullUps: "Zgibovi",
+    sitUps: "Trbušnjaci",
+    duration: "Trajanje",
+    unnamedTraining: "Neimenovani trening",
+    unnamedRoute: "Neimenovana ruta"
+  }
+};
+
+let currentLanguage = "en";
+
+// =================== LANGUAGE DROPDOWN ===================
+languageSelect.addEventListener("change", (e) => {
+  currentLanguage = e.target.value;
+  updateInterfaceLanguage();
+});
+
+function updateInterfaceLanguage() {
+  distance.innerText = translations[currentLanguage].distance;
+  speed.innerText = translations[currentLanguage].speed;
+}
 // =================== STOPWATCH LOGIC ===================
 stopwatch.addEventListener('click', () => {
   stopwatchTriggered = true;
@@ -134,11 +171,13 @@ checkboxRoot.addEventListener('click', () => {
     distance.style.display = "block";
     speed.style.display = "block";
   }
-});
 
-function closePage() {
-  addTrainingPopup.style.display = "none";
-}
+  const pointer = checkboxRoot.checked ? "none" : "auto";
+  Map.style.pointerEvents = pointer;
+  startRouteButton.style.display = checkboxRoot.checked ? "none" : "block";
+  stopRouteButton.style.display = checkboxRoot.checked ? "none" : "block";
+  fetchNearbyRoutesButton.style.display = checkboxRoot.checked ? "none" : "block";
+});
 
 // =================== RESPONSIVE MAP ===================
 const mediaQuery = window.matchMedia('(max-width: 1000px)');
@@ -151,15 +190,6 @@ if (mediaQuery.matches && !checkboxRoot.checked) {
   mapContent.style.width = "100%";
   mapContent.style.height = "100vh";
 }
-
-// =================== MAP INTERACTION ===================
-checkboxRoot.addEventListener('click', () => {
-  const pointer = checkboxRoot.checked ? "none" : "auto";
-  Map.style.pointerEvents = pointer;
-  startRouteButton.style.display = checkboxRoot.checked ? "none" : "block";
-  stopRouteButton.style.display = checkboxRoot.checked ? "none" : "block";
-  fetchNearbyRoutesButton.style.display = checkboxRoot.checked ? "none" : "block";
-});
 
 // =================== ICON DEFINITIONS ===================
 const runnerIcon = L.icon({
@@ -180,7 +210,7 @@ const dumbbellIcon = L.icon({
 async function retrieveNearbyRoutes() {
   navigator.geolocation.getCurrentPosition(async (position) => {
     const { latitude, longitude } = position.coords;
-    const radius = 35000; // radius u metrima
+    const radius = 35000;
 
     if (window.currentRouteMarkers) {
       window.currentRouteMarkers.forEach(marker => map.removeLayer(marker));
@@ -192,7 +222,7 @@ async function retrieveNearbyRoutes() {
       const routes = await res.json();
 
       if (!Array.isArray(routes) || routes.length === 0) {
-        alert("No nearby routes found.");
+        alert(translations[currentLanguage].noNearbyRoutes);
         return;
       }
 
@@ -203,10 +233,10 @@ async function retrieveNearbyRoutes() {
 
         const marker = L.marker(topCoord, { icon: runnerIcon }).addTo(map);
         marker.bindPopup(`
-          <b>${route.username || "Unknown User"}</b><br>
-          🛣 Distance: ${route.distance.toFixed(2)} km<br>
-          ⏱ Speed: ${route.speed.toFixed(2)} km/h<br>
-          🏃‍♂️ Route Name: ${route.routeName || "Unnamed"}
+          <b>${route.username || translations[currentLanguage].unknownUser}</b><br>
+          🛣 ${translations[currentLanguage].distance}: ${route.distance.toFixed(2)} km<br>
+          ⏱ ${translations[currentLanguage].speed}: ${route.speed.toFixed(2)} km/h<br>
+          🏃‍♂️ ${translations[currentLanguage].routeName}: ${route.routeName || translations[currentLanguage].unnamedRoute}
         `);
 
         window.currentRouteMarkers = window.currentRouteMarkers || [];
@@ -215,11 +245,11 @@ async function retrieveNearbyRoutes() {
 
     } catch (err) {
       console.error("Error retrieving nearby routes:", err);
-      alert("Error retrieving nearby routes.");
+      alert(translations[currentLanguage].noNearbyRoutes);
     }
   }, (error) => {
     console.error("Could not get location:", error);
-    alert("Could not get location: " + error.message);
+    alert(translations[currentLanguage].couldNotGetLocation + error.message);
   });
 }
 
@@ -227,7 +257,7 @@ async function retrieveNearbyRoutes() {
 async function retrieveNearbyTrainings() {
   navigator.geolocation.getCurrentPosition(async (position) => {
     const { latitude, longitude } = position.coords;
-    const radius = 35000; // radius u metrima
+    const radius = 35000;
 
     if (window.currentTrainingMarkers) {
       window.currentTrainingMarkers.forEach(marker => map.removeLayer(marker));
@@ -239,7 +269,7 @@ async function retrieveNearbyTrainings() {
       const trainings = await res.json();
 
       if (!Array.isArray(trainings) || trainings.length === 0) {
-        alert("No trainings found nearby.");
+        alert(translations[currentLanguage].noNearbyTrainings);
         return;
       }
 
@@ -248,12 +278,13 @@ async function retrieveNearbyTrainings() {
           const marker = L.marker([t.latitude, t.longitude], { icon: dumbbellIcon })
             .addTo(map)
             .bindPopup(`
-              <b>${t.trainingName || "Unnamed Training"}</b><br>
-              🏋️‍♂️ PushUps: ${t.pushUps || 0}<br>
-              💪 PullUps: ${t.pullUps || 0}<br>
-              🧍 SitUps: ${t.sitUps || 0}<br>
-              ⏱ Duration: ${t.duration || 0} min
+              <b>${t.trainingName || translations[currentLanguage].unnamedTraining}</b><br>
+              🏋️‍♂️ ${translations[currentLanguage].pushUps}: ${t.pushUps || 0}<br>
+              💪 ${translations[currentLanguage].pullUps}: ${t.pullUps || 0}<br>
+              🧍 ${translations[currentLanguage].sitUps}: ${t.sitUps || 0}<br>
+              ⏱ ${translations[currentLanguage].duration}: ${t.duration || 0} min
             `);
+
           window.currentTrainingMarkers = window.currentTrainingMarkers || [];
           window.currentTrainingMarkers.push(marker);
         }
@@ -261,14 +292,18 @@ async function retrieveNearbyTrainings() {
 
     } catch (err) {
       console.error("Error retrieving trainings:", err);
-      alert("Error retrieving trainings.");
+      alert(translations[currentLanguage].noNearbyTrainings);
     }
   }, (error) => {
     console.error("Could not get location:", error);
-    alert("Could not get location: " + error.message);
+    alert(translations[currentLanguage].couldNotGetLocation + error.message);
   });
 }
 
 // =================== BUTTON LISTENERS ===================
 fetchNearbyRoutesButton.addEventListener("click", retrieveNearbyRoutes);
 fetchNearbyTrainingsButton.addEventListener("click", retrieveNearbyTrainings);
+
+function closePage() {
+  addTrainingPopup.style.display = "none";
+}
