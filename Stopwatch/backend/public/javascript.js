@@ -81,9 +81,57 @@ languageSelect.addEventListener("change", (e) => {
 });
 
 function updateInterfaceLanguage() {
+  // =================== UI ELEMENTS ===================
   distance.innerText = translations[currentLanguage].distance;
   speed.innerText = translations[currentLanguage].speed;
+
+  input.placeholder = currentLanguage === "en" ? "HH:MM:SS" : "SS:MM:HH";
+
+  // Dugmad
+  startRouteButton.innerText = currentLanguage === "en" ? "Start Route" : "Pokreni rutu";
+  stopRouteButton.innerText = currentLanguage === "en" ? "Stop Route" : "Zaustavi rutu";
+  fetchNearbyRoutesButton.innerText = currentLanguage === "en" ? "Fetch Nearby Routes" : "Prikaži rute u blizini";
+  fetchNearbyTrainingsButton.innerText = currentLanguage === "en" ? "Fetch Nearby Trainings" : "Prikaži treninge u blizini";
+  addTrainingButton.innerText = currentLanguage === "en" ? "Add Training" : "Dodaj trening";
+
+  // Popup naslov (ako postoji)
+  const popupTitle = addTrainingPopup.querySelector(".popup-title");
+  if (popupTitle) {
+    popupTitle.innerText = currentLanguage === "en" ? "Add New Training" : "Dodaj novi trening";
+  }
+
+  // =================== UPDATE ROUTE MARKERS ===================
+  if (window.currentRouteMarkers) {
+    window.currentRouteMarkers.forEach(marker => {
+      const route = marker.options.routeData; // routeData ćemo dodati kad kreiramo marker
+      if (!route) return;
+
+      marker.setPopupContent(`
+        <b>${route.username || translations[currentLanguage].unknownUser}</b><br>
+        🛣 ${translations[currentLanguage].distance}: ${route.distance.toFixed(2)} km<br>
+        ⏱ ${translations[currentLanguage].speed}: ${route.speed.toFixed(2)} km/h<br>
+        🏃‍♂️ ${translations[currentLanguage].routeName}: ${route.routeName || translations[currentLanguage].unnamedRoute}
+      `);
+    });
+  }
+
+  // =================== UPDATE TRAINING MARKERS ===================
+  if (window.currentTrainingMarkers) {
+    window.currentTrainingMarkers.forEach(marker => {
+      const t = marker.options.trainingData; // trainingData ćemo dodati kad kreiramo marker
+      if (!t) return;
+
+      marker.setPopupContent(`
+        <b>${t.trainingName || translations[currentLanguage].unnamedTraining}</b><br>
+        🏋️‍♂️ ${translations[currentLanguage].pushUps}: ${t.pushUps || 0}<br>
+        💪 ${translations[currentLanguage].pullUps}: ${t.pullUps || 0}<br>
+        🧍 ${translations[currentLanguage].sitUps}: ${t.sitUps || 0}<br>
+        ⏱ ${translations[currentLanguage].duration}: ${t.duration || 0} min
+      `);
+    });
+  }
 }
+
 // =================== STOPWATCH LOGIC ===================
 stopwatch.addEventListener('click', () => {
   stopwatchTriggered = true;
@@ -231,7 +279,11 @@ async function retrieveNearbyRoutes() {
         L.polyline(latlngs, { color: 'blue', weight: 4, opacity: 0.8 }).addTo(map);
         const topCoord = latlngs.reduce((top, coord) => (coord.lat > top.lat ? coord : top));
 
-        const marker = L.marker(topCoord, { icon: runnerIcon }).addTo(map);
+        // const marker = L.marker(topCoord, { icon: runnerIcon }).addTo(map);
+        const marker = L.marker(topCoord, { icon: runnerIcon });
+
+        
+marker.options.routeData = route; // Čuvamo podatke za prevod
         marker.bindPopup(`
           <b>${route.username || translations[currentLanguage].unknownUser}</b><br>
           🛣 ${translations[currentLanguage].distance}: ${route.distance.toFixed(2)} km<br>
@@ -275,9 +327,11 @@ async function retrieveNearbyTrainings() {
 
       trainings.forEach(t => {
         if (t.latitude && t.longitude) {
-          const marker = L.marker([t.latitude, t.longitude], { icon: dumbbellIcon })
-            .addTo(map)
-            .bindPopup(`
+
+          
+        const marker = L.marker([t.latitude, t.longitude], { icon: dumbbellIcon });
+marker.options.trainingData = t; // Čuvamo podatke za prevod
+marker.addTo(map).bindPopup(`
               <b>${t.trainingName || translations[currentLanguage].unnamedTraining}</b><br>
               🏋️‍♂️ ${translations[currentLanguage].pushUps}: ${t.pushUps || 0}<br>
               💪 ${translations[currentLanguage].pullUps}: ${t.pullUps || 0}<br>
