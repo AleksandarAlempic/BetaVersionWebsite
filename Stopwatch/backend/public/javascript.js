@@ -53,7 +53,9 @@ const translations = {
     sitUps: "SitUps",
     duration: "Duration",
     unnamedTraining: "Unnamed Training",
-    unnamedRoute: "Unnamed"
+    unnamedRoute: "Unnamed", 
+    stopwatchLabel: "Stopwatch",
+    timerLabel: "Timer"
   },
   sr: {
     noNearbyRoutes: "Nema ruta u blizini.",
@@ -68,7 +70,9 @@ const translations = {
     sitUps: "Trbušnjaci",
     duration: "Trajanje",
     unnamedTraining: "Neimenovani trening",
-    unnamedRoute: "Neimenovana ruta"
+    unnamedRoute: "Neimenovana ruta",
+    stopwatchLabel: "Štoperica",
+    timerLabel: "Tajmer"
   }
 };
 
@@ -290,7 +294,7 @@ marker.options.routeData = route; // Čuvamo podatke za prevod
           ⏱ ${translations[currentLanguage].speed}: ${route.speed.toFixed(2)} km/h<br>
           🏃‍♂️ ${translations[currentLanguage].routeName}: ${route.routeName || translations[currentLanguage].unnamedRoute}
         `);
-
+marker.addTo(map); 
         window.currentRouteMarkers = window.currentRouteMarkers || [];
         window.currentRouteMarkers.push(marker);
       });
