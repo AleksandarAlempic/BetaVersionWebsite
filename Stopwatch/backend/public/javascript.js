@@ -392,3 +392,27 @@ fetchNearbyTrainingsButton.addEventListener("click", retrieveNearbyTrainings);
 function closePage() {
   addTrainingPopup.style.display = "none";
 }
+
+// Funkcija koja menja jezik popup-a
+function updateTrainingPopupLanguage(lang) {
+    document.getElementById("fetchAddTrainingButton").textContent = trainingTranslations[lang].addTrainingButton;
+    document.querySelector('label[for="trainingName"]').textContent = trainingTranslations[lang].trainingNameLabel;
+    document.querySelector('label[for="userName"]').textContent = trainingTranslations[lang].userNameLabel;
+    document.querySelector('label[for="absCount"]').textContent = trainingTranslations[lang].absCountLabel;
+    document.querySelector('label[for="duration"]').textContent = trainingTranslations[lang].durationLabel;
+    document.querySelector('label[for="otherExercise"]').textContent = trainingTranslations[lang].otherExerciseLabel;
+    document.querySelector('label[for="pushUps"]').textContent = trainingTranslations[lang].pushUpsLabel;
+    document.querySelector('label[for="pullUps"]').textContent = trainingTranslations[lang].pullUpsLabel;
+    document.querySelector('label[for="sitUps"]').textContent = trainingTranslations[lang].sitUpsLabel;
+    document.querySelector(".saveButtonTraining").textContent = trainingTranslations[lang].saveButton;
+    document.querySelector(".cancelButtonTraining").textContent = trainingTranslations[lang].cancelButton;
+}
+
+// Pozivanje funkcije kada korisnik promeni jezik
+document.getElementById("languageSelect").addEventListener("change", (e) => {
+    const lang = e.target.value;
+    updateTrainingPopupLanguage(lang);
+});
+
+// Inicijalno postavljanje jezika pri učitavanju stranice
+updateTrainingPopupLanguage(document.getElementById("languageSelect").value);
