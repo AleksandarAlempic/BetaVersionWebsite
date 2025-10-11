@@ -44,8 +44,8 @@ const translations = {
     noNearbyRoutes: "No nearby routes found.",
     noNearbyTrainings: "No trainings found nearby.",
     couldNotGetLocation: "Could not get location: ",
-    distance: "Distance",
-    speed: "Speed",
+    distance: "Distance:",
+    speed: "Speed:",
     routeName: "Route Name",
     unknownUser: "Unknown User",
     pushUps: "PushUps",
@@ -53,16 +53,23 @@ const translations = {
     sitUps: "SitUps",
     duration: "Duration",
     unnamedTraining: "Unnamed Training",
-    unnamedRoute: "Unnamed", 
+    unnamedRoute: "Unnamed",
     stopwatchLabel: "Stopwatch",
-    timerLabel: "Timer"
+    timerLabel: "Timer",
+    addTrainingPopupLabels: {
+      pushUps: "PushUps",
+      pullUps: "PullUps",
+      sitUps: "SitUps",
+      duration: "Duration",
+      trainingName: "Training Name"
+    }
   },
   sr: {
     noNearbyRoutes: "Nema ruta u blizini.",
     noNearbyTrainings: "Nema treninga u blizini.",
     couldNotGetLocation: "Ne mogu da dobijem lokaciju: ",
-    distance: "Udaljenost",
-    speed: "Brzina",
+    distance: "Rastojanje:",
+    speed: "Brzina:",
     routeName: "Naziv rute",
     unknownUser: "Nepoznat korisnik",
     pushUps: "Sklekovi",
@@ -72,7 +79,14 @@ const translations = {
     unnamedTraining: "Neimenovani trening",
     unnamedRoute: "Neimenovana ruta",
     stopwatchLabel: "Štoperica",
-    timerLabel: "Tajmer"
+    timerLabel: "Tajmer",
+    addTrainingPopupLabels: {
+      pushUps: "Sklekovi",
+      pullUps: "Zgibovi",
+      sitUps: "Trbušnjaci",
+      duration: "Trajanje",
+      trainingName: "Naziv treninga"
+    }
   }
 };
 
@@ -89,6 +103,10 @@ function updateInterfaceLanguage() {
   distance.innerText = translations[currentLanguage].distance;
   speed.innerText = translations[currentLanguage].speed;
 
+  // Prevod labela Stopwatch i Timer
+  stopwatch.innerText = translations[currentLanguage].stopwatchLabel;
+  timer.innerText = translations[currentLanguage].timerLabel;
+
   input.placeholder = currentLanguage === "en" ? "HH:MM:SS" : "SS:MM:HH";
 
   // Dugmad
@@ -104,16 +122,25 @@ function updateInterfaceLanguage() {
     popupTitle.innerText = currentLanguage === "en" ? "Add New Training" : "Dodaj novi trening";
   }
 
+  // Prevod labela u popup-u
+  const popupLabels = addTrainingPopup.querySelectorAll(".popup-label");
+  popupLabels.forEach(label => {
+    const key = label.dataset.labelKey;
+    if (key && translations[currentLanguage].addTrainingPopupLabels[key]) {
+      label.innerText = translations[currentLanguage].addTrainingPopupLabels[key];
+    }
+  });
+
   // =================== UPDATE ROUTE MARKERS ===================
   if (window.currentRouteMarkers) {
     window.currentRouteMarkers.forEach(marker => {
-      const route = marker.options.routeData; // routeData ćemo dodati kad kreiramo marker
+      const route = marker.options.routeData;
       if (!route) return;
 
       marker.setPopupContent(`
         <b>${route.username || translations[currentLanguage].unknownUser}</b><br>
-        🛣 ${translations[currentLanguage].distance}: ${route.distance.toFixed(2)} km<br>
-        ⏱ ${translations[currentLanguage].speed}: ${route.speed.toFixed(2)} km/h<br>
+        🛣 ${translations[currentLanguage].distance} ${route.distance.toFixed(2)} km<br>
+        ⏱ ${translations[currentLanguage].speed} ${route.speed.toFixed(2)} km/h<br>
         🏃‍♂️ ${translations[currentLanguage].routeName}: ${route.routeName || translations[currentLanguage].unnamedRoute}
       `);
     });
@@ -122,7 +149,7 @@ function updateInterfaceLanguage() {
   // =================== UPDATE TRAINING MARKERS ===================
   if (window.currentTrainingMarkers) {
     window.currentTrainingMarkers.forEach(marker => {
-      const t = marker.options.trainingData; // trainingData ćemo dodati kad kreiramo marker
+      const t = marker.options.trainingData;
       if (!t) return;
 
       marker.setPopupContent(`
