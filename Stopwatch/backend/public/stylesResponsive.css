@@ -2120,6 +2120,19 @@ img { max-width: 100%; height: auto; }
 @media (max-width: 1024px) {
 
 
+  .languageSelector{
+     margin-left: 21%;
+    min-width: 90px;
+    min-height: 50px;
+    /* font-size: 30px; */
+    font-size: 15px;
+    font-weight: 800;
+    background: #fad000;
+    margin-top: 4%;
+
+  }
+
+
      .cancelButtonTraining {
     position: absolute;
     margin-top: -110%;
