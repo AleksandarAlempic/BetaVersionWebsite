@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Stopwatch & Routes</title>
     <link rel="stylesheet" href="Stopwatch.css">
     <link rel="stylesheet" href="stylesResponsive.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/> 
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.35.6/dist/umd/supabase.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=0.5, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <style>
         #map table, #map h2, #map h3 { visibility: hidden; }
     </style>
@@ -23,37 +23,19 @@
             <tr>
                 <td>
                     <div class="stopwatchDiv">
-                        <div id="displayTime" class="displayTime"> 
-                            <div id="audioContainer" class="audioContainer">
-                                <div>
-                                    <div class="disk play"></div>
-                                    <div class="controls">
-                                        <button class="btn pervious-btn"><img src="images/audio/PreviousButton.png"></button>
-                                        <button style="margin-top: 39%;" class="play-btn play">
-                                            <span></span><span></span>
-                                        </button>
-                                        <button class="btn next-btn"><img src="images/audio/NextButton.png"></button>
-                                    </div>
-                                </div> 
-                            </div>
-                            <div id="newNextAndPreviousButtons" class="newNextAndPreviousButtons">
-                                <button class="btn previous-btnPlayList"><img src="images/audio/PreviousButtonPlayList.png"></button>
-                                <div class="kindOfMusic" id="kindOfMusic1" style="font-size: 25px; min-width: 70px; color: white; margin-top: -37%;">Promo</div>
-                                <div class="kindOfMusic" id="kindOfMusic2" style="display: none;">Classics</div>
-                                <div class="kindOfMusic" id="kindOfMusic3" style="display: none;">Narodna</div>
-                                <div class="kindOfMusic" id="kindOfMusic4" style="display: none;">Dance</div>
-                                <div class="kindOfMusic" id="kindOfMusic5" style="display: none;">Calm Rock</div>
-                                <div class="kindOfMusic" id="kindOfMusic6" style="display: none;">Desert Classic</div>
-                                <div class="kindOfMusic" id="kindOfMusic7" style="display: none; color: white;">Promo</div>
-                                <button class="btn next-btnPlayList"><img src="images/audio/NextButtonPlayList.jpg"></button>
-                            </div>
+                        <div id="displayTime" class="displayTime">
+                            <!-- Sat i sekunde -->
+                            <div class="hourHand"></div>
+                            <div class="minuteHand"></div>
+                            <div id="secondHand" class="secondHand"></div>
 
-                            <!-- SEKUNDE 0 - 59 -->
+                            <!-- Sekunde od 0 do 59 -->
                             <h3 class="secondZero"></h3>
                             <h3 class="secondOne"></h3>
                             <h3 class="secondTwo"></h3>
                             <h3 class="secondThree"></h3>
                             <h3 class="secondFour"></h3>
+                            <h3 class="secondFive"></h3>
                             <h3 class="secondSix"></h3>
                             <h3 class="secondSeven"></h3>
                             <h3 class="secondEight"></h3>
@@ -62,12 +44,12 @@
                             <h3 class="secondEleven"></h3>
                             <h3 class="secondTwelve"></h3>
                             <h3 class="secondThirteen"></h3>
-                            <h3 class="secondFourthteen"></h3>
+                            <h3 class="secondFourteen"></h3>
                             <h3 class="secondFifteen"></h3>
                             <h3 class="secondSixteen"></h3>
                             <h3 class="secondSeventeen"></h3>
-                            <h3 class="secondEitheen"></h3>
-                            <h3 class="secondNinteen"></h3>
+                            <h3 class="secondEighteen"></h3>
+                            <h3 class="secondNineteen"></h3>
                             <h3 class="secondTwenty"></h3>
                             <h3 class="secondTwentyOne"></h3>
                             <h3 class="secondTwentyTwo"></h3>
@@ -88,16 +70,16 @@
                             <h3 class="secondThirtySeven"></h3>
                             <h3 class="secondThirtyEight"></h3>
                             <h3 class="secondThirtyNine"></h3>
-                            <h3 class="secondFourthty"></h3>
-                            <h3 class="secondFourthtyOne"></h3>
-                            <h3 class="secondFourthtyTwo"></h3>
-                            <h3 class="secondFourthtyThree"></h3>
-                            <h3 class="secondFourthtyFour"></h3>
-                            <h3 class="secondFourthtyFive"></h3>
-                            <h3 class="secondFourthtySix"></h3>
-                            <h3 class="secondFourthtySeven"></h3>
-                            <h3 class="secondFourthtyEight"></h3>
-                            <h3 class="secondFourthtyNine"></h3>
+                            <h3 class="secondForty"></h3>
+                            <h3 class="secondFortyOne"></h3>
+                            <h3 class="secondFortyTwo"></h3>
+                            <h3 class="secondFortyThree"></h3>
+                            <h3 class="secondFortyFour"></h3>
+                            <h3 class="secondFortyFive"></h3>
+                            <h3 class="secondFortySix"></h3>
+                            <h3 class="secondFortySeven"></h3>
+                            <h3 class="secondFortyEight"></h3>
+                            <h3 class="secondFortyNine"></h3>
                             <h3 class="secondFifty"></h3>
                             <h3 class="secondFiftyOne"></h3>
                             <h3 class="secondFiftyTwo"></h3>
@@ -109,7 +91,7 @@
                             <h3 class="secondFiftyEight"></h3>
                             <h3 class="secondFiftyNine"></h3>
 
-                            <!-- Brojevi 1-12 -->
+                            <!-- Brojevi sata -->
                             <h3 class="numberTwelve">12</h3>
                             <h3 class="numberOne">1</h3>
                             <h3 class="numberTwo">2</h3>
@@ -122,53 +104,16 @@
                             <h3 class="numberNine">9</h3>
                             <h3 class="numberTen">10</h3>
                             <h3 class="numberEleven">11</h3>
-
-                            <!-- Kazaljke -->
-                            <div class="hourHand"></div>
-                            <div class="minuteHand"></div>
-                            <div id="secondHand" class="secondHand"></div>
                         </div>
 
-                        <!-- Dugmici -->
                         <button id="timer" class="timer">Timer</button>
                         <button id="stopwatch" class="stopwatch">Stopwatch</button>
-
-                        <table>
-                            <tr>
-                                <td>
-                                    <label class="switch labelForMusicSlider">
-                                        <input class="checkboxMusicPlayer" id="checkboxMusicPlayer" type="checkbox">
-                                        <span class="slider round"></span>
-                                    </label>
-                                    <p class="labelForMusicPlayer">Music Player</p>
-                                </td>
-                                <td>
-                                    <label class="switch labelForRootSlider">
-                                        <input id="checkboxRoot" type="checkbox">
-                                        <span class="slider round"></span>
-                                    </label>
-                                    <p class="labelForMusicRoot">Root</p>
-                                </td>
-                            </tr>
-                        </table>
-
                         <input id="input" class="input" value="00:00:00">
 
                         <div class="divForButtons">
-                            <ul id="songNameAndArtist" class="songNameAndArtist">
-                                <li class="songName" id="songName">Song Name</li>
-                                <li class="artistName">Artist</li>
-                            </ul>
-                            <div id="StopwatchOptions">
-                                <button id="start" onclick="setInterval1Stopwatch();" class="button">Start</button>
-                                <button id="stop" onclick="myStopStopwatch()" class="button">Stop</button>
-                                <button id="reset" onclick="resetFunctionStopwatch()" class="button">Reset</button>
-                            </div>
-                            <div id="TimerOptions" style="display: none;">
-                                <button id="start" onclick="setInterval1Timer();" class="button">Start</button>
-                                <button id="stop" onclick="myStopTimer()" class="button">Stop</button>
-                                <button id="reset" onclick="resetFunction()" class="button">Reset</button>
-                            </div>
+                            <button id="start" onclick="setInterval1Stopwatch();" class="button">Start</button>
+                            <button id="stop" onclick="myStopStopwatch()" class="button">Stop</button>
+                            <button id="reset" onclick="resetFunctionStopwatch()" class="button">Reset</button>
                         </div>
                     </div>
                 </td>
@@ -177,65 +122,67 @@
     </div>
 
     <!-- Dugmici za rute -->
-    <button id="startRouteButton" class="startRoute" style="position:absolute; color:black; background:#fad000; min-height:5%;">Start Route</button>
-    <button id="stopRouteButton" class="stopRoute" style="position:absolute; color:black; background:#fad000; min-height:5%;">Stop Route</button>
-    <button id="fetchNearbyRoutesButton" class="nearbyRouteButton showNearbyRoutes1" style="background:#fad000;">Show Nearby Routes</button>
-    <button id="fetchNearbyTrainingsButton" class="nearbyTrainingsButton showNearbyTrainings1" style="background:#fad000;">Show Nearby Trainings</button>
+    <button id="startRouteButton" class="startRoute">Start Route</button>
+    <button id="stopRouteButton" class="stopRoute">Stop Route</button>
+    <button id="fetchNearbyRoutesButton" class="nearbyRouteButton showNearbyRoutes1">Show Nearby Routes</button>
+    <button id="fetchNearbyTrainingsButton" class="nearbyTrainingsButton showNearbyTrainings1">Show Nearby Trainings</button>
 
-    <select id="languageSelect">
-        <option value="en">English</option>
-        <option value="sr">Srpski</option>
-    </select>
+    <!-- Prikaz brzine i distance -->
+    <div id="speed"><strong>Speed:</strong> <span id="speedValue">0.00</span> km/h</div>
+    <div id="distance"><strong>Distance:</strong> <span id="distanceValue">0.00</span> m</div>
+    <div id="averageSpeed"><strong>Avg Speed:</strong> <span id="averageSpeedValue">0.00</span> km/h</div>
 
-    <div id="speed" class="speed"><strong>Speed:</strong> <span id="speedValue">0.00</span> km/h</div>
-    <div id="distance" class="distance"><strong>Distance:</strong> <span id="distanceValue">0.00</span> m</div>
-    <div id="averageSpeed" class="speed"><strong>Avg Speed:</strong> <span id="averageSpeedValue">0.00</span> km/h</div>
-
-    <div class="Root" id="map-content">
-        <div id="map" style="margin-top:100px; margin-left:-5%" class="trackDiv"></div>
+    <!-- Mapa -->
+    <div id="map-content">
+        <div id="map" style="height: 500px; width: 100%;"></div>
     </div>
 
-    <!-- Popup za korisnika -->
-    <div id="usernamePopup" style="display:none; position:fixed; top:30%; left:50%; transform:translateX(-50%); background:white; padding:20px; z-index:1000000001; box-shadow:0px 0px 10px rgba(0,0,0,0.5); border-radius:8px;">
+    <!-- Popup za unos username-a pri cuvanju rute -->
+    <div id="usernamePopup" style="display:none; position:fixed; top:30%; left:50%; transform:translateX(-50%); background:white; padding:20px; z-index:100000; border-radius:8px;">
         <label for="usernameInput">Enter Name</label>
-        <input type="text" id="usernameInput" placeholder="Name" style="margin-top:10px; padding:5px; width:100%;" /><br><br>
-        <button onclick="submitRoute()" style="margin-left:30%; padding:8px 16px;">Save Route</button>
+        <input type="text" id="usernameInput" placeholder="Name" style="margin-top:10px; padding:5px; width:100%;"><br><br>
+        <button onclick="submitRoute()" style="padding:8px 16px;">Save Route</button>
     </div>
 
-    <!-- Dodavanje treninga -->
-    <button id="fetchAddTrainingButton" class="addTraningButton" style="color:black; background:#fad000;">Add Traning</button>
+    <!-- Popup za dodavanje treninga -->
     <div id="addTrainingPopup" class="addTrainingPopup" style="display:none;">
         <form id="trainingForm" style="margin-top:5%; display:flex; gap:20px; flex-wrap:wrap;">
-            <!-- LEVI KOLONA -->
             <div class="form-group" style="flex:1; min-width:200px;">
                 <label for="trainingName">Training Name:</label><br>
                 <input type="text" id="trainingName" name="trainingName"><br><br>
+
                 <label for="userName">User name:</label><br>
                 <input type="text" id="userName" name="userName"><br><br>
+
                 <label for="absCount">Sit ups:</label><br>
                 <input type="number" id="absCount" name="absCount"><br><br>
+
                 <label for="duration">Duration (min):</label><br>
                 <input type="number" id="duration" name="duration"><br><br>
+
                 <label for="otherExercise">Other Exercise:</label><br>
                 <textarea id="otherExercise" name="otherExercise"></textarea><br><br>
             </div>
-            <!-- DESNI KOLONA -->
+
             <div class="form-group" style="flex:1; min-width:200px;">
                 <label for="pushUps">Push ups:</label><br>
                 <input type="number" id="pushUps" name="pushUps"><br><br>
+
                 <label for="pullUps">Pull ups:</label><br>
                 <input type="number" id="pullUps" name="pullUps"><br><br>
+
                 <label for="sitUps">Squats:</label><br>
                 <input type="number" id="sitUps" name="sitUps"><br><br>
             </div>
-            <!-- CANCEL & SAVE -->
+
             <div style="width:100%; text-align:center;">
-                <button class="cancelButtonTraining" type="button" onclick="closePage()">X</button>
+                <button class="cancelButtonTraining" onclick="closePage()" type="button">X</button>
                 <button class="saveButtonTraining" type="submit">Save</button>
             </div>
         </form>
     </div>
 
+    <!-- Scriptovi -->
     <script defer src="Data.js"></script>
     <script defer src="MusicPlayer.js"></script>
     <script defer src="javascript.js"></script>
