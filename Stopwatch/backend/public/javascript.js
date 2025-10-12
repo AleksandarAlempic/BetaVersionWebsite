@@ -392,8 +392,14 @@ fetchNearbyTrainingsButton.addEventListener("click", retrieveNearbyTrainings);
 function closePage() {
   addTrainingPopup.style.display = "none";
 }
+const languageSelect = document.getElementById("languageSelect");
 
-// Funkcija koja menja jezik popup-a
+// Prevod popup-a
+const trainingTranslations = {
+    en: { addTrainingButton: "Add Training", trainingNameLabel: "Training Name", userNameLabel: "User name", absCountLabel: "Sit ups", durationLabel: "Duration (min)", otherExerciseLabel: "Other Exercise", pushUpsLabel: "Push ups", pullUpsLabel: "Pull ups", sitUpsLabel: "Squats", saveButton: "Save", cancelButton: "X" },
+    sr: { addTrainingButton: "Dodaj Trening", trainingNameLabel: "Naziv treninga", userNameLabel: "Ime korisnika", absCountLabel: "Trbušnjaci", durationLabel: "Trajanje (min)", otherExerciseLabel: "Ostale vežbe", pushUpsLabel: "Sklekovi", pullUpsLabel: "Zgibovi", sitUpsLabel: "Čučnjevi", saveButton: "Sačuvaj", cancelButton: "X" }
+};
+
 function updateTrainingPopupLanguage(lang) {
     document.getElementById("fetchAddTrainingButton").textContent = trainingTranslations[lang].addTrainingButton;
     document.querySelector('label[for="trainingName"]').textContent = trainingTranslations[lang].trainingNameLabel;
@@ -406,13 +412,14 @@ function updateTrainingPopupLanguage(lang) {
     document.querySelector('label[for="sitUps"]').textContent = trainingTranslations[lang].sitUpsLabel;
     document.querySelector(".saveButtonTraining").textContent = trainingTranslations[lang].saveButton;
     document.querySelector(".cancelButtonTraining").textContent = trainingTranslations[lang].cancelButton;
+
+    localStorage.setItem("selectedLanguage", lang);
 }
 
-// Pozivanje funkcije kada korisnik promeni jezik
-document.getElementById("languageSelect").addEventListener("change", (e) => {
-    const lang = e.target.value;
-    updateTrainingPopupLanguage(lang);
-});
+// Listener za dropdown
+languageSelect.addEventListener("change", (e) => updateTrainingPopupLanguage(e.target.value));
 
-// Inicijalno postavljanje jezika pri učitavanju stranice
-updateTrainingPopupLanguage(document.getElementById("languageSelect").value);
+// Inicijalni jezik
+const savedLang = localStorage.getItem("selectedLanguage") || "en";
+languageSelect.value = savedLang;
+updateTrainingPopupLanguage(savedLang);
