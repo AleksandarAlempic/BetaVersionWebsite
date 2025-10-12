@@ -1,42 +1,43 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="Stopwatch.css">
-        <link rel="stylesheet" href="stylesResponsive.css">
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/> 
-        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.35.6/dist/umd/supabase.min.js"></script>
-        
-        <meta name="viewport" content="width=device-width, initial-scale=0.5, user-scalable=no">
-        <style>
-            #map table, #map h2, #map h3 {
-                visibility: hidden;
-            }
-        </style>
-    </head>
-    <body> 
-        <div id="stopwatchLabel" class="stopwatchLabel">
-            <table class="tableClass">
-                <tr>
-                    <audio id="audio" src="audio/" ></audio>
-                    <audio id="audio1" src="../audio/OLD Grandfather's Clock SLOW with sound version 3.mp3"></audio>
-                    <td><h1 class="stopwatchH1">Stopwatch</h1></td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="stopwatchDiv">
-                        <div id="displayTime" class="displayTime"> 
-                            <div id="audioContainer" class="audioContainer">
-                                <div>
-                                <div class="disk play "></div>
-                                <div class="controls">
-                                    <button class="btn pervious-btn"><img src="images/audio/PreviousButton.png"></button>
-                                    <button style="margin-top: 39%;" class="play-btn play">
-                                        <span></span>
-                                        <span></span>
-                                    </button>
-                                    <button class="btn next-btn"><img src="images/audio/NextButton.png"></button>
-                                </div>
-                                </div> 
+    <html>
+        <head>
+            <link rel="stylesheet" href="Stopwatch.css">
+            <link rel="stylesheet" href="stylesResponsive.css">
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/> 
+            <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.35.6/dist/umd/supabase.min.js"></script>
+            
+            <meta name="viewport" content="width=device-width, initial-scale=0.5, user-scalable=no">
+            <style>
+                #map table, #map h2, #map h3 {
+                    visibility: hidden;
+                }
+                
+            </style>
+        </head>
+        <!-- a -->
+        <body> 
+            <div id="stopwatchLabel" class="stopwatchLabel">
+                <table class="tableClass">
+                    <tr>
+                        <audio id="audio" src="audio/" ></audio>
+                        <audio id="audio1" src="../audio/OLD Grandfather's Clock SLOW with sound version 3.mp3"></audio>
+                        <td><h1 class="stopwatchH1">Stopwatch</h1></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="stopwatchDiv">
+                            <div id="displayTime" class="displayTime"> 
+                                <div id="audioContainer" class="audioContainer">
+                                    <div>
+                                    <div class="disk play "></div>
+                                    <div class="controls">
+                                        <button class="btn pervious-btn"><img src="images/audio/PreviousButton.png"></button>
+                                        <button style="margin-top: 39%;" class="play-btn play">
+                                            <span></span>
+                                            <span></span>
+                                        </button>
+                                        <button class="btn next-btn"><img src="images/audio/NextButton.png"></button>
+                                    </div>
+                                    </div> 
                             </div>
                             <div id="newNextAndPreviousButtons" class="newNextAndPreviousButtons">
                                 <button class="btn previous-btnPlayList"><img src="images/audio/PreviousButtonPlayList.png"></button>
@@ -49,181 +50,517 @@
                                 <div class="kindOfMusic" id="kindOfMusic7" style="display: none"; color: white;">Promo</div>
                                 <button class="btn next-btnPlayList"><img src="images/audio/NextButtonPlayList.jpg"></button>
                             </div>
-                            <h3 class=" secondZero"></h3>
-                            <h3 class=" secondOne"></h3>
-                            <h3 class=" secondTwo"></h3>
-                            <h3 class=" secondThree"></h3>
-                            <h3 class=" secondFour"></h3>
-                            <h3 class=" secondSix"></h3> 
-                            <h3 class=" secondSeven"></h3>
-                            <h3 class=" secondEight"></h3>
-                            <h3 class=" secondNine"></h3>
-                            <h3 class=" secondTen"></h3> 
-                            <h3 class=" secondEleven"></h3> 
-                            <h3 class=" secondTwelve"></h3> 
-                            <h3 class=" secondThirteen"></h3> 
-                            <h3 class=" secondFourthteen"></h3> 
-                            <h3 class=" secondFifteen"></h3>
-                            <h3 class=" secondSixteen"></h3>
-                            <h3 class=" secondSeventeen"></h3>
-                            <h3 class=" secondEitheen"></h3>
-                            <h3 class=" secondNinteen"></h3>
-                            <h3 class=" secondTwenty"></h3>
-                            <h3 class=" secondTwentyOne"></h3>
-                            <h3 class=" secondTwentyTwo"></h3>
-                            <h3 class=" secondTwentyThree"></h3>
-                            <h3 class=" secondTwentyFour"></h3>
-                            <h3 class=" secondTwentyFive"></h3>
-                            <h3 class=" secondTwentySix"></h3>
-                            <h3 class=" secondTwentySeven"></h3>
-                            <h3 class=" secondTwentyEight"></h3>
-                            <h3 class=" secondTwentyNine"></h3>
-                            <h3 class=" secondThirty"></h3>
-                            <h3 class="secondThirtyOne"></h3>
-                            <h3 class="secondThirtyTwo"></h3>
-                            <h3 class="secondThirtyThree"></h3>
-                            <h3 class="secondThirtyFour"></h3>
-                            <h3 class="secondThirtyFive"></h3>
-                            <h3 class="secondThirtySix"></h3>
-                            <h3 class="secondThirtySeven"></h3>
-                            <h3 class="secondThirtyEight"></h3>
-                            <h3 class="secondThirtyNine"></h3>
-                            <h3 class="secondFourthty"></h3>
-                            <h3 class="secondFourthtyOne"></h3>
-                            <h3 class="secondFourthtyTwo"></h3>
-                            <h3 class="secondFourthtyThree"></h3>
-                            <h3 class="secondFourthtyFour"></h3>
-                            <h3 class="secondFourthtyFive"></h3>
-                            <h3 class="secondFourthtySix"></h3>
-                            <h3 class="secondFourthtySeven"></h3>
-                            <h3 class="secondFourthtyEight"></h3>
-                            <h3 class="secondFourthtyNine"></h3>
-                            <h3 class="secondFifty"></h3>
-                            <h3 class="secondFiftyOne"></h3>
-                            <h3 class="secondFiftyTwo"></h3>
-                            <h3 class="secondFiftyThree"></h3>
-                            <h3 class=" secondFiftyFour"></h3>
-                            <h3 class=" secondFiftyFive"></h3>
-                            <h3 class=" secondFiftySix"></h3>
-                            <h3 class=" secondFiftySeven"></h3>
-                            <h3 class=" secondFiftyEight"></h3>
-                            <h3 class="  secondFiftyNine"></h3>    
-                            <h3 class="numberTwelve">12</h3>
-                            <h3 class="numberOne">1</h3>
-                            <h3 class="numberTwo">2</h3>
-                            <h3 class="numberThree">3</h3>
-                            <h3 class="numberFour">4</h3>
-                            <h3 class="numberFive">5</h3>
-                            <h3 class="numberSix">6</h3>
-                            <h3 class="numberSeven">7</h3>
-                            <h3 class="numberEight">8</h3>
-                            <h3 class="numberNine">9</h3>
-                            <h3 class="numberTen">10</h3>
-                            <h3 class="numberEleven">11</h3>
-                            <div class="hourHand"></div>
-                            <div class="minuteHand"></div>
-                            <div id="secondHand"  class="secondHand"></div>
+                                <h3 class=" secondZero"></h3>
+                                <h3 class=" secondOne"></h3>
+                                <h3 class=" secondTwo"></h3>
+                                <h3 class=" secondThree"></h3>
+                                <h3 class=" secondFour"></h3>
+                                <h3 class=" secondSix"></h3> 
+                                <h3 class=" secondSeven"></h3>
+                                <h3 class=" secondEight"></h3>
+                                <h3 class=" secondNine"></h3>
+                                <h3 class=" secondTen"></h3> 
+                                <h3 class=" secondEleven"></h3> 
+                                <h3 class=" secondTwelve"></h3> 
+                                <h3 class=" secondThirteen"></h3> 
+                                <h3 class=" secondFourthteen"></h3> 
+                                <h3 class=" secondFifteen"></h3>
+                                <h3 class=" secondSixteen"></h3>
+                                <h3 class=" secondSeventeen"></h3>
+                                <h3 class=" secondEitheen"></h3>
+                                <h3 class=" secondNinteen"></h3>
+                                <h3 class=" secondTwenty"></h3>
+                                <h3 class=" secondTwentyOne"></h3>
+                                <h3 class=" secondTwentyTwo"></h3>
+                                <h3 class=" secondTwentyThree"></h3>
+                                <h3 class=" secondTwentyFour"></h3>
+                                <h3 class=" secondTwentyFive"></h3>
+                                <h3 class=" secondTwentySix"></h3>
+                                <h3 class=" secondTwentySeven"></h3>
+                                <h3 class=" secondTwentyEight"></h3>
+                                <h3 class=" secondTwentyNine"></h3>
+                                <h3 class=" secondThirty"></h3>
+                                <h3 class="secondThirtyOne"></h3>
+                                <h3 class="secondThirtyTwo"></h3>
+                                <h3 class="secondThirtyThree"></h3>
+                                <h3 class="secondThirtyFour"></h3>
+                                <h3 class="secondThirtyFive"></h3>
+                                <h3 class="secondThirtySix"></h3>
+                                <h3 class="secondThirtySeven"></h3>
+                                <h3 class="secondThirtyEight"></h3>
+                                <h3 class="secondThirtyNine"></h3>
+                                <h3 class="secondFourthty"></h3>
+                                <h3 class="secondFourthtyOne"></h3>
+                                <h3 class="secondFourthtyTwo"></h3>
+                                <h3 class="secondFourthtyThree"></h3>
+                                <h3 class="secondFourthtyFour"></h3>
+                                <h3 class="secondFourthtyFive"></h3>
+                                <h3 class="secondFourthtySix"></h3>
+                                <h3 class="secondFourthtySeven"></h3>
+                                <h3 class="secondFourthtyEight"></h3>
+                                <h3 class="secondFourthtyNine"></h3>
+                                <h3 class="secondFifty"></h3>
+                                <h3 class="secondFiftyOne"></h3>
+                                <h3 class="secondFiftyTwo"></h3>
+                                <h3 class="secondFiftyThree"></h3>
+                                <h3 class=" secondFiftyFour"></h3>
+                                <h3 class=" secondFiftyFive"></h3>
+                                <h3 class=" secondFiftySix"></h3>
+                                <h3 class=" secondFiftySeven"></h3>
+                                <h3 class=" secondFiftyEight"></h3>
+                                <h3 class="  secondFiftyNine"></h3>    
+                                <h3 class="numberTwelve">12</h3>
+                                <h3 class="numberOne">1</h3>
+                                <h3 class="numberTwo">2</h3>
+                                <h3 class="numberThree">3</h3>
+                                <h3 class="numberFour">4</h3>
+                                <h3 class="numberFive">5</h3>
+                                <h3 class="numberSix">6</h3>
+                                <h3 class="numberSeven">7</h3>
+                                <h3 class="numberEight">8</h3>
+                                <h3 class="numberNine">9</h3>
+                                <h3 class="numberTen">10</h3>
+                                <h3 class="numberEleven">11</h3>
+                                <div class="hourHand"></div>
+                                <div class="minuteHand"></div>
+                                <div id="secondHand"  class="secondHand"></div>
+                            </div>
+                            <button id="timer" class="timer">Timer</button>
+                            <button id="stopwatch" class="stopwatch">Stopwatch</button>
+                            <table>
+                                <tr>
+                                    <td>
+                                    <label class="switch labelForMusicSlider">
+                                    <input class="checkboxMusicPlayer" id="checkboxMusicPlayer" type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            
+                                <p class="labelForMusicPlayer">Music Player</p>
+                            </td>
+                                <td><label style="z-index: 10000000;" class="switch labelForRootSlider">
+                                    <input style="z-index: 10000000;" id="checkboxRoot" type="checkbox">
+                                    <span style="z-index: 10000000;" class="slider round"></span>
+                                </label>
+                            <p class="labelForMusicRoot">Root</p>
+                        </td></tr>
+                        </table>
+                            <input id="input" class="input" value="00:00:00">
+                            <div  class="divForButtons">
+                                <ul style="display: grid;" id="songNameAndArtist" class="songNameAndArtist">
+                                    <li class="songName" id="songName">Song Name</li>
+                                    <li class="artistName">Artist</li>
+                                </ul>
+                                <div style="z-index: 10000000 !important; " id="StopwatchOptions">
+                                    <button style="z-index: 1000000000;" id="start" onclick="setInterval1Stopwatch();" class="button">Start</button>
+                                    <button id="stop"  onclick="myStopStopwatch()" class="button">Stop</button>
+                                    <button id="reset" onclick= "resetFunctionStopwatch()" class="button"button">Reset</button>
+                                </div>
+                                <div id="TimerOptions" style="display: none;">
+                                    <button id="start" onclick="setInterval1Timer();" class="button">Start</button>
+                                    <button id="stop"  onclick="myStopTimer()" class="button">Stop</button>
+                                    <button id="reset" onclick= "resetFunction()" class="button"button">Reset</button>
+                                </div> 
+                            </div>
                         </div>
-                        <button id="timer" class="timer">Timer</button>
-                        <button id="stopwatch" class="stopwatch">Stopwatch</button>
-                        <table>
-                            <tr>
-                                <td>
-                                <label class="switch labelForMusicSlider">
-                                <input class="checkboxMusicPlayer" id="checkboxMusicPlayer" type="checkbox">
-                                <span class="slider round"></span>
-                            </label>
-                        
-                            <p class="labelForMusicPlayer">Music Player</p>
-                        </td>
-                            <td><label style="z-index: 10000000;" class="switch labelForRootSlider">
-                                <input style="z-index: 10000000;" id="checkboxRoot" type="checkbox">
-                                <span style="z-index: 10000000;" class="slider round"></span>
-                            </label>
-                        <p class="labelForMusicRoot">Root</p>
-                    </td></tr>
-                    </table>
-                        <input id="input" class="input" value="00:00:00">
-                        <div  class="divForButtons">
-                            <ul style="display: grid;" id="songNameAndArtist" class="songNameAndArtist">
-                                <li class="songName" id="songName">Song Name</li>
-                                <li class="artistName">Artist</li>
-                            </ul>
-                                                    <div class="divForButtons">
-                            <button id="start" onclick="setInterval1Stopwatch();" class="button">Start</button>
-                            <button id="stop" onclick="myStopStopwatch()" class="button">Stop</button>
-                            <button id="reset" onclick="resetFunctionStopwatch()" class="button">Reset</button>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
-
-    <!-- Dugmici za rute -->
-    <button id="startRouteButton" class="startRoute">Start Route</button>
-    <button id="stopRouteButton" class="stopRoute">Stop Route</button>
-    <button id="fetchNearbyRoutesButton" class="nearbyRouteButton showNearbyRoutes1">Show Nearby Routes</button>
-    <button id="fetchNearbyTrainingsButton" class="nearbyTrainingsButton showNearbyTrainings1">Show Nearby Trainings</button>
-
-    <!-- Prikaz brzine i distance -->
-    <div id="speed"><strong>Speed:</strong> <span id="speedValue">0.00</span> km/h</div>
-    <div id="distance"><strong>Distance:</strong> <span id="distanceValue">0.00</span> m</div>
-    <div id="averageSpeed"><strong>Avg Speed:</strong> <span id="averageSpeedValue">0.00</span> km/h</div>
-
-    <!-- Mapa -->
-    <div id="map-content">
-        <div id="map" style="height: 500px; width: 100%;"></div>
-    </div>
-
-    <!-- Popup za unos username-a pri cuvanju rute -->
-    <div id="usernamePopup" style="display:none; position:fixed; top:30%; left:50%; transform:translateX(-50%); background:white; padding:20px; z-index:100000; border-radius:8px;">
-        <label for="usernameInput">Enter Name</label>
-        <input type="text" id="usernameInput" placeholder="Name" style="margin-top:10px; padding:5px; width:100%;"><br><br>
-        <button onclick="submitRoute()" style="padding:8px 16px;">Save Route</button>
-    </div>
-
-    <!-- Popup za dodavanje treninga -->
-    <div id="addTrainingPopup" class="addTrainingPopup" style="display:none;">
-        <form id="trainingForm" style="margin-top:5%; display:flex; gap:20px; flex-wrap:wrap;">
-            <div class="form-group" style="flex:1; min-width:200px;">
-                <label for="trainingName">Training Name:</label><br>
-                <input type="text" id="trainingName" name="trainingName"><br><br>
-
-                <label for="userName">User name:</label><br>
-                <input type="text" id="userName" name="userName"><br><br>
-
-                <label for="absCount">Sit ups:</label><br>
-                <input type="number" id="absCount" name="absCount"><br><br>
-
-                <label for="duration">Duration (min):</label><br>
-                <input type="number" id="duration" name="duration"><br><br>
-
-                <label for="otherExercise">Other Exercise:</label><br>
-                <textarea id="otherExercise" name="otherExercise"></textarea><br><br>
+                    </td>
+                    </tr>
+                </table>
             </div>
-
-            <div class="form-group" style="flex:1; min-width:200px;">
-                <label for="pushUps">Push ups:</label><br>
-                <input type="number" id="pushUps" name="pushUps"><br><br>
-
-                <label for="pullUps">Pull ups:</label><br>
-                <input type="number" id="pullUps" name="pullUps"><br><br>
-
-                <label for="sitUps">Squats:</label><br>
-                <input type="number" id="sitUps" name="sitUps"><br><br>
+            <button class="startRoute" style="z-index: 1000000000; position: absolute;  color: black;  background: #fad000; min-height: 5%;" id="startRouteButton">Start Route</button>
+            <button class="stopRoute"  style="z-index: 1000000000; position: absolute; color: black; background: #fad000; min-height: 5%;" id="stopRouteButton">Stop Route</button>
+            <button class="nearbyRouteButton showNearbyRoutes1" style="background: #fad000;" id="fetchNearbyRoutesButton">
+                Show Nearby Routes
+            </button>
+            <button 
+  class="nearbyTrainingsButton showNearbyTrainings1" 
+  style="background: #fad000;" 
+  id="fetchNearbyTrainingsButton">
+    Show Nearby Trainings
+</button>
+            <select id="languageSelect">
+  <option value="en">English</option>
+  <option value="sr">Srpski</option>
+</select>
+            <div id="speed" class="speed">
+                <strong>Speed:</strong> <span id="speedValue">0.00</span> km/h
             </div>
-
-            <div style="width:100%; text-align:center;">
-                <button class="cancelButtonTraining" onclick="closePage()" type="button">X</button>
-                <button class="saveButtonTraining" type="submit">Save</button>
+            <div id="distance" class="distance">
+                <strong>Distance:</strong> <span id="distanceValue">0.00</span> m
             </div>
-        </form>
-    </div>
+            <div  id="averageSpeed" class="speed">
+                <strong>Avg Speed:</strong> <span id="averageSpeedValue">0.00</span> km/h
+            </div>
+            <div class="Root" id="map-content">
+                <div id="map" style="margin-top: 100px; margin-left: -5%" class="trackDiv"></div>
+            
+                <!-- Leaflet JS -->
+                <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+            
+                <!-- Leaflet Routing Machine JS -->
+                <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+            
+                <script>
 
-    <!-- Scriptovi -->
-    <script defer src="Data.js"></script>
-    <script defer src="MusicPlayer.js"></script>
-    <script defer src="javascript.js"></script>
-</body>
-</html>
+                    document.getElementById('averageSpeed').style = "display: none";
+
+                    const defaultLat = 45.2764;
+                    const defaultLon = 19.8244;
+            
+                    const map = L.map('map').setView([defaultLat, defaultLon], 13);
+            
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
+
+            
+                    const routeControl = L.Routing.control({
+                        waypoints: [],  // Start with an empty route
+                        routeWhileDragging: true,  // Allow dragging the route
+                        createMarker: function() { return null; }  // Prevent creating markers for waypoints
+                    }).addTo(map);
+            
+                    let currentLocation = [defaultLat, defaultLon];  // Default to Begeč
+                    let currentLocationMarker = L.marker([currentLocation[0], currentLocation[1]]).addTo(map);
+            
+                    let routeStarted = false;  // Initially, the route is not started
+                    let waypoints = [];
+                    let polyline;
+            
+                    let lastTime = null;  // To store the timestamp of the last position update
+                    let totalDistance = 0;  // To store the total distance traveled
+            
+                    // Function to update the user's location and update the route
+                    function updateLocation(position) {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        // Update the location marker to the new coordinates
+        currentLocationMarker.setLatLng([lat, lon]);
+
+        // Only add new waypoints and update polyline if the route has started
+        if (routeStarted) {
+            if (waypoints.length === 0 || waypoints[waypoints.length - 1].lat !== lat || waypoints[waypoints.length - 1].lng !== lon) {
+                // Add new waypoint to the array
+                waypoints.push(L.latLng(lat, lon));
+                routeControl.setWaypoints(waypoints);  // Update the route with new waypoints
+
+                // If the polyline is not yet created, create it
+                if (!polyline) {
+        polyline = L.polyline([ [lat, lon] ], {
+            color: 'blue',
+            weight: 5,
+            opacity: 0.7    
+        }).addTo(map);  // Add polyline to map
+    } else {
+        polyline.addLatLng([lat, lon]);  // Add new point to existing polyline
+    }
+
+                calculateDistanceAndSpeed(lat, lon);
+            }
+        }
+
+        // Optionally, update the map view if the user moves a significant distance
+        if (map.getCenter().distanceTo([lat, lon]) > 50) {
+            map.setView([lat, lon], map.getZoom());  // Keep the current zoom level
+        }
+    }
+                    // Function to calculate distance between two geographical points (in meters) using the Haversine formula
+                    function haversine(lat1, lon1, lat2, lon2) {
+                        const R = 6371e3; // Radius of Earth in meters
+                        const φ1 = lat1 * Math.PI / 180; // Latitude in radians
+                        const φ2 = lat2 * Math.PI / 180; // Latitude in radians
+                        const Δφ = (lat2 - lat1) * Math.PI / 180; // Difference in latitude in radians
+                        const Δλ = (lon2 - lon1) * Math.PI / 180; // Difference in longitude in radians
+            
+                        // Haversine formula
+                        const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+                            Math.cos(φ1) * Math.cos(φ2) *
+                            Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+                        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                        const distance = R * c; // Distance in meters
+                        return distance;
+                    }
+            
+                    let lastLatLng = null;
+            
+                    function calculateDistanceAndSpeed(lat, lon) {
+                        // Ensure we have a valid previous position to calculate the distance from
+                        if (lastLatLng) {
+                            const distance = haversine(lastLatLng.lat, lastLatLng.lng, lat, lon); // Calculate distance between last and current position in meters
+                            totalDistance += distance; // Add to the total distance
+            
+                            // Calculate speed: distance / time (in km/h)
+                            const currentTime = new Date();
+                            if (lastTime) {
+                                const timeDiff = (currentTime - lastTime) / 1000; // Time difference in seconds
+                                if (timeDiff > 0) {  // Ensure timeDiff is not zero
+                                    const speed = (distance / timeDiff) * 3.6; // Speed in km/h
+                                    // Only update speed if it's above a threshold (e.g., 0.5 km/h)
+                                    if (speed > 0.5) {
+                                        document.getElementById('speedValue').textContent = speed.toFixed(2); // Update speed dynamically
+                                    } else {
+                                        document.getElementById('speedValue').textContent = "0.00"; // Speed is 0 if stationary or moving slowly
+                                    }
+                                }
+                            }
+                            lastTime = currentTime;  // Store the current time for the next update
+                        }
+            
+                        lastLatLng = { lat: lat, lng: lon }; // Update the last position
+            
+                        // Update total distance in meters (or kilometers if preferred)
+                        document.getElementById('distanceValue').textContent = (totalDistance / 1000).toFixed(2); // Display distance in kilometers
+                    }
+            
+                    // Function to handle geolocation errors
+                    function handleError(error) {
+                        console.error('Error fetching location: ', error);
+                        alert("Error retrieving your location.");
+                    }
+            
+                    let totalTime = 0;  // Track the total time in seconds
+    let routeStartTime = null;  // Time when the route started
+
+    // Function to start the route manually
+    function startRoute() {
+        if (!routeStarted) {
+            routeStarted = true;  // Set the route as started
+            waypoints = [];  // Clear any existing waypoints before starting
+            waypoints.push(L.latLng(currentLocation[0], currentLocation[1]));  // Start route at the current location
+            routeControl.setWaypoints(waypoints);  // Initialize route control with the first waypoint
+            console.log("Route started at:", currentLocation);  // Debugging log
+            routeStartTime = new Date();  // Record the time when the route started
+            alert("Route started! Moving now will update the route.");
+
+            document.getElementById('speed').style = "display: block";
+            document.getElementById('averageSpeed').style = "display: none";
+        }
+    }
+
+    function stopRoute() {
+        if (!routeStarted) return;
+
+        const confirmSave = confirm("Do you want to save a Route?");
+        
+        // Stop tracking regardless
+        routeStarted = false;
+        alert("Route stopped.");
+
+        const routeEndTime = new Date();
+        totalTime = (routeEndTime - routeStartTime) / 1000;
+
+        document.getElementById('speed').style = "display: none";
+
+        const averageSpeed = (totalDistance / 1000) / (totalTime / 3600);
+        document.getElementById('averageSpeedValue').textContent = averageSpeed.toFixed(2);
+        document.getElementById('averageSpeed').style = "display: block";
+
+        if (polyline instanceof L.Polyline) {
+            const polylineCoordinates = polyline.getLatLngs();
+            polyline.remove();
+
+            if (confirmSave) {
+                // Show username input popup
+                document.getElementById("usernamePopup").style.display = "block";
+                // Store route data temporarily
+                window.routeDataToSave = {
+                    distance: totalDistance / 1000,
+                    speed: averageSpeed,
+                    time: totalTime,
+                    polyline: polylineCoordinates,
+                    startLat: waypoints[0].lat,
+                    startLng: waypoints[0].lng,
+                    location: "Some location"
+                };
+            }
+        }
+    }[]     
+
+    function submitRoute() {
+        const username = document.getElementById("usernameInput").value.trim();
+
+        if (!username) {
+            alert("Username is required.");
+            return;
+        }
+
+        // Hide the popup
+        document.getElementById("usernamePopup").style.display = "none";
+
+        // Get saved route data
+        const data = window.routeDataToSave;
+
+        fetch('https://betaversionwebsite.onrender.com/api/save-run', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                user_id: 1, // Replace if dynamic
+                root: "Vojvodina Trčanje",
+                distance: data.distance,
+                speed: data.speed,
+                time: data.time,
+                polyline: data.polyline,
+                startLat: data.startLat,
+                startLng: data.startLng,
+                location: data.location,
+                username: username // Include username
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Run data saved:', data);
+            alert("Route saved successfully!");
+        })
+        .catch(error => {
+            console.error('Error saving run data:', error);
+            alert("Failed to save route.");
+        });
+    }
+                    // Add event listener for the Start Route button click
+                    document.getElementById("startRouteButton").addEventListener("click", startRoute);
+            
+                    // Add event listener for the Stop Route button click
+                    document.getElementById("stopRouteButton").addEventListener("click", stopRoute);
+            
+
+                    document.getElementById("fetchNearbyRoutesButton").addEventListener("click", () => {
+        navigator.geolocation.getCurrentPosition((position) => {
+            const { latitude, longitude } = position.coords;
+            fetchNearbyRoutes(latitude, longitude); // Real function
+            // fetchNearbyRoutes(45.0092566, 19.8200371); // Hardcoded for testing
+        }, handleError);
+    });
+                    // Continuously update the user's location using geolocation
+                    navigator.geolocation.watchPosition(updateLocation, handleError, {
+                        enableHighAccuracy: true,  // Use GPS for accurate location
+                        maximumAge: 0,             // Disables using cached location data
+                        timeout: 10000             // Timeout after 10 seconds if no location data is found
+                    });
+
+                </script>
+            </div>
+                <button style="color: black; background: #fad000;" class="addTraningButton" id="fetchAddTrainingButton">
+                Add Traning
+            </button>
+            
+            <div id="addTrainingPopup" class="addTrainingPopup">
+               <form id="trainingForm" style="margin-top: 5%; display: flex; gap: 20px; flex-wrap: wrap;">
+<!-- LANGUAGE SELECT -->
+<label for="languageSelect">Language:</label>
+<select id="languageSelect">
+    <option value="en">English</option>
+    <option value="sr">Srpski</option>
+</select>
+
+<!-- ADD TRAINING POPUP -->
+<div id="addTrainingPopup" class="addTrainingPopup">
+    <form id="trainingForm" style="margin-top: 5%; display: flex; gap: 20px; flex-wrap: wrap;">
+        <!-- LEFT COLUMN -->
+        <div class="form-group" style="flex: 1; min-width: 200px;">
+            <label for="trainingName">Training Name:</label><br>
+            <input type="text" id="trainingName" name="trainingName"><br><br>
+
+            <label for="userName">User name:</label><br>
+            <input type="text" id="userName" name="userName"><br><br>
+
+            <label for="absCount">Sit ups:</label><br>
+            <input type="number" id="absCount" name="absCount"><br><br>
+
+            <label for="duration">Duration (min):</label><br>
+            <input type="number" id="duration" name="duration"><br><br>
+
+            <label for="otherExercise">Other Exercise:</label><br>
+            <textarea id="otherExercise" name="otherExercise"></textarea><br><br>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="form-group" style="flex: 1; min-width: 200px;">
+            <input type="number" style="display: none;" id="empty" name="empty"><br><br>
+
+            <label for="pushUps">Push ups:</label><br>
+            <input type="number" id="pushUps" name="pushUps"><br><br>
+
+            <label for="pullUps">Pull ups:</label><br>
+            <input type="number" id="pullUps" name="pullUps"><br><br>
+
+            <label for="sitUps">Squats:</label><br>
+            <input type="number" id="sitUps" name="sitUps"><br><br>
+        </div>
+
+        <!-- CANCEL & SAVE BUTTONS -->
+        <div style="width: 100%; text-align: center;">
+            <button class="cancelButtonTraining" onclick="closePage()" type="button">X</button>
+        </div>
+        <div style="width: 100%; text-align: center;">
+            <button class="saveButtonTraining" type="submit">Save</button>
+        </div>
+    </form>
+</div>
+</form>
+
+            </div>
+            <script>
+    // Show the training popup
+    document.getElementById("fetchAddTrainingButton").addEventListener("click", () => {
+        document.getElementById("addTrainingPopup").style.display = "block";
+    });
+
+
+let userId = localStorage.getItem('userId');
+if (!userId) {
+    userId = Date.now(); // Use timestamp as unique ID
+    localStorage.setItem('userId', userId);
+}
+
+    // Handle training form submit
+   document.getElementById("trainingForm").addEventListener("submit", function(e) {
+    e.preventDefault(); 
+
+    // Dohvati geolokaciju korisnika
+    navigator.geolocation.getCurrentPosition((position) => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        const trainingData = {
+            user_id: parseInt(userId) || 1,
+            trainingName: document.getElementById("trainingName").value || "",
+            userName: document.getElementById("userName").value || "",
+            pushUps: parseInt(document.getElementById("pushUps").value) || 0,
+            pullUps: parseInt(document.getElementById("pullUps").value) || 0,
+            sitUps: parseInt(document.getElementById("sitUps").value) || 0,
+            absCount: parseInt(document.getElementById("absCount").value) || 0,
+            otherExercise: document.getElementById("otherExercise").value || "",
+            duration: parseInt(document.getElementById("duration").value) || 0,
+            latitude: lat,   // 🔹 dodato
+            longitude: lon    // 🔹 dodato
+        };
+
+        fetch("https://betaversionwebsite.onrender.com/api/save-training", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(trainingData),
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log("Training saved:", data);
+            alert("Training saved successfully!");
+            document.getElementById("addTrainingPopup").style.display = "none";
+        })
+        .catch(err => {
+            console.error("Error saving training:", err);
+            alert("Failed to save training.");
+        });
+    }, (error) => {
+        alert("Could not get location: " + error.message);
+    });
+});
+    </script>
+        </div>
+        <div id="usernamePopup" style="display: none; position: fixed; top: 30%; left: 50%; transform: translateX(-50%); background: white; padding: 20px; z-index: 1000000001; box-shadow: 0px 0px 10px rgba(0,0,0,0.5); border-radius: 8px;">
+            <label for="usernameInput"> Enter Name </label>
+            <input type="text" id="usernameInput" placeholder="Name" style="margin-top: 10px; padding: 5px; width: 100%;" /><br><br>
+            <button onclick="submitRoute()" style="margin-left: 30%; padding: 8px 16px;">Save Route</button>
+        </div>
+        </body>
+        <script defer src="Data.js"></script>
+        <script defer src="MusicPlayer.js"></script>
+        <script defer src="javascript.js"></script>
+    </html>
