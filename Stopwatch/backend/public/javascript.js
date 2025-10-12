@@ -1,4 +1,4 @@
-// =================== ELEMENT REFERENCES ===================
+// =================== ELEMENT REFERENCES =====================
 const musicPlayer = document.getElementById("checkboxMusicPlayer");
 const checkboxRoot = document.getElementById("checkboxRoot");
 const audioContainer = document.getElementById("audioContainer");
