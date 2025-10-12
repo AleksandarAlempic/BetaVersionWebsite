@@ -440,60 +440,53 @@
                 <button style="color: black; background: #fad000;" class="addTraningButton" id="fetchAddTrainingButton">
                 Add Traning
             </button>
-            
             <div id="addTrainingPopup" class="addTrainingPopup">
                <form id="trainingForm" style="margin-top: 5%; display: flex; gap: 20px; flex-wrap: wrap;">
-<!-- LANGUAGE SELECT -->
-<label for="languageSelect">Language:</label>
-<select id="languageSelect">
-    <option value="en">English</option>
-    <option value="sr">Srpski</option>
-</select>
+  <!-- LEFT COLUMN -->
+  <div class="form-group" style="flex: 1; min-width: 200px;">
+    <label class="trainingName" for="trainingName">Training Name:</label><br>
+    <input type="text" class="trainingName" id="trainingName" name="trainingName"><br><br>
 
-<!-- ADD TRAINING POPUP -->
-<div id="addTrainingPopup" class="addTrainingPopup">
-    <form id="trainingForm" style="margin-top: 5%; display: flex; gap: 20px; flex-wrap: wrap;">
-        <!-- LEFT COLUMN -->
-        <div class="form-group" style="flex: 1; min-width: 200px;">
-            <label for="trainingName">Training Name:</label><br>
-            <input type="text" id="trainingName" name="trainingName"><br><br>
+    <label class="trainingName" for="userName">User name:</label><br>
+    <input type="text" class="userName" id="userName" name="userName"><br><br>
 
-            <label for="userName">User name:</label><br>
-            <input type="text" id="userName" name="userName"><br><br>
+   
 
-            <label for="absCount">Sit ups:</label><br>
-            <input type="number" id="absCount" name="absCount"><br><br>
+   
+    <label class="absCount" for="absCount">Sit ups:</label><br>
+    <input type="number" class="absCount" id="absCount" name="absCount"><br><br>
+     <label class="trainingName" for="duration">Duration (min):</label><br>
+    <input type="number" id="duration" class="duration" name="duration"><br><br>
+     <label class="trainingName" for="otherExercise">Other Exercise:</label><br>
+    <textarea id="otherExercise"  class="trainingName otherExercise" name="otherExercise"></textarea><br><br>
+  </div>
 
-            <label for="duration">Duration (min):</label><br>
-            <input type="number" id="duration" name="duration"><br><br>
+  <!-- RIGHT COLUMN -->
+  <div class="form-group" style="flex: 1; min-width: 200px;">
 
-            <label for="otherExercise">Other Exercise:</label><br>
-            <textarea id="otherExercise" name="otherExercise"></textarea><br><br>
-        </div>
+     <label class="pullUps1" for="empty"><br>
+    <input type="number" style="display: none;"" class="pullUps1" id="empty" name="empty"><br><br>
 
-        <!-- RIGHT COLUMN -->
-        <div class="form-group" style="flex: 1; min-width: 200px;">
-            <input type="number" style="display: none;" id="empty" name="empty"><br><br>
+    <label class="pushUpsLabel" for="pushUps">Push ups:</label><br>
+    <input type="number" class="pushUps" id="pushUps" name="pushUps"><br><br>
 
-            <label for="pushUps">Push ups:</label><br>
-            <input type="number" id="pushUps" name="pushUps"><br><br>
+    <label class="pullUpsLabel"  for="pullUps">Pull ups:</label><br>
+    <input type="number" class="pullUps" id="pullUps" name="pullUps"><br><br>
 
-            <label for="pullUps">Pull ups:</label><br>
-            <input type="number" id="pullUps" name="pullUps"><br><br>
+    <label class="trainingName sitUps" for="sitUps">Squats:</label><br>
+    <input type="number" class="pushUps sitUpsInput" id="sitUps" name="sitUps"><br><br>
 
-            <label for="sitUps">Squats:</label><br>
-            <input type="number" id="sitUps" name="sitUps"><br><br>
-        </div>
+    
+  </div>
 
-        <!-- CANCEL & SAVE BUTTONS -->
-        <div style="width: 100%; text-align: center;">
-            <button class="cancelButtonTraining" onclick="closePage()" type="button">X</button>
-        </div>
-        <div style="width: 100%; text-align: center;">
-            <button class="saveButtonTraining" type="submit">Save</button>
-        </div>
-    </form>
-</div>
+  <div style="width: 100%; text-align: center;">
+    <button class="cancelButtonTraining" onclick="closePage()" type="button">X</button>
+  </div>
+
+  <!-- Save button spans full width below both columns -->
+  <div style="width: 100%; text-align: center;">
+    <button class="saveButtonTraining" type="submit">Save</button>
+  </div>
 </form>
 
             </div>
