@@ -2287,14 +2287,14 @@ img { max-width: 100%; height: auto; }
    }
 
     .addTraningButton {
-        background: orange;
+         background: orange;
         color: black;
         min-width: 140px;
         min-height: 70px;
         font-size: 20px;
         font-weight: 900;
-        margin-top: 90%;
-        margin-left: 42%;
+        margin-top: 77%;
+        margin-left: 40%;
         position: relative;
         z-index: 100000000000;
     }
