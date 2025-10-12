@@ -1785,9 +1785,9 @@ body{
 
 
     #map-content {
-    z-index: 10000000000;
+   z-index: 10000000000;
     max-height: 650px;
-     margin-left: -7%;
+    margin-left: 25%;
     margin-top: 23%;
 }
 
