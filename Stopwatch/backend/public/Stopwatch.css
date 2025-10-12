@@ -58,15 +58,15 @@
      }
    
     .nearbyTrainingsButton{
-            z-index: 1000000000;
+         z-index: 1000000000;
     position: absolute;
     color: black;
     font-size: 20px;
     font-weight: 600;
     background: #fad000;
     min-height: 5%;
-    margin-left: 60%;
-    margin-top: 180%;
+    margin-left: 66%;
+    margin-top: 17%;
     }
    
      /* Main content above the video */
@@ -1985,12 +1985,12 @@ body{
    /* Disable map interaction temporarily */
   .nearbyRouteButton{
     z-index: 1000000000;
-    position: absolute;
-    background: white;
-    color: black;
-    min-height: 5%;
-    margin-left: 56%;
-    margin-top: 17%;
+        position: absolute;
+        background: white;
+        color: black;
+        min-height: 5%;
+        margin-left: 42%;
+        margin-top: 17%;
   }
  
    #map {
@@ -1998,28 +1998,28 @@ body{
    }
 
    #startRouteButton {
-    position: absolute;
-    z-index: 1000000000;  /* Ensure it's on top */
-    background-color: white;
-    color: white;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 20%;
-    min-height: 50px;
-    margin-top: 17%;
+  position: absolute;
+        z-index: 1000000000;
+        background-color: white;
+        color: white;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 14%;
+        min-height: 50px;
+        margin-top: 17%;
 }
 
 .speed{
     position: absolute;
-    margin-top: 6%; font-weight: bold;
+    margin-top: 4%; font-weight: bold;
     font-size: 44px;
     margin-left: 53%;
 }
 
 .distance{
-     margin-top: 6%; font-weight: bold;
+     margin-top: 4%; font-weight: bold;
     font-size: 44px;
     position: absolute;
     margin-left: 3%;
@@ -2027,17 +2027,17 @@ body{
 }
 
 #stopRouteButton {
-    position: absolute;
-    z-index: 1000000000;  /* Ensure it's on top */
-    background-color: white;
-    color: white;
-    font-size: 18px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 39%;
-    min-height: 50px;
-    margin-top: 17%;
+        position: absolute;
+        z-index: 1000000000;
+        background-color: white;
+        color: white;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 28%;
+        min-height: 50px;
+        margin-top: 17%;
 }
 
 /* Make sure the zoom control is always on top of other map elements */
