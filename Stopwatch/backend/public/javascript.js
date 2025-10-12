@@ -90,39 +90,38 @@ const translations = {
   }
 };
 
-let currentLanguage = "en";
+let currentLanguage = localStorage.getItem("selectedLanguage") || "en";
+languageSelect.value = currentLanguage;
 
 // =================== LANGUAGE DROPDOWN ===================
 languageSelect.addEventListener("change", (e) => {
   currentLanguage = e.target.value;
+  localStorage.setItem("selectedLanguage", currentLanguage);
   updateInterfaceLanguage();
+  updateTrainingPopupLanguage(currentLanguage);
+  updateRouteMarkersLanguage(currentLanguage);
+  updateTrainingMarkersLanguage(currentLanguage);
 });
 
+// =================== UPDATE UI LANGUAGE ===================
 function updateInterfaceLanguage() {
-  // =================== UI ELEMENTS ===================
   distance.innerText = translations[currentLanguage].distance;
   speed.innerText = translations[currentLanguage].speed;
 
-  // Prevod labela Stopwatch i Timer
   stopwatch.innerText = translations[currentLanguage].stopwatchLabel;
   timer.innerText = translations[currentLanguage].timerLabel;
 
   input.placeholder = currentLanguage === "en" ? "HH:MM:SS" : "SS:MM:HH";
 
-  // Dugmad
   startRouteButton.innerText = currentLanguage === "en" ? "Start Route" : "Pokreni rutu";
   stopRouteButton.innerText = currentLanguage === "en" ? "Stop Route" : "Zaustavi rutu";
   fetchNearbyRoutesButton.innerText = currentLanguage === "en" ? "Fetch Nearby Routes" : "Prikaži rute u blizini";
   fetchNearbyTrainingsButton.innerText = currentLanguage === "en" ? "Fetch Nearby Trainings" : "Prikaži treninge u blizini";
   addTrainingButton.innerText = currentLanguage === "en" ? "Add Training" : "Dodaj trening";
 
-  // Popup naslov (ako postoji)
   const popupTitle = addTrainingPopup.querySelector(".popup-title");
-  if (popupTitle) {
-    popupTitle.innerText = currentLanguage === "en" ? "Add New Training" : "Dodaj novi trening";
-  }
+  if (popupTitle) popupTitle.innerText = currentLanguage === "en" ? "Add New Training" : "Dodaj novi trening";
 
-  // Prevod labela u popup-u
   const popupLabels = addTrainingPopup.querySelectorAll(".popup-label");
   popupLabels.forEach(label => {
     const key = label.dataset.labelKey;
@@ -130,37 +129,50 @@ function updateInterfaceLanguage() {
       label.innerText = translations[currentLanguage].addTrainingPopupLabels[key];
     }
   });
+}
 
-  // =================== UPDATE ROUTE MARKERS ===================
-  if (window.currentRouteMarkers) {
-    window.currentRouteMarkers.forEach(marker => {
-      const route = marker.options.routeData;
-      if (!route) return;
-
-      marker.setPopupContent(`
-        <b>${route.username || translations[currentLanguage].unknownUser}</b><br>
-        🛣 ${translations[currentLanguage].distance} ${route.distance.toFixed(2)} km<br>
-        ⏱ ${translations[currentLanguage].speed} ${route.speed.toFixed(2)} km/h<br>
-        🏃‍♂️ ${translations[currentLanguage].routeName}: ${route.routeName || translations[currentLanguage].unnamedRoute}
-      `);
-    });
+// =================== TRAINING POPUP TRANSLATIONS ===================
+const trainingTranslations = {
+  en: {
+    addTrainingButton: "Add Training",
+    trainingNameLabel: "Training Name",
+    userNameLabel: "User Name",
+    pushUpsLabel: "Push Ups",
+    pullUpsLabel: "Pull Ups",
+    sitUpsLabel: "Sit Ups",
+    absCountLabel: "Abs",
+    durationLabel: "Duration (min)",
+    otherExerciseLabel: "Other Exercise",
+    saveButton: "Save",
+    cancelButton: "X"
+  },
+  sr: {
+    addTrainingButton: "Dodaj Trening",
+    trainingNameLabel: "Naziv treninga",
+    userNameLabel: "Ime korisnika",
+    pushUpsLabel: "Sklekovi",
+    pullUpsLabel: "Zgibovi",
+    sitUpsLabel: "Čučnjevi",
+    absCountLabel: "Trbušnjaci",
+    durationLabel: "Trajanje (min)",
+    otherExerciseLabel: "Ostale vežbe",
+    saveButton: "Sačuvaj",
+    cancelButton: "X"
   }
+};
 
-  // =================== UPDATE TRAINING MARKERS ===================
-  if (window.currentTrainingMarkers) {
-    window.currentTrainingMarkers.forEach(marker => {
-      const t = marker.options.trainingData;
-      if (!t) return;
-
-      marker.setPopupContent(`
-        <b>${t.trainingName || translations[currentLanguage].unnamedTraining}</b><br>
-        🏋️‍♂️ ${translations[currentLanguage].pushUps}: ${t.pushUps || 0}<br>
-        💪 ${translations[currentLanguage].pullUps}: ${t.pullUps || 0}<br>
-        🧍 ${translations[currentLanguage].sitUps}: ${t.sitUps || 0}<br>
-        ⏱ ${translations[currentLanguage].duration}: ${t.duration || 0} min
-      `);
-    });
-  }
+function updateTrainingPopupLanguage(lang) {
+  document.getElementById("fetchAddTrainingButton").textContent = trainingTranslations[lang].addTrainingButton;
+  document.querySelector('label[for="trainingName"]').textContent = trainingTranslations[lang].trainingNameLabel;
+  document.querySelector('label[for="userName"]').textContent = trainingTranslations[lang].userNameLabel;
+  document.querySelector('label[for="pushUps"]').textContent = trainingTranslations[lang].pushUpsLabel;
+  document.querySelector('label[for="pullUps"]').textContent = trainingTranslations[lang].pullUpsLabel;
+  document.querySelector('label[for="sitUps"]').textContent = trainingTranslations[lang].sitUpsLabel;
+  document.querySelector('label[for="absCount"]').textContent = trainingTranslations[lang].absCountLabel;
+  document.querySelector('label[for="duration"]').textContent = trainingTranslations[lang].durationLabel;
+  document.querySelector('label[for="otherExercise"]').textContent = trainingTranslations[lang].otherExerciseLabel;
+  document.querySelector(".saveButtonTraining").textContent = trainingTranslations[lang].saveButton;
+  document.querySelector(".cancelButtonTraining").textContent = trainingTranslations[lang].cancelButton;
 }
 
 // =================== STOPWATCH LOGIC ===================
@@ -177,10 +189,6 @@ timer.addEventListener('click', () => {
   stopwatchDiv.style.display = "none";
   timerDiv.style.display = "inline-flex";
   input.value = formatTime(hours) + ":" + formatTime(minutes) + ":" + formatTime(seconds % 60);
-});
-
-addTrainingButton.addEventListener('click', () => {
-  addTrainingPopup.style.display = "block";
 });
 
 function setInterval1Stopwatch() {
@@ -258,18 +266,6 @@ checkboxRoot.addEventListener('click', () => {
   fetchNearbyRoutesButton.style.display = checkboxRoot.checked ? "none" : "block";
 });
 
-// =================== RESPONSIVE MAP ===================
-const mediaQuery = window.matchMedia('(max-width: 1000px)');
-if (mediaQuery.matches && !checkboxRoot.checked) {
-  Root.style.width = "700px";
-  Map.style.width = "860px";
-  Map.style.height = "1000px";
-  Map.style.marginLeft = "25%";
-  Map.style.position = "absolute";
-  mapContent.style.width = "100%";
-  mapContent.style.height = "100vh";
-}
-
 // =================== ICON DEFINITIONS ===================
 const runnerIcon = L.icon({
   iconUrl: '/images/MarkersAndRoute.png',
@@ -310,18 +306,15 @@ async function retrieveNearbyRoutes() {
         L.polyline(latlngs, { color: 'blue', weight: 4, opacity: 0.8 }).addTo(map);
         const topCoord = latlngs.reduce((top, coord) => (coord.lat > top.lat ? coord : top));
 
-        // const marker = L.marker(topCoord, { icon: runnerIcon }).addTo(map);
         const marker = L.marker(topCoord, { icon: runnerIcon });
-
-        
-marker.options.routeData = route; // Čuvamo podatke za prevod
+        marker.options.routeData = route; 
         marker.bindPopup(`
           <b>${route.username || translations[currentLanguage].unknownUser}</b><br>
           🛣 ${translations[currentLanguage].distance}: ${route.distance.toFixed(2)} km<br>
           ⏱ ${translations[currentLanguage].speed}: ${route.speed.toFixed(2)} km/h<br>
           🏃‍♂️ ${translations[currentLanguage].routeName}: ${route.routeName || translations[currentLanguage].unnamedRoute}
         `);
-marker.addTo(map); 
+        marker.addTo(map); 
         window.currentRouteMarkers = window.currentRouteMarkers || [];
         window.currentRouteMarkers.push(marker);
       });
@@ -358,18 +351,15 @@ async function retrieveNearbyTrainings() {
 
       trainings.forEach(t => {
         if (t.latitude && t.longitude) {
-
-          
-        const marker = L.marker([t.latitude, t.longitude], { icon: dumbbellIcon });
-marker.options.trainingData = t; // Čuvamo podatke za prevod
-marker.addTo(map).bindPopup(`
-              <b>${t.trainingName || translations[currentLanguage].unnamedTraining}</b><br>
-              🏋️‍♂️ ${translations[currentLanguage].pushUps}: ${t.pushUps || 0}<br>
-              💪 ${translations[currentLanguage].pullUps}: ${t.pullUps || 0}<br>
-              🧍 ${translations[currentLanguage].sitUps}: ${t.sitUps || 0}<br>
-              ⏱ ${translations[currentLanguage].duration}: ${t.duration || 0} min
-            `);
-
+          const marker = L.marker([t.latitude, t.longitude], { icon: dumbbellIcon });
+          marker.options.trainingData = t;
+          marker.addTo(map).bindPopup(`
+            <b>${t.trainingName || translations[currentLanguage].unnamedTraining}</b><br>
+            🏋️‍♂️ ${translations[currentLanguage].addTrainingPopupLabels.pushUps}: ${t.pushUps || 0}<br>
+            💪 ${translations[currentLanguage].addTrainingPopupLabels.pullUps}: ${t.pullUps || 0}<br>
+            🧍 ${translations[currentLanguage].addTrainingPopupLabels.sitUps}: ${t.sitUps || 0}<br>
+            ⏱ ${translations[currentLanguage].addTrainingPopupLabels.duration}: ${t.duration || 0} min
+          `);
           window.currentTrainingMarkers = window.currentTrainingMarkers || [];
           window.currentTrainingMarkers.push(marker);
         }
@@ -388,38 +378,47 @@ marker.addTo(map).bindPopup(`
 // =================== BUTTON LISTENERS ===================
 fetchNearbyRoutesButton.addEventListener("click", retrieveNearbyRoutes);
 fetchNearbyTrainingsButton.addEventListener("click", retrieveNearbyTrainings);
+addTrainingButton.addEventListener('click', () => addTrainingPopup.style.display = "block");
 
+// =================== UPDATE MARKERS LANGUAGE ===================
+function updateRouteMarkersLanguage(lang) {
+  if (window.currentRouteMarkers) {
+    window.currentRouteMarkers.forEach(marker => {
+      const route = marker.options.routeData;
+      if (!route) return;
+      marker.setPopupContent(`
+        <b>${route.username || translations[lang].unknownUser}</b><br>
+        🛣 ${translations[lang].distance} ${route.distance.toFixed(2)} km<br>
+        ⏱ ${translations[lang].speed} ${route.speed.toFixed(2)} km/h<br>
+        🏃‍♂️ ${translations[lang].routeName}: ${route.routeName || translations[lang].unnamedRoute}
+      `);
+    });
+  }
+}
+
+function updateTrainingMarkersLanguage(lang) {
+  if (window.currentTrainingMarkers) {
+    window.currentTrainingMarkers.forEach(marker => {
+      const t = marker.options.trainingData;
+      if (!t) return;
+      marker.setPopupContent(`
+        <b>${t.trainingName || translations[lang].unnamedTraining}</b><br>
+        🏋️‍♂️ ${translations[lang].addTrainingPopupLabels.pushUps}: ${t.pushUps || 0}<br>
+        💪 ${translations[lang].addTrainingPopupLabels.pullUps}: ${t.pullUps || 0}<br>
+        🧍 ${translations[lang].addTrainingPopupLabels.sitUps}: ${t.sitUps || 0}<br>
+        ⏱ ${translations[lang].addTrainingPopupLabels.duration}: ${t.duration || 0} min
+      `);
+    });
+  }
+}
+
+// =================== CLOSE POPUP ===================
 function closePage() {
   addTrainingPopup.style.display = "none";
 }
-const languageSelect = document.getElementById("languageSelect");
 
-// Prevod popup-a
-const trainingTranslations = {
-    en: { addTrainingButton: "Add Training", trainingNameLabel: "Training Name", userNameLabel: "User name", absCountLabel: "Sit ups", durationLabel: "Duration (min)", otherExerciseLabel: "Other Exercise", pushUpsLabel: "Push ups", pullUpsLabel: "Pull ups", sitUpsLabel: "Squats", saveButton: "Save", cancelButton: "X" },
-    sr: { addTrainingButton: "Dodaj Trening", trainingNameLabel: "Naziv treninga", userNameLabel: "Ime korisnika", absCountLabel: "Trbušnjaci", durationLabel: "Trajanje (min)", otherExerciseLabel: "Ostale vežbe", pushUpsLabel: "Sklekovi", pullUpsLabel: "Zgibovi", sitUpsLabel: "Čučnjevi", saveButton: "Sačuvaj", cancelButton: "X" }
-};
-
-function updateTrainingPopupLanguage(lang) {
-    document.getElementById("fetchAddTrainingButton").textContent = trainingTranslations[lang].addTrainingButton;
-    document.querySelector('label[for="trainingName"]').textContent = trainingTranslations[lang].trainingNameLabel;
-    document.querySelector('label[for="userName"]').textContent = trainingTranslations[lang].userNameLabel;
-    document.querySelector('label[for="absCount"]').textContent = trainingTranslations[lang].absCountLabel;
-    document.querySelector('label[for="duration"]').textContent = trainingTranslations[lang].durationLabel;
-    document.querySelector('label[for="otherExercise"]').textContent = trainingTranslations[lang].otherExerciseLabel;
-    document.querySelector('label[for="pushUps"]').textContent = trainingTranslations[lang].pushUpsLabel;
-    document.querySelector('label[for="pullUps"]').textContent = trainingTranslations[lang].pullUpsLabel;
-    document.querySelector('label[for="sitUps"]').textContent = trainingTranslations[lang].sitUpsLabel;
-    document.querySelector(".saveButtonTraining").textContent = trainingTranslations[lang].saveButton;
-    document.querySelector(".cancelButtonTraining").textContent = trainingTranslations[lang].cancelButton;
-
-    localStorage.setItem("selectedLanguage", lang);
-}
-
-// Listener za dropdown
-languageSelect.addEventListener("change", (e) => updateTrainingPopupLanguage(e.target.value));
-
-// Inicijalni jezik
-const savedLang = localStorage.getItem("selectedLanguage") || "en";
-languageSelect.value = savedLang;
-updateTrainingPopupLanguage(savedLang);
+// =================== INITIAL LANGUAGE SETUP ===================
+updateInterfaceLanguage();
+updateTrainingPopupLanguage(currentLanguage);
+updateRouteMarkersLanguage(currentLanguage);
+updateTrainingMarkersLanguage(currentLanguage);
