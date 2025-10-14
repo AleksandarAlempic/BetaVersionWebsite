@@ -15,33 +15,30 @@
   scale: 130%;
 }
 
-
+/* ✅ FIX za small screen (mobile ekran 350px – 450px) */
 @media screen and (max-width: 600px) {
-    .addTraningButton {
-        background: orange;
-        color: black;
-        min-width: 140px;
-        min-height: 70px;
-        font-size: 20px;
-        font-weight: 900;
-        margin-top: 98%;
-        margin-left: 21%;
-        position: relative;
-        z-index: 100000000000;
-    }
+  .buttonsContainer, /* ako imas wrapper oko dugmica */
+  .addTraningButton,
+  .nearbyTrainingsButton {
+    position: static !important;
+    margin: 10px auto !important;
+    display: block;
+  }
+
+  .addTraningButton {
+    width: 80%;
+    font-size: 18px;
+  }
 
   .nearbyTrainingsButton {
-    z-index: 1000000000;
-    position: absolute;
-    color: black;
-    font-size: 20px;
-    font-weight: 600;
-    background: #fad000;
-    min-height: 5%;
-    margin-left: 51%;
-    margin-top: 210%;
+    width: 80%;
+    font-size: 18px;
+  }
 }
-}
+
+
+
+
 
 
 
@@ -2364,6 +2361,33 @@ img { max-width: 100%; height: auto; }
     margin-top: 70%;
    }
   
+}
+
+@media screen and (max-width: 600px) {
+    .addTraningButton {
+        background: orange;
+        color: black;
+        min-width: 140px;
+        min-height: 70px;
+        font-size: 20px;
+        font-weight: 900;
+        margin-top: 98%;
+        margin-left: 21%;
+        position: relative;
+        z-index: 100000000000;
+    }
+
+  .nearbyTrainingsButton {
+    z-index: 1000000000;
+    position: absolute;
+    color: black;
+    font-size: 20px;
+    font-weight: 600;
+    background: #fad000;
+    min-height: 5%;
+    margin-left: 51%;
+    margin-top: 210%;
+}
 }
  
  
