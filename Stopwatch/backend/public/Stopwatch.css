@@ -57,17 +57,17 @@
          z-index: -1; /* Video stays in the background */
      }
    
-   .nearbyTrainingsButton {     
-    z-index: 1000000000;
+    .nearbyTrainingsButton{
+        z-index: 1000000000;
     position: absolute;
     color: black;
     font-size: 20px;
     font-weight: 600;
     background: #fad000;
     min-height: 5%;
-    margin-left: 66%;
-    margin-top: 17%;
-
+    margin-left: 51%;
+    margin-top: 172%;
+    }
    
      /* Main content above the video */
      .content {
@@ -1785,9 +1785,9 @@ body{
 
 
     #map-content {
-     z-index: 10000000000;
+   z-index: 10000000000;
     max-height: 650px;
-    margin-left: 28%;
+    margin-left: 25%;
     margin-top: 23%;
 }
 
@@ -1983,22 +1983,22 @@ body{
 
 @media (max-width: 1000px) {
    /* Disable map interaction temporarily */
-   .nearbyRouteButton {
-        z-index: 1000000000;
+  .nearbyRouteButton{
+    z-index: 1000000000;
         position: absolute;
         background: white;
         color: black;
         min-height: 5%;
-        margin-left: 55.5%;
-        margin-top: 19.5%;
-    }
+              margin-left: 55.5%;
+        margin-top: 17%;
+  }
  
    #map {
        pointer-events: none; /* Prevent interaction with the map */
    }
 
-  #startRouteButton {
-        position: absolute;
+   #startRouteButton {
+  position: absolute;
         z-index: 1000000000;
         background-color: white;
         color: white;
@@ -2008,26 +2008,26 @@ body{
         cursor: pointer;
         margin-left: 20%;
         min-height: 50px;
-        margin-top: 19.5%;
-    }
+        margin-top: 17%;
+}
 
- .speed {
+.speed{
         position: absolute;
-        margin-top: 2%;
+        margin-top: 1%;
         font-weight: bold;
         font-size: 44px;
         margin-left: 57%;
-    }
+}
 
-.distance {
-        margin-top: 2%;
+.distance{
+     margin-top: 1%;
         font-weight: bold;
         font-size: 44px;
         position: absolute;
         margin-left: 16%;
-    }
+}
 
-  #stopRouteButton {
+#stopRouteButton {
         position: absolute;
         z-index: 1000000000;
         background-color: white;
@@ -2038,8 +2038,8 @@ body{
         cursor: pointer;
         margin-left: 38%;
         min-height: 50px;
-        margin-top: 19.5%;
-    }
+        margin-top: 17%;
+}
 
 /* Make sure the zoom control is always on top of other map elements */
 .leaflet-control-zoom {
