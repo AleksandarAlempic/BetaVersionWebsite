@@ -2139,32 +2139,30 @@ img { max-width: 100%; height: auto; }
     }
 }
 
+/* ===== MAX 1024px ===== */
 @media (max-width: 1024px) {
 
-
   .languageSelector{
-     margin-left: 11%;
-        min-width: 90px;
-        min-height: 50px;
-        /* font-size: 30px; */
-        font-size: 15px;
-        font-weight: 800;
-        background: #fad000;
-        margin-top: 2%;
+    margin-left: 11%;
+    min-width: 90px;
+    min-height: 50px;
+    font-size: 15px;
+    font-weight: 800;
+    background: #fad000;
+    margin-top: 2%;
   }
 
-
-     .cancelButtonTraining {
+  .cancelButtonTraining {
     position: absolute;
     margin-top: -110%;
     margin-left: 42%;
-}
+  }
 
   .form-group{
     margin-top: 5%;
   }
 
-.addTrainingPopup{
+  .addTrainingPopup{
     max-width: 550px;
     min-height: 650px;
     background: #fad101;
@@ -2175,7 +2173,6 @@ img { max-width: 100%; height: auto; }
     margin-top: -150%;
     display: none;
     border: 3px solid black;
-    /* margin-bottom: 50%;  */
   }
 
   .saveButtonTraining{
@@ -2188,53 +2185,21 @@ img { max-width: 100%; height: auto; }
     border-radius: 5%;
   }
 
-  .trainingName{
-    margin-left: 10%;
-    margin-top: 3%;
-    font-size: 29.5px;
-    font-weight: 800;
-    height: 40px;
-    width: 220px;
-    border-radius: 6%;
-  }
-
-
-   .userName{
+  .trainingName,
+  .userName,
+  .pushUps,
+  .pullUps1,
+  .duration,
+  .absCount {
     margin-left: 10%;
     font-size: 29.5px;
     font-weight: 800;
     height: 40px;
     width: 220px;
     border-radius: 6%;
-  
   }
 
-  
-
-  .pushUps{
-    margin-left: 10%;
-    font-size: 29.5px;
-    font-weight: 800;
-    height: 40px;
-    width: 220px;
-    border-radius: 6%;
-  margin-top: -1%;
-  }
-
-   .pushUpsLabel{
-     margin-left: -4%;
-    font-size: 29.5px;
-    font-weight: 800;
-    height: 40px;
-    width: 220px;
-    border-radius: 6%;
-  margin-top: -1%;
-  text-align: center;
-  }
-
-  
-
-  .pullUps{
+  .pullUps {
     margin-left: 5%;
     font-size: 29.5px;
     font-weight: 800;
@@ -2242,140 +2207,59 @@ img { max-width: 100%; height: auto; }
     width: 220px;
     border-radius: 6%;
     position: absolute;
-     margin-top: -3%;
+    margin-top: -3%;
   }
 
-     .pullUpsLabel{
-      margin-left: 5%;
+  .pushUpsLabel,
+  .pullUpsLabel {
     font-size: 29.5px;
     font-weight: 800;
-    height: 40px;
-    width: 220px;
-    border-radius: 6%;
-    position: absolute;
-     margin-top: -3%;
-  }
-
-  .pullUps1{
-    margin-left: 10%;
-    font-size: 29.5px;
-    font-weight: 800;
-    height: 40px;
-    width: 220px;
-    border-radius: 6%;
-     margin-top: 3%;
-  }
-
-  .sitUps{
-    margin-top: -5%;
-    margin-left: 5%;
-    position: absolute;
-  }
-
-  .sitUpsInput{
-    margin-top: -9%;
-  }
-
-  .absCount{
-    margin-left: 30%;
-  }
-
-  .otherExercise{
-     width: 190%;
-    height: 110px;
-  }
-
-   .duration{
-   margin-left: 10%;
-    margin-top: 3%;
-    font-size: 29.5px;
-    font-weight: 800;
-    height: 40px;
-    width: 220px;
-    border-radius: 6%;
     text-align: center;
   }
-
-
-
 
   .stopwatchDiv {
     background: lightgray;
     min-width: 300px;
     min-height: 590px;
-    transform: scale(2.2); 
-     margin-top: 90%;
-     margin-left: 26.7%
-   }
+    transform: scale(2.2);
+    margin-top: 90%;
+    margin-left: 26.7%;
+  }
 
-   .startRoute{
-    z-index: 1000000000; position: absolute;  color: black; font-size: 20px; font-weight: 600; margin-left: 20%; background: #fad000; min-height: 5%;
-   }
+  .addTraningButton {
+    background: orange;
+    color: black;
+    min-width: 140px;
+    min-height: 70px;
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 75%;
+    margin-left: 21%;
+    position: relative;
+    z-index: 100000000000;
+  }
 
-   .stopRoute{
-    z-index: 1000000000; position: absolute; color: black;font-size: 20px; font-weight: 600; margin-left:43.5%; background: #fad000; min-height: 5%;
-   }
-
-   .showNearbyRoutes1{
-    z-index: 1000000000; position: absolute; color: black;font-size: 20px; font-weight: 600;  background: #fad000; min-height: 5%;
-   }
-
-    .addTraningButton {
-          background: orange;
-        color: black;
-        min-width: 140px;
-        min-height: 70px;
-        font-size: 20px;
-        font-weight: 900;
-        margin-top: 75%;
-        margin-left: 21%;
-        position: relative;
-        z-index: 100000000000;
-    }
-
-   .absCount{
-      margin-left: 10%;
-    font-size: 29.5px;
-    font-weight: 800;
-    height: 40px;
-    width: 220px;
-    border-radius: 6%;
-  margin-top: -1%;
-  text-align: center;
-   }
-
-    pushUpsDesktop{
-      margin-top: -1%;
-    }
-
-   .stopwatchLabel{
-    margin-top: 10%;
-   }
-
-   .displayTime{
-    margin-top: 13%;
-   }
-
-   .tableClass{
+  .tableClass{
     margin-left: -23%;
     margin-top: 70%;
-   }
-  
-}
+  }
+} /* ← OVDJE JE FALILA OVA ZAGRADA */
 
+/* ===== MAX 600px ZA TELEFONE ===== */
 @media screen and (max-width: 600px) {
-    .addTraningButton {
-        background: orange;
-        color: black;
-        min-width: 140px;
-        min-height: 70px;
-        font-size: 20px;
-        font-weight: 900;
-        margin-top: 98%;
-        margin-left: 21%;
-        position: relative;
-        z-index: 100000000000;
-    }
+
+  .addTraningButton {
+    background: orange;
+    color: black;
+    min-width: 140px;
+    min-height: 70px;
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 98%;
+    margin-left: 21%;
+    position: relative;
+    z-index: 100000000000;
+  }
 
   .nearbyTrainingsButton {
     z-index: 1000000000;
@@ -2387,8 +2271,5 @@ img { max-width: 100%; height: auto; }
     min-height: 5%;
     margin-left: 51%;
     margin-top: 210%;
+  }
 }
-}
- 
- 
-
