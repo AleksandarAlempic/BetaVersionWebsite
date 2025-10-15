@@ -2369,16 +2369,21 @@ img { max-width: 100%; height: auto; }
 /* === SPECIFIC MEDIA QUERY FOR 500PX AND LOWER === */
 @media screen and (max-width: 900px) {
 
+  #map-content {
+    z-index: 10000000000 !important;
+    margin-left: 28% !important;
+}
+
+  
   .addTraningButton,
   .addTrainingButton {
- 
-    background: black !important;
+    margin-top: 81% !important;
     z-index: 999999 !important;
   }
 
   .nearbyTrainingsButton {
-
-    background: black !important;
+margin-top: 180% !important;
+   
   }
 }
  
