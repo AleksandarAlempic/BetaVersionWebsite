@@ -2367,7 +2367,7 @@ img { max-width: 100%; height: auto; }
 }
 
 /* === SPECIFIC MEDIA QUERY FOR 500PX AND LOWER === */
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 900px) {
 
   .addTraningButton,
   .addTrainingButton {
