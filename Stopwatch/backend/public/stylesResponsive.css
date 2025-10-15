@@ -2377,7 +2377,7 @@ img { max-width: 100%; height: auto; }
   
   .addTraningButton,
   .addTrainingButton {
-    margin-top: 85% !important;
+    margin-top: 90% !important;
     min-width: 140px  !important;
         min-height: 70px  !important;
         font-size: 20px  !important;
@@ -2388,7 +2388,7 @@ img { max-width: 100%; height: auto; }
   }
 
   .nearbyTrainingsButton {
-margin-top: 184% !important;
+margin-top: 192% !important;
        z-index: 1000000000 !important;
     position: absolute !important;
     color: black !important;
