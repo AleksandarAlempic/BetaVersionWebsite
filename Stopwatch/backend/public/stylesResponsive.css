@@ -2388,7 +2388,7 @@ img { max-width: 100%; height: auto; }
   }
 
   .nearbyTrainingsButton {
-margin-top: 212% !important;
+margin-top: 192% !important;
        z-index: 1000000000 !important;
     position: absolute !important;
     color: black !important;
@@ -2396,7 +2396,7 @@ margin-top: 212% !important;
     font-weight: 600 !important;
     background: #fad000 !important;
     min-height: 5% !important;
-    margin-left: 70% !important;
+    margin-left: 60% !important;
   }
 }
  
