@@ -2377,18 +2377,18 @@ img { max-width: 100%; height: auto; }
   
   .addTraningButton,
   .addTrainingButton {
-    margin-top: 90% !important;
+    margin-top: 100% !important;
     min-width: 140px  !important;
         min-height: 70px  !important;
         font-size: 20px  !important;
         font-weight: 900  !important;
-        margin-left: 25%  !important;
+        margin-left: 45%  !important;
         position: relative  !important;
         z-index: 100000000000  !important;
   }
 
   .nearbyTrainingsButton {
-margin-top: 192% !important;
+margin-top: 242% !important;
        z-index: 1000000000 !important;
     position: absolute !important;
     color: black !important;
@@ -2396,7 +2396,7 @@ margin-top: 192% !important;
     font-weight: 600 !important;
     background: #fad000 !important;
     min-height: 5% !important;
-    margin-left: 55% !important;
+    margin-left: 75% !important;
   }
 }
  
