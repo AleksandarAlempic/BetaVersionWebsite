@@ -2365,5 +2365,21 @@ img { max-width: 100%; height: auto; }
    }
   
 }
+
+/* === SPECIFIC MEDIA QUERY FOR 500PX AND LOWER === */
+@media screen and (max-width: 500px) {
+
+  .addTraningButton,
+  .addTrainingButton {
+ 
+    background: black !important;
+    z-index: 999999 !important;
+  }
+
+  .nearbyTrainingsButton {
+
+    background: black !important;
+  }
+}
  
  
