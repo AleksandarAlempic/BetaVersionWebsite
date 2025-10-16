@@ -2383,9 +2383,9 @@ img { max-width: 100%; height: auto; }
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        margin-left: 30%;
+        margin-left: 35%;
         min-height: 50px;
-        margin-top: 23%;
+        margin-top: 25%;
     }
 
       #stopRouteButton {
@@ -2397,9 +2397,9 @@ img { max-width: 100%; height: auto; }
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        margin-left: 48%;
+        margin-left: 53%;
         min-height: 50px;
-        margin-top: 23%;
+        margin-top: 25%;
     }
 
       .nearbyRouteButton {
@@ -2408,7 +2408,7 @@ img { max-width: 100%; height: auto; }
         background: white;
         color: black;
         min-height: 5%;
-        margin-left: 65.5%;
+        margin-left: 70.5%;
         margin-top: 23%;
     }
   
