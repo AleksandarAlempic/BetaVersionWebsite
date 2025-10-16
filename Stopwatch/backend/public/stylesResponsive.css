@@ -2476,6 +2476,13 @@ margin-top: 200% !important;
         border: 3px solid black;
         /* margin-bottom: 50%; */
     }
+
+  html, body {
+  overflow: hidden;
+  touch-action: none;
+  position: fixed;
+  width: 100%;
+}
 }
  
  
