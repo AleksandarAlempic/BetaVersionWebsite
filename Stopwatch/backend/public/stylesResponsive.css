@@ -2386,7 +2386,7 @@ img { max-width: 100%; height: auto; }
     }
 
       .distance {
-        margin-top: 5%;
+        margin-top: 4%;
         font-weight: bold;
         font-size: 44px;
         position: absolute;
@@ -2395,10 +2395,10 @@ img { max-width: 100%; height: auto; }
 
       .speed {
         position: absolute;
-        margin-top: 5%;
+        margin-top: 4%;
         font-weight: bold;
         font-size: 44px;
-        margin-left: 69%;
+        margin-left: 70.5%;
     }
 
     #startRouteButton {
@@ -2441,7 +2441,7 @@ img { max-width: 100%; height: auto; }
   
   .addTraningButton,
   .addTrainingButton {
-    margin-top: 86% !important;
+    margin-top: 87.2% !important;
     min-width: 140px  !important;
         min-height: 70px  !important;
         font-size: 20px  !important;
