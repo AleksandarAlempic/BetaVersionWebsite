@@ -2383,9 +2383,9 @@ img { max-width: 100%; height: auto; }
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        margin-left: 25%;
+        margin-left: 30%;
         min-height: 50px;
-        margin-top: 20%;
+        margin-top: 23%;
     }
 
       #stopRouteButton {
@@ -2397,9 +2397,9 @@ img { max-width: 100%; height: auto; }
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        margin-left: 43%;
+        margin-left: 48%;
         min-height: 50px;
-        margin-top: 20%;
+        margin-top: 23%;
     }
 
       .nearbyRouteButton {
@@ -2408,8 +2408,8 @@ img { max-width: 100%; height: auto; }
         background: white;
         color: black;
         min-height: 5%;
-        margin-left: 60.5%;
-        margin-top: 20%;
+        margin-left: 65.5%;
+        margin-top: 23%;
     }
   
   .addTraningButton,
