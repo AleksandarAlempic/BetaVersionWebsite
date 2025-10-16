@@ -2375,14 +2375,14 @@ img { max-width: 100%; height: auto; }
 } 
 
       .languageSelector {
-        margin-left: 20%;
+        margin-left: 22%;
         min-width: 90px;
         min-height: 50px;
         /* font-size: 30px; */
         font-size: 15px;
         font-weight: 800;
         background: #fad000;
-        margin-top: 6.5%;
+        margin-top: 7.5%;
     }
 
       .distance {
@@ -2390,7 +2390,7 @@ img { max-width: 100%; height: auto; }
         font-weight: bold;
         font-size: 44px;
         position: absolute;
-        margin-left: 24%;
+        margin-left: 25%;
     }
 
       .speed {
@@ -2398,7 +2398,7 @@ img { max-width: 100%; height: auto; }
         margin-top: 5%;
         font-weight: bold;
         font-size: 44px;
-        margin-left: 67%;
+        margin-left: 69%;
     }
 
     #startRouteButton {
@@ -2441,7 +2441,7 @@ img { max-width: 100%; height: auto; }
   
   .addTraningButton,
   .addTrainingButton {
-    margin-top: 91% !important;
+    margin-top: 86% !important;
     min-width: 140px  !important;
         min-height: 70px  !important;
         font-size: 20px  !important;
