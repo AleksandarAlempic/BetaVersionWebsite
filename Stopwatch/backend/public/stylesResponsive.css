@@ -2374,6 +2374,43 @@ img { max-width: 100%; height: auto; }
     margin-left: 38% !important;
 }
 
+    #startRouteButton {
+        position: absolute;
+        z-index: 1000000000;
+        background-color: white;
+        color: white;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 25%;
+        min-height: 50px;
+        margin-top: 20%;
+    }
+
+      #stopRouteButton {
+        position: absolute;
+        z-index: 1000000000;
+        background-color: white;
+        color: white;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 43%;
+        min-height: 50px;
+        margin-top: 20%;
+    }
+
+      .nearbyRouteButton {
+        z-index: 1000000000;
+        position: absolute;
+        background: white;
+        color: black;
+        min-height: 5%;
+        margin-left: 60.5%;
+        margin-top: 20%;
+    }
   
   .addTraningButton,
   .addTrainingButton {
