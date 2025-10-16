@@ -2372,7 +2372,34 @@ img { max-width: 100%; height: auto; }
   #map-content {
     z-index: 10000000000 !important;
     margin-left: 38% !important;
-}
+} 
+
+      .languageSelector {
+        margin-left: 18%;
+        min-width: 90px;
+        min-height: 50px;
+        /* font-size: 30px; */
+        font-size: 15px;
+        font-weight: 800;
+        background: #fad000;
+        margin-top: 5%;
+    }
+
+      .distance {
+        margin-top: 5%;
+        font-weight: bold;
+        font-size: 44px;
+        position: absolute;
+        margin-left: 23%;
+    }
+
+      .speed {
+        position: absolute;
+        margin-top: 5%;
+        font-weight: bold;
+        font-size: 44px;
+        margin-left: 64%;
+    }
 
     #startRouteButton {
         position: absolute;
@@ -2409,12 +2436,12 @@ img { max-width: 100%; height: auto; }
         color: black;
         min-height: 5%;
         margin-left: 70.5%;
-        margin-top: 23%;
+        margin-top: 25%;
     }
   
   .addTraningButton,
   .addTrainingButton {
-    margin-top: 95% !important;
+    margin-top: 93% !important;
     min-width: 140px  !important;
         min-height: 70px  !important;
         font-size: 20px  !important;
@@ -2425,7 +2452,7 @@ img { max-width: 100%; height: auto; }
   }
 
   .nearbyTrainingsButton {
-margin-top: 202% !important;
+margin-top: 200% !important;
        z-index: 1000000000 !important;
     position: absolute !important;
     color: black !important;
