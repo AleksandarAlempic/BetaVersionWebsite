@@ -2462,6 +2462,20 @@ margin-top: 200% !important;
     min-height: 5% !important;
     margin-left: 68% !important;
   }
+
+      .addTrainingPopup {
+        max-width: 550px;
+        min-height: 650px;
+        background: #fad101;
+        position: relative;
+        z-index: 1000000000000;
+        margin-left: 25%;
+        border-radius: 3%;
+        margin-top: -150%;
+        display: none;
+        border: 3px solid black;
+        /* margin-bottom: 50%; */
+    }
 }
  
  
