@@ -2375,30 +2375,30 @@ img { max-width: 100%; height: auto; }
 } 
 
       .languageSelector {
-        margin-left: 22%;
+        margin-left: 19%;
         min-width: 90px;
         min-height: 50px;
         /* font-size: 30px; */
         font-size: 15px;
         font-weight: 800;
         background: #fad000;
-        margin-top: 7.5%;
+        margin-top: 6.5%;
     }
 
       .distance {
-        margin-top: 4%;
+        margin-top: 2%;
         font-weight: bold;
         font-size: 44px;
         position: absolute;
-        margin-left: 25%;
+        margin-left: 22%;
     }
 
       .speed {
         position: absolute;
-        margin-top: 4%;
+        margin-top: 2%;
         font-weight: bold;
         font-size: 44px;
-        margin-left: 70.5%;
+        margin-left: 66.5%;
     }
 
     #startRouteButton {
@@ -2410,9 +2410,9 @@ img { max-width: 100%; height: auto; }
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        margin-left: 35%;
+        margin-left: 30%;
         min-height: 50px;
-        margin-top: 25%;
+        margin-top: 22%;
     }
 
       #stopRouteButton {
@@ -2424,9 +2424,9 @@ img { max-width: 100%; height: auto; }
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        margin-left: 53%;
+        margin-left: 47%;
         min-height: 50px;
-        margin-top: 25%;
+        margin-top: 22%;
     }
 
       .nearbyRouteButton {
@@ -2435,24 +2435,24 @@ img { max-width: 100%; height: auto; }
         background: white;
         color: black;
         min-height: 5%;
-        margin-left: 70.5%;
-        margin-top: 25%;
+        margin-left: 63.5%;
+        margin-top: 22%;
     }
   
   .addTraningButton,
   .addTrainingButton {
-    margin-top: 87.2% !important;
+    margin-top: 83.2% !important;
     min-width: 140px  !important;
         min-height: 70px  !important;
         font-size: 20px  !important;
         font-weight: 900  !important;
-        margin-left: 41%  !important;
+        margin-left: 30%  !important;
         position: relative  !important;
         z-index: 100000000000  !important;
   }
 
   .nearbyTrainingsButton {
-margin-top: 200% !important;
+margin-top: 194% !important;
        z-index: 1000000000 !important;
     position: absolute !important;
     color: black !important;
@@ -2460,7 +2460,7 @@ margin-top: 200% !important;
     font-weight: 600 !important;
     background: #fad000 !important;
     min-height: 5% !important;
-    margin-left: 68% !important;
+    margin-left: 60% !important;
   }
 
       .addTrainingPopup {
@@ -2469,7 +2469,7 @@ margin-top: 200% !important;
         background: #fad101;
         position: relative;
         z-index: 1000000000000;
-        margin-left: 34%;
+        margin-left: 28%;
         border-radius: 3%;
         margin-top: -150%;
         display: none;
