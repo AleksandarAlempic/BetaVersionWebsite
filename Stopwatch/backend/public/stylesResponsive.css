@@ -2385,20 +2385,19 @@ img { max-width: 100%; height: auto; }
         margin-top: 6.5%;
     }
 
-      .distance {
+       .distance {
         margin-top: 2%;
         font-weight: bold;
         font-size: 44px;
         position: absolute;
-        margin-left: 22%;
+        margin-left: 18%;
     }
-
-      .speed {
+.speed {
         position: absolute;
         margin-top: 2%;
         font-weight: bold;
         font-size: 44px;
-        margin-left: 66.5%;
+        margin-left: 58.5%;
     }
 
     #startRouteButton {
@@ -2410,12 +2409,12 @@ img { max-width: 100%; height: auto; }
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        margin-left: 30%;
+        margin-left: 20%;
         min-height: 50px;
         margin-top: 22%;
     }
 
-      #stopRouteButton {
+        #stopRouteButton {
         position: absolute;
         z-index: 1000000000;
         background-color: white;
@@ -2424,44 +2423,44 @@ img { max-width: 100%; height: auto; }
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        margin-left: 47%;
+        margin-left: 37%;
         min-height: 50px;
         margin-top: 22%;
     }
 
-      .nearbyRouteButton {
+     .nearbyRouteButton {
         z-index: 1000000000;
         position: absolute;
         background: white;
         color: black;
         min-height: 5%;
-        margin-left: 63.5%;
+        margin-left: 54.5%;
         margin-top: 22%;
     }
   
   .addTraningButton,
-  .addTrainingButton {
-    margin-top: 83.2% !important;
-    min-width: 140px  !important;
-        min-height: 70px  !important;
-        font-size: 20px  !important;
-        font-weight: 900  !important;
-        margin-left: 30%  !important;
-        position: relative  !important;
-        z-index: 100000000000  !important;
-  }
+   .addTrainingButton {
+        margin-top: 74.2% !important;
+        min-width: 140px !important;
+        min-height: 70px !important;
+        font-size: 20px !important;
+        font-weight: 900 !important;
+        margin-left: 23% !important;
+        position: relative !important;
+        z-index: 100000000000 !important;
+    }
 
   .nearbyTrainingsButton {
-margin-top: 194% !important;
-       z-index: 1000000000 !important;
-    position: absolute !important;
-    color: black !important;
-    font-size: 20px !important;
-    font-weight: 600 !important;
-    background: #fad000 !important;
-    min-height: 5% !important;
-    margin-left: 60% !important;
-  }
+        margin-top: 182% !important;
+        z-index: 1000000000 !important;
+        position: absolute !important;
+        color: black !important;
+        font-size: 20px !important;
+        font-weight: 600 !important;
+        background: #fad000 !important;
+        min-height: 5% !important;
+        margin-left: 48% !important;
+    }
 
       .addTrainingPopup {
         max-width: 550px;
