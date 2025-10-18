@@ -2450,12 +2450,12 @@ img { max-width: 100%; height: auto; }
         z-index: 100000000000 !important;
     }
 
-     .stopwatchDiv {
+         .stopwatchDiv {
         background: lightgray;
         min-width: 300px;
         min-height: 590px;
         transform: scale(2.2);
-        margin-top: 83%;
+        margin-top: 78%;
         margin-left: 26.7%;
     }
   
