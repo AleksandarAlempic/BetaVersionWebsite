@@ -2491,6 +2491,21 @@ img { max-width: 100%; height: auto; }
   position: fixed;
   width: 100%;
 }
+
+  .leaflet-control-zoom {
+    margin-top: 10px !important;
+    margin-left: 10px !important;
+    z-index: 10000 !important;
+}
+
+.leaflet-control-zoom-in, 
+.leaflet-control-zoom-out {
+    width: 35px;
+    height: 35px;
+    font-size: 22px;
+    line-height: 35px;
+}
+  
 }
  
  
