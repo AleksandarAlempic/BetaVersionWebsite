@@ -2383,7 +2383,7 @@ img { max-width: 100%; height: auto; }
         font-size: 15px;
         font-weight: 800;
         background: #fad000;
-        margin-top: 2%;
+        margin-top: 0%;
     }
 
        .distance {
@@ -2412,7 +2412,7 @@ img { max-width: 100%; height: auto; }
         cursor: pointer;
         margin-left: 20%;
         min-height: 50px;
-        margin-top: 18%;
+        margin-top: 16%;
     }
 
         #stopRouteButton {
@@ -2426,7 +2426,7 @@ img { max-width: 100%; height: auto; }
         cursor: pointer;
         margin-left: 37%;
         min-height: 50px;
-        margin-top: 18%;
+        margin-top: 16%;
     }
 
      .nearbyRouteButton {
@@ -2436,11 +2436,11 @@ img { max-width: 100%; height: auto; }
         color: black;
         min-height: 5%;
         margin-left: 54.5%;
-        margin-top: 18%;
+        margin-top: 16%;
     }
   
   .addTraningButton, .addTrainingButton {
-        margin-top: 80.2% !important;
+        margin-top: 79.2% !important;
         min-width: 140px !important;
         min-height: 70px !important;
         font-size: 20px !important;
@@ -2455,12 +2455,12 @@ img { max-width: 100%; height: auto; }
         min-width: 300px;
         min-height: 590px;
         transform: scale(2.2);
-        margin-top: 78%;
+        margin-top: 75%;
         margin-left: 26.7%;
     }
   
   .nearbyTrainingsButton {
-        margin-top: 186% !important;
+        margin-top: 184% !important;
         z-index: 1000000000 !important;
         position: absolute !important;
         color: black !important;
