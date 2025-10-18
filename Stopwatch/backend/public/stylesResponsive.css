@@ -2376,7 +2376,7 @@ img { max-width: 100%; height: auto; }
     }
 
    .languageSelector {
-        margin-left: 19%;
+        margin-left: 15%;
         min-width: 90px;
         min-height: 50px;
         /* font-size: 30px; */
@@ -2460,7 +2460,7 @@ img { max-width: 100%; height: auto; }
     }
   
   .nearbyTrainingsButton {
-        margin-top: 186% !important;
+        margin-top: 187.2% !important;
         z-index: 1000000000 !important;
         position: absolute !important;
         color: black !important;
@@ -2477,7 +2477,7 @@ img { max-width: 100%; height: auto; }
         background: #fad101;
         position: relative;
         z-index: 1000000000000;
-        margin-left: 15%;
+        margin-left: 13.5%;
         border-radius: 3%;
         margin-top: -150%;
         display: none;
