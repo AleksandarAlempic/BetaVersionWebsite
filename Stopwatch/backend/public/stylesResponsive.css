@@ -2370,9 +2370,9 @@ img { max-width: 100%; height: auto; }
 @media screen and (max-width: 900px) {
 
   
-        #map-content {
+         #map-content {
         z-index: 10000000000 !important;
-        margin-left: 20.6% !important;
+        margin-left: 13.5% !important;
     }
 
    .languageSelector {
