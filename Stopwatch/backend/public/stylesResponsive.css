@@ -2372,7 +2372,7 @@ img { max-width: 100%; height: auto; }
   
         #map-content {
         z-index: 10000000000 !important;
-        margin-left: 20.9% !important;
+        margin-left: 20.6% !important;
     }
 
    .languageSelector {
@@ -2387,7 +2387,7 @@ img { max-width: 100%; height: auto; }
     }
 
        .distance {
-        margin-top: 2%;
+        margin-top: 1.5%;
         font-weight: bold;
         font-size: 44px;
         position: absolute;
@@ -2395,7 +2395,7 @@ img { max-width: 100%; height: auto; }
     }
 .speed {
         position: absolute;
-        margin-top: 2%;
+        margin-top: 1.5%;
         font-weight: bold;
         font-size: 44px;
         margin-left: 58.5%;
@@ -2412,7 +2412,7 @@ img { max-width: 100%; height: auto; }
         cursor: pointer;
         margin-left: 20%;
         min-height: 50px;
-        margin-top: 16%;
+        margin-top: 15.5%;
     }
 
         #stopRouteButton {
@@ -2426,7 +2426,7 @@ img { max-width: 100%; height: auto; }
         cursor: pointer;
         margin-left: 37%;
         min-height: 50px;
-        margin-top: 16%;
+        margin-top: 15.5%;
     }
 
      .nearbyRouteButton {
@@ -2435,8 +2435,8 @@ img { max-width: 100%; height: auto; }
         background: white;
         color: black;
         min-height: 5%;
-        margin-left: 54.5%;
-        margin-top: 16%;
+        margin-left: 54%;
+        margin-top: 15.5%;
     }
   
   .addTraningButton, .addTrainingButton {
@@ -2454,8 +2454,8 @@ img { max-width: 100%; height: auto; }
         background: lightgray;
         min-width: 300px;
         min-height: 590px;
-        transform: scale(2.2);
-        margin-top: 71.5%;
+        tr0ansform: scale(2.2);
+        margin-top: 70.5%;
         margin-left: 26.7%;
     }
   
@@ -2477,7 +2477,7 @@ img { max-width: 100%; height: auto; }
         background: #fad101;
         position: relative;
         z-index: 1000000000000;
-        margin-left: 13.5%;
+        margin-left: 13.85%;
         border-radius: 3%;
         margin-top: -150%;
         display: none;
