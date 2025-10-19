@@ -2536,8 +2536,19 @@ img { max-width: 100%; height: auto; }
 @media screen and (max-height: 1600px) {
     /* CSS here */
 
+    .languageSelector {
+        margin-left: 2%;
+        min-width: 90px;
+        min-height: 50px;
+        /* font-size: 30px; */
+        font-size: 15px;
+        font-weight: 800;
+        background: #fad000;
+        margin-top: 2%;
+    }
+
            .stopwatchDiv {
-        background: black;
+        background: lightgray;
         min-width: 300px;
         min-height: 590px;
         tr0ansform: scale(2.2);
@@ -2571,6 +2582,83 @@ img { max-width: 100%; height: auto; }
 
         background: black;
         /* margin-bottom: 50%; */
+    }
+
+     /* Disable map interaction temporarily */
+     .nearbyRouteButton {
+        z-index: 1000000000;
+        position: absolute;
+        background: white;
+        color: black;
+        min-height: 5%;
+        margin-left: 55.5%;
+        margin-top: 9%;
+    }
+
+      #map-content {
+    z-index: 10000000000;
+    max-height: 650px;
+    margin-left: 16%;
+    margin-top: 23%;
+}
+    .addTraningButton {
+        background: orange;
+        color: black;
+        min-width: 140px;
+        min-height: 70px;
+        font-size: 20px;
+        font-weight: 900;
+        margin-top: 60%;
+        margin-left: 21%;
+        position: relative;
+        z-index: 100000000000;
+    }
+   #map {
+       pointer-events: none; /* Prevent interaction with the map */
+   }
+
+ #startRouteButton {
+        position: absolute;
+        z-index: 1000000000;
+        background-color: white;
+        color: white;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 20%;
+        min-height: 50px;
+        margin-top: 9%;
+    }
+
+   .speed {
+        position: absolute;
+        margin-top: -5%;
+        font-weight: bold;
+        font-size: 44px;
+        margin-left: 57%;
+    }
+
+    .distance {
+        margin-top: -5%;
+        font-weight: bold;
+        font-size: 44px;
+        position: absolute;
+        margin-left: 16%;
+    }
+
+ #stopRouteButton {
+        position: absolute;
+        z-index: 1000000000;
+        background-color: white;
+        color: white;
+        font-size: 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 38%;
+        min-height: 50px;
+        margin-top: 9%;
     }
   
 }
