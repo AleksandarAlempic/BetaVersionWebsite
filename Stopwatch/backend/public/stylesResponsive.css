@@ -2144,6 +2144,30 @@ img { max-width: 100%; height: auto; }
 
 @media (max-width: 1024px) {
 
+    .addTraningButton {
+        background: orange;
+        color: black;
+        min-width: 140px;
+        min-height: 70px;
+        font-size: 20px;
+        font-weight: 900;
+        margin-top: 60%;
+        margin-left: 21%;
+        position: relative;
+        z-index: 100000000000;
+    }
+
+    .nearbyTrainingsButton {
+    z-index: 1000000000;
+    position: absolute;
+    color: black;
+    font-size: 20px;
+    font-weight: 600;
+    background: #fad000;
+    min-height: 5%;
+    margin-left: 51%;
+    margin-top: 157%;
+}
 
   .languageSelector{
      margin-left: 11%;
@@ -2167,19 +2191,19 @@ img { max-width: 100%; height: auto; }
     margin-top: 5%;
   }
 
-.addTrainingPopup{
-    max-width: 550px;
-    min-height: 650px;
-    background: #fad101;
-    position: relative;
-    z-index: 1000000000000;
-    margin-left: 17%;
-    border-radius: 3%;
-    margin-top: -150%;
-    display: none;
-    border: 3px solid black;
-    /* margin-bottom: 50%;  */
-  }
+     .addTrainingPopup {
+        max-width: 550px;
+        min-height: 650px;
+        background: #fad101;
+        position: relative;
+        z-index: 1000000000000;
+        margin-left: 19%;
+        border-radius: 3%;
+        margin-top: -127%;
+        display: none;
+        border: 3px solid black;
+        /* margin-bottom: 50%; */
+    }
 
   .saveButtonTraining{
     min-width: 150px;
@@ -2302,14 +2326,14 @@ img { max-width: 100%; height: auto; }
 
 
 
-  .stopwatchDiv {
-    background: lightgray;
-    min-width: 300px;
-    min-height: 590px;
-    transform: scale(2.2); 
-     margin-top: 90%;
-     margin-left: 26.7%
-   }
+   .stopwatchDiv {
+        background: lightgray;
+        min-width: 300px;
+        min-height: 550px;
+        transform: scale(2.2);
+        margin-top: 64%;
+        margin-left: 26.7%;
+    }
 
    .startRoute{
     z-index: 1000000000; position: absolute;  color: black; font-size: 20px; font-weight: 600; margin-left: 20%; background: #fad000; min-height: 5%;
