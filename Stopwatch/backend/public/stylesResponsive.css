@@ -2533,7 +2533,7 @@ img { max-width: 100%; height: auto; }
 }
  
  
-@media screen and (max-height: 1600px) {
+@media screen and (max-width: 900px) and (max-height: 1600px) {
     /* CSS here */
 
     .languageSelector {
@@ -2547,12 +2547,12 @@ img { max-width: 100%; height: auto; }
         margin-top: 2%;
     }
 
-           .stopwatchDiv {
+    .stopwatchDiv {
         background: lightgray;
         min-width: 300px;
-        min-height: 590px;
+        min-height: 560px;
         tr0ansform: scale(2.2);
-        margin-top: 69.5%;
+        margin-top: 45.5%;
         margin-left: 26.7%;
     }
   
