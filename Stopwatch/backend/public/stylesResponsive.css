@@ -2347,18 +2347,6 @@ img { max-width: 100%; height: auto; }
     z-index: 1000000000; position: absolute; color: black;font-size: 20px; font-weight: 600;  background: #fad000; min-height: 5%;
    }
 
-    .addTraningButton {
-          background: orange;
-        color: black;
-        min-width: 140px;
-        min-height: 70px;
-        font-size: 20px;
-        font-weight: 900;
-        margin-top: 75%;
-        margin-left: 21%;
-        position: relative;
-        z-index: 100000000000;
-    }
 
    .absCount{
       margin-left: 10%;
