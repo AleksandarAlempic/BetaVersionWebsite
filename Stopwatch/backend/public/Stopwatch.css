@@ -1983,14 +1983,14 @@ body{
 
 @media (max-width: 1000px) {
    /* Disable map interaction temporarily */
-   .nearbyRouteButton {
+     .nearbyRouteButton {
         z-index: 1000000000;
         position: absolute;
         background: white;
         color: black;
         min-height: 5%;
         margin-left: 55.5%;
-        margin-top: 15%;
+        margin-top: 9%;
     }
 
       #map-content {
@@ -2015,7 +2015,7 @@ body{
        pointer-events: none; /* Prevent interaction with the map */
    }
 
-  #startRouteButton {
+ #startRouteButton {
         position: absolute;
         z-index: 1000000000;
         background-color: white;
@@ -2026,26 +2026,26 @@ body{
         cursor: pointer;
         margin-left: 20%;
         min-height: 50px;
-        margin-top: 15%;
+        margin-top: 9%;
     }
 
-.speed{
+   .speed {
         position: absolute;
-        margin-top: 1%;
+        margin-top: -5%;
         font-weight: bold;
         font-size: 44px;
         margin-left: 57%;
-}
+    }
 
-.distance{
-     margin-top: 1%;
+    .distance {
+        margin-top: -5%;
         font-weight: bold;
         font-size: 44px;
         position: absolute;
         margin-left: 16%;
-}
+    }
 
-  #stopRouteButton {
+ #stopRouteButton {
         position: absolute;
         z-index: 1000000000;
         background-color: white;
@@ -2056,7 +2056,7 @@ body{
         cursor: pointer;
         margin-left: 38%;
         min-height: 50px;
-        margin-top: 15%;
+        margin-top: 9%;
     }
 
 /* Make sure the zoom control is always on top of other map elements */
