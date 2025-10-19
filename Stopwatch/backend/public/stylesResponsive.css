@@ -2601,14 +2601,14 @@ img { max-width: 100%; height: auto; }
     margin-left: 16%;
     margin-top: 23%;
 }
-    .addTraningButton {
+   .addTraningButton {
         background: orange;
         color: black;
         min-width: 140px;
         min-height: 70px;
         font-size: 20px;
         font-weight: 900;
-        margin-top: 60%;
+        margin-top: 64% !important;
         margin-left: 21%;
         position: relative;
         z-index: 100000000000;
@@ -2633,14 +2633,14 @@ img { max-width: 100%; height: auto; }
 
    .speed {
         position: absolute;
-        margin-top: -5%;
+        margin-top: -8%;
         font-weight: bold;
         font-size: 44px;
         margin-left: 57%;
     }
 
     .distance {
-        margin-top: -5%;
+        margin-top: -8%;
         font-weight: bold;
         font-size: 44px;
         position: absolute;
