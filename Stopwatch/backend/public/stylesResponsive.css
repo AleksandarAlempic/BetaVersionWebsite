@@ -2533,3 +2533,44 @@ img { max-width: 100%; height: auto; }
 }
  
  
+@media screen and (max-height: 1600px) {
+    /* CSS here */
+
+           .stopwatchDiv {
+        background: black;
+        min-width: 300px;
+        min-height: 590px;
+        tr0ansform: scale(2.2);
+        margin-top: 69.5%;
+        margin-left: 26.7%;
+    }
+  
+  .nearbyTrainingsButton {
+        margin-top: 186.5% !important;
+        z-index: 1000000000 !important;
+        position: absolute !important;
+        color: black !important;
+        font-size: 20px !important;
+        font-weight: 600 !important;
+        background: #fad000 !important;
+        min-height: 5% !important;
+        margin-left: 48% !important;
+    }
+
+      .addTrainingPopup {
+        max-width: 550px;
+        min-height: 650px;
+        background: #fad101;
+        position: relative;
+        z-index: 1000000000000;
+        margin-left: 13.95%;
+        border-radius: 3%;
+        margin-top: -150%;
+        display: none;
+        border: 3px solid black;
+
+        background: black;
+        /* margin-bottom: 50%; */
+    }
+  
+}
