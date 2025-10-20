@@ -2664,21 +2664,8 @@ img { max-width: 100%; height: auto; }
   
 }
 
-@media screen and (max-width: 786px) and (max-height: 1702px) {
-     .nearbyTrainingsButton {
-        margin-top: 177.5% !important;
-        z-index: 1000000000 !important;
-        position: absolute !important;
-        color: black !important;
-        font-size: 20px !important;
-        font-weight: 600 !important;
-        background: #fad000 !important;
-        min-height: 5% !important;
-        margin-left: 48% !important;
-    }
-}
-
-@media screen and (max-width: 720px) and (max-height: 1560px) {
+/* Huawei P30 Pro (360x780 real -> 720x1560 scaled) */
+@media screen and (min-width: 600px) and (max-width: 720px) and (max-height: 1560px) {
     .addTraningButton {
         background: orange;
         color: black;
@@ -2691,7 +2678,8 @@ img { max-width: 100%; height: auto; }
         position: relative;
         z-index: 100000000000;
     }
-   .nearbyTrainingsButton {
+
+    .nearbyTrainingsButton {
         margin-top: 183.5% !important;
         z-index: 1000000000 !important;
         position: absolute !important;
@@ -2702,11 +2690,27 @@ img { max-width: 100%; height: auto; }
         min-height: 5% !important;
         margin-left: 48% !important;
     }
-  .songName {
-    font-size: 20px;
-    font-weight: 500;
-    margin-top: -10%;
+
+    .songName {
+        font-size: 20px;
+        font-weight: 500;
+        margin-top: -10%;
+    }
 }
+
+/* Google Pixel 5 (393x851 real -> 786x1702 scaled) */
+@media screen and (min-width: 721px) and (max-width: 786px) and (max-height: 1702px) {
+    .nearbyTrainingsButton {
+        margin-top: 177.5% !important;
+        z-index: 1000000000 !important;
+        position: absolute !important;
+        color: black !important;
+        font-size: 20px !important;
+        font-weight: 600 !important;
+        background: #fad000 !important;
+        min-height: 5% !important;
+        margin-left: 48% !important;
+    }
 }
 
 
