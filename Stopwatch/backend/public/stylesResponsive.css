@@ -2677,4 +2677,20 @@ img { max-width: 100%; height: auto; }
         position: relative;
         z-index: 100000000000;
     }
+   .nearbyTrainingsButton {
+        margin-top: 182.5% !important;
+        z-index: 1000000000 !important;
+        position: absolute !important;
+        color: black !important;
+        font-size: 20px !important;
+        font-weight: 600 !important;
+        background: #fad000 !important;
+        min-height: 5% !important;
+        margin-left: 48% !important;
+    }
+  .songName {
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: -5%;
+}
 }
