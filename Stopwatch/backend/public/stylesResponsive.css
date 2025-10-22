@@ -2678,7 +2678,8 @@ img { max-width: 100%; height: auto; }
     }
 }
 
-@media screen and (max-width: 720px) and (max-height: 1560px) {
+/* @media screen and (max-width: 720px) and (max-height: 1560px) */
+@media screen and (max-width: 709px) and (max-height: 1549px) {
     .addTraningButton {
         background: orange;
         color: black;
