@@ -2712,9 +2712,8 @@ img { max-width: 100%; height: auto; }
 }
 
 
-/* 🔸 HUAWEI P30 PRO — 720×1560 */
-@media screen and (min-width: 710px) and (max-width: 730px) and
-                  (min-height: 1550px) and (max-height: 1570px) {
+/* HUAWEI P30 PRO */
+@media screen and (max-width: 360px) and (max-height: 780px) {
   .nearbyTrainingsButton {
       margin-top: 183.5% !important;
       z-index: 1000000000 !important;
@@ -2728,10 +2727,8 @@ img { max-width: 100%; height: auto; }
   }
 }
 
-
-/* 🔸 SAMSUNG GALAXY Z FLIP 3 — 720×1580 */
-@media screen and (min-width: 715px) and (max-width: 725px) and
-                  (min-height: 1571px) and (max-height: 1590px) {
+/* Samsung Galaxy Z Flip 3 */
+@media screen and (max-width: 360px) and (max-height: 790px) {
   .nearbyTrainingsButton {
       margin-top: 175.5% !important;
       z-index: 1000000000 !important;
@@ -2745,12 +2742,25 @@ img { max-width: 100%; height: auto; }
   }
 }
 
-
-/* 🔸 GOOGLE PIXEL 5 — 786×1702 */
-@media screen and (min-width: 780px) and (max-width: 790px) and
-                  (min-height: 1690px) and (max-height: 1710px) {
+/* Google Pixel 5 */
+@media screen and (max-width: 393px) and (max-height: 851px) {
   .nearbyTrainingsButton {
       margin-top: 175.5% !important;
+      z-index: 1000000000 !important;
+      position: absolute !important;
+      color: black !important;
+      font-size: 20px !important;
+      font-weight: 600 !important;
+      background: #fad000 !important;
+      min-height: 5% !important;
+      margin-left: 48% !important;
+  }
+}
+
+/* Samsung S23 Ultra */
+@media screen and (max-width: 720px) and (max-height: 1544px) {
+  .nearbyTrainingsButton {
+      margin-top: 186.5% !important;
       z-index: 1000000000 !important;
       position: absolute !important;
       color: black !important;
