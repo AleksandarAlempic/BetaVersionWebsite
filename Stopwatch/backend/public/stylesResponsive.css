@@ -2666,7 +2666,7 @@ img { max-width: 100%; height: auto; }
 
 @media screen and (max-width: 786px) and (max-height: 1702px) {
      .nearbyTrainingsButton {
-        margin-top: 186.5% !important;
+        margin-top: 175.5% !important;
         z-index: 1000000000 !important;
         position: absolute !important;
         color: black !important;
@@ -2782,5 +2782,3 @@ img { max-width: 100%; height: auto; }
       margin-top: -10%;
   }
 }
-
-
