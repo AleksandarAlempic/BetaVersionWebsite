@@ -2678,29 +2678,12 @@ img { max-width: 100%; height: auto; }
     }
 }
 
-
-/* ======================= */
-/* SPECIFIČNI TELEFONI nakon initial-scale=0.5 */
-/* ======================= */
-
-/* ONEPLUS NORD 2 ~ 540×1200 => 270×600 CSS px */
-@media screen and (max-width: 280px) and (max-height: 620px) { 
-  .nearbyTrainingsButton { margin-top: 175.5% !important; }
-}
-
-/* SAMSUNG GALAXY Z FLIP 3 ~ 360×790 => 180×395 CSS px */
-@media screen and (max-width: 190px) and (max-height: 410px) { 
-  .nearbyTrainingsButton { margin-top: 175.5% !important; }
-}
-
-/* GOOGLE PIXEL 5 ~ 393×851 => 196×425 CSS px */
-@media screen and (max-width: 200px) and (max-height: 430px) { 
-  .nearbyTrainingsButton { margin-top: 175.5% !important; }
-}
-
-/* 🔹 Default fallback — svi telefoni ispod 709×1549 */
+/* ============================
+   Default fallback — svi telefoni ispod 709×1549
+   (stavljen NA VRH fajla)
+   ============================ */
 @media screen and (max-width: 709px) and (max-height: 1549px) {
-  .addTraningButton {
+   .addTraningButton {
       background: orange;
       color: black;
       min-width: 140px;
@@ -2730,3 +2713,20 @@ img { max-width: 100%; height: auto; }
   }
 }
 
+/* ============================
+   Specifični telefoni — stavi NAKON fallback
+   ============================ */
+/* ONEPLUS NORD 2 */
+@media screen and (max-width: 280px) and (max-height: 620px) { 
+  .nearbyTrainingsButton { margin-top: 175.5% !important; }
+}
+
+/* SAMSUNG Z FLIP 3 */
+@media screen and (max-width: 190px) and (max-height: 410px) { 
+  .nearbyTrainingsButton { margin-top: 175.5% !important; }
+}
+
+/* PIXEL 5 */
+@media screen and (max-width: 200px) and (max-height: 430px) { 
+  .nearbyTrainingsButton { margin-top: 175.5% !important; }
+}
