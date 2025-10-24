@@ -2695,17 +2695,23 @@ img { max-width: 100%; height: auto; }
       position: relative;
       z-index: 100000000000;
   }
-  .nearbyTrainingsButton {
-      margin-top: 183.5% !important;
-      z-index: 1000000000 !important;
-      position: absolute !important;
-      color: black !important;
-      font-size: 20px !important;
-      font-weight: 600 !important;
-      background: #fad000 !important;
-      min-height: 5% !important;
-      margin-left: 48% !important;
-  }
+ .nearbyTrainingsButton {
+  position: fixed !important;
+  bottom: 18px !important;
+  right: 18px !important;
+  z-index: 999999 !important;
+
+  background: #fad000 !important;
+  color: black !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+
+  padding: 12px 18px !important;
+  border-radius: 8px !important;
+
+  min-width: 140px;
+  text-align: center;
+}
   .songName {
       font-size: 20px;
       font-weight: 500;
