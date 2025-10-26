@@ -423,6 +423,8 @@ updateTrainingPopupLanguage(currentLanguage);
 updateRouteMarkersLanguage(currentLanguage);
 updateTrainingMarkersLanguage(currentLanguage);
 
-console.log("WIDTH:", window.innerWidth);
-console.log("HEIGHT:", window.innerHeight);
-console.log("DEVICE:", navigator.userAgent);
+window.onload = () => {
+    console.log("WIDTH:", window.innerWidth);
+    console.log("HEIGHT:", window.innerHeight);
+    console.log("DEVICE:", navigator.userAgent);
+};
