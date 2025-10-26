@@ -2717,51 +2717,74 @@ img { max-width: 100%; height: auto; }
 }
 */
 /* ============================
-   Specifični telefoni — stavi NAKON fallback
+   Globalni styling (uvek aktivan)
    ============================ */
-/* ONEPLUS NORD 2 */
-@media screen and (max-width: 280px) and (max-height: 620px) { 
-  .nearbyTrainingsButton { margin-top: 175.5% !important; }
+
+.addTraningButton {
+  background: orange;
+  color: black;
+  min-width: 140px;
+  min-height: 70px;
+  font-size: 20px;
+  font-weight: 900;
+  margin-top: 61% !important;
+  margin-left: 21%;
+  position: relative;
+  z-index: 100000000000;
 }
 
-/* SAMSUNG Z FLIP 3 */
-@media screen and (max-width: 190px) and (max-height: 410px) { 
-  .nearbyTrainingsButton { margin-top: 175.5% !important; }
+.nearbyTrainingsButton {
+  position: fixed !important;
+  bottom: 38px !important;
+  right: 108px !important;
+  z-index: 999999999 !important;
+  background: #fad000 !important;
+  color: black !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  padding: 12px 18px !important;
+  border-radius: 8px !important;
+  min-width: 140px;
+  text-align: center;
 }
 
-/* PIXEL 5 */
-@media screen and (max-width: 200px) and (max-height: 430px) { 
-  .nearbyTrainingsButton { margin-top: 175.5% !important; }
+.songName {
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: -10%;
 }
 
-    .addTraningButton {
-      background: orange;
-      color: black;
-      min-width: 140px;
-      min-height: 70px;
-      font-size: 20px;
-      font-weight: 900;
-      margin-top: 61% !important;
-      margin-left: 21%;
-      position: relative;
-      z-index: 100000000000;
+
+/* ============================
+   📍 SPECIFIČNI TELEFONI
+   (računato za initial-scale=0.5)
+   — OVO IDE NA KRAJU!
+   ============================ */
+
+/* GOOGLE PIXEL 5 → ~196×425 CSS px */
+@media screen and (max-width: 200px) and (max-height: 430px) {
+  .nearbyTrainingsButton {
+    margin-top: 175.5% !important;
   }
-     .nearbyTrainingsButton {
-        position: fixed !important;
-        bottom: 38px !important;
-        right: 108px !important;
-        z-index: 999999999 !important;
-        background: #fad000 !important;
-        color: black !important;
-        font-size: 18px !important;
-        font-weight: 600 !important;
-        padding: 12px 18px !important;
-        border-radius: 8px !important;
-        min-width: 140px;
-        text-align: center;
-    }
-  .songName {
-      font-size: 20px;
-      font-weight: 500;
-      margin-top: -10%;
+}
+
+/* ONEPLUS NORD 2 → ~206×458 CSS px */
+@media screen and (max-width: 210px) and (max-height: 465px) {
+  .nearbyTrainingsButton {
+    margin-top: 176.5% !important;
   }
+}
+
+/* SAMSUNG GALAXY Z FLIP 3 → ~180×439 CSS px */
+@media screen and (max-width: 185px) and (max-height: 445px) {
+  .nearbyTrainingsButton {
+    margin-top: 178% !important;
+  }
+}
+
+/* HUAWEI P30 PRO → ~180×380 CSS px */
+@media screen and (max-width: 185px) and (max-height: 385px) {
+  .nearbyTrainingsButton {
+    margin-top: 179% !important;
+  }
+}
