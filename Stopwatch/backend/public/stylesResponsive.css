@@ -2761,30 +2761,35 @@ img { max-width: 100%; height: auto; }
    — OVO IDE NA KRAJU!
    ============================ */
 
-/* GOOGLE PIXEL 5 → ~196×425 CSS px */
-@media screen and (max-width: 200px) and (max-height: 430px) {
-  .nearbyTrainingsButton {
-    margin-top: 175.5% !important;
-  }
+/* Huawei P30 PRO (360x695) */
+@media screen and (max-width: 360px) and (max-height: 695px) {
+    .nearbyTrainingsButton {
+        margin-top: 140%; /* prilagođeno */
+        font-size: 18px;
+    }
 }
 
-/* ONEPLUS NORD 2 → ~206×458 CSS px */
-@media screen and (max-width: 210px) and (max-height: 465px) {
-  .nearbyTrainingsButton {
-    margin-top: 176.5% !important;
-  }
+/* Galaxy Z Flip3 (360x795) */
+@media screen and (max-width: 360px) and (max-height: 795px) {
+    .nearbyTrainingsButton {
+        margin-top: 150%;
+        font-size: 18px;
+    }
 }
 
-/* SAMSUNG GALAXY Z FLIP 3 → ~180×439 CSS px */
-@media screen and (max-width: 185px) and (max-height: 445px) {
-  .nearbyTrainingsButton {
-    margin-top: 178% !important;
-  }
+/* Google Pixel5 (393x756) */
+@media screen and (max-width: 393px) and (max-height: 756px) {
+    .nearbyTrainingsButton {
+        margin-top: 155%;
+        font-size: 19px;
+    }
 }
 
-/* HUAWEI P30 PRO → ~180×380 CSS px */
-@media screen and (max-width: 185px) and (max-height: 385px) {
-  .nearbyTrainingsButton {
-    margin-top: 179% !important;
-  }
+/* Oneplus Nord2 (412x830) */
+@media screen and (max-width: 412px) and (max-height: 830px) {
+    .nearbyTrainingsButton {
+        margin-top: 165%;
+        font-size: 20px;
+    }
 }
+
