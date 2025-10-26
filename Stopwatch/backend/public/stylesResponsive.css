@@ -2727,7 +2727,7 @@ img { max-width: 100%; height: auto; }
   min-height: 70px;
   font-size: 20px;
   font-weight: 900;
-  margin-top: 65% !important;
+  margin-top: 61% !important;
   margin-left: 21%;
   position: relative;
   z-index: 100000000000;
@@ -2799,6 +2799,18 @@ img { max-width: 100%; height: auto; }
         margin-top: 155% !important;
         font-size: 19px !important;
     }
+  .addTraningButton {
+  background: orange;
+  color: black;
+  min-width: 140px;
+  min-height: 70px;
+  font-size: 20px;
+  font-weight: 900;
+  margin-top: 61% !important;
+  margin-left: 21%;
+  position: relative;
+  z-index: 100000000000;
+}
 }
 
 /* Oneplus Nord2 (412x830)  Real value */
@@ -2810,6 +2822,19 @@ img { max-width: 100%; height: auto; }
         bottom: 0px !important;
         right: 130px !important;
     }
+
+  .addTraningButton {
+  background: orange;
+  color: black;
+  min-width: 140px;
+  min-height: 70px;
+  font-size: 20px;
+  font-weight: 900;
+  margin-top: 67% !important;
+  margin-left: 21%;
+  position: relative;
+  z-index: 100000000000;
+}
 }
 
 /* OnePlus Nord2 (viewport posle initial-scale=0.5) */
@@ -2821,5 +2846,17 @@ img { max-width: 100%; height: auto; }
         bottom: 0px !important;
         right: 130px !important;
     }
+  .addTraningButton {
+  background: orange;
+  color: black;
+  min-width: 140px;
+  min-height: 70px;
+  font-size: 20px;
+  font-weight: 900;
+  margin-top: 67% !important;
+  margin-left: 21%;
+  position: relative;
+  z-index: 100000000000;
+}
 }
 
