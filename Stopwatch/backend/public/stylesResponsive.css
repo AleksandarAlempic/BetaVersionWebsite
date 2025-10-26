@@ -2878,10 +2878,40 @@ img { max-width: 100%; height: auto; }
 
 /* Desktop (960px – 1280px) */
 @media screen and (min-width: 961px) {
-    .nearbyTrainingsButton {
-        margin-top: 45% !important;
+     .nearbyTrainingsButton {
+        margin-top: 15% !important;
         font-size: 20px !important;
-       background: gray !important;
+        background: #fad000 !important;
+        margin-left: 69% !important;
+        bottom: 83% !important;
+        right: 8% !important;
     }
+  .addTraningButton {
+    background: orange;
+    color: black;
+    min-width: 140px;
+    /* min-height: 70px; */
+    /* font-size: 20px; */
+    /* font-weight: 900; */
+    margin-top: -41.5% !important;
+    margin-left: 63.5%;
+    position: relative;
+    z-index: 100000000000;
+}
+#map-content {  
+    z-index: 10000000000;
+    max-height: 650px;
+    /* margin-left: 25%; */
+    margin-top: 2%;
+}
+
+   .languageSelector {
+     margin-left: 46%;
+    background: orange;
+    background: #fad000 !important;
+    min-width: 60px;
+    min-height: 30px;
+   }
+  
 }
 
