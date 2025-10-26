@@ -2901,7 +2901,7 @@ img { max-width: 100%; height: auto; }
 #map-content {  
     z-index: 10000000000;
     max-height: 650px;
-    /* margin-left: 25%; */
+    margin-left: -3%;
     margin-top: 2%;
 }
 
