@@ -2887,7 +2887,9 @@ img { max-width: 100%; height: auto; }
         bottom: 83% !important;
         right: 8% !important;
     }
-     .addTraningButton {
+    
+
+  .addTraningButton {
         background: orange;
         color: black;
         margin-top: -41.5% !important;
@@ -2895,6 +2897,8 @@ img { max-width: 100%; height: auto; }
         position: relative;
         z-index: 100000000000;
         font-weight: 100;
+        min-width: 50px;
+        min-height: 50px;
     }
 #map-content {  
     z-index: 10000000000;
