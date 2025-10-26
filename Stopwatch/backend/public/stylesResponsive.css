@@ -2865,7 +2865,6 @@ img { max-width: 100%; height: auto; }
     .nearbyTrainingsButton {
         margin-top: 50% !important;
         font-size: 18px !important;
-      background: black !important;
     }
 }
 
@@ -2874,7 +2873,6 @@ img { max-width: 100%; height: auto; }
     .nearbyTrainingsButton {
         margin-top: 48% !important;
         font-size: 19px !important;
-       background: black !important;
     }
 }
 
@@ -2883,7 +2881,7 @@ img { max-width: 100%; height: auto; }
     .nearbyTrainingsButton {
         margin-top: 45% !important;
         font-size: 20px !important;
-       background: black !important;
+       background: gray !important;
     }
 }
 
