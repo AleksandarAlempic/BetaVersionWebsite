@@ -423,8 +423,16 @@ updateTrainingPopupLanguage(currentLanguage);
 updateRouteMarkersLanguage(currentLanguage);
 updateTrainingMarkersLanguage(currentLanguage);
 
-window.onload = () => {
-    console.log("WIDTH:", window.innerWidth);
-    console.log("HEIGHT:", window.innerHeight);
-    console.log("DEVICE:", navigator.userAgent);
-};
+document.addEventListener("DOMContentLoaded", () => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    console.log("Window width:", width);
+    console.log("Window height:", height);
+
+    // Ako želiš da automatski reaguješ na promenu veličine prozora
+    window.addEventListener("resize", () => {
+        console.log("Resized width:", window.innerWidth);
+        console.log("Resized height:", window.innerHeight);
+    });
+});
