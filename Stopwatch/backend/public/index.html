@@ -564,6 +564,11 @@ if (!userId) {
 
     // Kad se promeni veličina
     window.addEventListener("resize", logViewport);
+              window.addEventListener("load", () => {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    alert(`Width: ${w}, Height: ${h}`);
+});
 </script>
         </body>
         <script defer src="Data.js"></script>
