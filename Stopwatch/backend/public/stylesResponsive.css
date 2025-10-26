@@ -2602,15 +2602,16 @@ img { max-width: 100%; height: auto; }
         margin-left: 8% !important;
         margin-top: 23%;
     }
-   .addTraningButton {
+       .addTraningButton {
         background: orange;
         color: black;
-        min-width: 140px;
-        min-height: 70px;
-        font-size: 20px;
-        font-weight: 900;
-        margin-top: 64% !important;
-        margin-left: 21%;
+        /* min-width: 140px; */
+        /* min-height: 70px; */
+        /* font-size: 20px; */
+        /* font-weight: 900; */
+        font-weight: 100;
+        margin-top: -41.5% !important;
+        margin-left: 63.5%;
         position: relative;
         z-index: 100000000000;
     }
