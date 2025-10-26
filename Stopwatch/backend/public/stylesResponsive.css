@@ -2787,9 +2787,12 @@ img { max-width: 100%; height: auto; }
 
 /* Oneplus Nord2 (412x830) */
 @media screen and (max-width: 412px) and (max-height: 830px) {
-    .nearbyTrainingsButton {
-        margin-top: 165% !important;
+        .nearbyTrainingsButton {
+        margin-top: 175% !important;
         font-size: 20px !important;
+        position: absolute !important;
+        bottom: 0px !important;
+        right: 130px !important;
     }
 }
 
