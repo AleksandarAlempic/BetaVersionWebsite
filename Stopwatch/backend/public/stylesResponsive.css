@@ -2785,7 +2785,7 @@ img { max-width: 100%; height: auto; }
     }
 }
 
-/* Oneplus Nord2 (412x830) 
+/* Oneplus Nord2 (412x830)  Real value */
 @media screen and (max-width: 412px) and (max-height: 830px) {
         .nearbyTrainingsButton {
         margin-top: 175% !important;
@@ -2794,7 +2794,7 @@ img { max-width: 100%; height: auto; }
         bottom: 0px !important;
         right: 130px !important;
     }
-}*/
+}
 
 /* OnePlus Nord2 (viewport posle initial-scale=0.5) */
 @media screen and (max-width: 206px) and (max-height: 415px) {
