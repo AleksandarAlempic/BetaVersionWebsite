@@ -2887,18 +2887,15 @@ img { max-width: 100%; height: auto; }
         bottom: 83% !important;
         right: 8% !important;
     }
-  .addTraningButton {
-    background: orange;
-    color: black;
-    min-width: 140px;
-    /* min-height: 70px; */
-    /* font-size: 20px; */
-    /* font-weight: 900; */
-    margin-top: -41.5% !important;
-    margin-left: 63.5%;
-    position: relative;
-    z-index: 100000000000;
-}
+     .addTraningButton {
+        background: orange;
+        color: black;
+        margin-top: -41.5% !important;
+        margin-left: 63.5%;
+        position: relative;
+        z-index: 100000000000;
+        font-weight: 100;
+    }
 #map-content {  
     z-index: 10000000000;
     max-height: 650px;
