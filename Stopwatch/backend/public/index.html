@@ -12,6 +12,19 @@
                 }
                 
             </style>
+          <script>
+document.addEventListener("DOMContentLoaded", () => {
+    const width = window.visualViewport.width;
+    const height = window.visualViewport.height;
+    console.log("Viewport width:", width);
+    console.log("Viewport height:", height);
+
+    window.visualViewport.addEventListener("resize", () => {
+        console.log("Resized width:", window.visualViewport.width);
+        console.log("Resized height:", window.visualViewport.height);
+    });
+});
+</script>
         </head>
         <!-- a -->
         <body> 
