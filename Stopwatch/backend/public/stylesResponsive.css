@@ -2860,3 +2860,30 @@ img { max-width: 100%; height: auto; }
 }
 }
 
+/* Small laptops (768px – 960px) */
+@media screen and (min-width: 683px) and (max-width: 768px) {
+    .nearbyTrainingsButton {
+        margin-top: 50% !important;
+        font-size: 18px !important;
+      background: black !important;
+    }
+}
+
+/* Large laptops (768px – 960px) */
+@media screen and (min-width: 769px) and (max-width: 960px) {
+    .nearbyTrainingsButton {
+        margin-top: 48% !important;
+        font-size: 19px !important;
+       background: black !important;
+    }
+}
+
+/* Desktop (960px – 1280px) */
+@media screen and (min-width: 961px) and (max-width: 1280px) {
+    .nearbyTrainingsButton {
+        margin-top: 45% !important;
+        font-size: 20px !important;
+       background: black !important;
+    }
+}
+
