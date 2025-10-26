@@ -2879,26 +2879,40 @@ img { max-width: 100%; height: auto; }
 
 /* Desktop (960px – 1280px) */
 @media screen and (min-width: 961px) {
-     .nearbyTrainingsButton {
-        margin-top: 15% !important;
-        font-size: 20px !important;
+.stopwatchLabel {
+    /* position: absolute; */
+    color: yellow;
+    margin-left: -1%;
+    margin-top: 9%;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000000;
+}
+  
+       .nearbyTrainingsButton {
+        margin-top: 17% !important;
+        font-size: 15px !important;
         background: #fad000 !important;
-        margin-left: 69% !important;
+        margin-left: 60% !important;
         bottom: 83% !important;
-        right: 8% !important;
+        right: 12% !important;
+        font-weight: 50 !important;
     }
     
 
-  .addTraningButton {
+    .addTraningButton {
         background: orange;
         color: black;
         margin-top: -41.5% !important;
-        margin-left: 63.5%;
+        margin-left: 65.5%;
         position: relative;
         z-index: 100000000000;
-        font-weight: 100;
+        font-weight: 50;
         min-width: 50px;
-        min-height: 50px;
+        min-height: 35px;
+        font-size: 15px;
     }
 #map-content {  
     z-index: 10000000000;
