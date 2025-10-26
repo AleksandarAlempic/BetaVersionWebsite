@@ -12,19 +12,7 @@
                 }
                 
             </style>
-          <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const width = window.visualViewport.width;
-    const height = window.visualViewport.height;
-    console.log("Viewport width:", width);
-    console.log("Viewport height:", height);
-
-    window.visualViewport.addEventListener("resize", () => {
-        console.log("Resized width:", window.visualViewport.width);
-        console.log("Resized height:", window.visualViewport.height);
-    });
-});
-</script>
+       
         </head>
         <!-- a -->
         <body> 
@@ -565,6 +553,18 @@ if (!userId) {
             <input type="text" id="usernameInput" placeholder="Name" style="margin-top: 10px; padding: 5px; width: 100%;" /><br><br>
             <button onclick="submitRoute()" style="margin-left: 30%; padding: 8px 16px;">Save Route</button>
         </div>
+          <script>
+    const logViewport = () => {
+        console.log("window.innerWidth:", window.innerWidth);
+        console.log("window.innerHeight:", window.innerHeight);
+    };
+
+    // Prvi put odmah
+    logViewport();
+
+    // Kad se promeni veličina
+    window.addEventListener("resize", logViewport);
+</script>
         </body>
         <script defer src="Data.js"></script>
         <script defer src="MusicPlayer.js"></script>
