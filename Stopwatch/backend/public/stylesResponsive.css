@@ -2391,9 +2391,16 @@ img { max-width: 100%; height: auto; }
 }
 
 /* === SPECIFIC MEDIA QUERY FOR 500PX AND LOWER === */
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 900px)
+  and (not (width: 720px) and (height: 1224px))   /* iPhone 12 Mini */
+  and (not (width: 750px) and (height: 1288px))   /* iPhone X & 11 Pro */
+  and (not (width: 750px) and (height: 1286px))   /* iPhone 13 Mini */
+  and (not (width: 780px) and (height: 1352px))   /* iPhone 12 & 12 Pro */
+  and (not (width: 780px) and (height: 1348px))   /* iPhone 13, 13 Pro, 14 */
+  and (not (width: 828px) and (height: 1456px))   /* iPhone XR, 11, 11 Pro Max */
+  and (not (width: 856px) and (height: 1502px))   /* iPhone 13 Pro Max, 14 Plus */
+{
 
-  
          #map-content {
         z-index: 10000000000 !important;
         margin-left: 13.5% !important;
