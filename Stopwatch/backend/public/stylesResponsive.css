@@ -2935,39 +2935,85 @@ img { max-width: 100%; height: auto; }
    📱 SPECIFIČNI iPhone - initial-scale=0.5
    ============================ */
 
+/* ============================
+   iPhone - initial-scale=0.5
+   ============================ */
+
+/* ============================
+   📱 SPECIFIČNI iPhone - initial-scale=0.5
+   ============================ */
+
 /* iPhone X / 11 Pro / 13 Mini (375x812) */
-@media only screen and (max-width: 187px) and (max-height: 406px) {
-    .nearbyTrainingsButton { margin-top: 140% !important; font-size: 18px !important; }
-    .addTraningButton { margin-top: 61% !important; }
-    #startRouteButton { z-index: 1000000000; position: absolute; background: black; }
+@media screen and (min-width: 187px) and (max-width: 187px)
+       and (min-height: 406px) and (max-height: 406px) {
+    #startRouteButton {
+        background: black !important;
+        color: white !important;
+        position: absolute !important;
+        z-index: 1000000000 !important;
+    }
+    .nearbyTrainingsButton {
+        margin-top: 150% !important;
+        font-size: 18px !important;
+    }
 }
 
 /* iPhone XR / 11 (414x896) */
-@media only screen and (max-width: 207px) and (max-height: 448px) {
-    .nearbyTrainingsButton { margin-top: 150% !important; font-size: 18px !important; }
-    .addTraningButton { margin-top: 64% !important; }
-    #startRouteButton { z-index: 1000000000; position: absolute; background: black; }
+@media screen and (min-width: 207px) and (max-width: 207px)
+       and (min-height: 448px) and (max-height: 448px) {
+    #startRouteButton {
+        background: black !important;
+        color: white !important;
+        position: absolute !important;
+        z-index: 1000000000 !important;
+    }
+    .nearbyTrainingsButton {
+        margin-top: 160% !important;
+        font-size: 18px !important;
+    }
 }
 
 /* iPhone 12 Mini (360x780) */
-@media only screen and (max-width: 180px) and (max-height: 390px) {
-    .nearbyTrainingsButton { margin-top: 135% !important; font-size: 18px !important; }
-    .addTraningButton { margin-top: 60% !important; }
-    #startRouteButton { z-index: 1000000000; position: absolute; background: black; }
+@media screen and (min-width: 180px) and (max-width: 180px)
+       and (min-height: 390px) and (max-height: 390px) {
+    #startRouteButton {
+        background: black !important;
+        color: white !important;
+        position: absolute !important;
+        z-index: 1000000000 !important;
+    }
+    .nearbyTrainingsButton {
+        margin-top: 145% !important;
+        font-size: 18px !important;
+    }
 }
 
 /* iPhone 12 / 12 Pro / 13 / 13 Pro / 14 (390x844) */
-@media only screen and (max-width: 195px) and (max-height: 422px) {
-    .nearbyTrainingsButton { margin-top: 150% !important; font-size: 19px !important; }
-    .addTraningButton { margin-top: 63% !important; }
-    #startRouteButton { z-index: 1000000000; position: absolute; background: black; }
+@media screen and (min-width: 195px) and (max-width: 195px)
+       and (min-height: 422px) and (max-height: 422px) {
+    #startRouteButton {
+        background: black !important;
+        color: white !important;
+        position: absolute !important;
+        z-index: 1000000000 !important;
+    }
+    .nearbyTrainingsButton {
+        margin-top: 155% !important;
+        font-size: 19px !important;
+    }
 }
 
 /* iPhone 13 Pro Max / 14 Plus (428x926) */
-@media only screen and (max-width: 214px) and (max-height: 463px) {
-    .nearbyTrainingsButton { margin-top: 160% !important; font-size: 20px !important; }
-    .addTraningButton { margin-top: 65% !important; }
-    #startRouteButton { z-index: 1000000000; position: absolute; background: black !important; }
+@media screen and (min-width: 214px) and (max-width: 214px)
+       and (min-height: 463px) and (max-height: 463px) {
+    #startRouteButton {
+        background: black !important;
+        color: white !important;
+        position: absolute !important;
+        z-index: 1000000000 !important;
+    }
+    .nearbyTrainingsButton {
+        margin-top: 170% !important;
+        font-size: 20px !important;
+    }
 }
-
-
