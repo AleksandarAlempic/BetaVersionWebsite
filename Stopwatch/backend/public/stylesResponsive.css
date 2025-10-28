@@ -2951,6 +2951,33 @@ img { max-width: 100%; height: auto; }
         transform: scale(0.82);
         margin-left: -22%;
     }
+   .addTraningButton {
+    background: orange;
+    color: black;
+    min-width: 140px;
+    min-height: 70px;
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 64% !important;
+    margin-left: 21%;
+    position: relative;
+    z-index: 100000000000;
+    bottom: 192px;
+}
+  .nearbyTrainingsButton {
+    position: absolute !important;
+    bottom: 192px !important;
+    right: 148px !important;
+    z-index: 999999999 !important;
+    background: #fad000 !important;
+    color: black !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    padding: 12px 18px !important;
+    border-radius: 8px !important;
+    min-width: 140px;
+    text-align: center;
+}
 }
 
 /* 2. iPhone XR (414 x 728) */
@@ -2967,6 +2994,33 @@ img { max-width: 100%; height: auto; }
         transform: scale(0.82);
         margin-left: -22%;
     }
+   .addTraningButton {
+    background: orange;
+    color: black;
+    min-width: 140px;
+    min-height: 70px;
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 64% !important;
+    margin-left: 21%;
+    position: relative;
+    z-index: 100000000000;
+    bottom: 192px;
+}
+  .nearbyTrainingsButton {
+    position: absolute !important;
+    bottom: 192px !important;
+    right: 148px !important;
+    z-index: 999999999 !important;
+    background: #fad000 !important;
+    color: black !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    padding: 12px 18px !important;
+    border-radius: 8px !important;
+    min-width: 140px;
+    text-align: center;
+}
 }
 
 /* 3. iPhone 11 (414 x 728) - same as XR */
@@ -2983,6 +3037,33 @@ img { max-width: 100%; height: auto; }
         transform: scale(0.82);
         margin-left: -22%;
     }
+   .addTraningButton {
+    background: orange;
+    color: black;
+    min-width: 140px;
+    min-height: 70px;
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 64% !important;
+    margin-left: 21%;
+    position: relative;
+    z-index: 100000000000;
+    bottom: 192px;
+}
+  .nearbyTrainingsButton {
+    position: absolute !important;
+    bottom: 192px !important;
+    right: 148px !important;
+    z-index: 999999999 !important;
+    background: #fad000 !important;
+    color: black !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    padding: 12px 18px !important;
+    border-radius: 8px !important;
+    min-width: 140px;
+    text-align: center;
+}
 }
 
 /* 4. iPhone 11 Pro (375 x 644) - same as X */
@@ -2999,6 +3080,33 @@ img { max-width: 100%; height: auto; }
         transform: scale(0.82);
         margin-left: -22%;
     }
+   .addTraningButton {
+    background: orange;
+    color: black;
+    min-width: 140px;
+    min-height: 70px;
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 64% !important;
+    margin-left: 21%;
+    position: relative;
+    z-index: 100000000000;
+    bottom: 192px;
+}
+  .nearbyTrainingsButton {
+    position: absolute !important;
+    bottom: 192px !important;
+    right: 148px !important;
+    z-index: 999999999 !important;
+    background: #fad000 !important;
+    color: black !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    padding: 12px 18px !important;
+    border-radius: 8px !important;
+    min-width: 140px;
+    text-align: center;
+}
 }
 
 /* 5. iPhone 11 Pro Max (414 x 728) - same as XR/11 */
@@ -3015,6 +3123,33 @@ img { max-width: 100%; height: auto; }
         transform: scale(0.82);
         margin-left: -22%;
     }
+   .addTraningButton {
+    background: orange;
+    color: black;
+    min-width: 140px;
+    min-height: 70px;
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 64% !important;
+    margin-left: 21%;
+    position: relative;
+    z-index: 100000000000;
+    bottom: 192px;
+}
+  .nearbyTrainingsButton {
+    position: absolute !important;
+    bottom: 192px !important;
+    right: 148px !important;
+    z-index: 999999999 !important;
+    background: #fad000 !important;
+    color: black !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    padding: 12px 18px !important;
+    border-radius: 8px !important;
+    min-width: 140px;
+    text-align: center;
+}
 }
 
 /* 6. iPhone 12 Mini (360 x 612) */
@@ -3031,6 +3166,33 @@ img { max-width: 100%; height: auto; }
         transform: scale(0.82);
         margin-left: -22%;
     }
+   .addTraningButton {
+    background: orange;
+    color: black;
+    min-width: 140px;
+    min-height: 70px;
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 64% !important;
+    margin-left: 21%;
+    position: relative;
+    z-index: 100000000000;
+    bottom: 192px;
+}
+  .nearbyTrainingsButton {
+    position: absolute !important;
+    bottom: 192px !important;
+    right: 148px !important;
+    z-index: 999999999 !important;
+    background: #fad000 !important;
+    color: black !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    padding: 12px 18px !important;
+    border-radius: 8px !important;
+    min-width: 140px;
+    text-align: center;
+}
 }
 
 /* 7. iPhone 12 (390 x 676) */
@@ -3047,6 +3209,33 @@ img { max-width: 100%; height: auto; }
         transform: scale(0.82);
         margin-left: -22%;
     }
+   .addTraningButton {
+    background: orange;
+    color: black;
+    min-width: 140px;
+    min-height: 70px;
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 64% !important;
+    margin-left: 21%;
+    position: relative;
+    z-index: 100000000000;
+    bottom: 192px;
+}
+  .nearbyTrainingsButton {
+    position: absolute !important;
+    bottom: 192px !important;
+    right: 148px !important;
+    z-index: 999999999 !important;
+    background: #fad000 !important;
+    color: black !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    padding: 12px 18px !important;
+    border-radius: 8px !important;
+    min-width: 140px;
+    text-align: center;
+}
 }
 
 /* 8. iPhone 12 Pro (390 x 676) - same as 12 */
@@ -3063,6 +3252,33 @@ img { max-width: 100%; height: auto; }
         transform: scale(0.82);
         margin-left: -22%;
     }
+   .addTraningButton {
+    background: orange;
+    color: black;
+    min-width: 140px;
+    min-height: 70px;
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 64% !important;
+    margin-left: 21%;
+    position: relative;
+    z-index: 100000000000;
+    bottom: 192px;
+}
+  .nearbyTrainingsButton {
+    position: absolute !important;
+    bottom: 192px !important;
+    right: 148px !important;
+    z-index: 999999999 !important;
+    background: #fad000 !important;
+    color: black !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    padding: 12px 18px !important;
+    border-radius: 8px !important;
+    min-width: 140px;
+    text-align: center;
+}
 }
 
 /* 9. iPhone 13 Mini (375 x 643) */
@@ -3079,6 +3295,33 @@ img { max-width: 100%; height: auto; }
         transform: scale(0.82);
         margin-left: -22%;
     }
+   .addTraningButton {
+    background: orange;
+    color: black;
+    min-width: 140px;
+    min-height: 70px;
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 64% !important;
+    margin-left: 21%;
+    position: relative;
+    z-index: 100000000000;
+    bottom: 192px;
+}
+  .nearbyTrainingsButton {
+    position: absolute !important;
+    bottom: 192px !important;
+    right: 148px !important;
+    z-index: 999999999 !important;
+    background: #fad000 !important;
+    color: black !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    padding: 12px 18px !important;
+    border-radius: 8px !important;
+    min-width: 140px;
+    text-align: center;
+}
 }
 
 /* 10. iPhone 13 (390 x 674) */
@@ -3095,6 +3338,33 @@ img { max-width: 100%; height: auto; }
         transform: scale(0.82);
         margin-left: -22%;
     }
+   .addTraningButton {
+    background: orange;
+    color: black;
+    min-width: 140px;
+    min-height: 70px;
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 64% !important;
+    margin-left: 21%;
+    position: relative;
+    z-index: 100000000000;
+    bottom: 192px;
+}
+  .nearbyTrainingsButton {
+    position: absolute !important;
+    bottom: 192px !important;
+    right: 148px !important;
+    z-index: 999999999 !important;
+    background: #fad000 !important;
+    color: black !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    padding: 12px 18px !important;
+    border-radius: 8px !important;
+    min-width: 140px;
+    text-align: center;
+}
 }
 
 /* 11. iPhone 13 Pro (390 x 674) - same as 13 */
@@ -3111,6 +3381,33 @@ img { max-width: 100%; height: auto; }
         transform: scale(0.82);
         margin-left: -22%;
     }
+   .addTraningButton {
+    background: orange;
+    color: black;
+    min-width: 140px;
+    min-height: 70px;
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 64% !important;
+    margin-left: 21%;
+    position: relative;
+    z-index: 100000000000;
+    bottom: 192px;
+}
+  .nearbyTrainingsButton {
+    position: absolute !important;
+    bottom: 192px !important;
+    right: 148px !important;
+    z-index: 999999999 !important;
+    background: #fad000 !important;
+    color: black !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    padding: 12px 18px !important;
+    border-radius: 8px !important;
+    min-width: 140px;
+    text-align: center;
+}
 }
 
 /* 12. iPhone 13 Pro Max (428 x 751) */
@@ -3127,6 +3424,33 @@ img { max-width: 100%; height: auto; }
         transform: scale(0.82);
         margin-left: -22%;
     }
+   .addTraningButton {
+    background: orange;
+    color: black;
+    min-width: 140px;
+    min-height: 70px;
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 64% !important;
+    margin-left: 21%;
+    position: relative;
+    z-index: 100000000000;
+    bottom: 192px;
+}
+  .nearbyTrainingsButton {
+    position: absolute !important;
+    bottom: 192px !important;
+    right: 148px !important;
+    z-index: 999999999 !important;
+    background: #fad000 !important;
+    color: black !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    padding: 12px 18px !important;
+    border-radius: 8px !important;
+    min-width: 140px;
+    text-align: center;
+}
 }
 
 /* 13. iPhone 14 (390 x 674) - same as iPhone 13 */
@@ -3143,6 +3467,33 @@ img { max-width: 100%; height: auto; }
         transform: scale(0.82);
         margin-left: -22%;
     }
+   .addTraningButton {
+    background: orange;
+    color: black;
+    min-width: 140px;
+    min-height: 70px;
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 64% !important;
+    margin-left: 21%;
+    position: relative;
+    z-index: 100000000000;
+    bottom: 192px;
+}
+  .nearbyTrainingsButton {
+    position: absolute !important;
+    bottom: 192px !important;
+    right: 148px !important;
+    z-index: 999999999 !important;
+    background: #fad000 !important;
+    color: black !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    padding: 12px 18px !important;
+    border-radius: 8px !important;
+    min-width: 140px;
+    text-align: center;
+}
 }
 
 /* 14. iPhone 14 Plus (428 x 751) - same as 13 Pro Max */
@@ -3159,4 +3510,31 @@ img { max-width: 100%; height: auto; }
         transform: scale(0.82);
         margin-left: -22%;
     }
+  .addTraningButton {
+    background: orange;
+    color: black;
+    min-width: 140px;
+    min-height: 70px;
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 64% !important;
+    margin-left: 21%;
+    position: relative;
+    z-index: 100000000000;
+    bottom: 192px;
+}
+  .nearbyTrainingsButton {
+    position: absolute !important;
+    bottom: 192px !important;
+    right: 148px !important;
+    z-index: 999999999 !important;
+    background: #fad000 !important;
+    color: black !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    padding: 12px 18px !important;
+    border-radius: 8px !important;
+    min-width: 140px;
+    text-align: center;
+}
 }
