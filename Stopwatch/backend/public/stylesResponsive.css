@@ -2378,7 +2378,7 @@ img { max-width: 100%; height: auto; }
    .stopwatchLabel{
     margin-top: 10%;
    }
-
+  
    .displayTime{
     margin-top: 13%;
    }
@@ -2946,6 +2946,11 @@ img { max-width: 100%; height: auto; }
         border: 2px solid yellow !important;
         font-size: 18px !important;
     }
+    .stopwatchLabel {
+        margin-top: 3%;
+        transform: scale(1);
+        margin-left: -22%;
+    }
 }
 
 /* 2. iPhone XR (414 x 728) */
@@ -2956,6 +2961,11 @@ img { max-width: 100%; height: auto; }
         color: white !important;
         border: 2px solid yellow !important;
         font-size: 18px !important;
+    }
+    .stopwatchLabel {
+        margin-top: 3%;
+        transform: scale(1);
+        margin-left: -22%;
     }
 }
 
@@ -2968,6 +2978,11 @@ img { max-width: 100%; height: auto; }
         border: 2px solid yellow !important;
         font-size: 18px !important;
     }
+    .stopwatchLabel {
+        margin-top: 3%;
+        transform: scale(1);
+        margin-left: -22%;
+    }
 }
 
 /* 4. iPhone 11 Pro (375 x 644) - same as X */
@@ -2978,6 +2993,11 @@ img { max-width: 100%; height: auto; }
         color: white !important;
         border: 2px solid yellow !important;
         font-size: 18px !important;
+    }
+    .stopwatchLabel {
+        margin-top: 3%;
+        transform: scale(1);
+        margin-left: -22%;
     }
 }
 
@@ -2990,6 +3010,11 @@ img { max-width: 100%; height: auto; }
         border: 2px solid yellow !important;
         font-size: 18px !important;
     }
+    .stopwatchLabel {
+        margin-top: 3%;
+        transform: scale(1);
+        margin-left: -22%;
+    }
 }
 
 /* 6. iPhone 12 Mini (360 x 612) */
@@ -3000,6 +3025,11 @@ img { max-width: 100%; height: auto; }
         color: white !important;
         border: 2px solid yellow !important;
         font-size: 18px !important;
+    }
+    .stopwatchLabel {
+        margin-top: 3%;
+        transform: scale(1);
+        margin-left: -22%;
     }
 }
 
@@ -3012,6 +3042,11 @@ img { max-width: 100%; height: auto; }
         border: 2px solid yellow !important;
         font-size: 18px !important;
     }
+    .stopwatchLabel {
+        margin-top: 3%;
+        transform: scale(1);
+        margin-left: -22%;
+    }
 }
 
 /* 8. iPhone 12 Pro (390 x 676) - same as 12 */
@@ -3022,6 +3057,11 @@ img { max-width: 100%; height: auto; }
         color: white !important;
         border: 2px solid yellow !important;
         font-size: 18px !important;
+    }
+    .stopwatchLabel {
+        margin-top: 3%;
+        transform: scale(1);
+        margin-left: -22%;
     }
 }
 
@@ -3034,6 +3074,11 @@ img { max-width: 100%; height: auto; }
         border: 2px solid yellow !important;
         font-size: 18px !important;
     }
+    .stopwatchLabel {
+        margin-top: 3%;
+        transform: scale(1);
+        margin-left: -22%;
+    }
 }
 
 /* 10. iPhone 13 (390 x 674) */
@@ -3044,6 +3089,11 @@ img { max-width: 100%; height: auto; }
         color: white !important;
         border: 2px solid yellow !important;
         font-size: 18px !important;
+    }
+    .stopwatchLabel {
+        margin-top: 3%;
+        transform: scale(1);
+        margin-left: -22%;
     }
 }
 
@@ -3056,6 +3106,11 @@ img { max-width: 100%; height: auto; }
         border: 2px solid yellow !important;
         font-size: 18px !important;
     }
+    .stopwatchLabel {
+        margin-top: 3%;
+        transform: scale(1);
+        margin-left: -22%;
+    }
 }
 
 /* 12. iPhone 13 Pro Max (428 x 751) */
@@ -3066,6 +3121,11 @@ img { max-width: 100%; height: auto; }
         color: white !important;
         border: 2px solid yellow !important;
         font-size: 18px !important;
+    }
+    .stopwatchLabel {
+        margin-top: 3%;
+        transform: scale(1);
+        margin-left: -22%;
     }
 }
 
@@ -3078,6 +3138,11 @@ img { max-width: 100%; height: auto; }
         border: 2px solid yellow !important;
         font-size: 18px !important;
     }
+    .stopwatchLabel {
+        margin-top: 3%;
+        transform: scale(1);
+        margin-left: -22%;
+    }
 }
 
 /* 14. iPhone 14 Plus (428 x 751) - same as 13 Pro Max */
@@ -3088,5 +3153,10 @@ img { max-width: 100%; height: auto; }
         color: white !important;
         border: 2px solid yellow !important;
         font-size: 18px !important;
+    }
+    .stopwatchLabel {
+        margin-top: 3%;
+        transform: scale(1);
+        margin-left: -22%;
     }
 }
