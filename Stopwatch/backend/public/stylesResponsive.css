@@ -3538,3 +3538,88 @@ img { max-width: 100%; height: auto; }
     text-align: center;
 }
 }
+
+@media screen and (max-width: 795px) and (max-height: 1706px) {
+    /* Samsung Galaxy S23 Ultra specific styles */
+     #startRouteButton {
+        background: black !important;
+        color: white !important;
+        border: 2px solid yellow !important;
+        font-size: 18px !important;
+    }
+        .stopwatchLabel {
+        margin-top: 3%;
+        transform: scale(0.82);
+        margin-left: -22%;
+    }
+  .addTraningButton {
+    background: orange;
+    color: black;
+    min-width: 140px;
+    min-height: 70px;
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 64% !important;
+    margin-left: 21%;
+    position: relative;
+    z-index: 100000000000;
+    bottom: 192px;
+}
+  .nearbyTrainingsButton {
+    position: absolute !important;
+    bottom: 192px !important;
+    right: 148px !important;
+    z-index: 999999999 !important;
+    background: #fad000 !important;
+    color: black !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    padding: 12px 18px !important;
+    border-radius: 8px !important;
+    min-width: 140px;
+    text-align: center;
+}
+}
+
+
+@media screen and (max-width: 820px) and (max-height: 1750px) {
+    /* fallback za S23 Ultra i slične uređaje */
+     #startRouteButton {
+        background: black !important;
+        color: white !important;
+        border: 2px solid yellow !important;
+        font-size: 18px !important;
+    }
+        .stopwatchLabel {
+        margin-top: 3%;
+        transform: scale(0.82);
+        margin-left: -22%;
+    }
+  .addTraningButton {
+    background: orange;
+    color: black;
+    min-width: 140px;
+    min-height: 70px;
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 64% !important;
+    margin-left: 21%;
+    position: relative;
+    z-index: 100000000000;
+    bottom: 192px;
+}
+  .nearbyTrainingsButton {
+    position: absolute !important;
+    bottom: 192px !important;
+    right: 148px !important;
+    z-index: 999999999 !important;
+    background: #fad000 !important;
+    color: black !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    padding: 12px 18px !important;
+    border-radius: 8px !important;
+    min-width: 140px;
+    text-align: center;
+}
+}
