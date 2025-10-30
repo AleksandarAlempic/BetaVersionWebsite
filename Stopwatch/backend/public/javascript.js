@@ -264,6 +264,8 @@ checkboxRoot.addEventListener('click', () => {
   startRouteButton.style.display = checkboxRoot.checked ? "none" : "block";
   stopRouteButton.style.display = checkboxRoot.checked ? "none" : "block";
   fetchNearbyRoutesButton.style.display = checkboxRoot.checked ? "none" : "block";
+  fetchNearbyTrainingsButton.style.display = checkboxRoot.checked ? "none" : "block";
+  addTrainingButton.style.display = checkboxRoot.checked ? "none" : "block";
 });
 
 // =================== ICON DEFINITIONS ===================
