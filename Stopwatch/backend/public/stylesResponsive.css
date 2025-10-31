@@ -3626,18 +3626,18 @@ img { max-width: 100%; height: auto; }
     margin-left: 25%;
 }
 
-.next-btnPlayList {
-    position: absolute;
-    /* background: url(/audio/NextButton.png); */
-    cursor: pointer;
-    border: none;
-    width: 43px;
-    height: 35px;
-    border-radius: 50%;
-    z-index: 2;
-    margin-top: -43%;
-    margin-left: 140%;
-}
+   .next-btnPlayList {
+        position: absolute;
+        /* background: url(/audio/NextButton.png); */
+        cursor: pointer;
+        border: none;
+        width: 43px;
+        height: 35px;
+        border-radius: 50%;
+        z-index: 2;
+        margin-top: -48%;
+        margin-left: 140%;
+    }
 
 .previous-btnPlayList {
     position: absolute;
@@ -3651,13 +3651,13 @@ img { max-width: 100%; height: auto; }
     z-index: 2;
 }
 
-.kindOfMusic{
-    font-size: 25px;
-    min-width: 70px;
-    color: white;
-    margin-top: -47%;
-    margin-left: 42%;
-    z-index: 100000000000;
+   .kindOfMusic {
+        font-size: 25px;
+        min-width: 70px;
+        color: white;
+        margin-top: -43% !important;
+        margin-left: 42%;
+        z-index: 100000000000;
+    }
 
-}
 }
