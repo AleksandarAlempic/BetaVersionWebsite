@@ -3631,7 +3631,7 @@ img { max-width: 100%; height: auto; }
         /* background: url(/audio/NextButton.png); */
         cursor: pointer;
         border: none;
-        width: 43px;
+        width: 35px;
         height: 35px;
         border-radius: 50%;
         z-index: 2;
