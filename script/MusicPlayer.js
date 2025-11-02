@@ -143,34 +143,27 @@ music.addEventListener('ended',function(){
     playMusic();
  });
 
-// Definiši media query (mobilni ekran)
 
-nextBtnPlayList.addEventListener("click", () => {
-  const currentText = songList1.textContent.trim(); // očisti whitespace
 
-  // Direktna provera dimenzija iz alert-a
-  if ((window.innerWidth <= 410 && window.innerHeight <= 875) && currentText === "Promo") {
-    alert("Gadja 🎯"); // popup radi
-    songList1.style.setProperty("margin-top", "-36%", "important");
-    nextBtnPlayList.style.setProperty("margin-top", "-38%", "important");
-    previousBtnPlayList.style.setProperty("margin-top", "-40%", "important");
-    console.log("Mobilni ekran — pomeri dugmad dole");
-  } else {
-    console.log("Desktop — ništa se ne menja ili nije Promo");
-  }
+
+// Event listener za Next i Previous dugme
+[nextBtnPlayList, previousBtnPlayList].forEach(btn => {
+    btn.addEventListener('click', () => {
+        const text = songList1.textContent.trim();
+
+        // Direktna provera širine i visine ekrana
+        if (window.innerWidth <= 780 && window.innerHeight <= 1348 &&
+            (text === "Promo" || text === "Classics" || text === "Narodna")) {
+
+            alert(`Gadja 🎯 - ${text}`);
+
+            // Pomeri dugmad i tekst
+            songList1.style.marginTop = "-36%";
+            nextBtnPlayList.style.marginTop = "-38%";
+            previousBtnPlayList.style.marginTop = "-40%";
+
+        } else {
+            console.log("Desktop ili nije Promo/Classics/Narodna");
+        }
+    });
 });
-
-previousBtnPlayList.addEventListener("click", () => {
-  const currentText = songList1.textContent.trim(); // očisti whitespace
-
-  if ((window.innerWidth <= 410 && window.innerHeight <= 875) && currentText === "Promo") {
-    alert("Gadja 🎯");
-    songList1.style.setProperty("margin-top", "-36%", "important");
-    nextBtnPlayList.style.setProperty("margin-top", "-38%", "important");
-    previousBtnPlayList.style.setProperty("margin-top", "-40%", "important");
-    console.log("Mobilni ekran — pomeri dugmad dole");
-  } else {
-    console.log("Desktop — ništa se ne menja ili nije Promo");
-  }
-});
-
