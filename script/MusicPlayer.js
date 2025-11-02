@@ -145,7 +145,9 @@ music.addEventListener('ended',function(){
 
 // Definiši media query (mobilni ekran)
 
-const mq = window.matchMedia("screen and (max-width: 820px) and (max-height: 1750px)");
+// Media query za initial-scale 0.5
+const mq = window.matchMedia("screen and (max-width: 1640px) and (max-height: 3500px)");
+
 
 nextBtnPlayList.addEventListener("click", () => {
   if (
