@@ -145,15 +145,15 @@ music.addEventListener('ended',function(){
 
 // Definiši media query (mobilni ekran)
 
-// Media query za initial-scale 0.5
-const mq = window.matchMedia("screen and (max-width: 1640px) and (max-height: 3500px)");
 
-
+// Media query usklađen sa initial-scale=0.5
+const mq = window.matchMedia("screen and (max-width: 410px) and (max-height: 875px)");
 nextBtnPlayList.addEventListener("click", () => {
   if (
     mq.matches &&
     (songList1.innerHTML === "Classics" || songList1.innerHTML === "Narodna")
   ) {
+      alert("Gadja");
     songList1.style.setProperty("margin-top", "-36%", "important");
     nextBtnPlayList.style.setProperty("margin-top", "-38%", "important");
     previousBtnPlayList.style.setProperty("margin-top", "-40%", "important");
@@ -168,6 +168,7 @@ previousBtnPlayList.addEventListener("click", () => {
     mq.matches &&
     (songList1.innerHTML === "Classics" || songList1.innerHTML === "Narodna")
   ) {
+      alert("Gadja");
     songList1.style.setProperty("margin-top", "-36%", "important");
     nextBtnPlayList.style.setProperty("margin-top", "-38%", "important");
     previousBtnPlayList.style.setProperty("margin-top", "-40%", "important");
