@@ -77,6 +77,7 @@ nextBtn.addEventListener('click', () => {
     else{
         currentMusic++;
     }
+    songList5.
     setMusic(currentMusic);
     playMusic();
 });
@@ -112,8 +113,9 @@ nextBtnPlayList.addEventListener('click', () => {
     else{
         currentPlayList++;
         List[0].innerHTML = List[currentPlayList].innerHTML;
-       
+       disk.style.backgroundImage
     }
+    songList5.style.textAlign = "center";
     setPlaylist(currentPlayList);
     playMusic();
 });
@@ -131,6 +133,7 @@ previousBtnPlayList.addEventListener('click', () => {
         currentPlayList--;
         List[0].innerHTML = List[currentPlayList].innerHTML;
     }
+    songList5.style.textAlign = "center";
     setPlaylist(currentPlayList);
     playMusic();
 });
