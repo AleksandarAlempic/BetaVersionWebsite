@@ -148,10 +148,10 @@ music.addEventListener('ended',function(){
 
 // Event listener za Next i Previous dugme
 [nextBtnPlayList, previousBtnPlayList].forEach(btn => {
-    alert("Pogodio je");
+   
     btn.addEventListener('click', () => {
         const text = songList1.textContent.trim();
-
+ alert("Pogodio je");
         // Direktna provera širine i visine ekrana
         if (window.innerWidth <= 780 && window.innerHeight <= 1348 &&
             (text === "Promo" || text === "Classics" || text === "Narodna")) {
