@@ -145,37 +145,32 @@ music.addEventListener('ended',function(){
 
 // Definiši media query (mobilni ekran)
 
-
-// Media query usklađen sa initial-scale=0.5
-const mq = window.matchMedia("screen and (max-width: 410px) and (max-height: 875px)");
 nextBtnPlayList.addEventListener("click", () => {
-  if (
-    mq.matches &&
-    (songList1.innerHTML === "Promo")
-  ) {
-      alert("Gadja");
+  const currentText = songList1.textContent.trim(); // očisti whitespace
+
+  // Direktna provera dimenzija iz alert-a
+  if ((window.innerWidth <= 410 && window.innerHeight <= 875) && currentText === "Promo") {
+    alert("Gadja 🎯"); // popup radi
     songList1.style.setProperty("margin-top", "-36%", "important");
     nextBtnPlayList.style.setProperty("margin-top", "-38%", "important");
     previousBtnPlayList.style.setProperty("margin-top", "-40%", "important");
     console.log("Mobilni ekran — pomeri dugmad dole");
   } else {
-    console.log("Desktop — ništa se ne menja");
+    console.log("Desktop — ništa se ne menja ili nije Promo");
   }
 });
 
- // || songList1.innerHTML === "Narodna"
 previousBtnPlayList.addEventListener("click", () => {
-  if (
-    mq.matches &&
-    (songList1.innerHTML === "Promo")
-  ) {
-      alert("Gadja");
+  const currentText = songList1.textContent.trim(); // očisti whitespace
+
+  if ((window.innerWidth <= 410 && window.innerHeight <= 875) && currentText === "Promo") {
+    alert("Gadja 🎯");
     songList1.style.setProperty("margin-top", "-36%", "important");
     nextBtnPlayList.style.setProperty("margin-top", "-38%", "important");
     previousBtnPlayList.style.setProperty("margin-top", "-40%", "important");
     console.log("Mobilni ekran — pomeri dugmad dole");
   } else {
-    console.log("Desktop — ništa se ne menja");
+    console.log("Desktop — ništa se ne menja ili nije Promo");
   }
 });
 
