@@ -142,3 +142,35 @@ music.addEventListener('ended',function(){
     setMusic(currentMusic);
     playMusic();
  });
+
+// Definiši media query (mobilni ekran)
+const mq = window.matchMedia("(max-width: 768px)");
+
+nextBtnPlayList.addEventListener("click", () => {
+  if (
+    mq.matches &&
+    (songList1.innerHTML === "Classics" || songList1.innerHTML === "Narodna")
+  ) {
+    songList1.style.setProperty("margin-top", "-36%", "important");
+    nextBtnPlayList.style.setProperty("margin-top", "-38%", "important");
+    previousBtnPlayList.style.setProperty("margin-top", "-40%", "important");
+    console.log("Mobilni ekran — pomeri dugmad dole");
+  } else {
+    console.log("Desktop — ništa se ne menja");
+  }
+});
+
+previousBtnPlayList.addEventListener("click", () => {
+  if (
+    mq.matches &&
+    (songList1.innerHTML === "Classics" || songList1.innerHTML === "Narodna")
+  ) {
+    songList1.style.setProperty("margin-top", "-36%", "important");
+    nextBtnPlayList.style.setProperty("margin-top", "-38%", "important");
+    previousBtnPlayList.style.setProperty("margin-top", "-40%", "important");
+    console.log("Mobilni ekran — pomeri dugmad dole");
+  } else {
+    console.log("Desktop — ništa se ne menja");
+  }
+});
+
