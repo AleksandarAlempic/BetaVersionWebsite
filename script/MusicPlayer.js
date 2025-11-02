@@ -102,11 +102,12 @@ const setPlaylist = (i) => {
 setPlaylist(0);
 
 nextBtnPlayList.addEventListener('click', () => {
-    // 1. Pročitaj trenutni tekst pre promene
-    let currentText = List[currentPlayList].textContent.trim();
-   alert("Pogodjeno");
-    // 2. Provera i pomeranje dugmadi
+    // 1. Pročitaj trenutno vidljiv tekst
+    let currentText = List[0].textContent.trim();
+
+    // 2. Alert i pomeranje dugmadi
     if (currentText === "Narodna" || currentText === "Classics" || currentText === "Promo") {
+        alert(`Pogodjeno - ${currentText}`);
         songList1.style.setProperty("margin-top", "-36%", "important");
         nextBtnPlayList.style.setProperty("margin-top", "-38%", "important");
         previousBtnPlayList.style.setProperty("margin-top", "-40%", "important");
@@ -114,11 +115,10 @@ nextBtnPlayList.addEventListener('click', () => {
     }
 
     // 3. Promeni innerHTML i indeks
-    if(currentPlayList >=  length-1){
+    if(currentPlayList >= length-1){
         List[0].innerHTML = songList7.innerHTML;
         currentPlayList = 0;   
-    }
-    else{
+    } else {
         currentPlayList++;
         List[0].innerHTML = List[currentPlayList].innerHTML;
     }
