@@ -77,7 +77,6 @@ nextBtn.addEventListener('click', () => {
     else{
         currentMusic++;
     }
-    songList5.
     setMusic(currentMusic);
     playMusic();
 });
