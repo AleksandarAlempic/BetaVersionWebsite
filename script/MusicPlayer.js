@@ -102,6 +102,18 @@ const setPlaylist = (i) => {
 setPlaylist(0);
 
 nextBtnPlayList.addEventListener('click', () => {
+    // 1. Pročitaj trenutni tekst pre promene
+    let currentText = List[currentPlayList].textContent.trim();
+   alert("Pogodjeno");
+    // 2. Provera i pomeranje dugmadi
+    if (currentText === "Narodna" || currentText === "Classics" || currentText === "Promo") {
+        songList1.style.setProperty("margin-top", "-36%", "important");
+        nextBtnPlayList.style.setProperty("margin-top", "-38%", "important");
+        previousBtnPlayList.style.setProperty("margin-top", "-40%", "important");
+        nextBtnPlayList.style.background = "black";
+    }
+
+    // 3. Promeni innerHTML i indeks
     if(currentPlayList >=  length-1){
         List[0].innerHTML = songList7.innerHTML;
         currentPlayList = 0;   
@@ -109,19 +121,8 @@ nextBtnPlayList.addEventListener('click', () => {
     else{
         currentPlayList++;
         List[0].innerHTML = List[currentPlayList].innerHTML;
-       
     }
-if (
-    List[currentPlayList].textContent.trim() === "Narodna" || List[currentPlayList].textContent.trim() === "Classics"
-) {
-    alert("radi");
-    // Pomeri dugmad i tekst
-    songList1.style.setProperty("margin-top", "-36%", "important");
-    nextBtnPlayList.style.setProperty("margin-top", "-38%", "important");
-    previousBtnPlayList.style.setProperty("margin-top", "-40%", "important");
-    nextBtnPlayList.style.background = "black";
-}
-    
+
     setPlaylist(currentPlayList);
     playMusic();
 });
