@@ -151,7 +151,7 @@ const mq = window.matchMedia("screen and (max-width: 410px) and (max-height: 875
 nextBtnPlayList.addEventListener("click", () => {
   if (
     mq.matches &&
-    (songList1.innerHTML === "Classics" || songList1.innerHTML === "Narodna")
+    (songList1.innerHTML === "Promo")
   ) {
       alert("Gadja");
     songList1.style.setProperty("margin-top", "-36%", "important");
@@ -163,10 +163,11 @@ nextBtnPlayList.addEventListener("click", () => {
   }
 });
 
+ // || songList1.innerHTML === "Narodna"
 previousBtnPlayList.addEventListener("click", () => {
   if (
     mq.matches &&
-    (songList1.innerHTML === "Classics" || songList1.innerHTML === "Narodna")
+    (songList1.innerHTML === "Promo")
   ) {
       alert("Gadja");
     songList1.style.setProperty("margin-top", "-36%", "important");
