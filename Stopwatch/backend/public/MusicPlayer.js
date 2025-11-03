@@ -118,11 +118,11 @@ nextBtnPlayList.addEventListener('click', () => {
   if (List[currentPlayList].innerHTML.trim() === "Narodna") {
     nextBtnPlayList.style.marginTop = "-30%";
     previousBtnPlayList.style.marginTop = "-42%";
-      kindOfMusic.style.setProperty("margin-top", "36%", "important");
+      kindOfMusic.style.setProperty("margin-top", "-37%", "important");
 } else {
     nextBtnPlayList.style.marginTop = "-45%";
     previousBtnPlayList.style.marginTop = "-48%";
-   kindOfMusic.style.setProperty("margin-top", "43%", "important");
+   kindOfMusic.style.setProperty("margin-top", "-43%", "important");
 }
 
     songList1.style.textAlign = "center";
@@ -147,12 +147,12 @@ previousBtnPlayList.addEventListener('click', () => {
     if (List[currentPlayList].innerHTML.trim() === "Narodna") {
     nextBtnPlayList.style.marginTop = "-30%";
     previousBtnPlayList.style.marginTop = "-42%";
-       kindOfMusic.style.setProperty("margin-top", "36%", "important");
+       kindOfMusic.style.setProperty("margin-top", "-37%", "important");
                
 } else {
         nextBtnPlayList.style.marginTop = "-45%";
          previousBtnPlayList.style.marginTop = "-48%"
-         kindOfMusic.style.setProperty("margin-top", "43%", "important");
+         kindOfMusic.style.setProperty("margin-top", "-43%", "important");
 }
     songList1.style.textAlign = "center";
     setPlaylist(currentPlayList);
