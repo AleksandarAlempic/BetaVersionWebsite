@@ -105,8 +105,6 @@ const setPlaylist = (i) => {
 setPlaylist(0);
 
 nextBtnPlayList.addEventListener('click', () => {
-    alert("Ovo Radi!");
-
     if (currentPlayList >= length - 1) {
         List[0].innerHTML = songList7.innerHTML;
         currentPlayList = 0;
@@ -120,7 +118,14 @@ nextBtnPlayList.addEventListener('click', () => {
         nextBtnPlayList.style.marginTop = "-36%";
         previousBtnPlayList.style.marginTop = "-36%";
         kindOfMusic.style.setProperty("margin-top", "-37%", "important");
-    } else {
+    } 
+       else if(List[currentPlayList].innerHTML.trim() === "Promo" || 
+        List[currentPlayList].innerHTML.trim() === "Balkan"){
+        nextBtnPlayList.style.marginTop = "-34%";
+        previousBtnPlayList.style.marginTop = "-34%";
+         kindOfMusic.style.setProperty("margin-top", "-35%", "important");
+    }
+    else {
         nextBtnPlayList.style.marginTop = "-45%";
         previousBtnPlayList.style.marginTop = "-46%";
         kindOfMusic.style.setProperty("margin-top", "-43%", "important");
@@ -151,7 +156,14 @@ previousBtnPlayList.addEventListener('click', () => {
         nextBtnPlayList.style.marginTop = "-36%";
         previousBtnPlayList.style.marginTop = "-36%";
         kindOfMusic.style.setProperty("margin-top", "-37%", "important");
-    } else {
+    }
+    else if(List[currentPlayList].innerHTML.trim() === "Promo" || 
+        List[currentPlayList].innerHTML.trim() === "Balkan"){
+        nextBtnPlayList.style.marginTop = "-34%";
+        previousBtnPlayList.style.marginTop = "-34%";
+         kindOfMusic.style.setProperty("margin-top", "-35%", "important");
+    }
+    else {
         nextBtnPlayList.style.marginTop = "-45%";
         previousBtnPlayList.style.marginTop = "-46%";
         kindOfMusic.style.setProperty("margin-top", "-43%", "important");
