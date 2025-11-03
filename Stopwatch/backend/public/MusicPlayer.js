@@ -105,6 +105,7 @@ const setPlaylist = (i) => {
 setPlaylist(0);
 
 nextBtnPlayList.addEventListener('click', () => {
+    alert("Ovo Radi!");
     if(currentPlayList >=  length-1){
         List[0].innerHTML = songList7.innerHTML;
         currentPlayList = 0;   
@@ -120,6 +121,7 @@ nextBtnPlayList.addEventListener('click', () => {
 });
 
 previousBtnPlayList.addEventListener('click', () => {
+     alert("Ovo Radi!");
      if (currentPlayList <= 0){
         currentPlayList = playLists.length-1;
          List[0].innerHTML = songList6.innerHTML;
