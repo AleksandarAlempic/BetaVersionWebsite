@@ -106,15 +106,22 @@ setPlaylist(0);
 
 nextBtnPlayList.addEventListener('click', () => {
     alert("Ovo Radi!");
-    if(currentPlayList >=  length-1){
+
+    if (currentPlayList >= length - 1) {
         List[0].innerHTML = songList7.innerHTML;
-        currentPlayList = 0;   
-    }
-    else{
+        currentPlayList = 0;
+    } else {
         currentPlayList++;
         List[0].innerHTML = List[currentPlayList].innerHTML;
-       disk.style.backgroundImage
     }
+
+    // 🔽 Provera da li je "Narodna" — uvek se izvrši
+    if (List[currentPlayList].innerHTML.trim() === "Narodna") {
+        nextBtnPlayList.style.background = "black";
+    } else {
+        nextBtnPlayList.style.background = ""; // reset na default
+    }
+
     songList1.style.textAlign = "center";
     setPlaylist(currentPlayList);
     playMusic();
