@@ -115,12 +115,12 @@ nextBtnPlayList.addEventListener('click', () => {
         List[0].innerHTML = List[currentPlayList].innerHTML;
     }
 
-    // 🔽 Provera da li je "Narodna" — uvek se izvrši
-    if (List[currentPlayList].innerHTML.trim() === "Narodna") {
-        nextBtnPlayList.style.background = "black";
-    } else {
-        nextBtnPlayList.style.background = ""; // reset na default
-    }
+  if (List[currentPlayList].innerHTML.trim() === "Narodna") {
+    nextBtnPlayList.style.marginTop = "-35%";
+    previousBtnPlayList.style.marginTop = "-42%";
+} else {
+    nextBtnPlayList.style.background = ""; // reset na default
+}
 
     songList1.style.textAlign = "center";
     setPlaylist(currentPlayList);
@@ -141,6 +141,12 @@ previousBtnPlayList.addEventListener('click', () => {
         currentPlayList--;
         List[0].innerHTML = List[currentPlayList].innerHTML;
     }
+    if (List[currentPlayList].innerHTML.trim() === "Narodna") {
+    nextBtnPlayList.style.marginTop = "-35%";
+    previousBtnPlayList.style.marginTop = "-42%";
+} else {
+    nextBtnPlayList.style.background = ""; // reset na default
+}
     songList1.style.textAlign = "center";
     setPlaylist(currentPlayList);
     playMusic();
