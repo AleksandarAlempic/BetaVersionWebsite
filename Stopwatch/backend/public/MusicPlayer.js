@@ -115,45 +115,48 @@ nextBtnPlayList.addEventListener('click', () => {
         List[0].innerHTML = List[currentPlayList].innerHTML;
     }
 
-  if (List[currentPlayList].innerHTML.trim() === "Narodna") {
-    nextBtnPlayList.style.marginTop = "-30%";
-    previousBtnPlayList.style.marginTop = "-42%";
-      kindOfMusic.style.setProperty("margin-top", "-37%", "important");
-} else {
-    nextBtnPlayList.style.marginTop = "-45%";
-    previousBtnPlayList.style.marginTop = "-48%";
-   kindOfMusic.style.setProperty("margin-top", "-43%", "important");
-}
+    if (List[currentPlayList].innerHTML.trim() === "Narodna" || 
+        List[currentPlayList].innerHTML.trim() === "Classics") {
+        nextBtnPlayList.style.marginTop = "-36%";
+        previousBtnPlayList.style.marginTop = "-42%";
+        kindOfMusic.style.setProperty("margin-top", "-37%", "important");
+    } else {
+        nextBtnPlayList.style.marginTop = "-45%";
+        previousBtnPlayList.style.marginTop = "-48%";
+        kindOfMusic.style.setProperty("margin-top", "-43%", "important");
+    }
 
     songList1.style.textAlign = "center";
     setPlaylist(currentPlayList);
     playMusic();
 });
 
+
 previousBtnPlayList.addEventListener('click', () => {
-     alert("Ovo Radi!");
-     if (currentPlayList <= 0){
-        currentPlayList = playLists.length-1;
-         List[0].innerHTML = songList6.innerHTML;
-    }
-    else if(currentPlayList==1){ /// Bug with not displaying the Promo Songs after back click from Classic
+
+
+    if (currentPlayList <= 0) {
+        currentPlayList = playLists.length - 1;
+        List[0].innerHTML = songList6.innerHTML;
+    } else if (currentPlayList == 1) { // Bug with not displaying the Promo Songs after back click from Classic
         List[0].innerHTML = songList7.innerHTML;
         currentPlayList--;
-    }
-    else{
+    } else {
         currentPlayList--;
         List[0].innerHTML = List[currentPlayList].innerHTML;
     }
-    if (List[currentPlayList].innerHTML.trim() === "Narodna") {
-    nextBtnPlayList.style.marginTop = "-30%";
-    previousBtnPlayList.style.marginTop = "-42%";
-       kindOfMusic.style.setProperty("margin-top", "-37%", "important");
-               
-} else {
+
+    if (List[currentPlayList].innerHTML.trim() === "Narodna" || 
+        List[currentPlayList].innerHTML.trim() === "Classics") {
+        nextBtnPlayList.style.marginTop = "-36%";
+        previousBtnPlayList.style.marginTop = "-42%";
+        kindOfMusic.style.setProperty("margin-top", "-37%", "important");
+    } else {
         nextBtnPlayList.style.marginTop = "-45%";
-         previousBtnPlayList.style.marginTop = "-48%"
-         kindOfMusic.style.setProperty("margin-top", "-43%", "important");
-}
+        previousBtnPlayList.style.marginTop = "-48%";
+        kindOfMusic.style.setProperty("margin-top", "-43%", "important");
+    }
+
     songList1.style.textAlign = "center";
     setPlaylist(currentPlayList);
     playMusic();
