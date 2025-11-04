@@ -121,9 +121,9 @@ nextBtnPlayList.addEventListener('click', () => {
     } 
        else if(List[currentPlayList].innerHTML.trim() === "Promo" || 
         List[currentPlayList].innerHTML.trim() === "Balkan"){
-        nextBtnPlayList.style.marginTop = "-44%";
+        nextBtnPlayList.style.marginTop = "-45%";
         previousBtnPlayList.style.marginTop = "-45%";
-         kindOfMusic.style.setProperty("margin-top", "-35%", "important");
+         kindOfMusic.style.setProperty("margin-top", "-40%", "important");
     }
     else {
         nextBtnPlayList.style.marginTop = "-45%";
@@ -159,9 +159,9 @@ previousBtnPlayList.addEventListener('click', () => {
     }
     else if(List[currentPlayList].innerHTML.trim() === "Promo" || 
         List[currentPlayList].innerHTML.trim() === "Balkan"){
-        nextBtnPlayList.style.marginTop = "-44%";
+        nextBtnPlayList.style.marginTop = "-45%";
         previousBtnPlayList.style.marginTop = "-45%";
-         kindOfMusic.style.setProperty("margin-top", "-35%", "important");
+         kindOfMusic.style.setProperty("margin-top", "-40%", "important");
     }
     else {
         nextBtnPlayList.style.marginTop = "-45%";
