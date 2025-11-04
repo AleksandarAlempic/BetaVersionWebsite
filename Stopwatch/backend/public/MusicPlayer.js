@@ -113,18 +113,22 @@ nextBtnPlayList.addEventListener('click', () => {
         List[0].innerHTML = List[currentPlayList].innerHTML;
     }
 
-    if (List[currentPlayList].innerHTML.trim() === "Narodna" || 
-        List[currentPlayList].innerHTML.trim() === "Classics") {
+    if (List[currentPlayList].innerHTML.trim() === "Narodna") {
         nextBtnPlayList.style.marginTop = "-37%";
         previousBtnPlayList.style.marginTop = "-38%";
         kindOfMusic.style.setProperty("margin-top", "-34%", "important");
-         // kindOfMusic.style.setProperty("margin-left", "-37%", "important");
-    } 
-       else if(List[currentPlayList].innerHTML.trim() === "Promo" || 
+        // kindOfMusic.style.setProperty("margin-left", "-37%", "important");
+    }
+    else if(List[currentPlayList].innerHTML.trim() === "Promo" || 
         List[currentPlayList].innerHTML.trim() === "Balkan"){
         nextBtnPlayList.style.marginTop = "-44%";
         previousBtnPlayList.style.marginTop = "-43.5%";
          kindOfMusic.style.setProperty("margin-top", "-40%", "important");
+    }
+         else if(List[currentPlayList].innerHTML.trim() === "Classics"){
+        nextBtnPlayList.style.marginTop = "-44%";
+        previousBtnPlayList.style.marginTop = "-43.5%";
+         kindOfMusic.style.setProperty("margin-top", "-36%", "important");
     }
     else {
         nextBtnPlayList.style.marginTop = "-45%";
@@ -152,8 +156,7 @@ previousBtnPlayList.addEventListener('click', () => {
         List[0].innerHTML = List[currentPlayList].innerHTML;
     }
 
-    if (List[currentPlayList].innerHTML.trim() === "Narodna" || 
-        List[currentPlayList].innerHTML.trim() === "Classics") {
+    if (List[currentPlayList].innerHTML.trim() === "Narodna") {
         nextBtnPlayList.style.marginTop = "-37%";
         previousBtnPlayList.style.marginTop = "-38%";
         kindOfMusic.style.setProperty("margin-top", "-34%", "important");
@@ -164,6 +167,11 @@ previousBtnPlayList.addEventListener('click', () => {
         nextBtnPlayList.style.marginTop = "-44%";
         previousBtnPlayList.style.marginTop = "-43.5%";
          kindOfMusic.style.setProperty("margin-top", "-40%", "important");
+    }
+         else if(List[currentPlayList].innerHTML.trim() === "Classics"){
+        nextBtnPlayList.style.marginTop = "-44%";
+        previousBtnPlayList.style.marginTop = "-43.5%";
+         kindOfMusic.style.setProperty("margin-top", "-36%", "important");
     }
     else {
         nextBtnPlayList.style.marginTop = "-45%";
