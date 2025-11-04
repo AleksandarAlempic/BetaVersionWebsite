@@ -126,8 +126,8 @@ nextBtnPlayList.addEventListener('click', () => {
          kindOfMusic.style.setProperty("margin-top", "-40%", "important");
     }
          else if(List[currentPlayList].innerHTML.trim() === "Classics"){
-        nextBtnPlayList.style.marginTop = "-44%";
-        previousBtnPlayList.style.marginTop = "-43.5%";
+        nextBtnPlayList.style.marginTop = "-40%";
+        previousBtnPlayList.style.marginTop = "-42%";
          kindOfMusic.style.setProperty("margin-top", "-36%", "important");
     }
     else {
@@ -169,8 +169,8 @@ previousBtnPlayList.addEventListener('click', () => {
          kindOfMusic.style.setProperty("margin-top", "-40%", "important");
     }
          else if(List[currentPlayList].innerHTML.trim() === "Classics"){
-        nextBtnPlayList.style.marginTop = "-44%";
-        previousBtnPlayList.style.marginTop = "-43.5%";
+        nextBtnPlayList.style.marginTop = "-40%";
+        previousBtnPlayList.style.marginTop = "-42%";
          kindOfMusic.style.setProperty("margin-top", "-36%", "important");
     }
     else {
