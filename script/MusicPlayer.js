@@ -102,27 +102,15 @@ const setPlaylist = (i) => {
 setPlaylist(0);
 
 nextBtnPlayList.addEventListener('click', () => {
-    // 1. Pročitaj trenutno vidljiv tekst
-    let currentText = List[0].textContent.trim();
-
-    // 2. Alert i pomeranje dugmadi
-    if (currentText === "Narodna" || currentText === "Classics" || currentText === "Promo") {
-        alert(`Pogodjeno - ${currentText}`);
-        songList1.style.setProperty("margin-top", "-36%", "important");
-        nextBtnPlayList.style.setProperty("margin-top", "-38%", "important");
-        previousBtnPlayList.style.setProperty("margin-top", "-40%", "important");
-        nextBtnPlayList.style.background = "black";
-    }
-
-    // 3. Promeni innerHTML i indeks
-    if(currentPlayList >= length-1){
+    if(currentPlayList >=  length-1){
         List[0].innerHTML = songList7.innerHTML;
         currentPlayList = 0;   
-    } else {
+    }
+    else{
         currentPlayList++;
         List[0].innerHTML = List[currentPlayList].innerHTML;
+       
     }
-
     setPlaylist(currentPlayList);
     playMusic();
 });
@@ -154,29 +142,3 @@ music.addEventListener('ended',function(){
     setMusic(currentMusic);
     playMusic();
  });
-
-
-
-
-// // Event listener za Next i Previous dugme
-// [nextBtnPlayList, previousBtnPlayList].forEach(btn => {
-   
-//     btn.addEventListener('click', () => {
-//         const text = songList1.textContent.trim();
-//  alert("Pogodio je");
-//         // Direktna provera širine i visine ekrana
-//         if (window.innerWidth <= 780 && window.innerHeight <= 1348 &&
-//             (text === "Promo" || text === "Classics" || text === "Narodna")) {
-
-//             alert(`Gadja 🎯 - ${text}`);
-
-//             // Pomeri dugmad i tekst
-//             songList1.style.marginTop = "-36%";
-//             nextBtnPlayList.style.marginTop = "-38%";
-//             previousBtnPlayList.style.marginTop = "-40%";
-
-//         } else {
-//             console.log("Desktop ili nije Promo/Classics/Narodna");
-//         }
-//     });
-// });
