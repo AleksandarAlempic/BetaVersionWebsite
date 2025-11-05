@@ -113,9 +113,10 @@ nextBtnPlayList.addEventListener('click', () => {
         List[0].innerHTML = List[currentPlayList].innerHTML;
     }
 
-      if (List[currentPlayList].innerHTML.trim() === "Narodna") {
+     if (List[currentPlayList].innerHTML.trim() === "Narodna") {
         nextBtnPlayList.style.marginTop = "-37%";
-        previousBtnPlayList.style.marginTop = "-38%";
+        previousBtnPlayList.style.marginTop = "-37%";
+        previousBtnPlayList.style.marginLeft = "1%";
         kindOfMusic.style.setProperty("margin-top", "-34%", "important");
         kindOfMusic.style.setProperty("margin-left", "0%", "important");
     }
@@ -128,7 +129,7 @@ nextBtnPlayList.addEventListener('click', () => {
     }
          else if(List[currentPlayList].innerHTML.trim() === "Classics"){
         nextBtnPlayList.style.marginTop = "-40%";
-        previousBtnPlayList.style.marginTop = "-41%";
+        previousBtnPlayList.style.marginTop = "-40%";
          kindOfMusic.style.setProperty("margin-top", "-36%", "important");
               kindOfMusic.style.setProperty("margin-left", "0%", "important");
     }
@@ -138,7 +139,6 @@ nextBtnPlayList.addEventListener('click', () => {
         kindOfMusic.style.setProperty("margin-top", "-43%", "important");
         kindOfMusic.style.setProperty("margin-left", "0%", "important");
     }
-
 
     songList1.style.textAlign = "center";
     setPlaylist(currentPlayList);
@@ -160,7 +160,8 @@ previousBtnPlayList.addEventListener('click', () => {
 
     if (List[currentPlayList].innerHTML.trim() === "Narodna") {
         nextBtnPlayList.style.marginTop = "-37%";
-        previousBtnPlayList.style.marginTop = "-38%";
+        previousBtnPlayList.style.marginTop = "-37%";
+        previousBtnPlayList.style.marginLeft = "1%";
         kindOfMusic.style.setProperty("margin-top", "-34%", "important");
         kindOfMusic.style.setProperty("margin-left", "0%", "important");
     }
@@ -173,7 +174,7 @@ previousBtnPlayList.addEventListener('click', () => {
     }
          else if(List[currentPlayList].innerHTML.trim() === "Classics"){
         nextBtnPlayList.style.marginTop = "-40%";
-        previousBtnPlayList.style.marginTop = "-41%";
+        previousBtnPlayList.style.marginTop = "-40%";
          kindOfMusic.style.setProperty("margin-top", "-36%", "important");
               kindOfMusic.style.setProperty("margin-left", "0%", "important");
     }
