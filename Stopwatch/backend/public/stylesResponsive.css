@@ -2469,7 +2469,7 @@ img { max-width: 100%; height: auto; }
         min-height: 70px !important;
         font-size: 20px !important;
         font-weight: 900 !important;
-        margin-left: 23% !important;
+        margin-left: 35% !important;
         position: relative !important;
         z-index: 100000000000 !important;
     }
@@ -2675,7 +2675,7 @@ img { max-width: 100%; height: auto; }
         font-weight: 600 !important;
         background: #fad000 !important;
         min-height: 5% !important;
-        margin-left: 48% !important;
+        margin-left: 56% !important;
     }
 }
 
