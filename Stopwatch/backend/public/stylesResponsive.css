@@ -2393,6 +2393,9 @@ img { max-width: 100%; height: auto; }
 /* === SPECIFIC MEDIA QUERY FOR 500PX AND LOWER === */
 @media screen and (max-width: 900px) {
 
+  .addPlaylistButton{
+    margin-left: 48%;
+  }
   
          #map-content {
         z-index: 10000000000 !important;
