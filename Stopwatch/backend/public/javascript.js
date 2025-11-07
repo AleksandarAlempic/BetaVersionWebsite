@@ -15,6 +15,7 @@ const fetchNearbyRoutesButton = document.getElementById("fetchNearbyRoutesButton
 const fetchNearbyTrainingsButton = document.getElementById("fetchNearbyTrainingsButton");
 const addTrainingButton = document.getElementById("fetchAddTrainingButton");
 const addTrainingPopup = document.getElementById("addTrainingPopup");
+const playListBtn = document.querySelector('.addPlaylistButton');
 
 const Root = document.getElementById("map-content");
 const Map = document.getElementById("map");
@@ -266,6 +267,7 @@ checkboxRoot.addEventListener('click', () => {
   fetchNearbyRoutesButton.style.display = checkboxRoot.checked ? "none" : "block";
   fetchNearbyTrainingsButton.style.display = checkboxRoot.checked ? "none" : "block";
   addTrainingButton.style.display = checkboxRoot.checked ? "none" : "block";
+  playListBtn.style.display = checkboxRoot.checked ? "none" : "block";
 });
 
 // =================== ICON DEFINITIONS ===================
