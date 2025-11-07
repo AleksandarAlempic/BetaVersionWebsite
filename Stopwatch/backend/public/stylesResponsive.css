@@ -3664,3 +3664,7 @@ img { max-width: 100%; height: auto; }
     }
 
 }
+
+.addPlaylistButton{
+    margin-left: 48%;
+  }
