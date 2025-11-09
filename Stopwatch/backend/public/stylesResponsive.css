@@ -3637,7 +3637,7 @@ img { max-width: 100%; height: auto; }
         width: 35px;
         height: 35px;
         border-radius: 50%;
-        z-index: 2;
+        z-index: 20000000;
         margin-top: -45%;
         margin-left: 140%;
     }
@@ -3651,7 +3651,7 @@ img { max-width: 100%; height: auto; }
     margin-left: -9%;
     border: none;
     cursor: pointer;
-    z-index: 2;
+    z-index: 2000000;
 }
 
    .kindOfMusic {
