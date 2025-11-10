@@ -225,7 +225,7 @@ function setInterval1Timer() {
                     seconds = 59;
                 } else {
                     clearInterval(timerInterval);
-                    alert("Tajmer je završio!");
+                   
 
                     // Pusti audio pesmu
                     const alarmAudio = document.getElementById('audio1');
