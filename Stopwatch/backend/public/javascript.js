@@ -196,8 +196,8 @@ let timerInterval;  // globalno za kontrolu intervala
 
 function setInterval1Timer() {
     // Uzmi vrednost iz input polja
-    const input = document.getElementById('input').value.trim(); // format HH:MM:SS
-    const parts = input.split(':');
+    const inputValue = document.getElementById('input').value.trim(); // format HH:MM:SS
+    const parts = inputValue.split(':');
 
     if (parts.length !== 3) {
         alert("Format mora biti HH:MM:SS");
@@ -226,6 +226,14 @@ function setInterval1Timer() {
                 } else {
                     clearInterval(timerInterval);
                     alert("Tajmer je završio!");
+
+                    // Pusti audio pesmu
+                    const alarmAudio = document.getElementById('audio1');
+                    if (alarmAudio) {
+                        alarmAudio.currentTime = 0; // Vrati na početak
+                        alarmAudio.play();           // Pusti pesmu
+                    }
+
                     return;
                 }
             }
