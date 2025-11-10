@@ -192,6 +192,66 @@ timer.addEventListener('click', () => {
   input.value = formatTime(hours) + ":" + formatTime(minutes) + ":" + formatTime(seconds % 60);
 });
 
+let timerInterval;  // globalno za kontrolu intervala
+
+function setInterval1Timer() {
+    // Uzmi vrednost iz input polja
+    const input = document.getElementById('input').value.trim(); // format HH:MM:SS
+    const parts = input.split(':');
+
+    if (parts.length !== 3) {
+        alert("Format mora biti HH:MM:SS");
+        return;
+    }
+
+    let hours = parseInt(parts[0], 10);
+    let minutes = parseInt(parts[1], 10);
+    let seconds = parseInt(parts[2], 10);
+
+    // Zaustavi prethodni interval ako postoji
+    if (timerInterval) clearInterval(timerInterval);
+
+    timerInterval = setInterval(() => {
+        if (seconds > 0) {
+            seconds--;
+        } else {
+            if (minutes > 0) {
+                minutes--;
+                seconds = 59;
+            } else {
+                if (hours > 0) {
+                    hours--;
+                    minutes = 59;
+                    seconds = 59;
+                } else {
+                    clearInterval(timerInterval);
+                    alert("Tajmer je završio!");
+                    return;
+                }
+            }
+        }
+
+        // Formatiranje sa vodećim nulama
+        const hStr = hours.toString().padStart(2, '0');
+        const mStr = minutes.toString().padStart(2, '0');
+        const sStr = seconds.toString().padStart(2, '0');
+
+        document.getElementById('input').value = `${hStr}:${mStr}:${sStr}`;
+    }, 1000);
+}
+
+// Funkcija za zaustavljanje tajmera
+function myStopTimer() {
+    clearInterval(timerInterval);
+}
+
+// Funkcija za resetovanje tajmera
+function resetFunction() {
+    clearInterval(timerInterval);
+    document.getElementById('input').value = "00:00:00";
+}
+
+
 function setInterval1Stopwatch() {
   myInterval = setInterval(myTimer, 1000);
 }
