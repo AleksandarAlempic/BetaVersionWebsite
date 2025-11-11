@@ -342,85 +342,80 @@
         }
     }
 
-    function stopRoute() {
-        if (!routeStarted) return;
+ function stopRoute() {
+    if (!routeStarted) return;
 
-        const confirmSave = confirm("Do you want to save a Route?");
-        
-        // Stop tracking regardless
-        routeStarted = false;
-        alert("Route stopped.");
+    routeStarted = false;  // Zaustavi praćenje
 
-        const routeEndTime = new Date();
-        totalTime = (routeEndTime - routeStartTime) / 1000;
+    const confirmSave = confirm("Do you want to save the Route?");
+    const routeEndTime = new Date();
+    totalTime = (routeEndTime - routeStartTime) / 1000; // ukupno vreme u sekundama
 
-        document.getElementById('speed').style = "display: none";
+    document.getElementById('speed').style.display = "none"; // sakrij trenutnu brzinu
 
-        const averageSpeed = (totalDistance / 1000) / (totalTime / 3600);
-        document.getElementById('averageSpeedValue').textContent = averageSpeed.toFixed(2);
-        document.getElementById('averageSpeed').style = "display: block";
+    // Izračunaj prosečnu brzinu
+    const averageSpeed = (totalDistance / 1000) / (totalTime / 3600);
+    document.getElementById('averageSpeedValue').textContent = averageSpeed.toFixed(2);
+    document.getElementById('averageSpeed').style.display = "block";
 
-        if (polyline instanceof L.Polyline) {
-            const polylineCoordinates = polyline.getLatLngs();
-            polyline.remove();
+    if (polyline instanceof L.Polyline) {
+        const polylineCoordinates = polyline.getLatLngs();
+        polyline.remove(); // ukloni polylinu sa mape
 
-            if (confirmSave) {
-                // Show username input popup
-                document.getElementById("usernamePopup").style.display = "block";
-                // Store route data temporarily
-                window.routeDataToSave = {
-                    distance: totalDistance / 1000,
-                    speed: averageSpeed,
-                    time: totalTime,
-                    polyline: polylineCoordinates,
-                    startLat: waypoints[0].lat,
-                    startLng: waypoints[0].lng,
-                    location: "Some location"
-                };
-            }
+        if (confirmSave) {
+            // Prikaz popup-a za unos imena
+            document.getElementById("usernamePopup").style.display = "block";
+
+            // Sačuvaj rutu privremeno da je popup može proslediti
+            window.routeDataToSave = {
+                distance: totalDistance / 1000,   // km
+                speed: averageSpeed,              // km/h
+                time: totalTime,                  // sekunde
+                polyline: polylineCoordinates,    // koordinate
+                startLat: waypoints[0].lat,
+                startLng: waypoints[0].lng,
+                location: "Some location"         // možeš promeniti po potrebi
+            };
         }
     }
+}
 
-    function submitRoute() {
-        const username = document.getElementById("usernameInput").value.trim();
-
-        if (!username) {
-            alert("Username is required.");
-            return;
-        }
-
-        // Hide the popup
-        document.getElementById("usernamePopup").style.display = "none";
-
-        // Get saved route data
-        const data = window.routeDataToSave;
-
-        fetch('https://betaversionwebsite.onrender.com/api/save-run', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                user_id: 1, // Replace if dynamic
-                root: "Vojvodina Trčanje",
-                distance: data.distance,
-                speed: data.speed,
-                time: data.time,
-                polyline: data.polyline,
-                startLat: data.startLat,
-                startLng: data.startLng,
-                location: data.location,
-                username: username // Include username
-            }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Run data saved:', data);
-            alert("Route saved successfully!");
-        })
-        .catch(error => {
-            console.error('Error saving run data:', error);
-            alert("Failed to save route.");
-        });
+// Funkcija koja se poziva kad korisnik unese ime i klikne "Save Route"
+function submitRoute() {
+    const username = document.getElementById("usernameInput").value.trim();
+    if (!username) {
+        alert("Username is required.");
+        return;
     }
+
+    document.getElementById("usernamePopup").style.display = "none";
+    const data = window.routeDataToSave;
+
+    fetch('https://betaversionwebsite.onrender.com/api/save-run', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            user_id: 1, // po potrebi promeni
+            root: "Vojvodina Trčanje",
+            distance: data.distance,
+            speed: data.speed,
+            time: data.time,
+            polyline: data.polyline,
+            startLat: data.startLat,
+            startLng: data.startLng,
+            location: data.location,
+            username: username
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert("Route saved successfully!");
+    })
+    .catch(error => {
+        console.error('Error saving route:', error);
+        alert("Failed to save route.");
+    });
+}
                     // Add event listener for the Start Route button click
                     document.getElementById("startRouteButton").addEventListener("click", startRoute);
             
