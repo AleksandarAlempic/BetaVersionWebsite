@@ -184,6 +184,25 @@
   id="fetchNearbyTrainingsButton">
     Add Playlist
 </button>
+            <!-- POPUP ZA CUSTOM PLAYLIST -->
+<div id="addPlaylistPopup" class="popup-overlay">
+    <div class="popup-content">
+        <h2>Add YouTube Song</h2>
+
+        <input 
+            type="text" 
+            id="youtubeInput" 
+            placeholder="Paste YouTube link..."
+        />
+
+        <p id="customPlaylistLimitMsg" class="limit-msg"></p>
+
+        <div class="popup-buttons">
+            <button id="saveYoutubeBtn" class="popup-save">Save</button>
+            <button id="cancelYoutubeBtn" class="popup-cancel">Cancel</button>
+        </div>
+    </div>
+</div>
             <select class="languageSelector" id="languageSelect">
   <option value="en">English</option>
   <option value="sr">Srpski</option>
