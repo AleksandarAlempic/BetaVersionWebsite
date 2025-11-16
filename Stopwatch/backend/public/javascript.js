@@ -484,6 +484,17 @@ function updateTrainingMarkersLanguage(lang) {
   }
 }
 
+stopwatch.addEventListener('click', () => {
+  stopwatchTriggered = true;
+  timerTriggered = false;
+  stopwatchDiv.style.display = "inline-flex";
+  timerDiv.style.display = "none";
+  
+});
+
+playListBtn.addEventListener('click', () => {
+    Root.style.setProperty("z-index", "1000000", "important");
+});
 // =================== CLOSE POPUP ===================
 function closePage() {
   addTrainingPopup.style.display = "none";
