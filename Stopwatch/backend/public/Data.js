@@ -186,18 +186,18 @@ let classicSongs = [
       artist: 'Andre Rieu',
       cover: 'images/audio/The Second Waltz, Op. 99a.jpg'
    },
-   {
-      name: 'Der einsame Hirte',
-      path: 'audio/Leo_Rojas_-_Der_einsame_Hirte_Videoclip.mp3',
-      artist: 'Leo Rohas',
-      cover: 'images/audio/LeoRohas1.jpg'
-   },
-   {
-      name: 'Der letzte Mohikaner',
-      path: 'audio/Der letzte Mohikaner.mp3',
-      artist: 'Leo Rohas',
-      cover: 'images/audio/LeoRohas.jpg'
-   },
+   // {
+   //    name: 'Der einsame Hirte',
+   //    path: 'audio/Leo_Rojas_-_Der_einsame_Hirte_Videoclip.mp3',
+   //    artist: 'Leo Rohas',
+   //    cover: 'images/audio/LeoRohas1.jpg'
+   // },
+   // {
+   //    name: 'Der letzte Mohikaner',
+   //    path: 'audio/Der letzte Mohikaner.mp3',
+   //    artist: 'Leo Rohas',
+   //    cover: 'images/audio/LeoRohas.jpg'
+   // },
    {
       name: 'The Riders of Rohan',
       path: 'audio/The Lord Of The Rings - The Riders of Rohan - Erhu & Violin cover.mp3',
@@ -304,24 +304,6 @@ let narodnjaciSongs = [
     path: 'audio/RUZO%20RUMENA%20-%20Dragan%20Jovanovic.mp3',
     artist: 'Dragan Jovanović',
     cover: 'images/audio/RuzoRumena.jpeg'
-  },
-  {
-    name: 'Legitimno',
-    path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20LEGITIMNO%20(OFFICIAL%20VIDEO%202020).mp3',
-    artist: 'Aleksandra Prijović',
-    cover: 'images/audio/Legitimno.jpg'
-  },
-  {
-    name: 'Placebo',
-    path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20PLACEBO%20(OFFICIAL%20VIDEO)%20(1).mp3',
-    artist: 'Aleksandra Prijović',
-    cover: 'images/audio/Placebo.jpg'
-  },
-  {
-    name: 'U inat prošlosti',
-    path: 'audio/Aleksandra%20Radovic%20&%20The%20Beatshakers%20-%20Who%20Gonna%20Stop%20Me%20Now%20(Official%20HD%20Video).mp3',
-    artist: 'Aleksandra Radović',
-    cover: 'images/audio/AleksandraRadovic.jpg'
   }
 ];
 
@@ -453,43 +435,31 @@ playLists.push(danceSongs);
 
 playLists.push(rockSongs);
 
-let classicArab = [
+let BalkanSongs = [
    {
-      name: 'Inta Umri',
-      path: 'audio/National%20Arab%20Orchestra%20-%20Inta%20Umri%20-%20Mai%20Farouk.mp3',
-      artist: 'National Arab Orchestra',
-      cover: 'images/audio/Mai%20Farouk.jpg'
-   },
-   {
-      name: 'Ahwak',
-      path: 'audio/National%20Arab%20Orchestra%20-%20Ahwak%20-%20Chadi%20Kassem.mp3',
-      artist: 'National Arab Orchestra',
-      cover: 'images/audio/Ahwak.jpg'
-   },
-   {
-      name: 'Alf Leila wi Leila',
-      path: 'audio/National%20Arab%20Orchestra%20-%20Alf%20Leila%20wi%20Leila%20-%20Mai%20Farouk.mp3',
-      artist: 'National Arab Orchestra',
-      cover: 'images/audio/NationalArabOrchestra.jpg'
-   },
-   {
-      name: 'Sandal Maker',
-      path: 'audio/Sandal%20Maker.mp3',
-      artist: 'Stronghold Crusader',
-      cover: 'images/audio/SandalMaker.jpg'
-   },
-   {
-      name: 'Belisarius',
-      path: 'audio/Justinian-Epic%20Symphony%20-%20Belisarius.mp3',
-      artist: 'Justinian Epic Symphony',
-      cover: 'images/audio/Justinian.jpg'
-   },
-   {
-      name: 'Digenis and Death',
-      path: 'audio/Digenis%20and%20Death%20-%20Epic%20Byzantine%20Music.mp3',
-      artist: 'Byzantine Epic Music',
-      cover: 'images/audio/Digenis%20and%20Death.jpg'
-   }
+    name: 'Legitimno',
+    path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20LEGITIMNO%20(OFFICIAL%20VIDEO%202020).mp3',
+    artist: 'Aleksandra Prijović',
+    cover: 'images/audio/Legitimno.jpg'
+  },
+  {
+    name: 'Placebo',
+    path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20PLACEBO%20(OFFICIAL%20VIDEO)%20(1).mp3',
+    artist: 'Aleksandra Prijović',
+    cover: 'images/audio/Placebo.jpg'
+  },
+   //    {
+   //    name: 'Devet Zivota',
+   //    path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20DEVET%20ZIVOTA%20(OFFICIAL%20VIDEO).mp3',
+   //    artist: 'Aleksandra Prijovic',
+   //    cover: 'images/audio/AleksandraPrijovic.jpg'
+   // },
+  {
+    name: 'U inat prošlosti',
+    path: 'audio/Aleksandra%20Radovic%20&%20The%20Beatshakers%20-%20Who%20Gonna%20Stop%20Me%20Now%20(Official%20HD%20Video).mp3',
+    artist: 'Aleksandra Radović',
+    cover: 'images/audio/AleksandraRadovic.jpg'
+  }
 ]
 
-playLists.push(classicArab);
+playLists.push(BalkanSongs);
