@@ -782,57 +782,59 @@ saveYoutubeBtn.addEventListener("click", () => {
 
 // ---------------- Integrate with existing setMusic / setPlaylist if present ----------------
 
-// Preserve originals if they exist
+// ================= CUSTOM PLAYLIST INTEGRATION =================
+
+// Čuvamo originalne funkcije ako postoje
 const __orig_setMusic = (typeof setMusic === "function") ? setMusic : null;
 const __orig_setPlaylist = (typeof setPlaylist === "function") ? setPlaylist : null;
 
-// Override setMusic to handle youtube marker (show cover + title but don't try to stream YouTube)
+// Override setMusic
 function setMusic(i) {
     if (!Array.isArray(window.playLists) || !window.playLists[currentPlayList]) {
         if (__orig_setMusic) return __orig_setMusic(i);
         return;
     }
+
     const songs = window.playLists[currentPlayList];
     const song = songs[i];
     currentMusic = i;
 
-    // if song has youtube flag (we set it when syncing), show info but don't set audio.src to youtube url
-    if (song && song.youtube) {
-        // show cover + title
+    if (!song) return;
+
+    // Ako je YouTube pesma
+    if (song.youtube) {
         if (songName) songName.innerText = song.name || ("YouTube " + (song.path || ""));
         if (artistName) artistName.innerText = song.artist || "YouTube";
-        if (disk) {
-            if (song.cover) disk.style.backgroundImage = `url('${song.cover}')`;
-            else disk.style.backgroundImage = "none";
-        }
-        // hide native audio playback for Youtube entries (can't play directly)
+        if (disk) disk.style.backgroundImage = song.cover ? `url('${song.cover}')` : "none";
+
+        // Isključujemo native audio
         try {
             if (music && music.pause) { music.pause(); music.src = ""; }
         } catch (e) { /* ignore */ }
-        // visually set play-btn to "pause"/"play" state if desired
     } else {
-        // fallback to original behavior for normal songs (mp3)
-        if (__orig_setMusic) return __orig_setMusic(i);
-        // otherwise, attempt basic behavior
-        if (song && song.path) {
-            music.src = song.path;
-            if (songName) songName.innerText = song.name || "";
-            if (artistName) artistName.innerText = song.artist || "";
-            if (disk) disk.style.backgroundImage = song.cover ? `url('${song.cover}')` : "none";
+        // Standardna mp3 pesma
+        if (__orig_setMusic) {
+            return __orig_setMusic(i);
+        } else {
+            if (song.path) {
+                if (music) music.src = song.path;
+                if (songName) songName.innerText = song.name || "";
+                if (artistName) artistName.innerText = song.artist || "";
+                if (disk) disk.style.backgroundImage = song.cover ? `url('${song.cover}')` : "none";
+            }
         }
     }
 }
 
-// Override setPlaylist to call original and then load custom UI if needed
+// Override setPlaylist
 function setPlaylist(i) {
     if (__orig_setPlaylist) __orig_setPlaylist(i);
-    // If this index is customPlaylistIndex, render the custom songs UI
+
+    // Ako je custom playlist, prikazujemo UI
     if (customPlaylistIndex !== null && i === customPlaylistIndex) {
-        // show custom playlist UI list if videoPlaylistDiv exists
-        if (typeof loadCustomPlaylistUI === "function") loadCustomPlaylistUI();
-        else if (videoPlaylistDiv) {
+        if (videoPlaylistDiv) {
             videoPlaylistDiv.innerHTML = "";
-            if (window.customPlaylist.length === 0) {
+            if (!window.customPlaylist.length) {
                 videoPlaylistDiv.innerHTML = "<p style='color:#fff;text-align:center;'>No songs in Custom Playlist.</p>";
             } else {
                 window.customPlaylist.forEach((s, idx) => {
@@ -843,8 +845,8 @@ function setPlaylist(i) {
                     btn.style.margin = "8px auto";
                     btn.textContent = `${idx + 1}. ${s.name}`;
                     btn.addEventListener("click", () => {
-                        if (typeof setPlaylist === "function") setPlaylist(customPlaylistIndex);
-                        if (typeof setMusic === "function") setMusic(idx);
+                        setPlaylist(customPlaylistIndex);
+                        setMusic(idx);
                         if (typeof playMusic === "function") playMusic();
                     });
                     videoPlaylistDiv.appendChild(btn);
@@ -854,16 +856,11 @@ function setPlaylist(i) {
     }
 }
 
-// If user rotates playlists using your next/prev handlers, they rely on List and playLists length.
-// Ensure songList7 is included in List (you must update List array to include songList7 in your main file).
-// If you want, do it here (we'll try to patch safely only if List exists and doesn't include songList7).
+// Ako List postoji, dodaj songList7El u List (za playlist toggle)
 try {
     if (typeof List !== "undefined" && Array.isArray(List)) {
-        if (!List.includes(songList7El) && songList7El) {
-            List.push(songList7El);
-        }
+        if (!List.includes(songList7El) && songList7El) List.push(songList7El);
     }
-} catch (e) { /* ignore */ }
+} catch(e) { /* ignore */ }
 
-/* ================= END OF CUSTOM PLAYLIST BLOCK ================= */
 
