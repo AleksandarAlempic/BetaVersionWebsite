@@ -519,3 +519,351 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Resized height:", window.innerHeight);
     });
 });
+
+/* ================= CUSTOM PLAYLIST + YT SEARCH (COPY-PASTE) ================= */
+
+/**
+ * Paste this at the END of your main JS file (after existing music/player code).
+ * It:
+ *  - uses the single input #youtubeInput (link or search text)
+ *  - shows youtube suggestions (via YouTube Data API v3)
+ *  - clicking a suggestion or pasting a link selects a song
+ *  - Save adds it to Custom Playlist (max 12)
+ *  - Custom Playlist is appended to playLists as last index and shown via UI
+ *
+ * NOTE: This code does NOT attempt to play YouTube audio directly.
+ * It updates UI (cover, name) and stores path as "https://www.youtube.com/watch?v=ID".
+ * Local .mp3 in path will still play.
+ */
+
+// --------- CONFIG ----------
+const YT_API_KEY = "AIzaSyBwwc6TSxopW7mc3PMjK6dYks0jfPZ_cbY"; // tvoj ključ (poslao si ga ranije)
+const MAX_CUSTOM_SONGS = 12;
+
+// --------- state ----------
+window.customPlaylist = window.customPlaylist || []; // array of { name, artist, cover, youtubeId, path }
+let customPlaylistIndex = null; // index in playLists where custom playlist lives
+let selectedSongForAdd = null;
+
+// --------- DOM ----------
+const ytInput = document.getElementById("youtubeInput");
+const suggestionsBox = document.getElementById("youtubeSuggestions");
+const saveYoutubeBtn = document.getElementById("saveYoutubeBtn");
+const cancelYoutubeBtn = document.getElementById("cancelYoutubeBtn");
+const addPlaylistPopup = document.getElementById("addPlaylistPopup");
+const customLimitMsg = document.getElementById("customPlaylistLimitMsg");
+const videoPlaylistDiv = document.getElementById("videoPlaylist"); // may be undefined in your HTML; if not present, UI update will be skipped
+const songList7El = document.getElementById("kindOfMusic7");
+
+// --------- helpers ----------
+function extractVideoId(url) {
+    if (!url) return null;
+    const patterns = [
+        /(?:youtu\.be\/)([^?&\n]+)/,
+        /[?&]v=([^?&\n]+)/,
+        /youtube\.com\/embed\/([^?&\n]+)/,
+        /youtube\.com\/shorts\/([^?&\n]+)/
+    ];
+    for (const p of patterns) {
+        const m = url.match(p);
+        if (m && m[1]) return m[1];
+    }
+    // fallback: if user pasted only id
+    if (/^[a-zA-Z0-9_-]{10,}$/.test(url)) return url;
+    return null;
+}
+
+async function youtubeGetVideoInfo(videoId) {
+    try {
+        const res = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${YT_API_KEY}`);
+        const data = await res.json();
+        if (data.items && data.items.length) return data.items[0].snippet;
+    } catch (e) { console.warn("YT video info error", e); }
+    return null;
+}
+
+async function youtubeSearch(query, maxResults = 5) {
+    if (!query || query.length < 2) return [];
+    try {
+        const res = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=${maxResults}&q=${encodeURIComponent(query)}&key=${YT_API_KEY}`);
+        const data = await res.json();
+        return data.items || [];
+    } catch (e) { console.warn("YT search error", e); return []; }
+}
+
+// Build UI for suggestions
+function showYtSuggestions(items) {
+    suggestionsBox.innerHTML = "";
+    if (!items || !items.length) { suggestionsBox.style.display = "none"; return; }
+    suggestionsBox.style.display = "block";
+    items.forEach(it => {
+        const div = document.createElement("div");
+        div.className = "suggestion-item";
+        const title = it.snippet.title;
+        const channel = it.snippet.channelTitle;
+        const vid = it.id && it.id.videoId ? it.id.videoId : extractVideoId(it.id || "");
+        div.innerHTML = `
+            <div style="display:flex;align-items:center;gap:8px;">
+                <img src="${it.snippet.thumbnails.default.url}" style="width:48px;height:36px;object-fit:cover;border-radius:4px;">
+                <div style="text-align:left;">
+                    <div style="font-size:13px;font-weight:600;">${title}</div>
+                    <div style="font-size:11px;color:#666;">${channel}</div>
+                </div>
+            </div>
+        `;
+        div.addEventListener("click", () => {
+            // select song
+            selectedSongForAdd = {
+                name: it.snippet.title,
+                artist: it.snippet.channelTitle,
+                cover: `https://img.youtube.com/vi/${it.id.videoId}/maxresdefault.jpg`,
+                youtubeId: it.id.videoId,
+                path: `https://www.youtube.com/watch?v=${it.id.videoId}`
+            };
+            ytInput.value = selectedSongForAdd.name;
+            suggestionsBox.innerHTML = "";
+            suggestionsBox.style.display = "none";
+        });
+        suggestionsBox.appendChild(div);
+    });
+}
+
+// clear suggestions on outside click
+document.addEventListener("click", (e) => {
+    if (!ytInput.contains(e.target) && !suggestionsBox.contains(e.target)) {
+        suggestionsBox.style.display = "none";
+    }
+});
+
+// --------- input handling (single input for link OR search) ----------
+let ytTypingTimer = null;
+ytInput.addEventListener("input", async (e) => {
+    const v = ytInput.value.trim();
+    selectedSongForAdd = null;
+
+    // if looks like link or id -> fetch single video info and auto-select
+    if (v.includes("youtube.com") || v.includes("youtu.be") || /^[a-zA-Z0-9_-]{10,}$/.test(v)) {
+        suggestionsBox.style.display = "none";
+        const vid = extractVideoId(v);
+        if (vid) {
+            const info = await youtubeGetVideoInfo(vid);
+            if (info) {
+                selectedSongForAdd = {
+                    name: info.title,
+                    artist: info.channelTitle,
+                    cover: `https://img.youtube.com/vi/${vid}/maxresdefault.jpg`,
+                    youtubeId: vid,
+                    path: `https://www.youtube.com/watch?v=${vid}`
+                };
+                // auto-fill title for clarity
+                ytInput.value = selectedSongForAdd.name;
+            }
+        }
+        return;
+    }
+
+    // Otherwise user is typing a search query -> debounce search
+    suggestionsBox.innerHTML = "";
+    suggestionsBox.style.display = "none";
+    if (ytTypingTimer) clearTimeout(ytTypingTimer);
+    if (!v) return;
+    ytTypingTimer = setTimeout(async () => {
+        const items = await youtubeSearch(v, 6);
+        showYtSuggestions(items);
+    }, 380);
+});
+
+// --------- Save / Cancel handlers ----------
+cancelYoutubeBtn.addEventListener("click", () => {
+    selectedSongForAdd = null;
+    ytInput.value = "";
+    suggestionsBox.innerHTML = "";
+    suggestionsBox.style.display = "none";
+    customLimitMsg.textContent = "";
+    if (addPlaylistPopup) addPlaylistPopup.style.display = "none";
+});
+
+// Ensure customPlaylist index exists in playLists (append placeholder)
+function ensureCustomPlaylistSlot() {
+    if (!Array.isArray(window.playLists)) window.playLists = window.playLists || [];
+    if (customPlaylistIndex === null) {
+        customPlaylistIndex = window.playLists.length;
+        window.playLists.push([]); // placeholder
+        // label in UI
+        if (songList7El) songList7El.innerHTML = "Custom Playlist";
+    }
+}
+
+// map customPlaylist (our internal objects) to playLists[customPlaylistIndex] format
+function syncCustomToPlaylists() {
+    ensureCustomPlaylistSlot();
+    window.playLists[customPlaylistIndex] = window.customPlaylist.map(s => ({
+        path: s.path,   // youtube url (or mp3 if uploaded)
+        name: s.name,
+        artist: s.artist || "",
+        cover: s.cover || "",
+        youtube: true  // marker (we'll show cover+title but not try to stream)
+    }));
+
+    // if custom is selected currently, reload UI list
+    if (typeof currentPlayList !== "undefined" && currentPlayList === customPlaylistIndex) {
+        // if you have function loadCustomPlaylistUI (or videoPlaylistDiv), update it
+        if (typeof loadCustomPlaylistUI === "function") loadCustomPlaylistUI();
+        else if (videoPlaylistDiv) {
+            // quick render as fallback
+            videoPlaylistDiv.innerHTML = "";
+            if (window.customPlaylist.length === 0) {
+                videoPlaylistDiv.innerHTML = "<p style='color:#fff;text-align:center;'>No songs in Custom Playlist.</p>";
+            } else {
+                window.customPlaylist.forEach((s, idx) => {
+                    const btn = document.createElement("button");
+                    btn.className = "songsInPlaylist";
+                    btn.style.display = "block";
+                    btn.style.width = "90%";
+                    btn.style.margin = "8px auto";
+                    btn.textContent = `${idx + 1}. ${s.name}`;
+                    btn.addEventListener("click", () => {
+                        if (typeof setPlaylist === "function") setPlaylist(customPlaylistIndex);
+                        if (typeof setMusic === "function") setMusic(idx);
+                        if (typeof playMusic === "function") playMusic();
+                    });
+                    videoPlaylistDiv.appendChild(btn);
+                });
+            }
+        }
+    }
+    // persist
+    try { localStorage.setItem("customPlaylist_v1", JSON.stringify(window.customPlaylist)); } catch(e){/*ignore*/ }
+}
+
+// Restore from localStorage on load
+(function loadCustomFromLocal() {
+    try {
+        const raw = localStorage.getItem("customPlaylist_v1");
+        if (!raw) return;
+        const arr = JSON.parse(raw);
+        if (Array.isArray(arr) && arr.length) {
+            window.customPlaylist = arr;
+            ensureCustomPlaylistSlot();
+            syncCustomToPlaylists();
+        }
+    } catch (e) { console.warn("Failed to load custom playlist", e); }
+})();
+
+// click Save -> push selectedSongForAdd to customPlaylist
+saveYoutubeBtn.addEventListener("click", () => {
+    if (!selectedSongForAdd) {
+        alert("Select a song (click suggestion or paste link).");
+        return;
+    }
+    if (window.customPlaylist.length >= MAX_CUSTOM_SONGS) {
+        alert(`Maximum ${MAX_CUSTOM_SONGS} songs allowed.`);
+        return;
+    }
+    // push
+    window.customPlaylist.push({
+        name: selectedSongForAdd.name,
+        artist: selectedSongForAdd.artist || "YouTube",
+        cover: selectedSongForAdd.cover || "",
+        youtubeId: selectedSongForAdd.youtubeId || null,
+        path: selectedSongForAdd.path // youtube watch url (or mp3)
+    });
+
+    // sync to playLists
+    syncCustomToPlaylists();
+
+    // UI feedback + close
+    alert("Song added to Custom Playlist.");
+    selectedSongForAdd = null;
+    ytInput.value = "";
+    suggestionsBox.innerHTML = "";
+    if (addPlaylistPopup) addPlaylistPopup.style.display = "none";
+});
+
+// ---------------- Integrate with existing setMusic / setPlaylist if present ----------------
+
+// Preserve originals if they exist
+const __orig_setMusic = (typeof setMusic === "function") ? setMusic : null;
+const __orig_setPlaylist = (typeof setPlaylist === "function") ? setPlaylist : null;
+
+// Override setMusic to handle youtube marker (show cover + title but don't try to stream YouTube)
+function setMusic(i) {
+    if (!Array.isArray(window.playLists) || !window.playLists[currentPlayList]) {
+        if (__orig_setMusic) return __orig_setMusic(i);
+        return;
+    }
+    const songs = window.playLists[currentPlayList];
+    const song = songs[i];
+    currentMusic = i;
+
+    // if song has youtube flag (we set it when syncing), show info but don't set audio.src to youtube url
+    if (song && song.youtube) {
+        // show cover + title
+        if (songName) songName.innerText = song.name || ("YouTube " + (song.path || ""));
+        if (artistName) artistName.innerText = song.artist || "YouTube";
+        if (disk) {
+            if (song.cover) disk.style.backgroundImage = `url('${song.cover}')`;
+            else disk.style.backgroundImage = "none";
+        }
+        // hide native audio playback for Youtube entries (can't play directly)
+        try {
+            if (music && music.pause) { music.pause(); music.src = ""; }
+        } catch (e) { /* ignore */ }
+        // visually set play-btn to "pause"/"play" state if desired
+    } else {
+        // fallback to original behavior for normal songs (mp3)
+        if (__orig_setMusic) return __orig_setMusic(i);
+        // otherwise, attempt basic behavior
+        if (song && song.path) {
+            music.src = song.path;
+            if (songName) songName.innerText = song.name || "";
+            if (artistName) artistName.innerText = song.artist || "";
+            if (disk) disk.style.backgroundImage = song.cover ? `url('${song.cover}')` : "none";
+        }
+    }
+}
+
+// Override setPlaylist to call original and then load custom UI if needed
+function setPlaylist(i) {
+    if (__orig_setPlaylist) __orig_setPlaylist(i);
+    // If this index is customPlaylistIndex, render the custom songs UI
+    if (customPlaylistIndex !== null && i === customPlaylistIndex) {
+        // show custom playlist UI list if videoPlaylistDiv exists
+        if (typeof loadCustomPlaylistUI === "function") loadCustomPlaylistUI();
+        else if (videoPlaylistDiv) {
+            videoPlaylistDiv.innerHTML = "";
+            if (window.customPlaylist.length === 0) {
+                videoPlaylistDiv.innerHTML = "<p style='color:#fff;text-align:center;'>No songs in Custom Playlist.</p>";
+            } else {
+                window.customPlaylist.forEach((s, idx) => {
+                    const btn = document.createElement("button");
+                    btn.className = "songsInPlaylist";
+                    btn.style.display = "block";
+                    btn.style.width = "90%";
+                    btn.style.margin = "8px auto";
+                    btn.textContent = `${idx + 1}. ${s.name}`;
+                    btn.addEventListener("click", () => {
+                        if (typeof setPlaylist === "function") setPlaylist(customPlaylistIndex);
+                        if (typeof setMusic === "function") setMusic(idx);
+                        if (typeof playMusic === "function") playMusic();
+                    });
+                    videoPlaylistDiv.appendChild(btn);
+                });
+            }
+        }
+    }
+}
+
+// If user rotates playlists using your next/prev handlers, they rely on List and playLists length.
+// Ensure songList7 is included in List (you must update List array to include songList7 in your main file).
+// If you want, do it here (we'll try to patch safely only if List exists and doesn't include songList7).
+try {
+    if (typeof List !== "undefined" && Array.isArray(List)) {
+        if (!List.includes(songList7El) && songList7El) {
+            List.push(songList7El);
+        }
+    }
+} catch (e) { /* ignore */ }
+
+/* ================= END OF CUSTOM PLAYLIST BLOCK ================= */
+
