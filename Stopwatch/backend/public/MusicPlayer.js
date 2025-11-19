@@ -26,7 +26,8 @@ let songList7 = document.getElementById("kindOfMusic7");
 
 let List;
 
-List = [songList1, songList2, songList3, songList4,songList5, songList6]; 
+List = [songList1, songList2, songList3, songList4,songList5, songList6, songList7];
+length = List.length;
 
 let length = List.length; 
 
