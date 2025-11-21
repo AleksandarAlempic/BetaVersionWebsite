@@ -22,6 +22,7 @@ let songList4 = document.getElementById("kindOfMusic4");
 let songList5 = document.getElementById("kindOfMusic5");
 let songList6 = document.getElementById("kindOfMusic6");
 let songList7 = document.getElementById("kindOfMusic7");
+let songList7 = document.getElementById("kindOfMusic8");
 
 
 let List;
@@ -106,7 +107,7 @@ setPlaylist(0);
 
 nextBtnPlayList.addEventListener('click', () => {
     if (currentPlayList >= length - 1) {
-        List[0].innerHTML = songList7.innerHTML;
+        List[0].innerHTML = songList8.innerHTML;
         currentPlayList = 0;
     } else {
         currentPlayList++;
@@ -151,7 +152,7 @@ previousBtnPlayList.addEventListener('click', () => {
         currentPlayList = playLists.length - 1;
         List[0].innerHTML = songList6.innerHTML;
     } else if (currentPlayList == 1) { // Bug with not displaying the Promo Songs after back click from Classic
-        List[0].innerHTML = songList7.innerHTML;
+        List[0].innerHTML = songList8.innerHTML;
         currentPlayList--;
     } else {
         currentPlayList--;
