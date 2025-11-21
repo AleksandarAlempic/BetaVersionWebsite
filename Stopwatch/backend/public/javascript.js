@@ -562,7 +562,7 @@ function extractVideoId(url) {
         /(?:youtu\.be\/)([^?&\n]+)/,
         /[?&]v=([^?&\n]+)/,
         /youtube\.com\/embed\/([^?&\n]+)/,
-        /youtube\.com\/shorts\/([^?&\n]+)/
+        /youtube\.com\/shorts\/([^?&\n]+)/,
     ];
     for (const p of patterns) {
         const m = url.match(p);
@@ -686,20 +686,26 @@ function ensureCustomPlaylistSlot() {
     if (!Array.isArray(window.playLists)) window.playLists = [];
     if (customPlaylistIndex === null) {
         customPlaylistIndex = window.playLists.length;
-        window.playLists.push([]);
+        window.playLists.push({     // ✅ ispravljeno
+            name: "Custom Playlist",
+            songs: []
+        });
         if (songList7El) songList7El.innerHTML = "Custom Playlist";
     }
 }
 
 function syncCustomToPlaylists() {
     ensureCustomPlaylistSlot();
-    window.playLists[customPlaylistIndex] = window.customPlaylist.map(s => ({
-        path: s.path,
-        name: s.name,
-        artist: s.artist,
-        cover: s.cover,
-        youtube: true
-    }));
+    window.playLists[customPlaylistIndex] = {   // ✅ ispravljeno
+        name: "Custom Playlist",
+        songs: window.customPlaylist.map(s => ({
+            path: s.path,
+            name: s.name,
+            artist: s.artist,
+            cover: s.cover,
+            youtube: true
+        }))
+    };
 
     try { localStorage.setItem("customPlaylist_v1", JSON.stringify(window.customPlaylist)); } catch(e){}
 }
@@ -743,8 +749,8 @@ saveYoutubeBtn.addEventListener("click", () => {
 // -------------------------------------------------------------------------
 
 function setMusicYT(i) {
-    const playlist = window.playLists[currentPlayList];
-    const song = playlist[i];
+    const playlist = window.playLists[currentPlayList]?.songs;
+    const song = playlist?.[i];
     if (!song) return;
 
     currentMusic = i;
