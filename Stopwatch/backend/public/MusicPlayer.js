@@ -22,7 +22,7 @@ let songList4 = document.getElementById("kindOfMusic4");
 let songList5 = document.getElementById("kindOfMusic5");
 let songList6 = document.getElementById("kindOfMusic6");
 let songList7 = document.getElementById("kindOfMusic7");
-let songList7 = document.getElementById("kindOfMusic8");
+let songList8 = document.getElementById("kindOfMusic8");
 
 
 let List;
