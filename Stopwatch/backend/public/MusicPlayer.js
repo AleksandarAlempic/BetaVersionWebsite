@@ -154,7 +154,12 @@ previousBtnPlayList.addEventListener('click', () => {
     } else if (currentPlayList == 1) { // Bug with not displaying the Promo Songs after back click from Classic
         List[0].innerHTML = songList8.innerHTML;
         currentPlayList--;
-    } else {
+    }
+    else if (currentPlayList >= length - 1) {
+        List[0].innerHTML = songList8.innerHTML;
+        currentPlayList = 0;
+    }
+    else {
         currentPlayList--;
         List[0].innerHTML = List[currentPlayList].innerHTML;
     }
