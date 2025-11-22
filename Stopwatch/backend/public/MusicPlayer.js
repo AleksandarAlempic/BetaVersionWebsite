@@ -117,6 +117,8 @@ nextBtnPlayList.addEventListener('click', () => {
      if (List[currentPlayList].innerHTML.trim() === "Narodna") {
         nextBtnPlayList.style.marginTop = "-37%";
         previousBtnPlayList.style.marginTop = "-37%";
+           nextBtnPlayList.style.marginLeft = "140%";
+         previousBtnPlayList.style.marginLeft = "-25%"
         // previousBtnPlayList.style.marginLeft = "1%";
         kindOfMusic.style.setProperty("margin-top", "-34%", "important");
         kindOfMusic.style.setProperty("margin-left", "0%", "important");
@@ -125,6 +127,8 @@ nextBtnPlayList.addEventListener('click', () => {
         List[currentPlayList].innerHTML.trim() === "Balkan"){
         nextBtnPlayList.style.marginTop = "-44%";
         previousBtnPlayList.style.marginTop = "-43.5%";
+          nextBtnPlayList.style.marginLeft = "140%";
+         previousBtnPlayList.style.marginLeft = "-25%"
          kindOfMusic.style.setProperty("margin-top", "-40%", "important");
          kindOfMusic.style.setProperty("margin-left", "0%", "important");
     }
@@ -139,6 +143,8 @@ nextBtnPlayList.addEventListener('click', () => {
          else if(List[currentPlayList].innerHTML.trim() === "Classics"){
         nextBtnPlayList.style.marginTop = "-40%";
         previousBtnPlayList.style.marginTop = "-40%";
+               nextBtnPlayList.style.marginLeft = "140%";
+         previousBtnPlayList.style.marginLeft = "-25%"
          kindOfMusic.style.setProperty("margin-top", "-36%", "important");
               kindOfMusic.style.setProperty("margin-left", "0%", "important");
     }
@@ -147,6 +153,8 @@ nextBtnPlayList.addEventListener('click', () => {
         previousBtnPlayList.style.marginTop = "-46%";
         kindOfMusic.style.setProperty("margin-top", "-43%", "important");
         kindOfMusic.style.setProperty("margin-left", "0%", "important");
+          nextBtnPlayList.style.marginLeft = "140%";
+         previousBtnPlayList.style.marginLeft = "-25%"
     }
 
     songList1.style.textAlign = "center";
@@ -171,7 +179,9 @@ previousBtnPlayList.addEventListener('click', () => {
 
     if (List[currentPlayList].innerHTML.trim() === "Narodna") {
         nextBtnPlayList.style.marginTop = "-37%";
+        nextBtnPlayList.style.marginLeft = "140%";
         previousBtnPlayList.style.marginTop = "-37%";
+        previousBtnPlayList.style.marginLeft = "-9%";
         // previousBtnPlayList.style.marginLeft = "0%";
         kindOfMusic.style.setProperty("margin-top", "-34%", "important");
         kindOfMusic.style.setProperty("margin-left", "0%", "important");
@@ -179,7 +189,9 @@ previousBtnPlayList.addEventListener('click', () => {
     else if(List[currentPlayList].innerHTML.trim() === "Promo" || 
         List[currentPlayList].innerHTML.trim() === "Balkan"){
         nextBtnPlayList.style.marginTop = "-44%";
+         nextBtnPlayList.style.marginLeft = "140%";
         previousBtnPlayList.style.marginTop = "-43.5%";
+         previousBtnPlayList.style.marginLeft = "-9%";
          kindOfMusic.style.setProperty("margin-top", "-40%", "important");
          kindOfMusic.style.setProperty("margin-left", "0%", "important");
     }
@@ -193,17 +205,20 @@ previousBtnPlayList.addEventListener('click', () => {
     }
          else if(List[currentPlayList].innerHTML.trim() === "Classics"){
         nextBtnPlayList.style.marginTop = "-40%";
+        nextBtnPlayList.style.marginLeft = "140%";
         previousBtnPlayList.style.marginTop = "-40%";
+        previousBtnPlayList.style.marginLeft = "-9%";
          kindOfMusic.style.setProperty("margin-top", "-36%", "important");
         kindOfMusic.style.setProperty("margin-left", "0%", "important");
     }
     else {
         nextBtnPlayList.style.marginTop = "-45%";
         previousBtnPlayList.style.marginTop = "-46%";
+         nextBtnPlayList.style.marginLeft = "140%";
+         previousBtnPlayList.style.marginLeft = "-25%"
         kindOfMusic.style.setProperty("margin-top", "-43%", "important");
         kindOfMusic.style.setProperty("margin-left", "0%", "important");
     }
-
     songList1.style.textAlign = "center";
     setPlaylist(currentPlayList);
     playMusic();
