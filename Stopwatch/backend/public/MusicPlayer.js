@@ -152,10 +152,10 @@ previousBtnPlayList.addEventListener('click', () => {
         currentPlayList = playLists.length - 1;
         List[0].innerHTML = "Custom Playlist";
     } 
-    // else if (currentPlayList == 1) { // Bug with not displaying the Promo Songs after back click from Classic
-    //     List[0].innerHTML = songList8.innerHTML;
-    //     currentPlayList--;
-    // }
+    else if (currentPlayList == 1) { // Bug with not displaying the Promo Songs after back click from Classic
+        List[0].innerHTML = songList8.innerHTML;
+        currentPlayList--;
+    }
     else {
         currentPlayList--;
         List[0].innerHTML = List[currentPlayList].innerHTML;
