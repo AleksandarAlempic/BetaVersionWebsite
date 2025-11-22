@@ -132,7 +132,7 @@ nextBtnPlayList.addEventListener('click', () => {
         nextBtnPlayList.style.marginTop = "-19%";
         nextBtnPlayList.style.marginLeft = "105%";
         previousBtnPlayList.style.marginTop = "-27%";
-        previousBtnPlayList.style.marginLeft = "22%";
+        previousBtnPlayList.style.marginLeft = "-25%";
          kindOfMusic.style.setProperty("margin-top", "-26%", "important");
          // kindOfMusic.style.setProperty("margin-left", "0%", "important");
     }
@@ -187,7 +187,7 @@ previousBtnPlayList.addEventListener('click', () => {
         nextBtnPlayList.style.marginTop = "-19%";
         nextBtnPlayList.style.marginLeft = "105%";
         previousBtnPlayList.style.marginTop = "-27%";
-        previousBtnPlayList.style.marginLeft = "22%";
+        previousBtnPlayList.style.marginLeft = "-25%";
          kindOfMusic.style.setProperty("margin-top", "-26%", "important");
          // kindOfMusic.style.setProperty("margin-left", "0%", "important");
     }
