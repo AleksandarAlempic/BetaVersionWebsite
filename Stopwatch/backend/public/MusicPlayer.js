@@ -155,10 +155,6 @@ previousBtnPlayList.addEventListener('click', () => {
         List[0].innerHTML = songList8.innerHTML;
         currentPlayList--;
     }
-    else if (currentPlayList >= length - 1) {
-        List[0].innerHTML = songList8.innerHTML;
-        currentPlayList = 0;
-    }
     else {
         currentPlayList--;
         List[0].innerHTML = List[currentPlayList].innerHTML;
