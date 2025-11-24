@@ -72,7 +72,7 @@ const setMusic = (i) => {
 setMusic(0);
 
 nextBtn.addEventListener('click', () => {
-    if(currentMusic >= playLists[currentPlayList].songs.length - 1){
+    if(currentMusic >= playLists[currentPlayList].length - 1){
         currentMusic = 0;
     }
     else{
@@ -84,7 +84,7 @@ nextBtn.addEventListener('click', () => {
 
 previousBtn.addEventListener('click', () => {
     if(currentMusic <= 0){
-        currentMusic = playLists[currentPlayList].songs.length - 1;
+        currentMusic = playLists[currentPlayList].length - 1;
     }
     else{
         currentMusic--;
@@ -225,7 +225,7 @@ previousBtnPlayList.addEventListener('click', () => {
 });
 
 music.addEventListener('ended',function(){
-      if (currentMusic >= playLists[currentPlayList].songs.length - 1) {
+      if (currentMusic >= playLists[currentPlayList].length - 1) {
     currentMusic = 0;
 } 
    else {
