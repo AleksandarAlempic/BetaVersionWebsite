@@ -133,7 +133,7 @@ let introSongs = [
    },
 ];
 
-playLists.push(introSongs);
+playLists.push({ name: "Intro", songs: introSongs });
 
 
 let classicSongs = [
@@ -230,7 +230,9 @@ let classicSongs = [
    }
 ];
 
-playLists.push(classicSongs);
+playLists.push({ name: "Classic", songs: classicSongs });
+
+
 
 let narodnjaciSongs = [
   {
@@ -307,7 +309,7 @@ let narodnjaciSongs = [
   }
 ];
 
-playLists.push(narodnjaciSongs);
+playLists.push({ name: "Narodnjaci", songs: narodnjaciSongs });
 
 
 let danceSongs = [
@@ -384,7 +386,7 @@ let danceSongs = [
       cover: 'images/audio/WeAreOne.jpg'
    }
 ];
-playLists.push(danceSongs);
+playLists.push({ name: "Dance", songs: danceSongs });
 
 
   let rockSongs = [
@@ -433,7 +435,7 @@ playLists.push(danceSongs);
 ];
 
 
-playLists.push(rockSongs);
+playLists.push({ name: "Rock", songs: rockSongs });
 
 let BalkanSongs = [
    {
@@ -462,4 +464,9 @@ let BalkanSongs = [
   }
 ]
 
-playLists.push(BalkanSongs);
+playLists.push({ name: "Balkan", songs: BalkanSongs });
+
+
+
+
+
