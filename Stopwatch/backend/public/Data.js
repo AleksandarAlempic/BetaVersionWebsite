@@ -1,8 +1,8 @@
 
 const playLists = [];
 
-const customSongs = [];     // prazno za sada
-playLists.push(customSongs);
+// const customSongs = [];     // prazno za sada
+// playLists.push(customSongs);
 
 let introSongs = [
     
