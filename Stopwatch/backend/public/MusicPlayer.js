@@ -72,7 +72,7 @@ const setMusic = (i) => {
 setMusic(0);
 
 nextBtn.addEventListener('click', () => {
-    if(currentMusic >= playLists[currentPlayList].songs.length - 1)
+    if(currentMusic >= playLists[currentPlayList].songs.length - 1){
         currentMusic = 0;
     }
     else{
