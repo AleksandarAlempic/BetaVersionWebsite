@@ -72,7 +72,7 @@ const setMusic = (i) => {
 setMusic(0);
 
 nextBtn.addEventListener('click', () => {
-    if(currentMusic >= playLists[currentPlayList].length - 1){
+    if(currentMusic >= playLists[currentPlayList].songs.length - 1)
         currentMusic = 0;
     }
     else{
@@ -84,7 +84,7 @@ nextBtn.addEventListener('click', () => {
 
 previousBtn.addEventListener('click', () => {
     if(currentMusic <= 0){
-        currentMusic = playLists[currentPlayList].length - 1;
+        currentMusic = playLists[currentPlayList].songs.length - 1;
     }
     else{
         currentMusic--;
@@ -135,7 +135,7 @@ nextBtnPlayList.addEventListener('click', () => {
         else if(List[currentPlayList].innerHTML.trim() === "Custom Playlist"){
         nextBtnPlayList.style.marginTop = "-19%";
         nextBtnPlayList.style.marginLeft = "105%";
-        previousBtnPlayList.style.marginTop = "-20%";
+        previousBtnPlayList.style.marginTop = "-20%";8
         previousBtnPlayList.style.marginLeft = "-25%";
          kindOfMusic.style.setProperty("margin-top", "-19%", "important");
          // kindOfMusic.style.setProperty("margin-left", "0%", "important");
