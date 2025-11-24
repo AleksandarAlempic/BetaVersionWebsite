@@ -225,12 +225,12 @@ previousBtnPlayList.addEventListener('click', () => {
 });
 
 music.addEventListener('ended',function(){
-    if(currentMusic >= playLists[currentPlayList].length - 1){
-        currentMusic = 0;
-    }
-    else{
-        currentMusic++;
-    }
+      if (currentMusic >= playLists[currentPlayList].songs.length - 1) {
+    currentMusic = 0;
+} 
+   else {
+    currentMusic++;
+}
     setMusic(currentMusic);
     playMusic();
  });
