@@ -696,7 +696,8 @@ function ensureCustomPlaylistSlot() {
 
 function syncCustomToPlaylists() {
     ensureCustomPlaylistSlot();
-    window.playLists[customPlaylistIndex] = {   // ✅ ispravljeno
+
+    window.playLists[customPlaylistIndex] = {
         name: "Custom Playlist",
         songs: window.customPlaylist.map(s => ({
             path: s.path,
@@ -707,7 +708,9 @@ function syncCustomToPlaylists() {
         }))
     };
 
-    try { localStorage.setItem("customPlaylist_v1", JSON.stringify(window.customPlaylist)); } catch(e){}
+    try { 
+        localStorage.setItem("customPlaylist_v1", JSON.stringify(window.customPlaylist)); 
+    } catch(e){}
 }
 
 (function loadCustomFromLocal() {
