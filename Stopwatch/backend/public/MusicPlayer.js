@@ -58,16 +58,34 @@ const playMusic = () => {
 }
 
 
+// const setMusic = (i) => { Verzija koja radi za staticke liste
+//     let songs = playLists[currentPlayList];
+//     let song = songs[i];
+//     currentMusic = i;
+//     music.src = song.path;
+
+//     songName.innerHTML = song.name;
+//     artistName.innerHTML = song.artist;
+//     disk.style.backgroundImage = `url('${song.cover}')`;  
+// }
+
 const setMusic = (i) => {
     let songs = playLists[currentPlayList];
+    
+    if (!songs || !songs[i]) {
+        console.error(`Ne postoji pesma na indeksu ${i} u playlisti ${currentPlayList}`);
+        return; // izlazimo iz funkcije da ne padne
+    }
+
     let song = songs[i];
     currentMusic = i;
     music.src = song.path;
+    songName.innerText = song.name;
+    artistName.innerText = song.artist;
+    disk.src = song.cover;
+};
 
-    songName.innerHTML = song.name;
-    artistName.innerHTML = song.artist;
-    disk.style.backgroundImage = `url('${song.cover}')`;  
-}
+
 
 setMusic(0);
 
