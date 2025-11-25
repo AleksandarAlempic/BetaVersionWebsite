@@ -76,7 +76,7 @@ const setMusic = (i) => {
         console.error(`Ne postoji pesma na indeksu ${i} u playlisti ${currentPlayList}`);
         return; // izlazimo iz funkcije da ne padne
     }
-
+console.log("currentPlayList:", currentPlayList, "songs:", songs, "i:", i);
     let song = songs[i];
     currentMusic = i;
     music.src = song.path;
