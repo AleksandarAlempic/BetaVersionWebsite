@@ -466,3 +466,7 @@ let BalkanSongs = [
 ]
 
 playLists.push(BalkanSongs);
+
+const customSongs = []; // ovde ce se dodavati pesme
+
+playLists.push(customSongs);
