@@ -82,7 +82,7 @@ const setMusic = (i) => {
     music.src = song.path;
     songName.innerText = song.name;
     artistName.innerText = song.artist;
-    disk.src = song.cover;
+    disk.style.backgroundImage = `url('${song.cover}')`;  
 };
 
 
