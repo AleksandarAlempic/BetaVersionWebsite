@@ -152,7 +152,7 @@ nextBtnPlayList.addEventListener('click', () => {
     }
         else if(List[currentPlayList].innerHTML.trim() === "Custom Playlist"){
         nextBtnPlayList.style.marginTop = "-19%";
-        nextBtnPlayList.style.marginLeft = "105%";
+        nextBtnPlayList.style.marginLeft = "10%";
         previousBtnPlayList.style.marginTop = "-20%";8
         previousBtnPlayList.style.marginLeft = "-25%";
          kindOfMusic.style.setProperty("margin-top", "-19%", "important");
@@ -215,7 +215,7 @@ previousBtnPlayList.addEventListener('click', () => {
     }
          else if(List[currentPlayList].innerHTML.trim() === "Custom Playlist"){
         nextBtnPlayList.style.marginTop = "-19%";
-        nextBtnPlayList.style.marginLeft = "105%";
+        nextBtnPlayList.style.marginLeft = "10%";
         previousBtnPlayList.style.marginTop = "-20%";
         previousBtnPlayList.style.marginLeft = "-25%";
          kindOfMusic.style.setProperty("margin-top", "-19%", "important");
