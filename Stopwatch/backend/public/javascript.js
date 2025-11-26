@@ -536,7 +536,7 @@ const saveYoutubeBtn = document.getElementById("saveYoutubeBtn");
 const cancelYoutubeBtn = document.getElementById("cancelYoutubeBtn");
 const addPlaylistPopup = document.getElementById("addPlaylistPopup");
 const customLimitMsg = document.getElementById("customPlaylistLimitMsg");
-const customPlaylistElement = document.getElementById("kindOfMusic7");
+const customPlaylistElement = document.getElementById("kindOfMusic7"); // dugme/element u UI
 
 // --- helpers ---
 function extractVideoId(url) {
@@ -573,6 +573,7 @@ async function youtubeSearch(query, maxResults = 5) {
     } catch(e){ console.warn("YT search error", e); return []; }
 }
 
+// --- Show suggestions ---
 function showYtSuggestions(items) {
     suggestionsBox.innerHTML = "";
     if (!items || !items.length) {
@@ -665,15 +666,17 @@ saveYoutubeBtn.addEventListener("click", () => {
     // Add song to customPlaylist array
     window.customPlaylist.push(selectedSongForAdd);
 
-    // Ensure Custom Playlist exists in playLists
-    let customIndex = playLists.findIndex(pl => pl.name === "Custom Playlist");
-    if (customIndex === -1) {
+    // Add Custom Playlist only if not exists
+    let exists = playLists.some(pl => pl.name === "Custom Playlist");
+    if (!exists) {
         playLists.push({
             name: "Custom Playlist",
             songs: [...window.customPlaylist]
         });
     } else {
-        playLists[customIndex].songs = [...window.customPlaylist];
+        // Update songs in existing Custom Playlist
+        let idx = playLists.findIndex(pl => pl.name === "Custom Playlist");
+        playLists[idx].songs = [...window.customPlaylist];
     }
 
     // Show Custom Playlist button/UI
@@ -700,14 +703,15 @@ saveYoutubeBtn.addEventListener("click", () => {
         if (Array.isArray(arr) && arr.length) {
             window.customPlaylist = arr;
 
-            let customIndex = playLists.findIndex(pl => pl.name === "Custom Playlist");
-            if (customIndex === -1) {
+            let exists = playLists.some(pl => pl.name === "Custom Playlist");
+            if (!exists) {
                 playLists.push({
                     name: "Custom Playlist",
                     songs: [...window.customPlaylist]
                 });
             } else {
-                playLists[customIndex].songs = [...window.customPlaylist];
+                let idx = playLists.findIndex(pl => pl.name === "Custom Playlist");
+                playLists[idx].songs = [...window.customPlaylist];
             }
 
             if (customPlaylistElement) customPlaylistElement.style.display = "block";
