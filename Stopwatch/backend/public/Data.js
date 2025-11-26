@@ -467,6 +467,15 @@ let BalkanSongs = [
 
 playLists.push(BalkanSongs);
 
-const customSongs = []; // ovde ce se dodavati pesme
+// const customSongs = []; // ovde ce se dodavati pesme
+
+let customSongs = [
+     {
+    name: 'U inat prošlosti',
+    path: 'audio/Aleksandra%20Radovic%20&%20The%20Beatshakers%20-%20Who%20Gonna%20Stop%20Me%20Now%20(Official%20HD%20Video).mp3',
+    artist: 'Aleksandra Radović',
+    cover: 'images/audio/AleksandraRadovic.jpg'
+  }
+];
 
 playLists.push(customSongs);
