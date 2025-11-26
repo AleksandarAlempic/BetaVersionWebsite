@@ -663,20 +663,12 @@ saveYoutubeBtn.addEventListener("click", () => {
         return;
     }
 
-    // Add song to customPlaylist array
+    // Add to customPlaylist array
     window.customPlaylist.push(selectedSongForAdd);
 
-    // Add Custom Playlist only if not exists
-    let exists = playLists.some(pl => pl.name === "Custom Playlist");
-    if (!exists) {
-        playLists.push({
-            name: "Custom Playlist",
-            songs: [...window.customPlaylist]
-        });
-    } else {
-        // Update songs in existing Custom Playlist
-        let idx = playLists.findIndex(pl => pl.name === "Custom Playlist");
-        playLists[idx].songs = [...window.customPlaylist];
+    // Check if Custom Playlist exists in playLists
+    if (!playLists.includes(window.customPlaylist)) {
+        playLists.push(window.customPlaylist);
     }
 
     // Show Custom Playlist button/UI
@@ -702,20 +694,11 @@ saveYoutubeBtn.addEventListener("click", () => {
         const arr = JSON.parse(raw);
         if (Array.isArray(arr) && arr.length) {
             window.customPlaylist = arr;
-
-            let exists = playLists.some(pl => pl.name === "Custom Playlist");
-            if (!exists) {
-                playLists.push({
-                    name: "Custom Playlist",
-                    songs: [...window.customPlaylist]
-                });
-            } else {
-                let idx = playLists.findIndex(pl => pl.name === "Custom Playlist");
-                playLists[idx].songs = [...window.customPlaylist];
+            // Add to playLists if nije tu
+            if (!playLists.includes(window.customPlaylist)) {
+                playLists.push(window.customPlaylist);
             }
-
             if (customPlaylistElement) customPlaylistElement.style.display = "block";
         }
     } catch(e){}
 })();
-
