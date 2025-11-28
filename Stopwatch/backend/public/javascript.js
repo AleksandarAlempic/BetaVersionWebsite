@@ -520,27 +520,25 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-const YT_API_KEY = "TVOJ_API_KEY"; // zameni svojim ključem
+/* ================= CUSTOM PLAYLIST + YT SEARCH ================= */
+
+const YT_API_KEY = "AIzaSyBwwc6TSxopW7mc3PMjK6dYks0jfPZ_cbY";
 const MAX_CUSTOM_SONGS = 12;
 
-let customPlaylist = [];
-let currentCustomIndex = 0;
+// --- state ---
+window.customPlaylist = window.customPlaylist || [];
 let selectedSongForAdd = null;
-let ytPlayer = null;
 
-// DOM elementi
+// --- DOM ---
 const ytInput = document.getElementById("youtubeInput");
 const suggestionsBox = document.getElementById("youtubeSuggestions");
 const saveYoutubeBtn = document.getElementById("saveYoutubeBtn");
 const cancelYoutubeBtn = document.getElementById("cancelYoutubeBtn");
-const ytContainer = document.getElementById('youtubePlayerContainer');
-const coverImg = document.querySelector('.disk');
-const playBtn = document.querySelector('.play-btn');
-const nextBtn = document.querySelector('.next-btn');
-const prevBtn = document.querySelector('.pervious-btn');
-// const songNameAndArtist = document.getElementById("songNameAndArtist");
+const addPlaylistPopup = document.getElementById("addPlaylistPopup");
+const customLimitMsg = document.getElementById("customPlaylistLimitMsg");
+const customPlaylistElement = document.getElementById("kindOfMusic7"); // dugme/element u UI
 
-// --- HELPERS ---
+// --- helpers ---
 function extractVideoId(url) {
     if (!url) return null;
     const patterns = [
@@ -557,6 +555,15 @@ function extractVideoId(url) {
     return null;
 }
 
+async function youtubeGetVideoInfo(videoId) {
+    try {
+        const res = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${YT_API_KEY}`);
+        const data = await res.json();
+        if (data.items && data.items.length) return data.items[0].snippet;
+    } catch(e) { console.warn("YT info error", e); }
+    return null;
+}
+
 async function youtubeSearch(query, maxResults = 5) {
     if (!query || query.length < 2) return [];
     try {
@@ -566,10 +573,10 @@ async function youtubeSearch(query, maxResults = 5) {
     } catch(e){ console.warn("YT search error", e); return []; }
 }
 
-// --- SHOW SUGGESTIONS ---
+// --- Show suggestions ---
 function showYtSuggestions(items) {
     suggestionsBox.innerHTML = "";
-    if (!items.length) {
+    if (!items || !items.length) {
         suggestionsBox.style.display = "none";
         return;
     }
@@ -592,7 +599,7 @@ function showYtSuggestions(items) {
                 name: it.snippet.title,
                 artist: it.snippet.channelTitle,
                 cover: `https://img.youtube.com/vi/${it.id.videoId}/maxresdefault.jpg`,
-                videoId: it.id.videoId
+                path: `https://www.youtube.com/watch?v=${it.id.videoId}`
             };
             ytInput.value = selectedSongForAdd.name;
             suggestionsBox.innerHTML = "";
@@ -602,109 +609,96 @@ function showYtSuggestions(items) {
     });
 }
 
-// --- INPUT EVENT ---
+// --- Input ---
 let ytTypingTimer = null;
-ytInput.addEventListener("input", () => {
+ytInput.addEventListener("input", async () => {
     const v = ytInput.value.trim();
     selectedSongForAdd = null;
+
+    if (v.includes("youtube.com") || v.includes("youtu.be") || /^[a-zA-Z0-9_-]{10,}$/.test(v)) {
+        suggestionsBox.style.display = "none";
+        const vid = extractVideoId(v);
+        if (vid) {
+            const info = await youtubeGetVideoInfo(vid);
+            if (info) {
+                selectedSongForAdd = {
+                    name: info.title,
+                    artist: info.channelTitle,
+                    cover: `https://img.youtube.com/vi/${vid}/maxresdefault.jpg`,
+                    path: `https://www.youtube.com/watch?v=${vid}`
+                };
+                ytInput.value = selectedSongForAdd.name;
+            }
+        }
+        return;
+    }
+
     if (ytTypingTimer) clearTimeout(ytTypingTimer);
     if (!v) return;
 
     ytTypingTimer = setTimeout(async () => {
         const items = await youtubeSearch(v, 6);
         showYtSuggestions(items);
-    }, 300);
+    }, 380);
 });
 
-// --- CANCEL BUTTON ---
+// --- Cancel ---
 cancelYoutubeBtn.addEventListener("click", () => {
     selectedSongForAdd = null;
     ytInput.value = "";
     suggestionsBox.innerHTML = "";
     suggestionsBox.style.display = "none";
+    customLimitMsg.textContent = "";
+    if (addPlaylistPopup) addPlaylistPopup.style.display = "none";
 });
 
-// --- SAVE TO PLAYLIST ---
+// --- Add YouTube song ---
 saveYoutubeBtn.addEventListener("click", () => {
     if (!selectedSongForAdd) {
         alert("Select a song first.");
         return;
     }
-    if (customPlaylist.length >= MAX_CUSTOM_SONGS) {
-        alert("Playlist limit reached.");
+    if (window.customPlaylist.length >= MAX_CUSTOM_SONGS) {
+        alert("Limit reached.");
         return;
     }
 
-    customPlaylist.push(selectedSongForAdd);
-    saveCustomPlaylist();
-    ytInput.value = "";
+    // Add to customPlaylist array
+    window.customPlaylist.push(selectedSongForAdd);
+
+    // Check if Custom Playlist exists in playLists
+    if (!playLists.includes(window.customPlaylist)) {
+        playLists.push(window.customPlaylist);
+    }
+
+    // Show Custom Playlist button/UI
+    if (customPlaylistElement) customPlaylistElement.style.display = "block";
+
+    // Reset input
     selectedSongForAdd = null;
-    playCustomSong(customPlaylist.length-1); // automatski pusti poslednju dodatu pesmu
+    ytInput.value = "";
+    suggestionsBox.innerHTML = "";
+    if (addPlaylistPopup) addPlaylistPopup.style.display = "none";
+
+    // Save to localStorage
+    try {
+        localStorage.setItem("customPlaylist_v1", JSON.stringify(window.customPlaylist));
+    } catch(e){}
 });
 
-// --- LOCAL STORAGE ---
-function saveCustomPlaylist() {
-    localStorage.setItem("customPlaylist_v2", JSON.stringify(customPlaylist));
-}
-
-function loadCustomPlaylist() {
-    const raw = localStorage.getItem("customPlaylist_v2");
-    if(raw){
-        customPlaylist = JSON.parse(raw);
-    }
-}
-loadCustomPlaylist();
-
-// --- YT PLAYER ---
-function createYTPlayer(videoId) {
-    if (!ytPlayer) {
-        ytPlayer = new YT.Player('youtubePlayerContainer', {
-            height: '0',
-            width: '0',
-            videoId: videoId,
-            events: {
-                'onReady': (e) => e.target.playVideo(),
-                'onStateChange': onPlayerStateChange
+// --- Load from localStorage on page load ---
+(function loadCustomFromLocal() {
+    try {
+        const raw = localStorage.getItem("customPlaylist_v1");
+        if (!raw) return;
+        const arr = JSON.parse(raw);
+        if (Array.isArray(arr) && arr.length) {
+            window.customPlaylist = arr;
+            // Add to playLists if nije tu
+            if (!playLists.includes(window.customPlaylist)) {
+                playLists.push(window.customPlaylist);
             }
-        });
-    } else {
-        ytPlayer.loadVideoById(videoId);
-    }
-}
-
-function onPlayerStateChange(event) {
-    if(event.data === YT.PlayerState.ENDED) nextCustomSong();
-}
-
-// --- PLAYBACK FUNCTIONS ---
-function playCustomSong(index) {
-    if (!customPlaylist[index]) return;
-    currentCustomIndex = index;
-    const song = customPlaylist[index];
-    coverImg.src = song.cover;
-    songNameAndArtist.innerText = `${song.name} - ${song.artist}`;
-    createYTPlayer(song.videoId);
-}
-
-function playPauseCustom() {
-    if(!ytPlayer) return;
-    const state = ytPlayer.getPlayerState();
-    if(state === YT.PlayerState.PLAYING) ytPlayer.pauseVideo();
-    else ytPlayer.playVideo();
-}
-
-function nextCustomSong() {
-    let nextIndex = (currentCustomIndex + 1) % customPlaylist.length;
-    playCustomSong(nextIndex);
-}
-
-function prevCustomSong() {
-    let prevIndex = (currentCustomIndex - 1 + customPlaylist.length) % customPlaylist.length;
-    playCustomSong(prevIndex);
-}
-
-// --- EVENT LISTENERS ---
-playBtn.addEventListener('click', playPauseCustom);
-nextBtn.addEventListener('click', nextCustomSong);
-prevBtn.addEventListener('click', prevCustomSong);
-
+            if (customPlaylistElement) customPlaylistElement.style.display = "block";
+        }
+    } catch(e){}
+})();
