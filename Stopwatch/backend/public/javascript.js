@@ -536,7 +536,7 @@ const saveYoutubeBtn = document.getElementById("saveYoutubeBtn");
 const cancelYoutubeBtn = document.getElementById("cancelYoutubeBtn");
 const addPlaylistPopup = document.getElementById("addPlaylistPopup");
 const customLimitMsg = document.getElementById("customPlaylistLimitMsg");
-const customPlaylistElement = document.getElementById("kindOfMusic7"); // dugme/element u UI
+const customPlaylistElement = document.getElementById("kindOfMusic1"); // dugme/element u UI
 
 // --- helpers ---
 function extractVideoId(url) {
