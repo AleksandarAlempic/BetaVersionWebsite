@@ -520,4 +520,70 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+// --- state ---
+let customPlaylist = []; // niz pesama sa {name, artist, cover, videoId}
+let currentCustomIndex = 0;
+let ytPlayer = null;
+
+// --- DOM ---
+const coverImg = document.querySelector('.disk'); // tvoj cover element
+const playBtn = document.querySelector('.play-btn');
+const nextBtn = document.querySelector('.next-btn');
+const prevBtn = document.querySelector('.pervious-btn');
+const ytContainer = document.getElementById('youtubePlayerContainer');
+
+// --- funkcije ---
+function createYTPlayer(videoId) {
+    if (!ytPlayer) {
+        ytPlayer = new YT.Player('youtubePlayerContainer', {
+            height: '0',
+            width: '0',
+            videoId: videoId,
+            events: {
+                'onReady': (e) => e.target.playVideo(),
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    } else {
+        ytPlayer.loadVideoById(videoId);
+    }
+}
+
+function onPlayerStateChange(event) {
+    // Poveži play/pause stanje sa UI
+    if(event.data === YT.PlayerState.ENDED) {
+        nextCustomSong();
+    }
+}
+
+function playCustomSong(index) {
+    if (!customPlaylist[index]) return;
+    currentCustomIndex = index;
+    const song = customPlaylist[index];
+    coverImg.src = song.cover;
+    createYTPlayer(song.videoId);
+}
+
+function playPauseCustom() {
+    if(!ytPlayer) return;
+    const state = ytPlayer.getPlayerState();
+    if(state === YT.PlayerState.PLAYING) ytPlayer.pauseVideo();
+    else ytPlayer.playVideo();
+}
+
+function nextCustomSong() {
+    let nextIndex = (currentCustomIndex + 1) % customPlaylist.length;
+    playCustomSong(nextIndex);
+}
+
+function prevCustomSong() {
+    let prevIndex = (currentCustomIndex - 1 + customPlaylist.length) % customPlaylist.length;
+    playCustomSong(prevIndex);
+}
+
+// --- Event listeners ---
+playBtn.addEventListener('click', playPauseCustom);
+nextBtn.addEventListener('click', nextCustomSong);
+prevBtn.addEventListener('click', prevCustomSong);
+
 
