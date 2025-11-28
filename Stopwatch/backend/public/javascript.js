@@ -538,7 +538,7 @@ const coverImg = document.querySelector('.disk');
 const playBtn = document.querySelector('.play-btn');
 const nextBtn = document.querySelector('.next-btn');
 const prevBtn = document.querySelector('.pervious-btn');
-const songNameAndArtist = document.getElementById("songNameAndArtist");
+// const songNameAndArtist = document.getElementById("songNameAndArtist");
 
 // --- HELPERS ---
 function extractVideoId(url) {
