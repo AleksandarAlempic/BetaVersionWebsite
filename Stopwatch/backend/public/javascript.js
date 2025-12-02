@@ -522,59 +522,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Formspree javascript for feedback button
 
-const FORMSPREE_URL = "https://formspree.io/f/mpwvryrz";
-
-// DOM
 const btnOpen = document.getElementById("openFeedbackBtn");
 const btnClose = document.getElementById("closeFeedbackBtn");
-const panel = document.getElementById("feedbackPanel");
+const panel = document.getElementById("feedbackPopup");
 const overlay = document.getElementById("feedbackOverlay");
-const sendBtn = document.getElementById("sendFeedbackBtn");
-const textArea = document.getElementById("feedbackText");
 
-// Open panel
+// Otvaranje popup-a
 btnOpen.addEventListener("click", () => {
-    panel.style.right = "0";
+    panel.style.left = "0";   // slajd u desno
     overlay.style.display = "block";
 });
 
-// Close panel
+// Zatvaranje popup-a
 function closeFeedbackPanel() {
-    panel.style.right = "-350px";
+    panel.style.left = "-350px";
     overlay.style.display = "none";
 }
 btnClose.addEventListener("click", closeFeedbackPanel);
 overlay.addEventListener("click", closeFeedbackPanel);
 
-// Send feedback
-sendBtn.addEventListener("click", async () => {
-    const msg = textArea.value.trim();
-
-    if (!msg) {
-        alert("Please write your feedback.");
-        return;
-    }
-
-    const formData = new FormData();
-    formData.append("message", msg);
-
-    try {
-        const res = await fetch(FORMSPREE_URL, {
-            method: "POST",
-            body: formData
-        });
-
-        if (res.ok) {
-            alert("Your feedback was sent. Thank you!");
-            textArea.value = "";
-            closeFeedbackPanel();
-        } else {
-            alert("Failed to send feedback.");
-        }
-    } catch (err) {
-        alert("Network error.");
-    }
-});
 
 
 /* ================= CUSTOM PLAYLIST + YT SEARCH ================= */
