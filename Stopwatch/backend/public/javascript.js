@@ -520,6 +520,63 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+// Formspree javascript for feedback button
+
+const FORMSPREE_URL = "https://formspree.io/f/mpwvryrz";
+
+// DOM
+const btnOpen = document.getElementById("openFeedbackBtn");
+const btnClose = document.getElementById("closeFeedbackBtn");
+const panel = document.getElementById("feedbackPanel");
+const overlay = document.getElementById("feedbackOverlay");
+const sendBtn = document.getElementById("sendFeedbackBtn");
+const textArea = document.getElementById("feedbackText");
+
+// Open panel
+btnOpen.addEventListener("click", () => {
+    panel.style.right = "0";
+    overlay.style.display = "block";
+});
+
+// Close panel
+function closeFeedbackPanel() {
+    panel.style.right = "-350px";
+    overlay.style.display = "none";
+}
+btnClose.addEventListener("click", closeFeedbackPanel);
+overlay.addEventListener("click", closeFeedbackPanel);
+
+// Send feedback
+sendBtn.addEventListener("click", async () => {
+    const msg = textArea.value.trim();
+
+    if (!msg) {
+        alert("Please write your feedback.");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("message", msg);
+
+    try {
+        const res = await fetch(FORMSPREE_URL, {
+            method: "POST",
+            body: formData
+        });
+
+        if (res.ok) {
+            alert("Your feedback was sent. Thank you!");
+            textArea.value = "";
+            closeFeedbackPanel();
+        } else {
+            alert("Failed to send feedback.");
+        }
+    } catch (err) {
+        alert("Network error.");
+    }
+});
+
+
 /* ================= CUSTOM PLAYLIST + YT SEARCH ================= */
 
 const YT_API_KEY = "AIzaSyBwwc6TSxopW7mc3PMjK6dYks0jfPZ_cbY";
