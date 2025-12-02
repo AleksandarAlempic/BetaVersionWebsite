@@ -129,7 +129,27 @@
                             </div>
                             <button id="timer" class="timer">Timer</button>
                             <button id="stopwatch" class="stopwatch">Stopwatch</button>
-                            <table>
+                                <!-- ============ FEEDBACK BUTTON (side floating) ============ -->
+<button id="openFeedbackBtn" class="feedback-float-btn">
+    Feedback
+</button>
+
+<!-- ============ FEEDBACK POPUP ============ -->
+<div id="feedbackPopup" class="feedback-popup">
+    <div class="feedback-popup-content">
+
+        <h3>Send Feedback</h3>
+
+        <textarea id="feedbackText" placeholder="Write your message..."></textarea>
+
+        <div class="feedback-buttons">
+            <button id="sendFeedbackBtn" class="send-btn">Send</button>
+            <button id="closeFeedbackBtn" class="cancel-btn">Cancel</button>
+        </div>
+
+    </div>
+</div>
+                           <table>
                                 <tr>
                                     <td>
                                     <label class="switch labelForMusicSlider">
