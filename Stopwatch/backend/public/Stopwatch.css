@@ -2291,100 +2291,84 @@ display: block;
     background: #f8f8f8;
 }
 
-/* FEEDBACK FLOATING BUTTON */
+/* === Floating Feedback Button === */
+.feedback-float-btn {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    transform-origin: left top;
+    background-color: #f39c12;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    z-index: 10000;
+    border-radius: 0 8px 8px 0;
+    font-weight: bold;
+}
 
+/* === Overlay === */
 .feedback-overlay {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 999; /* ispod popup-a */
+    background: rgba(0,0,0,0.4);
+    display: none;
+    z-index: 9998;
 }
+
+/* === Feedback Slide Panel === */
 .feedback-popup {
     position: fixed;
-    right: -350px; /* skriveno */
-    top: 50%;
-    transform: translateY(-50%);
-    width: 300px;
-    background: #fff;
-    z-index: 1000;
-    transition: right 0.3s ease;
-}
-.feedback-floating-btn {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    background: #ffcd00;
-    color: #000;
-    font-weight: bold;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    z-index: 2000;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-}
-
-
-
-/* SLIDE PANEL */
-.feedback-panel {
-    position: fixed;
     top: 0;
-    right: -350px; /* Hidden */
+    left: -350px; /* sakriven levo */
     width: 350px;
     height: 100%;
-    background: #fdfdfd;
-    border-left: 2px solid #ccc;
-    box-shadow: -4px 0 12px rgba(0,0,0,0.2);
-    transition: right 0.35s ease;
-    z-index: 1999;
+    background-color: #fff;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.3);
+    z-index: 9999;
+    transition: left 0.4s ease;
     display: flex;
     flex-direction: column;
-    padding: 20px;
 }
 
-/* Header */
-.feedback-header {
+.feedback-popup-content {
+    padding: 20px;
+    flex: 1;
     display: flex;
-    justify-content: space-between;
-    font-size: 18px;
-    font-weight: bold;
+    flex-direction: column;
+}
+
+.feedback-popup textarea {
+    flex: 1;
+    resize: none;
+    padding: 10px;
     margin-bottom: 15px;
 }
 
-/* Close button */
-.close-feedback-btn {
-    background: none;
-    border: none;
-    font-size: 22px;
+.feedback-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.send-btn, .cancel-btn {
+    padding: 8px 16px;
     cursor: pointer;
 }
 
-/* Textarea */
-.feedback-textarea {
-    width: 100%;
-    height: 60%;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #aaa;
-    resize: none;
-    font-size: 14px;
-    margin-bottom: 20px;
+.send-btn {
+    background-color: #27ae60;
+    color: white;
+    border: none;
 }
 
-/* Send Button */
-.feedback-send-btn {
-    background: #ffcd00;
+.cancel-btn {
+    background-color: #c0392b;
+    color: white;
     border: none;
-    padding: 12px;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 15px;
 }
 
 
