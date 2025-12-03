@@ -2324,7 +2324,7 @@ display: block;
 .feedback-popup {
     position: fixed;
     top: 0;
-    left: -350px; /* sakriven levo */
+    left: -450px; /* sakriven levo */
     width: 350px;
     height: 100%;
     background-color: #fff;
