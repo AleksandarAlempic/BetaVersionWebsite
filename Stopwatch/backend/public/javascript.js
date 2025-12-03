@@ -522,6 +522,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Formspree javascript for feedback button
 
+const FORMSPREE_URL = "https://formspree.io/f/mpwvryrz";
+
 const btnOpen = document.getElementById("openFeedbackBtn");
 const btnClose = document.getElementById("closeFeedbackBtn");
 const panel = document.getElementById("feedbackPopup");
