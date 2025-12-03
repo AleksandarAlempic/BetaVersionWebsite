@@ -526,6 +526,8 @@ const btnOpen = document.getElementById("openFeedbackBtn");
 const btnClose = document.getElementById("closeFeedbackBtn");
 const panel = document.getElementById("feedbackPopup");
 const overlay = document.getElementById("feedbackOverlay");
+const sendBtn = document.getElementById("sendFeedbackBtn");
+const textArea = document.getElementById("feedbackText");
 
 // Otvaranje popup-a
 btnOpen.addEventListener("click", () => {
@@ -541,6 +543,35 @@ function closeFeedbackPanel() {
 btnClose.addEventListener("click", closeFeedbackPanel);
 overlay.addEventListener("click", closeFeedbackPanel);
 
+// Send feedback
+sendBtn.addEventListener("click", async () => {
+    const msg = textArea.value.trim();
+
+    if (!msg) {
+        alert("Please write your feedback.");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append("message", msg);
+
+    try {
+        const res = await fetch(FORMSPREE_URL, {
+            method: "POST",
+            body: formData
+        });
+
+        if (res.ok) {
+            alert("Your feedback was sent. Thank you!");
+            textArea.value = "";
+            closeFeedbackPanel();
+        } else {
+            alert("Failed to send feedback.");
+        }
+    } catch (err) {
+        alert("Network error.");
+    }
+});
 
 
 /* ================= CUSTOM PLAYLIST + YT SEARCH ================= */
