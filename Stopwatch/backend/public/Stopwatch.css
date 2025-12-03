@@ -2294,7 +2294,8 @@ display: block;
 /* === Floating Feedback Button === */
 .feedback-float-btn {
     position: fixed;
-    left: 0;
+    margin-left: -20%;
+    /* left: 0; */
     top: 50%;
     transform: translateY(-50%) rotate(-90deg);
     transform-origin: left top;
@@ -2307,7 +2308,6 @@ display: block;
     border-radius: 0 8px 8px 0;
     font-weight: bold;
 }
-
 /* === Overlay === */
 .feedback-overlay {
     position: fixed;
