@@ -533,12 +533,18 @@ const textArea = document.getElementById("feedbackText");
 btnOpen.addEventListener("click", () => {
     panel.style.left = "0";   // slajd u desno
     overlay.style.display = "block";
+   Root.style.display = "none";
+    distance.style.display = "none";
+    speed.style.display = "none";
 });
 
 // Zatvaranje popup-a
 function closeFeedbackPanel() {
-    panel.style.left = "-350px";
+    panel.style.left = "-450px";
     overlay.style.display = "none";
+   Root.style.display = "block";
+    distance.style.display = "block";
+    speed.style.display = "block";
 }
 btnClose.addEventListener("click", closeFeedbackPanel);
 overlay.addEventListener("click", closeFeedbackPanel);
