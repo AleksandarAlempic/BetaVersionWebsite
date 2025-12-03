@@ -2294,7 +2294,7 @@ display: block;
 /* === Floating Feedback Button === */
 .feedback-float-btn {
     position: fixed;
-    margin-left: -14%;
+    margin-left: -12.5%;
     /* left: 0; */
     top: 50%;
     transform: translateY(-50%) rotate(-90deg);
