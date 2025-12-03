@@ -531,7 +531,7 @@ const textArea = document.getElementById("feedbackText");
 
 // Otvaranje popup-a
 btnOpen.addEventListener("click", () => {
-    panel.style.left = "0";   // slajd u desno
+    panel.style.left = "5px";   // slajd u desno
     overlay.style.display = "block";
    Root.style.display = "none";
     distance.style.display = "none";
