@@ -536,6 +536,12 @@ btnOpen.addEventListener("click", () => {
    Root.style.display = "none";
     distance.style.display = "none";
     speed.style.display = "none";
+  startRouteButton.style.display = "none";
+  stopRouteButton.style.display ="none";
+  fetchNearbyRoutesButton.style.display = "none";
+  fetchNearbyTrainingsButton.style.display = "none";
+  addTrainingButton.style.display = "none";
+  playListBtn.style.display = "none";
 });
 
 // Zatvaranje popup-a
@@ -545,6 +551,12 @@ function closeFeedbackPanel() {
    Root.style.display = "block";
     distance.style.display = "block";
     speed.style.display = "block";
+   startRouteButton.style.display = "block";
+  stopRouteButton.style.display ="block";
+  fetchNearbyRoutesButton.style.display = "block";
+  fetchNearbyTrainingsButton.style.display = "block";
+  addTrainingButton.style.display = "block";
+  playListBtn.style.display = "block";
 }
 btnClose.addEventListener("click", closeFeedbackPanel);
 overlay.addEventListener("click", closeFeedbackPanel);
