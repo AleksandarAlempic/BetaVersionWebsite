@@ -90,12 +90,20 @@ console.log("currentPlayList:", currentPlayList, "songs:", songs, "i:", i);
 setMusic(0);
 
 nextBtn.addEventListener('click', () => {
-    if(currentMusic >= playLists[currentPlayList].length - 1){
-        currentMusic = 0;
+    const currentList = playLists[currentPlayList];
+
+    // Proveri da li lista postoji i nije prazna
+    if (!currentList || !Array.isArray(currentList) || currentList.length === 0) {
+        console.warn("Trenutna playlist ne postoji ili je prazna.");
+        return; // prekini funkciju
     }
-    else{
+
+    if (currentMusic >= currentList.length - 1) {
+        currentMusic = 0;
+    } else {
         currentMusic++;
     }
+
     setMusic(currentMusic);
     playMusic();
 });
