@@ -790,11 +790,37 @@ cancelYoutubeBtn.addEventListener("click", () => {
 // document.querySelector(".next-btn").addEventListener("click", playNextCustomSong);
 // document.querySelector(".pervious-btn").addEventListener("click", playPreviousCustomSong);
 
-// --- Load YouTube IFrame API ---
-const tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-document.body.appendChild(tag);
+let youtubeScriptLoaded = false;
 
+document.getElementById("fetchCustomPlaylistButton").addEventListener("click", () => {
+    console.log("Custom playlist opened");
+
+    // Učitaj YouTube IFrame API samo prvi put
+    if (!youtubeScriptLoaded) {
+        const tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.body.appendChild(tag);
+        youtubeScriptLoaded = true;
+        console.log("YouTube IFrame API loaded");
+    }
+
+    // Aktiviraj event listener-e za custom playlist dugmiće
+    const nextBtn = document.querySelector(".next-btn");
+    const prevBtn = document.querySelector(".previous-btn");
+
+    if (nextBtn && prevBtn) {
+        nextBtn.addEventListener("click", playNextCustomSong);
+        prevBtn.addEventListener("click", playPrevCustomSong);
+    }
+
+    // Sakrij statički disk kad je aktivna custom lista
+    const disk = document.querySelector(".disk");
+    if (disk) {
+        disk.style.display = "none";
+    }
+
+    // Ovde možeš otvoriti custom playlist UI, iframe player itd.
+});
 
 
 // /* ================= CUSTOM PLAYLIST + YT SEARCH =================  OBSOLETE*/
