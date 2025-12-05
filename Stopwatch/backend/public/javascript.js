@@ -786,11 +786,11 @@ cancelYoutubeBtn.addEventListener("click", () => {
     } catch(e){}
 })();
 
---- Next / Previous buttons (bind to your UI) ---
+// --- Next / Previous buttons (bind to your UI) ---
 document.querySelector(".next-btn").addEventListener("click", playNextCustomSong);
 document.querySelector(".pervious-btn").addEventListener("click", playPreviousCustomSong);
 
---- Load YouTube IFrame API ---
+// --- Load YouTube IFrame API ---
 const tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 document.body.appendChild(tag);
