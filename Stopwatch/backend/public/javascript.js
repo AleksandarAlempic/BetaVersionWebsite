@@ -792,7 +792,7 @@ cancelYoutubeBtn.addEventListener("click", () => {
 
 let youtubeScriptLoaded = false;
 
-document.getElementById("fetchCustomPlaylistButton").addEventListener("click", () => {
+document.getElementById("saveYoutubeBtn").addEventListener("click", () => {
     console.log("Custom playlist opened");
 
     // Učitaj YouTube IFrame API samo prvi put
