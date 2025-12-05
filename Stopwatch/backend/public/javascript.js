@@ -788,7 +788,7 @@ cancelYoutubeBtn.addEventListener("click", () => {
 
 // --- Next / Previous buttons (bind to your UI) ---
 document.querySelector(".next-btn").addEventListener("click", playNextCustomSong);
-document.querySelector(".pervious-btn").addEventListener("click", playPrevCustomSong);
+document.querySelector(".pervious-btn").addEventListener("click", playPreviousCustomSong);
 
 // --- Load YouTube IFrame API ---
 const tag = document.createElement('script');
