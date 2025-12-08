@@ -795,6 +795,9 @@ let youtubeScriptLoaded = false;
 document.getElementById("fetchCustomPlaylistButton").addEventListener("click", () => {
     console.log("Custom playlist opened");
 
+    // Otvori popup za dodavanje nove pesme
+    if (addPlaylistPopup) addPlaylistPopup.style.display = "block";
+
     // Učitaj YouTube IFrame API samo prvi put
     if (!youtubeScriptLoaded) {
         const tag = document.createElement('script');
@@ -810,16 +813,12 @@ document.getElementById("fetchCustomPlaylistButton").addEventListener("click", (
 
     if (nextBtn && prevBtn) {
         nextBtn.addEventListener("click", playNextCustomSong);
-        prevBtn.addEventListener("click", playPrevCustomSong);
+        prevBtn.addEventListener("click", playPreviousCustomSong);
     }
 
     // Sakrij statički disk kad je aktivna custom lista
     const disk = document.querySelector(".disk");
-    if (disk) {
-        disk.style.display = "none";
-    }
-
-    // Ovde možeš otvoriti custom playlist UI, iframe player itd.
+    if (disk) disk.style.display = "none";
 });
 
 
