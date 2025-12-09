@@ -799,7 +799,7 @@ window.activePlayer = "static";
 
 // Glavni next/prev dugmići
 const globalNextBtn = document.querySelector(".next-btn");
-const globalPrevBtn = document.querySelector(".previous-btn");
+const globalPrevBtn = document.querySelector(".pervious-btn");
 
 // Originalne funkcije statičke plej liste (NE DIRAMO)
 const originalNextStatic = globalNextBtn.onclick;
