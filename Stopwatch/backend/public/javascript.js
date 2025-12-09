@@ -792,34 +792,73 @@ cancelYoutubeBtn.addEventListener("click", () => {
 
 let youtubeScriptLoaded = false;
 
+/* =============== SAFE SWITCH SYSTEM (STATIC + CUSTOM) =============== */
+
+// Koja je plejlista aktivna?
+window.activePlayer = "static";
+
+// Glavni next/prev dugmići
+const globalNextBtn = document.querySelector(".next-btn");
+const globalPrevBtn = document.querySelector(".previous-btn");
+
+// Originalne funkcije statičke plej liste (NE DIRAMO)
+const originalNextStatic = globalNextBtn.onclick;
+const originalPrevStatic = globalPrevBtn.onclick;
+
+// Generalizovan handler koji odlučuje šta da radi
+function globalNextHandler(e) {
+    if (window.activePlayer === "custom" && window.customPlaylist.length > 0) {
+        e.stopPropagation();
+        playNextCustomSong();
+        return;
+    }
+
+    // Static mode → pusti originalni next
+    if (typeof originalNextStatic === "function") originalNextStatic(e);
+}
+
+function globalPrevHandler(e) {
+    if (window.activePlayer === "custom" && window.customPlaylist.length > 0) {
+        e.stopPropagation();
+        playPreviousCustomSong();
+        return;
+    }
+
+    if (typeof originalPrevStatic === "function") originalPrevStatic(e);
+}
+
+// Okači novi inteligentni handler SAMO JEDNOM
+if (!window.globalHandlersBound) {
+    globalNextBtn.onclick = globalNextHandler;
+    globalPrevBtn.onclick = globalPrevHandler;
+    window.globalHandlersBound = true;
+}
+
+
+/* =============== CUSTOM ACTIVATION =============== */
+
+// Kada otvoriš custom playlist:
 document.getElementById("fetchCustomPlaylistButton").addEventListener("click", () => {
-    console.log("Custom playlist opened");
+    window.activePlayer = "custom";
 
-    // Otvori popup za dodavanje nove pesme
-    if (addPlaylistPopup) addPlaylistPopup.style.display = "block";
-
-    // Učitaj YouTube IFrame API samo prvi put
-    if (!youtubeScriptLoaded) {
-        const tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        document.body.appendChild(tag);
-        youtubeScriptLoaded = true;
-        console.log("YouTube IFrame API loaded");
-    }
-
-    // Aktiviraj event listener-e za custom playlist dugmiće
-    const nextBtn = document.querySelector(".next-btn");
-    const prevBtn = document.querySelector(".previous-btn");
-
-    if (nextBtn && prevBtn) {
-        nextBtn.addEventListener("click", playNextCustomSong);
-        prevBtn.addEventListener("click", playPreviousCustomSong);
-    }
-
-    // Sakrij statički disk kad je aktivna custom lista
+    // sakrij statički disk
     const disk = document.querySelector(".disk");
     if (disk) disk.style.display = "none";
 });
+
+
+/* =============== RETURN TO STATIC MODE =============== */
+/*  
+   POZOVI OVO KADA KLIKNEŠ NA STATIČKU PLAYLIST-U 
+   (npr .kindOfMusic ili tvoj meni gde biraš statičku plejlistu)
+*/
+window.returnToStaticPlayer = function() {
+    window.activePlayer = "static";
+
+    // vrati disk
+    const disk = document.querySelector(".disk");
+    if (disk) disk.style.display = "block";
+};
 
 
 // /* ================= CUSTOM PLAYLIST + YT SEARCH =================  OBSOLETE*/
