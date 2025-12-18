@@ -660,12 +660,9 @@ function onPlayerStateChange(event) {
 async function playYouTube(songObj) {
     if (!songObj) return;
 
-    // ✅ čekamo da player bude spreman
-    if (!ytPlayer) {
-        await ensureYTPlayer();
-    }
+    // ✅ čekamo ytPlayer da bude spreman
+    await ensureYTPlayer();
 
-    // extract video ID na siguran način
     const vid = extractVideoId(songObj.path);
     if (!vid) return;
 
@@ -758,9 +755,10 @@ ytInput.addEventListener("input", async () => {
 
 function ensureYTPlayer() {
     return new Promise((resolve) => {
-        if (ytPlayer) return resolve(ytPlayer);
+        // Ako već imamo ytPlayer i on je instanca YT.Player → ok
+        if (ytPlayer && ytPlayer.loadVideoById) return resolve(ytPlayer);
 
-        // Ako skripta još nije učitana, učitaj je
+        // Ako skripta još nije učitana → učitaj
         if (!youtubeScriptLoaded) {
             const tag = document.createElement('script');
             tag.src = "https://www.youtube.com/iframe_api";
@@ -768,17 +766,23 @@ function ensureYTPlayer() {
             youtubeScriptLoaded = true;
         }
 
-        // Kada API bude spreman
-        window.onYouTubeIframeAPIReady = function() {
-            ytPlayer = new YT.Player('audioContainer', {
-                height: '0',
-                width: '0',
-                videoId: '',
-                events: { 'onStateChange': onPlayerStateChange },
-                playerVars: { autoplay: 1, controls: 0 }
-            });
-            resolve(ytPlayer);
+        // Čekamo da API bude spreman
+        const checkYT = () => {
+            if (window.YT && window.YT.Player) {
+                ytPlayer = new YT.Player('audioContainer', {
+                    height: '0',
+                    width: '0',
+                    videoId: '',
+                    events: { 'onStateChange': onPlayerStateChange },
+                    playerVars: { autoplay: 1, controls: 0 }
+                });
+                resolve(ytPlayer);
+            } else {
+                // Ako još nije spreman → čekamo 100ms
+                setTimeout(checkYT, 100);
+            }
         };
+        checkYT();
     });
 }
 
