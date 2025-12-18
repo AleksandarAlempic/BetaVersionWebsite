@@ -657,9 +657,19 @@ function onPlayerStateChange(event) {
 }
 
 // --- Play song ---
-function playYouTube(songObj) {
-    if (!ytPlayer) return;
-    ytPlayer.loadVideoById(songObj.path.split('v=')[1]);
+async function playYouTube(songObj) {
+    if (!songObj) return;
+
+    // ✅ čekamo da player bude spreman
+    if (!ytPlayer) {
+        await ensureYTPlayer();
+    }
+
+    // extract video ID na siguran način
+    const vid = extractVideoId(songObj.path);
+    if (!vid) return;
+
+    ytPlayer.loadVideoById(vid);
     updateUI(songObj);
 }
 
