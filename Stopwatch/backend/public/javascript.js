@@ -599,6 +599,9 @@ const YT_API_KEY = "AIzaSyBwwc6TSxopW7mc3PMjK6dYks0jfPZ_cbY"; // ostaje za searc
 const MAX_CUSTOM_SONGS = 12;
 
 window.customPlaylist = [];
+
+console.log("AFTER MANUAL RESET:", window.customPlaylist.length);
+
 let currentSongIndex = 0;
 let ytPlayer = null;
 
@@ -745,6 +748,7 @@ ytInput.addEventListener("input", async () => {
 
 // --- Save song to playlist ---
 saveYoutubeBtn.addEventListener("click", () => {
+  console.log("ON SAVE CLICK:", window.customPlaylist.length, window.customPlaylist);
     if (!selectedSongForAdd) { alert("Select a song first."); return; }
     if (window.customPlaylist.length >= MAX_CUSTOM_SONGS) { alert("Limit reached."); return; }
 
@@ -789,6 +793,8 @@ cancelYoutubeBtn.addEventListener("click", () => {
 (function loadCustomFromLocal() {
     try {
         const raw = localStorage.getItem("customPlaylist_v1");
+
+        // Ako nema ništa u storage → prazna playlist-a
         if (!raw) {
             window.customPlaylist = [];
             return;
@@ -796,14 +802,22 @@ cancelYoutubeBtn.addEventListener("click", () => {
 
         const arr = JSON.parse(raw);
 
+        // Ako nije validan array → reset
         if (!Array.isArray(arr)) {
             window.customPlaylist = [];
             localStorage.removeItem("customPlaylist_v1");
             return;
         }
 
-        // 👇 HARD LIMIT (sprečava Limit reached na startu)
-        window.customPlaylist = arr.slice(0, MAX_CUSTOM_SONGS);
+        // 🔴 KLJUČNO: ako je puna → tretiraj kao PRAZNU
+        if (arr.length >= MAX_CUSTOM_SONGS) {
+            window.customPlaylist = [];
+            localStorage.removeItem("customPlaylist_v1");
+            return;
+        }
+
+        // Inače normalno učitaj
+        window.customPlaylist = arr;
 
     } catch (e) {
         window.customPlaylist = [];
@@ -884,7 +898,7 @@ window.returnToStaticPlayer = function() {
     const disk = document.querySelector(".disk");
     if (disk) disk.style.display = "block";
 };
-
+console.log("END OF FILE:", window.customPlaylist.length, window.customPlaylist);
 
 // /* ================= CUSTOM PLAYLIST + YT SEARCH =================  OBSOLETE*/
 
