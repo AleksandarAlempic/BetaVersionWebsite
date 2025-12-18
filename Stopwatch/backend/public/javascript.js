@@ -598,7 +598,7 @@ sendBtn.addEventListener("click", async () => {
 const YT_API_KEY = "AIzaSyBwwc6TSxopW7mc3PMjK6dYks0jfPZ_cbY"; // ostaje za search
 const MAX_CUSTOM_SONGS = 12;
 
-window.customPlaylist = [];
+window.customPlaylist = window.customPlaylist || []
 
 console.log("AFTER MANUAL RESET:", window.customPlaylist.length);
 
@@ -790,38 +790,31 @@ cancelYoutubeBtn.addEventListener("click", () => {
 //     } catch(e){}
 // })();
 
+// --- Load playlist from localStorage safely ---
 (function loadCustomFromLocal() {
     try {
         const raw = localStorage.getItem("customPlaylist_v1");
-
-        // Ako nema ništa u storage → prazna playlist-a
-        if (!raw) {
-            window.customPlaylist = [];
-            return;
-        }
+        if (!raw) return;
 
         const arr = JSON.parse(raw);
+        if (!Array.isArray(arr)) return;
 
-        // Ako nije validan array → reset
-        if (!Array.isArray(arr)) {
-            window.customPlaylist = [];
-            localStorage.removeItem("customPlaylist_v1");
-            return;
+        // Očisti postojeći array, ali zadrži referencu
+        window.customPlaylist.length = 0;
+
+        // Ubaci max 12 pesama
+        arr.slice(0, MAX_CUSTOM_SONGS).forEach(song => {
+            window.customPlaylist.push(song);
+        });
+
+        // Ako već ima barem jedna pesma, prikaži dugme/UI
+        if (window.customPlaylist.length && customPlaylistElement) {
+            customPlaylistElement.style.display = "block";
         }
-
-        // 🔴 KLJUČNO: ako je puna → tretiraj kao PRAZNU
-        if (arr.length >= MAX_CUSTOM_SONGS) {
-            window.customPlaylist = [];
-            localStorage.removeItem("customPlaylist_v1");
-            return;
-        }
-
-        // Inače normalno učitaj
-        window.customPlaylist = arr;
 
     } catch (e) {
-        window.customPlaylist = [];
-        localStorage.removeItem("customPlaylist_v1");
+        window.customPlaylist.length = 0;
+        console.warn("Custom playlist load failed", e);
     }
 })();
 
