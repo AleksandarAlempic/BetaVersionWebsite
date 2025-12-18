@@ -771,19 +771,44 @@ cancelYoutubeBtn.addEventListener("click", () => {
     if (addPlaylistPopup) addPlaylistPopup.style.display = "none";
 });
 
-// --- Load from localStorage ---
+// // --- Load from localStorage ---  Old working version with problem with Limit reached
+// (function loadCustomFromLocal() {
+//     try {
+//         const raw = localStorage.getItem("customPlaylist_v1");
+//         if (!raw) return;
+//         const arr = JSON.parse(raw);
+//         if (Array.isArray(arr) && arr.length) {
+//             window.customPlaylist = arr;
+//             currentSongIndex = 0;
+//             if (customPlaylistElement) customPlaylistElement.style.display = "block";
+//             playYouTube(window.customPlaylist[currentSongIndex]);
+//         }
+//     } catch(e){}
+// })();
+
 (function loadCustomFromLocal() {
     try {
         const raw = localStorage.getItem("customPlaylist_v1");
-        if (!raw) return;
-        const arr = JSON.parse(raw);
-        if (Array.isArray(arr) && arr.length) {
-            window.customPlaylist = arr;
-            currentSongIndex = 0;
-            if (customPlaylistElement) customPlaylistElement.style.display = "block";
-            playYouTube(window.customPlaylist[currentSongIndex]);
+        if (!raw) {
+            window.customPlaylist = [];
+            return;
         }
-    } catch(e){}
+
+        const arr = JSON.parse(raw);
+
+        if (!Array.isArray(arr)) {
+            window.customPlaylist = [];
+            localStorage.removeItem("customPlaylist_v1");
+            return;
+        }
+
+        // 👇 HARD LIMIT (sprečava Limit reached na startu)
+        window.customPlaylist = arr.slice(0, MAX_CUSTOM_SONGS);
+
+    } catch (e) {
+        window.customPlaylist = [];
+        localStorage.removeItem("customPlaylist_v1");
+    }
 })();
 
 // --- Next / Previous buttons (bind to your UI) ---
