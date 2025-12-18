@@ -917,8 +917,16 @@ document.getElementById("fetchCustomPlaylistButton").addEventListener("click", (
     // sakrij statički disk
     const disk = document.querySelector(".disk");
     if (disk) disk.style.display = "none";
-});
 
+    // Otvori add-song popup i resetuj input
+    if (addPlaylistPopup) {
+        addPlaylistPopup.style.display = "block";   // pokaži popup
+        ytInput.value = "";                          // reset input
+        selectedSongForAdd = null;                   // reset selekciju
+        suggestionsBox.innerHTML = "";               // očisti sugestije
+        ytInput.focus();                             // fokus na input
+    }
+});
 
 /* =============== RETURN TO STATIC MODE =============== */
 /*  
