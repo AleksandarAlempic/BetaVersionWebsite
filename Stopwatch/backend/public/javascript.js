@@ -598,7 +598,7 @@ sendBtn.addEventListener("click", async () => {
 const YT_API_KEY = "AIzaSyBwwc6TSxopW7mc3PMjK6dYks0jfPZ_cbY"; // ostaje za search
 const MAX_CUSTOM_SONGS = 12;
 
-window.customPlaylist = window.customPlaylist || [];
+window.customPlaylist = [];
 let currentSongIndex = 0;
 let ytPlayer = null;
 
