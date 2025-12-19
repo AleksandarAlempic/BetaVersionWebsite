@@ -791,16 +791,23 @@ saveYoutubeBtn.addEventListener("click", async () => {
     if (!selectedSongForAdd) { alert("Select a song first."); return; }
     if (window.customPlaylist.length >= MAX_CUSTOM_SONGS) { alert("Limit reached."); return; }
 
-    // ✅ Ovo je novo: čekamo da player bude spreman
+    // čekamo ytPlayer
     await ensureYTPlayer();
 
     window.customPlaylist.push(selectedSongForAdd);
     currentSongIndex = window.customPlaylist.length - 1;
+
     if (customPlaylistElement) customPlaylistElement.style.display = "block";
+
+    // POKAŽ dugmiće odmah
+    const customNext = document.querySelector(".next-btn");
+    const customPrev = document.querySelector(".pervious-btn");
+    if(customNext) customNext.style.display = "inline-block";
+    if(customPrev) customPrev.style.display = "inline-block";
 
     localStorage.setItem("customPlaylist_v1", JSON.stringify(window.customPlaylist));
 
-    // Reset
+    // Reset input
     selectedSongForAdd = null;
     ytInput.value = "";
     suggestionsBox.innerHTML = "";
