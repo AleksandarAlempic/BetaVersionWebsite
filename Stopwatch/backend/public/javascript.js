@@ -917,13 +917,18 @@ if (!window.globalHandlersBound) {
 
 /* =============== CUSTOM ACTIVATION =============== */
 
-// Kada otvoriš custom playlist:
 document.getElementById("fetchCustomPlaylistButton").addEventListener("click", () => {
     window.activePlayer = "custom";
 
     // sakrij statički disk
     const disk = document.querySelector(".disk");
     if (disk) disk.style.display = "none";
+
+    // pokaži next / previous dugmiće
+    const nextBtn = document.querySelector(".next-btn");
+    const prevBtn = document.querySelector(".pervious-btn");
+    if (nextBtn) nextBtn.style.display = "inline-block"; // ili "block" prema tvom CSS
+    if (prevBtn) prevBtn.style.display = "inline-block";
 
     // Otvori add-song popup i resetuj input
     if (addPlaylistPopup) {
