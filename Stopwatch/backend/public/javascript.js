@@ -413,7 +413,7 @@ async function retrieveNearbyTrainings() {
     }
 
     try {
-      const res = await fetch(`https://betaversionwebsite.onrender.com/api/nearby-trainings?lat=${latitude}&lng=${longitude}&radius=${radius}`);
+      const res = await fetch(`https://betaversionwebsite.onrender.com/api/nearby-trainings?lat=${laintitude}&lng=${longitude}&radius=${radius}`);
       const trainings = await res.json();
 
       if (!Array.isArray(trainings) || trainings.length === 0) {
@@ -813,8 +813,8 @@ saveYoutubeBtn.addEventListener("click", async () => {
     // ✅ Prikaži next / previous dugmiće
     const customNext = document.querySelector(".next-btn");
     const customPrev = document.querySelector(".pervious-btn");
-    if(customNext) customNext.style.display = "inline-block";
-    if(customPrev) customPrev.style.display = "inline-block";
+    if(customNext) customNext.style.display = "block";
+    if(customPrev) customPrev.style.display = "block";
 
     // ✅ Sačuvaj u localStorage
     localStorage.setItem("customPlaylist_v1", JSON.stringify(window.customPlaylist));
