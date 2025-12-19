@@ -788,31 +788,44 @@ function ensureYTPlayer() {
 
 // --- Save song to playlist ---
 saveYoutubeBtn.addEventListener("click", async () => {
-    if (!selectedSongForAdd) { alert("Select a song first."); return; }
-    if (window.customPlaylist.length >= MAX_CUSTOM_SONGS) { alert("Limit reached."); return; }
+    // ✅ Proveri da li je selektovana pesma
+    if (!selectedSongForAdd) { 
+        alert("Select a song first."); 
+        return; 
+    }
 
-    // čekamo ytPlayer
+    // ✅ Proveri limit
+    if (window.customPlaylist.length >= MAX_CUSTOM_SONGS) { 
+        alert("Limit reached."); 
+        return; 
+    }
+
+    // ✅ Čekamo da YouTube player bude spreman
     await ensureYTPlayer();
 
+    // ✅ Dodaj pesmu u custom playlist
     window.customPlaylist.push(selectedSongForAdd);
     currentSongIndex = window.customPlaylist.length - 1;
 
+    // ✅ Prikaži dugme/UI za custom playlist
     if (customPlaylistElement) customPlaylistElement.style.display = "block";
 
-    // POKAŽ dugmiće odmah
+    // ✅ Prikaži next / previous dugmiće
     const customNext = document.querySelector(".next-btn");
     const customPrev = document.querySelector(".pervious-btn");
     if(customNext) customNext.style.display = "inline-block";
-    if(customPrev) customPrev.style.display = "inline-block";
+    if(customPrev) customPrev.style.display = "inline-block");
 
+    // ✅ Sačuvaj u localStorage
     localStorage.setItem("customPlaylist_v1", JSON.stringify(window.customPlaylist));
 
-    // Reset input
+    // ✅ Reset inputa i popup-a
     selectedSongForAdd = null;
     ytInput.value = "";
     suggestionsBox.innerHTML = "";
     if (addPlaylistPopup) addPlaylistPopup.style.display = "none";
 
+    // ✅ Pusti novu pesmu
     playYouTube(window.customPlaylist[currentSongIndex]);
 });
 // --- Cancel ---
