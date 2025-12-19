@@ -814,7 +814,7 @@ saveYoutubeBtn.addEventListener("click", async () => {
     const customNext = document.querySelector(".next-btn");
     const customPrev = document.querySelector(".pervious-btn");
     if(customNext) customNext.style.display = "inline-block";
-    if(customPrev) customPrev.style.display = "inline-block");
+    if(customPrev) customPrev.style.display = "inline-block";
 
     // ✅ Sačuvaj u localStorage
     localStorage.setItem("customPlaylist_v1", JSON.stringify(window.customPlaylist));
