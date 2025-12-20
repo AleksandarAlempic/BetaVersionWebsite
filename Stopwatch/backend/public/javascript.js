@@ -933,23 +933,23 @@ if (!window.globalHandlersBound) {
 document.getElementById("fetchCustomPlaylistButton").addEventListener("click", () => {
     window.activePlayer = "custom";
 
-    // sakrij statički disk
+    // ❗ NE display:none
     const disk = document.querySelector(".disk");
-    if (disk) disk.style.display = "none";
+    if (disk) disk.style.visibility = "hidden";
 
-    // pokaži next / previous dugmiće
+    // dugmići ostaju vidljivi
     const nextBtn = document.querySelector(".next-btn");
     const prevBtn = document.querySelector(".pervious-btn");
-    if (nextBtn) nextBtn.style.display = "inline-block"; // ili "block" prema tvom CSS
+    if (nextBtn) nextBtn.style.display = "inline-block";
     if (prevBtn) prevBtn.style.display = "inline-block";
 
-    // Otvori add-song popup i resetuj input
+    // otvori popup
     if (addPlaylistPopup) {
-        addPlaylistPopup.style.display = "block";   // pokaži popup
-        ytInput.value = "";                          // reset input
-        selectedSongForAdd = null;                   // reset selekciju
-        suggestionsBox.innerHTML = "";               // očisti sugestije
-        ytInput.focus();                             // fokus na input
+        addPlaylistPopup.style.display = "block";
+        ytInput.value = "";
+        selectedSongForAdd = null;
+        suggestionsBox.innerHTML = "";
+        ytInput.focus();
     }
 });
 
@@ -961,9 +961,8 @@ document.getElementById("fetchCustomPlaylistButton").addEventListener("click", (
 window.returnToStaticPlayer = function() {
     window.activePlayer = "static";
 
-    // vrati disk
     const disk = document.querySelector(".disk");
-    if (disk) disk.style.display = "block";
+    if (disk) disk.style.visibility = "visible";
 };
 console.log("END OF FILE:", window.customPlaylist.length, window.customPlaylist);
 
