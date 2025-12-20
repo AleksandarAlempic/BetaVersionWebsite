@@ -656,17 +656,37 @@ function onPlayerStateChange(event) {
     }
 }
 
-// --- Play song ---
-async function playYouTube(songObj) {
+// // --- Play song --- OLD
+// async function playYouTube(songObj) {
+//     if (!songObj) return;
+
+//     await ensureYTPlayer();  // čekamo da player bude spreman
+
+//     const vid = extractVideoId(songObj.path);
+//     if (!vid) return;
+
+//     ytPlayer.loadVideoById(vid);  // sada ovo neće više bacati grešku
+//     updateUI(songObj);
+// }
+
+function playYouTube(songObj) {
     if (!songObj) return;
 
-    await ensureYTPlayer();  // čekamo da player bude spreman
+    ensureYTPlayer().then(() => {
+        const vid = extractVideoId(songObj.path);
+        if (!vid) return;
 
-    const vid = extractVideoId(songObj.path);
-    if (!vid) return;
+        ytPlayer.loadVideoById(vid);
 
-    ytPlayer.loadVideoById(vid);  // sada ovo neće više bacati grešku
-    updateUI(songObj);
+        // ⬇⬇⬇ OVO TI JE FALILO
+        const disk = document.querySelector('.disk');
+        if (disk) {
+            disk.classList.add('play');
+            disk.style.visibility = 'visible';
+        }
+
+        updateUI(songObj);
+    });
 }
 
 // --- Update UI ---
