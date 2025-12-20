@@ -820,11 +820,12 @@ saveYoutubeBtn.addEventListener("click", async () => {
 
     await ensureYTPlayer();
 
-    // Dodaj pesmu u playlistu
     window.customPlaylist.push(selectedSongForAdd);
     currentSongIndex = window.customPlaylist.length - 1;
 
-    // Sačuvaj playlistu
+    if (customPlaylistElement) customPlaylistElement.style.display = "block";
+
+    // Sačuvaj u localStorage
     localStorage.setItem("customPlaylist_v1", JSON.stringify(window.customPlaylist));
 
     // Reset inputa i popup-a
@@ -833,12 +834,10 @@ saveYoutubeBtn.addEventListener("click", async () => {
     suggestionsBox.innerHTML = "";
     if (addPlaylistPopup) addPlaylistPopup.style.display = "none";
 
-    // ✅ Umesto ponovnog kreiranja player-a, samo učitaj novu pesmu
-    if (window.YTPlayer) {
-        YTPlayer.loadVideoById(window.customPlaylist[currentSongIndex].videoId);
-    }
+    // ✅ Pusti novu pesmu
+    playYouTube(window.customPlaylist[currentSongIndex]);
 
-    // Dugmići ostaju na svom mestu jer se DOM ne dira
+    // ✅ Ponovo prikaži next / previous dugmiće nakon renderovanja player-a
     const customNext = document.querySelector(".next-btn");
     const customPrev = document.querySelector(".pervious-btn");
     if(customNext) customNext.style.display = "block";
