@@ -807,41 +807,31 @@ function ensureYTPlayer() {
 }
 
 // --- Save song to playlist ---
-saveYoutubeBtn.addEventListener("click", async () => {
-    if (!selectedSongForAdd) { 
-        alert("Select a song first."); 
-        return; 
+saveYoutubeBtn.addEventListener("click", () => {
+    if (!selectedSongForAdd) {
+        alert("Select a song first.");
+        return;
     }
 
-    if (window.customPlaylist.length >= MAX_CUSTOM_SONGS) { 
-        alert("Limit reached."); 
-        return; 
+    if (window.customPlaylist.length >= MAX_CUSTOM_SONGS) {
+        alert("Limit reached.");
+        return;
     }
 
-    await ensureYTPlayer();
-
+    // Dodaj pesmu u playlistu
     window.customPlaylist.push(selectedSongForAdd);
     currentSongIndex = window.customPlaylist.length - 1;
-
-    if (customPlaylistElement) customPlaylistElement.style.display = "block";
 
     // Sačuvaj u localStorage
     localStorage.setItem("customPlaylist_v1", JSON.stringify(window.customPlaylist));
 
-    // Reset inputa i popup-a
+    // Reset input/popup
     selectedSongForAdd = null;
     ytInput.value = "";
     suggestionsBox.innerHTML = "";
     if (addPlaylistPopup) addPlaylistPopup.style.display = "none";
 
-    // ✅ Pusti novu pesmu
-    playYouTube(window.customPlaylist[currentSongIndex]);
-
-    // ✅ Ponovo prikaži next / previous dugmiće nakon renderovanja player-a
-    const customNext = document.querySelector(".next-btn");
-    const customPrev = document.querySelector(".pervious-btn");
-    if(customNext) customNext.style.display = "block";
-    if(customPrev) customPrev.style.display = "block";
+    // ❌ Ne diramo plejer – dugmići ostaju funkcionalni
 });
 // --- Cancel ---
 cancelYoutubeBtn.addEventListener("click", () => {
@@ -908,6 +898,10 @@ window.activePlayer = "static";
 // Glavni next/prev dugmići
 const globalNextBtn = document.querySelector(".next-btn");
 const globalPrevBtn = document.querySelector(".pervious-btn");
+
+// Ukloni sve inline display promene osim kada aktiviraš custom playlist
+globalNextBtn.style.display = "inline-block";
+globalPrevBtn.style.display = "inline-block";
 
 // Originalne funkcije statičke plej liste (NE DIRAMO)
 const originalNextStatic = globalNextBtn.onclick;
@@ -979,6 +973,9 @@ window.returnToStaticPlayer = function() {
     const disk = document.querySelector(".disk");
     if (disk) disk.style.visibility = "visible";
 };
+
+
+
 console.log("END OF FILE:", window.customPlaylist.length, window.customPlaylist);
 
 // /* ================= CUSTOM PLAYLIST + YT SEARCH =================  OBSOLETE*/
