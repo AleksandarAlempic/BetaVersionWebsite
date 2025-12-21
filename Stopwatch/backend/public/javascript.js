@@ -909,7 +909,7 @@ cancelYoutubeBtn.addEventListener("click", () => {
 // document.querySelector(".next-btn").addEventListener("click", playNextCustomSong);
 // document.querySelector(".pervious-btn").addEventListener("click", playPreviousCustomSong);
 
-let youtubeScriptLoaded = false;
+
 
 /* =============== SAFE SWITCH SYSTEM (STATIC + CUSTOM) =============== */
 
