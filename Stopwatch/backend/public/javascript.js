@@ -681,7 +681,6 @@ function playYouTube(songObj) {
     });
 }
 
-// --- Save song ---
 // --- Save song to playlist ---
 saveYoutubeBtn.addEventListener("click", async () => {
     if (!selectedSongForAdd) { 
@@ -711,7 +710,26 @@ saveYoutubeBtn.addEventListener("click", async () => {
     ytInput.value = "";
     suggestionsBox.innerHTML = "";
     if (addPlaylistPopup) addPlaylistPopup.style.display = "none"; // Zatvori popup
+
+     updateNextPrevVisibility();
+  
 });
+
+function updateNextPrevVisibility() {
+    const nextBtn = document.querySelector(".next-btn");
+    const prevBtn = document.querySelector(".pervious-btn");
+
+    if (!nextBtn || !prevBtn) return;
+
+    // Ako postoji barem jedna pesma u custom playlisti i aktivan je custom player
+    if (window.activePlayer === "custom" && window.customPlaylist.length > 0) {
+        nextBtn.style.display = "inline-block";
+        prevBtn.style.display = "inline-block";
+    } else {
+        nextBtn.style.display = "none";
+        prevBtn.style.display = "none";
+    }
+}
 
 // --- Add playlist dugme (ponovo otvara search) ---
 document.getElementById("fetchCustomPlaylistButton").addEventListener("click", () => {
