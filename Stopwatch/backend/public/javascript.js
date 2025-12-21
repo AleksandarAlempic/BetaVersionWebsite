@@ -818,6 +818,7 @@ function ensureYTPlayer() {
     });
 }
 // --- Save song to playlist ---
+// --- Save song to playlist (STABILNA VERZIJA) ---
 saveYoutubeBtn.addEventListener("click", async () => {
     if (!selectedSongForAdd) { 
         alert("Select a song first."); 
@@ -836,7 +837,7 @@ saveYoutubeBtn.addEventListener("click", async () => {
     window.customPlaylist.push(selectedSongForAdd);
     currentSongIndex = window.customPlaylist.length - 1;
 
-    // ✅ Prikaži UI dugme za custom playlist
+    // ✅ Prikaži dugme/UI za custom playlist
     if (customPlaylistElement) customPlaylistElement.style.display = "block";
 
     // ✅ Sačuvaj u localStorage
@@ -848,14 +849,15 @@ saveYoutubeBtn.addEventListener("click", async () => {
     selectedSongForAdd = null;
     if (addPlaylistPopup) addPlaylistPopup.style.display = "none";
 
-    // ✅ Pokreni pesmu iz search-a odmah
+    // ✅ Pusti pesmu odmah i otvori iframe
     const songObj = window.customPlaylist[currentSongIndex];
     if (songObj) {
         playYouTube(songObj);
 
-        // ⬇ Prikaži disk i dugmiće (uvek ostaju vidljivi)
+        // ⬇ Disk i dugmići uvek ostaju vidljivi
         const disk = document.querySelector(".disk");
         if (disk) disk.style.visibility = "visible";
+        disk.classList.add("play");
 
         const nextBtn = document.querySelector(".next-btn");
         const prevBtn = document.querySelector(".pervious-btn");
