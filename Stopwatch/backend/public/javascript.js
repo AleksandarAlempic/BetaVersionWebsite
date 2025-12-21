@@ -603,7 +603,7 @@ window.customPlaylist = window.customPlaylist || []
 console.log("AFTER MANUAL RESET:", window.customPlaylist.length);
 
 let currentSongIndex = 0;
-let ytPlayer = null;
+
 
 // DOM elementi
 const ytInput = document.getElementById("youtubeInput");
