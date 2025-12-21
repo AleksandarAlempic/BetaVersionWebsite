@@ -772,12 +772,19 @@ ytInput.addEventListener("input", async () => {
     }, 300);
 });
 
+let ytInitialized = false;
+let ytPlayer = null;
+let youtubeScriptLoaded = false;
+
 function ensureYTPlayer() {
     return new Promise((resolve) => {
-        // Ako već imamo ytPlayer i funkcija postoji → odmah resolve
-        if (ytPlayer && ytPlayer.loadVideoById) return resolve(ytPlayer);
 
-        // Učitaj YouTube API ako već nije učitan
+        // Ako je već inicijalizovan → gotovo
+        if (ytInitialized && ytPlayer && ytPlayer.loadVideoById) {
+            return resolve(ytPlayer);
+        }
+
+        // Učitaj YT API samo jednom
         if (!youtubeScriptLoaded) {
             const tag = document.createElement('script');
             tag.src = "https://www.youtube.com/iframe_api";
@@ -785,27 +792,31 @@ function ensureYTPlayer() {
             youtubeScriptLoaded = true;
         }
 
-        // Kreiraj player i čekaj onReady
         const checkYT = () => {
-            if (window.YT && window.YT.Player) {
+            if (window.YT && window.YT.Player && !ytInitialized) {
+                ytInitialized = true;
+
                 ytPlayer = new YT.Player('audioContainer', {
                     height: '0',
                     width: '0',
                     videoId: '',
                     events: {
-                        'onReady': () => resolve(ytPlayer),
-                        'onStateChange': onPlayerStateChange
+                        onReady: () => resolve(ytPlayer),
+                        onStateChange: onPlayerStateChange
                     },
-                    playerVars: { autoplay: 1, controls: 0 }
+                    playerVars: {
+                        autoplay: 1,
+                        controls: 0
+                    }
                 });
             } else {
                 setTimeout(checkYT, 100);
             }
         };
+
         checkYT();
     });
 }
-
 // --- Save song to playlist ---
 saveYoutubeBtn.addEventListener("click", async () => {
     if (!selectedSongForAdd) { 
