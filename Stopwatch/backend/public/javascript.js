@@ -829,30 +829,39 @@ saveYoutubeBtn.addEventListener("click", async () => {
         return; 
     }
 
+    // ✅ Osiguraj da je YT player inicijalizovan
     await ensureYTPlayer();
 
+    // ✅ Dodaj pesmu u custom playlistu
     window.customPlaylist.push(selectedSongForAdd);
     currentSongIndex = window.customPlaylist.length - 1;
 
+    // ✅ Prikaži UI dugme za custom playlist
     if (customPlaylistElement) customPlaylistElement.style.display = "block";
 
-    // Sačuvaj u localStorage
+    // ✅ Sačuvaj u localStorage
     localStorage.setItem("customPlaylist_v1", JSON.stringify(window.customPlaylist));
 
-    // Reset inputa i popup-a
-    selectedSongForAdd = null;
+    // ✅ Reset input/popup
     ytInput.value = "";
     suggestionsBox.innerHTML = "";
+    selectedSongForAdd = null;
     if (addPlaylistPopup) addPlaylistPopup.style.display = "none";
 
-    // ✅ Pusti novu pesmu
-    playYouTube(window.customPlaylist[currentSongIndex]);
+    // ✅ Pokreni pesmu iz search-a odmah
+    const songObj = window.customPlaylist[currentSongIndex];
+    if (songObj) {
+        playYouTube(songObj);
 
-    // ✅ Ponovo prikaži next / previous dugmiće nakon renderovanja player-a
-    const customNext = document.querySelector(".next-btn");
-    const customPrev = document.querySelector(".pervious-btn");
-    if(customNext) customNext.style.display = "block";
-    if(customPrev) customPrev.style.display = "block";
+        // ⬇ Prikaži disk i dugmiće (uvek ostaju vidljivi)
+        const disk = document.querySelector(".disk");
+        if (disk) disk.style.visibility = "visible";
+
+        const nextBtn = document.querySelector(".next-btn");
+        const prevBtn = document.querySelector(".pervious-btn");
+        if (nextBtn) nextBtn.style.display = "inline-block";
+        if (prevBtn) prevBtn.style.display = "inline-block";
+    }
 });
 // --- Cancel ---
 cancelYoutubeBtn.addEventListener("click", () => {
