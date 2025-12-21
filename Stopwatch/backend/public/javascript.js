@@ -683,7 +683,10 @@ function playYouTube(songObj) {
 
 // --- Save song ---
 saveYoutubeBtn.addEventListener("click", async () => {
-    if (!selectedSongForAdd) { alert("Select a song first."); return; }
+    if (!selectedSongForAdd) { 
+        alert("Select a song first."); 
+        return; 
+    }
 
     if (window.customPlaylist.length >= MAX_CUSTOM_SONGS) { 
         alert("Limit reached."); 
@@ -696,15 +699,14 @@ saveYoutubeBtn.addEventListener("click", async () => {
     currentSongIndex = window.customPlaylist.length - 1;
 
     if (customPlaylistElement) customPlaylistElement.style.display = "block";
-
     localStorage.setItem("customPlaylist_v1", JSON.stringify(window.customPlaylist));
 
+    // ✅ Reset input/popup ali **ne brisati selectedSongForAdd odmah** 
     ytInput.value = "";
     suggestionsBox.innerHTML = "";
-    selectedSongForAdd = null;
     if (addPlaylistPopup) addPlaylistPopup.style.display = "none";
 
-    // ✅ Pusti pesmu u iframe
+    // ✅ Pusti pesmu
     playYouTube(window.customPlaylist[currentSongIndex]);
 });
 
