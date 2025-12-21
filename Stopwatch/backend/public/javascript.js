@@ -595,15 +595,13 @@ sendBtn.addEventListener("click", async () => {
 
 /* ================= CUSTOM PLAYLIST + YOUTUBE PLAYER ================= */
 
-const YT_API_KEY = "AIzaSyBwwc6TSxopW7mc3PMjK6dYks0jfPZ_cbY"; // ostaje za search
+/* ================= CUSTOM PLAYLIST + YOUTUBE PLAYER ================= */
+
+const YT_API_KEY = "AIzaSyBwwc6TSxopW7mc3PMjK6dYks0jfPZ_cbY"; 
 const MAX_CUSTOM_SONGS = 12;
 
-window.customPlaylist = window.customPlaylist || []
-
-console.log("AFTER MANUAL RESET:", window.customPlaylist.length);
-
+window.customPlaylist = window.customPlaylist || [];
 let currentSongIndex = 0;
-
 
 // DOM elementi
 const ytInput = document.getElementById("youtubeInput");
@@ -611,12 +609,18 @@ const suggestionsBox = document.getElementById("youtubeSuggestions");
 const saveYoutubeBtn = document.getElementById("saveYoutubeBtn");
 const cancelYoutubeBtn = document.getElementById("cancelYoutubeBtn");
 const addPlaylistPopup = document.getElementById("addPlaylistPopup");
-const customPlaylistElement = document.getElementById("kindOfMusic7"); // dugme/UI
-const songCover = document.querySelector(".disk img"); // dodaj img unutar .disk
+const customPlaylistElement = document.getElementById("kindOfMusic7"); 
+const songCover = document.querySelector(".disk img");
 const songNameElem = document.querySelector(".songName");
 const artistNameElem = document.querySelector(".artistName");
 
-// Helper za extract video ID
+let selectedSongForAdd = null;
+
+let ytInitialized = false;
+let ytPlayer = null;
+let youtubeScriptLoaded = false;
+
+// --- Helper za extract video ID ---
 function extractVideoId(url) {
     if (!url) return null;
     const patterns = [
@@ -633,104 +637,101 @@ function extractVideoId(url) {
     return null;
 }
 
-// // --- YouTube Player setup ---
-// function onYouTubeIframeAPIReady() {
-//     ytPlayer = new YT.Player('audioContainer', { // audioContainer koristimo za iframe
-//         height: '0',
-//         width: '0',
-//         videoId: '',
-//         events: {
-//             'onStateChange': onPlayerStateChange
-//         },
-//         playerVars: {
-//             autoplay: 1,
-//             controls: 0
-//         }
-//     });
-// }
-
-// Detect song end
-function onPlayerStateChange(event) {
-    if (event.data === YT.PlayerState.ENDED) {
-        playNextCustomSong();
-    }
-}
-
-// // --- Play song --- OLD
-// async function playYouTube(songObj) {
-//     if (!songObj) return;
-
-//     await ensureYTPlayer();  // čekamo da player bude spreman
-
-//     const vid = extractVideoId(songObj.path);
-//     if (!vid) return;
-
-//     ytPlayer.loadVideoById(vid);  // sada ovo neće više bacati grešku
-//     updateUI(songObj);
-// }
-
-function playYouTube(songObj) {
-    if (!songObj) return;
-
-    ensureYTPlayer().then(() => {
-        const vid = extractVideoId(songObj.path);
-        if (!vid) return;
-
-        ytPlayer.loadVideoById(vid);
-
-        // ⬇⬇⬇ OVO TI JE FALILO
-        const disk = document.querySelector('.disk');
-        if (disk) {
-            disk.classList.add('play');
-            disk.style.visibility = 'visible';
+// --- Osiguraj YT Player ---
+function ensureYTPlayer() {
+    return new Promise((resolve) => {
+        if (ytInitialized && ytPlayer && ytPlayer.loadVideoById) {
+            return resolve(ytPlayer);
+        }
+        if (!youtubeScriptLoaded) {
+            const tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            document.body.appendChild(tag);
+            youtubeScriptLoaded = true;
         }
 
-        updateUI(songObj);
+        const checkYT = () => {
+            if (window.YT && window.YT.Player && !ytInitialized) {
+                ytInitialized = true;
+                ytPlayer = new YT.Player('audioContainer', {
+                    height: '0',
+                    width: '0',
+                    videoId: '',
+                    events: { onReady: () => resolve(ytPlayer) },
+                    playerVars: { autoplay: 1, controls: 0 }
+                });
+            } else {
+                setTimeout(checkYT, 100);
+            }
+        };
+        checkYT();
     });
 }
 
-// --- Update UI ---
-function updateUI(songObj) {
-    if (songCover) songCover.src = songObj.cover;
-    if (songNameElem) songNameElem.textContent = songObj.name;
-    if (artistNameElem) artistNameElem.textContent = songObj.artist;
+// --- Play song ---
+function playYouTube(songObj) {
+    if (!songObj) return;
+    ensureYTPlayer().then(() => {
+        const vid = extractVideoId(songObj.path);
+        if (!vid) return;
+        ytPlayer.loadVideoById(vid);
+        if (songCover) songCover.src = songObj.cover;
+        if (songNameElem) songNameElem.textContent = songObj.name;
+        if (artistNameElem) artistNameElem.textContent = songObj.artist;
+    });
 }
 
-// --- Next / Previous ---
-function playNextCustomSong() {
-    if (!window.customPlaylist.length) return;
-    currentSongIndex = (currentSongIndex + 1) % window.customPlaylist.length;
+// --- Save song ---
+saveYoutubeBtn.addEventListener("click", async () => {
+    if (!selectedSongForAdd) { alert("Select a song first."); return; }
+
+    if (window.customPlaylist.length >= MAX_CUSTOM_SONGS) { 
+        alert("Limit reached."); 
+        return; 
+    }
+
+    await ensureYTPlayer();
+
+    window.customPlaylist.push(selectedSongForAdd);
+    currentSongIndex = window.customPlaylist.length - 1;
+
+    if (customPlaylistElement) customPlaylistElement.style.display = "block";
+
+    localStorage.setItem("customPlaylist_v1", JSON.stringify(window.customPlaylist));
+
+    ytInput.value = "";
+    suggestionsBox.innerHTML = "";
+    selectedSongForAdd = null;
+    if (addPlaylistPopup) addPlaylistPopup.style.display = "none";
+
+    // ✅ Pusti pesmu u iframe
     playYouTube(window.customPlaylist[currentSongIndex]);
-}
+});
 
-function playPreviousCustomSong() {
-    if (!window.customPlaylist.length) return;
-    currentSongIndex = (currentSongIndex - 1 + window.customPlaylist.length) % window.customPlaylist.length;
-    playYouTube(window.customPlaylist[currentSongIndex]);
-}
+// --- Cancel ---
+cancelYoutubeBtn.addEventListener("click", () => {
+    selectedSongForAdd = null;
+    ytInput.value = "";
+    suggestionsBox.innerHTML = "";
+    if (addPlaylistPopup) addPlaylistPopup.style.display = "none";
+});
 
-// --- Add song from input ---
-let selectedSongForAdd = null;
-
-async function youtubeGetVideoInfo(videoId) {
-    try {
-        const res = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${YT_API_KEY}`);
-        const data = await res.json();
-        if (data.items && data.items.length) return data.items[0].snippet;
-    } catch(e){ console.warn("YT info error", e); }
-    return null;
-}
-
+// --- Input i search ---
 ytInput.addEventListener("input", async () => {
     const v = ytInput.value.trim();
     selectedSongForAdd = null;
-    if (!v) { suggestionsBox.innerHTML = ""; suggestionsBox.style.display = "none"; return; }
+    suggestionsBox.innerHTML = "";
+
+    if (!v) { suggestionsBox.style.display = "none"; return; }
 
     if (v.includes("youtube.com") || v.includes("youtu.be") || /^[a-zA-Z0-9_-]{10,}$/.test(v)) {
         suggestionsBox.style.display = "none";
         const vid = extractVideoId(v);
         if (vid) {
-            const info = await youtubeGetVideoInfo(vid);
+            const info = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${vid}&key=${YT_API_KEY}`)
+                                .then(r => r.json())
+                                .then(d => d.items?.[0]?.snippet)
+                                .catch(()=>null);
             if (info) {
                 selectedSongForAdd = {
                     name: info.title,
@@ -744,15 +745,12 @@ ytInput.addEventListener("input", async () => {
         return;
     }
 
-    // YouTube search (optional)
     setTimeout(async () => {
         const res = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&q=${encodeURIComponent(v)}&key=${YT_API_KEY}`);
         const data = await res.json();
         const items = data.items || [];
-        suggestionsBox.innerHTML = "";
         if (!items.length) { suggestionsBox.style.display = "none"; return; }
         suggestionsBox.style.display = "block";
-
         items.forEach(it => {
             const div = document.createElement("div");
             div.className = "suggestion-item";
@@ -772,231 +770,21 @@ ytInput.addEventListener("input", async () => {
     }, 300);
 });
 
-let ytInitialized = false;
-let ytPlayer = null;
-let youtubeScriptLoaded = false;
-
-function ensureYTPlayer() {
-    return new Promise((resolve) => {
-
-        // Ako je već inicijalizovan → gotovo
-        if (ytInitialized && ytPlayer && ytPlayer.loadVideoById) {
-            return resolve(ytPlayer);
-        }
-
-        // Učitaj YT API samo jednom
-        if (!youtubeScriptLoaded) {
-            const tag = document.createElement('script');
-            tag.src = "https://www.youtube.com/iframe_api";
-            document.body.appendChild(tag);
-            youtubeScriptLoaded = true;
-        }
-
-        const checkYT = () => {
-            if (window.YT && window.YT.Player && !ytInitialized) {
-                ytInitialized = true;
-
-                ytPlayer = new YT.Player('audioContainer', {
-                    height: '0',
-                    width: '0',
-                    videoId: '',
-                    events: {
-                        onReady: () => resolve(ytPlayer),
-                        onStateChange: onPlayerStateChange
-                    },
-                    playerVars: {
-                        autoplay: 1,
-                        controls: 0
-                    }
-                });
-            } else {
-                setTimeout(checkYT, 100);
-            }
-        };
-
-        checkYT();
-    });
-}
-// --- Save song to playlist ---
-saveYoutubeBtn.addEventListener("click", async () => {
-    if (!selectedSongForAdd) { 
-        alert("Select a song first."); 
-        return; 
-    }
-
-    if (window.customPlaylist.length >= MAX_CUSTOM_SONGS) { 
-        alert("Limit reached."); 
-        return; 
-    }
-
-    // ✅ Osiguraj da je YT player inicijalizovan
-    await ensureYTPlayer();
-
-    // ✅ Dodaj pesmu u custom playlistu
-    window.customPlaylist.push(selectedSongForAdd);
-    currentSongIndex = window.customPlaylist.length - 1;
-
-    // ✅ Prikaži dugme/UI za custom playlist
-    if (customPlaylistElement) customPlaylistElement.style.display = "block";
-
-    // ✅ Sačuvaj u localStorage
-    localStorage.setItem("customPlaylist_v1", JSON.stringify(window.customPlaylist));
-
-    // ✅ Reset input/popup
-    ytInput.value = "";
-    suggestionsBox.innerHTML = "";
-    selectedSongForAdd = null;
-    if (addPlaylistPopup) addPlaylistPopup.style.display = "none";
-
-    // ✅ Pusti pesmu SAMO NA SAVE dugme
-    const songObj = window.customPlaylist[currentSongIndex];
-    if (songObj) {
-        const vid = extractVideoId(songObj.path);
-        if (vid && ytPlayer) {
-            ytPlayer.loadVideoById(vid); // Pokreće pesmu
-            const disk = document.querySelector(".disk");
-            if (disk) disk.style.visibility = "visible"; 
-        }
-    }
-});
-
-// --- Cancel ---
-cancelYoutubeBtn.addEventListener("click", () => {
-    selectedSongForAdd = null;
-    ytInput.value = "";
-    suggestionsBox.innerHTML = "";
-    if (addPlaylistPopup) addPlaylistPopup.style.display = "none";
-});
-
-// // --- Load from localStorage ---  Old working version with problem with Limit reached
-// (function loadCustomFromLocal() {
-//     try {
-//         const raw = localStorage.getItem("customPlaylist_v1");
-//         if (!raw) return;
-//         const arr = JSON.parse(raw);
-//         if (Array.isArray(arr) && arr.length) {
-//             window.customPlaylist = arr;
-//             currentSongIndex = 0;
-//             if (customPlaylistElement) customPlaylistElement.style.display = "block";
-//             playYouTube(window.customPlaylist[currentSongIndex]);
-//         }
-//     } catch(e){}
-// })();
-
 // --- Load playlist from localStorage safely ---
 (function loadCustomFromLocal() {
     try {
         const raw = localStorage.getItem("customPlaylist_v1");
         if (!raw) return;
-
         const arr = JSON.parse(raw);
         if (!Array.isArray(arr)) return;
-
-        // Očisti postojeći array, ali zadrži referencu
         window.customPlaylist.length = 0;
-
-        // Ubaci max 12 pesama
-        arr.slice(0, MAX_CUSTOM_SONGS).forEach(song => {
-            window.customPlaylist.push(song);
-        });
-
-        // Ako već ima barem jedna pesma, prikaži dugme/UI
-        if (window.customPlaylist.length && customPlaylistElement) {
-            customPlaylistElement.style.display = "block";
-        }
-
+        arr.slice(0, MAX_CUSTOM_SONGS).forEach(song => window.customPlaylist.push(song));
+        if (window.customPlaylist.length && customPlaylistElement) customPlaylistElement.style.display = "block";
     } catch (e) {
         window.customPlaylist.length = 0;
-        console.warn("Custom playlist load failed", e);
     }
 })();
 
-// --- Next / Previous buttons (bind to your UI) ---
-// document.querySelector(".next-btn").addEventListener("click", playNextCustomSong);
-// document.querySelector(".pervious-btn").addEventListener("click", playPreviousCustomSong);
-
-
-
-/* =============== SAFE SWITCH SYSTEM (STATIC + CUSTOM) =============== */
-
-// Koja je plejlista aktivna?
-window.activePlayer = "static";
-
-// Glavni next/prev dugmići
-const globalNextBtn = document.querySelector(".next-btn");
-const globalPrevBtn = document.querySelector(".pervious-btn");
-
-// Originalne funkcije statičke plej liste (NE DIRAMO)
-const originalNextStatic = globalNextBtn.onclick;
-const originalPrevStatic = globalPrevBtn.onclick;
-
-// Generalizovan handler koji odlučuje šta da radi
-function globalNextHandler(e) {
-    if (window.activePlayer === "custom" && window.customPlaylist.length > 0) {
-        e.stopPropagation();
-        playNextCustomSong();
-        return;
-    }
-
-    // Static mode → pusti originalni next
-    if (typeof originalNextStatic === "function") originalNextStatic(e);
-}
-
-function globalPrevHandler(e) {
-    if (window.activePlayer === "custom" && window.customPlaylist.length > 0) {
-        e.stopPropagation();
-        playPreviousCustomSong();
-        return;
-    }
-
-    if (typeof originalPrevStatic === "function") originalPrevStatic(e);
-}
-
-// Okači novi inteligentni handler SAMO JEDNOM
-if (!window.globalHandlersBound) {
-    globalNextBtn.onclick = globalNextHandler;
-    globalPrevBtn.onclick = globalPrevHandler;
-    window.globalHandlersBound = true;
-}
-
-
-/* =============== CUSTOM ACTIVATION =============== */
-
-document.getElementById("fetchCustomPlaylistButton").addEventListener("click", () => {
-    window.activePlayer = "custom";
-
-    // ❗ NE display:none
-    const disk = document.querySelector(".disk");
-    if (disk) disk.style.visibility = "hidden";
-
-    // dugmići ostaju vidljivi
-    const nextBtn = document.querySelector(".next-btn");
-    const prevBtn = document.querySelector(".pervious-btn");
-    if (nextBtn) nextBtn.style.display = "inline-block";
-    if (prevBtn) prevBtn.style.display = "inline-block";
-
-    // otvori popup
-    if (addPlaylistPopup) {
-        addPlaylistPopup.style.display = "block";
-        ytInput.value = "";
-        selectedSongForAdd = null;
-        suggestionsBox.innerHTML = "";
-        ytInput.focus();
-    }
-});
-
-/* =============== RETURN TO STATIC MODE =============== */
-/*  
-   POZOVI OVO KADA KLIKNEŠ NA STATIČKU PLAYLIST-U 
-   (npr .kindOfMusic ili tvoj meni gde biraš statičku plejlistu)
-*/
-window.returnToStaticPlayer = function() {
-    window.activePlayer = "static";
-
-    const disk = document.querySelector(".disk");
-    if (disk) disk.style.visibility = "visible";
-};
-console.log("END OF FILE:", window.customPlaylist.length, window.customPlaylist);
 
 // /* ================= CUSTOM PLAYLIST + YT SEARCH =================  OBSOLETE*/
 
