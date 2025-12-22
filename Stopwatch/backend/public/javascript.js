@@ -860,6 +860,35 @@ ensureYTPlayer().then(() => {
     playYouTube(window.customPlaylist[0]);
 });
 
+// --- Dugmad funkcionalnost ---
+const nextBtn = document.querySelector(".next-btn");
+const prevBtn = document.querySelector(".pervious-btn");
+
+function safeNext() {
+    if (window.activePlayer === "custom" && window.customPlaylist.length > 0) {
+        currentSongIndex = (currentSongIndex + 1) % window.customPlaylist.length;
+        playYouTube(window.customPlaylist[currentSongIndex]);
+    }
+}
+
+function safePrev() {
+    if (window.activePlayer === "custom" && window.customPlaylist.length > 0) {
+        currentSongIndex = (currentSongIndex - 1 + window.customPlaylist.length) % window.customPlaylist.length;
+        playYouTube(window.customPlaylist[currentSongIndex]);
+    }
+}
+
+// ukloni stare listener-e
+if (nextBtn) nextBtn.replaceWith(nextBtn.cloneNode(true));
+if (prevBtn) prevBtn.replaceWith(prevBtn.cloneNode(true));
+
+// ponovo uzmi dugmad iz DOM-a
+const newNext = document.querySelector(".next-btn");
+const newPrev = document.querySelector(".pervious-btn");
+
+if (newNext) newNext.addEventListener("click", safeNext);
+if (newPrev) newPrev.addEventListener("click", safePrev);
+
 
 // /* ================= CUSTOM PLAYLIST + YT SEARCH =================  OBSOLETE*/
 
