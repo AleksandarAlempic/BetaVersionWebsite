@@ -861,8 +861,8 @@ ensureYTPlayer().then(() => {
 });
 
 // --- Dugmad funkcionalnost ---
-const nextBtn = document.querySelector(".next-btn");
-const prevBtn = document.querySelector(".pervious-btn");
+// const nextBtn = document.querySelector(".next-btn");
+// const prevBtn = document.querySelector(".pervious-btn");
 
 function safeNext() {
     if (window.activePlayer === "custom" && window.customPlaylist.length > 0) {
