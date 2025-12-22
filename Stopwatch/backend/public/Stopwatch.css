@@ -19,6 +19,25 @@
     border-radius: 10%;
    }
 
+.audioContainer1{
+    position: absolute;
+    float: left;
+    margin-left: 62px;
+    margin-top: 20%;
+    min-width: 75px;
+    min-height: 75px;
+    opacity: 1;
+    /* background: rgb(25,21,20); 
+    background: rgba(0, 0, 0, 0.5); 
+    box-shadow:  0 40px 100px rgba(255,255,255, 0.01); */
+    overflow: hidden;
+    color: #d5eebb;
+    margin-bottom: 1200px;
+    border-radius: 0.1%;
+    z-index: 2;
+    border-radius: 10%;
+   }
+
    .disk{
     position: relative;
     display: block;
