@@ -837,6 +837,29 @@ ytInput.addEventListener("input", async () => {
     }
 })();
 
+// === DEV TEST (bez API-ja) ===
+window.customPlaylist = [
+    {
+        name: "TEST SONG 1",
+        artist: "Test Artist",
+        cover: "https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg",
+        path: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    },
+    {
+        name: "TEST SONG 2",
+        artist: "Test Artist",
+        cover: "https://img.youtube.com/vi/9bZkp7q19f0/mqdefault.jpg",
+        path: "https://www.youtube.com/watch?v=9bZkp7q19f0"
+    }
+];
+
+window.activePlayer = "custom";
+currentSongIndex = 0;
+
+ensureYTPlayer().then(() => {
+    playYouTube(window.customPlaylist[0]);
+});
+
 
 // /* ================= CUSTOM PLAYLIST + YT SEARCH =================  OBSOLETE*/
 
