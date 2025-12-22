@@ -685,9 +685,14 @@ function updateNextPrevVisibility() {
     const nextBtn = document.querySelector(".next-btn");
     const prevBtn = document.querySelector(".pervious-btn");
 
+    console.log("updateNextPrevVisibility called");
+    console.log("nextBtn:", nextBtn);
+    console.log("prevBtn:", prevBtn);
+    console.log("activePlayer:", window.activePlayer);
+    console.log("customPlaylist length:", window.customPlaylist.length);
+
     if (!nextBtn || !prevBtn) return;
 
-    // Ako postoji barem jedna pesma u custom playlisti i aktivan je custom player
     if (window.activePlayer === "custom" && window.customPlaylist.length > 0) {
         nextBtn.style.display = "inline-block";
         prevBtn.style.display = "inline-block";
@@ -726,6 +731,8 @@ saveYoutubeBtn.addEventListener("click", async () => {
     ytInput.value = "";
     suggestionsBox.innerHTML = "";
     if (addPlaylistPopup) addPlaylistPopup.style.display = "none"; // Zatvori popup
+
+   window.activePlayer = "custom";
 
      updateNextPrevVisibility();
   
