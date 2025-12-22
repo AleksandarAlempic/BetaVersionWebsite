@@ -861,8 +861,8 @@ ensureYTPlayer().then(() => {
 });
 
 // --- Dugmad funkcionalnost ---
-// const nextBtn = document.querySelector(".next-btn");
-// const prevBtn = document.querySelector(".pervious-btn");
+const nextBtn1 = document.querySelector(".next-btn");
+const prevBtn1 = document.querySelector(".pervious-btn");
 
 function safeNext() {
     if (window.activePlayer === "custom" && window.customPlaylist.length > 0) {
@@ -879,8 +879,8 @@ function safePrev() {
 }
 
 // ukloni stare listener-e
-if (nextBtn) nextBtn.replaceWith(nextBtn.cloneNode(true));
-if (prevBtn) prevBtn.replaceWith(prevBtn.cloneNode(true));
+if (nextBtn1) nextBtn1.replaceWith(nextBtn1.cloneNode(true));
+if (prevBtn1) prevBtn1.replaceWith(prevBtn1.cloneNode(true));
 
 // ponovo uzmi dugmad iz DOM-a
 const newNext = document.querySelector(".next-btn");
