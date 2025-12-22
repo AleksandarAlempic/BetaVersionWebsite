@@ -682,23 +682,23 @@ function playYouTube(songObj) {
 }
 
 function updateNextPrevVisibility() {
+    console.log("updateNextPrevVisibility called"); // <--- log
+
     const nextBtn = document.querySelector(".next-btn");
     const prevBtn = document.querySelector(".pervious-btn");
 
-    console.log("updateNextPrevVisibility called");
-    console.log("nextBtn:", nextBtn);
-    console.log("prevBtn:", prevBtn);
-    console.log("activePlayer:", window.activePlayer);
-    console.log("customPlaylist length:", window.customPlaylist.length);
+    console.log("nextBtn:", nextBtn, "prevBtn:", prevBtn); // <--- log
 
     if (!nextBtn || !prevBtn) return;
 
     if (window.activePlayer === "custom" && window.customPlaylist.length > 0) {
         nextBtn.style.display = "inline-block";
         prevBtn.style.display = "inline-block";
+        console.log("Buttons visible"); // <--- log
     } else {
         nextBtn.style.display = "none";
         prevBtn.style.display = "none";
+        console.log("Buttons hidden"); // <--- log
     }
 }
 
