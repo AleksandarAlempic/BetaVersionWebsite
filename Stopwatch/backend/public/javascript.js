@@ -593,13 +593,15 @@ sendBtn.addEventListener("click", async () => {
     }
 });
 
+  
+document.addEventListener("DOMContentLoaded", () => {
 
 /* ================= CUSTOM PLAYLIST + YOUTUBE PLAYER ================= */
 
 const YT_API_KEY = "AIzaSyBwwc6TSxopW7mc3PMjK6dYks0jfPZ_cbY";
 const MAX_CUSTOM_SONGS = 12;
 
-window.customPlaylist = window.customPlaylist || [];
+window.customPlaylist = [];
 let customSongIndex = 0;
 window.activePlayer = "custom";
 
@@ -609,7 +611,6 @@ const suggestionsBox = document.getElementById("youtubeSuggestions");
 const saveYoutubeBtn = document.getElementById("saveYoutubeBtn");
 const cancelYoutubeBtn = document.getElementById("cancelYoutubeBtn");
 const addPlaylistPopup = document.getElementById("addPlaylistPopup");
-const customPlaylistElement = document.getElementById("kindOfMusic7");
 const songCover = document.querySelector(".disk img");
 const songNameElem = document.querySelector(".songName");
 const artistNameElem = document.querySelector(".artistName");
@@ -624,23 +625,23 @@ let youtubeScriptLoaded = false;
 function extractVideoId(url) {
     if (!url) return null;
     const patterns = [
-        /(?:youtu\.be\/)([^?&]+)/,
+        /youtu\.be\/([^?&]+)/,
         /[?&]v=([^?&]+)/,
         /youtube\.com\/embed\/([^?&]+)/,
-        /youtube\.com\/shorts\/([^?&]+)/,
+        /youtube\.com\/shorts\/([^?&]+)/
     ];
     for (const p of patterns) {
         const m = url.match(p);
         if (m && m[1]) return m[1];
     }
-    if (/^[a-zA-Z0-9_-]{10,}$/.test(url)) return url;
+    if (/^[\w-]{10,}$/.test(url)) return url;
     return null;
 }
 
-/* ================= YT PLAYER ================= */
+/* ================= YOUTUBE PLAYER ================= */
 
 function ensureYTPlayer() {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
         if (ytInitialized && ytPlayer) return resolve(ytPlayer);
 
         if (!youtubeScriptLoaded) {
@@ -674,9 +675,9 @@ function playYouTube(song) {
         const vid = extractVideoId(song.path);
         if (!vid) return;
         ytPlayer.loadVideoById(vid);
-        if (songCover) songCover.src = song.cover;
-        if (songNameElem) songNameElem.textContent = song.name;
-        if (artistNameElem) artistNameElem.textContent = song.artist;
+        songCover && (songCover.src = song.cover);
+        songNameElem && (songNameElem.textContent = song.name);
+        artistNameElem && (artistNameElem.textContent = song.artist);
     });
 }
 
@@ -687,22 +688,21 @@ function activateCustomControls() {
     const prevBtn = document.querySelector(".pervious-btn");
     if (!nextBtn || !prevBtn) return;
 
-    const nextClone = nextBtn.cloneNode(true);
-    const prevClone = prevBtn.cloneNode(true);
-    nextBtn.replaceWith(nextClone);
-    prevBtn.replaceWith(prevClone);
+    const next = nextBtn.cloneNode(true);
+    const prev = prevBtn.cloneNode(true);
+    nextBtn.replaceWith(next);
+    prevBtn.replaceWith(prev);
 
-    nextClone.style.display = "inline-block";
-    prevClone.style.display = "inline-block";
+    next.style.display = "inline-block";
+    prev.style.display = "inline-block";
 
-    nextClone.onclick = () => {
+    next.onclick = () => {
         if (!window.customPlaylist.length) return;
-        customSongIndex =
-            (customSongIndex + 1) % window.customPlaylist.length;
+        customSongIndex = (customSongIndex + 1) % window.customPlaylist.length;
         playYouTube(window.customPlaylist[customSongIndex]);
     };
 
-    prevClone.onclick = () => {
+    prev.onclick = () => {
         if (!window.customPlaylist.length) return;
         customSongIndex =
             (customSongIndex - 1 + window.customPlaylist.length) %
@@ -711,11 +711,10 @@ function activateCustomControls() {
     };
 }
 
-/* ================= SAVE SONG ================= */
+/* ================= SAVE / CANCEL ================= */
 
-saveYoutubeBtn.onclick = async () => {
+saveYoutubeBtn && (saveYoutubeBtn.onclick = async () => {
     if (!selectedSongForAdd) return;
-
     if (window.customPlaylist.length >= MAX_CUSTOM_SONGS) return;
 
     await ensureYTPlayer();
@@ -735,31 +734,41 @@ saveYoutubeBtn.onclick = async () => {
     ytInput.value = "";
     suggestionsBox.innerHTML = "";
     addPlaylistPopup.style.display = "none";
-};
+});
+
+cancelYoutubeBtn && (cancelYoutubeBtn.onclick = () => {
+    selectedSongForAdd = null;
+    ytInput.value = "";
+    suggestionsBox.innerHTML = "";
+    addPlaylistPopup.style.display = "none";
+});
 
 /* ================= SEARCH ================= */
 
-ytInput.oninput = async () => {
+ytInput && (ytInput.oninput = async () => {
     const q = ytInput.value.trim();
     suggestionsBox.innerHTML = "";
     selectedSongForAdd = null;
-
     if (!q) return;
 
     if (q.includes("youtube") || /^[\w-]{10,}$/.test(q)) {
         const vid = extractVideoId(q);
         if (!vid) return;
+
         const info = await fetch(
             `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${vid}&key=${YT_API_KEY}`
         ).then(r => r.json());
+
         const s = info.items?.[0]?.snippet;
         if (!s) return;
+
         selectedSongForAdd = {
             name: s.title,
             artist: s.channelTitle,
             cover: `https://img.youtube.com/vi/${vid}/mqdefault.jpg`,
             path: `https://www.youtube.com/watch?v=${vid}`
         };
+
         ytInput.value = s.title;
         return;
     }
@@ -769,7 +778,7 @@ ytInput.oninput = async () => {
     );
     const data = await res.json();
 
-    data.items.forEach(it => {
+    data.items?.forEach(it => {
         const d = document.createElement("div");
         d.textContent = it.snippet.title;
         d.onclick = () => {
@@ -784,11 +793,11 @@ ytInput.oninput = async () => {
         };
         suggestionsBox.appendChild(d);
     });
-};
+});
 
-/* ================= LOAD LOCAL ================= */
+/* ================= LOAD FROM LOCAL ================= */
 
-(function () {
+(() => {
     const raw = localStorage.getItem("customPlaylist_v1");
     if (!raw) return;
     try {
@@ -799,6 +808,8 @@ ytInput.oninput = async () => {
         }
     } catch {}
 })();
+
+});
 
 // --- Dugmad funkcionalnost --- ovo je test. 
 // const nextBtn1 = document.querySelector(".next-btn");
