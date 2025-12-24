@@ -833,9 +833,7 @@ function safeNext() {
         playYouTube(window.customPlaylist[currentSongIndex]);
     } else {
         // statički player koristi svoje dugme i audio element (kao pre)
-        const audio = document.getElementById("staticAudio");
-        if (!audio) return;
-        audio.currentTime = 0; // primer: vrati na početak ili sledeća pesma po tvojoj staroj logici
+  
     }
 }
 
@@ -844,9 +842,7 @@ function safePrev() {
         currentSongIndex = (currentSongIndex - 1 + window.customPlaylist.length) % window.customPlaylist.length;
         playYouTube(window.customPlaylist[currentSongIndex]);
     } else {
-        const audio = document.getElementById("staticAudio");
-        if (!audio) return;
-        audio.currentTime = 0; // primer: vrati na početak ili prethodna pesma po tvojoj staroj logici
+
     }
 }
 
