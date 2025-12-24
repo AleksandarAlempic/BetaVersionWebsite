@@ -602,7 +602,8 @@ const MAX_CUSTOM_SONGS = 12;
 
 window.customPlaylist = window.customPlaylist || [];
 let currentSongIndex = 0;
-window.activePlayer = "custom";
+  window.activePlayer = "static"; 
+
 
 // DOM elementi
 const ytInput = document.getElementById("youtubeInput");
@@ -711,7 +712,7 @@ saveYoutubeBtn && saveYoutubeBtn.addEventListener("click", async () => {
 
     if (customPlaylistElement) customPlaylistElement.style.display = "block";
     localStorage.setItem("customPlaylist_v1", JSON.stringify(window.customPlaylist));
-
+    window.activePlayer = "custom";
     playYouTube(window.customPlaylist[currentSongIndex]);
 
     selectedSongForAdd = null;
