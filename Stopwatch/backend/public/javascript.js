@@ -593,17 +593,16 @@ sendBtn.addEventListener("click", async () => {
     }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-
 /* ================= CUSTOM PLAYLIST + YOUTUBE PLAYER ================= */
+
+document.addEventListener("DOMContentLoaded", () => {
 
 const YT_API_KEY = "AIzaSyBwwc6TSxopW7mc3PMjK6dYks0jfPZ_cbY"; 
 const MAX_CUSTOM_SONGS = 12;
 
 window.customPlaylist = window.customPlaylist || [];
 let currentSongIndex = 0;
-  window.activePlayer = "static"; 
-
+window.activePlayer = "static"; // po default-u statički player
 
 // DOM elementi
 const ytInput = document.getElementById("youtubeInput");
@@ -641,16 +640,13 @@ function extractVideoId(url) {
 // --- Osiguraj YT Player ---
 function ensureYTPlayer() {
     return new Promise((resolve) => {
-        if (ytInitialized && ytPlayer && ytPlayer.loadVideoById) {
-            return resolve(ytPlayer);
-        }
+        if (ytInitialized && ytPlayer && ytPlayer.loadVideoById) return resolve(ytPlayer);
         if (!youtubeScriptLoaded) {
             const tag = document.createElement('script');
             tag.src = "https://www.youtube.com/iframe_api";
             document.body.appendChild(tag);
             youtubeScriptLoaded = true;
         }
-
         const checkYT = () => {
             if (window.YT && window.YT.Player && !ytInitialized) {
                 ytInitialized = true;
@@ -692,10 +688,17 @@ function updateNextPrevVisibility() {
         return;
     }
 
-    if (window.activePlayer === "custom" && window.customPlaylist.length > 0) {
+    // Statički player → dugmad uvek vidljiva
+    if (window.activePlayer === "static") {
         nextBtn.style.display = "inline-block";
         prevBtn.style.display = "inline-block";
-    } else {
+    } 
+    // Custom playlist → vidljivo samo ako ima pesama
+    else if (window.activePlayer === "custom" && window.customPlaylist.length > 0) {
+        nextBtn.style.display = "inline-block";
+        prevBtn.style.display = "inline-block";
+    } 
+    else {
         nextBtn.style.display = "none";
         prevBtn.style.display = "none";
     }
@@ -712,7 +715,7 @@ saveYoutubeBtn && saveYoutubeBtn.addEventListener("click", async () => {
 
     if (customPlaylistElement) customPlaylistElement.style.display = "block";
     localStorage.setItem("customPlaylist_v1", JSON.stringify(window.customPlaylist));
-    window.activePlayer = "custom";
+    window.activePlayer = "custom"; // tek sada aktivira Custom playlist
     playYouTube(window.customPlaylist[currentSongIndex]);
 
     selectedSongForAdd = null;
@@ -828,12 +831,22 @@ function safeNext() {
     if (window.activePlayer === "custom" && window.customPlaylist.length > 0) {
         currentSongIndex = (currentSongIndex + 1) % window.customPlaylist.length;
         playYouTube(window.customPlaylist[currentSongIndex]);
+    } else {
+        // statički player koristi svoje dugme i audio element (kao pre)
+        const audio = document.getElementById("staticAudio");
+        if (!audio) return;
+        audio.currentTime = 0; // primer: vrati na početak ili sledeća pesma po tvojoj staroj logici
     }
 }
+
 function safePrev() {
     if (window.activePlayer === "custom" && window.customPlaylist.length > 0) {
         currentSongIndex = (currentSongIndex - 1 + window.customPlaylist.length) % window.customPlaylist.length;
         playYouTube(window.customPlaylist[currentSongIndex]);
+    } else {
+        const audio = document.getElementById("staticAudio");
+        if (!audio) return;
+        audio.currentTime = 0; // primer: vrati na početak ili prethodna pesma po tvojoj staroj logici
     }
 }
 
@@ -848,7 +861,6 @@ if (newPrev) newPrev.addEventListener("click", safePrev);
 
 updateNextPrevVisibility();
 
-});
 
 // --- Dugmad funkcionalnost --- ovo je test. 
 // const nextBtn1 = document.querySelector(".next-btn");
