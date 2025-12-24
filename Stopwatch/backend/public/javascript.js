@@ -817,7 +817,7 @@ window.customPlaylist = [
 ];
 currentSongIndex = 0;
 
-ensureYTPlayer().then(() => { playYouTube(window.customPlaylist[0]); });
+// ensureYTPlayer().then(() => { playYouTube(window.customPlaylist[0]); });
 
 // --- Next/Prev buttons ---
 const nextBtn = document.querySelector(".next-btn");
