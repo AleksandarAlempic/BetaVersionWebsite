@@ -860,7 +860,7 @@ if (newNext) newNext.addEventListener("click", safeNext);
 if (newPrev) newPrev.addEventListener("click", safePrev);
 
 updateNextPrevVisibility();
-
+});
 
 // --- Dugmad funkcionalnost --- ovo je test. 
 // const nextBtn1 = document.querySelector(".next-btn");
