@@ -1,6 +1,6 @@
 
-
-.audioContainer{
+/* 
+.audioContainer{ Old one
     position: absolute;
     float: left;
     margin-left: 62px;
@@ -17,8 +17,20 @@
     border-radius: 0.1%;
     z-index: 2;
     border-radius: 10%;
+   } */
+.audioContainer{
+position: absolute;
+    top: 29%;
+    left: 25.25%;
+    transform: translate(-50%, -50%);
+    width: 78px;
+    height: 78px;
+    opacity: 1;
+    overflow: hidden;
+    z-index: 20000000000000;
+    border-radius: 50%;
+    pointer-events: none;
    }
-
 .audioContainer1{
     position: absolute;
     float: left;
