@@ -846,14 +846,24 @@ function safePrev() {
     }
 }
 
-if (nextBtn) { nextBtn.replaceWith(nextBtn.cloneNode(true)); }
-if (prevBtn) { prevBtn.replaceWith(prevBtn.cloneNode(true)); }
+// if (nextBtn) { nextBtn.replaceWith(nextBtn.cloneNode(true)); }
+// if (prevBtn) { prevBtn.replaceWith(prevBtn.cloneNode(true)); }
 
-const newNext = document.querySelector(".next-btn");
-const newPrev = document.querySelector(".pervious-btn");
+// const newNext = document.querySelector(".next-btn");
+// const newPrev = document.querySelector(".pervious-btn");
 
-if (newNext) newNext.addEventListener("click", safeNext);
-if (newPrev) newPrev.addEventListener("click", safePrev);
+// if (newNext) newNext.addEventListener("click", safeNext);
+// if (newPrev) newPrev.addEventListener("click", safePrev);
+
+  nextBtn?.addEventListener("click", () => {
+    if (window.activePlayer === "custom") safeNext();
+});
+
+prevBtn?.addEventListener("click", () => {
+    if (window.activePlayer === "custom") safePrev();
+});
+
+  
 
 updateNextPrevVisibility();
 });
