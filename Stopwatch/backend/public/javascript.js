@@ -722,13 +722,14 @@ saveYoutubeBtn && saveYoutubeBtn.addEventListener("click", async () => {
     ytInput.value = "";
     suggestionsBox.innerHTML = "";
     if (addPlaylistPopup) addPlaylistPopup.style.display = "none";
-
+    setPlaylistToCustomUI();
     updateNextPrevVisibility();
+  setPlaylistToCustomUI();
 });
 
 // --- Add playlist dugme ---
 document.getElementById("fetchCustomPlaylistButton")?.addEventListener("click", () => {
-    window.activePlayer = "custom";
+ 
     updateNextPrevVisibility();
     if (addPlaylistPopup) {
         addPlaylistPopup.style.display = "block";
@@ -813,12 +814,21 @@ ytInput?.addEventListener("input", async () => {
         if (window.customPlaylist.length && customPlaylistElement) customPlaylistElement.style.display = "block";
     } catch { window.customPlaylist.length = 0; }
 })();
+  
+function setPlaylistToCustomUI() {
+    const CUSTOM_INDEX = 6; 
+    currentPlayList = CUSTOM_INDEX;
+    window.activePlayer = "custom";
+    kindOfMusic.innerText = "Custom Playlist";
+    if (customPlaylistElement) customPlaylistElement.style.display = "block";
+    updateNextPrevVisibility();
+}
 
 // --- Dev test songs ---
-window.customPlaylist = [
-    { name: "TEST SONG 1", artist: "Test Artist", cover: "https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg", path: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
-    { name: "TEST SONG 2", artist: "Test Artist", cover: "https://img.youtube.com/vi/9bZkp7q19f0/mqdefault.jpg", path: "https://www.youtube.com/watch?v=9bZkp7q19f0" }
-];
+// window.customPlaylist = [
+//     { name: "TEST SONG 1", artist: "Test Artist", cover: "https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg", path: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
+//     { name: "TEST SONG 2", artist: "Test Artist", cover: "https://img.youtube.com/vi/9bZkp7q19f0/mqdefault.jpg", path: "https://www.youtube.com/watch?v=9bZkp7q19f0" }
+// ];
 currentSongIndex = 0;
 
 // ensureYTPlayer().then(() => { playYouTube(window.customPlaylist[0]); });
