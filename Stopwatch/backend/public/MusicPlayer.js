@@ -90,12 +90,14 @@ console.log("currentPlayList:", currentPlayList, "songs:", songs, "i:", i);
 setMusic(0);
 
 nextBtn.addEventListener('click', () => {
+
+    if (window.activePlayer === "custom") return; // ⬅ KLJUČNO
+
     const currentList = playLists[currentPlayList];
 
-    // Proveri da li lista postoji i nije prazna
     if (!currentList || !Array.isArray(currentList) || currentList.length === 0) {
         console.warn("Trenutna playlist ne postoji ili je prazna.");
-        return; // prekini funkciju
+        return;
     }
 
     if (currentMusic >= currentList.length - 1) {
@@ -109,15 +111,20 @@ nextBtn.addEventListener('click', () => {
 });
 
 previousBtn.addEventListener('click', () => {
-    if(currentMusic <= 0){
+
+    if (window.activePlayer === "custom") return; // ⬅ KLJUČNO
+
+    if (currentMusic <= 0) {
         currentMusic = playLists[currentPlayList].length - 1;
-    }
-    else{
+    } else {
         currentMusic--;
     }
+
     setMusic(currentMusic);
     playMusic();
+    
 });
+
 
 
 const setPlaylist = (i) => {
@@ -161,7 +168,7 @@ nextBtnPlayList.addEventListener('click', () => {
         else if(List[currentPlayList].innerHTML.trim() === "Custom Playlist"){
         nextBtnPlayList.style.marginTop = "-19%";
         nextBtnPlayList.style.marginLeft = "10%";
-        previousBtnPlayList.style.marginTop = "-20%";8
+        previousBtnPlayList.style.marginTop = "-20%";
         previousBtnPlayList.style.marginLeft = "-25%";
          kindOfMusic.style.setProperty("margin-top", "-19%", "important");
          // kindOfMusic.style.setProperty("margin-left", "0%", "important");
