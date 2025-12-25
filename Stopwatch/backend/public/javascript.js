@@ -595,6 +595,8 @@ sendBtn.addEventListener("click", async () => {
 
 /* ================= CUSTOM PLAYLIST + YOUTUBE PLAYER ================= */
 
+
+
 document.addEventListener("DOMContentLoaded", () => {
 
 const YT_API_KEY = "AIzaSyBwwc6TSxopW7mc3PMjK6dYks0jfPZ_cbY"; 
@@ -816,11 +818,14 @@ ytInput?.addEventListener("input", async () => {
 })();
   
 function setPlaylistToCustomUI() {
-    const CUSTOM_INDEX = 6; 
-    currentPlayList = CUSTOM_INDEX;
+    currentPlayList = 6; // indeks za Custom Playlist
     window.activePlayer = "custom";
-    kindOfMusic.innerText = "Custom Playlist";
-    if (customPlaylistElement) customPlaylistElement.style.display = "block";
+    
+    if (customPlaylistElement) {
+        customPlaylistElement.style.display = "block";
+        customPlaylistElement.innerText = "Custom Playlist"; // labela na vrhu
+    }
+
     updateNextPrevVisibility();
 }
 
@@ -855,6 +860,31 @@ function safePrev() {
 
     }
 }
+
+  // --- Switch između tabova (Custom vs Static player) ---
+const tabElements = [
+    document.getElementById("kindOfMusic1"),
+    document.getElementById("kindOfMusic2"),
+    document.getElementById("kindOfMusic3"),
+    document.getElementById("kindOfMusic4"),
+    document.getElementById("kindOfMusic5"),
+    document.getElementById("kindOfMusic6"),
+    document.getElementById("kindOfMusic7"), // Custom Playlist
+    document.getElementById("kindOfMusic8")
+];
+
+tabElements.forEach((tab, index) => {
+    tab.addEventListener("click", () => {
+        if (index === 6) { // Custom Playlist
+            window.activePlayer = "custom";
+            if (customPlaylistElement) customPlaylistElement.innerText = "Custom Playlist";
+        } else {
+            window.activePlayer = "static";
+            tab.innerText && (tab.innerText = tab.innerText); // naziv taba
+        }
+        updateNextPrevVisibility();
+    });
+});
 
 // if (nextBtn) { nextBtn.replaceWith(nextBtn.cloneNode(true)); }
 // if (prevBtn) { prevBtn.replaceWith(prevBtn.cloneNode(true)); }
