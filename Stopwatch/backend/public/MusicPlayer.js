@@ -128,13 +128,12 @@ previousBtn.addEventListener('click', () => {
 
 
 const setPlaylist = (i) => {
+    if (window.disableCustomPlayer) {
+        window.disableCustomPlayer();
+    }
     let play = playLists[i];
     currentPlayList = i;
-    // music.src = song.path;
-    // kindOfMusic.innerHTML = play.name;
-    // artistName.innerHTML = play.artist;
-    // disk.style.backgroundImage = `url('${play.cover}')`;  
-}
+};
 
 setPlaylist(0);
 
