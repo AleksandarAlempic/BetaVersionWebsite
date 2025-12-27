@@ -918,6 +918,10 @@ window.disableCustomPlayer = function () {
     const ytContainer = document.getElementById("audioContainer");
     if (ytContainer) ytContainer.style.display = "none";
 
+    if (customPlaylistElement) {
+        customPlaylistElement.style.display = "none";
+    }
+
     window.activePlayer = "static";
 };
 
