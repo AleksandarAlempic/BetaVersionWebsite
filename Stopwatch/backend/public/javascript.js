@@ -659,12 +659,14 @@ function ensureYTPlayer() {
                     events: { onReady: () => resolve(ytPlayer) },
                     playerVars: { autoplay: 1, controls: 0 }
                 });
+              window.ytPlayer = ytPlayer; // ⬅ OVO DODATI
             } else {
                 setTimeout(checkYT, 100);
             }
         };
         checkYT();
     });
+  
 }
 
 // --- Play song ---
@@ -907,6 +909,17 @@ prevBtn?.addEventListener("click", () => {
 
 updateNextPrevVisibility();
 });
+
+window.disableCustomPlayer = function () {
+    if (window.ytPlayer && window.ytPlayer.pauseVideo) {
+        window.ytPlayer.pauseVideo();
+    }
+
+    const ytContainer = document.getElementById("audioContainer");
+    if (ytContainer) ytContainer.style.display = "none";
+
+    window.activePlayer = "static";
+};
 
 // --- Dugmad funkcionalnost --- ovo je test. 
 // const nextBtn1 = document.querySelector(".next-btn");
