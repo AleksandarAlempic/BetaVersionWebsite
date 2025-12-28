@@ -918,6 +918,8 @@ window.disableCustomPlayer = function () {
     const ytContainer = document.getElementById("audioContainer");
     if (ytContainer) ytContainer.style.display = "none";
 
+    // ⬅ LOKALNI QUERY (scope-safe)
+    const customPlaylistElement = document.getElementById("kindOfMusic7");
     if (customPlaylistElement) {
         customPlaylistElement.style.display = "none";
     }
