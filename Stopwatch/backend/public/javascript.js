@@ -965,9 +965,9 @@ function playTestCustomPlaylist() {
     }
 
     // Osiguraj YT Player i pokreni prvu pesmu
-    ensureYTPlayer().then(() => {
-        playYouTube(window.customPlaylist[currentSongIndex]);
-    });
+  window.ensureYTPlayer().then(() => {
+    playYouTube(window.customPlaylist[currentSongIndex]);
+});
 
     // Prikaz Next/Prev dugmadi
     updateNextPrevVisibility();
