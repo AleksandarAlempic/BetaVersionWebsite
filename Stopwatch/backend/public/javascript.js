@@ -720,6 +720,7 @@ saveYoutubeBtn && saveYoutubeBtn.addEventListener("click", async () => {
     if (customPlaylistElement) customPlaylistElement.style.display = "block";
     localStorage.setItem("customPlaylist_v1", JSON.stringify(window.customPlaylist));
     window.activePlayer = "custom"; // tek sada aktivira Custom playlist
+    enableCustomPlayerUI();
     playYouTube(window.customPlaylist[currentSongIndex]);
 
     selectedSongForAdd = null;
@@ -926,6 +927,13 @@ window.disableCustomPlayer = function () {
 
     window.activePlayer = "static";
 };
+
+function enableCustomPlayerUI() {
+    const ytContainer = document.getElementById("audioContainer");
+    if (ytContainer) {
+        ytContainer.style.display = "block";
+    }
+}
 
 // --- Dugmad funkcionalnost --- ovo je test. 
 // const nextBtn1 = document.querySelector(".next-btn");
