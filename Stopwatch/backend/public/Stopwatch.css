@@ -4,7 +4,7 @@
     position: absolute;
     float: left;
     margin-left: 85.5px;
-    margin-top: 32%;
+    margin-top: 32.2%;
     min-width: 75px;
     min-height: 75px;
     opacity: 1;
@@ -15,7 +15,6 @@
     overflow: hidden;
     color: #d5eebb;
     margin-bottom: 1200px;
-    border-radius: 0.1%;
     z-index: 2000000000000;
     /* border-radius: 10%; */
    }
