@@ -12,10 +12,36 @@
                 }
                 
             </style>
-       
+         <!-- Tvoj CSS za dugme -->
+    <style>
+    #testCustomBtn {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        cursor: pointer;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        transition: background-color 0.3s, transform 0.2s;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+    #testCustomBtn:hover {
+        background-color: #45a049;
+        transform: translateY(-2px);
+    }
+    #testCustomBtn:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    </style>
         </head>
         <!-- a -->
         <body> 
+            <button id="testCustomBtn">Play Test Playlist</button>
             <div id="stopwatchLabel" class="stopwatchLabel">
                 <table class="tableClass">
                     <tr>
