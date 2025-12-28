@@ -20,25 +20,24 @@
    } */
 
 #audioContainer {
-    position: absolute; /* da bude preko diska */
+    position: absolute; /* preko diska */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); /* centriranje */
-    width: 120px; /* veličina iframe-a */
+    width: 120px;
     height: 120px;
-    border-radius: 50%; /* kružni oblik */
-    overflow: hidden; /* da se video ne preliva */
+    border-radius: 50%; /* kružno */
+    overflow: hidden;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    z-index: 500000000000000000; /* iznad diska */
-    display: none; /* JS će prikazati */
+    z-index: 5000;
+    background-color: #000; /* za test */
+    display: block; /* odmah vidljiv */
 }
-
-/* Audio iframe unutar container-a (YouTube) */
 #audioContainer iframe {
     width: 100%;
     height: 100%;
     border: none;
-    border-radius: 50%; /* kružni oblik i za video */
+    border-radius: 50%;
 }
 
 .audioContainer1{
