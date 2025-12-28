@@ -935,6 +935,46 @@ function enableCustomPlayerUI() {
     }
 }
 
+// --- Ovo je developer verzija za ubrizgagvanje test pesama kada search istekne. 
+function playTestCustomPlaylist() {
+    // Test pesme
+    window.customPlaylist = [
+        { 
+            name: "TEST SONG 1", 
+            artist: "Test Artist", 
+            cover: "https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg", 
+            path: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
+        },
+        { 
+            name: "TEST SONG 2", 
+            artist: "Test Artist", 
+            cover: "https://img.youtube.com/vi/9bZkp7q19f0/mqdefault.jpg", 
+            path: "https://www.youtube.com/watch?v=9bZkp7q19f0" 
+        }
+    ];
+
+    // Aktiviraj custom player
+    window.activePlayer = "custom";
+    currentSongIndex = 0;
+
+    // Prikaz iframe-a
+    const customPlaylistElement = document.getElementById("kindOfMusic7");
+    if (customPlaylistElement) {
+        customPlaylistElement.style.display = "block";
+        customPlaylistElement.innerText = "Custom Playlist";
+    }
+
+    // Osiguraj YT Player i pokreni prvu pesmu
+    ensureYTPlayer().then(() => {
+        playYouTube(window.customPlaylist[currentSongIndex]);
+    });
+
+    // Prikaz Next/Prev dugmadi
+    updateNextPrevVisibility();
+}
+
+document.getElementById("testCustomBtn")?.addEventListener("click", playTestCustomPlaylist);
+
 // --- Dugmad funkcionalnost --- ovo je test. 
 // const nextBtn1 = document.querySelector(".next-btn");
 // const prevBtn1 = document.querySelector(".pervious-btn");
