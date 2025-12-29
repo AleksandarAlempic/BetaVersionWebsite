@@ -923,17 +923,22 @@ const tabElements = [
     document.getElementById("kindOfMusic8")
 ];
 
-tabElements.forEach((tab, index) => {
-    tab.addEventListener("click", () => {
-        if (index === 6) { // Custom Playlist
-            window.activePlayer = "custom";
-            if (customPlaylistElement) customPlaylistElement.innerText = "Custom Playlist";
-        } else {
-            window.activePlayer = "static";
-            tab.innerText && (tab.innerText = tab.innerText); // naziv taba
-        }
-        updateNextPrevVisibility();
-    });
+// --- Kada se klikne na Custom Playlist tab ---
+tabElements[6].addEventListener("click", () => {
+    window.activePlayer = "custom";
+    if (customPlaylistElement) {
+        customPlaylistElement.style.display = "block";
+        customPlaylistElement.innerText = "Custom Playlist";
+    }
+
+    // --- ⬅ OVDE DODAJEMO ---
+    if (window.customPlaylist.length > 0) {
+        window.ensureYTPlayer().then(() => {
+            playYouTube(window.customPlaylist[currentSongIndex]);
+        });
+    }
+
+    updateNextPrevVisibility();
 });
 
 // if (nextBtn) { nextBtn.replaceWith(nextBtn.cloneNode(true)); }
@@ -1022,23 +1027,7 @@ function playTestCustomPlaylist() {
 
 document.getElementById("testCustomBtn")?.addEventListener("click", playTestCustomPlaylist);
 
-// --- Kada se klikne na Custom Playlist tab ---
-tabElements[6].addEventListener("click", () => {
-    window.activePlayer = "custom";
-    if (customPlaylistElement) {
-        customPlaylistElement.style.display = "block";
-        customPlaylistElement.innerText = "Custom Playlist";
-    }
 
-    // --- ⬅ OVDE DODAJEMO ---
-    if (window.customPlaylist.length > 0) {
-        window.ensureYTPlayer().then(() => {
-            playYouTube(window.customPlaylist[currentSongIndex]);
-        });
-    }
-
-    updateNextPrevVisibility();
-});
 
 // --- Dugmad funkcionalnost --- ovo je test. 
 // const nextBtn1 = document.querySelector(".next-btn");
