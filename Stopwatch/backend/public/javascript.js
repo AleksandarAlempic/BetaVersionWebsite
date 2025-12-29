@@ -91,6 +91,51 @@ const translations = {
   }
 };
 
+// =================== DODAJ FEEDBACK U POSTOJEĆI TRANSLATIONS ===================
+translations.en.feedback = {
+  title: "Send Feedback",
+  placeholder: "Write your message...",
+  send: "Send",
+  cancel: "Cancel",
+  button: "Feedback"
+};
+
+translations.sr.feedback = {
+  title: "Podeli svoje mišljenje – tvoje iskustvo nam znači",
+  placeholder: "Napiši svoju poruku...",
+  send: "Pošalji",
+  cancel: "Zatvori",
+  button: "Feedback"
+};
+
+// =================== UPDATE FEEDBACK POPUP ===================
+function updateFeedbackPopupLanguage() {
+  const t = translations[currentLanguage].feedback;
+  if (!t) return;
+
+  feedbackPopup.querySelector("h3").innerText = t.title;
+  feedbackText.placeholder = t.placeholder;
+  sendFeedbackBtn.innerText = t.send;
+  closeFeedbackBtn.innerText = t.cancel;
+  openFeedbackBtn.innerText = t.button;
+}
+
+// Pozovi odmah kada se stranica učita
+updateFeedbackPopupLanguage();
+
+// Kada korisnik promeni jezik
+languageSelect.addEventListener("change", (e) => {
+  currentLanguage = e.target.value;
+  localStorage.setItem("selectedLanguage", currentLanguage);
+
+  updateInterfaceLanguage();
+  updateTrainingPopupLanguage(currentLanguage);
+  updateRouteMarkersLanguage(currentLanguage);
+  updateTrainingMarkersLanguage(currentLanguage);
+
+  updateFeedbackPopupLanguage(); // ⬅ samo ovo dodaješ
+});
+
 let currentLanguage = localStorage.getItem("selectedLanguage") || "en";
 languageSelect.value = currentLanguage;
 
