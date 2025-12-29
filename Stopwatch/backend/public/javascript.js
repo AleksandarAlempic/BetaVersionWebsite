@@ -108,6 +108,9 @@ translations.sr.feedback = {
   button: "Feedback"
 };
 
+let currentLanguage = localStorage.getItem("selectedLanguage") || "en";
+languageSelect.value = currentLanguage;
+
 // =================== UPDATE FEEDBACK POPUP ===================
 function updateFeedbackPopupLanguage() {
   const t = translations[currentLanguage].feedback;
@@ -136,8 +139,7 @@ languageSelect.addEventListener("change", (e) => {
   updateFeedbackPopupLanguage(); // ⬅ samo ovo dodaješ
 });
 
-let currentLanguage = localStorage.getItem("selectedLanguage") || "en";
-languageSelect.value = currentLanguage;
+
 
 // =================== LANGUAGE DROPDOWN ===================
 languageSelect.addEventListener("change", (e) => {
