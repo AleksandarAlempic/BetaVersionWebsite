@@ -101,7 +101,7 @@ translations.en.feedback = {
 };
 
 translations.sr.feedback = {
-  title: "Podeli svoje mišljenje – tvoje iskustvo nam znači",
+  title: "Podeli svoje mišljenje – dodaj svoju ideju",
   placeholder: "Napiši svoju poruku...",
   send: "Pošalji",
   cancel: "Zatvori",
