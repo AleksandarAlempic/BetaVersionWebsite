@@ -1022,6 +1022,24 @@ function playTestCustomPlaylist() {
 
 document.getElementById("testCustomBtn")?.addEventListener("click", playTestCustomPlaylist);
 
+// --- Kada se klikne na Custom Playlist tab ---
+tabElements[6].addEventListener("click", () => {
+    window.activePlayer = "custom";
+    if (customPlaylistElement) {
+        customPlaylistElement.style.display = "block";
+        customPlaylistElement.innerText = "Custom Playlist";
+    }
+
+    // --- ⬅ OVDE DODAJEMO ---
+    if (window.customPlaylist.length > 0) {
+        window.ensureYTPlayer().then(() => {
+            playYouTube(window.customPlaylist[currentSongIndex]);
+        });
+    }
+
+    updateNextPrevVisibility();
+});
+
 // --- Dugmad funkcionalnost --- ovo je test. 
 // const nextBtn1 = document.querySelector(".next-btn");
 // const prevBtn1 = document.querySelector(".pervious-btn");
