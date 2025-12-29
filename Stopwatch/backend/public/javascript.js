@@ -93,7 +93,7 @@ const translations = {
 
 // =================== DODAJ FEEDBACK U POSTOJEĆI TRANSLATIONS ===================
 translations.en.feedback = {
-  title: "Send Feedback",
+  title: "Send Feedback - Share your idea",
   placeholder: "Write your message...",
   send: "Send",
   cancel: "Cancel",
