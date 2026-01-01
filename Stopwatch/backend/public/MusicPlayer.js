@@ -266,3 +266,33 @@ music.addEventListener('ended',function(){
     setMusic(currentMusic);
     playMusic();
  });
+
+function handleCustomPlaylistToggleFromStatic() {
+    // Pogledaj da li je labela playlist-a Custom
+    const currentLabel = document.querySelector('.kindOfMusic').innerText.trim();
+    
+    if (currentLabel === "Custom Playlist") {
+        // Aktiviraj custom player
+        window.activePlayer = "custom";
+        if (typeof window.enableCustomPlayerUI === "function") {
+            window.enableCustomPlayerUI();
+        }
+
+        // Ako ima pesama u custom playlisti, pusti prvu
+        if (window.customPlaylist && window.customPlaylist.length > 0) {
+            window.ensureYTPlayer().then(() => {
+                playYouTube(window.customPlaylist[0]);
+            });
+        }
+    } else {
+        // Vrati statički player
+        window.activePlayer = "static";
+        if (typeof window.disableCustomPlayer === "function") {
+            window.disableCustomPlayer();
+        }
+    }
+}
+
+// Ovo pozovi svaki put kada korisnik menja playlist tab
+nextBtnPlayList.addEventListener('click', handleCustomPlaylistToggleFromStatic);
+previousBtnPlayList.addEventListener('click', handleCustomPlaylistToggleFromStatic);
