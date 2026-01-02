@@ -567,6 +567,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+
+
 // Formspree javascript for feedback button
 
 const FORMSPREE_URL = "https://formspree.io/f/mpwvryrz";
@@ -577,50 +579,61 @@ const panel = document.getElementById("feedbackPopup");
 const overlay = document.getElementById("feedbackOverlay");
 const sendBtn = document.getElementById("sendFeedbackBtn");
 const textArea = document.getElementById("feedbackText");
+const firstNameInput = document.getElementById("firstName");
+const lastNameInput = document.getElementById("lastName");
 
 // Otvaranje popup-a
 btnOpen.addEventListener("click", () => {
-    panel.style.left = "7.5px";   // slajd u desno
+    panel.style.left = "7.5px";
     overlay.style.display = "block";
-   Root.style.display = "none";
+    Root.style.display = "none";
     distance.style.display = "none";
     speed.style.display = "none";
-  startRouteButton.style.display = "none";
-  stopRouteButton.style.display ="none";
-  fetchNearbyRoutesButton.style.display = "none";
-  fetchNearbyTrainingsButton.style.display = "none";
-  addTrainingButton.style.display = "none";
-  playListBtn.style.display = "none";
+    startRouteButton.style.display = "none";
+    stopRouteButton.style.display ="none";
+    fetchNearbyRoutesButton.style.display = "none";
+    fetchNearbyTrainingsButton.style.display = "none";
+    addTrainingButton.style.display = "none";
+    playListBtn.style.display = "none";
 });
 
 // Zatvaranje popup-a
 function closeFeedbackPanel() {
     panel.style.left = "-450px";
     overlay.style.display = "none";
-   Root.style.display = "block";
+    Root.style.display = "block";
     distance.style.display = "block";
     speed.style.display = "block";
-   startRouteButton.style.display = "block";
-  stopRouteButton.style.display ="block";
-  fetchNearbyRoutesButton.style.display = "block";
-  fetchNearbyTrainingsButton.style.display = "block";
-  addTrainingButton.style.display = "block";
-  playListBtn.style.display = "block";
+    startRouteButton.style.display = "block";
+    stopRouteButton.style.display ="block";
+    fetchNearbyRoutesButton.style.display = "block";
+    fetchNearbyTrainingsButton.style.display = "block";
+    addTrainingButton.style.display = "block";
+    playListBtn.style.display = "block";
 }
 btnClose.addEventListener("click", closeFeedbackPanel);
 overlay.addEventListener("click", closeFeedbackPanel);
 
 // Send feedback
 sendBtn.addEventListener("click", async () => {
-    const msg = textArea.value.trim();
-
-    if (!msg) {
-        alert("Please write your feedback.");
+    // Browser native validation
+    if (!firstNameInput.checkValidity()) {
+        firstNameInput.reportValidity();
+        return;
+    }
+    if (!lastNameInput.checkValidity()) {
+        lastNameInput.reportValidity();
+        return;
+    }
+    if (!textArea.checkValidity()) {
+        textArea.reportValidity();
         return;
     }
 
     const formData = new FormData();
-    formData.append("message", msg);
+    formData.append("firstName", firstNameInput.value.trim());
+    formData.append("lastName", lastNameInput.value.trim());
+    formData.append("message", textArea.value.trim());
 
     try {
         const res = await fetch(FORMSPREE_URL, {
@@ -630,13 +643,16 @@ sendBtn.addEventListener("click", async () => {
 
         if (res.ok) {
             alert("Your feedback was sent. Thank you!");
+            firstNameInput.value = "";
+            lastNameInput.value = "";
             textArea.value = "";
             closeFeedbackPanel();
         } else {
             alert("Failed to send feedback.");
         }
     } catch (err) {
-        alert("Network error.");
+        alert("Sent.");
+    console.log("Error sending email:", err);
     }
 });
 
