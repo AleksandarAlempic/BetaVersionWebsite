@@ -687,7 +687,7 @@ sendBtn.addEventListener("click", async () => {
 document.addEventListener("DOMContentLoaded", () => {
 
 const YT_API_KEY = "AIzaSyBwwc6TSxopW7mc3PMjK6dYks0jfPZ_cbY"; 
-const MAX_CUSTOM_SONGS = 12;
+const MAX_CUSTOM_SONGS = 28;
 
 window.customPlaylist = window.customPlaylist || [];
 let currentSongIndex = 0;
@@ -1030,20 +1030,94 @@ function enableCustomPlayerUI() {
 // --- Ovo je developer verzija za ubrizgagvanje test pesama kada search istekne. 
 function playTestCustomPlaylist() {
     // Test pesme
-    window.customPlaylist = [
-        { 
-            name: "TEST SONG 1", 
-            artist: "Test Artist", 
-            cover: "https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg", 
-            path: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
-        },
-        { 
-            name: "TEST SONG 2", 
-            artist: "Test Artist", 
-            cover: "https://img.youtube.com/vi/9bZkp7q19f0/mqdefault.jpg", 
-            path: "https://www.youtube.com/watch?v=9bZkp7q19f0" 
-        }
-    ];
+   // --- Test / Custom pesme sa poznatim izvođačima
+window.customPlaylist = [
+    { 
+        name: "Rockin’ Around the Christmas Tree", 
+        artist: "Brenda Lee", 
+        cover: "https://upload.wikimedia.org/wikipedia/en/0/0a/Brenda_Lee_-_Rockin%27_Around_the_Christmas_Tree.jpg", 
+        path: "https://www.youtube.com/watch?v=_6xNuUEnh2g" 
+    },
+    { 
+        name: "Last Christmas", 
+        artist: "Wham!", 
+        cover: "https://upload.wikimedia.org/wikipedia/en/3/3b/Wham!_-_Last_Christmas.png", 
+        path: "https://www.youtube.com/watch?v=E8gmARGvPlI" 
+    },
+    { 
+        name: "All I Want for Christmas Is You", 
+        artist: "Mariah Carey", 
+        cover: "https://upload.wikimedia.org/wikipedia/en/6/6e/All_I_Want_for_Christmas_Is_You.png", 
+        path: "https://www.youtube.com/watch?v=yXQViqx6GMY" 
+    },
+    { 
+        name: "Counting Stars", 
+        artist: "OneRepublic", 
+        cover: "https://upload.wikimedia.org/wikipedia/en/6/65/Counting_Stars_-_OneRepublic.jpg", 
+        path: "https://www.youtube.com/watch?v=hT_nvWreIhg" 
+    },
+    { 
+        name: "Shape of You", 
+        artist: "Ed Sheeran", 
+        cover: "https://upload.wikimedia.org/wikipedia/en/4/45/Shape_Of_You_%28Official_Single_Cover%29_by_Ed_Sheeran.png", 
+        path: "https://www.youtube.com/watch?v=JGwWNGJdvx8" 
+    },
+    { 
+        name: "Unstoppable", 
+        artist: "Sia", 
+        cover: "https://upload.wikimedia.org/wikipedia/en/1/12/Sia_-_Unstoppable.png", 
+        path: "https://www.youtube.com/watch?v=c5M5c9D9C2k" 
+    },
+    { 
+        name: "Rolling in the Deep", 
+        artist: "Adele", 
+        cover: "https://upload.wikimedia.org/wikipedia/en/1/11/Adele_-_Rolling_in_the_Deep.png", 
+        path: "https://www.youtube.com/watch?v=rYEDA3JcQqw" 
+    },
+    { 
+        name: "Ocean Eyes", 
+        artist: "Billie Eilish", 
+        cover: "https://upload.wikimedia.org/wikipedia/en/3/3e/Billie_Eilish_-_Ocean_Eyes.png", 
+        path: "https://www.youtube.com/watch?v=viimfQi_pUw" 
+    },
+    { 
+        name: "Bad Guy", 
+        artist: "Billie Eilish", 
+        cover: "https://upload.wikimedia.org/wikipedia/en/7/7c/Bad_Guy_by_Billie_Eilish.png", 
+        path: "https://www.youtube.com/watch?v=DyDfgMOUjCI" 
+    },
+    { 
+        name: "7 Rings", 
+        artist: "Ariana Grande", 
+        cover: "https://upload.wikimedia.org/wikipedia/en/3/30/Ariana_Grande_-_7_rings.png", 
+        path: "https://www.youtube.com/watch?v=QYh6mYIJG2Y" 
+    },
+    { 
+        name: "The Fate of Ophelia", 
+        artist: "Taylor Swift", 
+        cover: "https://upload.wikimedia.org/wikipedia/en/9/9b/Taylor_Swift_-_The_Fate_of_Ophelia.png", 
+        path: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
+    },
+    { 
+        name: "Psycho", 
+        artist: "BABYMONSTER", 
+        cover: "https://upload.wikimedia.org/wikipedia/en/0/0e/BABYMONSTER_-_We_Go_Up_EP.png", 
+        path: "https://www.youtube.com/watch?v=5Tn3yRoK6mA" 
+    },
+    { 
+        name: "We Go Up", 
+        artist: "BABYMONSTER", 
+        cover: "https://upload.wikimedia.org/wikipedia/en/0/0e/BABYMONSTER_-_We_Go_Up_EP.png", 
+        path: "https://www.youtube.com/watch?v=5Tn3yRoK6mA" 
+          }
+    // ,
+    // { 
+    //     name: "Čokolada", 
+    //     artist: "AN NA", 
+    //     cover: "https://is5-ssl.mzstatic.com/image/thumb/Music125/v4/5a/2d/42/5a2d4275-17c6-c5e4-3274-b06b00c58d85/source/600x600bb.jpg", 
+    //     path: "https://www.youtube.com/watch?v=EXAMPLE_ANNA" 
+    // }
+];
 
     // Aktiviraj custom player
     window.activePlayer = "custom";
