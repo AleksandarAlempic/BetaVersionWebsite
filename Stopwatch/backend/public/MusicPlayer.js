@@ -37,17 +37,35 @@ music.volume = 0.25;
 
 
 
+// playBtn.addEventListener('click', () => { Old Working
+//     music.play();
+//     if(playBtn.className.includes('pause')){
+//         music.play();
+//     }
+//     else{
+//         music.pause();
+//     }
+//     playBtn.classList.toggle('pause');
+//     disk.classList.toggle('play');
+// })
+
 playBtn.addEventListener('click', () => {
-    music.play();
-    if(playBtn.className.includes('pause')){
+
+    // ⬅ Ako je Custom player aktivan – IGNORIŠI klik
+    if (window.activePlayer === "custom") return;
+
+    if (music.paused) {
         music.play();
-    }
-    else{
+        playBtn.classList.remove('pause');
+        playBtn.classList.add('play');
+        disk.classList.add('play');
+    } else {
         music.pause();
+        playBtn.classList.remove('play');
+        playBtn.classList.add('pause');
+        disk.classList.remove('play');
     }
-    playBtn.classList.toggle('pause');
-    disk.classList.toggle('play');
-})
+});
 
 const playMusic = () => {
     music.play();
@@ -268,7 +286,16 @@ music.addEventListener('ended',function(){
  });
 
 function handleCustomPlaylistToggleFromStatic() {
-    // Pogledaj da li je labela playlist-a Custom
+   
+    // 1. Pauziraj statički audio odmah
+    if (!music.paused) {
+        music.pause();
+        playBtn.classList.remove('play');
+        playBtn.classList.add('pause');
+        disk.classList.remove('play');
+    }
+    
+     // Pogledaj da li je labela playlist-a Custom
     const currentLabel = document.querySelector('.kindOfMusic').innerText.trim();
     
     if (currentLabel === "Custom Playlist") {
