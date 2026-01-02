@@ -1005,26 +1005,21 @@ function playTestCustomPlaylist() {
         }
     ];
 
+    // Aktiviraj custom player
     window.activePlayer = "custom";
     currentSongIndex = 0;
 
-    // Osiguraj YT Player i pokreni prvu pesmu
-    window.ensureYTPlayer().then(() => {
-        window.enableCustomPlayerUI(); 
-        playYouTube(window.customPlaylist[currentSongIndex]);
-    });
-
-    // Forsiraj vidljivost iframe-a u audioContainer
-    const audioContainer = document.getElementById("audioContainer");
-    if (audioContainer) {
-        const iframe = audioContainer.querySelector("#youtubePlayer");
-        if (iframe) {
-            iframe.style.display = "block";
-            iframe.style.visibility = "visible";
-            iframe.style.opacity = 1;
-            iframe.style.zIndex = 500000000000000;
-        }
+    // Prikaz iframe-a
+    const customPlaylistElement = document.getElementById("kindOfMusic7");
+    if (customPlaylistElement) {
+        customPlaylistElement.style.display = "block";
+        customPlaylistElement.innerText = "Custom Playlist";
     }
+
+    // Osiguraj YT Player i pokreni prvu pesmu
+  window.ensureYTPlayer().then(() => {
+    playYouTube(window.customPlaylist[currentSongIndex]);
+});
 
     // Prikaz Next/Prev dugmadi
     updateNextPrevVisibility();
