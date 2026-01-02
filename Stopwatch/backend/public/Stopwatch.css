@@ -2335,7 +2335,6 @@ display: block;
 .feedback-float-btn {
     position: fixed;
     margin-left: -11.3%;
-    /* left: 0; */
     top: 50%;
     transform: translateY(-50%) rotate(-90deg);
     transform-origin: left top;
@@ -2348,6 +2347,7 @@ display: block;
     border-radius: 0 8px 8px 0;
     font-weight: bold;
 }
+
 /* === Overlay === */
 .feedback-overlay {
     position: fixed;
@@ -2363,7 +2363,6 @@ display: block;
 /* === Feedback Slide Panel === */
 .feedback-popup {
     position: fixed;
-    /* top: 0; */
     left: -450px;
     width: 300px;
     height: 62%;
@@ -2383,33 +2382,13 @@ display: block;
     flex-direction: column;
 }
 
+/* Textarea */
 .feedback-popup textarea {
     flex: 1;
     resize: none;
     padding: 10px;
     margin-bottom: 15px;
-}
-
-.feedback-buttons {
-    display: flex;
-    justify-content: space-between;
-}
-
-.send-btn, .cancel-btn {
-    padding: 8px 16px;
-    cursor: pointer;
-}
-
-.send-btn {
-    background-color: #27ae60;
-    color: white;
-    border: none;
-}
-
-.cancel-btn {
-    background-color: #c0392b;
-    color: white;
-    border: none;
+    min-height: 100px; /* veća visina */
 }
 
 /* Flex layout za ime i prezime */
@@ -2434,17 +2413,11 @@ input, textarea {
     box-sizing: border-box;
 }
 
-/* Mala promena za textarea da bude veća */
-textarea {
-    min-height: 100px;
-    resize: vertical;
-}
-
 /* Dugmad */
 .feedback-buttons {
-    margin-top: 15px;
     display: flex;
     gap: 10px;
+    margin-top: 15px;
 }
 
 .send-btn, .cancel-btn {
@@ -2465,7 +2438,7 @@ textarea {
     color: white;
 }
 
-/* Responsive: ako ekran postane uži, polja se spuste jedno ispod drugog */
+/* Responsive: polja se spuste jedno ispod drugog na malim ekranima */
 @media (max-width: 500px) {
     .name-fields {
         flex-direction: column;
