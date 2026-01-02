@@ -113,6 +113,10 @@ languageSelect.value = currentLanguage;
 
 // =================== UPDATE FEEDBACK POPUP ===================
 function updateFeedbackPopupLanguage() {
+
+  const firstNameInput = document.getElementById("firstName");
+const lastNameInput = document.getElementById("lastName");
+  
   const t = translations[currentLanguage].feedback;
   if (!t) return;
 
