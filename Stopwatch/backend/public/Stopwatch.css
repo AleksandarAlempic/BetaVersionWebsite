@@ -2412,6 +2412,66 @@ display: block;
     border: none;
 }
 
+/* Flex layout za ime i prezime */
+.name-fields {
+    display: flex;
+    gap: 10px; /* razmak između polja */
+    margin-bottom: 15px;
+}
+
+.name-fields .input-group {
+    flex: 1; /* oba polja iste širine */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Standardni input i textarea */
+input, textarea {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Mala promena za textarea da bude veća */
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Dugmad */
+.feedback-buttons {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.send-btn, .cancel-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.send-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.cancel-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Responsive: ako ekran postane uži, polja se spuste jedno ispod drugog */
+@media (max-width: 500px) {
+    .name-fields {
+        flex-direction: column;
+    }
+}
+
 
 
 /* #start, #stop, #reset, #checkboxMusicPlayer, #audioContainer, #newNextAndPreviousButtons {
