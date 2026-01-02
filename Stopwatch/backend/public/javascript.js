@@ -116,12 +116,32 @@ function updateFeedbackPopupLanguage() {
   const t = translations[currentLanguage].feedback;
   if (!t) return;
 
+  // Naslov i textarea dugmad
   feedbackPopup.querySelector("h3").innerText = t.title;
   feedbackText.placeholder = t.placeholder;
   sendFeedbackBtn.innerText = t.send;
   closeFeedbackBtn.innerText = t.cancel;
   openFeedbackBtn.innerText = t.button;
+
+  // ⬅ DODAJEMO PREVOD ZA FIRST NAME I LAST NAME
+  const firstNameLabel = feedbackPopup.querySelector('label[for="firstName"]');
+  const lastNameLabel = feedbackPopup.querySelector('label[for="lastName"]');
+
+  if (currentLanguage === "sr") {
+    firstNameLabel.innerText = "Ime";
+    firstNameInput.placeholder = "Ime";
+
+    lastNameLabel.innerText = "Prezime";
+    lastNameInput.placeholder = "Prezime";
+  } else {
+    firstNameLabel.innerText = "First Name";
+    firstNameInput.placeholder = "First Name";
+
+    lastNameLabel.innerText = "Last Name";
+    lastNameInput.placeholder = "Last Name";
+  }
 }
+
 
 // Pozovi odmah kada se stranica učita
 updateFeedbackPopupLanguage();
