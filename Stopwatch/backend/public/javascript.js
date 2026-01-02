@@ -1018,6 +1018,7 @@ function playTestCustomPlaylist() {
 
     // Osiguraj YT Player i pokreni prvu pesmu
   window.ensureYTPlayer().then(() => {
+   window.enableCustomPlayerUI(); 
     playYouTube(window.customPlaylist[currentSongIndex]);
 });
 
