@@ -2332,95 +2332,16 @@ display: block;
 }
 
 /* === Floating Feedback Button === */
-.feedback-float-btn {
-    position: fixed;
-    margin-left: -11.3%;
-    /* left: 0; */
-    top: 50%;
-    transform: translateY(-50%) rotate(-90deg);
-    transform-origin: left top;
-    background-color: #f39c12;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    z-index: 10000;
-    border-radius: 0 8px 8px 0;
-    font-weight: bold;
-}
-/* === Overlay === */
-.feedback-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.4);
-    display: none;
-    z-index: 9998;
-}
-
-/* === Feedback Slide Panel === */
-.feedback-popup {
-    position: fixed;
-    /* top: 0; */
-    left: -450px;
-    width: 300px;
-    height: 62%;
-    margin-top: 20%;
-    background-color: #fff;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
-    z-index: 9999;
-    transition: left 0.4s ease;
-    display: flex;
-    flex-direction: column;
-}
-
-.feedback-popup-content {
-    padding: 20px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.feedback-popup textarea {
-    flex: 1;
-    resize: none;
-    padding: 10px;
-    margin-bottom: 15px;
-}
-
-.feedback-buttons {
-    display: flex;
-    justify-content: space-between;
-}
-
-.send-btn, .cancel-btn {
-    padding: 8px 16px;
-    cursor: pointer;
-}
-
-.send-btn {
-    background-color: #27ae60;
-    color: white;
-    border: none;
-}
-
-.cancel-btn {
-    background-color: #c0392b;
-    color: white;
-    border: none;
-}
-
 /* Flex layout za ime i prezime */
 .name-fields {
     display: flex;
-    gap: 10px; /* razmak između polja */
+    gap: 10px;          /* razmak između polja */
     margin-bottom: 15px;
 }
 
+/* Polja 50% širine svakog inputa */
 .name-fields .input-group {
-    flex: 1; /* oba polja iste širine */
+    flex: 0 0 50%;
     display: flex;
     flex-direction: column;
 }
@@ -2434,8 +2355,9 @@ input, textarea {
     box-sizing: border-box;
 }
 
-/* Mala promena za textarea da bude veća */
+/* Textarea full width, ispod imena */
 textarea {
+    width: 100%;
     min-height: 100px;
     resize: vertical;
 }
@@ -2465,13 +2387,16 @@ textarea {
     color: white;
 }
 
-/* Responsive: ako ekran postane uži, polja se spuste jedno ispod drugog */
+/* Responsive: polja se spuste jedno ispod drugog na mobilnom */
 @media (max-width: 500px) {
     .name-fields {
         flex-direction: column;
     }
-}
 
+    .name-fields .input-group {
+        flex: 1; /* 100% širine */
+    }
+}
 
 
 /* #start, #stop, #reset, #checkboxMusicPlayer, #audioContainer, #newNextAndPreviousButtons {
