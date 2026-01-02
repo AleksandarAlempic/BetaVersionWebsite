@@ -2438,6 +2438,10 @@ input, textarea {
     color: white;
 }
 
+.popupFirstLastName{
+    width: 100%;
+}
+
 /* Responsive: polja se spuste jedno ispod drugog na malim ekranima */
 @media (max-width: 500px) {
     .name-fields {
