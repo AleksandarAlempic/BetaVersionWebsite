@@ -168,7 +168,11 @@
 <div id="feedbackPopup" class="feedback-popup">
     <div class="feedback-popup-content">
         <h3>Send Feedback</h3>
-        <textarea id="feedbackText" placeholder="Write your message..."></textarea>
+        <label for="firstName">First Name</label>
+        <input style="z-index: 10000000;" name="firstName" placeholder="First name" id="firstName" type="text" required> 
+        <label for="lastName">Last Name</label>
+        <input style="z-index: 10000000;" name="lastName" placeholder="Last name" id="lastName" type="text" required> 
+        <textarea id="feedbackText" placeholder="Write your message..." required></textarea>
         <div class="feedback-buttons">
             <button id="sendFeedbackBtn" class="send-btn">Send</button>
             <button id="closeFeedbackBtn" class="cancel-btn">Cancel</button>
