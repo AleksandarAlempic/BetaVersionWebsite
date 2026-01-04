@@ -655,9 +655,9 @@ sendBtn.addEventListener("click", async () => {
     }
 
     const formData = new FormData();
-    formData.append("firstName", firstNameInput.value.trim());
-    formData.append("lastName", lastNameInput.value.trim());
-    formData.append("message", textArea.value.trim());
+  formData.append("First name", firstNameInput.value.trim());
+  formData.append("Last name", lastNameInput.value.trim());
+  formData.append("Message", textArea.value.trim());
 
     try {
         const res = await fetch(FORMSPREE_URL, {
