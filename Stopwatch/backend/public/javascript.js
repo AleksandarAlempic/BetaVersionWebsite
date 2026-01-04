@@ -703,6 +703,8 @@ const customPlaylistElement = document.getElementById("kindOfMusic7");
 const songCover = document.querySelector(".disk img");
 const songNameElem = document.querySelector(".songName");
 const artistNameElem = document.querySelector(".artistName");
+const nextBtnPlayList = document.querySelector('.next-btnPlayList');
+const previousBtnPlayList = document.querySelector('.previous-btnPlayList');
 
 let selectedSongForAdd = null;
 let ytInitialized = false;
@@ -815,8 +817,25 @@ saveYoutubeBtn && saveYoutubeBtn.addEventListener("click", async () => {
     suggestionsBox.innerHTML = "";
     if (addPlaylistPopup) addPlaylistPopup.style.display = "none";
     setPlaylistToCustomUI();
+
+
+    /* ================= STYLING SAMO OVDE ================= */
+
+    if (
+        List[currentPlayList] &&
+        List[currentPlayList].textContent.trim() === "Custom Playlist"
+    ) {
+        nextBtnPlayList.style.marginTop = "-19%";
+        nextBtnPlayList.style.marginLeft = "10%";
+
+        previousBtnPlayList.style.marginTop = "-20%";
+        previousBtnPlayList.style.marginLeft = "-25%";
+
+        kindOfMusic.style.setProperty("margin-top", "-19%", "important");
+    }
+  
     updateNextPrevVisibility();
-  setPlaylistToCustomUI();
+
 });
 
 // --- Add playlist dugme ---
