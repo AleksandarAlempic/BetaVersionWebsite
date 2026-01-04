@@ -484,7 +484,7 @@ async function retrieveNearbyTrainings() {
     }
 
     try {
-      const res = await fetch(`https://betaversionwebsite.onrender.com/api/nearby-trainings?lat=${laintitude}&lng=${longitude}&radius=${radius}`);
+      const res = await fetch(`https://betaversionwebsite.onrender.com/api/nearby-trainings?lat=${latitude}&lng=${longitude}&radius=${radius}`);
       const trainings = await res.json();
 
       if (!Array.isArray(trainings) || trainings.length === 0) {
