@@ -825,8 +825,8 @@ saveYoutubeBtn && saveYoutubeBtn.addEventListener("click", async () => {
     List[currentPlayList] &&
     List[currentPlayList].textContent.trim() === "Custom Playlist"
 ) {
-    nextBtnPlayList.style.marginTop = "-44%;";
-    nextBtnPlayList.style.marginLeft = "20%";
+    nextBtnPlayList.style.marginTop = "-20%;";
+    nextBtnPlayList.style.marginLeft = "100%";
 
     previousBtnPlayList.style.marginTop = "-26%";
     previousBtnPlayList.style.marginLeft = "-25%";
@@ -841,8 +841,9 @@ saveYoutubeBtn && saveYoutubeBtn.addEventListener("click", async () => {
         customPlaylistLabel.style.display = "none";
 
         // 3️⃣ Doterujemo poziciju
-        kindOfMusic.style.setProperty("margin-top", "-20%", "important");
-       kindOfMusic.style.setProperty("margin-left", "70%", "important");
+        kindOfMusic.style.setProperty("margin-top", "-24%", "important");
+       kindOfMusic.style.setProperty("margin-left", "1%", "important");
+      kindOfMusic.style.setProperty("min-width", "159px", "important");
     }
 }
   
