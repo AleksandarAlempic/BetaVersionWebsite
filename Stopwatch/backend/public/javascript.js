@@ -605,6 +605,7 @@ const sendBtn = document.getElementById("sendFeedbackBtn");
 const textArea = document.getElementById("feedbackText");
 const firstNameInput = document.getElementById("firstName");
 const lastNameInput = document.getElementById("lastName");
+const addPlaylistPopup1 = document.getElementById("addPlaylistPopup");
 
 // Otvaranje popup-a
 btnOpen.addEventListener("click", () => {
@@ -619,6 +620,7 @@ btnOpen.addEventListener("click", () => {
     fetchNearbyTrainingsButton.style.display = "none";
     addTrainingButton.style.display = "none";
     playListBtn.style.display = "none";
+    addPlaylistPopup1.style.display = "none";
 });
 
 // Zatvaranje popup-a
