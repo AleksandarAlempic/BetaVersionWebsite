@@ -821,18 +821,32 @@ saveYoutubeBtn && saveYoutubeBtn.addEventListener("click", async () => {
 
     /* ================= STYLING SAMO OVDE ================= */
 
-    if (
-        List[currentPlayList] &&
-        List[currentPlayList].textContent.trim() === "Custom Playlist"
-    ) {
-        nextBtnPlayList.style.marginTop = "-19%";
-        nextBtnPlayList.style.marginLeft = "10%";
+   if (
+    List[currentPlayList] &&
+    List[currentPlayList].textContent.trim() === "Custom Playlist"
+) {
+    nextBtnPlayList.style.marginTop = "-14%;";
+    nextBtnPlayList.style.marginLeft = "70%";
 
-        previousBtnPlayList.style.marginTop = "-20%";
-        previousBtnPlayList.style.marginLeft = "-25%";
+     margin-top: 
+    margin-left: 70%;
 
+    previousBtnPlayList.style.marginTop = "-20%";
+    previousBtnPlayList.style.marginLeft = "-25%";
+
+    const customPlaylistLabel = document.getElementById("kindOfMusic7");
+
+    if (customPlaylistLabel && kindOfMusic) {
+        // 1️⃣ Preuzimamo vrednost
+        kindOfMusic.textContent = customPlaylistLabel.textContent;
+
+        // 2️⃣ Gasimo originalnu labelu
+        customPlaylistLabel.style.display = "none";
+
+        // 3️⃣ Doterujemo poziciju
         kindOfMusic.style.setProperty("margin-top", "-19%", "important");
     }
+}
   
     updateNextPrevVisibility();
 
