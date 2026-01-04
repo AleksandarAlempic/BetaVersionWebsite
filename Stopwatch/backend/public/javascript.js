@@ -828,9 +828,6 @@ saveYoutubeBtn && saveYoutubeBtn.addEventListener("click", async () => {
     nextBtnPlayList.style.marginTop = "-14%;";
     nextBtnPlayList.style.marginLeft = "70%";
 
-     margin-top: 
-    margin-left: 70%;
-
     previousBtnPlayList.style.marginTop = "-20%";
     previousBtnPlayList.style.marginLeft = "-25%";
 
@@ -844,7 +841,8 @@ saveYoutubeBtn && saveYoutubeBtn.addEventListener("click", async () => {
         customPlaylistLabel.style.display = "none";
 
         // 3️⃣ Doterujemo poziciju
-        kindOfMusic.style.setProperty("margin-top", "-19%", "important");
+        kindOfMusic.style.setProperty("margin-top", "-20%", "important");
+       kindOfMusic.style.setProperty("margin-left", "70%", "important");
     }
 }
   
