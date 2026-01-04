@@ -818,39 +818,30 @@ saveYoutubeBtn && saveYoutubeBtn.addEventListener("click", async () => {
     if (addPlaylistPopup) addPlaylistPopup.style.display = "none";
     setPlaylistToCustomUI();
 
+    /* ================= STYLING ZA CUSTOM PLAYLIST ================= */
+    const currentText = List[currentPlayList]?.textContent.trim();
+    if (currentText === "Custom Playlist") {
+        nextBtnPlayList.style.marginTop = "-20%";
+        nextBtnPlayList.style.marginLeft = "120%";
 
-    /* ================= STYLING SAMO OVDE ================= */
+        previousBtnPlayList.style.marginTop = "-26%";
+        previousBtnPlayList.style.marginLeft = "-25%";
 
-   if (
-    List[currentPlayList] &&
-    List[currentPlayList].textContent.trim() === "Custom Playlist"
-) {
-    nextBtnPlayList.style.marginTop = "-20%;";
-    nextBtnPlayList.style.marginLeft = "100%";
+        const customPlaylistLabel = document.getElementById("kindOfMusic7");
 
-    previousBtnPlayList.style.marginTop = "-26%";
-    previousBtnPlayList.style.marginLeft = "-25%";
-
-    const customPlaylistLabel = document.getElementById("kindOfMusic7");
-
-    if (customPlaylistLabel && kindOfMusic) {
-        // 1️⃣ Preuzimamo vrednost
-        kindOfMusic.textContent = customPlaylistLabel.textContent;
-
-        // 2️⃣ Gasimo originalnu labelu
-        customPlaylistLabel.style.display = "none";
-
-        // 3️⃣ Doterujemo poziciju
-        kindOfMusic.style.setProperty("margin-top", "-24%", "important");
-       kindOfMusic.style.setProperty("margin-left", "1%", "important");
-      kindOfMusic.style.setProperty("min-width", "159px", "important");
+        if (customPlaylistLabel && kindOfMusic) {
+            kindOfMusic.textContent = customPlaylistLabel.textContent;
+            customPlaylistLabel.style.display = "none";
+            kindOfMusic.style.setProperty("margin-top", "-24%", "important");
+            kindOfMusic.style.setProperty("margin-left", "1%", "important");
+            kindOfMusic.style.setProperty("min-width", "159px", "important");
+        }
     }
-}
-  
-    updateNextPrevVisibility();
 
+    updateNextPrevVisibility();
 });
 
+  
 // --- Add playlist dugme ---
 document.getElementById("fetchCustomPlaylistButton")?.addEventListener("click", () => {
  
