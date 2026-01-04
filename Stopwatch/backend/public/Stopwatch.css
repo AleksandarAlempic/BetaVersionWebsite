@@ -2282,6 +2282,8 @@ display: block;
   width: 100%;
   padding: 10px;
   margin-bottom: 12px;
+    min-height: 55px;
+    font-size: 19px;
 }
 
 .popup-buttons {
@@ -2291,9 +2293,10 @@ display: block;
 
 .popup-save {
   background: #4CAF50;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 10px;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 20px;
 }
 
 .popup-cancel {
@@ -2301,6 +2304,7 @@ display: block;
   color: white;
   padding: 10px 15px;
   border-radius: 10px;
+    font-size: 20px;
 }
 
 .limit-msg {
