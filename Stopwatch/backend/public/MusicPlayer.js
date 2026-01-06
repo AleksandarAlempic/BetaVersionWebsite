@@ -155,6 +155,17 @@ const setPlaylist = (i) => {
 
 setPlaylist(0);
 
+function resetNextPrevUI() {
+    kindOfMusic1.style.removeProperty("margin-top");
+    kindOfMusic1.style.removeProperty("margin-left");
+    kindOfMusic1.style.removeProperty("min-width");
+
+    nextBtnPlayList.style.removeProperty("margin-top");
+    nextBtnPlayList.style.removeProperty("margin-left");
+    previousBtnPlayList.style.removeProperty("margin-top");
+    previousBtnPlayList.style.removeProperty("margin-left");
+}
+
 nextBtnPlayList.addEventListener('click', () => {
     if (currentPlayList >= length - 1) {
         List[0].innerHTML = songList8.innerHTML;
@@ -163,6 +174,8 @@ nextBtnPlayList.addEventListener('click', () => {
         currentPlayList++;
         List[0].innerHTML = List[currentPlayList].innerHTML;
     }
+
+    resetNextPrevUI();
 
      if (List[currentPlayList].innerHTML.trim() === "Narodna") {
         nextBtnPlayList.style.marginTop = "-37%";
@@ -226,6 +239,8 @@ previousBtnPlayList.addEventListener('click', () => {
         currentPlayList--;
         List[0].innerHTML = List[currentPlayList].innerHTML;
     }
+
+        resetNextPrevUI();
 
     if (List[currentPlayList].innerHTML.trim() === "Narodna") {
         nextBtnPlayList.style.marginTop = "-37%";
