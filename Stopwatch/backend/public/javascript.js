@@ -1181,89 +1181,41 @@ window.customPlaylist = [
     // }
 ];
 
+   
     // Aktiviraj custom player
     window.activePlayer = "custom";
     currentSongIndex = 0;
 
-const customPlaylistElement = document.getElementById("kindOfMusic7");
+    const customPlaylistElement = document.getElementById("kindOfMusic7");
 
-// Prvi put prikazujemo Custom Playlist labelu vizuelno
-if (customPlaylistElement) {
-    customPlaylistElement.style.display = "block";
-    customPlaylistElement.innerText = "Custom Playlist";
-}
-
-// Resetuj prethodne stilove pre primene
-kindOfMusic.style.removeProperty("margin-top");
-kindOfMusic.style.removeProperty("margin-left");
-kindOfMusic.style.removeProperty("min-width");
-
-nextBtnPlayList.style.removeProperty("margin-top");
-nextBtnPlayList.style.removeProperty("margin-left");
-previousBtnPlayList.style.removeProperty("margin-top");
-previousBtnPlayList.style.removeProperty("margin-left");
-
-// ================= Prvi render Custom Playlist =================
-if (window.activePlayer === "custom") {
-    kindOfMusic.style.setProperty("margin-top", "-24%", "important");
-    kindOfMusic.style.setProperty("margin-left", "1%", "important");
-    kindOfMusic.style.setProperty("min-width", "159px", "important");
-
-    nextBtnPlayList.style.marginTop = "-20%";
-    nextBtnPlayList.style.marginLeft = "120%";
-    previousBtnPlayList.style.marginTop = "-26%";
-    previousBtnPlayList.style.marginLeft = "-25%";
-} 
-else {
-    // ======================= Ostale playliste =======================
-    const currentText = kindOfMusic?.textContent.trim();
-
-    if (currentText === "Narodna") {
-        nextBtnPlayList.style.marginTop = "-37%";
-        previousBtnPlayList.style.marginTop = "-37%";
-        nextBtnPlayList.style.marginLeft = "10%";
-        previousBtnPlayList.style.marginLeft = "-25%";
-        kindOfMusic.style.setProperty("margin-top", "-34%", "important");
-        kindOfMusic.style.setProperty("margin-left", "0%", "important");
+    // === Prvi put samo prikaži Custom Playlist labelu ===
+    if (customPlaylistElement) {
+        customPlaylistElement.style.display = "block";
+        customPlaylistElement.innerText = "Custom Playlist";
     }
-    else if (currentText === "Promo" || currentText === "Balkan") {
-        nextBtnPlayList.style.marginTop = "-44%";
-        previousBtnPlayList.style.marginTop = "-43.5%";
-        nextBtnPlayList.style.marginLeft = "10%";
-        previousBtnPlayList.style.marginLeft = "-25%";
-        kindOfMusic.style.setProperty("margin-top", "-40%", "important");
-        kindOfMusic.style.setProperty("margin-left", "0%", "important");
-    }
-    else if (currentText === "Classics") {
-        nextBtnPlayList.style.marginTop = "-40%";
-        previousBtnPlayList.style.marginTop = "-40%";
-        nextBtnPlayList.style.marginLeft = "10%";
-        previousBtnPlayList.style.marginLeft = "-25%";
-        kindOfMusic.style.setProperty("margin-top", "-36%", "important");
-        kindOfMusic.style.setProperty("margin-left", "0%", "important");
-    }
-    else {
-        nextBtnPlayList.style.marginTop = "-45%";
-        previousBtnPlayList.style.marginTop = "-46%";
-        nextBtnPlayList.style.marginLeft = "10%";
-        previousBtnPlayList.style.marginLeft = "-25%";
-        kindOfMusic.style.setProperty("margin-top", "-43%", "important");
-        kindOfMusic.style.setProperty("margin-left", "0%", "important");
-    }
-}
+
+    // Resetuj prethodne stilove (bez hardkodiranja margina)
+    kindOfMusic.style.removeProperty("margin-top");
+    kindOfMusic.style.removeProperty("margin-left");
+    kindOfMusic.style.removeProperty("min-width");
+
+    nextBtnPlayList.style.removeProperty("margin-top");
+    nextBtnPlayList.style.removeProperty("margin-left");
+    previousBtnPlayList.style.removeProperty("margin-top");
+    previousBtnPlayList.style.removeProperty("margin-left");
+
+    // === Prikaz Next/Prev dugmadi i margine će postaviti logika Next/Prev ===
+    updateNextPrevVisibility();
 
     // Osiguraj YT Player i pokreni prvu pesmu
     window.ensureYTPlayer().then(() => {
         window.enableCustomPlayerUI();
         playYouTube(window.customPlaylist[currentSongIndex]);
     });
-
-    // Prikaz Next/Prev dugmadi
-    updateNextPrevVisibility();
 }
 
+// Dodaj listener za test dugme
 document.getElementById("testCustomBtn")?.addEventListener("click", playTestCustomPlaylist);
-
 
 
 // --- Dugmad funkcionalnost --- ovo je test. 
