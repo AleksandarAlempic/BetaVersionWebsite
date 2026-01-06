@@ -1180,34 +1180,48 @@ window.customPlaylist = [
     //     path: "https://www.youtube.com/watch?v=EXAMPLE_ANNA" 
     // }
 ];
-
-   
-    // Aktiviraj custom player
+ // --- Aktiviraj custom player ---
     window.activePlayer = "custom";
     currentSongIndex = 0;
 
-    const customPlaylistElement = document.getElementById("kindOfMusic7");
+    // Dve labele
+    const customPlaylistElement = document.getElementById("kindOfMusic7"); // stara labela
+    const mainLabelElement = document.getElementById("kindOfMusic1");       // nova glavna labela
 
-    // === Prvi put samo prikaži Custom Playlist labelu ===
+    // --- Sakrij staru labelu i postavi naziv na glavnoj ---
     if (customPlaylistElement) {
-        customPlaylistElement.style.display = "block";
-        customPlaylistElement.innerText = "Custom Playlist";
+        customPlaylistElement.style.display = "none";  // gasimo staru labelu
     }
 
-    // Resetuj prethodne stilove (bez hardkodiranja margina)
-    kindOfMusic.style.removeProperty("margin-top");
-    kindOfMusic.style.removeProperty("margin-left");
-    kindOfMusic.style.removeProperty("min-width");
+    if (mainLabelElement) {
+        mainLabelElement.style.display = "block";      // prikazujemo glavnu labelu
+        mainLabelElement.innerText = "Custom Playlist"; // postavljamo naziv
+    }
+
+    // --- Resetuj prethodne stilove ---
+    mainLabelElement.style.removeProperty("margin-top");
+    mainLabelElement.style.removeProperty("margin-left");
+    mainLabelElement.style.removeProperty("min-width");
 
     nextBtnPlayList.style.removeProperty("margin-top");
     nextBtnPlayList.style.removeProperty("margin-left");
     previousBtnPlayList.style.removeProperty("margin-top");
     previousBtnPlayList.style.removeProperty("margin-left");
 
-    // === Prikaz Next/Prev dugmadi i margine će postaviti logika Next/Prev ===
+    // --- Postavi inicijalne pozicije dugmadi i labele samo prvi put ---
+    mainLabelElement.style.setProperty("margin-top", "-24%", "important");
+    mainLabelElement.style.setProperty("margin-left", "1%", "important");
+    mainLabelElement.style.setProperty("min-width", "159px", "important");
+
+    nextBtnPlayList.style.marginTop = "-20%";
+    nextBtnPlayList.style.marginLeft = "120%";
+    previousBtnPlayList.style.marginTop = "-26%";
+    previousBtnPlayList.style.marginLeft = "-25%";
+
+    // --- Prikaz Next/Prev dugmadi (dalja logika Next/Prev preuzima kontrolu) ---
     updateNextPrevVisibility();
 
-    // Osiguraj YT Player i pokreni prvu pesmu
+    // --- Osiguraj YT Player i pokreni prvu pesmu ---
     window.ensureYTPlayer().then(() => {
         window.enableCustomPlayerUI();
         playYouTube(window.customPlaylist[currentSongIndex]);
