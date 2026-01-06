@@ -1215,13 +1215,13 @@ window.customPlaylist = [
 
     // --- Postavi inicijalne pozicije dugmadi i labele samo prvi put ---
     mainLabelElement.style.setProperty("margin-top", "-24%", "important");
-    mainLabelElement.style.setProperty("margin-left", "-14%", "important");
+    mainLabelElement.style.setProperty("margin-left", "-17%", "important");
     mainLabelElement.style.setProperty("min-width", "159px", "important");
 
     nextBtnPlayList.style.marginTop = "-26%";
     nextBtnPlayList.style.marginLeft = "-10%";
     previousBtnPlayList.style.marginTop = "-26%";
-    previousBtnPlayList.style.marginLeft = "-31%";
+    previousBtnPlayList.style.marginLeft = "-34%";
 
     // --- Prikaz Next/Prev dugmadi (dalja logika Next/Prev preuzima kontrolu) ---
     updateNextPrevVisibility();
