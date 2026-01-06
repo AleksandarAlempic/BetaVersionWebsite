@@ -830,7 +830,7 @@ saveYoutubeBtn && saveYoutubeBtn.addEventListener("click", async () => {
   const currentText = kindOfMusic?.textContent.trim();
     if (currentText === "Custom Playlist") {
         nextBtnPlayList.style.marginTop = "-20%";
-        nextBtnPlayList.style.marginLeft = "120%";
+        nextBtnPlayList.style.marginLeft = "80%";
 
         previousBtnPlayList.style.marginTop = "-26%";
         previousBtnPlayList.style.marginLeft = "-25%";
