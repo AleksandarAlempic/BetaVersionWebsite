@@ -778,6 +778,8 @@ function updateNextPrevVisibility() {
     const nextBtn = document.querySelector(".next-btn");
     const prevBtn = document.querySelector(".pervious-btn");
 
+
+
     if (!nextBtn || !prevBtn) {
         setTimeout(updateNextPrevVisibility, 100);
         return;
@@ -798,6 +800,7 @@ function updateNextPrevVisibility() {
         prevBtn.style.display = "none";
     }
 }
+    window.updateNextPrevVisibility = updateNextPrevVisibility;
 
 // --- Save song to playlist ---
 saveYoutubeBtn && saveYoutubeBtn.addEventListener("click", async () => {
