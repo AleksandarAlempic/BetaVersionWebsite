@@ -246,7 +246,7 @@ previousBtnPlayList.addEventListener('click', () => {
         nextBtnPlayList.style.marginTop = "-37%";
         nextBtnPlayList.style.marginLeft = "10%";
         previousBtnPlayList.style.marginTop = "-37%";
-        previousBtnPlayList.style.marginLeft = "-24%";
+        previousBtnPlayList.style.marginLeft = "-25%";
         // previousBtnPlayList.style.marginLeft = "0%";
         kindOfMusic.style.setProperty("margin-top", "-34%", "important");
         kindOfMusic.style.setProperty("margin-left", "0%", "important");
@@ -256,7 +256,7 @@ previousBtnPlayList.addEventListener('click', () => {
         nextBtnPlayList.style.marginTop = "-44%";
          nextBtnPlayList.style.marginLeft = "10%";
         previousBtnPlayList.style.marginTop = "-43.5%";
-         previousBtnPlayList.style.marginLeft = "-24%";
+         previousBtnPlayList.style.marginLeft = "-27%";
          kindOfMusic.style.setProperty("margin-top", "-40%", "important");
          kindOfMusic.style.setProperty("margin-left", "0%", "important");
     }
@@ -272,7 +272,7 @@ previousBtnPlayList.addEventListener('click', () => {
         nextBtnPlayList.style.marginTop = "-40%";
         nextBtnPlayList.style.marginLeft = "10%";
         previousBtnPlayList.style.marginTop = "-40%";
-        previousBtnPlayList.style.marginLeft = "-24%";
+        previousBtnPlayList.style.marginLeft = "-27%";
          kindOfMusic.style.setProperty("margin-top", "-36%", "important");
         kindOfMusic.style.setProperty("margin-left", "0%", "important");
     }
@@ -280,7 +280,7 @@ previousBtnPlayList.addEventListener('click', () => {
         nextBtnPlayList.style.marginTop = "-45%";
         previousBtnPlayList.style.marginTop = "-46%";
          nextBtnPlayList.style.marginLeft = "10%";
-         previousBtnPlayList.style.marginLeft = "-25%"
+         previousBtnPlayList.style.marginLeft = "-26%"
         kindOfMusic.style.setProperty("margin-top", "-43%", "important");
         kindOfMusic.style.setProperty("margin-left", "0%", "important");
     }
