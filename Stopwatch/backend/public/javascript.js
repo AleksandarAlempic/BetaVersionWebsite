@@ -1185,18 +1185,74 @@ window.customPlaylist = [
     window.activePlayer = "custom";
     currentSongIndex = 0;
 
-    // Prikaz iframe-a
     const customPlaylistElement = document.getElementById("kindOfMusic7");
     if (customPlaylistElement) {
         customPlaylistElement.style.display = "block";
-        customPlaylistElement.innerText = "Custom Playlist";
+        customPlaylistElement.innerText = "Custom Playlist"; // labela odmah
+    }
+
+    // ================= FORCE LOGIKA STILOVA =================
+    const currentText = kindOfMusic?.textContent.trim();
+
+    if (true /* jer znamo da je Custom Playlist u test dugmetu */) {
+        // Ovo je "prvi if" za Custom Playlist
+        if (customPlaylistElement && kindOfMusic) {
+            kindOfMusic.textContent = "Custom Playlist";
+            customPlaylistElement.style.display = "none";
+
+            kindOfMusic.style.setProperty("margin-top", "-24%", "important");
+            kindOfMusic.style.setProperty("margin-left", "1%", "important");
+            kindOfMusic.style.setProperty("min-width", "159px", "important");
+
+            nextBtnPlayList.style.marginTop = "-20%";
+            nextBtnPlayList.style.marginLeft = "120%";
+            previousBtnPlayList.style.marginTop = "-26%";
+            previousBtnPlayList.style.marginLeft = "-25%";
+        }
+    } 
+    else {
+        // ======================= OVO JE TVOJ ELSE SA SAVE =======================
+        kindOfMusic.style.removeProperty("min-width");
+
+        if (currentText === "Narodna") {
+            nextBtnPlayList.style.marginTop = "-37%";
+            previousBtnPlayList.style.marginTop = "-37%";
+            nextBtnPlayList.style.marginLeft = "10%";
+            previousBtnPlayList.style.marginLeft = "-25%";
+            kindOfMusic.style.setProperty("margin-top", "-34%", "important");
+            kindOfMusic.style.setProperty("margin-left", "0%", "important");
+        }
+        else if (currentText === "Promo" || currentText === "Balkan") {
+            nextBtnPlayList.style.marginTop = "-44%";
+            previousBtnPlayList.style.marginTop = "-43.5%";
+            nextBtnPlayList.style.marginLeft = "10%";
+            previousBtnPlayList.style.marginLeft = "-25%";
+            kindOfMusic.style.setProperty("margin-top", "-40%", "important");
+            kindOfMusic.style.setProperty("margin-left", "0%", "important");
+        }
+        else if (currentText === "Classics") {
+            nextBtnPlayList.style.marginTop = "-40%";
+            previousBtnPlayList.style.marginTop = "-40%";
+            nextBtnPlayList.style.marginLeft = "10%";
+            previousBtnPlayList.style.marginLeft = "-25%";
+            kindOfMusic.style.setProperty("margin-top", "-36%", "important");
+            kindOfMusic.style.setProperty("margin-left", "0%", "important");
+        }
+        else {
+            nextBtnPlayList.style.marginTop = "-45%";
+            previousBtnPlayList.style.marginTop = "-46%";
+            nextBtnPlayList.style.marginLeft = "10%";
+            previousBtnPlayList.style.marginLeft = "-25%";
+            kindOfMusic.style.setProperty("margin-top", "-43%", "important");
+            kindOfMusic.style.setProperty("margin-left", "0%", "important");
+        }
     }
 
     // Osiguraj YT Player i pokreni prvu pesmu
-  window.ensureYTPlayer().then(() => {
-   window.enableCustomPlayerUI(); 
-    playYouTube(window.customPlaylist[currentSongIndex]);
-});
+    window.ensureYTPlayer().then(() => {
+        window.enableCustomPlayerUI();
+        playYouTube(window.customPlaylist[currentSongIndex]);
+    });
 
     // Prikaz Next/Prev dugmadi
     updateNextPrevVisibility();
