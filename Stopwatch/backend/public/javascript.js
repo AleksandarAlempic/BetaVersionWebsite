@@ -760,6 +760,8 @@ function ensureYTPlayer() {
   
 }
 
+window.ensureYTPlayer = ensureYTPlayer;
+
 // --- Play song ---
 function playYouTube(songObj) {
     if (!songObj) return;
