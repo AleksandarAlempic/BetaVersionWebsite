@@ -821,7 +821,8 @@ saveYoutubeBtn && saveYoutubeBtn.addEventListener("click", async () => {
     setPlaylistToCustomUI();
 
     /* ================= STYLING ZA CUSTOM PLAYLIST ================= */
-  const currentText = List[0]?.textContent.trim();
+  // const currentText = List[0]?.textContent.trim();
+  const currentText = kindOfMusic?.textContent.trim();
     if (currentText === "Custom Playlist") {
         nextBtnPlayList.style.marginTop = "-20%";
         nextBtnPlayList.style.marginLeft = "120%";
