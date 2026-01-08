@@ -2249,7 +2249,7 @@ body{
 }
 
 .popup-overlay {
-display: block;
+    display: block;
     inset: 0;
     background: rgba(0, 0, 0, 0.6);
     justify-content: center;
@@ -2259,12 +2259,12 @@ display: block;
     padding: 20px;
     border-radius: 14px;
     width: 90%;
-    max-width: 380px;
+    max-width: 425px;
     text-align: center;
     margin-left: 23%;
     margin-top: 49%;
     z-index: 200000000;
-    max-height: 280px;
+    max-height: 325px;
     z-index: 500000000000000 !important;
     position: fixed !important;
 }
@@ -2280,11 +2280,11 @@ display: block;
 }
 
 .popup-content input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 12px;
-    min-height: 55px;
-    font-size: 19px;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    min-height: 61px;
+    font-size: 23px;
 }
 
 .popup-buttons {
@@ -2297,7 +2297,7 @@ display: block;
     color: white;
     padding: 10px 15px;
     border-radius: 10px;
-    font-size: 20px;
+   font-size: 24px;
 }
 
 .popup-cancel {
@@ -2305,7 +2305,7 @@ display: block;
   color: white;
   padding: 10px 15px;
   border-radius: 10px;
-    font-size: 20px;
+  font-size: 23.5px;
 }
 
 .limit-msg {
@@ -2330,6 +2330,11 @@ display: block;
     padding: 10px;
     cursor: pointer;
     border-bottom: 1px solid #f0f0f0;
+    font-size: 21px;
+}
+
+.h2Youtube{
+    font-size: 30px;
 }
 
 .suggestion-item:hover {
