@@ -1219,9 +1219,9 @@ window.customPlaylist = [
     mainLabelElement.style.setProperty("min-width", "159px", "important");
 
     nextBtnPlayList.style.marginTop = "-26%";
-    nextBtnPlayList.style.marginLeft = "-10%";
+    nextBtnPlayList.style.marginLeft = "-6.5%";
     previousBtnPlayList.style.marginTop = "-26%";
-    previousBtnPlayList.style.marginLeft = "-34%";
+    previousBtnPlayList.style.marginLeft = "-37%";
 
     // --- Prikaz Next/Prev dugmadi (dalja logika Next/Prev preuzima kontrolu) ---
     updateNextPrevVisibility();
