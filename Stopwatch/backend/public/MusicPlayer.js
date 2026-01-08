@@ -167,15 +167,18 @@ function resetNextPrevUI() {
 }
 
 nextBtnPlayList.addEventListener('click', () => {
-    if (currentPlayList >= length - 1) {
-        List[0].innerHTML = songList8.innerHTML;
-        currentPlayList = 0;
+    currentPlayList++;
+
+    // Ako smo prešli sve statičke liste
+    if (currentPlayList >= length) {
+        List[0].innerHTML = "Custom Playlist"; // ⬅ labela mora biti Custom Playlist
+        currentPlayList = length; // Custom Playlist indeks
     } else {
-        currentPlayList++;
         List[0].innerHTML = List[currentPlayList].innerHTML;
     }
 
     resetNextPrevUI();
+
 
      if (List[currentPlayList].innerHTML.trim() === "Narodna") {
         nextBtnPlayList.style.marginTop = "-37%";
@@ -231,6 +234,7 @@ nextBtnPlayList.addEventListener('click', () => {
     songList1.style.textAlign = "center";
     setPlaylist(currentPlayList);
     playMusic();
+    handleCustomPlaylistToggleFromStatic();
 });
 
 
