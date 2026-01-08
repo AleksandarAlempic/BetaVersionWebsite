@@ -91,6 +91,23 @@ const translations = {
   }
 };
 
+
+// =================== YOUTUBE POPUP TRANSLATIONS ===================
+translations.en.youtubePopup = {
+  title: "Add YouTube Song",
+  placeholder: "Paste your YouTube link or type a song name",
+  save: "Save",
+  cancel: "Cancel"
+};
+
+translations.sr.youtubePopup = {
+  title: "Dodaj YouTube pesmu",
+  placeholder: "Nalepi YouTube link ili unesi naziv pesme",
+  save: "Sačuvaj",
+  cancel: "Otkaži"
+};
+
+
 // =================== DODAJ FEEDBACK U POSTOJEĆI TRANSLATIONS ===================
 translations.en.feedback = {
   title: "Send Feedback - Share your idea",
@@ -107,6 +124,35 @@ translations.sr.feedback = {
   cancel: "Zatvori",
   button: "Feedback"
 };
+
+// =================== UPDATE YOUTUBE POPUP LANGUAGE ===================
+function updateYoutubePopupLanguage() {
+  const t = translations[currentLanguage]?.youtubePopup;
+  if (!t) return;
+
+  // Popup
+  const popup = document.getElementById("addPlaylistPopup");
+  if (!popup) return;
+
+  // Naslov (H2, ne H3)
+  const title = popup.querySelector(".h2Youtube");
+
+  // Input
+  const input = document.getElementById("youtubeInput");
+
+  // Dugmad u popup-u
+  const saveBtn = document.getElementById("saveYoutubeBtn");
+  const cancelBtn = document.getElementById("cancelYoutubeBtn");
+
+  // Dugme koje otvara popup
+  const openPopupBtn = document.getElementById("fetchCustomPlaylistButton");
+
+  if (title) title.innerText = t.title;
+  if (input) input.placeholder = t.placeholder;
+  if (saveBtn) saveBtn.innerText = t.save;
+  if (cancelBtn) cancelBtn.innerText = t.cancel;
+  if (openPopupBtn) openPopupBtn.innerText = t.openButton;
+}
 
 let currentLanguage = localStorage.getItem("selectedLanguage") || "en";
 languageSelect.value = currentLanguage;
@@ -147,21 +193,22 @@ const lastNameInput = document.getElementById("lastName");
 }
 
 
-// Pozovi odmah kada se stranica učita
-updateFeedbackPopupLanguage();
+// // Pozovi odmah kada se stranica učita
+// updateFeedbackPopupLanguage();
 
-// Kada korisnik promeni jezik
-languageSelect.addEventListener("change", (e) => {
-  currentLanguage = e.target.value;
-  localStorage.setItem("selectedLanguage", currentLanguage);
+// // Kada korisnik promeni jezik
+// languageSelect.addEventListener("change", (e) => {
+//   currentLanguage = e.target.value;
+//   localStorage.setItem("selectedLanguage", currentLanguage);
 
-  updateInterfaceLanguage();
-  updateTrainingPopupLanguage(currentLanguage);
-  updateRouteMarkersLanguage(currentLanguage);
-  updateTrainingMarkersLanguage(currentLanguage);
+//   updateInterfaceLanguage();
+//   updateTrainingPopupLanguage(currentLanguage);
+//   updateRouteMarkersLanguage(currentLanguage);
+//   updateTrainingMarkersLanguage(currentLanguage);
 
-  updateFeedbackPopupLanguage(); // ⬅ samo ovo dodaješ
-});
+//   updateFeedbackPopupLanguage(); // ⬅ samo ovo dodaješ
+//     updateYoutubePopupLanguage(); 
+// });
 
 
 
@@ -173,6 +220,8 @@ languageSelect.addEventListener("change", (e) => {
   updateTrainingPopupLanguage(currentLanguage);
   updateRouteMarkersLanguage(currentLanguage);
   updateTrainingMarkersLanguage(currentLanguage);
+  updateFeedbackPopupLanguage()
+   updateYoutubePopupLanguage(); 
 });
 
 // =================== UPDATE UI LANGUAGE ===================
