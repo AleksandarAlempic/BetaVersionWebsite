@@ -176,10 +176,15 @@ nextBtnPlayList.addEventListener('click', () => {
         currentPlayList = playLists.length;
         List[0].innerHTML = "Custom Playlist";
     } else if (currentPlayList === playLists.length) {
-        // Custom Playlist → idemo nazad na prvu statičku
+    // Custom Playlist → proveri da li ima pesama
+    if (window.customPlaylist && window.customPlaylist.length > 0) {
+        List[0].innerHTML = "Custom Playlist";
+    } else {
+        // Ako nema pesama, idi na prvu statičku playlistu
         currentPlayList = 0;
         List[0].innerHTML = List[currentPlayList].innerHTML;
     }
+}
 
     resetNextPrevUI();
 
