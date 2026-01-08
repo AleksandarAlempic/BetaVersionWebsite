@@ -2280,7 +2280,7 @@ body{
 }
 
 .popup-content input {
-    width: 100%;
+    width: 109%;
     padding: 10px;
     margin-bottom: 12px;
     min-height: 61px;
@@ -2306,6 +2306,7 @@ body{
   padding: 10px 15px;
   border-radius: 10px;
   font-size: 23.5px;
+   margin-left: 57% !important;
 }
 
 .limit-msg {
@@ -2335,6 +2336,7 @@ body{
 
 .h2Youtube{
     font-size: 30px;
+    margin-left: 5%;
 }
 
 .suggestion-item:hover {
