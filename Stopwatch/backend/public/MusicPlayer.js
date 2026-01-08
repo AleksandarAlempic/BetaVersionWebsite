@@ -167,19 +167,32 @@ function resetNextPrevUI() {
 }
 
 nextBtnPlayList.addEventListener('click', () => {
-     currentPlayList++;
+   currentPlayList++;
 
-    if (currentPlayList > length) { // length je poslednji statički indeks
-        currentPlayList = 0; // ide nazad na prvu statičku playlistu
+// Ako smo prešli sve statičke liste
+if (currentPlayList > length) {
+    currentPlayList = 0; // ide nazad na prvu statičku
+}
+
+// Postavi labelu
+if (currentPlayList === length) {
+    List[0].innerHTML = "Custom Playlist"; // samo jednom
+} else {
+    List[0].innerHTML = List[currentPlayList].innerHTML;
+}
+
+// pozovi custom ili statički player
+if (currentPlayList === length) {
+    // Custom Player
+    if (window.activePlayer !== "custom") {
+        handleCustomPlaylistToggleFromStatic();
     }
-
-    // Postavi labelu
-    if (currentPlayList === length) {
-        List[0].innerHTML = "Custom Playlist";
-    } else {
-        List[0].innerHTML = List[currentPlayList].innerHTML;
+} else {
+    // Static Player
+    if (window.activePlayer !== "static") {
+        handleCustomPlaylistToggleFromStatic();
     }
-
+}
 
     resetNextPrevUI();
 
