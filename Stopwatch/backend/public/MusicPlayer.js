@@ -167,15 +167,19 @@ function resetNextPrevUI() {
 }
 
 nextBtnPlayList.addEventListener('click', () => {
-    currentPlayList++;
+     currentPlayList++;
 
-    // Ako smo prešli sve statičke liste
-    if (currentPlayList >= length) {
-        List[0].innerHTML = "Custom Playlist"; // ⬅ labela mora biti Custom Playlist
-        currentPlayList = length; // Custom Playlist indeks
+    if (currentPlayList > length) { // length je poslednji statički indeks
+        currentPlayList = 0; // ide nazad na prvu statičku playlistu
+    }
+
+    // Postavi labelu
+    if (currentPlayList === length) {
+        List[0].innerHTML = "Custom Playlist";
     } else {
         List[0].innerHTML = List[currentPlayList].innerHTML;
     }
+
 
     resetNextPrevUI();
 
