@@ -217,7 +217,7 @@ nextBtnPlayList.addEventListener('click', () => {
         kindOfMusic.style.setProperty("margin-top", "-43%", "important");
         kindOfMusic.style.setProperty("margin-left", "0%", "important");
           nextBtnPlayList.style.marginLeft = "10%";
-         previousBtnPlayList.style.marginLeft = "-29%"
+         previousBtnPlayList.style.marginLeft = "-30%"
     }
 
     songList1.style.textAlign = "center";
@@ -280,7 +280,7 @@ previousBtnPlayList.addEventListener('click', () => {
         nextBtnPlayList.style.marginTop = "-45%";
         previousBtnPlayList.style.marginTop = "-46%";
          nextBtnPlayList.style.marginLeft = "10%";
-         previousBtnPlayList.style.marginLeft = "-29%"
+         previousBtnPlayList.style.marginLeft = "-30%"
         kindOfMusic.style.setProperty("margin-top", "-43%", "important");
         kindOfMusic.style.setProperty("margin-left", "0%", "important");
     }
