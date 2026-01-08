@@ -167,14 +167,17 @@ function resetNextPrevUI() {
 }
 
 nextBtnPlayList.addEventListener('click', () => {
-   if (currentPlayList >= playLists.length) { // ako smo na Custom Playlist
-        currentPlayList = 0; // ide nazad na prvu statičku
-        List[0].innerHTML = List[currentPlayList].innerHTML;
-    } else if (currentPlayList === playLists.length - 1) { // poslednja statička playlist
-        currentPlayList = playLists.length; // Custom Playlist
-        List[0].innerHTML = "Custom Playlist";
-    } else {
+   if (currentPlayList < playLists.length - 1) {
+        // Normalno idemo na sledeću statičku playlistu
         currentPlayList++;
+        List[0].innerHTML = List[currentPlayList].innerHTML;
+    } else if (currentPlayList === playLists.length - 1) {
+        // Poslednja statička → Custom Playlist
+        currentPlayList = playLists.length;
+        List[0].innerHTML = "Custom Playlist";
+    } else if (currentPlayList === playLists.length) {
+        // Custom Playlist → idemo nazad na prvu statičku
+        currentPlayList = 0;
         List[0].innerHTML = List[currentPlayList].innerHTML;
     }
 
