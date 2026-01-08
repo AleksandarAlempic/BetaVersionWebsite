@@ -2259,12 +2259,12 @@ body{
     padding: 20px;
     border-radius: 14px;
     width: 90%;
-    max-width: 425px;
+    max-width: 450px;
     text-align: center;
-    margin-left: 23%;
+    margin-left: 18%;
     margin-top: 49%;
     z-index: 200000000;
-    max-height: 325px;
+    max-height: 335px;
     z-index: 500000000000000 !important;
     position: fixed !important;
 }
