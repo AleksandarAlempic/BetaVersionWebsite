@@ -212,12 +212,12 @@ nextBtnPlayList.addEventListener('click', () => {
               kindOfMusic.style.setProperty("margin-left", "0%", "important");
     }       
                 else if(List[currentPlayList].innerHTML.trim() === "Rock"){
-        nextBtnPlayList.style.marginTop = "-40%";
-        nextBtnPlayList.style.marginLeft = "10%";
-        previousBtnPlayList.style.marginTop = "-40%";
-        previousBtnPlayList.style.marginLeft = "-32%";
-         kindOfMusic.style.setProperty("margin-top", "-36%", "important");
-        kindOfMusic.style.setProperty("margin-left", "0%", "important");
+        // nextBtnPlayList.style.marginTop = "-40%";
+        // nextBtnPlayList.style.marginLeft = "10%";
+        // previousBtnPlayList.style.marginTop = "-40%";
+        previousBtnPlayList.style.marginLeft = "-34%";
+        //  kindOfMusic.style.setProperty("margin-top", "-36%", "important");
+        // kindOfMusic.style.setProperty("margin-left", "0%", "important");
     }
     else {
         nextBtnPlayList.style.marginTop = "-45%";
@@ -285,12 +285,12 @@ previousBtnPlayList.addEventListener('click', () => {
         kindOfMusic.style.setProperty("margin-left", "0%", "important");
     }
                 else if(List[currentPlayList].innerHTML.trim() === "Rock"){
-        nextBtnPlayList.style.marginTop = "-40%";
-        nextBtnPlayList.style.marginLeft = "10%";
-        previousBtnPlayList.style.marginTop = "-40%";
-        previousBtnPlayList.style.marginLeft = "-32%";
-         kindOfMusic.style.setProperty("margin-top", "-36%", "important");
-        kindOfMusic.style.setProperty("margin-left", "0%", "important");
+        // nextBtnPlayList.style.marginTop = "-40%";
+        // nextBtnPlayList.style.marginLeft = "10%";
+        // previousBtnPlayList.style.marginTop = "-40%";
+        previousBtnPlayList.style.marginLeft = "-34%";
+        //  kindOfMusic.style.setProperty("margin-top", "-36%", "important");
+        // kindOfMusic.style.setProperty("margin-left", "0%", "important");
     }
     else {
         nextBtnPlayList.style.marginTop = "-45%";
