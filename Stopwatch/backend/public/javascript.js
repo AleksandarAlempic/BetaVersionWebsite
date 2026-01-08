@@ -97,14 +97,16 @@ translations.en.youtubePopup = {
   title: "Add YouTube Song",
   placeholder: "Paste your YouTube link or type a song name",
   save: "Save",
-  cancel: "Cancel"
+  cancel: "Cancel",
+  openButton: "Add Playlist" 
 };
 
 translations.sr.youtubePopup = {
   title: "Dodaj YouTube pesmu",
   placeholder: "Nalepi YouTube link ili unesi naziv pesme",
   save: "Sačuvaj",
-  cancel: "Otkaži"
+  cancel: "Otkaži",
+  openButton: "Dodaj plejlistu"
 };
 
 
