@@ -1219,7 +1219,7 @@ window.customPlaylist = [
     mainLabelElement.style.setProperty("min-width", "159px", "important");
 
     nextBtnPlayList.style.marginTop = "-26%";
-    nextBtnPlayList.style.marginLeft = "4%";
+    nextBtnPlayList.style.marginLeft = "1%";
     previousBtnPlayList.style.marginTop = "-26%";
     previousBtnPlayList.style.marginLeft = "-41%";
 
