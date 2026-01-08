@@ -1215,11 +1215,11 @@ window.customPlaylist = [
 
     // --- Postavi inicijalne pozicije dugmadi i labele samo prvi put ---
     mainLabelElement.style.setProperty("margin-top", "-24%", "important");
-    mainLabelElement.style.setProperty("margin-left", "-20%", "important");
+    mainLabelElement.style.setProperty("margin-left", "-22%", "important");
     mainLabelElement.style.setProperty("min-width", "159px", "important");
 
     nextBtnPlayList.style.marginTop = "-26%";
-    nextBtnPlayList.style.marginLeft = "-6.5%";
+    nextBtnPlayList.style.marginLeft = "6.5%";
     previousBtnPlayList.style.marginTop = "-26%";
     previousBtnPlayList.style.marginLeft = "-41%";
 
