@@ -2298,6 +2298,7 @@ body{
     padding: 10px 15px;
     border-radius: 10px;
    font-size: 24px;
+    margin-top: 13%;
 }
 
 .popup-cancel {
@@ -2307,6 +2308,7 @@ body{
   border-radius: 10px;
   font-size: 23.5px;
    margin-left: 58% !important;
+    margin-top: 13%;
 }
 
 .limit-msg {
