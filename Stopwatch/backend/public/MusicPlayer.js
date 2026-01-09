@@ -170,27 +170,24 @@ const playlistTitles = [...List].map(el => el.innerHTML);
 
 nextBtnPlayList.addEventListener('click', () => {
 
-    // ===== PLAYLIST INDEX LOGIKA =====
-    const lastStaticIndex = playLists.length - 2; // poslednja statička pre Custom
-    const customIndex = playLists.length - 1; // Custom playlist
+    const totalPlaylists = playLists.length;  // statičke + custom
+    const customIndex = totalPlaylists - 1;   // poslednji indeks je Custom
 
-    if (currentPlayList < lastStaticIndex) {
-        // Normalno idemo na sledeću statičku playlistu
+    // ===== PLAYLIST INDEX LOGIKA =====
+    if (currentPlayList < customIndex) {
+        // Idemo na sledeću statičku listu
         currentPlayList++;
-    } else if (currentPlayList === lastStaticIndex) {
-        // Poslednja statička → Custom Playlist
-        currentPlayList = customIndex;
     } else if (currentPlayList === customIndex) {
-        // Već na Custom → proveri da li ima pesama
+        // Već smo na Custom
         if (!window.customPlaylist || window.customPlaylist.length === 0) {
-            // Nema pesama → ide na prvu statičku
+            // Custom je prazan → wrap-around na prvu listu
             currentPlayList = 0;
         }
         // Ako ima pesama → ostaje na Custom
     }
 
     // ===== POSTAVLJANJE NASLOVA =====
-    const currentTitle = currentPlayList === customIndex ? "Custom Playlist" : playlistTitles[currentPlayList];
+    const currentTitle = (currentPlayList === customIndex) ? "Custom Playlist" : playLists[currentPlayList].name;
     List[0].innerHTML = currentTitle;
 
     // ===== RESET UI =====
