@@ -166,80 +166,85 @@ function resetNextPrevUI() {
     previousBtnPlayList.style.removeProperty("margin-left");
 }
 
+const playlistTitles = [...List].map(el => el.innerHTML);
+
 nextBtnPlayList.addEventListener('click', () => {
-   if (currentPlayList < playLists.length - 1) {
-        // Normalno idemo na sledeću statičku playlistu
+
+    // ===== PLAYLIST INDEX LOGIKA =====
+    if (currentPlayList < playLists.length - 1) {
         currentPlayList++;
-        List[0].innerHTML = List[currentPlayList].innerHTML;
+        List[0].innerHTML = playlistTitles[currentPlayList];
+
     } else if (currentPlayList === playLists.length - 1) {
         // Poslednja statička → Custom Playlist
         currentPlayList = playLists.length;
         List[0].innerHTML = "Custom Playlist";
-    } else if (currentPlayList === playLists.length) {
-    // Custom Playlist → proveri da li ima pesama
-    if (window.customPlaylist && window.customPlaylist.length > 0) {
-        List[0].innerHTML = "Custom Playlist";
-    } else {
-        // Ako nema pesama, idi na prvu statičku playlistu
-        currentPlayList = 0;
-        List[0].innerHTML = List[currentPlayList].innerHTML;
-    }
-}
 
+    } else if (currentPlayList === playLists.length) {
+        // Custom Playlist → proveri da li ima pesama
+        if (window.customPlaylist && window.customPlaylist.length > 0) {
+            List[0].innerHTML = "Custom Playlist";
+        } else {
+            // Ako nema pesama → nazad na prvu statičku
+            currentPlayList = 0;
+            List[0].innerHTML = playlistTitles[currentPlayList];
+        }
+    }
+
+    // ===== RESET UI =====
     resetNextPrevUI();
 
+    // ===== STYLING PO IMENU (NE PO INDEKSU) =====
+    const currentTitle = List[0].innerHTML.trim();
 
-     if (List[currentPlayList].innerHTML.trim() === "Narodna") {
+    if (currentTitle === "Narodna") {
         nextBtnPlayList.style.marginTop = "-37%";
         previousBtnPlayList.style.marginTop = "-37%";
-           nextBtnPlayList.style.marginLeft = "10%";
-         previousBtnPlayList.style.marginLeft = "-25%"
-        // previousBtnPlayList.style.marginLeft = "1%";
+        nextBtnPlayList.style.marginLeft = "10%";
+        previousBtnPlayList.style.marginLeft = "-25%";
         kindOfMusic.style.setProperty("margin-top", "-34%", "important");
         kindOfMusic.style.setProperty("margin-left", "0%", "important");
-    }
-    else if(List[currentPlayList].innerHTML.trim() === "Promo" || 
-        List[currentPlayList].innerHTML.trim() === "Balkan"){
+
+    } else if (currentTitle === "Promo" || currentTitle === "Balkan") {
         nextBtnPlayList.style.marginTop = "-44%";
         previousBtnPlayList.style.marginTop = "-43.5%";
-          nextBtnPlayList.style.marginLeft = "10%";
-         previousBtnPlayList.style.marginLeft = "-30%"
-         kindOfMusic.style.setProperty("margin-top", "-40%", "important");
-         kindOfMusic.style.setProperty("margin-left", "0%", "important");
-    }
-        else if(List[currentPlayList].innerHTML.trim() === "Custom Playlist"){
+        nextBtnPlayList.style.marginLeft = "10%";
+        previousBtnPlayList.style.marginLeft = "-30%";
+        kindOfMusic.style.setProperty("margin-top", "-40%", "important");
+        kindOfMusic.style.setProperty("margin-left", "0%", "important");
+
+    } else if (currentTitle === "Custom Playlist") {
         nextBtnPlayList.style.marginTop = "-19%";
         nextBtnPlayList.style.marginLeft = "10%";
         previousBtnPlayList.style.marginTop = "-20%";
         previousBtnPlayList.style.marginLeft = "-25%";
-         kindOfMusic.style.setProperty("margin-top", "-19%", "important");
-         // kindOfMusic.style.setProperty("margin-left", "0%", "important");
-    }
-         else if(List[currentPlayList].innerHTML.trim() === "Classics"){
+        kindOfMusic.style.setProperty("margin-top", "-19%", "important");
+
+    } else if (currentTitle === "Classics") {
         nextBtnPlayList.style.marginTop = "-40%";
         previousBtnPlayList.style.marginTop = "-40%";
-               nextBtnPlayList.style.marginLeft = "10%";
-         previousBtnPlayList.style.marginLeft = "-30%"
-         kindOfMusic.style.setProperty("margin-top", "-36%", "important");
-              kindOfMusic.style.setProperty("margin-left", "0%", "important");
-    }       
-              else if(List[currentPlayList].innerHTML.trim() === "Rock"){
+        nextBtnPlayList.style.marginLeft = "10%";
+        previousBtnPlayList.style.marginLeft = "-30%";
+        kindOfMusic.style.setProperty("margin-top", "-36%", "important");
+        kindOfMusic.style.setProperty("margin-left", "0%", "important");
+
+    } else if (currentTitle === "Rock") {
         nextBtnPlayList.style.marginTop = "-50%";
-        // nextBtnPlayList.style.marginLeft = "10%";
         previousBtnPlayList.style.marginTop = "-50%";
         previousBtnPlayList.style.marginLeft = "-34%";
-         kindOfMusic.style.setProperty("margin-top", "-45.5%", "important");
+        kindOfMusic.style.setProperty("margin-top", "-45.5%", "important");
         kindOfMusic.style.setProperty("margin-left", "0%", "important");
-    }
-    else {
+
+    } else {
         nextBtnPlayList.style.marginTop = "-45%";
         previousBtnPlayList.style.marginTop = "-46%";
+        nextBtnPlayList.style.marginLeft = "10%";
+        previousBtnPlayList.style.marginLeft = "-31.5%";
         kindOfMusic.style.setProperty("margin-top", "-43%", "important");
         kindOfMusic.style.setProperty("margin-left", "0%", "important");
-          nextBtnPlayList.style.marginLeft = "10%";
-         previousBtnPlayList.style.marginLeft = "-31.5%"
     }
 
+    // ===== FINAL =====
     songList1.style.textAlign = "center";
     setPlaylist(currentPlayList);
     playMusic();
