@@ -2285,6 +2285,7 @@ body{
     margin-bottom: 12px;
     min-height: 61px;
     font-size: 23px;
+    margin-top: 7%;
 }
 
 .popup-buttons {
@@ -2293,22 +2294,22 @@ body{
 }
 
 .popup-save {
-  background: #4CAF50;
+    background: #4CAF50;
     color: white;
     padding: 10px 15px;
     border-radius: 10px;
-   font-size: 24px;
-    margin-top: 13%;
+    font-size: 24px;
+    margin-top: 6%;
 }
 
 .popup-cancel {
-  background: #d9534f;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 10px;
-  font-size: 23.5px;
-   margin-left: 57% !important;
-    margin-top: 13%;
+    color: white;
+    font-size: 23.5px;
+    margin-top: 6%;
+    margin-left: 58% !important;
+    background: rgb(217, 83, 79);
+    padding: 10px 15px;
+    border-radius: 10px;
 }
 
 .limit-msg {
@@ -2336,9 +2337,10 @@ body{
     font-size: 21px;
 }
 
-.h2Youtube{
+.h2Youtube {
     font-size: 30px;
     margin-left: 5%;
+    margin-top: 5%;
 }
 
 .suggestion-item:hover {
