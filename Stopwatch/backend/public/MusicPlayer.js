@@ -170,23 +170,25 @@ const playlistTitles = [...List].map(el => el.innerHTML);
 
 nextBtnPlayList.addEventListener('click', () => {
 
-    const totalStatic = playLists.length; // broj statičkih playlist-a
-    const hasCustom = window.customPlaylist && window.customPlaylist.length > 0;
+  // ===== PLAYLIST INDEX LOGIKA =====
+const totalStatic = playLists.length; // broj statičkih playlist-a
+const hasCustom = window.customPlaylist && window.customPlaylist.length > 0;
 
-    // ===== PLAYLIST INDEX LOGIKA =====
-    if (currentPlayList < totalStatic - 1) {
-        // idemo na sledeću statičku listu
-        currentPlayList++;
-    } else if (currentPlayList === totalStatic - 1) {
-        // poslednja statička → Custom Playlist ako postoji, inače wrap-around
-        currentPlayList = hasCustom ? totalStatic : 0;
-    } else if (currentPlayList === totalStatic) {
-        // Već na Custom → wrap-around na prvu statičku
-        if (!hasCustom) {
-            currentPlayList = 0;
-        }
-        // ako ima Custom pesama, ostaje na Custom
+if (currentPlayList < totalStatic - 1) {
+    // idemo na sledeću statičku listu
+    currentPlayList++;
+} else if (currentPlayList === totalStatic - 1) {
+    // poslednja statička → Custom Playlist samo ako postoji i još nije prikazana
+    if (hasCustom && List[0].innerHTML.trim() !== "Custom Playlist") {
+        currentPlayList = totalStatic; // Custom
+    } else {
+        // wrap-around na prvu statičku
+        currentPlayList = 0;
     }
+} else if (currentPlayList === totalStatic) {
+    // Već na Custom → wrap-around na prvu statičku
+    currentPlayList = 0;
+}
 
     // ===== POSTAVLJANJE NASLOVA =====
     const currentTitle = currentPlayList < totalStatic ? playlistTitles[currentPlayList] : "Custom Playlist";
