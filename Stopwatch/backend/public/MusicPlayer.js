@@ -171,70 +171,66 @@ const playlistTitles = [...List].map(el => el.innerHTML);
 nextBtnPlayList.addEventListener('click', () => {
 
     // ===== PLAYLIST INDEX LOGIKA =====
-    if (currentPlayList < playLists.length - 1) {
+    const lastStaticIndex = playLists.length - 2; // poslednja statička pre Custom
+    const customIndex = playLists.length - 1; // Custom playlist
+
+    if (currentPlayList < lastStaticIndex) {
+        // Normalno idemo na sledeću statičku playlistu
         currentPlayList++;
-        List[0].innerHTML = playlistTitles[currentPlayList];
-
-    } else if (currentPlayList === playLists.length - 1) {
+    } else if (currentPlayList === lastStaticIndex) {
         // Poslednja statička → Custom Playlist
-        currentPlayList = playLists.length;
-        List[0].innerHTML = "Custom Playlist";
-
-    } else if (currentPlayList === playLists.length) {
-        // Custom Playlist → proveri da li ima pesama
-        if (window.customPlaylist && window.customPlaylist.length > 0) {
-            List[0].innerHTML = "Custom Playlist";
-        } else {
-            // Ako nema pesama → nazad na prvu statičku
+        currentPlayList = customIndex;
+    } else if (currentPlayList === customIndex) {
+        // Već na Custom → proveri da li ima pesama
+        if (!window.customPlaylist || window.customPlaylist.length === 0) {
+            // Nema pesama → ide na prvu statičku
             currentPlayList = 0;
-            List[0].innerHTML = playlistTitles[currentPlayList];
         }
+        // Ako ima pesama → ostaje na Custom
     }
+
+    // ===== POSTAVLJANJE NASLOVA =====
+    const currentTitle = currentPlayList === customIndex ? "Custom Playlist" : playlistTitles[currentPlayList];
+    List[0].innerHTML = currentTitle;
 
     // ===== RESET UI =====
     resetNextPrevUI();
 
-    // ===== STYLING PO IMENU (NE PO INDEKSU) =====
-    const currentTitle = List[0].innerHTML.trim();
-
-    if (currentTitle === "Narodna") {
+    // ===== UI PO IMENU =====
+    const t = currentTitle;
+    if (t === "Narodna") {
         nextBtnPlayList.style.marginTop = "-37%";
         previousBtnPlayList.style.marginTop = "-37%";
         nextBtnPlayList.style.marginLeft = "10%";
         previousBtnPlayList.style.marginLeft = "-25%";
         kindOfMusic.style.setProperty("margin-top", "-34%", "important");
         kindOfMusic.style.setProperty("margin-left", "0%", "important");
-
-    } else if (currentTitle === "Promo" || currentTitle === "Balkan") {
+    } else if (t === "Promo" || t === "Balkan") {
         nextBtnPlayList.style.marginTop = "-44%";
         previousBtnPlayList.style.marginTop = "-43.5%";
         nextBtnPlayList.style.marginLeft = "10%";
         previousBtnPlayList.style.marginLeft = "-30%";
         kindOfMusic.style.setProperty("margin-top", "-40%", "important");
         kindOfMusic.style.setProperty("margin-left", "0%", "important");
-
-    } else if (currentTitle === "Custom Playlist") {
+    } else if (t === "Custom Playlist") {
         nextBtnPlayList.style.marginTop = "-19%";
         nextBtnPlayList.style.marginLeft = "10%";
         previousBtnPlayList.style.marginTop = "-20%";
         previousBtnPlayList.style.marginLeft = "-25%";
         kindOfMusic.style.setProperty("margin-top", "-19%", "important");
-
-    } else if (currentTitle === "Classics") {
+    } else if (t === "Classics") {
         nextBtnPlayList.style.marginTop = "-40%";
         previousBtnPlayList.style.marginTop = "-40%";
         nextBtnPlayList.style.marginLeft = "10%";
         previousBtnPlayList.style.marginLeft = "-30%";
         kindOfMusic.style.setProperty("margin-top", "-36%", "important");
         kindOfMusic.style.setProperty("margin-left", "0%", "important");
-
-    } else if (currentTitle === "Rock") {
+    } else if (t === "Rock") {
         nextBtnPlayList.style.marginTop = "-50%";
         previousBtnPlayList.style.marginTop = "-50%";
         previousBtnPlayList.style.marginLeft = "-34%";
         kindOfMusic.style.setProperty("margin-top", "-45.5%", "important");
         kindOfMusic.style.setProperty("margin-left", "0%", "important");
-
     } else {
         nextBtnPlayList.style.marginTop = "-45%";
         previousBtnPlayList.style.marginTop = "-46%";
@@ -244,7 +240,6 @@ nextBtnPlayList.addEventListener('click', () => {
         kindOfMusic.style.setProperty("margin-left", "0%", "important");
     }
 
-    // ===== FINAL =====
     songList1.style.textAlign = "center";
     setPlaylist(currentPlayList);
     playMusic();
