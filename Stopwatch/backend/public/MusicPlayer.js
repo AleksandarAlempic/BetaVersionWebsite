@@ -170,30 +170,32 @@ const playlistTitles = [...List].map(el => el.innerHTML);
 
 nextBtnPlayList.addEventListener('click', () => {
 
-    const totalPlaylists = playLists.length;  // statičke + custom
-    const customIndex = totalPlaylists - 1;   // poslednji indeks je Custom
+    const totalStatic = playLists.length; // broj statičkih playlist-a
+    const hasCustom = window.customPlaylist && window.customPlaylist.length > 0;
 
     // ===== PLAYLIST INDEX LOGIKA =====
-    if (currentPlayList < customIndex) {
-        // Idemo na sledeću statičku listu
+    if (currentPlayList < totalStatic - 1) {
+        // idemo na sledeću statičku listu
         currentPlayList++;
-    } else if (currentPlayList === customIndex) {
-        // Već smo na Custom
-        if (!window.customPlaylist || window.customPlaylist.length === 0) {
-            // Custom je prazan → wrap-around na prvu listu
+    } else if (currentPlayList === totalStatic - 1) {
+        // poslednja statička → Custom Playlist ako postoji, inače wrap-around
+        currentPlayList = hasCustom ? totalStatic : 0;
+    } else if (currentPlayList === totalStatic) {
+        // Već na Custom → wrap-around na prvu statičku
+        if (!hasCustom) {
             currentPlayList = 0;
         }
-        // Ako ima pesama → ostaje na Custom
+        // ako ima Custom pesama, ostaje na Custom
     }
 
     // ===== POSTAVLJANJE NASLOVA =====
-    const currentTitle = (currentPlayList === customIndex) ? "Custom Playlist" : playLists[currentPlayList].name;
+    const currentTitle = currentPlayList < totalStatic ? playlistTitles[currentPlayList] : "Custom Playlist";
     List[0].innerHTML = currentTitle;
 
     // ===== RESET UI =====
     resetNextPrevUI();
 
-    // ===== UI PO IMENU =====
+    // ===== UI PO IMENU (NE DIRAJ STYLING) =====
     const t = currentTitle;
     if (t === "Narodna") {
         nextBtnPlayList.style.marginTop = "-37%";
