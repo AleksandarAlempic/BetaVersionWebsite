@@ -168,26 +168,47 @@ function resetNextPrevUI() {
 
 const playlistTitles = [...List].map(el => el.innerHTML);
 
+function getPlaylistsNormalized() {
+    window.__customSeen = false; // reset pre filtera
+    const all = [...document.querySelectorAll(".playlist")];
+    return all.filter(el => {
+        if (el.textContent.trim() !== "Custom Playlist") return true;
+        if (!window.__customSeen) {
+            window.__customSeen = true;
+            return true;
+        }
+        return false;
+    });
+}
+
+function setCurrentPlaylistTitle() {
+    const title = List[currentPlayList]?.innerHTML.trim() || "Custom Playlist";
+    List[0].innerHTML = title;
+}
+
 nextBtnPlayList.addEventListener('click', () => {
+
+    // ===== NORMALIZUJ LISTU =====
+    List = getPlaylistsNormalized();
 
     // ===== PLAYLIST INDEX LOGIKA =====
     if (currentPlayList < playLists.length - 1) {
         currentPlayList++;
-        List[0].innerHTML = playlistTitles[currentPlayList];
+        setCurrentPlaylistTitle();
 
     } else if (currentPlayList === playLists.length - 1) {
         // Poslednja statička → Custom Playlist
-        currentPlayList = playLists.length;
-        List[0].innerHTML = "Custom Playlist";
+        currentPlayList = [...List].findIndex(el => el.textContent.trim() === "Custom Playlist");
+        setCurrentPlaylistTitle();
 
-    } else if (currentPlayList === playLists.length) {
+    } else if (currentPlayList === [...List].findIndex(el => el.textContent.trim() === "Custom Playlist")) {
         // Custom Playlist → proveri da li ima pesama
         if (window.customPlaylist && window.customPlaylist.length > 0) {
-            List[0].innerHTML = "Custom Playlist";
+            setCurrentPlaylistTitle();
         } else {
             // Ako nema pesama → nazad na prvu statičku
             currentPlayList = 0;
-            List[0].innerHTML = playlistTitles[currentPlayList];
+            setCurrentPlaylistTitle();
         }
     }
 
