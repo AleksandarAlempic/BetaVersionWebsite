@@ -9,13 +9,14 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "description": "",
   "dependencies": {
     "@supabase/supabase-js": "^2.49.4",
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
-    "pg": "^8.14.1"
-  },
-  "description": ""
+    "pg": "^8.14.1",
+    "node-fetch": "^2.6.7"
+  }
 }
