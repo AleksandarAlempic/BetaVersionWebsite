@@ -16,7 +16,7 @@ const fetchNearbyTrainingsButton = document.getElementById("fetchNearbyTrainings
 const addTrainingButton = document.getElementById("fetchAddTrainingButton");
 const addTrainingPopup = document.getElementById("addTrainingPopup");
 const playListBtn = document.querySelector('.addPlaylistButton');
-
+ 
 const Root = document.getElementById("map-content");
 const Map = document.getElementById("map");
 const mapContent = document.getElementById("map-content");
