@@ -2,6 +2,7 @@
 // Node 22+ ima globalni fetch, nema potrebe za node-fetch
 
 console.log("YOUTUBE SERVICE LOADED - NO NODE FETCH");
+console.log("YOUTUBE API KEY (first 5 chars):", process.env.YOUTUBE_API_KEY?.slice(0,5) + "…");
 
 // Pretraga videa po query
 async function searchYouTube(query, maxResults = 5) {
