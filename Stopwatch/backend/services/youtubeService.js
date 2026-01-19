@@ -26,5 +26,5 @@ async function getVideoInfo(id) {
         throw new Error(`YouTube API error: ${error.message}`);
     }
 }
-
+ 
 module.exports = { searchYouTube, getVideoInfo };
