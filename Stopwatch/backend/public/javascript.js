@@ -739,7 +739,6 @@ sendBtn.addEventListener("click", async () => {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-const YT_API_KEY = "AIzaSyBwwc6TSxopW7mc3PMjK6dYks0jfPZ_cbY"; 
 const MAX_CUSTOM_SONGS = 28;
 
 window.customPlaylist = window.customPlaylist || [];
@@ -970,10 +969,10 @@ ytInput?.addEventListener("input", async () => {
         suggestionsBox.style.display = "none";
         const vid = extractVideoId(v);
         if (vid) {
-            const info = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${vid}&key=${YT_API_KEY}`)
-                .then(r => r.json())
-                .then(d => d.items?.[0]?.snippet)
-                .catch(() => null);
+          const info = await fetch(`/api/youtube/video?id=${vid}`)
+    .then(r => r.json())
+    .then(d => d.items?.[0]?.snippet)
+    .catch(() => null);
             if (info) {
                 selectedSongForAdd = {
                     name: info.title,
@@ -988,7 +987,8 @@ ytInput?.addEventListener("input", async () => {
     }
 
     setTimeout(async () => {
-        const res = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&q=${encodeURIComponent(v)}&key=${YT_API_KEY}`);
+        // const res = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&q=${encodeURIComponent(v)}&key=${YT_API_KEY}`);
+      const res = await fetch(`/api/youtube/search?q=${encodeURIComponent(v)}`);
         const data = await res.json();
         const items = data.items || [];
         if (!items.length) { suggestionsBox.style.display = "none"; return; }
@@ -1320,7 +1320,6 @@ document.getElementById("testCustomBtn")?.addEventListener("click", playTestCust
 
 // /* ================= CUSTOM PLAYLIST + YT SEARCH =================  OBSOLETE*/
 
-// const YT_API_KEY = "AIzaSyBwwc6TSxopW7mc3PMjK6dYks0jfPZ_cbY";
 // const MAX_CUSTOM_SONGS = 12;
 
 // // --- state ---
