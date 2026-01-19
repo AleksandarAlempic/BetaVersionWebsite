@@ -8,6 +8,8 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 4000;
 
+const YT_API_KEY = "AIzaSyBwwc6TSxopW7mc3PMjK6dYks0jfPZ_cbY"; 
+
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
