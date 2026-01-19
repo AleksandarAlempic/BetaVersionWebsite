@@ -14,6 +14,9 @@ const port = process.env.PORT || 4000;
 app.use(cors());
 app.use(bodyParser.json());
 
+// YouTube API routes
+app.use("/api/youtube", require("./routes/youtube"))
+
 // Servira public folder (Data.js i frontend)
 app.use(express.static(path.join(__dirname, 'public')));
 
