@@ -1,6 +1,8 @@
 // services/youtubeService.js
 // Node 22+ ima globalni fetch, nema potrebe za node-fetch
 
+console.log("YOUTUBE SERVICE LOADED - NO NODE FETCH");
+
 // Pretraga videa po query
 async function searchYouTube(query, maxResults = 5) {
     try {
