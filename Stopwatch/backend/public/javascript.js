@@ -958,60 +958,112 @@ cancelYoutubeBtn?.addEventListener("click", () => {
 });
 
 // --- Search input ---
-ytInput?.addEventListener("input", async () => {
+// ytInput?.addEventListener("input", async () => {
+//     const v = ytInput.value.trim();
+//     selectedSongForAdd = null;
+//     suggestionsBox.innerHTML = "";
+
+//     if (!v) { suggestionsBox.style.display = "none"; return; }
+
+//     if (v.includes("youtube.com") || v.includes("youtu.be") || /^[a-zA-Z0-9_-]{10,}$/.test(v)) {
+//         suggestionsBox.style.display = "none";
+//         const vid = extractVideoId(v);
+//         if (vid) {
+//           const info = await fetch(`/api/youtube/video?id=${vid}`)
+//     .then(r => r.json())
+//     .then(d => d.items?.[0]?.snippet)
+//     .catch(() => null);
+//             if (info) {
+//                 selectedSongForAdd = {
+//                     name: info.title,
+//                     artist: info.channelTitle,
+//                     cover: `https://img.youtube.com/vi/${vid}/maxresdefault.jpg`,
+//                     path: `https://www.youtube.com/watch?v=${vid}`
+//                 };
+//                 ytInput.value = selectedSongForAdd.name;
+//             }
+//         }
+//         return;
+//     }
+
+// --- Search input sa debounce ---
+function debounce(fn, delay) {
+    let timeoutId;
+    return function (...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => fn.apply(this, args), delay);
+    };
+}
+
+ytInput?.addEventListener("input", debounce(async () => {
     const v = ytInput.value.trim();
     selectedSongForAdd = null;
     suggestionsBox.innerHTML = "";
 
-    if (!v) { suggestionsBox.style.display = "none"; return; }
+    if (!v) {
+        suggestionsBox.style.display = "none";
+        return;
+    }
 
-    if (v.includes("youtube.com") || v.includes("youtu.be") || /^[a-zA-Z0-9_-]{10,}$/.test(v)) {
+    // LINK / VIDEO ID
+    if (
+        v.includes("youtube.com") ||
+        v.includes("youtu.be") ||
+        /^[a-zA-Z0-9_-]{10,}$/.test(v)
+    ) {
         suggestionsBox.style.display = "none";
         const vid = extractVideoId(v);
-        if (vid) {
-          const info = await fetch(`/api/youtube/video?id=${vid}`)
-    .then(r => r.json())
-    .then(d => d.items?.[0]?.snippet)
-    .catch(() => null);
-            if (info) {
-                selectedSongForAdd = {
-                    name: info.title,
-                    artist: info.channelTitle,
-                    cover: `https://img.youtube.com/vi/${vid}/maxresdefault.jpg`,
-                    path: `https://www.youtube.com/watch?v=${vid}`
-                };
-                ytInput.value = selectedSongForAdd.name;
-            }
+        if (!vid) return;
+
+        const info = await fetch(`/api/youtube/video?id=${vid}`)
+            .then(r => r.json())
+            .then(d => d.items?.[0]?.snippet)
+            .catch(() => null);
+
+        if (info) {
+            selectedSongForAdd = {
+                name: info.title,
+                artist: info.channelTitle,
+                cover: `https://img.youtube.com/vi/${vid}/maxresdefault.jpg`,
+                path: `https://www.youtube.com/watch?v=${vid}`
+            };
+            ytInput.value = selectedSongForAdd.name;
         }
         return;
     }
 
-    setTimeout(async () => {
-        // const res = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=5&q=${encodeURIComponent(v)}&key=${YT_API_KEY}`);
-      const res = await fetch(`/api/youtube/search?q=${encodeURIComponent(v)}`);
-        const data = await res.json();
-        const items = data.items || [];
-        if (!items.length) { suggestionsBox.style.display = "none"; return; }
-        suggestionsBox.style.display = "block";
-        items.forEach(it => {
-            const div = document.createElement("div");
-            div.className = "suggestion-item";
-            div.innerHTML = `<div>${it.snippet.title} - ${it.snippet.channelTitle}</div>`;
-            div.addEventListener("click", () => {
-                selectedSongForAdd = {
-                    name: it.snippet.title,
-                    artist: it.snippet.channelTitle,
-                    cover: `https://img.youtube.com/vi/${it.id.videoId}/maxresdefault.jpg`,
-                    path: `https://www.youtube.com/watch?v=${it.id.videoId}`
-                };
-                ytInput.value = selectedSongForAdd.name;
-                suggestionsBox.style.display = "none";
-            });
-            suggestionsBox.appendChild(div);
-        });
-    }, 300);
-});
+    // SEARCH
+    const res = await fetch(`/api/youtube/search?q=${encodeURIComponent(v)}`);
+    const data = await res.json();
+    const items = data.items || [];
 
+    if (!items.length) {
+        suggestionsBox.style.display = "none";
+        return;
+    }
+
+    suggestionsBox.style.display = "block";
+    suggestionsBox.innerHTML = "";
+
+    items.forEach(it => {
+        const div = document.createElement("div");
+        div.className = "suggestion-item";
+        div.innerHTML = `${it.snippet.title} - ${it.snippet.channelTitle}`;
+        div.addEventListener("click", () => {
+            selectedSongForAdd = {
+                name: it.snippet.title,
+                artist: it.snippet.channelTitle,
+                cover: `https://img.youtube.com/vi/${it.id.videoId}/maxresdefault.jpg`,
+                path: `https://www.youtube.com/watch?v=${it.id.videoId}`
+            };
+            ytInput.value = selectedSongForAdd.name;
+            suggestionsBox.style.display = "none";
+        });
+        suggestionsBox.appendChild(div);
+    });
+}, 300));
+
+ 
 // --- Load from localStorage ---
 (function loadCustomFromLocal() {
     try {
@@ -1284,75 +1336,37 @@ window.customPlaylist = [
     });
 }
 
-// --- Search input sa debounce ---
-function debounce(fn, delay) {
-    let timeoutId;
-    return function (...args) {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => fn.apply(this, args), delay);
-    };
-}
-
-ytInput?.addEventListener("input", debounce(async () => {
-    const v = ytInput.value.trim();
-    selectedSongForAdd = null;
-    suggestionsBox.innerHTML = "";
-
-    if (!v) { 
-        suggestionsBox.style.display = "none"; 
-        return; 
-    }
-
-    if (v.includes("youtube.com") || v.includes("youtu.be") || /^[a-zA-Z0-9_-]{10,}$/.test(v)) {
-        suggestionsBox.style.display = "none";
-        const vid = extractVideoId(v);
-        if (vid) {
-            const info = await fetch(`/api/youtube/video?id=${vid}`)
-                .then(r => r.json())
-                .then(d => d.items?.[0]?.snippet)
-                .catch(() => null);
-            if (info) {
-                selectedSongForAdd = {
-                    name: info.title,
-                    artist: info.channelTitle,
-                    cover: `https://img.youtube.com/vi/${vid}/maxresdefault.jpg`,
-                    path: `https://www.youtube.com/watch?v=${vid}`
-                };
-                ytInput.value = selectedSongForAdd.name;
-            }
-        }
-        return;
-    }
-
-    const res = await fetch(`/api/youtube/search?q=${encodeURIComponent(v)}`);
-    const data = await res.json();
-    const items = data.items || [];
-    if (!items.length) { 
-        suggestionsBox.style.display = "none"; 
-        return; 
-    }
-    suggestionsBox.style.display = "block";
-    items.forEach(it => {
-        const div = document.createElement("div");
-        div.className = "suggestion-item";
-        div.innerHTML = `<div>${it.snippet.title} - ${it.snippet.channelTitle}</div>`;
-        div.addEventListener("click", () => {
-            selectedSongForAdd = {
-                name: it.snippet.title,
-                artist: it.snippet.channelTitle,
-                cover: `https://img.youtube.com/vi/${it.id.videoId}/maxresdefault.jpg`,
-                path: `https://www.youtube.com/watch?v=${it.id.videoId}`
-            };
-            ytInput.value = selectedSongForAdd.name;
-            suggestionsBox.style.display = "none";
-        });
-        suggestionsBox.appendChild(div);
-    });
-}, 300)); // debounce 300ms
-
-
 // Dodaj listener za test dugme
 document.getElementById("testCustomBtn")?.addEventListener("click", playTestCustomPlaylist);
+
+
+    // const res = await fetch(`/api/youtube/search?q=${encodeURIComponent(v)}`);
+//     const data = await res.json();
+//     const items = data.items || [];
+//     if (!items.length) { 
+//         suggestionsBox.style.display = "none"; 
+//         return; 
+//     }
+//     suggestionsBox.style.display = "block";
+//     items.forEach(it => {
+//         const div = document.createElement("div");
+//         div.className = "suggestion-item";
+//         div.innerHTML = `<div>${it.snippet.title} - ${it.snippet.channelTitle}</div>`;
+//         div.addEventListener("click", () => {
+//             selectedSongForAdd = {
+//                 name: it.snippet.title,
+//                 artist: it.snippet.channelTitle,
+//                 cover: `https://img.youtube.com/vi/${it.id.videoId}/maxresdefault.jpg`,
+//                 path: `https://www.youtube.com/watch?v=${it.id.videoId}`
+//             };
+//             ytInput.value = selectedSongForAdd.name;
+//             suggestionsBox.style.display = "none";
+//         });
+//         suggestionsBox.appendChild(div);
+//     });
+// }, 300)); // debounce 300ms
+
+
 
 
 // --- Dugmad funkcionalnost --- ovo je test. 
