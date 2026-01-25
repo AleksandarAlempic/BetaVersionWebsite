@@ -13,6 +13,7 @@ const port = process.env.PORT || 4000;
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
+app.use("/api/device-track", require("./routes/deviceTrack"));
 
 // YouTube API routes
 app.use("/api/youtube", require("./routes/youtube"))
