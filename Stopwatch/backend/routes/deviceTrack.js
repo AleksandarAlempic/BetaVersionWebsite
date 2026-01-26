@@ -8,6 +8,8 @@ const supabase = createClient(
   process.env.SUPABASE_ANON_KEY
 );
 
+const ALERT_EMAIL = process.env.ALERT_EMAIL;
+
 // POST /api/device-track
 router.post("/", async (req, res) => {
   const { device_id, user_agent, platform, language } = req.body;
@@ -73,7 +75,7 @@ router.post("/", async (req, res) => {
     if (isNewDevice) {
       const formData = new URLSearchParams();
       formData.append("_subject", "📱 New device on BetaVersionWebsite");
-      formData.append("_replyto", "noreply@betaversion.com");
+      formData.append("_replyto", ALERT_EMAIL || "noreply@betaversion.com");
       formData.append("_format", "html");
 
       formData.append("message", `
@@ -95,13 +97,16 @@ router.post("/", async (req, res) => {
         </div>
       `);
 
-      await fetch("https://formspree.io/f/mpwvryrz", {
-        method: "POST",
-        body: formData,
-        headers: {
-          "Accept": "application/json"
-        }
-      });
+      // ⚠️ Catch error da deploy ne puca ako Formspree ne odgovori
+      try {
+        await fetch("https://formspree.io/f/mpwvryrz", {
+          method: "POST",
+          body: formData,
+          headers: { "Accept": "application/json" }
+        });
+      } catch (emailErr) {
+        console.error("Formspree email failed:", emailErr);
+      }
     }
 
     // =========================
