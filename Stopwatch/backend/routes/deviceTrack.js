@@ -1,14 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const { createClient } = require("@supabase/supabase-js");
-const { Resend } = require("resend");
+const fetch = require("node-fetch"); // npm i node-fetch
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
   process.env.SUPABASE_ANON_KEY
 );
-
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 // POST /api/device-track
 router.post("/", async (req, res) => {
@@ -51,55 +49,58 @@ router.post("/", async (req, res) => {
     // =========================
     // 📊 STATISTIKE
     // =========================
-
-    // Ukupan broj device-ova
     const { count: totalDevices } = await supabase
       .from("devices")
       .select("*", { count: "exact", head: true });
 
-    // Danas (od 00:00)
     const startOfToday = new Date();
     startOfToday.setHours(0, 0, 0, 0);
-
     const { count: todayDevices } = await supabase
       .from("devices")
       .select("*", { count: "exact", head: true })
       .gte("first_seen", startOfToday);
 
-    // Poslednjih 7 dana
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-
     const { count: last7DaysDevices } = await supabase
       .from("devices")
       .select("*", { count: "exact", head: true })
       .gte("first_seen", sevenDaysAgo);
 
     // =========================
-    // 📧 MAIL – SAMO AKO JE NOV DEVICE
+    // 📧 HTML MAIL – SAMO AKO JE NOV DEVICE
     // =========================
     if (isNewDevice) {
-      await resend.emails.send({
-        from: "BetaVersionWebsite <onboarding@resend.dev>",
-        to: process.env.ALERT_EMAIL,
-        subject: "📱 New device on BetaVersionWebsite",
-        html: `
-          <h2>🆕 New Device Detected</h2>
+      const formData = new URLSearchParams();
+      formData.append("_subject", "📱 New device on BetaVersionWebsite");
+      formData.append("_replyto", "noreply@betaversion.com");
+      formData.append("_format", "html");
 
+      formData.append("message", `
+        <div style="font-family: Arial, sans-serif; color: #333;">
+          <h2 style="color: #2c3e50;">🆕 New Device Detected</h2>
           <p><b>Device ID:</b> ${device_id}</p>
           <p><b>Platform:</b> ${platform}</p>
           <p><b>Language:</b> ${language}</p>
           <p><b>User Agent:</b><br/>${user_agent}</p>
 
-          <hr/>
+          <hr style="border:none; border-top:1px solid #ccc;" />
 
-          <h3>📊 Stats</h3>
+          <h3 style="color: #2c3e50;">📊 Stats</h3>
           <ul>
             <li><b>Unique devices today:</b> ${todayDevices}</li>
             <li><b>Last 7 days:</b> ${last7DaysDevices}</li>
             <li><b>Total devices:</b> ${totalDevices}</li>
           </ul>
-        `
+        </div>
+      `);
+
+      await fetch("https://formspree.io/f/mpwvryrz", {
+        method: "POST",
+        body: formData,
+        headers: {
+          "Accept": "application/json"
+        }
       });
     }
 
