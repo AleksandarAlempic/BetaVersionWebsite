@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-
 const { createClient } = require("@supabase/supabase-js");
 
 const supabase = createClient(
@@ -8,6 +7,7 @@ const supabase = createClient(
   process.env.SUPABASE_ANON_KEY
 );
 
+// POST /api/device-track
 router.post("/", async (req, res) => {
   const { device_id, user_agent, platform, language } = req.body;
 
@@ -15,22 +15,50 @@ router.post("/", async (req, res) => {
     return res.status(400).json({ error: "Missing device_id" });
   }
 
-  const { error } = await supabase
-    .from("devices")
-    .upsert({
-      device_id,
-      user_agent,
-      platform,
-      language,
-      last_seen: new Date()
-    }, { onConflict: ["device_id"] });
+  try {
+    // 1️⃣ Proveri da li device postoji
+    const { data: existing } = await supabase
+      .from("devices")
+      .select("*")
+      .eq("device_id", device_id)
+      .single();
 
-  if (error) {
-    console.error("Device track error:", error);
-    return res.status(500).json({ error: "DB error" });
+    let isNewDevice = false;
+
+    if (!existing) {
+      isNewDevice = true;
+
+      // 2️⃣ Insert novog device-a
+      await supabase.from("devices").insert([{
+        device_id,
+        user_agent,
+        platform,
+        language,
+        first_seen: new Date(),
+        last_seen: new Date()
+      }]);
+    } else {
+      // 3️⃣ Update last_seen
+      await supabase
+        .from("devices")
+        .update({ last_seen: new Date() })
+        .eq("device_id", device_id);
+    }
+
+    // 4️⃣ Ukupan broj uređaja
+    const { count } = await supabase
+      .from("devices")
+      .select("*", { count: "exact", head: true });
+
+    res.json({
+      isNewDevice,
+      totalDevices: count
+    });
+
+  } catch (err) {
+    console.error("Device tracking error:", err);
+    res.status(500).json({ error: "Device tracking failed" });
   }
-
-  res.json({ success: true });
 });
 
 module.exports = router;
