@@ -628,6 +628,45 @@ updateTrainingPopupLanguage(currentLanguage);
 updateRouteMarkersLanguage(currentLanguage);
 updateTrainingMarkersLanguage(currentLanguage);
 
+// ================= DEVICE TRACKING =================
+
+function generateDeviceId() {
+  let id = localStorage.getItem("device_id");
+  if (!id) {
+    id = crypto.randomUUID();
+    localStorage.setItem("device_id", id);
+  }
+  return id;
+}
+
+async function trackDevice() {
+  try {
+    const payload = {
+      device_id: generateDeviceId(),
+      user_agent: navigator.userAgent,
+      platform: navigator.platform,
+      language: navigator.language
+    };
+
+    const res = await fetch("/api/device-track", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json();
+    console.log("📱 Device tracked:", data);
+  } catch (err) {
+    console.error("Device tracking failed:", err);
+  }
+}
+
+// POZIV SAMO JEDNOM
+trackDevice();
+
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const width = window.innerWidth;
     const height = window.innerHeight;
@@ -1340,243 +1379,3 @@ window.customPlaylist = [
 document.getElementById("testCustomBtn")?.addEventListener("click", playTestCustomPlaylist);
 
 
-    // const res = await fetch(`/api/youtube/search?q=${encodeURIComponent(v)}`);
-//     const data = await res.json();
-//     const items = data.items || [];
-//     if (!items.length) { 
-//         suggestionsBox.style.display = "none"; 
-//         return; 
-//     }
-//     suggestionsBox.style.display = "block";
-//     items.forEach(it => {
-//         const div = document.createElement("div");
-//         div.className = "suggestion-item";
-//         div.innerHTML = `<div>${it.snippet.title} - ${it.snippet.channelTitle}</div>`;
-//         div.addEventListener("click", () => {
-//             selectedSongForAdd = {
-//                 name: it.snippet.title,
-//                 artist: it.snippet.channelTitle,
-//                 cover: `https://img.youtube.com/vi/${it.id.videoId}/maxresdefault.jpg`,
-//                 path: `https://www.youtube.com/watch?v=${it.id.videoId}`
-//             };
-//             ytInput.value = selectedSongForAdd.name;
-//             suggestionsBox.style.display = "none";
-//         });
-//         suggestionsBox.appendChild(div);
-//     });
-// }, 300)); // debounce 300ms
-
-
-
-
-// --- Dugmad funkcionalnost --- ovo je test. 
-// const nextBtn1 = document.querySelector(".next-btn");
-// const prevBtn1 = document.querySelector(".pervious-btn");
-
-// function safeNext() {
-//     if (window.activePlayer === "custom" && window.customPlaylist.length > 0) {
-//         currentSongIndex = (currentSongIndex + 1) % window.customPlaylist.length;
-//         playYouTube(window.customPlaylist[currentSongIndex]);
-//     }
-// }
-
-// function safePrev() {
-//     if (window.activePlayer === "custom" && window.customPlaylist.length > 0) {
-//         currentSongIndex = (currentSongIndex - 1 + window.customPlaylist.length) % window.customPlaylist.length;
-//         playYouTube(window.customPlaylist[currentSongIndex]);
-//     }
-// }
-
-// // ukloni stare listener-e
-// if (nextBtn1) nextBtn1.replaceWith(nextBtn1.cloneNode(true));
-// if (prevBtn1) prevBtn1.replaceWith(prevBtn1.cloneNode(true));
-
-// // ponovo uzmi dugmad iz DOM-a
-// const newNext = document.querySelector(".next-btn");
-// const newPrev = document.querySelector(".pervious-btn");
-
-// if (newNext) newNext.addEventListener("click", safeNext);
-// if (newPrev) newPrev.addEventListener("click", safePrev);
-
-
-// /* ================= CUSTOM PLAYLIST + YT SEARCH =================  OBSOLETE*/
-
-// const MAX_CUSTOM_SONGS = 12;
-
-// // --- state ---
-// window.customPlaylist = window.customPlaylist || [];
-// let selectedSongForAdd = null;
-
-// // --- DOM ---
-// const ytInput = document.getElementById("youtubeInput");
-// const suggestionsBox = document.getElementById("youtubeSuggestions");
-// const saveYoutubeBtn = document.getElementById("saveYoutubeBtn");
-// const cancelYoutubeBtn = document.getElementById("cancelYoutubeBtn");
-// const addPlaylistPopup = document.getElementById("addPlaylistPopup");
-// const customLimitMsg = document.getElementById("customPlaylistLimitMsg");
-// const customPlaylistElement = document.getElementById("kindOfMusic7"); // dugme/element u UI
-
-// // --- helpers ---
-// function extractVideoId(url) {
-//     if (!url) return null;
-//     const patterns = [
-//         /(?:youtu\.be\/)([^?&\n]+)/,
-//         /[?&]v=([^?&\n]+)/,
-//         /youtube\.com\/embed\/([^?&\n]+)/,
-//         /youtube\.com\/shorts\/([^?&\n]+)/,
-//     ];
-//     for (const p of patterns) {
-//         const m = url.match(p);
-//         if (m && m[1]) return m[1];
-//     }
-//     if (/^[a-zA-Z0-9_-]{10,}$/.test(url)) return url;
-//     return null;
-// }
-
-// async function youtubeGetVideoInfo(videoId) {
-//     try {
-//         const res = await fetch(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${YT_API_KEY}`);
-//         const data = await res.json();
-//         if (data.items && data.items.length) return data.items[0].snippet;
-//     } catch(e) { console.warn("YT info error", e); }
-//     return null;
-// }
-
-// async function youtubeSearch(query, maxResults = 5) {
-//     if (!query || query.length < 2) return [];
-//     try {
-//         const res = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=${maxResults}&q=${encodeURIComponent(query)}&key=${YT_API_KEY}`);
-//         const data = await res.json();
-//         return data.items || [];
-//     } catch(e){ console.warn("YT search error", e); return []; }
-// }
-
-// // --- Show suggestions ---
-// function showYtSuggestions(items) {
-//     suggestionsBox.innerHTML = "";
-//     if (!items || !items.length) {
-//         suggestionsBox.style.display = "none";
-//         return;
-//     }
-//     suggestionsBox.style.display = "block";
-
-//     items.forEach(it => {
-//         const div = document.createElement("div");
-//         div.className = "suggestion-item";
-//         div.innerHTML = `
-//             <div style="display:flex;align-items:center;gap:8px;">
-//                 <img src="${it.snippet.thumbnails.default.url}" style="width:48px;height:36px;object-fit:cover;border-radius:4px;">
-//                 <div style="text-align:left;">
-//                     <div style="font-size:13px;font-weight:600;">${it.snippet.title}</div>
-//                     <div style="font-size:11px;color:#666;">${it.snippet.channelTitle}</div>
-//                 </div>
-//             </div>
-//         `;
-//         div.addEventListener("click", () => {
-//             selectedSongForAdd = {
-//                 name: it.snippet.title,
-//                 artist: it.snippet.channelTitle,
-//                 cover: `https://img.youtube.com/vi/${it.id.videoId}/maxresdefault.jpg`,
-//                 path: `https://www.youtube.com/watch?v=${it.id.videoId}`
-//             };
-//             ytInput.value = selectedSongForAdd.name;
-//             suggestionsBox.innerHTML = "";
-//             suggestionsBox.style.display = "none";
-//         });
-//         suggestionsBox.appendChild(div);
-//     });
-// }
-
-// // --- Input ---
-// let ytTypingTimer = null;
-// ytInput.addEventListener("input", async () => {
-//     const v = ytInput.value.trim();
-//     selectedSongForAdd = null;
-
-//     if (v.includes("youtube.com") || v.includes("youtu.be") || /^[a-zA-Z0-9_-]{10,}$/.test(v)) {
-//         suggestionsBox.style.display = "none";
-//         const vid = extractVideoId(v);
-//         if (vid) {
-//             const info = await youtubeGetVideoInfo(vid);
-//             if (info) {
-//                 selectedSongForAdd = {
-//                     name: info.title,
-//                     artist: info.channelTitle,
-//                     cover: `https://img.youtube.com/vi/${vid}/maxresdefault.jpg`,
-//                     path: `https://www.youtube.com/watch?v=${vid}`
-//                 };
-//                 ytInput.value = selectedSongForAdd.name;
-//             }
-//         }
-//         return;
-//     }
-
-//     if (ytTypingTimer) clearTimeout(ytTypingTimer);
-//     if (!v) return;
-
-//     ytTypingTimer = setTimeout(async () => {
-//         const items = await youtubeSearch(v, 6);
-//         showYtSuggestions(items);
-//     }, 380);
-// });
-
-// // --- Cancel ---
-// cancelYoutubeBtn.addEventListener("click", () => {
-//     selectedSongForAdd = null;
-//     ytInput.value = "";
-//     suggestionsBox.innerHTML = "";
-//     suggestionsBox.style.display = "none";
-//     customLimitMsg.textContent = "";
-//     if (addPlaylistPopup) addPlaylistPopup.style.display = "none";
-// });
-
-// // --- Add YouTube song ---
-// saveYoutubeBtn.addEventListener("click", () => {
-//     if (!selectedSongForAdd) {
-//         alert("Select a song first.");
-//         return;
-//     }
-//     if (window.customPlaylist.length >= MAX_CUSTOM_SONGS) {
-//         alert("Limit reached.");
-//         return;
-//     }
-
-//     // Add to customPlaylist array
-//     window.customPlaylist.push(selectedSongForAdd);
-
-//     // Check if Custom Playlist exists in playLists
-//     if (!playLists.includes(window.customPlaylist)) {
-//         playLists.push(window.customPlaylist);
-//     }
-
-//     // Show Custom Playlist button/UI
-//     if (customPlaylistElement) customPlaylistElement.style.display = "block";
-
-//     // Reset input
-//     selectedSongForAdd = null;
-//     ytInput.value = "";
-//     suggestionsBox.innerHTML = "";
-//     if (addPlaylistPopup) addPlaylistPopup.style.display = "none";
-
-//     // Save to localStorage
-//     try {
-//         localStorage.setItem("customPlaylist_v1", JSON.stringify(window.customPlaylist));
-//     } catch(e){}
-// });
-
-// // --- Load from localStorage on page load ---
-// (function loadCustomFromLocal() {
-//     try {
-//         const raw = localStorage.getItem("customPlaylist_v1");
-//         if (!raw) return;
-//         const arr = JSON.parse(raw);
-//         if (Array.isArray(arr) && arr.length) {
-//             window.customPlaylist = arr;
-//             // Add to playLists if nije tu
-//             if (!playLists.includes(window.customPlaylist)) {
-//                 playLists.push(window.customPlaylist);
-//             }
-//             if (customPlaylistElement) customPlaylistElement.style.display = "block";
-//         }
-//     } catch(e){}
-// })();
