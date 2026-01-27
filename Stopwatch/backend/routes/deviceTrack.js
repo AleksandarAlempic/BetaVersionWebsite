@@ -14,22 +14,31 @@ const ALERT_EMAIL = process.env.ALERT_EMAIL;
 router.post("/", async (req, res) => {
   const { device_id, user_agent, platform, language } = req.body;
 
+  console.log("➡️ /api/device-track called");
+  console.log("📥 Payload:", { device_id, platform, language });
+
   if (!device_id) {
+    console.log("❌ Missing device_id");
     return res.status(400).json({ error: "Missing device_id" });
   }
 
   try {
     // 1️⃣ Proveri da li device postoji
-    const { data: existing } = await supabase
+    const { data: existing, error: selectError } = await supabase
       .from("devices")
       .select("*")
       .eq("device_id", device_id)
       .single();
 
+    if (selectError && selectError.code !== "PGRST116") {
+      console.error("❌ Supabase select error:", selectError);
+    }
+
     let isNewDevice = false;
 
     if (!existing) {
       isNewDevice = true;
+      console.log("🆕 New device detected");
 
       // 2️⃣ Insert novog device-a
       await supabase.from("devices").insert([{
@@ -41,6 +50,8 @@ router.post("/", async (req, res) => {
         last_seen: new Date()
       }]);
     } else {
+      console.log("♻️ Existing device, updating last_seen");
+
       // 3️⃣ Update last_seen
       await supabase
         .from("devices")
@@ -57,6 +68,7 @@ router.post("/", async (req, res) => {
 
     const startOfToday = new Date();
     startOfToday.setHours(0, 0, 0, 0);
+
     const { count: todayDevices } = await supabase
       .from("devices")
       .select("*", { count: "exact", head: true })
@@ -64,48 +76,60 @@ router.post("/", async (req, res) => {
 
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
     const { count: last7DaysDevices } = await supabase
       .from("devices")
       .select("*", { count: "exact", head: true })
       .gte("first_seen", sevenDaysAgo);
 
     // =========================
-    // 📧 HTML MAIL – SAMO AKO JE NOV DEVICE
+    // 📧 FORMSpree DEBUG MAIL
     // =========================
     if (isNewDevice) {
+      console.log("📧 isNewDevice = TRUE → sending Formspree email");
+      console.log("📧 ALERT_EMAIL:", ALERT_EMAIL);
+
       const formData = new URLSearchParams();
       formData.append("_subject", "📱 New device on BetaVersionWebsite");
       formData.append("_replyto", ALERT_EMAIL || "noreply@betaversion.com");
       formData.append("_format", "html");
 
+      // ⚠️ FORMSpree BITNO:
+      // mora postojati bar JEDNO normalno polje (ne samo message)
+      formData.append("email", ALERT_EMAIL || "test@betaversion.com");
+
       formData.append("message", `
         <div style="font-family: Arial, sans-serif; color: #333;">
-          <h2 style="color: #2c3e50;">🆕 New Device Detected</h2>
+          <h2>🆕 New Device Detected</h2>
           <p><b>Device ID:</b> ${device_id}</p>
           <p><b>Platform:</b> ${platform}</p>
           <p><b>Language:</b> ${language}</p>
           <p><b>User Agent:</b><br/>${user_agent}</p>
 
-          <hr style="border:none; border-top:1px solid #ccc;" />
+          <hr/>
 
-          <h3 style="color: #2c3e50;">📊 Stats</h3>
           <ul>
-            <li><b>Unique devices today:</b> ${todayDevices}</li>
+            <li><b>Today:</b> ${todayDevices}</li>
             <li><b>Last 7 days:</b> ${last7DaysDevices}</li>
-            <li><b>Total devices:</b> ${totalDevices}</li>
+            <li><b>Total:</b> ${totalDevices}</li>
           </ul>
         </div>
       `);
 
-      // ⚠️ Catch error da deploy ne puca ako Formspree ne odgovori
       try {
-        await fetch("https://formspree.io/f/mpwvryrz", {
+        const response = await fetch("https://formspree.io/f/mpwvryrz", {
           method: "POST",
           body: formData,
           headers: { "Accept": "application/json" }
         });
+
+        console.log("📨 Formspree status:", response.status);
+
+        const text = await response.text();
+        console.log("📨 Formspree response:", text);
+
       } catch (emailErr) {
-        console.error("Formspree email failed:", emailErr);
+        console.error("❌ Formspree fetch failed:", emailErr);
       }
     }
 
@@ -120,7 +144,7 @@ router.post("/", async (req, res) => {
     });
 
   } catch (err) {
-    console.error("Device tracking error:", err);
+    console.error("🔥 Device tracking error:", err);
     res.status(500).json({ error: "Device tracking failed" });
   }
 });
