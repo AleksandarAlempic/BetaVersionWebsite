@@ -47,8 +47,6 @@ router.post("/", async (req, res) => {
       }]);
     } else {
       console.log("♻️ Existing device, updating last_seen");
-
-      // 3️⃣ Update last_seen
       await supabase
         .from("devices")
         .update({ last_seen: new Date() })
@@ -56,37 +54,30 @@ router.post("/", async (req, res) => {
     }
 
     // =========================
-    // 📊 STATISTIKE
+    // 📊 STATISTIKA
     // =========================
-    const { count: totalDevicesRaw } = await supabase
-      .from("devices")
-      .select("*", { count: "exact", head: true });
-
-    const totalDevices = totalDevicesRaw || 0;
-
     const startOfToday = new Date();
     startOfToday.setHours(0, 0, 0, 0);
-
-    let { count: todayDevicesRaw } = await supabase
-      .from("devices")
-      .select("*", { count: "exact", head: true })
-      .gte("first_seen", startOfToday);
-
-    let todayDevices = todayDevicesRaw || 0;
-    if (isNewDevice) todayDevices = 1; // Garantujemo da novi device danas bude 1
 
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 
-    let { count: last7DaysDevicesRaw } = await supabase
+    // Ukupan broj svih unosa (svaka poseta)
+    const { count: totalDevices } = await supabase
+      .from("devices")
+      .select("*", { count: "exact", head: true });
+
+    // Broj unosa danas
+    const { count: todayDevices } = await supabase
+      .from("devices")
+      .select("*", { count: "exact", head: true })
+      .gte("first_seen", startOfToday);
+
+    // Broj unosa u poslednjih 7 dana
+    const { count: last7DaysDevices } = await supabase
       .from("devices")
       .select("*", { count: "exact", head: true })
       .gte("first_seen", sevenDaysAgo);
-
-    let last7DaysDevices = last7DaysDevicesRaw || 0;
-
-    // Korekcija total da bude konzistentna
-    const correctedTotal = Math.max(totalDevices, todayDevices, last7DaysDevices);
 
     // =========================
     // 📧 FORMSpree PLAIN TEXT MAIL
@@ -109,7 +100,7 @@ Location: ${location || "Unknown"}
 Stats:
 Today: ${todayDevices}
 Last 7 days: ${last7DaysDevices}
-Total: ${correctedTotal}
+Total: ${totalDevices}
       `);
 
       try {
@@ -133,7 +124,7 @@ Total: ${correctedTotal}
     // =========================
     res.json({
       isNewDevice,
-      totalDevices: correctedTotal,
+      totalDevices,
       todayDevices,
       last7DaysDevices
     });
