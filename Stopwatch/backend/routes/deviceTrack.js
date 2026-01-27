@@ -117,7 +117,7 @@ router.post("/", async (req, res) => {
       `);
 
       try {
-        const response = await fetch("https://formspree.io/f/mpwvryrz", {
+        const response = await fetch("https://formspree.io/f/xqeqngke", {
           method: "POST",
           body: formData,
           headers: { "Accept": "application/json" }
