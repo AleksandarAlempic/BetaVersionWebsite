@@ -54,7 +54,7 @@ router.post("/", async (req, res) => {
     }
 
     // =========================
-    // 📊 STATISTIKA
+    // 📊 STATISTIKA (jedinstveni device_id)
     // =========================
     const startOfToday = new Date();
     startOfToday.setHours(0, 0, 0, 0);
@@ -62,21 +62,21 @@ router.post("/", async (req, res) => {
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 
-    // Ukupan broj svih unosa (svaka poseta)
+    // Total unique devices
     const { count: totalDevices } = await supabase
       .from("devices")
-      .select("*", { count: "exact", head: true });
+      .select("device_id", { count: "exact", head: true });
 
-    // Broj unosa danas
+    // Unique devices today
     const { count: todayDevices } = await supabase
       .from("devices")
-      .select("*", { count: "exact", head: true })
+      .select("device_id", { count: "exact", head: true })
       .gte("first_seen", startOfToday);
 
-    // Broj unosa u poslednjih 7 dana
+    // Unique devices last 7 days
     const { count: last7DaysDevices } = await supabase
       .from("devices")
-      .select("*", { count: "exact", head: true })
+      .select("device_id", { count: "exact", head: true })
       .gte("first_seen", sevenDaysAgo);
 
     // =========================
