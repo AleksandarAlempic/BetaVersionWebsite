@@ -20,11 +20,15 @@ router.post("/", async (req, res) => {
 
   try {
     // 1️⃣ Check if device exists
-    const { data: existing } = await supabase
+    const { data: existing, error: selectError } = await supabase
       .from("devices")
       .select("device_id")
       .eq("device_id", device_id)
       .single();
+
+    if (selectError && selectError.code !== "PGRST116") {
+      console.error("❌ Supabase select error:", selectError);
+    }
 
     let isNewDevice = false;
 
@@ -32,35 +36,51 @@ router.post("/", async (req, res) => {
       isNewDevice = true;
       console.log("🆕 New device detected");
 
-      await supabase.from("devices").insert([{
-        device_id,
-        platform,
-        language,
-        location,
-        first_seen: new Date(),
-        last_seen: new Date()
-      }]);
+      const { data: inserted, error: insertError } = await supabase
+        .from("devices")
+        .insert([{
+          device_id,
+          platform,
+          language,
+          location: location || "Unknown",
+          first_seen: new Date(),
+          last_seen: new Date()
+        }])
+        .select();
+
+      if (insertError) {
+        console.error("❌ Insert failed:", insertError);
+      } else {
+        console.log("✅ Device inserted:", inserted);
+      }
     } else {
       console.log("♻️ Existing device, updating last_seen");
 
-      await supabase
+      const { data: updated, error: updateError } = await supabase
         .from("devices")
         .update({ last_seen: new Date() })
-        .eq("device_id", device_id);
+        .eq("device_id", device_id)
+        .select();
+
+      if (updateError) console.error("❌ Update failed:", updateError);
+      else console.log("✅ Device updated:", updated);
     }
 
     // =========================
     // 📊 STATISTICS
     // =========================
-    const { data: devices } = await supabase
+    const { data: devices, error: fetchError } = await supabase
       .from("devices")
       .select("device_id, first_seen");
+
+    if (fetchError) {
+      console.error("❌ Fetch devices failed:", fetchError);
+    }
 
     const now = new Date();
     const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
 
-    // Filter devices
     const todayDevices = devices.filter(d => new Date(d.first_seen) >= startOfToday).length;
     const last7DaysDevices = devices.filter(d => new Date(d.first_seen) >= sevenDaysAgo).length;
     const totalDevices = devices.length;
