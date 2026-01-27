@@ -62,14 +62,14 @@ router.post("/", async (req, res) => {
     // =========================
     // 📊 STATISTIKE
     // =========================
-    const { count: totalDevices } = await supabase
+    let { count: totalDevices } = await supabase
       .from("devices")
       .select("*", { count: "exact", head: true });
 
     const startOfToday = new Date();
     startOfToday.setHours(0, 0, 0, 0);
 
-    const { count: todayDevices } = await supabase
+    let { count: todayDevices } = await supabase
       .from("devices")
       .select("*", { count: "exact", head: true })
       .gte("first_seen", startOfToday);
@@ -77,13 +77,21 @@ router.post("/", async (req, res) => {
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 
-    const { count: last7DaysDevices } = await supabase
+    let { count: last7DaysDevices } = await supabase
       .from("devices")
       .select("*", { count: "exact", head: true })
       .gte("first_seen", sevenDaysAgo);
 
+    // ✅ Korekcija statistike
+    todayDevices = todayDevices || 0;
+    last7DaysDevices = last7DaysDevices || 0;
+    totalDevices = totalDevices || 0;
+
+    if (todayDevices > totalDevices) totalDevices = todayDevices;
+    if (last7DaysDevices > totalDevices) totalDevices = last7DaysDevices;
+
     // =========================
-    // 📧 FORMSpree DEBUG MAIL
+    // 📧 FORMSpree PLAIN TEXT MAIL
     // =========================
     if (isNewDevice) {
       console.log("📧 isNewDevice = TRUE → sending Formspree email");
@@ -92,28 +100,22 @@ router.post("/", async (req, res) => {
       const formData = new URLSearchParams();
       formData.append("_subject", "📱 New device on BetaVersionWebsite");
       formData.append("_replyto", ALERT_EMAIL || "noreply@betaversion.com");
-      formData.append("_format", "html");
 
-      // ⚠️ FORMSpree BITNO:
-      // mora postojati bar JEDNO normalno polje (ne samo message)
+      // ⚠️ FORMSpree mora imati bar jedno polje (email)
       formData.append("email", ALERT_EMAIL || "test@betaversion.com");
 
       formData.append("message", `
-        <div style="font-family: Arial, sans-serif; color: #333;">
-          <h2>🆕 New Device Detected</h2>
-          <p><b>Device ID:</b> ${device_id}</p>
-          <p><b>Platform:</b> ${platform}</p>
-          <p><b>Language:</b> ${language}</p>
-          <p><b>User Agent:</b><br/>${user_agent}</p>
+🆕 New Device Detected
 
-          <hr/>
+Device ID: ${device_id}
+Platform: ${platform}
+Language: ${language}
+User Agent: ${user_agent}
 
-          <ul>
-            <li><b>Today:</b> ${todayDevices}</li>
-            <li><b>Last 7 days:</b> ${last7DaysDevices}</li>
-            <li><b>Total:</b> ${totalDevices}</li>
-          </ul>
-        </div>
+Stats:
+Today: ${todayDevices}
+Last 7 days: ${last7DaysDevices}
+Total: ${totalDevices}
       `);
 
       try {
