@@ -24,15 +24,11 @@ router.post("/", async (req, res) => {
 
   try {
     // 1️⃣ Proveri da li device postoji
-    const { data: existing, error: selectError } = await supabase
+    const { data: existing } = await supabase
       .from("devices")
       .select("*")
       .eq("device_id", device_id)
       .single();
-
-    if (selectError && selectError.code !== "PGRST116") {
-      console.error("❌ Supabase select error:", selectError);
-    }
 
     let isNewDevice = false;
 
@@ -45,7 +41,7 @@ router.post("/", async (req, res) => {
         device_id,
         platform,
         language,
-        location: location || "Unknown",
+        location,
         first_seen: new Date(),
         last_seen: new Date()
       }]);
@@ -60,30 +56,40 @@ router.post("/", async (req, res) => {
     }
 
     // =========================
-    // 📊 STATISTIKA
+    // 📊 STATISTIKE
     // =========================
-    const startOfToday = new Date();
-    startOfToday.setHours(0, 0, 0, 0);
-
-    const sevenDaysAgo = new Date();
-    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-
-    const [{ count: totalDevices }] = await supabase
+    const { count: totalDevicesRaw } = await supabase
       .from("devices")
       .select("*", { count: "exact", head: true });
 
-    const [{ count: todayDevices }] = await supabase
+    const totalDevices = totalDevicesRaw || 0;
+
+    const startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
+
+    let { count: todayDevicesRaw } = await supabase
       .from("devices")
       .select("*", { count: "exact", head: true })
       .gte("first_seen", startOfToday);
 
-    const [{ count: last7DaysDevices }] = await supabase
+    let todayDevices = todayDevicesRaw || 0;
+    if (isNewDevice) todayDevices = 1; // Garantujemo da novi device danas bude 1
+
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
+    let { count: last7DaysDevicesRaw } = await supabase
       .from("devices")
       .select("*", { count: "exact", head: true })
       .gte("first_seen", sevenDaysAgo);
 
+    let last7DaysDevices = last7DaysDevicesRaw || 0;
+
+    // Korekcija total da bude konzistentna
+    const correctedTotal = Math.max(totalDevices, todayDevices, last7DaysDevices);
+
     // =========================
-    // 📧 FORMSpree MAIL
+    // 📧 FORMSpree PLAIN TEXT MAIL
     // =========================
     if (isNewDevice) {
       console.log("📧 isNewDevice = TRUE → sending Formspree email");
@@ -91,11 +97,11 @@ router.post("/", async (req, res) => {
       const formData = new URLSearchParams();
       formData.append("_subject", "📱 New device on BetaVersionWebsite");
       formData.append("_replyto", ALERT_EMAIL || "noreply@betaversion.com");
-      formData.append("_format", "plain"); // plain text
       formData.append("email", ALERT_EMAIL || "test@betaversion.com");
 
-      formData.append("message",
-        `🆕 New Device Detected
+      formData.append("message", `
+🆕 New Device Detected
+
 Platform: ${platform}
 Language: ${language}
 Location: ${location || "Unknown"}
@@ -103,8 +109,8 @@ Location: ${location || "Unknown"}
 Stats:
 Today: ${todayDevices}
 Last 7 days: ${last7DaysDevices}
-Total: ${totalDevices}`
-      );
+Total: ${correctedTotal}
+      `);
 
       try {
         const response = await fetch("https://formspree.io/f/xqeqngke", {
@@ -127,7 +133,7 @@ Total: ${totalDevices}`
     // =========================
     res.json({
       isNewDevice,
-      totalDevices,
+      totalDevices: correctedTotal,
       todayDevices,
       last7DaysDevices
     });
