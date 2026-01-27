@@ -10,23 +10,19 @@ const supabase = createClient(
 
 const ALERT_EMAIL = process.env.ALERT_EMAIL;
 
-// POST /api/device-track
 router.post("/", async (req, res) => {
   const { device_id, platform, language, location } = req.body;
 
   console.log("➡️ /api/device-track called");
   console.log("📥 Payload:", { device_id, platform, language, location });
 
-  if (!device_id) {
-    console.log("❌ Missing device_id");
-    return res.status(400).json({ error: "Missing device_id" });
-  }
+  if (!device_id) return res.status(400).json({ error: "Missing device_id" });
 
   try {
-    // 1️⃣ Proveri da li device postoji
+    // 1️⃣ Check existing device
     const { data: existing } = await supabase
       .from("devices")
-      .select("*")
+      .select("device_id")
       .eq("device_id", device_id)
       .single();
 
@@ -36,7 +32,6 @@ router.post("/", async (req, res) => {
       isNewDevice = true;
       console.log("🆕 New device detected");
 
-      // 2️⃣ Insert novog device-a
       await supabase.from("devices").insert([{
         device_id,
         platform,
@@ -47,6 +42,7 @@ router.post("/", async (req, res) => {
       }]);
     } else {
       console.log("♻️ Existing device, updating last_seen");
+
       await supabase
         .from("devices")
         .update({ last_seen: new Date() })
@@ -54,36 +50,28 @@ router.post("/", async (req, res) => {
     }
 
     // =========================
-    // 📊 STATISTIKA (jedinstveni device_id)
+    // 📊 STATISTIKA
     // =========================
+    const devices = await supabase
+      .from("devices")
+      .select("device_id, first_seen");
+
+    const totalDevices = devices.data.length;
+
     const startOfToday = new Date();
-    startOfToday.setHours(0, 0, 0, 0);
+    startOfToday.setHours(0,0,0,0);
 
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 
-    // Total unique devices
-    const { count: totalDevices } = await supabase
-      .from("devices")
-      .select("device_id", { count: "exact", head: true });
-
-    // Unique devices today
-    const { count: todayDevices } = await supabase
-      .from("devices")
-      .select("device_id", { count: "exact", head: true })
-      .gte("first_seen", startOfToday);
-
-    // Unique devices last 7 days
-    const { count: last7DaysDevices } = await supabase
-      .from("devices")
-      .select("device_id", { count: "exact", head: true })
-      .gte("first_seen", sevenDaysAgo);
+    const todayDevices = devices.data.filter(d => new Date(d.first_seen) >= startOfToday).length;
+    const last7DaysDevices = devices.data.filter(d => new Date(d.first_seen) >= sevenDaysAgo).length;
 
     // =========================
     // 📧 FORMSpree PLAIN TEXT MAIL
     // =========================
     if (isNewDevice) {
-      console.log("📧 isNewDevice = TRUE → sending Formspree email");
+      console.log("📧 Sending Formspree email");
 
       const formData = new URLSearchParams();
       formData.append("_subject", "📱 New device on BetaVersionWebsite");
@@ -109,25 +97,17 @@ Total: ${totalDevices}
           body: formData,
           headers: { "Accept": "application/json" }
         });
-
         console.log("📨 Formspree status:", response.status);
-        const text = await response.text();
-        console.log("📨 Formspree response:", text);
-
-      } catch (emailErr) {
-        console.error("❌ Formspree fetch failed:", emailErr);
+        console.log("📨 Formspree response:", await response.text());
+      } catch (err) {
+        console.error("❌ Formspree fetch failed:", err);
       }
     }
 
     // =========================
     // ✅ RESPONSE
     // =========================
-    res.json({
-      isNewDevice,
-      totalDevices,
-      todayDevices,
-      last7DaysDevices
-    });
+    res.json({ isNewDevice, totalDevices, todayDevices, last7DaysDevices });
 
   } catch (err) {
     console.error("🔥 Device tracking error:", err);
