@@ -12,10 +12,10 @@ const ALERT_EMAIL = process.env.ALERT_EMAIL;
 
 // POST /api/device-track
 router.post("/", async (req, res) => {
-  const { device_id, user_agent, platform, language } = req.body;
+  const { device_id, platform, language, location } = req.body;
 
   console.log("➡️ /api/device-track called");
-  console.log("📥 Payload:", { device_id, platform, language });
+  console.log("📥 Payload:", { device_id, platform, language, location });
 
   if (!device_id) {
     console.log("❌ Missing device_id");
@@ -24,15 +24,11 @@ router.post("/", async (req, res) => {
 
   try {
     // 1️⃣ Proveri da li device postoji
-    const { data: existing, error: selectError } = await supabase
+    const { data: existing } = await supabase
       .from("devices")
       .select("*")
       .eq("device_id", device_id)
       .single();
-
-    if (selectError && selectError.code !== "PGRST116") {
-      console.error("❌ Supabase select error:", selectError);
-    }
 
     let isNewDevice = false;
 
@@ -43,9 +39,9 @@ router.post("/", async (req, res) => {
       // 2️⃣ Insert novog device-a
       await supabase.from("devices").insert([{
         device_id,
-        user_agent,
         platform,
         language,
+        location,
         first_seen: new Date(),
         last_seen: new Date()
       }]);
@@ -62,60 +58,58 @@ router.post("/", async (req, res) => {
     // =========================
     // 📊 STATISTIKE
     // =========================
-    let { count: totalDevices } = await supabase
+    const { count: totalDevicesRaw } = await supabase
       .from("devices")
       .select("*", { count: "exact", head: true });
+
+    const totalDevices = totalDevicesRaw || 0;
 
     const startOfToday = new Date();
     startOfToday.setHours(0, 0, 0, 0);
 
-    let { count: todayDevices } = await supabase
+    let { count: todayDevicesRaw } = await supabase
       .from("devices")
       .select("*", { count: "exact", head: true })
       .gte("first_seen", startOfToday);
 
+    let todayDevices = todayDevicesRaw || 0;
+    if (isNewDevice) todayDevices = 1; // Garantujemo da novi device danas bude 1
+
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
 
-    let { count: last7DaysDevices } = await supabase
+    let { count: last7DaysDevicesRaw } = await supabase
       .from("devices")
       .select("*", { count: "exact", head: true })
       .gte("first_seen", sevenDaysAgo);
 
-    // ✅ Korekcija statistike
-    todayDevices = todayDevices || 0;
-    last7DaysDevices = last7DaysDevices || 0;
-    totalDevices = totalDevices || 0;
+    let last7DaysDevices = last7DaysDevicesRaw || 0;
 
-    if (todayDevices > totalDevices) totalDevices = todayDevices;
-    if (last7DaysDevices > totalDevices) totalDevices = last7DaysDevices;
+    // Korekcija total da bude konzistentna
+    const correctedTotal = Math.max(totalDevices, todayDevices, last7DaysDevices);
 
     // =========================
     // 📧 FORMSpree PLAIN TEXT MAIL
     // =========================
     if (isNewDevice) {
       console.log("📧 isNewDevice = TRUE → sending Formspree email");
-      console.log("📧 ALERT_EMAIL:", ALERT_EMAIL);
 
       const formData = new URLSearchParams();
       formData.append("_subject", "📱 New device on BetaVersionWebsite");
       formData.append("_replyto", ALERT_EMAIL || "noreply@betaversion.com");
-
-      // ⚠️ FORMSpree mora imati bar jedno polje (email)
       formData.append("email", ALERT_EMAIL || "test@betaversion.com");
 
       formData.append("message", `
 🆕 New Device Detected
 
-Device ID: ${device_id}
 Platform: ${platform}
 Language: ${language}
-User Agent: ${user_agent}
+Location: ${location || "Unknown"}
 
 Stats:
 Today: ${todayDevices}
 Last 7 days: ${last7DaysDevices}
-Total: ${totalDevices}
+Total: ${correctedTotal}
       `);
 
       try {
@@ -126,7 +120,6 @@ Total: ${totalDevices}
         });
 
         console.log("📨 Formspree status:", response.status);
-
         const text = await response.text();
         console.log("📨 Formspree response:", text);
 
@@ -140,7 +133,7 @@ Total: ${totalDevices}
     // =========================
     res.json({
       isNewDevice,
-      totalDevices,
+      totalDevices: correctedTotal,
       todayDevices,
       last7DaysDevices
     });
