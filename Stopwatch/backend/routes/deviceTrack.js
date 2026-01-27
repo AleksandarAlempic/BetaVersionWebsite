@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
   if (!device_id) return res.status(400).json({ error: "Missing device_id" });
 
   try {
-    // 1️⃣ Check existing device
+    // 1️⃣ Check if device exists
     const { data: existing } = await supabase
       .from("devices")
       .select("device_id")
@@ -50,22 +50,20 @@ router.post("/", async (req, res) => {
     }
 
     // =========================
-    // 📊 STATISTIKA
+    // 📊 STATISTICS
     // =========================
-    const devices = await supabase
+    const { data: devices } = await supabase
       .from("devices")
       .select("device_id, first_seen");
 
-    const totalDevices = devices.data.length;
+    const now = new Date();
+    const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
 
-    const startOfToday = new Date();
-    startOfToday.setHours(0,0,0,0);
-
-    const sevenDaysAgo = new Date();
-    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-
-    const todayDevices = devices.data.filter(d => new Date(d.first_seen) >= startOfToday).length;
-    const last7DaysDevices = devices.data.filter(d => new Date(d.first_seen) >= sevenDaysAgo).length;
+    // Filter devices
+    const todayDevices = devices.filter(d => new Date(d.first_seen) >= startOfToday).length;
+    const last7DaysDevices = devices.filter(d => new Date(d.first_seen) >= sevenDaysAgo).length;
+    const totalDevices = devices.length;
 
     // =========================
     // 📧 FORMSpree PLAIN TEXT MAIL
@@ -78,8 +76,9 @@ router.post("/", async (req, res) => {
       formData.append("_replyto", ALERT_EMAIL || "noreply@betaversion.com");
       formData.append("email", ALERT_EMAIL || "test@betaversion.com");
 
-      formData.append("message", `
-🆕 New Device Detected
+      formData.append(
+        "message",
+        `🆕 New Device Detected
 
 Platform: ${platform}
 Language: ${language}
@@ -88,8 +87,8 @@ Location: ${location || "Unknown"}
 Stats:
 Today: ${todayDevices}
 Last 7 days: ${last7DaysDevices}
-Total: ${totalDevices}
-      `);
+Total: ${totalDevices}`
+      );
 
       try {
         const response = await fetch("https://formspree.io/f/xqeqngke", {
@@ -97,6 +96,7 @@ Total: ${totalDevices}
           body: formData,
           headers: { "Accept": "application/json" }
         });
+
         console.log("📨 Formspree status:", response.status);
         console.log("📨 Formspree response:", await response.text());
       } catch (err) {
