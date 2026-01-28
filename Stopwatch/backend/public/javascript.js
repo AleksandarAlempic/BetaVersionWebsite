@@ -641,11 +641,30 @@ function generateDeviceId() {
 
 async function trackDevice() {
   try {
+    // prvo pokušaj da dobiješ lokaciju
+    let location = "Unknown";
+
+    await new Promise((resolve) => {
+      if (!navigator.geolocation) return resolve(); // ako nije podržano
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          location = `${position.coords.latitude},${position.coords.longitude}`;
+          resolve();
+        },
+        (err) => {
+          console.warn("Geolocation failed:", err);
+          resolve(); // i dalje resolve da ne blokira
+        },
+        { timeout: 5000 } // timeout 5s
+      );
+    });
+
     const payload = {
       device_id: generateDeviceId(),
       user_agent: navigator.userAgent,
       platform: navigator.platform,
-      language: navigator.language
+      language: navigator.language,
+      location: location
     };
 
     const res = await fetch("/api/device-track", {
@@ -656,6 +675,7 @@ async function trackDevice() {
 
     const data = await res.json();
     console.log("📱 Device tracked:", data);
+
   } catch (err) {
     console.error("Device tracking failed:", err);
   }
