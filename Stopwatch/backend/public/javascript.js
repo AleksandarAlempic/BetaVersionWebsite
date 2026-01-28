@@ -639,23 +639,41 @@ function generateDeviceId() {
   return id;
 }
 
+async function getLocationName(lat, lng) {
+    try {
+        const res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`);
+        const data = await res.json();
+        return data.display_name || "Unknown";
+    } catch (err) {
+        console.warn("Reverse geocoding failed:", err);
+        return "Unknown";
+    }
+}
+
 async function trackDevice() {
   try {
-    // prvo pokušaj da dobiješ lokaciju
     let location = "Unknown";
+    let locationName = "Unknown";
+    let latitude, longitude;
 
     await new Promise((resolve) => {
-      if (!navigator.geolocation) return resolve(); // ako nije podržano
+      if (!navigator.geolocation) return resolve();
       navigator.geolocation.getCurrentPosition(
-        (position) => {
-          location = `${position.coords.latitude},${position.coords.longitude}`;
+        async (position) => {
+          latitude = position.coords.latitude;
+          longitude = position.coords.longitude;
+          location = `${latitude},${longitude}`;
+
+          // Dobijanje imena lokacije
+          locationName = await getLocationName(latitude, longitude);
+
           resolve();
         },
         (err) => {
           console.warn("Geolocation failed:", err);
-          resolve(); // i dalje resolve da ne blokira
+          resolve();
         },
-        { timeout: 5000 } // timeout 5s
+        { timeout: 5000 }
       );
     });
 
@@ -664,7 +682,8 @@ async function trackDevice() {
       user_agent: navigator.userAgent,
       platform: navigator.platform,
       language: navigator.language,
-      location: location
+      location: location,
+      location_name: locationName // <--- ime lokacije
     };
 
     const res = await fetch("/api/device-track", {
