@@ -662,7 +662,7 @@ async function trackDevice() {
         async (position) => {
           latitude = position.coords.latitude;
           longitude = position.coords.longitude;
-          location = `${latitude},${longitude}`;
+          location = await getLocationName(latitude, longitude);
 
           // Dobijanje imena lokacije
           locationName = await getLocationName(latitude, longitude);
