@@ -1,6 +1,6 @@
 {
-  "name": "Endura",
-  "short_name": "Endura",
+  "name": "Athlix",
+  "short_name": "Athlix",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
