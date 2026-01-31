@@ -6,7 +6,8 @@ const ASSETS_TO_CACHE = [
   "/Stopwatch.css",
   "/stylesResponsive.css",
   "/javascript.js",
-  "/manifest.json"
+  "/manifest.json",
+  "/offline.html"
 ];
 
 // INSTALL
