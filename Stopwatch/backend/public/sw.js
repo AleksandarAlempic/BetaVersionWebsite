@@ -38,9 +38,31 @@ self.addEventListener("activate", event => {
 
 // FETCH
 self.addEventListener("fetch", event => {
+  // Keširamo samo GET zahteve
+  if (event.request.method !== "GET") return;
+
   event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
+    caches.match(event.request).then(cachedResponse => {
+      if (cachedResponse) {
+        // Vrati iz keša odmah
+        return cachedResponse;
+      }
+
+      return fetch(event.request)
+        .then(networkResponse => {
+          // Keširaj sve GET odgovore (dinamički)
+          return caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, networkResponse.clone());
+            return networkResponse;
+          });
+        })
+        .catch(() => {
+          // Ako nema mreže i nije u kešu, fallback
+          if (event.request.destination === "document") {
+            return caches.match("/offline.html");
+          }
+        });
     })
   );
 });
+
