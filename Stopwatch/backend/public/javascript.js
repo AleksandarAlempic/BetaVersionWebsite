@@ -1436,22 +1436,20 @@ function addTimestamp(response) {
 
 self.addEventListener("fetch", event => {
   const req = event.request;
+
+  // ⛔ IGNORIŠI SVE ŠTO NIJE HTTP(S)
+  if (!req.url.startsWith("http")) return;
+
   const url = new URL(req.url);
 
-  // Samo http(s)
-  if (!url.protocol.startsWith("http")) return;
-
-  // Bez chrome-extension / devtools
-  if (url.protocol === "chrome-extension:") return;
-
-  // Samo naš backend
+  // ⛔ SAMO NAŠ ORIGIN
   if (url.origin !== self.location.origin) return;
 
-  // Bez Range (audio/video)
-  if (req.headers.has("range")) return;
-
-  // Samo API
+  // ⛔ SAMO API
   if (!url.pathname.startsWith("/api/")) return;
+
+  // ⛔ RANGE / MEDIA
+  if (req.headers.has("range")) return;
 
   event.respondWith(
     caches.open(DATA_CACHE).then(async cache => {
@@ -1467,7 +1465,8 @@ self.addEventListener("fetch", event => {
       try {
         const network = await fetch(req);
 
-        if (!network || network.status !== 200) {
+        // ⛔ NIŠTA OSIM 200
+        if (!network || network.status !== 200 || network.type === "opaque") {
           return network;
         }
 
@@ -1475,15 +1474,12 @@ self.addEventListener("fetch", event => {
         await cache.put(req, stamped.clone());
         return stamped;
 
-      } catch (err) {
+      } catch {
         if (cached) return cached;
 
         return new Response(
           JSON.stringify({ error: "Offline & no cache" }),
-          {
-            status: 503,
-            headers: { "Content-Type": "application/json" }
-          }
+          { status: 503, headers: { "Content-Type": "application/json" } }
         );
       }
     })
