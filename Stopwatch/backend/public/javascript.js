@@ -1457,9 +1457,15 @@ self.addEventListener("fetch", event => {
         try {
           // 🌐 Probaj mrežu
           const network = await fetch(event.request);
-          const stamped = await addTimestamp(network);
-          cache.put(event.request, stamped.clone());
-          return stamped;
+
+          if (network.status === 200) {   // samo 200 stavljaš u cache
+            const stamped = await addTimestamp(network);
+            await cache.put(event.request, stamped.clone());
+            return stamped;
+          } else {
+            // partial response ili drugi status → vrati mrežu direktno
+            return network;
+          }
         } catch {
           // ❌ Nema mreže → vrati stari keš ako postoji
           if (cached) return cached;
