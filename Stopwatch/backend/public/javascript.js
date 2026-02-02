@@ -1420,12 +1420,12 @@ document.getElementById("testCustomBtn")?.addEventListener("click", playTestCust
 //Dodajemo TTL
 const STATIC_CACHE = "static-v1";
 const DATA_CACHE = "data-v1";
-// const TTL = 24 * 60 * 60 * 1000; // 24h
-const TTL = 10 * 1000; // 10 sekundi Test TTL
+const TTL = 10 * 1000; // za test, 10 sekundi
 
+// Funkcija koja dodaje timestamp u response
 function addTimestamp(response) {
   const headers = new Headers(response.headers);
-  headers.append("sw-fetched-at", Date.now());
+  headers.set("sw-fetched-at", Date.now());
 
   return response.blob().then(body =>
     new Response(body, {
@@ -1439,17 +1439,20 @@ function addTimestamp(response) {
 self.addEventListener("fetch", event => {
   const url = new URL(event.request.url);
 
-  // Keširamo SAMO API pozive preko HTTP/HTTPS
-  if (url.pathname.startsWith("/api/") && (url.protocol === "http:" || url.protocol === "https:")) {
+  // KEŠIRAJ SAMO TVOJ BACKEND API i samo HTTP/HTTPS
+  if (
+    url.pathname.startsWith("/api/") &&
+    (url.protocol === "http:" || url.protocol === "https:") &&
+    url.origin === self.location.origin // samo tvoj origin
+  ) {
     event.respondWith(
       caches.open(DATA_CACHE).then(async cache => {
         const cached = await cache.match(event.request);
 
+        // Ako postoji keš i nije istekao TTL → vrati keš
         if (cached) {
           const fetchedAt = cached.headers.get("sw-fetched-at");
-          const age = Date.now() - fetchedAt;
-
-          if (age < TTL) {
+          if (fetchedAt && Date.now() - fetchedAt < TTL) {
             return cached;
           }
         }
@@ -1457,23 +1460,30 @@ self.addEventListener("fetch", event => {
         try {
           const network = await fetch(event.request);
 
-          // Samo keširaj 200 OK response
-          if (network.status === 200) {
+          // KEŠIRAJ SAMO validne response
+          if (
+            network.ok && // status 200–299
+            network.status === 200 &&
+            (network.type === "basic" || network.type === "cors")
+          ) {
             const stamped = await addTimestamp(network);
             await cache.put(event.request, stamped.clone());
             return stamped;
           } else {
-            // Partial response ili drugi status → vrati mrežu direktno
+            // partial content, 404, CORS → vrati mrežu direktno
             return network;
           }
-        } catch {
+        } catch (err) {
           // Nema mreže → vrati stari keš ako postoji
           if (cached) return cached;
-          throw new Error("No data available");
+          // Ako ni keš ne postoji → baci grešku
+          return new Response("No data available", {
+            status: 503,
+            statusText: "Service Unavailable"
+          });
         }
       })
     );
   }
 });
-
 
