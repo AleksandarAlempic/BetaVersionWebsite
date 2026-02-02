@@ -1418,16 +1418,14 @@ window.customPlaylist = [
 document.getElementById("testCustomBtn")?.addEventListener("click", playTestCustomPlaylist);
 
 //Dodajemo TTL
-const STATIC_CACHE = "static-v1";
 const DATA_CACHE = "data-v1";
-const TTL = 10 * 1000; // za test, 10 sekundi
+const TTL = 10 * 1000; // 10 sekundi (test)
 
-// Funkcija koja dodaje timestamp u response
 function addTimestamp(response) {
   const headers = new Headers(response.headers);
   headers.set("sw-fetched-at", Date.now());
 
-  return response.blob().then(body =>
+  return response.clone().blob().then(body =>
     new Response(body, {
       status: response.status,
       statusText: response.statusText,
@@ -1437,53 +1435,57 @@ function addTimestamp(response) {
 }
 
 self.addEventListener("fetch", event => {
-  const url = new URL(event.request.url);
+  const req = event.request;
+  const url = new URL(req.url);
 
-  // KEŠIRAJ SAMO TVOJ BACKEND API i samo HTTP/HTTPS
-  if (
-    url.pathname.startsWith("/api/") &&
-    (url.protocol === "http:" || url.protocol === "https:") &&
-    url.origin === self.location.origin // samo tvoj origin
-  ) {
-    event.respondWith(
-      caches.open(DATA_CACHE).then(async cache => {
-        const cached = await cache.match(event.request);
+  // Samo http(s)
+  if (!url.protocol.startsWith("http")) return;
 
-        // Ako postoji keš i nije istekao TTL → vrati keš
-        if (cached) {
-          const fetchedAt = cached.headers.get("sw-fetched-at");
-          if (fetchedAt && Date.now() - fetchedAt < TTL) {
-            return cached;
-          }
+  // Bez chrome-extension / devtools
+  if (url.protocol === "chrome-extension:") return;
+
+  // Samo naš backend
+  if (url.origin !== self.location.origin) return;
+
+  // Bez Range (audio/video)
+  if (req.headers.has("range")) return;
+
+  // Samo API
+  if (!url.pathname.startsWith("/api/")) return;
+
+  event.respondWith(
+    caches.open(DATA_CACHE).then(async cache => {
+      const cached = await cache.match(req);
+
+      if (cached) {
+        const fetchedAt = Number(cached.headers.get("sw-fetched-at"));
+        if (fetchedAt && Date.now() - fetchedAt < TTL) {
+          return cached;
+        }
+      }
+
+      try {
+        const network = await fetch(req);
+
+        if (!network || network.status !== 200) {
+          return network;
         }
 
-        try {
-          const network = await fetch(event.request);
+        const stamped = await addTimestamp(network);
+        await cache.put(req, stamped.clone());
+        return stamped;
 
-          // KEŠIRAJ SAMO validne response
-          if (
-            network.ok && // status 200–299
-            network.status === 200 &&
-            (network.type === "basic" || network.type === "cors")
-          ) {
-            const stamped = await addTimestamp(network);
-            await cache.put(event.request, stamped.clone());
-            return stamped;
-          } else {
-            // partial content, 404, CORS → vrati mrežu direktno
-            return network;
-          }
-        } catch (err) {
-          // Nema mreže → vrati stari keš ako postoji
-          if (cached) return cached;
-          // Ako ni keš ne postoji → baci grešku
-          return new Response("No data available", {
+      } catch (err) {
+        if (cached) return cached;
+
+        return new Response(
+          JSON.stringify({ error: "Offline & no cache" }),
+          {
             status: 503,
-            statusText: "Service Unavailable"
-          });
-        }
-      })
-    );
-  }
+            headers: { "Content-Type": "application/json" }
+          }
+        );
+      }
+    })
+  );
 });
-
