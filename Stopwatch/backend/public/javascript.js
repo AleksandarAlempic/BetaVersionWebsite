@@ -1420,7 +1420,8 @@ document.getElementById("testCustomBtn")?.addEventListener("click", playTestCust
 //Dodajemo TTL
 const STATIC_CACHE = "static-v1";
 const DATA_CACHE = "data-v1";
-const TTL = 24 * 60 * 60 * 1000; // 24h
+// const TTL = 24 * 60 * 60 * 1000; // 24h
+const TTL = 10 * 1000; // 10 sekundi Test TTL
 
 function addTimestamp(response) {
   const headers = new Headers(response.headers);
