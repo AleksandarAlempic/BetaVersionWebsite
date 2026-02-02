@@ -1439,7 +1439,8 @@ function addTimestamp(response) {
 self.addEventListener("fetch", event => {
   const url = new URL(event.request.url);
 
-  if (url.pathname.startsWith("/api/")) {
+  // Keširamo SAMO API pozive na našem serveru
+  if (url.pathname.startsWith("/api/") && url.protocol.startsWith("http")) {
     event.respondWith(
       caches.open(DATA_CACHE).then(async cache => {
         const cached = await cache.match(event.request);
@@ -1449,25 +1450,21 @@ self.addEventListener("fetch", event => {
           const age = Date.now() - fetchedAt;
 
           if (age < TTL) {
-            // ✅ Keš je svež
             return cached;
           }
         }
 
         try {
-          // 🌐 Probaj mrežu
           const network = await fetch(event.request);
 
-          if (network.status === 200) {   // samo 200 stavljaš u cache
+          if (network.status === 200) {
             const stamped = await addTimestamp(network);
             await cache.put(event.request, stamped.clone());
             return stamped;
           } else {
-            // partial response ili drugi status → vrati mrežu direktno
             return network;
           }
         } catch {
-          // ❌ Nema mreže → vrati stari keš ako postoji
           if (cached) return cached;
           throw new Error("No data available");
         }
