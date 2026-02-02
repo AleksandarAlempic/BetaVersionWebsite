@@ -1417,4 +1417,56 @@ window.customPlaylist = [
 // Dodaj listener za test dugme
 document.getElementById("testCustomBtn")?.addEventListener("click", playTestCustomPlaylist);
 
+//Dodajemo TTL
+const STATIC_CACHE = "static-v1";
+const DATA_CACHE = "data-v1";
+const TTL = 24 * 60 * 60 * 1000; // 24h
+
+function addTimestamp(response) {
+  const headers = new Headers(response.headers);
+  headers.append("sw-fetched-at", Date.now());
+
+  return response.blob().then(body =>
+    new Response(body, {
+      status: response.status,
+      statusText: response.statusText,
+      headers
+    })
+  );
+}
+
+self.addEventListener("fetch", event => {
+  const url = new URL(event.request.url);
+
+  if (url.pathname.startsWith("/api/")) {
+    event.respondWith(
+      caches.open(DATA_CACHE).then(async cache => {
+        const cached = await cache.match(event.request);
+
+        if (cached) {
+          const fetchedAt = cached.headers.get("sw-fetched-at");
+          const age = Date.now() - fetchedAt;
+
+          if (age < TTL) {
+            // ✅ Keš je svež
+            return cached;
+          }
+        }
+
+        try {
+          // 🌐 Probaj mrežu
+          const network = await fetch(event.request);
+          const stamped = await addTimestamp(network);
+          cache.put(event.request, stamped.clone());
+          return stamped;
+        } catch {
+          // ❌ Nema mreže → vrati stari keš ako postoji
+          if (cached) return cached;
+          throw new Error("No data available");
+        }
+      })
+    );
+  }
+});
+
 
