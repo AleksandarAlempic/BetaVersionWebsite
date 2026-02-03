@@ -1425,61 +1425,51 @@ self.addEventListener("fetch", event => {
   const req = event.request;
   const url = new URL(req.url);
 
-  // 1️⃣ Samo GET
   if (req.method !== "GET") return;
-
-  // 2️⃣ Samo HTTP(S)
   if (url.protocol !== "http:" && url.protocol !== "https:") return;
-
-  // 3️⃣ Samo NAŠ domen
   if (url.origin !== self.location.origin) return;
-
-  // 4️⃣ Samo API
   if (!url.pathname.startsWith("/api/")) return;
-
-  // 5️⃣ Nikad range / media
   if (req.headers.has("range")) return;
 
-  event.respondWith(
-    caches.open(DATA_CACHE).then(async cache => {
-      const cached = await cache.match(req);
+  event.respondWith((async () => {
+    const cache = await caches.open(DATA_CACHE);
 
-      if (cached) {
-        const fetchedAt = cached.headers.get("sw-fetched-at");
-        if (fetchedAt && Date.now() - fetchedAt < TTL) {
-          return cached;
-        }
+    const cached = await cache.match(url.pathname);
+
+    if (cached) {
+      const fetchedAt = Number(cached.headers.get("sw-fetched-at"));
+      if (fetchedAt && Date.now() - fetchedAt < TTL) {
+        return cached;
+      }
+    }
+
+    try {
+      const network = await fetch(req);
+
+      if (network.status !== 200 || network.type !== "basic") {
+        return network;
       }
 
-      try {
-        const network = await fetch(req);
+      const clone = network.clone();
 
-        // Keširamo ISKLJUČIVO čisti 200
-        if (network.status !== 200) {
-          return network;
-        }
+      const headers = new Headers(clone.headers);
+      headers.set("sw-fetched-at", Date.now().toString());
 
-        const clone = network.clone();
-        const body = await clone.arrayBuffer();
+      const response = new Response(await clone.blob(), {
+        status: 200,
+        headers
+      });
 
-        const response = new Response(body, {
-          status: 200,
-          headers: {
-            "Content-Type": network.headers.get("Content-Type"),
-            "sw-fetched-at": Date.now()
-          }
-        });
+      await cache.put(url.pathname, response.clone());
+      return response;
 
-        await cache.put(req, response.clone());
-        return response;
+    } catch {
+      if (cached) return cached;
 
-      } catch {
-        if (cached) return cached;
-        return new Response(
-          JSON.stringify({ error: "offline" }),
-          { status: 503, headers: { "Content-Type": "application/json" } }
-        );
-      }
-    })
-  );
+      return new Response(
+        JSON.stringify({ error: "offline" }),
+        { status: 503, headers: { "Content-Type": "application/json" } }
+      );
+    }
+  })());
 });
