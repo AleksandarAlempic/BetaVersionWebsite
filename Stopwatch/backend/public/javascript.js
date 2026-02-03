@@ -1425,7 +1425,7 @@ self.addEventListener("fetch", event => {
   const req = event.request;
   const url = new URL(req.url);
 
-  // ❗ HARD GUARDS — izlazimo ODMAH
+  // HARD GUARDS
   if (req.method !== "GET") return;
   if (url.protocol !== "http:" && url.protocol !== "https:") return;
   if (url.origin !== self.location.origin) return;
@@ -1438,9 +1438,8 @@ self.addEventListener("fetch", event => {
 
 async function handleApiRequest(req) {
   const cache = await caches.open(DATA_CACHE);
-  const key = req.url;
 
-  const cached = await cache.match(key);
+  const cached = await cache.match(req);
   if (cached) {
     const fetchedAt = Number(cached.headers.get("sw-fetched-at"));
     if (fetchedAt && Date.now() - fetchedAt < TTL) {
@@ -1451,11 +1450,7 @@ async function handleApiRequest(req) {
   try {
     const network = await fetch(req);
 
-    // ❗ APSOLUTNA ZABRANA cache-a
-    if (
-      network.status !== 200 ||
-      network.type !== "basic"
-    ) {
+    if (network.status !== 200 || network.type !== "basic") {
       return network;
     }
 
@@ -1467,7 +1462,7 @@ async function handleApiRequest(req) {
       headers
     });
 
-    await cache.put(key, response.clone());
+    await cache.put(req, response.clone());
     return response;
 
   } catch {
@@ -1478,4 +1473,6 @@ async function handleApiRequest(req) {
       { status: 503, headers: { "Content-Type": "application/json" } }
     );
   }
+}
+
 
