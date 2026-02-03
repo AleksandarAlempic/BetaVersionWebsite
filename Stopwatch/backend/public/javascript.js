@@ -1425,51 +1425,57 @@ self.addEventListener("fetch", event => {
   const req = event.request;
   const url = new URL(req.url);
 
+  // ❗ HARD GUARDS — izlazimo ODMAH
   if (req.method !== "GET") return;
   if (url.protocol !== "http:" && url.protocol !== "https:") return;
   if (url.origin !== self.location.origin) return;
   if (!url.pathname.startsWith("/api/")) return;
+  if (req.destination === "audio" || req.destination === "video") return;
   if (req.headers.has("range")) return;
 
-  event.respondWith((async () => {
-    const cache = await caches.open(DATA_CACHE);
-
-    const cached = await cache.match(url.pathname);
-
-    if (cached) {
-      const fetchedAt = Number(cached.headers.get("sw-fetched-at"));
-      if (fetchedAt && Date.now() - fetchedAt < TTL) {
-        return cached;
-      }
-    }
-
-    try {
-      const network = await fetch(req);
-
-      if (network.status !== 200 || network.type !== "basic") {
-        return network;
-      }
-
-      const clone = network.clone();
-
-      const headers = new Headers(clone.headers);
-      headers.set("sw-fetched-at", Date.now().toString());
-
-      const response = new Response(await clone.blob(), {
-        status: 200,
-        headers
-      });
-
-      await cache.put(url.pathname, response.clone());
-      return response;
-
-    } catch {
-      if (cached) return cached;
-
-      return new Response(
-        JSON.stringify({ error: "offline" }),
-        { status: 503, headers: { "Content-Type": "application/json" } }
-      );
-    }
-  })());
+  event.respondWith(handleApiRequest(req));
 });
+
+async function handleApiRequest(req) {
+  const cache = await caches.open(DATA_CACHE);
+  const key = req.url;
+
+  const cached = await cache.match(key);
+  if (cached) {
+    const fetchedAt = Number(cached.headers.get("sw-fetched-at"));
+    if (fetchedAt && Date.now() - fetchedAt < TTL) {
+      return cached;
+    }
+  }
+
+  try {
+    const network = await fetch(req);
+
+    // ❗ APSOLUTNA ZABRANA cache-a
+    if (
+      network.status !== 200 ||
+      network.type !== "basic"
+    ) {
+      return network;
+    }
+
+    const headers = new Headers(network.headers);
+    headers.set("sw-fetched-at", Date.now().toString());
+
+    const response = new Response(await network.clone().blob(), {
+      status: 200,
+      headers
+    });
+
+    await cache.put(key, response.clone());
+    return response;
+
+  } catch {
+    if (cached) return cached;
+
+    return new Response(
+      JSON.stringify({ error: "offline" }),
+      { status: 503, headers: { "Content-Type": "application/json" } }
+    );
+  }
+
