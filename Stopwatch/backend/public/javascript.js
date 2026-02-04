@@ -1418,8 +1418,6 @@ window.customPlaylist = [
 document.getElementById("testCustomBtn")?.addEventListener("click", playTestCustomPlaylist);
 
 //Dodajemo TTL
-// TTL Cache SW
-// TTL Cache SW
 const DATA_CACHE = "data-v1";
 const TTL = 10 * 1000; // 10s test
 
@@ -1428,12 +1426,12 @@ self.addEventListener("fetch", event => {
   const url = new URL(req.url);
 
   // HARD GUARDS
-  if (req.method !== "GET") return; // samo GET
-  if (url.protocol !== "http:" && url.protocol !== "https:") return; // samo HTTP/S
-  if (url.origin !== self.location.origin) return; // samo tvoja domena
-  if (!url.pathname.startsWith("/api/")) return; // samo API rute
-  if (req.destination === "audio" || req.destination === "video") return; // skip media
-  if (req.headers.has("range")) return; // skip range request-e
+  if (req.method !== "GET") return;
+  if (url.protocol !== "http:" && url.protocol !== "https:") return;
+  if (url.origin !== self.location.origin) return;
+  if (!url.pathname.startsWith("/api/")) return;
+  if (req.destination === "audio" || req.destination === "video") return;
+  if (req.headers.has("range")) return;
 
   event.respondWith(handleApiRequest(req));
 });
@@ -1454,25 +1452,24 @@ async function handleApiRequest(req) {
   try {
     const network = await fetch(req);
 
-    // 🔒 Sigurni filter
-    if (!network.ok || network.type !== "basic") {
-      // skip 206, chrome-extension, non-basic
-      console.log("⚠️ Skipping cache (invalid response):", req.url, network.status, network.type);
+    // ⚠️ Sigurni filter
+    if (network.type !== "basic" || network.status !== 200) {
+      console.log("⚠️ Skipping cache (not 200/basic):", req.url, network.status, network.type);
       return network;
     }
 
-    // Napravi response sa sw-fetched-at headerom
+    // Napravi response sa sw-fetched-at
     const headers = new Headers(network.headers);
     headers.set("sw-fetched-at", Date.now().toString());
 
-    const blob = await network.clone().blob(); // blob sigurno radi za 200/basic
+    const blob = await network.clone().blob();
     const response = new Response(blob, {
       status: network.status,
       statusText: network.statusText,
       headers
     });
 
-    await cache.put(req, response.clone()); // KEŠIRA SAMO VALIDNE
+    await cache.put(req, response.clone());
     console.log("🔄 Cache refreshed:", req.url);
     return response;
 
@@ -1486,5 +1483,6 @@ async function handleApiRequest(req) {
     );
   }
 }
+
 
 
