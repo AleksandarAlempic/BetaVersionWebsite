@@ -1418,6 +1418,7 @@ window.customPlaylist = [
 document.getElementById("testCustomBtn")?.addEventListener("click", playTestCustomPlaylist);
 
 //Dodajemo TTL
+// TTL Cache SW
 const DATA_CACHE = "data-v1";
 const TTL = 10 * 1000; // 10s test
 
@@ -1439,33 +1440,42 @@ self.addEventListener("fetch", event => {
 async function handleApiRequest(req) {
   const cache = await caches.open(DATA_CACHE);
 
+  // Pokušaj da uzmeš iz keša
   const cached = await cache.match(req);
   if (cached) {
     const fetchedAt = Number(cached.headers.get("sw-fetched-at"));
     if (fetchedAt && Date.now() - fetchedAt < TTL) {
+      console.log("🟢 Cache hit:", req.url);
       return cached;
     }
   }
 
+  // TTL je istekao ili nema keša
   try {
     const network = await fetch(req);
 
-    if (network.status !== 200 || network.type !== "basic") {
+    // IGNORIŠI nevalidne response
+    if (!network.ok || network.type !== "basic") {
+      console.log("⚠️ Skipping cache (invalid response):", req.url, network.status);
       return network;
     }
 
+    // Napravi response sa sw-fetched-at headerom
     const headers = new Headers(network.headers);
     headers.set("sw-fetched-at", Date.now().toString());
 
     const response = new Response(await network.clone().blob(), {
-      status: 200,
+      status: network.status,
+      statusText: network.statusText,
       headers
     });
 
     await cache.put(req, response.clone());
+    console.log("🔄 Cache refreshed:", req.url);
     return response;
 
-  } catch {
+  } catch (err) {
+    console.log("❌ Network failed, using cache if available:", req.url);
     if (cached) return cached;
 
     return new Response(
