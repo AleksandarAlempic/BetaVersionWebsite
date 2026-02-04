@@ -1484,5 +1484,8 @@ async function handleApiRequest(req) {
   }
 }
 
+window.fetchNearbyRoutes = retrieveNearbyRoutes;
+window.fetchNearbyTrainings = retrieveNearbyTrainings;
+
 
 
