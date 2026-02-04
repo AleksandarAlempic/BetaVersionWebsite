@@ -1419,6 +1419,7 @@ document.getElementById("testCustomBtn")?.addEventListener("click", playTestCust
 
 //Dodajemo TTL
 // TTL Cache SW
+// TTL Cache SW
 const DATA_CACHE = "data-v1";
 const TTL = 10 * 1000; // 10s test
 
@@ -1427,12 +1428,12 @@ self.addEventListener("fetch", event => {
   const url = new URL(req.url);
 
   // HARD GUARDS
-  if (req.method !== "GET") return;
-  if (url.protocol !== "http:" && url.protocol !== "https:") return;
-  if (url.origin !== self.location.origin) return;
-  if (!url.pathname.startsWith("/api/")) return;
-  if (req.destination === "audio" || req.destination === "video") return;
-  if (req.headers.has("range")) return;
+  if (req.method !== "GET") return; // samo GET
+  if (url.protocol !== "http:" && url.protocol !== "https:") return; // samo HTTP/S
+  if (url.origin !== self.location.origin) return; // samo tvoja domena
+  if (!url.pathname.startsWith("/api/")) return; // samo API rute
+  if (req.destination === "audio" || req.destination === "video") return; // skip media
+  if (req.headers.has("range")) return; // skip range request-e
 
   event.respondWith(handleApiRequest(req));
 });
@@ -1450,13 +1451,13 @@ async function handleApiRequest(req) {
     }
   }
 
-  // TTL je istekao ili nema keša
   try {
     const network = await fetch(req);
 
-    // IGNORIŠI nevalidne response
+    // 🔒 Sigurni filter
     if (!network.ok || network.type !== "basic") {
-      console.log("⚠️ Skipping cache (invalid response):", req.url, network.status);
+      // skip 206, chrome-extension, non-basic
+      console.log("⚠️ Skipping cache (invalid response):", req.url, network.status, network.type);
       return network;
     }
 
@@ -1464,13 +1465,14 @@ async function handleApiRequest(req) {
     const headers = new Headers(network.headers);
     headers.set("sw-fetched-at", Date.now().toString());
 
-    const response = new Response(await network.clone().blob(), {
+    const blob = await network.clone().blob(); // blob sigurno radi za 200/basic
+    const response = new Response(blob, {
       status: network.status,
       statusText: network.statusText,
       headers
     });
 
-    await cache.put(req, response.clone());
+    await cache.put(req, response.clone()); // KEŠIRA SAMO VALIDNE
     console.log("🔄 Cache refreshed:", req.url);
     return response;
 
