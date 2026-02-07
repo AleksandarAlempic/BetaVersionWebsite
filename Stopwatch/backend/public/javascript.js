@@ -1428,7 +1428,7 @@ self.addEventListener("fetch", event => {
   // HARD GUARDS
   if (req.method !== "GET") return;
   if (url.protocol !== "http:" && url.protocol !== "https:") return;
-  if (url.origin !== self.location.origin) return;
+  // if (url.origin !== self.location.origin) return;
   if (!url.pathname.startsWith("/api/")) return;
   if (req.destination === "audio" || req.destination === "video") return;
   if (req.headers.has("range")) return;
