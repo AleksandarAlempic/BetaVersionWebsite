@@ -1421,10 +1421,14 @@ document.getElementById("testCustomBtn")?.addEventListener("click", playTestCust
 const DATA_CACHE = "data-v1";
 const TTL = 10 * 1000; // 10s test
 
+
+
 self.addEventListener("fetch", event => {
   const req = event.request;
   const url = new URL(req.url);
 
+console.log("🟣 SW RAW FETCH:", req.method, req.destination, url.pathname);
+ 
   // HARD GUARDS
   if (req.method !== "GET") return;
   if (url.protocol !== "http:" && url.protocol !== "https:") return;
