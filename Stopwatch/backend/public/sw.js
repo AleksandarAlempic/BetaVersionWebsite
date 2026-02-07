@@ -1,5 +1,6 @@
 const CACHE_NAME = "kingsvillage-fit-v1";
 const TTL = 10 * 1000; // 10 sekundi (test mode)
+console.log("🔥 SW SCRIPT LOADED");
 
 const ASSETS_TO_CACHE = [
   "/",
