@@ -487,7 +487,9 @@ async function retrieveNearbyRoutes() {
     }
 
     try {
-      const res = await fetch(`https://betaversionwebsite.onrender.com/api/routes-nearby?lat=${latitude}&lng=${longitude}&radius=${radius}`);
+      // const res = await fetch(`https://betaversionwebsite.onrender.com/api/routes-nearby?lat=${latitude}&lng=${longitude}&radius=${radius}`); TTL ne radi - obrisi ako sa ovim ispod radi i TTL i baza. 
+      // ✅ RELATIVNI PATH
+      const res = await fetch(`/api/routes-nearby?lat=${latitude}&lng=${longitude}&radius=${radius}`);
       const routes = await res.json();
 
       if (!Array.isArray(routes) || routes.length === 0) {
@@ -535,7 +537,9 @@ async function retrieveNearbyTrainings() {
     }
 
     try {
-      const res = await fetch(`https://betaversionwebsite.onrender.com/api/nearby-trainings?lat=${latitude}&lng=${longitude}&radius=${radius}`);
+      // const res = await fetch(`https://betaversionwebsite.onrender.com/api/nearby-trainings?lat=${latitude}&lng=${longitude}&radius=${radius}`); Ako ovo ispod radi - brisi ovo. 
+      // ✅ RELATIVNI PATH
+      const res = await fetch(`/api/nearby-trainings?lat=${latitude}&lng=${longitude}&radius=${radius}`);
       const trainings = await res.json();
 
       if (!Array.isArray(trainings) || trainings.length === 0) {
