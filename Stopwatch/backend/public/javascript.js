@@ -477,22 +477,47 @@ const dumbbellIcon = L.icon({
 
 // =================== FETCH NEARBY ROUTES ===================
 async function retrieveNearbyRoutes() {
+  let latitude, longitude;
+
   try {
-    // 1️⃣ Čekamo geolokaciju
+    // pokušaj geolokaciju
     const position = await new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 10000 });
+      navigator.geolocation.getCurrentPosition(
+        resolve,
+        reject,
+        {
+          enableHighAccuracy: false,
+          timeout: 30000,      // 30s
+          maximumAge: 60000    // koristi keširanu lokaciju ako postoji
+        }
+      );
     });
 
-    const { latitude, longitude } = position.coords;
-    const radius = 35000;
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
 
-    // 2️⃣ Uklanjamo stare markere
-    if (window.currentRouteMarkers) {
-      window.currentRouteMarkers.forEach(marker => map.removeLayer(marker));
-      window.currentRouteMarkers = [];
-    }
+    // zapamti poslednju validnu lokaciju
+    window.lastLat = latitude;
+    window.lastLng = longitude;
 
-    // 3️⃣ Fetch sa relativnim path-om (TTL radi automatski)
+  } catch (geoErr) {
+    console.warn("⚠️ GEO TIMEOUT → fallback location");
+
+    // fallback ako geo pukne
+    latitude = window.lastLat || 45.0142;
+    longitude = window.lastLng || 19.8220;
+  }
+
+  const radius = 35000;
+
+  // uklanjanje starih markera
+  if (window.currentRouteMarkers) {
+    window.currentRouteMarkers.forEach(marker => map.removeLayer(marker));
+    window.currentRouteMarkers = [];
+  }
+
+  try {
+    // ⚡ FETCH SE UVEK POZIVA → SW → TTL
     const res = await fetch(`/api/routes-nearby?lat=${latitude}&lng=${longitude}&radius=${radius}`);
     const routes = await res.json();
 
@@ -501,13 +526,14 @@ async function retrieveNearbyRoutes() {
       return;
     }
 
-    // 4️⃣ Dodajemo rute na mapu
     window.currentRouteMarkers = [];
+
     routes.forEach(route => {
       const latlngs = JSON.parse(route.polyline).map(coord => L.latLng(coord.lat, coord.lng));
       L.polyline(latlngs, { color: 'blue', weight: 4, opacity: 0.8 }).addTo(map);
 
       const topCoord = latlngs.reduce((top, coord) => (coord.lat > top.lat ? coord : top));
+
       const marker = L.marker(topCoord, { icon: runnerIcon });
       marker.options.routeData = route;
       marker.bindPopup(`
@@ -516,13 +542,16 @@ async function retrieveNearbyRoutes() {
         ⏱ ${translations[currentLanguage].speed}: ${route.speed.toFixed(2)} km/h<br>
         🏃‍♂️ ${route.routeName || translations[currentLanguage].unnamedRoute}
       `);
+
       marker.addTo(map);
       window.currentRouteMarkers.push(marker);
     });
 
+    console.log("✅ ROUTES FETCH → SW TTL ACTIVE");
+
   } catch (err) {
-    console.error("Could not retrieve nearby routes:", err);
-    alert(translations[currentLanguage].couldNotGetLocation + (err.message || ""));
+    console.error("❌ FETCH FAILED:", err);
+    alert("Network/API error");
   }
 }
 
@@ -530,9 +559,17 @@ async function retrieveNearbyRoutes() {
 async function retrieveNearbyTrainings() {
   try {
     // 1️⃣ Čekamo geolokaciju
-    const position = await new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 10000 });
-    });
+  const position = await new Promise((resolve, reject) => {
+  navigator.geolocation.getCurrentPosition(
+    resolve,
+    reject,
+    {
+      enableHighAccuracy: true,   // koristi GPS kad može
+      timeout: 30000,             // 30s timeout (rešava TTL + geo timeout)
+      maximumAge: 0               // ne koristi keširanu lokaciju
+    }
+  );
+});
 
     const { latitude, longitude } = position.coords;
     const radius = 35000;
