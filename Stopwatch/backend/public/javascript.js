@@ -1461,75 +1461,75 @@ window.customPlaylist = [
 document.getElementById("testCustomBtn")?.addEventListener("click", playTestCustomPlaylist);
 
 //Dodajemo TTL
-const DATA_CACHE = "data-v1";
-const TTL = 10 * 1000; // 10s test
+// const DATA_CACHE = "data-v1";
+// const TTL = 10 * 1000; // 10s test
 
 
 
-self.addEventListener("fetch", event => {
-  const req = event.request;
-  const url = new URL(req.url);
+// self.addEventListener("fetch", event => {
+//   const req = event.request;
+//   const url = new URL(req.url);
 
-console.log("🟣 SW RAW FETCH:", req.method, req.destination, url.pathname);
+// console.log("🟣 SW RAW FETCH:", req.method, req.destination, url.pathname);
  
-  // HARD GUARDS
-  if (req.method !== "GET") return;
-  if (url.protocol !== "http:" && url.protocol !== "https:") return;
-  // if (url.origin !== self.location.origin) return;
-  if (!url.pathname.startsWith("/api/")) return;
-  if (req.destination === "audio" || req.destination === "video") return;
-  if (req.headers.has("range")) return;
+//   // HARD GUARDS
+//   if (req.method !== "GET") return;
+//   if (url.protocol !== "http:" && url.protocol !== "https:") return;
+//   // if (url.origin !== self.location.origin) return;
+//   if (!url.pathname.startsWith("/api/")) return;
+//   if (req.destination === "audio" || req.destination === "video") return;
+//   if (req.headers.has("range")) return;
 
-  event.respondWith(handleApiRequest(req));
-});
+//   event.respondWith(handleApiRequest(req));
+// });
 
-async function handleApiRequest(req) {
-  const cache = await caches.open(DATA_CACHE);
+// async function handleApiRequest(req) {
+//   const cache = await caches.open(DATA_CACHE);
 
-  // Pokušaj da uzmeš iz keša
-  const cached = await cache.match(req);
-  if (cached) {
-    const fetchedAt = Number(cached.headers.get("sw-fetched-at"));
-    if (fetchedAt && Date.now() - fetchedAt < TTL) {
-      console.log("🟢 Cache hit:", req.url);
-      return cached;
-    }
-  }
+//   // Pokušaj da uzmeš iz keša
+//   const cached = await cache.match(req);
+//   if (cached) {
+//     const fetchedAt = Number(cached.headers.get("sw-fetched-at"));
+//     if (fetchedAt && Date.now() - fetchedAt < TTL) {
+//       console.log("🟢 Cache hit:", req.url);
+//       return cached;
+//     }
+//   }
 
-  try {
-    const network = await fetch(req);
+//   try {
+//     const network = await fetch(req);
 
-    // ⚠️ Sigurni filter
-    if (network.type !== "basic" || network.status !== 200) {
-      console.log("⚠️ Skipping cache (not 200/basic):", req.url, network.status, network.type);
-      return network;
-    }
+//     // ⚠️ Sigurni filter
+//     if (network.type !== "basic" || network.status !== 200) {
+//       console.log("⚠️ Skipping cache (not 200/basic):", req.url, network.status, network.type);
+//       return network;
+//     }
 
-    // Napravi response sa sw-fetched-at
-    const headers = new Headers(network.headers);
-    headers.set("sw-fetched-at", Date.now().toString());
+//     // Napravi response sa sw-fetched-at
+//     const headers = new Headers(network.headers);
+//     headers.set("sw-fetched-at", Date.now().toString());
 
-    const blob = await network.clone().blob();
-    const response = new Response(blob, {
-      status: network.status,
-      statusText: network.statusText,
-      headers
-    });
+//     const blob = await network.clone().blob();
+//     const response = new Response(blob, {
+//       status: network.status,
+//       statusText: network.statusText,
+//       headers
+//     });
 
-    await cache.put(req, response.clone());
-    console.log("🔄 Cache refreshed:", req.url);
-    return response;
+//     await cache.put(req, response.clone());
+//     console.log("🔄 Cache refreshed:", req.url);
+//     return response;
 
-  } catch (err) {
-    console.log("❌ Network failed, using cache if available:", req.url);
-    if (cached) return cached;
+//   } catch (err) {
+//     console.log("❌ Network failed, using cache if available:", req.url);
+//     if (cached) return cached;
 
-    return new Response(
-      JSON.stringify({ error: "offline" }),
-      { status: 503, headers: { "Content-Type": "application/json" } }
-    );
-  }
-}
+//     return new Response(
+//       JSON.stringify({ error: "offline" }),
+//       { status: 503, headers: { "Content-Type": "application/json" } }
+//     );
+//   }
+// }
 
 window.fetchNearbyRoutes = retrieveNearbyRoutes;
 window.fetchNearbyTrainings = retrieveNearbyTrainings;
