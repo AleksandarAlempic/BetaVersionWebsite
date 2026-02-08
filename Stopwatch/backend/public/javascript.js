@@ -477,100 +477,102 @@ const dumbbellIcon = L.icon({
 
 // =================== FETCH NEARBY ROUTES ===================
 async function retrieveNearbyRoutes() {
-  navigator.geolocation.getCurrentPosition(async (position) => {
+  try {
+    // 1️⃣ Čekamo geolokaciju
+    const position = await new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 10000 });
+    });
+
     const { latitude, longitude } = position.coords;
     const radius = 35000;
 
+    // 2️⃣ Uklanjamo stare markere
     if (window.currentRouteMarkers) {
       window.currentRouteMarkers.forEach(marker => map.removeLayer(marker));
       window.currentRouteMarkers = [];
     }
 
-    try {
-      // const res = await fetch(`https://betaversionwebsite.onrender.com/api/routes-nearby?lat=${latitude}&lng=${longitude}&radius=${radius}`); TTL ne radi - obrisi ako sa ovim ispod radi i TTL i baza. 
-      // ✅ RELATIVNI PATH
-      const res = await fetch(`/api/routes-nearby?lat=${latitude}&lng=${longitude}&radius=${radius}`);
-      const routes = await res.json();
+    // 3️⃣ Fetch sa relativnim path-om (TTL radi automatski)
+    const res = await fetch(`/api/routes-nearby?lat=${latitude}&lng=${longitude}&radius=${radius}`);
+    const routes = await res.json();
 
-      if (!Array.isArray(routes) || routes.length === 0) {
-        alert(translations[currentLanguage].noNearbyRoutes);
-        return;
-      }
-
-      routes.forEach(route => {
-        const latlngs = JSON.parse(route.polyline).map(coord => L.latLng(coord.lat, coord.lng));
-        L.polyline(latlngs, { color: 'blue', weight: 4, opacity: 0.8 }).addTo(map);
-        const topCoord = latlngs.reduce((top, coord) => (coord.lat > top.lat ? coord : top));
-
-        const marker = L.marker(topCoord, { icon: runnerIcon });
-        marker.options.routeData = route; 
-        marker.bindPopup(`
-          <b>${route.username || translations[currentLanguage].unknownUser}</b><br>
-          🛣 ${translations[currentLanguage].distance}: ${route.distance.toFixed(2)} km<br>
-          ⏱ ${translations[currentLanguage].speed}: ${route.speed.toFixed(2)} km/h<br>
-          🏃‍♂️ ${translations[currentLanguage].routeName}: ${route.routeName || translations[currentLanguage].unnamedRoute}
-        `);
-        marker.addTo(map); 
-        window.currentRouteMarkers = window.currentRouteMarkers || [];
-        window.currentRouteMarkers.push(marker);
-      });
-
-    } catch (err) {
-      console.error("Error retrieving nearby routes:", err);
+    if (!Array.isArray(routes) || routes.length === 0) {
       alert(translations[currentLanguage].noNearbyRoutes);
+      return;
     }
-  }, (error) => {
-    console.error("Could not get location:", error);
-    alert(translations[currentLanguage].couldNotGetLocation + error.message);
-  });
+
+    // 4️⃣ Dodajemo rute na mapu
+    window.currentRouteMarkers = [];
+    routes.forEach(route => {
+      const latlngs = JSON.parse(route.polyline).map(coord => L.latLng(coord.lat, coord.lng));
+      L.polyline(latlngs, { color: 'blue', weight: 4, opacity: 0.8 }).addTo(map);
+
+      const topCoord = latlngs.reduce((top, coord) => (coord.lat > top.lat ? coord : top));
+      const marker = L.marker(topCoord, { icon: runnerIcon });
+      marker.options.routeData = route;
+      marker.bindPopup(`
+        <b>${route.username || translations[currentLanguage].unknownUser}</b><br>
+        🛣 ${translations[currentLanguage].distance}: ${route.distance.toFixed(2)} km<br>
+        ⏱ ${translations[currentLanguage].speed}: ${route.speed.toFixed(2)} km/h<br>
+        🏃‍♂️ ${route.routeName || translations[currentLanguage].unnamedRoute}
+      `);
+      marker.addTo(map);
+      window.currentRouteMarkers.push(marker);
+    });
+
+  } catch (err) {
+    console.error("Could not retrieve nearby routes:", err);
+    alert(translations[currentLanguage].couldNotGetLocation + (err.message || ""));
+  }
 }
 
 // =================== FETCH NEARBY TRAININGS ===================
 async function retrieveNearbyTrainings() {
-  navigator.geolocation.getCurrentPosition(async (position) => {
+  try {
+    // 1️⃣ Čekamo geolokaciju
+    const position = await new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 10000 });
+    });
+
     const { latitude, longitude } = position.coords;
     const radius = 35000;
 
+    // 2️⃣ Uklanjamo stare markere
     if (window.currentTrainingMarkers) {
       window.currentTrainingMarkers.forEach(marker => map.removeLayer(marker));
       window.currentTrainingMarkers = [];
     }
 
-    try {
-      // const res = await fetch(`https://betaversionwebsite.onrender.com/api/nearby-trainings?lat=${latitude}&lng=${longitude}&radius=${radius}`); Ako ovo ispod radi - brisi ovo. 
-      // ✅ RELATIVNI PATH
-      const res = await fetch(`/api/nearby-trainings?lat=${latitude}&lng=${longitude}&radius=${radius}`);
-      const trainings = await res.json();
+    // 3️⃣ Fetch sa relativnim path-om (TTL radi automatski)
+    const res = await fetch(`/api/nearby-trainings?lat=${latitude}&lng=${longitude}&radius=${radius}`);
+    const trainings = await res.json();
 
-      if (!Array.isArray(trainings) || trainings.length === 0) {
-        alert(translations[currentLanguage].noNearbyTrainings);
-        return;
-      }
-
-      trainings.forEach(t => {
-        if (t.latitude && t.longitude) {
-          const marker = L.marker([t.latitude, t.longitude], { icon: dumbbellIcon });
-          marker.options.trainingData = t;
-          marker.addTo(map).bindPopup(`
-            <b>${t.trainingName || translations[currentLanguage].unnamedTraining}</b><br>
-            🏋️‍♂️ ${translations[currentLanguage].addTrainingPopupLabels.pushUps}: ${t.pushUps || 0}<br>
-            💪 ${translations[currentLanguage].addTrainingPopupLabels.pullUps}: ${t.pullUps || 0}<br>
-            🧍 ${translations[currentLanguage].addTrainingPopupLabels.sitUps}: ${t.sitUps || 0}<br>
-            ⏱ ${translations[currentLanguage].addTrainingPopupLabels.duration}: ${t.duration || 0} min
-          `);
-          window.currentTrainingMarkers = window.currentTrainingMarkers || [];
-          window.currentTrainingMarkers.push(marker);
-        }
-      });
-
-    } catch (err) {
-      console.error("Error retrieving trainings:", err);
+    if (!Array.isArray(trainings) || trainings.length === 0) {
       alert(translations[currentLanguage].noNearbyTrainings);
+      return;
     }
-  }, (error) => {
-    console.error("Could not get location:", error);
-    alert(translations[currentLanguage].couldNotGetLocation + error.message);
-  });
+
+    // 4️⃣ Dodajemo treninge na mapu
+    window.currentTrainingMarkers = [];
+    trainings.forEach(t => {
+      if (t.latitude && t.longitude) {
+        const marker = L.marker([t.latitude, t.longitude], { icon: dumbbellIcon });
+        marker.options.trainingData = t;
+        marker.addTo(map).bindPopup(`
+          <b>${t.trainingName || translations[currentLanguage].unnamedTraining}</b><br>
+          🏋️‍♂️ ${translations[currentLanguage].addTrainingPopupLabels.pushUps}: ${t.pushUps || 0}<br>
+          💪 ${translations[currentLanguage].addTrainingPopupLabels.pullUps}: ${t.pullUps || 0}<br>
+          🧍 ${translations[currentLanguage].addTrainingPopupLabels.sitUps}: ${t.sitUps || 0}<br>
+          ⏱ ${translations[currentLanguage].addTrainingPopupLabels.duration}: ${t.duration || 0} min
+        `);
+        window.currentTrainingMarkers.push(marker);
+      }
+    });
+
+  } catch (err) {
+    console.error("Could not retrieve nearby trainings:", err);
+    alert(translations[currentLanguage].couldNotGetLocation + (err.message || ""));
+  }
 }
 
 // =================== BUTTON LISTENERS ===================
