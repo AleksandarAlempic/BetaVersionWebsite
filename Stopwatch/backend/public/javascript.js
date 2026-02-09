@@ -1534,5 +1534,16 @@ async function handleApiRequest(req) {
 window.fetchNearbyRoutes = retrieveNearbyRoutes;
 window.fetchNearbyTrainings = retrieveNearbyTrainings;
 
-
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(registrations => {
+    // Obrisi stare registracije
+    for(let registration of registrations) {
+      registration.unregister();
+    }
+    // Registruj samo jedan
+    navigator.serviceWorker.register('/sw.js').then(reg => {
+      console.log('✅ Service Worker registered:', reg);
+    });
+  });
+}
 
