@@ -1536,13 +1536,14 @@ window.fetchNearbyTrainings = retrieveNearbyTrainings;
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.getRegistrations().then(registrations => {
-    // Obrisi stare registracije
-    for(let registration of registrations) {
-      registration.unregister();
+    for (let registration of registrations) {
+      registration.unregister();  // Obriši stare
     }
-    // Registruj samo jedan
+
     navigator.serviceWorker.register('/sw.js').then(reg => {
       console.log('✅ Service Worker registered:', reg);
+    }).catch(err => {
+      console.error("❌ Service Worker registration failed:", err);
     });
   });
 }
