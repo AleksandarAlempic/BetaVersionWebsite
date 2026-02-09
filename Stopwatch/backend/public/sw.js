@@ -33,22 +33,19 @@ self.addEventListener("activate", event => {
 
 // FETCH
 self.addEventListener("fetch", event => {
+  console.log("🧲 SW FETCH:", event.request.url); // Dodajmo log za svaki fetch
+
   if (event.request.method !== "GET") return;
 
   const url = new URL(event.request.url);
 
-  // 👉 SAMO API TTL
-  if (!url.pathname.startsWith("/api/")) return;
-
-  console.log("🧲 SW FETCH:", event.request.url);
-
+  // 👉 Proširivanje da TTL važi za sve resurse, ne samo API
   event.respondWith((async () => {
     const cache = await caches.open(CACHE_NAME);
     const cachedResponse = await cache.match(event.request);
 
     if (cachedResponse) {
       const fetchedAt = Number(cachedResponse.headers.get("sw-fetched-at"));
-
       if (fetchedAt) {
         const age = Date.now() - fetchedAt;
         console.log("⏱ TTL age(ms):", age, "URL:", event.request.url);
