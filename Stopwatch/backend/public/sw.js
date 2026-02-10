@@ -98,10 +98,10 @@ self.addEventListener('message', event => {
   if (event.data && event.data.type === 'CHECK_TTL') {
     console.log("🕒 Checking TTL and refreshing cache if needed...");
 
-    // Ovo je mesto gde proveravamo TTL, ako je istekao, osvežićemo cache
     event.waitUntil(
       caches.open(CACHE_NAME).then(async (cache) => {
         const cachedResponse = await cache.match(event.data.url);
+        
         if (cachedResponse) {
           const fetchedAt = Number(cachedResponse.headers.get("sw-fetched-at"));
           const age = Date.now() - fetchedAt;
@@ -109,7 +109,25 @@ self.addEventListener('message', event => {
 
           if (fetchedAt && age >= TTL) {
             console.log("🟡 TTL EXPIRED:", event.data.url);
-            // Ovdje možeš staviti logiku da osvežiš cache, ako je TTL istekao
+            // TTL isteklo, osvežavamo cache
+            try {
+              const networkResponse = await fetch(event.data.url);  // Fetch iz mreže
+              if (networkResponse.status === 200 && networkResponse.type === "basic") {
+                const headers = new Headers(networkResponse.headers);
+                headers.set("sw-fetched-at", Date.now().toString());
+
+                const responseClone = new Response(await networkResponse.clone().blob(), {
+                  status: networkResponse.status,
+                  statusText: networkResponse.statusText,
+                  headers
+                });
+
+                await cache.put(event.data.url, responseClone);  // Stavljamo novu verziju u cache
+                console.log("🔄 Cache refreshed with network data:", event.data.url);
+              }
+            } catch (err) {
+              console.log("❌ Error while refreshing cache from network:", event.data.url, err);
+            }
           } else {
             console.log("🟢 TTL HIT (cache valid):", event.data.url);
           }
