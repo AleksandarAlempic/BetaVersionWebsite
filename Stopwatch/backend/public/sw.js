@@ -32,7 +32,7 @@ self.addEventListener("activate", event => {
 });
 
 // FETCH
-self.addEventListener("fetch", event => {
+self.addEventListener('fetch', event => {
   console.log("🧲 SW FETCH:", event.request.url); // Dodajmo log za svaki fetch
 
   if (event.request.method !== "GET") return;
@@ -60,6 +60,7 @@ self.addEventListener("fetch", event => {
       console.log("⚪ Cache MISS:", event.request.url);
     }
 
+    // Ako dođe do Cache MISS, pravimo mrežni poziv
     try {
       const networkResponse = await fetch(event.request);
 
@@ -73,7 +74,7 @@ self.addEventListener("fetch", event => {
           headers
         });
 
-        await cache.put(event.request, responseClone); // Sačuvaj u keš
+        await cache.put(event.request, responseClone);  // Keširamo podatke sa mreže
         console.log("🔄 Cached from network:", event.request.url);
       }
 
@@ -82,7 +83,10 @@ self.addEventListener("fetch", event => {
     } catch (err) {
       console.log("❌ Network fail, fallback cache:", event.request.url);
 
-      if (cachedResponse) return cachedResponse;
+      // Ako je offline i nema podataka u kešu, šaljemo poruku o grešci
+      if (cachedResponse) {
+        return cachedResponse;
+      }
 
       return new Response(
         JSON.stringify({ error: "offline" }),
@@ -90,7 +94,6 @@ self.addEventListener("fetch", event => {
       );
     }
   })());
-});
 
 // Handling CHECK_TTL message from client
 self.addEventListener('message', event => {
