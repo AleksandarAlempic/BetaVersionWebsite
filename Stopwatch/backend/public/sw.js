@@ -95,9 +95,27 @@ self.addEventListener("fetch", event => {
 
 // Handling CHECK_TTL message from client
 self.addEventListener('message', event => {
-  if (event.data.type === 'CHECK_TTL') {
+  if (event.data && event.data.type === 'CHECK_TTL') {
     console.log("🕒 Checking TTL and refreshing cache if needed...");
-    // Logika za osvežavanje TTL - provera i osvežavanje keša ako je TTL istekao
-    // Možeš dodati dodatnu logiku ovde ako je potrebno
+
+    // Ovo je mesto gde proveravamo TTL, ako je istekao, osvežićemo cache
+    event.waitUntil(
+      caches.open(CACHE_NAME).then(async (cache) => {
+        const cachedResponse = await cache.match(event.data.url);
+        if (cachedResponse) {
+          const fetchedAt = Number(cachedResponse.headers.get("sw-fetched-at"));
+          const age = Date.now() - fetchedAt;
+          console.log("⏱ TTL age(ms):", age, "URL:", event.data.url);
+
+          if (fetchedAt && age >= TTL) {
+            console.log("🟡 TTL EXPIRED:", event.data.url);
+            // Ovdje možeš staviti logiku da osvežiš cache, ako je TTL istekao
+          } else {
+            console.log("🟢 TTL HIT (cache valid):", event.data.url);
+          }
+        }
+      })
+    );
   }
 });
+
