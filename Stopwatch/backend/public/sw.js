@@ -95,13 +95,15 @@ self.addEventListener("fetch", event => {
 
 // Handling CHECK_TTL message from client
 self.addEventListener('message', event => {
+  console.log("Received message in Service Worker:", event.data); // Logovanje celokupnog eventa
   if (event.data && event.data.type === 'CHECK_TTL') {
     console.log("🕒 Checking TTL and refreshing cache if needed...");
 
     event.waitUntil(
       caches.open(CACHE_NAME).then(async (cache) => {
         const cachedResponse = await cache.match(event.data.url);
-        
+        console.log("Cached Response:", cachedResponse); // Proveri da li ima cache odgovora
+
         if (cachedResponse) {
           const fetchedAt = Number(cachedResponse.headers.get("sw-fetched-at"));
           const age = Date.now() - fetchedAt;
@@ -109,7 +111,6 @@ self.addEventListener('message', event => {
 
           if (fetchedAt && age >= TTL) {
             console.log("🟡 TTL EXPIRED:", event.data.url);
-            // TTL isteklo, osvežavamo cache
             try {
               const networkResponse = await fetch(event.data.url);  // Fetch iz mreže
               if (networkResponse.status === 200 && networkResponse.type === "basic") {
