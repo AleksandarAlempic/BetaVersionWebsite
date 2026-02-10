@@ -39,7 +39,6 @@ self.addEventListener("fetch", event => {
 
   const url = new URL(event.request.url);
 
-  // 👉 Proširivanje da TTL važi za sve resurse, ne samo API
   event.respondWith((async () => {
     const cache = await caches.open(CACHE_NAME);
     const cachedResponse = await cache.match(event.request);
@@ -74,7 +73,7 @@ self.addEventListener("fetch", event => {
           headers
         });
 
-        await cache.put(event.request, responseClone);
+        await cache.put(event.request, responseClone); // Sačuvaj u keš
         console.log("🔄 Cached from network:", event.request.url);
       }
 
