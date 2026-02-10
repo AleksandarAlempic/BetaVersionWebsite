@@ -476,6 +476,7 @@ const dumbbellIcon = L.icon({
 });
 
 // =================== FETCH NEARBY ROUTES ===================
+// =================== FETCH NEARBY ROUTES ===================
 async function retrieveNearbyRoutes() {
   let latitude, longitude;
 
@@ -519,7 +520,8 @@ async function retrieveNearbyRoutes() {
   // **Dodavanje TTL provere pre slanja FETCH zahteva**
   if (navigator.serviceWorker) {
     const swRegistration = await navigator.serviceWorker.ready;
-    swRegistration.active.postMessage({ type: 'CHECK_TTL' });  // Pozivanje TTL provere
+    // Dodavanje URL sa parametrima za TTL proveru
+    swRegistration.active.postMessage({ type: 'CHECK_TTL', url: `/api/routes-nearby?lat=${latitude}&lng=${longitude}&radius=${radius}` });
   }
 
   try {
@@ -560,6 +562,7 @@ async function retrieveNearbyRoutes() {
     alert("Network/API error");
   }
 }
+
 
 
 // =================== FETCH NEARBY TRAININGS ===================
