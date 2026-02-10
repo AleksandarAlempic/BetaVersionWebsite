@@ -92,3 +92,12 @@ self.addEventListener("fetch", event => {
     }
   })());
 });
+
+// Handling CHECK_TTL message from client
+self.addEventListener('message', event => {
+  if (event.data.type === 'CHECK_TTL') {
+    console.log("🕒 Checking TTL and refreshing cache if needed...");
+    // Logika za osvežavanje TTL - provera i osvežavanje keša ako je TTL istekao
+    // Možeš dodati dodatnu logiku ovde ako je potrebno
+  }
+});
