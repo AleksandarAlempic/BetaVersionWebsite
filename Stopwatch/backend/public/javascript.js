@@ -561,6 +561,7 @@ async function retrieveNearbyRoutes() {
   }
 }
 
+
 // =================== FETCH NEARBY TRAININGS ===================
 async function retrieveNearbyTrainings() {
   try {
@@ -1542,15 +1543,21 @@ window.fetchNearbyTrainings = retrieveNearbyTrainings;
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.getRegistrations().then(registrations => {
-    for (let registration of registrations) {
-      registration.unregister();  // Obriši stare
-    }
+    registrations.forEach(registration => {
+      console.log(`Unregistering service worker: ${registration}`);
+      registration.unregister();  // Brisanje starih registracija
+    });
 
+    // Zatim registrovanje novog Service Worker-a
     navigator.serviceWorker.register('/sw.js').then(reg => {
       console.log('✅ Service Worker registered:', reg);
     }).catch(err => {
       console.error("❌ Service Worker registration failed:", err);
     });
+  }).catch(err => {
+    console.error("❌ Error while fetching service worker registrations:", err);
   });
 }
+
+
 
