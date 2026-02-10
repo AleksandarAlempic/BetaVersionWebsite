@@ -12,7 +12,7 @@ const ASSETS_TO_CACHE = [
   "/offline.html"
 ];
 
-// INSTALL
+// ================= INSTALL =================
 self.addEventListener("install", event => {
   console.log("🛠 SW installing");
   event.waitUntil(
@@ -21,7 +21,7 @@ self.addEventListener("install", event => {
   self.skipWaiting();
 });
 
-// ACTIVATE
+// ================= ACTIVATE =================
 self.addEventListener("activate", event => {
   console.log("✅ SW activated");
   event.waitUntil(
@@ -29,42 +29,47 @@ self.addEventListener("activate", event => {
       Promise.all(keys.map(key => key !== CACHE_NAME && caches.delete(key)))
     )
   );
+  self.clients.claim();
 });
 
-// FETCH
-self.addEventListener('fetch', event => {
-  console.log("🧲 SW FETCH:", event.request.url); // Dodajmo log za svaki fetch
-
+// ================= FETCH + TTL =================
+self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
 
-  const url = new URL(event.request.url);
+  console.log("🧲 SW FETCH:", event.request.url);
 
   event.respondWith((async () => {
     const cache = await caches.open(CACHE_NAME);
     const cachedResponse = await cache.match(event.request);
 
+    // ---------- CACHE HIT ----------
     if (cachedResponse) {
       const fetchedAt = Number(cachedResponse.headers.get("sw-fetched-at"));
+
       if (fetchedAt) {
         const age = Date.now() - fetchedAt;
         console.log("⏱ TTL age(ms):", age, "URL:", event.request.url);
-      }
 
-      if (fetchedAt && Date.now() - fetchedAt < TTL) {
-        console.log("🟢 TTL HIT (cache valid):", event.request.url);
-        return cachedResponse;
-      } else {
+        // TTL VALID
+        if (age < TTL) {
+          console.log("🟢 TTL HIT (cache valid):", event.request.url);
+          return cachedResponse;
+        }
+
+        // TTL EXPIRED
         console.log("🟡 TTL EXPIRED:", event.request.url);
+      } else {
+        console.log("⚠️ No TTL header, forcing refresh:", event.request.url);
       }
     } else {
       console.log("⚪ Cache MISS:", event.request.url);
     }
 
-    // Ako dođe do Cache MISS, pravimo mrežni poziv
+    // ---------- NETWORK FETCH ----------
     try {
       const networkResponse = await fetch(event.request);
 
-      if (networkResponse.status === 200 && networkResponse.type === "basic") {
+      if (networkResponse.status === 200) {
         const headers = new Headers(networkResponse.headers);
         headers.set("sw-fetched-at", Date.now().toString());
 
@@ -74,17 +79,18 @@ self.addEventListener('fetch', event => {
           headers
         });
 
-        await cache.put(event.request, responseClone);  // Keširamo podatke sa mreže
+        await cache.put(event.request, responseClone);
         console.log("🔄 Cached from network:", event.request.url);
       }
 
       return networkResponse;
 
     } catch (err) {
-      console.log("❌ Network fail, fallback cache:", event.request.url);
+      console.log("❌ Network fail:", event.request.url, err);
 
-      // Ako je offline i nema podataka u kešu, šaljemo poruku o grešci
+      // fallback to cache if exists
       if (cachedResponse) {
+        console.log("📦 Fallback to cache:", event.request.url);
         return cachedResponse;
       }
 
@@ -93,8 +99,8 @@ self.addEventListener('fetch', event => {
         { status: 503, headers: { "Content-Type": "application/json" } }
       );
     }
-  })()); // Zatvorena asinhrona funkcija
-});  // Zatvorena fetch event listener
+  })());
+});
 
 // Handling CHECK_TTL message from client
 self.addEventListener('message', event => {
