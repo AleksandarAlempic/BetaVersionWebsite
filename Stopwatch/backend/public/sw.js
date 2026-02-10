@@ -36,19 +36,16 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
 
-  console.log("🧲 SW FETCH:", event.request.url);
-
   event.respondWith((async () => {
     const cache = await caches.open(CACHE_NAME);
     const cachedResponse = await cache.match(event.request);
 
-    // ---------- CACHE HIT ----------
+    // ================= CACHE HIT =================
     if (cachedResponse) {
       const fetchedAt = Number(cachedResponse.headers.get("sw-fetched-at"));
 
       if (fetchedAt) {
         const age = Date.now() - fetchedAt;
-        console.log("⏱ TTL age(ms):", age, "URL:", event.request.url);
 
         // TTL VALID
         if (age < TTL) {
@@ -58,18 +55,19 @@ self.addEventListener("fetch", event => {
 
         // TTL EXPIRED
         console.log("🟡 TTL EXPIRED:", event.request.url);
-      } else {
-        console.log("⚠️ No TTL header, forcing refresh:", event.request.url);
       }
-    } else {
+    } 
+    // ================= CACHE MISS =================
+    else {
       console.log("⚪ Cache MISS:", event.request.url);
     }
 
-    // ---------- NETWORK FETCH ----------
+    // ================= NETWORK FETCH =================
     try {
+      console.log("🌍 Fetching from network:", event.request.url);
       const networkResponse = await fetch(event.request);
 
-      if (networkResponse.status === 200) {
+      if (networkResponse.ok) {
         const headers = new Headers(networkResponse.headers);
         headers.set("sw-fetched-at", Date.now().toString());
 
@@ -79,18 +77,18 @@ self.addEventListener("fetch", event => {
           headers
         });
 
+        // 🔥 CACHE SE PUNI OVDE
         await cache.put(event.request, responseClone);
-        console.log("🔄 Cached from network:", event.request.url);
+        console.log("💾 Cached from network:", event.request.url);
       }
 
       return networkResponse;
 
     } catch (err) {
-      console.log("❌ Network fail:", event.request.url, err);
+      console.log("❌ Network error:", event.request.url, err);
 
-      // fallback to cache if exists
       if (cachedResponse) {
-        console.log("📦 Fallback to cache:", event.request.url);
+        console.log("📦 Offline fallback cache:", event.request.url);
         return cachedResponse;
       }
 
@@ -102,50 +100,74 @@ self.addEventListener("fetch", event => {
   })());
 });
 
+
 // Handling CHECK_TTL message from client
 self.addEventListener('message', event => {
-  console.log("Received message in Service Worker:", event.data); // Logovanje celokupnog eventa
-  if (event.data && event.data.type === 'CHECK_TTL') {
-    console.log("🕒 Checking TTL and refreshing cache if needed...");
+  if (!event.data || event.data.type !== 'CHECK_TTL') return;
 
-    event.waitUntil(
-      caches.open(CACHE_NAME).then(async (cache) => {
-        console.log("Proveravam URL za keširanje:", event.data.url);
-        const cachedResponse = await cache.match(event.data.url);
-        console.log("Cached Response:", cachedResponse); // Proveri da li postoji keširani odgovor
+  console.log("🕒 TTL check:", event.data.url);
 
-        if (cachedResponse) {
-          const fetchedAt = Number(cachedResponse.headers.get("sw-fetched-at"));
-          const age = Date.now() - fetchedAt;
-          console.log("⏱ TTL age(ms):", age, "URL:", event.data.url);
+  event.waitUntil((async () => {
+    const cache = await caches.open(CACHE_NAME);
+    const cachedResponse = await cache.match(event.data.url);
 
-          if (fetchedAt && age >= TTL) {
-            console.log("🟡 TTL EXPIRED:", event.data.url);
-            try {
-              const networkResponse = await fetch(event.data.url);  // Fetch iz mreže
-              if (networkResponse.status === 200 && networkResponse.type === "basic") {
-                const headers = new Headers(networkResponse.headers);
-                headers.set("sw-fetched-at", Date.now().toString());
+    // ================= CACHE HIT =================
+    if (cachedResponse) {
+      const fetchedAt = Number(cachedResponse.headers.get("sw-fetched-at"));
+      const age = Date.now() - fetchedAt;
 
-                const responseClone = new Response(await networkResponse.clone().blob(), {
-                  status: networkResponse.status,
-                  statusText: networkResponse.statusText,
-                  headers
-                });
+      if (fetchedAt && age >= TTL) {
+        console.log("🟡 TTL EXPIRED → refresh:", event.data.url);
 
-                await cache.put(event.data.url, responseClone);  // Stavljamo novu verziju u cache
-                console.log("🔄 Cache refreshed with network data:", event.data.url);
-              }
-            } catch (err) {
-              console.log("❌ Error while refreshing cache from network:", event.data.url, err);
-            }
-          } else {
-            console.log("🟢 TTL HIT (cache valid):", event.data.url);
+        try {
+          const networkResponse = await fetch(event.data.url);
+
+          if (networkResponse.ok) {
+            const headers = new Headers(networkResponse.headers);
+            headers.set("sw-fetched-at", Date.now().toString());
+
+            const responseClone = new Response(await networkResponse.clone().blob(), {
+              status: networkResponse.status,
+              statusText: networkResponse.statusText,
+              headers
+            });
+
+            await cache.put(event.data.url, responseClone);
+            console.log("🔄 Cache refreshed:", event.data.url);
           }
-        } else {
-          console.log("⚪ Cache MISS:", event.data.url);  // Ako nije bilo odgovora u cache-u
+        } catch (e) {
+          console.log("❌ TTL refresh failed:", e);
         }
-      })
-    );
-  }
-});  // Zatvorena message event listener
+      } else {
+        console.log("🟢 TTL VALID:", event.data.url);
+      }
+    }
+
+    // ================= CACHE MISS =================
+    else {
+      console.log("⚪ Cache MISS (message handler) → fetching:", event.data.url);
+
+      try {
+        const networkResponse = await fetch(event.data.url);
+
+        if (networkResponse.ok) {
+          const headers = new Headers(networkResponse.headers);
+          headers.set("sw-fetched-at", Date.now().toString());
+
+          const responseClone = new Response(await networkResponse.clone().blob(), {
+            status: networkResponse.status,
+            statusText: networkResponse.statusText,
+            headers
+          });
+
+          await cache.put(event.data.url, responseClone);
+          console.log("💾 Cache filled from MISS:", event.data.url);
+        }
+      } catch (e) {
+        console.log("❌ MISS fetch failed:", e);
+      }
+    }
+
+  })());
+});
+
