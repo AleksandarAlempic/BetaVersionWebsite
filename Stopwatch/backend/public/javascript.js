@@ -516,6 +516,12 @@ async function retrieveNearbyRoutes() {
     window.currentRouteMarkers = [];
   }
 
+  // **Dodavanje TTL provere pre slanja FETCH zahteva**
+  if (navigator.serviceWorker) {
+    const swRegistration = await navigator.serviceWorker.ready;
+    swRegistration.active.postMessage({ type: 'CHECK_TTL' });  // Pozivanje TTL provere
+  }
+
   try {
     // ⚡ FETCH SE UVEK POZIVA → SW → TTL
     const res = await fetch(`/api/routes-nearby?lat=${latitude}&lng=${longitude}&radius=${radius}`);
