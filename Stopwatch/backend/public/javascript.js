@@ -590,6 +590,16 @@ async function retrieveNearbyTrainings() {
       window.currentTrainingMarkers = [];
     }
 
+   const url = `/api/nearby-trainings?lat=${latitude}&lng=${longitude}&radius=${radius}`;
+
+// 🔔 TTL trigger
+if (navigator.serviceWorker?.controller) {
+  navigator.serviceWorker.controller.postMessage({
+    type: "CHECK_TTL",
+    url
+  });
+}
+
     // 3️⃣ Fetch sa relativnim path-om (TTL radi automatski)
     const res = await fetch(`/api/nearby-trainings?lat=${latitude}&lng=${longitude}&radius=${radius}`);
     const trainings = await res.json();
