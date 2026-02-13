@@ -592,12 +592,24 @@ async function retrieveNearbyTrainings() {
 
    const url = `/api/nearby-trainings?lat=${latitude}&lng=${longitude}&radius=${radius}`;
 
-// 🔔 TTL trigger
-if (navigator.serviceWorker?.controller) {
-  navigator.serviceWorker.controller.postMessage({
-    type: "CHECK_TTL",
-    url
-  });
+// 🔔 TTL trigger sa čekanjem da SW bude ready
+if (navigator.serviceWorker) {
+  if (navigator.serviceWorker.controller) {
+    // SW je aktivan, odmah šalji
+    navigator.serviceWorker.controller.postMessage({
+      type: "CHECK_TTL",
+      url
+    });
+  } else {
+    // SW nije controller još, čekamo ready
+    navigator.serviceWorker.ready.then(() => {
+      navigator.serviceWorker.controller?.postMessage({
+        type: "CHECK_TTL",
+        url
+      });
+      console.log("🟢 TTL message sent after SW ready:", url);
+    });
+  }
 }
 
     // 3️⃣ Fetch sa relativnim path-om (TTL radi automatski)
