@@ -1,3 +1,5 @@
+import { safeSave } from './safe-save.js';
+
 // =================== ELEMENT REFERENCES =====================
 const musicPlayer = document.getElementById("checkboxMusicPlayer");
 const checkboxRoot = document.getElementById("checkboxRoot");
@@ -39,7 +41,40 @@ let hours = 0, minutes = 0, seconds = 0;
 let rotationDegree = 0;
 let myInterval;
 
-import { safeSave } from './safe-save.js';
+// Dole u javascript.js
+function syncOfflineRoutes() {
+    const offlineRoutes = JSON.parse(localStorage.getItem("offlineRoutes") || "[]");
+    if (offlineRoutes.length === 0) return;
+
+    offlineRoutes.forEach(route => {
+        fetch('https://betaversionwebsite.onrender.com/api/save-run', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(route),
+        })
+        .then(res => res.json())
+        .then(() => {
+            console.log("Offline route synced:", route);
+        })
+        .catch(err => console.error("Failed to sync offline route:", err));
+    });
+
+    localStorage.removeItem("offlineRoutes");
+}
+
+// Event listener da se sinhronizuje kad dođe online
+window.addEventListener('online', () => {
+    console.log("Back online, syncing offline routes...");
+    syncOfflineRoutes();
+});
+
+// Kada korisnik ponovo bude online
+window.addEventListener('online', () => {
+    console.log("🌐 Back online! Syncing offline routes...");
+    syncOfflineRoutes();
+});
+
+
 
 // =================== TRANSLATIONS ===================
 const translations = {
