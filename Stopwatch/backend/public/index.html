@@ -430,25 +430,26 @@
 function stopRoute() {
     if (!routeStarted) return;
 
-    routeStarted = false;
+    routeStarted = false;  // Zaustavi praćenje
 
     const routeEndTime = new Date();
-    totalTime = (routeEndTime - routeStartTime) / 1000;
+    totalTime = (routeEndTime - routeStartTime) / 1000; // ukupno vreme u sekundama
 
-    document.getElementById('speed').style.display = "none";
+    document.getElementById('speed').style.display = "none"; // sakrij trenutnu brzinu
 
+    // Izračunaj prosečnu brzinu
     const averageSpeed = (totalDistance / 1000) / (totalTime / 3600);
     document.getElementById('averageSpeedValue').textContent = averageSpeed.toFixed(2);
     document.getElementById('averageSpeed').style.display = "block";
 
     if (polyline instanceof L.Polyline) {
         const polylineCoordinates = polyline.getLatLngs();
-        polyline.remove();
+        polyline.remove(); // ukloni polylinu sa mape
 
-        // ✅ UVEK otvori popup
+        // Uvek prikazi popup za unos imena
         document.getElementById("usernamePopup").style.display = "block";
 
-        // ✅ uvek sačuvaj podatke za popup
+        // Sačuvaj rutu privremeno da popup može proslediti
         window.routeDataToSave = {
             distance: totalDistance / 1000,   // km
             speed: averageSpeed,              // km/h
@@ -456,7 +457,7 @@ function stopRoute() {
             polyline: polylineCoordinates,    // koordinate
             startLat: waypoints[0].lat,
             startLng: waypoints[0].lng,
-            location: "Some location"
+            location: "Some location"         // možeš promeniti po potrebi
         };
     }
 }
