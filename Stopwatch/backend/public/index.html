@@ -427,44 +427,39 @@
         }
     }
 
- function stopRoute() {
+function stopRoute() {
     if (!routeStarted) return;
 
-    routeStarted = false;  // Zaustavi praćenje
+    routeStarted = false;
 
-    const confirmSave = confirm("Do you want to save the Route?");
     const routeEndTime = new Date();
-    totalTime = (routeEndTime - routeStartTime) / 1000; // ukupno vreme u sekundama
+    totalTime = (routeEndTime - routeStartTime) / 1000;
 
-    document.getElementById('speed').style.display = "none"; // sakrij trenutnu brzinu
+    document.getElementById('speed').style.display = "none";
 
-    // Izračunaj prosečnu brzinu
     const averageSpeed = (totalDistance / 1000) / (totalTime / 3600);
     document.getElementById('averageSpeedValue').textContent = averageSpeed.toFixed(2);
     document.getElementById('averageSpeed').style.display = "block";
 
     if (polyline instanceof L.Polyline) {
         const polylineCoordinates = polyline.getLatLngs();
-        polyline.remove(); // ukloni polylinu sa mape
+        polyline.remove();
 
-        if (confirmSave) {
-            // Prikaz popup-a za unos imena
-            document.getElementById("usernamePopup").style.display = "block";
+        // ✅ UVEK otvori popup
+        document.getElementById("usernamePopup").style.display = "block";
 
-            // Sačuvaj rutu privremeno da je popup može proslediti
-            window.routeDataToSave = {
-                distance: totalDistance / 1000,   // km
-                speed: averageSpeed,              // km/h
-                time: totalTime,                  // sekunde
-                polyline: polylineCoordinates,    // koordinate
-                startLat: waypoints[0].lat,
-                startLng: waypoints[0].lng,
-                location: "Some location"         // možeš promeniti po potrebi
-            };
-        }
+        // ✅ uvek sačuvaj podatke za popup
+        window.routeDataToSave = {
+            distance: totalDistance / 1000,   // km
+            speed: averageSpeed,              // km/h
+            time: totalTime,                  // sekunde
+            polyline: polylineCoordinates,    // koordinate
+            startLat: waypoints[0].lat,
+            startLng: waypoints[0].lng,
+            location: "Some location"
+        };
     }
 }
-
 // Funkcija koja se poziva kad korisnik unese ime i klikne "Save Route"
 function submitRoute() {
     const username = document.getElementById("usernameInput").value.trim();
