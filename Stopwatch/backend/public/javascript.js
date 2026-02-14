@@ -39,6 +39,8 @@ let hours = 0, minutes = 0, seconds = 0;
 let rotationDegree = 0;
 let myInterval;
 
+import { safeSave } from './safe-save.js';
+
 // =================== TRANSLATIONS ===================
 const translations = {
   en: {
