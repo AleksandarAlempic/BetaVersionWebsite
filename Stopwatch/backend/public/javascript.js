@@ -62,12 +62,6 @@ function syncOfflineRoutes() {
     localStorage.removeItem("offlineRoutes");
 }
 
-// Event listener da se sinhronizuje kad dođe online
-window.addEventListener('online', () => {
-    console.log("Back online, syncing offline routes...");
-    syncOfflineRoutes();
-});
-
 // Kada korisnik ponovo bude online
 window.addEventListener('online', () => {
     console.log("🌐 Back online! Syncing offline routes...");
