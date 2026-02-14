@@ -476,11 +476,37 @@ function submitRoute() {
     document.getElementById("usernamePopup").style.display = "none";
     const data = window.routeDataToSave;
 
-    fetch('https://betaversionwebsite.onrender.com/api/save-run', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            user_id: 1, // po potrebi promeni
+    if (navigator.onLine) {
+        // ONLINE save - ostaje isto
+        fetch('https://betaversionwebsite.onrender.com/api/save-run', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                user_id: 1, // po potrebi promeni
+                root: "Vojvodina Trčanje",
+                distance: data.distance,
+                speed: data.speed,
+                time: data.time,
+                polyline: data.polyline,
+                startLat: data.startLat,
+                startLng: data.startLng,
+                location: data.location,
+                username: username
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert("Route saved successfully!");
+        })
+        .catch(error => {
+            console.error('Error saving route:', error);
+            alert("Failed to save route.");
+        });
+    } else {
+        // OFFLINE save
+        const offlineRoutes = JSON.parse(localStorage.getItem("offlineRoutes") || "[]");
+        offlineRoutes.push({
+            user_id: 1,
             root: "Vojvodina Trčanje",
             distance: data.distance,
             speed: data.speed,
@@ -489,17 +515,13 @@ function submitRoute() {
             startLat: data.startLat,
             startLng: data.startLng,
             location: data.location,
-            username: username
-        }),
-    })
-    .then(response => response.json())
-    .then(data => {
-        alert("Route saved successfully!");
-    })
-    .catch(error => {
-        console.error('Error saving route:', error);
-        alert("Failed to save route.");
-    });
+            username: username,
+            timestamp: Date.now()
+        });
+        localStorage.setItem("offlineRoutes", JSON.stringify(offlineRoutes));
+        alert("No internet connection. Route saved offline!");
+        console.log("Offline route saved:", offlineRoutes);
+    }
 }
                     // Add event listener for the Start Route button click
                     document.getElementById("startRouteButton").addEventListener("click", startRoute);
