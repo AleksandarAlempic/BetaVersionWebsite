@@ -1687,7 +1687,6 @@ function syncOfflineTrainings() {
    offlineTrainings.forEach(training => {
 
   const payload = {
-    user_id: Number(training.user_id) || 1,
     trainingName: String(training.trainingName || ""),
     userName: String(training.userName || ""),
     pushUps: Number(training.pushUps) || 0,
