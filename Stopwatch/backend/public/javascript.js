@@ -1687,6 +1687,7 @@ function syncOfflineTrainings() {
     offlineTrainings.forEach(training => {
         // Napravi kopiju bez "_offlineId" i "_timestamp"
         const payload = { ...training };
+        console.log("📤 SYNC TRAINING PAYLOAD:", JSON.stringify(payload, null, 2));
         delete payload._offlineId;
         delete payload._timestamp;
 
