@@ -1684,27 +1684,41 @@ function syncOfflineTrainings() {
     const offlineTrainings = JSON.parse(localStorage.getItem("offline_trainings") || "[]");
     if (offlineTrainings.length === 0) return;
 
-    offlineTrainings.forEach(training => {
-        // Napravi kopiju bez "_offlineId" i "_timestamp"
-        const payload = { ...training };
-        console.log("📤 SYNC TRAINING PAYLOAD:", JSON.stringify(payload, null, 2));
-        delete payload._offlineId;
-        delete payload._timestamp;
+   offlineTrainings.forEach(training => {
 
-        fetch('https://betaversionwebsite.onrender.com/api/save-training', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-        })
-        .then(res => {
-            if (!res.ok) throw new Error(`Server responded ${res.status}`);
-            return res.json();
-        })
-        .then(data => {
-            console.log("✅ Offline training synced:", data);
-        })
-        .catch(err => console.error("❌ Failed to sync offline training:", err));
-    });
+  const payload = {
+    user_id: Number(training.user_id) || 1,
+    trainingName: String(training.trainingName || ""),
+    userName: String(training.userName || ""),
+    pushUps: Number(training.pushUps) || 0,
+    pullUps: Number(training.pullUps) || 0,
+    sitUps: Number(training.sitUps) || 0,
+    absCount: Number(training.absCount) || 0,
+    otherExercise: String(training.otherExercise || ""),
+    duration: Number(training.duration) || 0,
+    latitude: Number(training.latitude),
+    longitude: Number(training.longitude)
+  };
+
+  console.log("📤 CLEAN TRAINING PAYLOAD:", payload);
+
+  fetch("https://betaversionwebsite.onrender.com/api/save-training", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  })
+  .then(res => {
+    if (!res.ok) throw new Error("Server responded " + res.status);
+    return res.json();
+  })
+  .then(() => {
+    console.log("✅ Offline training synced:", payload.trainingName);
+  })
+  .catch(err => {
+    console.error("❌ Sync failed:", err);
+  });
+
+});
 
     localStorage.removeItem("offline_trainings");
 }
