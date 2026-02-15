@@ -613,11 +613,10 @@ if (!userId) {
     localStorage.setItem('userId', userId);
 }
 
-    // Handle training form submit
-   document.getElementById("trainingForm").addEventListener("submit", function(e) {
+ // Handle training form submit
+document.getElementById("trainingForm").addEventListener("submit", function(e) {
     e.preventDefault(); 
 
-    // Dohvati geolokaciju korisnika
     navigator.geolocation.getCurrentPosition((position) => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
@@ -632,25 +631,16 @@ if (!userId) {
             absCount: parseInt(document.getElementById("absCount").value) || 0,
             otherExercise: document.getElementById("otherExercise").value || "",
             duration: parseInt(document.getElementById("duration").value) || 0,
-            latitude: lat,   // 🔹 dodato
-            longitude: lon    // 🔹 dodato
+            latitude: lat,
+            longitude: lon
         };
 
-        fetch("https://betaversionwebsite.onrender.com/api/save-training", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(trainingData),
-        })
-        .then(res => res.json())
-        .then(data => {
-            console.log("Training saved:", data);
-            alert("Training saved successfully!");
-            document.getElementById("addTrainingPopup").style.display = "none";
-        })
-        .catch(err => {
-            console.error("Error saving training:", err);
-            alert("Failed to save training.");
-        });
+        // 🔥 OFFLINE-FIRST SYSTEM
+        saveTraining(trainingData);
+
+        alert("Training saved (online/offline system)!");
+        document.getElementById("addTrainingPopup").style.display = "none";
+
     }, (error) => {
         alert("Could not get location: " + error.message);
     });
