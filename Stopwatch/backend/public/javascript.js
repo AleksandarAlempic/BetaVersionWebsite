@@ -1677,4 +1677,4 @@ function saveTraining(trainingData) {
     }
 }
 
-
+window.saveTraining = saveTraining;
