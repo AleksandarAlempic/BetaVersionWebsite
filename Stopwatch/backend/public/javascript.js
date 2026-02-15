@@ -1615,5 +1615,66 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+// ===============================
+// OFFLINE TRAINING STORAGE
+// ===============================
+function saveTrainingOffline(trainingData) {
+    let queue = JSON.parse(localStorage.getItem("offline_trainings")) || [];
+    queue.push({
+        ...trainingData,
+        _offlineId: crypto.randomUUID(),
+        _timestamp: Date.now()
+    });
+    localStorage.setItem("offline_trainings", JSON.stringify(queue));
+    console.log("📦 Training saved OFFLINE queue:", queue);
+
+    if ("serviceWorker" in navigator && "SyncManager" in window) {
+        navigator.serviceWorker.ready.then(reg => {
+            return reg.sync.register("sync-trainings");
+        }).then(() => {
+            console.log("🔁 Sync registered");
+        }).catch(err => {
+            console.log("❌ Sync register failed:", err);
+        });
+    }
+}
+
+// ===============================
+// ONLINE SAVE
+// ===============================
+function saveTrainingOnline(trainingData) {
+    return fetch('https://betaversionwebsite.onrender.com/api/save-training', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(trainingData)
+    })
+    .then(res => {
+        if (!res.ok) throw new Error("Network error");
+        return res.json();
+    });
+}
+
+// ===============================
+// MAIN FUNCTION (REPLACEMENT)
+// ===============================
+function saveTraining(trainingData) {
+
+    if (navigator.onLine) {
+        saveTrainingOnline(trainingData)
+            .then(data => {
+                console.log("✅ Training saved ONLINE:", data);
+            })
+            .catch(err => {
+                console.log("⚠️ Online failed → saving offline", err);
+                saveTrainingOffline(trainingData);
+            });
+
+    } else {
+        console.log("📴 Offline mode → saving offline");
+        saveTrainingOffline(trainingData);
+    }
+}
 
 
