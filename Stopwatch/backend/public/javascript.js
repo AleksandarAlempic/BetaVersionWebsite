@@ -1677,4 +1677,36 @@ function saveTraining(trainingData) {
     }
 }
 
+// ===============================
+// OFFLINE TRAINING SYNC
+// ===============================
+function syncOfflineTrainings() {
+    const offlineTrainings = JSON.parse(localStorage.getItem("offline_trainings") || "[]");
+    if (offlineTrainings.length === 0) return;
+
+    offlineTrainings.forEach(training => {
+        fetch('https://betaversionwebsite.onrender.com/api/save-training', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(training),
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log("✅ Offline training synced:", data);
+        })
+        .catch(err => console.error("❌ Failed to sync offline training:", err));
+    });
+
+    // Nakon slanja svih treninga, obriši queue
+    localStorage.removeItem("offline_trainings");
+}
+
+// ===============================
+// AUTOMATSKI EVENT KADA DOĐE ONLINE
+// ===============================
+window.addEventListener('online', () => {
+    console.log("🌐 Back online! Syncing offline trainings...");
+    syncOfflineTrainings();
+});
+
 window.saveTraining = saveTraining;
