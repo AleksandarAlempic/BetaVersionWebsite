@@ -1685,19 +1685,26 @@ function syncOfflineTrainings() {
     if (offlineTrainings.length === 0) return;
 
     offlineTrainings.forEach(training => {
+        // Napravi kopiju bez "_offlineId" i "_timestamp"
+        const payload = { ...training };
+        delete payload._offlineId;
+        delete payload._timestamp;
+
         fetch('https://betaversionwebsite.onrender.com/api/save-training', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(training),
+            body: JSON.stringify(payload),
         })
-        .then(res => res.json())
+        .then(res => {
+            if (!res.ok) throw new Error(`Server responded ${res.status}`);
+            return res.json();
+        })
         .then(data => {
             console.log("✅ Offline training synced:", data);
         })
         .catch(err => console.error("❌ Failed to sync offline training:", err));
     });
 
-    // Nakon slanja svih treninga, obriši queue
     localStorage.removeItem("offline_trainings");
 }
 
