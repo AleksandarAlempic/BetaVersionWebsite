@@ -66,33 +66,50 @@ app.post('/api/save-run', async (req, res) => {
 
 // Snimanje treninga
 app.post('/api/save-training', async (req, res) => {
-  const { user_id, userName, trainingName, pushUps, pullUps, sitUps, absCount, otherExercise, duration, latitude, longitude } = req.body;
-  
-  if (!user_id || !userName || !trainingName) {
-    return res.status(400).json({ error: "User ID, Username, and Training name are required" });
+  const {
+    userName,
+    trainingName,
+    pushUps,
+    pullUps,
+    sitUps,
+    absCount,
+    otherExercise,
+    duration,
+    latitude,
+    longitude
+  } = req.body;
+
+  const safeUserName = userName && userName.trim() !== "" ? userName.trim() : "Anonymous";
+  const safeTrainingName = trainingName && trainingName.trim() !== "" ? trainingName.trim() : "Unnamed Training";
+
+  // Minimalna validacija
+  if (!safeTrainingName) {
+    return res.status(400).json({ error: "Training name is required" });
   }
 
   try {
     const { data, error } = await supabase.from('training').insert([{
-      trainingName,
-      userName,
-      pushUps,
-      pullUps,
-      sitUps,
-      absCount,
-      otherExercise,
-      duration,
-      latitude,
-      longitude
+      trainingName: safeTrainingName,
+      userName: safeUserName,
+      pushUps: pushUps ?? 0,
+      pullUps: pullUps ?? 0,
+      sitUps: sitUps ?? 0,
+      absCount: absCount ?? 0,
+      otherExercise: otherExercise ?? "",
+      duration: duration ?? 0,
+      latitude: latitude ?? null,
+      longitude: longitude ?? null
     }]);
 
     if (error) throw error;
+
     res.status(201).json({ message: "Training saved successfully.", data });
   } catch (err) {
     console.error("❌ Error saving training:", err);
     res.status(500).json({ error: "Failed to save training" });
   }
 });
+
 
 app.get('/api/routes-nearby', async (req, res) => {
   const { lat, lng, radius = 35000 } = req.query; // default 50km
