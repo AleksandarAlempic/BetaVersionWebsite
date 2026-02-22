@@ -40,6 +40,7 @@ let timerTriggered = false;
 let hours = 0, minutes = 0, seconds = 0;
 let rotationDegree = 0;
 let myInterval;
+let selectedPolyline = null;
 
 // Dole u javascript.js
 function syncOfflineRoutes() {
@@ -567,24 +568,34 @@ async function retrieveNearbyRoutes() {
 
     window.currentRouteMarkers = [];
 
-    routes.forEach(route => {
-      const latlngs = JSON.parse(route.polyline).map(coord => L.latLng(coord.lat, coord.lng));
-      L.polyline(latlngs, { color: 'blue', weight: 4, opacity: 0.8 }).addTo(map);
+   routes.forEach(route => {
+  const latlngs = JSON.parse(route.polyline).map(coord => L.latLng(coord.lat, coord.lng));
 
-      const topCoord = latlngs.reduce((top, coord) => (coord.lat > top.lat ? coord : top));
+  const poly = L.polyline(latlngs, { color: 'blue', weight: 4, opacity: 0.8 }).addTo(map);
 
-      const marker = L.marker(topCoord, { icon: runnerIcon });
-      marker.options.routeData = route;
-      marker.bindPopup(`
-        <b>${route.username || translations[currentLanguage].unknownUser}</b><br>
-        🛣 ${translations[currentLanguage].distance}: ${route.distance.toFixed(2)} km<br>
-        ⏱ ${translations[currentLanguage].speed}: ${route.speed.toFixed(2)} km/h<br>
-        🏃‍♂️ ${route.routeName || translations[currentLanguage].unnamedRoute}
-      `);
+  // 🔹 Klik logika za selekciju (zelena)
+  poly.on('click', () => {
+    if (selectedPolyline) {
+      selectedPolyline.setStyle({ color: 'blue', weight: 4, opacity: 0.8 });
+    }
+    poly.setStyle({ color: '#00ff88', weight: 6, opacity: 1 });
+    selectedPolyline = poly;
+  });
 
-      marker.addTo(map);
-      window.currentRouteMarkers.push(marker);
-    });
+  const topCoord = latlngs.reduce((top, coord) => (coord.lat > top.lat ? coord : top));
+
+  const marker = L.marker(topCoord, { icon: runnerIcon });
+  marker.options.routeData = route;
+  marker.bindPopup(`
+    <b>${route.username || translations[currentLanguage].unknownUser}</b><br>
+    🛣 ${translations[currentLanguage].distance}: ${route.distance.toFixed(2)} km<br>
+    ⏱ ${translations[currentLanguage].speed}: ${route.speed.toFixed(2)} km/h<br>
+    🏃‍♂️ ${route.routeName || translations[currentLanguage].unnamedRoute}
+  `);
+
+  marker.addTo(map);
+  window.currentRouteMarkers.push(marker);
+});
 
     console.log("✅ ROUTES FETCH → SW TTL ACTIVE");
 
