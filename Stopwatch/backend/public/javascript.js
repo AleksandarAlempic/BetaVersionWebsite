@@ -568,39 +568,43 @@ async function retrieveNearbyRoutes() {
 
     window.currentRouteMarkers = [];
 
-   routes.forEach(route => {
+  routes.forEach(route => {
   const latlngs = JSON.parse(route.polyline).map(coord => L.latLng(coord.lat, coord.lng));
 
-const poly = L.polyline(latlngs, {
-  color: 'blue',
-  weight: 4,
-  opacity: 0.8,
-  interactive: true   // <- ovo je ključno
-}).addTo(map);
+  // Kreiraj polyline u posebnom pane-u
+  const poly = L.polyline(latlngs, {
+    color: 'blue',
+    weight: 4,
+    opacity: 0.8,
+    interactive: true
+  }).addTo(map);
 
-  // 🔹 Klik logika za selekciju (zelena)
+  // Klik logika
   poly.on('click', () => {
     if (selectedPolyline) {
       selectedPolyline.setStyle({ color: 'blue', weight: 4, opacity: 0.8 });
     }
     poly.setStyle({ color: '#00ff88', weight: 6, opacity: 1 });
-    poly.bringToFront(); // ← selektovana poly iznad markera
+    poly.bringToFront();   // selektovana poly iznad ostalih poly, ali ispod markera
     selectedPolyline = poly;
   });
 
   const topCoord = latlngs.reduce((top, coord) => (coord.lat > top.lat ? coord : top));
 
-  const marker = L.marker(topCoord, { icon: runnerIcon });
+  const marker = L.marker(topCoord, { icon: runnerIcon, interactive: true });
   marker.options.routeData = route;
   marker.bindPopup(`
     <b>${route.username || translations[currentLanguage].unknownUser}</b><br>
-    🛣 ${translations[currentLanguage].distance}: ${route.distance.toFixed(2)} km<br>
-    ⏱ ${translations[currentLanguage].speed}: ${route.speed.toFixed(2)} km/h<br>
+    🛣 ${translations[currentLanguage].distance.toFixed(2)} km<br>
+    ⏱ ${translations[currentLanguage].speed.toFixed(2)} km/h<br>
     🏃‍♂️ ${route.routeName || translations[currentLanguage].unnamedRoute}
   `);
 
   marker.addTo(map);
   window.currentRouteMarkers.push(marker);
+
+  // ← ključ: dodaj polyline na front nakon markera ako želiš klik
+  poly.bringToFront();
 });
 
     console.log("✅ ROUTES FETCH → SW TTL ACTIVE");
