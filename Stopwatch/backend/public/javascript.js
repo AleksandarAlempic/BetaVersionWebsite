@@ -571,7 +571,12 @@ async function retrieveNearbyRoutes() {
    routes.forEach(route => {
   const latlngs = JSON.parse(route.polyline).map(coord => L.latLng(coord.lat, coord.lng));
 
-  const poly = L.polyline(latlngs, { color: 'blue', weight: 4, opacity: 0.8 }).addTo(map);
+const poly = L.polyline(latlngs, {
+  color: 'blue',
+  weight: 4,
+  opacity: 0.8,
+  interactive: true   // <- ovo je ključno
+}).addTo(map);
 
   // 🔹 Klik logika za selekciju (zelena)
   poly.on('click', () => {
@@ -579,6 +584,7 @@ async function retrieveNearbyRoutes() {
       selectedPolyline.setStyle({ color: 'blue', weight: 4, opacity: 0.8 });
     }
     poly.setStyle({ color: '#00ff88', weight: 6, opacity: 1 });
+    poly.bringToFront(); // ← selektovana poly iznad markera
     selectedPolyline = poly;
   });
 
