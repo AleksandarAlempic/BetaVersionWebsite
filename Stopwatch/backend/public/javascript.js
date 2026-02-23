@@ -42,7 +42,14 @@ let rotationDegree = 0;
 let myInterval;
 let selectedPolyline = null;
 
-const map = L.map('map').setView([45.2671, 19.8335], 13);
+let map;
+
+if (!window._leafletMap) {
+    map = L.map('map').setView([45.2671, 19.8335], 13);
+    window._leafletMap = map; // globalno čuvamo referencu
+} else {
+    map = window._leafletMap; // već postoji, koristi istu
+}
 
 delete L.Icon.Default.prototype._getIconUrl;
 
