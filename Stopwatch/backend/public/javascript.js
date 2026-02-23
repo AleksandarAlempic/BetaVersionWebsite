@@ -42,6 +42,18 @@ let rotationDegree = 0;
 let myInterval;
 let selectedPolyline = null;
 
+const map = L.map('map').setView([45.2671, 19.8335], 13);
+
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png'
+}); 
+
+L.marker([45.2671, 19.8335]).addTo(map);
+
 // Dole u javascript.js
 function syncOfflineRoutes() {
     const offlineRoutes = JSON.parse(localStorage.getItem("offlineRoutes") || "[]");
