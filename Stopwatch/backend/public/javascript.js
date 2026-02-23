@@ -42,24 +42,24 @@ let rotationDegree = 0;
 let myInterval;
 let selectedPolyline = null;
 
-let map;
+// let map;
 
-if (!window._leafletMap) {
-    map = L.map('map').setView([45.2671, 19.8335], 13);
-    window._leafletMap = map; // globalno čuvamo referencu
-} else {
-    map = window._leafletMap; // već postoji, koristi istu
-}
+// if (!window._leafletMap) {
+//     map = L.map('map').setView([45.2671, 19.8335], 13);
+//     window._leafletMap = map; // globalno čuvamo referencu
+// } else {
+//     map = window._leafletMap; // već postoji, koristi istu
+// }
 
-delete L.Icon.Default.prototype._getIconUrl;
+// delete L.Icon.Default.prototype._getIconUrl;
 
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png'
-}); 
+// L.Icon.Default.mergeOptions({
+//   iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+//   iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+//   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png'
+// }); 
 
-L.marker([45.2671, 19.8335]).addTo(map);
+// L.marker([45.2671, 19.8335]).addTo(map);
 
 // Dole u javascript.js
 function syncOfflineRoutes() {
