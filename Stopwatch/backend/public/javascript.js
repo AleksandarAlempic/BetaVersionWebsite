@@ -595,8 +595,8 @@ async function retrieveNearbyRoutes() {
   marker.options.routeData = route;
   marker.bindPopup(`
     <b>${route.username || translations[currentLanguage].unknownUser}</b><br>
-    🛣 ${translations[currentLanguage].distance.toFixed(2)} km<br>
-    ⏱ ${translations[currentLanguage].speed.toFixed(2)} km/h<br>
+    🧭 ${translations[currentLanguage].distance}: ${Number(route.distance).toFixed(2)} km<br>
+    ⏱ ${translations[currentLanguage].speed}: ${Number(route.speed).toFixed(2)} km/h<br>
     🏃‍♂️ ${route.routeName || translations[currentLanguage].unnamedRoute}
   `);
 
