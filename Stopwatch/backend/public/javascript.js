@@ -607,7 +607,7 @@ routes.forEach(route => {
     if (window.selectedPolyline) {
       window.selectedPolyline.setStyle({ color: 'blue', weight: 4, opacity: 0.8 });
     }
-    poly.setStyle({ color: '#00ff88', weight: 6, opacity: 1 });
+    poly.setStyle({ color: '#ffb84d', weight: 6, opacity: 1 });
     poly.bringToFront(); // samo iznad drugih poly
     window.selectedPolyline = poly;
   };
