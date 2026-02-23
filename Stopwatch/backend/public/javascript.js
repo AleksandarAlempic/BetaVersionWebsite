@@ -568,16 +568,23 @@ async function retrieveNearbyRoutes() {
 
     window.currentRouteMarkers = [];
 
+   map.createPane('routesPane');
+   map.getPane('routesPane').style.zIndex = 400;
+
+   map.createPane('markersPane');
+   map.getPane('markersPane').style.zIndex = 450;
+
   routes.forEach(route => {
   const latlngs = JSON.parse(route.polyline).map(coord => L.latLng(coord.lat, coord.lng));
 
   // Kreiraj polyline u posebnom pane-u
-  const poly = L.polyline(latlngs, {
-    color: 'blue',
-    weight: 4,
-    opacity: 0.8,
-    interactive: true
-  }).addTo(map);
+const poly = L.polyline(latlngs, {
+  color: 'blue',
+  weight: 4,
+  opacity: 0.8,
+  interactive: true,
+  pane: 'routesPane'
+}).addTo(map);
 
   // Klik logika
   poly.on('click', () => {
@@ -591,7 +598,11 @@ async function retrieveNearbyRoutes() {
 
   const topCoord = latlngs.reduce((top, coord) => (coord.lat > top.lat ? coord : top));
 
-  const marker = L.marker(topCoord, { icon: runnerIcon, interactive: true });
+ const marker = L.marker(topCoord, {
+  icon: runnerIcon,
+  interactive: true,
+  pane: 'markersPane'
+});
   marker.options.routeData = route;
   marker.bindPopup(`
     <b>${route.username || translations[currentLanguage].unknownUser}</b><br>
@@ -603,8 +614,6 @@ async function retrieveNearbyRoutes() {
   marker.addTo(map);
   window.currentRouteMarkers.push(marker);
 
-  // ← ključ: dodaj polyline na front nakon markera ako želiš klik
-  poly.bringToFront();
 });
 
     console.log("✅ ROUTES FETCH → SW TTL ACTIVE");
