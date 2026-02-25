@@ -15,6 +15,12 @@
       "purpose": "any"
     },
     {
+     "src": "/icons/LargeKVFit.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
       "src": "/icons/SplashKVFit.png",
       "sizes": "512x512",
       "type": "image/png",
@@ -22,3 +28,5 @@
     }
   ]
 }
+  
+   
