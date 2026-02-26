@@ -14,5 +14,11 @@
       "type": "image/png",
       "purpose": "maskable"
     },
+    {
+  "src": "/icons/SplashKVFit.png",
+  "sizes": "512x512",
+  "type": "image/png",
+  "purpose": "any"
+}
   ]
 }
