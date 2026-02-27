@@ -2473,3 +2473,13 @@ input, textarea {
     z-index: 9999999 !important; /* very high */
     /* pointer-events: auto !important; */
 /* } */ 
+
+#map {
+  position: relative;
+  z-index: 1 !important;
+}
+
+#map-content {
+  position: relative;
+  z-index: 1 !important;
+}
