@@ -40,25 +40,33 @@
     }
  
             /* Fullscreen kvadratni splash */
+/* Fullscreen root layer */
 #splash-root {
   position: fixed;
   inset: 0;
   z-index: 2147483647; /* maksimalni browser z-index */
-  pointer-events: none;
+  pointer-events: auto; /* blokira interakciju sa mapom dok splash traje */
+  -webkit-transform: translate3d(0,0,0); /* mobilni trik */
+  transform: translate3d(0,0,0);
 }
-        
+
 #custom-splash {
-  position: absolute;   /* 🔥 OVO FALI */
+  position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
   width: 100%;
   height: 100%;
   background: white url('/icons/SplashKVFit.png') no-repeat center center;
   background-size: contain;
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
 }
 
+/* fade-out efekat */
+#custom-splash.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
     /* Opcioni fade-out efekt */
     #custom-splash.fade-out {
       opacity: 0;
@@ -70,7 +78,7 @@
         <!-- a -->
         <body>
            <div id="splash-root">
-           <div id="custom-splash"></div>
+           <div id="custom-splash"></div>   
     </div>
             <button id="testCustomBtn">Play Test Playlist</button>
             <div id="stopwatchLabel" class="stopwatchLabel">
