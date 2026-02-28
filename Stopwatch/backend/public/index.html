@@ -40,8 +40,15 @@
     }
  
             /* Fullscreen kvadratni splash */
-#custom-splash {
+#splash-root {
   position: fixed;
+  inset: 0;
+  z-index: 2147483647; /* maksimalni browser z-index */
+  pointer-events: none;
+}
+        
+#custom-splash {
+  position: absolute;   /* 🔥 OVO FALI */
   top: 0;
   left: 0;
   right: 0;
@@ -50,7 +57,6 @@
   height: 100%;
   background: white url('/icons/SplashKVFit.png') no-repeat center center;
   background-size: contain;
-  z-index: 999999999999999;
 }
 
     /* Opcioni fade-out efekt */
@@ -62,8 +68,10 @@
             
         </head>
         <!-- a -->
-        <body> 
-                <div id="custom-splash"></div>
+        <body>
+           <div id="splash-root">
+           <div id="custom-splash"></div>
+    </div>
             <button id="testCustomBtn">Play Test Playlist</button>
             <div id="stopwatchLabel" class="stopwatchLabel">
                 <table class="tableClass">
