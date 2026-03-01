@@ -65,15 +65,24 @@
 }
 
 /* Fade-out efekat */
-#custom-splash.fade-out {
+/* #custom-splash.fade-out {
   opacity: 0;
   transition: opacity 0.5s ease;
+} */
+
+        #custom-splash {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+#custom-splash.fade-out {
+  opacity: 0;
 }
     /* Opcioni fade-out efekt */
-    #custom-splash.fade-out {
+    /* #custom-splash.fade-out {
       opacity: 0;
       transition: opacity 0.5s ease;
-    }
+    } */
     </style>
             
         </head>
@@ -687,28 +696,30 @@ document.getElementById("trainingForm").addEventListener("submit", function(e) {
 });
     </script>
 
-             <script>
-              document.addEventListener('DOMContentLoaded', () => {
+           <script>
+window.addEventListener('load', () => {
   const splash = document.getElementById('custom-splash');
-  splash.style.pointerEvents = 'auto';
-  splash.style.opacity = 1;
+  const splashRoot = document.getElementById('splash-root');
+  const mapContent = document.getElementById('map-content');
 
-  // Splash traje 2 sekunde
+  // delay da se splash vidi
   setTimeout(() => {
+
+    // fade efekat
     splash.classList.add('fade-out');
 
-    splash.addEventListener('transitionend', () => {
-      splash.remove();
-      
-      // Inicijalizuj mapu OVDE
-      const map = L.map('map').setView([45.2671, 19.8335], 13);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19
-      }).addTo(map);
-    });
-  }, 2000);
+    // fallback timer (ne zavisi od transitionend)
+    setTimeout(() => {
+
+      splashRoot.remove();                 // ukloni splash
+      mapContent.style.display = 'block';  // prikaži mapu
+      initMap();                           // 🔥 startuj mapu
+
+    }, 600); // mora biti > CSS transition (0.5s)
+
+  }, 1500);
 });
-             </script>
+</script>
             
         </div>
         <div id="usernamePopup" style="display: none; position: fixed; top: 40%; left: 49%; min-height: 130px; transform: translateX(-50%); background: white; padding: 20px; z-index: 200000000001; box-shadow: 0px 0px 10px rgba(0,0,0,0.5); border-radius: 8px;">
