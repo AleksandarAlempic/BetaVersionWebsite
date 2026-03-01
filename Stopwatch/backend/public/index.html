@@ -768,32 +768,32 @@ function initMap(){
 }
     </script>  
             
- <script>
-            window.addEventListener('load', () => {
+<script>
+window.addEventListener('load', () => {
   const splash = document.getElementById('custom-splash');
   const splashRoot = document.getElementById('splash-root');
   const mapContent = document.getElementById('map-content');
+  const addButton = document.getElementById('fetchAddTrainingButton');
 
-  // 1) mapa NE POSTOJI još
-  // 2) splash je jedini fullscreen layer
+  // sakrij mapu i dugme dok splash traje
+  mapContent.style.display = 'none';
+  addButton.style.display = 'none';
 
+  // delay da se splash vidi (2500ms = 1.5 + 1sek duže)
   setTimeout(() => {
+
+    // fade efekat
     splash.classList.add('fade-out');
 
-    splash.addEventListener('transitionend', () => {
+    // fallback timer (ne zavisi od transitionend)
+    setTimeout(() => {
+      splashRoot.remove();                  // ukloni splash
+      mapContent.style.display = 'block';   // prikaži mapu
+      addButton.style.display = 'inline-block'; // prikaži dugme
+      initMap();                            // 🔥 startuj mapu
+    }, 600); // mora biti > CSS transition (0.5s)
 
-      // ukloni splash iz DOM-a
-      splashRoot.remove();
-
-      // prikaži map container
-      mapContent.style.display = 'block';
-
-      // tek sada inicijalizuj mapu
-      initMap();
-
-    });
-
-  }, 1500);
+  }, 2500); // povećano trajanje splash-a
 });
 </script>
  
