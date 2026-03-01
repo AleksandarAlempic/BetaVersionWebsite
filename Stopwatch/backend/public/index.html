@@ -742,6 +742,21 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
+
+
+
+ <script>
+function initMap(){
+  const map = L.map('map').setView([45.2671, 19.8335], 13);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19
+  }).addTo(map);
+
+  // sve ostalo (routing, markers, polyline, fetch, supabase...)
+}
+    </script>  
+            
  <script>
             window.addEventListener('load', () => {
   const splash = document.getElementById('custom-splash');
@@ -770,18 +785,9 @@ if ('serviceWorker' in navigator) {
   }, 1500);
 });
 </script>
-function initMap(){
-  const map = L.map('map').setView([45.2671, 19.8335], 13);
+ 
 
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19
-  }).addTo(map);
-
-  // sve ostalo (routing, markers, polyline, fetch, supabase...)
-}
-       
-
-<script>
+<!-- <script>
   // Kada se stranica učita, splash nestaje
   window.addEventListener('load', () => {
     const splash = document.getElementById('custom-splash');
@@ -796,7 +802,7 @@ function initMap(){
       }, 500); // fade trajanje
     }, 1500); // splash traje 1.5 sekundi
   });
-</script>
+</script> -->
         </body>
         <script defer src="Data.js"></script>
         <!-- <script defer src="javascript.js"></script> -->
