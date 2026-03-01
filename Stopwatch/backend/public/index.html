@@ -322,7 +322,7 @@
             <div  id="averageSpeed" class="speed">
                 <strong>Avg Speed:</strong> <span id="averageSpeedValue">0.00</span> km/h
             </div>
-            <div class="Root" id="map-content">
+            <div class="Root" id="map-content" style="display:none;">
                 <div id="map" style="margin-top: 100px; margin-left: 5%" class="trackDiv"></div>
             
                 <!-- Leaflet JS -->
@@ -742,6 +742,43 @@ if ('serviceWorker' in navigator) {
   });
 }
 </script>
+ <script>
+            window.addEventListener('load', () => {
+  const splash = document.getElementById('custom-splash');
+  const splashRoot = document.getElementById('splash-root');
+  const mapContent = document.getElementById('map-content');
+
+  // 1) mapa NE POSTOJI još
+  // 2) splash je jedini fullscreen layer
+
+  setTimeout(() => {
+    splash.classList.add('fade-out');
+
+    splash.addEventListener('transitionend', () => {
+
+      // ukloni splash iz DOM-a
+      splashRoot.remove();
+
+      // prikaži map container
+      mapContent.style.display = 'block';
+
+      // tek sada inicijalizuj mapu
+      initMap();
+
+    });
+
+  }, 1500);
+});
+</script>
+function initMap(){
+  const map = L.map('map').setView([45.2671, 19.8335], 13);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19
+  }).addTo(map);
+
+  // sve ostalo (routing, markers, polyline, fetch, supabase...)
+}
        
 
 <script>
