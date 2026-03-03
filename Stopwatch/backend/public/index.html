@@ -75,14 +75,6 @@
   transition: opacity 0.5s ease;
 }
 
-#custom-splash.fade-out {
-  opacity: 0;
-}
-    /* Opcioni fade-out efekt */
-    /* #custom-splash.fade-out {
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    } */
     </style>
             
         </head>
@@ -347,9 +339,9 @@
                     const defaultLat = 45.2764;
                     const defaultLon = 19.8244;
             
-                    const map = L.map('map').setView([defaultLat, defaultLon], 13);
+                    // const map = L.map('map').setView([defaultLat, defaultLon], 13);
             
-                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
+                    // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
 
             
                     const routeControl = L.Routing.control({
@@ -696,30 +688,7 @@ document.getElementById("trainingForm").addEventListener("submit", function(e) {
 });
     </script>
 
-           <script>
-window.addEventListener('load', () => {
-  const splash = document.getElementById('custom-splash');
-  const splashRoot = document.getElementById('splash-root');
-  const mapContent = document.getElementById('map-content');
 
-  // delay da se splash vidi
-  setTimeout(() => {
-
-    // fade efekat
-    splash.classList.add('fade-out');
-
-    // fallback timer (ne zavisi od transitionend)
-    setTimeout(() => {
-
-      splashRoot.remove();                 // ukloni splash
-      mapContent.style.display = 'block';  // prikaži mapu
-      initMap();                           // 🔥 startuj mapu
-
-    }, 600); // mora biti > CSS transition (0.5s)
-
-  }, 1500);
-});
-</script>
             
         </div>
         <div id="usernamePopup" style="display: none; position: fixed; top: 40%; left: 49%; min-height: 130px; transform: translateX(-50%); background: white; padding: 20px; z-index: 200000000001; box-shadow: 0px 0px 10px rgba(0,0,0,0.5); border-radius: 8px;">
@@ -757,14 +726,21 @@ if ('serviceWorker' in navigator) {
 
 
  <script>
+     let map;
 function initMap(){
-  const map = L.map('map').setView([45.2671, 19.8335], 13);
+
+  if (map) {
+    console.log("♻ Map already exists");
+    return;
+  }
+
+  map = L.map('map').setView([45.2671, 19.8335], 13);
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19
   }).addTo(map);
 
-  // sve ostalo (routing, markers, polyline, fetch, supabase...)
+  console.log("✅ MAP INITIALIZED");
 }
     </script>  
             
@@ -797,23 +773,6 @@ window.addEventListener('load', () => {
 });
 </script>
  
-
-<!-- <script>
-  // Kada se stranica učita, splash nestaje
-  window.addEventListener('load', () => {
-    const splash = document.getElementById('custom-splash');
-
-    // Delay pre fade-out
-    setTimeout(() => {
-      splash.classList.add('fade-out');
-
-      // Nakon fade trajanja sakrij splash
-      setTimeout(() => {
-        splash.style.display = 'none';
-      }, 500); // fade trajanje
-    }, 1500); // splash traje 1.5 sekundi
-  });
-</script> -->
         </body>
         <script defer src="Data.js"></script>
         <!-- <script defer src="javascript.js"></script> -->
