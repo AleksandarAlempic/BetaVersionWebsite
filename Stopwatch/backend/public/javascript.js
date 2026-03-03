@@ -527,7 +527,6 @@ const dumbbellIcon = L.icon({
 });
 
 // =================== FETCH NEARBY ROUTES ===================
-// =================== FETCH NEARBY ROUTES ===================
 async function retrieveNearbyRoutes() {
   let latitude, longitude;
 
@@ -587,16 +586,23 @@ async function retrieveNearbyRoutes() {
 
 window.currentRouteMarkers = [];
 
-map.createPane('routesPane');
-map.getPane('routesPane').style.zIndex = 400;
+// Kreiraj pane samo ako ne postoji
+if (!map.getPane('routesPane')) {
+  map.createPane('routesPane');
+  map.getPane('routesPane').style.zIndex = 400;
+}
 
-map.createPane('markersPane');
-map.getPane('markersPane').style.zIndex = 450;
+if (!map.getPane('markersPane')) {
+  map.createPane('markersPane');
+  map.getPane('markersPane').style.zIndex = 450;
+}
 
 routes.forEach(route => {
-  const latlngs = JSON.parse(route.polyline).map(c => L.latLng(c.lat, c.lng));
 
-  // Kreiraj polyline
+  const latlngs = JSON.parse(route.polyline).map(c =>
+    L.latLng(c.lat, c.lng)
+  );
+
   const poly = L.polyline(latlngs, {
     color: 'blue',
     weight: 4,
@@ -605,7 +611,6 @@ routes.forEach(route => {
     pane: 'routesPane'
   }).addTo(map);
 
-  // Marker na početku rute
   const marker = L.marker(latlngs[0], {
     icon: runnerIcon,
     interactive: true,
@@ -614,7 +619,6 @@ routes.forEach(route => {
 
   marker.options.routeData = route;
 
-  // Bind popup na marker
   marker.bindPopup(`
     <b>${route.username || translations[currentLanguage].unknownUser}</b><br>
     🧭 ${translations[currentLanguage].distance}: ${Number(route.distance).toFixed(2)} km<br>
@@ -622,38 +626,37 @@ routes.forEach(route => {
     🏃‍♂️ ${route.routeName || translations[currentLanguage].unnamedRoute}
   `);
 
-  // Funkcija za selekciju polyline
   const selectPolyline = () => {
     if (window.selectedPolyline) {
-      window.selectedPolyline.setStyle({ color: 'blue', weight: 4, opacity: 0.8 });
+      window.selectedPolyline.setStyle({
+        color: 'blue',
+        weight: 4,
+        opacity: 0.8
+      });
     }
-    poly.setStyle({ color: '#00ff88', weight: 6, opacity: 1 });
+
+    poly.setStyle({
+      color: '#00ff88',
+      weight: 6,
+      opacity: 1
+    });
+
     poly.bringToFront();
     window.selectedPolyline = poly;
   };
 
-  // Klik handler na liniju
+  // Klik na liniju
   poly.on('click', selectPolyline);
 
-  // Klik handler na marker → popup + selekt linije
+  // Klik na marker → popup + zelena linija
   marker.on('click', () => {
-    marker.openPopup();  // popup
-    selectPolyline();    // linija postaje zelena
+    marker.openPopup();
+    selectPolyline();
   });
 
-  // Dodaj marker u globalni niz
   window.currentRouteMarkers.push(marker);
-});
 
-  // Klik handler na polyline
-  poly.on('click', selectPolyline);
-
-  // Klik handler na marker (ili popup open)
-  marker.on('click', selectPolyline);
-  marker.on('popupopen', selectPolyline);
-
-  window.currentRouteMarkers.push(marker);
-});
+}); // <-- SAMO JEDAN završetak forEach
    
     console.log("✅ ROUTES FETCH → SW TTL ACTIVE");
 
