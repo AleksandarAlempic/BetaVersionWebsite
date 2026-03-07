@@ -46,7 +46,7 @@ let map;
 
 if (!window._leafletMap) {
 
-    map = L.map('map');
+    map = L.map('map').setView([45.2671, 19.8335], 13); // početni view
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
