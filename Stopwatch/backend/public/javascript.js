@@ -47,11 +47,16 @@ let userMarker;
 
 function initMap() {
     const mapContainer = document.getElementById('map');
+    if (!mapContainer) {
+        console.warn('Map container not found!');
+        return;
+    }
 
-    // Ako mapa već postoji, uništi je
-    if (mapContainer._leaflet_id) {
-        mapContainer._leaflet_id = null; // resetujemo Leaflet ID
-        mapContainer.innerHTML = "";    // uklanjamo stare elemente
+    // Ako mapa već postoji, samo koristimo postojeću
+    if (mapContainer._leaflet_id && window._leafletMap) {
+        map = window._leafletMap;
+        console.log('Leaflet map already initialized');
+        return;
     }
 
     // Inicijalizacija mape
@@ -61,7 +66,10 @@ function initMap() {
         attribution: '© OpenStreetMap'
     }).addTo(map);
 
-    let userMarker;
+    window._leafletMap = map;
+
+    // Marker
+    userMarker = null;
 
     function updateLocation(lat, lng) {
         map.setView([lat, lng], 15);
@@ -72,22 +80,20 @@ function initMap() {
         }
     }
 
+    // Dohvat GPS pozicije
     navigator.geolocation.getCurrentPosition(
         function(position) {
-            const lat = position.coords.latitude;
-            const lng = position.coords.longitude;
-            updateLocation(lat, lng);
+            updateLocation(position.coords.latitude, position.coords.longitude);
         },
         function() {
             updateLocation(45.2671, 19.8335);
         }
     );
-
-    window._leafletMap = map;
 }
 
-// Pokrećemo inicijalizaciju
-initMap();
+// Pokrećemo mapu kada je DOM spreman
+document.addEventListener('DOMContentLoaded', initMap);
+
 
 // Dole u javascript.js
 function syncOfflineRoutes() {
