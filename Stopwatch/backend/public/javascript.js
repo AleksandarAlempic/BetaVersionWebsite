@@ -52,14 +52,28 @@ function initMap() {
         return;
     }
 
-    // Ako mapa već postoji, samo koristimo postojeću
     if (mapContainer._leaflet_id && window._leafletMap) {
         map = window._leafletMap;
         console.log('Leaflet map already initialized');
+
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+                const lat = position.coords.latitude;
+                const lng = position.coords.longitude;
+
+                if (!userMarker) userMarker = L.marker([lat, lng]).addTo(map);
+                else userMarker.setLatLng([lat, lng]);
+
+                map.setView([lat, lng], 15);
+            },
+            function() {
+                map.setView([45.2671, 19.8335], 13);
+            }
+        );
+
         return;
     }
 
-    // Inicijalizacija mape
     map = L.map('map').setView([45.2671, 19.8335], 13);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
@@ -67,33 +81,22 @@ function initMap() {
     }).addTo(map);
 
     window._leafletMap = map;
-
-    // Marker
     userMarker = null;
 
-    function updateLocation(lat, lng) {
-        map.setView([lat, lng], 15);
-        if (!userMarker) {
-            userMarker = L.marker([lat, lng]).addTo(map);
-        } else {
-            userMarker.setLatLng([lat, lng]);
-        }
-    }
-
-    // Dohvat GPS pozicije
     navigator.geolocation.getCurrentPosition(
         function(position) {
-            updateLocation(position.coords.latitude, position.coords.longitude);
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            userMarker = L.marker([lat, lng]).addTo(map);
+            map.setView([lat, lng], 15);
         },
         function() {
-            updateLocation(45.2671, 19.8335);
+            map.setView([45.2671, 19.8335], 13);
         }
     );
 }
 
-// Pokrećemo mapu kada je DOM spreman
 document.addEventListener('DOMContentLoaded', initMap);
-
 
 // Dole u javascript.js
 function syncOfflineRoutes() {
