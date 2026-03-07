@@ -48,12 +48,19 @@ if (!window._leafletMap) {
 
     map = L.map('map');
 
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+
     navigator.geolocation.getCurrentPosition(function(position) {
 
         const lat = position.coords.latitude;
         const lng = position.coords.longitude;
 
         map.setView([lat, lng], 15);
+
+        L.marker([lat, lng]).addTo(map);
 
     }, function() {
 
