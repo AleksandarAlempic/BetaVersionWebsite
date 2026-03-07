@@ -42,24 +42,33 @@ let rotationDegree = 0;
 let myInterval;
 let selectedPolyline = null;
 
-// let map;
+let map;
 
-// if (!window._leafletMap) {
-//     map = L.map('map').setView([45.2671, 19.8335], 13);
-//     window._leafletMap = map; // globalno čuvamo referencu
-// } else {
-//     map = window._leafletMap; // već postoji, koristi istu
-// }
+if (!window._leafletMap) {
 
-// delete L.Icon.Default.prototype._getIconUrl;
+    map = L.map('map');
 
-// L.Icon.Default.mergeOptions({
-//   iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-//   iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-//   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png'
-// }); 
+    navigator.geolocation.getCurrentPosition(function(position) {
 
-// L.marker([45.2671, 19.8335]).addTo(map);
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+
+        map.setView([lat, lng], 15);
+
+    }, function() {
+
+        // fallback ako GPS ne radi
+        map.setView([45.2671, 19.8335], 13);
+
+    });
+
+    window._leafletMap = map;
+
+} else {
+
+    map = window._leafletMap;
+
+}
 
 // Dole u javascript.js
 function syncOfflineRoutes() {
