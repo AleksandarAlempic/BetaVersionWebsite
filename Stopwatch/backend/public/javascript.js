@@ -43,39 +43,46 @@ let myInterval;
 let selectedPolyline = null;
 
 let map;
+let userMarker;
 
 if (!window._leafletMap) {
-
-    map = L.map('map').setView([45.2671, 19.8335], 13); // početni view
-
+    // Inicijalizacija mape
+    map = L.map('map').setView([45.2671, 19.8335], 13); // Novi Sad
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '© OpenStreetMap'
     }).addTo(map);
 
-    navigator.geolocation.getCurrentPosition(function(position) {
-
-        const lat = position.coords.latitude;
-        const lng = position.coords.longitude;
-
-        map.setView([lat, lng], 15);
-
-        L.marker([lat, lng]).addTo(map);
-
-    }, function() {
-
-        // fallback ako GPS ne radi
-        map.setView([45.2671, 19.8335], 13);
-
-    });
-
     window._leafletMap = map;
 
 } else {
-
+    // Ako mapa već postoji
     map = window._leafletMap;
-
 }
+
+// Funkcija za ažuriranje lokacije
+function updateLocation(lat, lng) {
+    map.setView([lat, lng], 15);
+
+    if (!userMarker) {
+        userMarker = L.marker([lat, lng]).addTo(map);
+    } else {
+        userMarker.setLatLng([lat, lng]);
+    }
+}
+
+// Dohvat GPS pozicije
+navigator.geolocation.getCurrentPosition(
+    function(position) {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        updateLocation(lat, lng);
+    },
+    function() {
+        // fallback
+        updateLocation(45.2671, 19.8335);
+    }
+);
 
 // Dole u javascript.js
 function syncOfflineRoutes() {
