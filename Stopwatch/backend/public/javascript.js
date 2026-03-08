@@ -48,9 +48,9 @@ let routingControl = null;
 
 function initMap() {
     const mapContainer = document.getElementById("map");
-    if (!mapContainer) return;
+    if (!mapContainer) return; // Ako nema DOM elementa, izlazi
 
-    // Ako mapa već postoji samo update lokaciju
+    // Ako mapa već postoji, samo update lokaciju
     if (map) {
         updateUserLocation();
         return;
