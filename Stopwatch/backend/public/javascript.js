@@ -47,25 +47,23 @@ let userMarker = null;
 let routingControl = null;
 
 function initMap() {
-    const mapContainer = document.getElementById('map');
+    const mapContainer = document.getElementById("map");
     if (!mapContainer) return;
 
-    // Ako je Leaflet već inicijalizovan na ovom containeru, update-uj lokaciju
-    if (mapContainer._leaflet_id && window._leafletMap) {
-        map = window._leafletMap;
+    // Ako mapa već postoji samo update lokaciju
+    if (map) {
         updateUserLocation();
         return;
     }
 
-    // Pokušaj da dobiješ korisnikovu lokaciju
     navigator.geolocation.getCurrentPosition(
-        function(position) {
+        (position) => {
             const lat = position.coords.latitude;
             const lng = position.coords.longitude;
             createMap(lat, lng);
         },
-        function() {
-            // fallback na Novi Sad
+        () => {
+            // fallback Novi Sad
             createMap(45.2671, 19.8335);
         },
         {
@@ -77,55 +75,77 @@ function initMap() {
 }
 
 function createMap(lat, lng) {
-    map = L.map('map').setView([lat, lng], 15);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    if (map) {
+        map.remove();
+        map = null;
+    }
+
+    map = L.map("map").setView([lat, lng], 15);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
-        attribution: '© OpenStreetMap'
+        attribution: "© OpenStreetMap"
     }).addTo(map);
 
-    window._leafletMap = map;
-
-    // Dodaj marker korisnika
     userMarker = L.marker([lat, lng]).addTo(map);
 
-    // Dodaj routing
-    routingControl = L.Routing.control({
-        waypoints: [
-            L.latLng(lat, lng),         // start: korisnik
-            L.latLng(45.2540, 19.8450)  // primer destinacije
-        ],
-        routeWhileDragging: true
-    }).addTo(map);
+    // ⭐ OVO JE KLJUČNO
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 300);
+
+    setTimeout(() => {
+
+        routingControl = L.Routing.control({
+            waypoints: [
+                L.latLng(lat, lng),
+                L.latLng(45.2540, 19.8450)
+            ],
+            routeWhileDragging: true,
+            show: false
+        }).addTo(map);
+
+    }, 400);
+
 }
 
 function updateUserLocation() {
+
     if (!map) return;
 
     navigator.geolocation.getCurrentPosition(
-        function(position) {
+        (position) => {
+
             const lat = position.coords.latitude;
             const lng = position.coords.longitude;
 
-            if (userMarker) userMarker.setLatLng([lat, lng]);
-            else userMarker = L.marker([lat, lng]).addTo(map);
+            if (userMarker) {
+                userMarker.setLatLng([lat, lng]);
+            } else {
+                userMarker = L.marker([lat, lng]).addTo(map);
+            }
 
             map.setView([lat, lng], map.getZoom());
 
             if (routingControl) {
+
                 const waypoints = routingControl.getWaypoints();
+
                 waypoints[0] = L.latLng(lat, lng);
+
                 routingControl.setWaypoints(waypoints);
+
             }
+
         },
-        function() {
+        () => {
             map.setView([45.2671, 19.8335], 13);
         }
     );
 }
 
-// SAMO JEDAN listener
-document.addEventListener('DOMContentLoaded', initMap);
+document.addEventListener("DOMContentLoaded", initMap);
 
 // Dole u javascript.js
 function syncOfflineRoutes() {
@@ -565,6 +585,11 @@ checkboxRoot.addEventListener('click', () => {
     Root.style.display = "block";
     distance.style.display = "block";
     speed.style.display = "block";
+
+    // ⬅ OVDE je ključno: obavesti Leaflet da ponovo meri dimenzije
+    setTimeout(() => {
+      if (map) map.invalidateSize();
+    }, 300); // mali delay da DOM završi render
   }
 
   const pointer = checkboxRoot.checked ? "none" : "auto";
@@ -576,7 +601,6 @@ checkboxRoot.addEventListener('click', () => {
   addTrainingButton.style.display = checkboxRoot.checked ? "none" : "block";
   playListBtn.style.display = checkboxRoot.checked ? "none" : "block";
 });
-
 // =================== ICON DEFINITIONS ===================
 const runnerIcon = L.icon({
   iconUrl: '/images/MarkersAndRoute.png',
