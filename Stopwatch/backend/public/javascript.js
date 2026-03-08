@@ -52,12 +52,11 @@ function initMap() {
         return;
     }
 
-    // Ako mapa već postoji, koristi je
+    // Ako mapa već postoji, ukloni je da izbegnemo sivu mapu
     if (window._leafletMap) {
-        map = window._leafletMap;
-        console.log('Leaflet map already initialized');
-        updateUserLocation();
-        return;
+        window._leafletMap.remove();
+        window._leafletMap = null;
+        userMarker = null;
     }
 
     // Kreiraj novu Leaflet mapu
@@ -74,7 +73,6 @@ function initMap() {
     updateUserLocation();
 }
 
-// Funkcija za postavljanje / ažuriranje korisnikovog markera
 function updateUserLocation() {
     navigator.geolocation.getCurrentPosition(
         function(position) {
@@ -87,7 +85,6 @@ function updateUserLocation() {
             map.setView([lat, lng], 15);
         },
         function() {
-            // fallback koordinata ako geolokacija ne radi
             map.setView([45.2671, 19.8335], 13);
         }
     );
