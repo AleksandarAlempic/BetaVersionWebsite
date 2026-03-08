@@ -50,46 +50,53 @@ function initMap() {
     const mapContainer = document.getElementById('map');
     if (!mapContainer) return;
 
-    // ✅ Ako mapa već postoji, samo ažuriraj korisnika
-    if (map) {
-        console.log("Mapa već postoji, samo ažuriram lokaciju korisnika.");
+    // Ako je Leaflet već inicijalizovan na ovom containeru, update-uj lokaciju
+    if (mapContainer._leaflet_id && window._leafletMap) {
+        map = window._leafletMap;
         updateUserLocation();
         return;
     }
 
-    // Pokušaj geolokaciju
+    // Pokušaj da dobiješ korisnikovu lokaciju
     navigator.geolocation.getCurrentPosition(
         function(position) {
-            createMap(position.coords.latitude, position.coords.longitude);
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            createMap(lat, lng);
         },
         function() {
-            // fallback Novi Sad
+            // fallback na Novi Sad
             createMap(45.2671, 19.8335);
         },
-        { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
+        {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
+        }
     );
 }
 
 function createMap(lat, lng) {
-    // Kreiraj mapu samo ako ne postoji
-    if (!map) {
-        map = L.map('map').setView([lat, lng], 15);
+    map = L.map('map').setView([lat, lng], 15);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '© OpenStreetMap'
-        }).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
 
-        userMarker = L.marker([lat, lng]).addTo(map);
+    window._leafletMap = map;
 
-        routingControl = L.Routing.control({
-            waypoints: [
-                L.latLng(lat, lng),
-                L.latLng(45.2540, 19.8450)
-            ],
-            routeWhileDragging: true
-        }).addTo(map);
-    }
+    // Dodaj marker korisnika
+    userMarker = L.marker([lat, lng]).addTo(map);
+
+    // Dodaj routing
+    routingControl = L.Routing.control({
+        waypoints: [
+            L.latLng(lat, lng),         // start: korisnik
+            L.latLng(45.2540, 19.8450)  // primer destinacije
+        ],
+        routeWhileDragging: true
+    }).addTo(map);
 }
 
 function updateUserLocation() {
@@ -117,6 +124,7 @@ function updateUserLocation() {
     );
 }
 
+// SAMO JEDAN listener
 document.addEventListener('DOMContentLoaded', initMap);
 
 // Dole u javascript.js
