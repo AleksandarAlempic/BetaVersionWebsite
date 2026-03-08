@@ -47,43 +47,49 @@ let userMarker = null;
 let routingControl = null;
 
 function initMap() {
-    // Proveri da li mapa već postoji
-    if (map) return updateUserLocation();
-
     const mapContainer = document.getElementById('map');
     if (!mapContainer) return;
+
+    // ✅ Ako mapa već postoji, samo ažuriraj korisnika
+    if (map) {
+        console.log("Mapa već postoji, samo ažuriram lokaciju korisnika.");
+        updateUserLocation();
+        return;
+    }
 
     // Pokušaj geolokaciju
     navigator.geolocation.getCurrentPosition(
         function(position) {
-            const lat = position.coords.latitude;
-            const lng = position.coords.longitude;
-            createMap(lat, lng);
+            createMap(position.coords.latitude, position.coords.longitude);
         },
         function() {
             // fallback Novi Sad
             createMap(45.2671, 19.8335);
-        }
+        },
+        { enableHighAccuracy: true, timeout: 5000, maximumAge: 0 }
     );
 }
 
 function createMap(lat, lng) {
-    map = L.map('map').setView([lat, lng], 15);
+    // Kreiraj mapu samo ako ne postoji
+    if (!map) {
+        map = L.map('map').setView([lat, lng], 15);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap'
-    }).addTo(map);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
 
-    userMarker = L.marker([lat, lng]).addTo(map);
+        userMarker = L.marker([lat, lng]).addTo(map);
 
-    routingControl = L.Routing.control({
-        waypoints: [
-            L.latLng(lat, lng),
-            L.latLng(45.2540, 19.8450) // destinacija primer
-        ],
-        routeWhileDragging: true
-    }).addTo(map);
+        routingControl = L.Routing.control({
+            waypoints: [
+                L.latLng(lat, lng),
+                L.latLng(45.2540, 19.8450)
+            ],
+            routeWhileDragging: true
+        }).addTo(map);
+    }
 }
 
 function updateUserLocation() {
@@ -94,14 +100,14 @@ function updateUserLocation() {
             const lat = position.coords.latitude;
             const lng = position.coords.longitude;
 
-            if (!userMarker) userMarker = L.marker([lat, lng]).addTo(map);
-            else userMarker.setLatLng([lat, lng]);
+            if (userMarker) userMarker.setLatLng([lat, lng]);
+            else userMarker = L.marker([lat, lng]).addTo(map);
 
-            map.setView([lat, lng], 15);
+            map.setView([lat, lng], map.getZoom());
 
             if (routingControl) {
                 const waypoints = routingControl.getWaypoints();
-                waypoints[0] = L.latLng(lat, lng); // ažuriraj start
+                waypoints[0] = L.latLng(lat, lng);
                 routingControl.setWaypoints(waypoints);
             }
         },
@@ -111,7 +117,6 @@ function updateUserLocation() {
     );
 }
 
-// SAMO JEDAN listener, ne više
 document.addEventListener('DOMContentLoaded', initMap);
 
 // Dole u javascript.js
