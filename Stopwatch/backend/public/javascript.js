@@ -46,20 +46,19 @@ let map;
 let userMarker = null;
 
 function initMap() {
+    if (map) {
+        console.log("Map already initialized");
+        updateUserLocation();
+        return;
+    }
+
     const mapContainer = document.getElementById('map');
     if (!mapContainer) {
         console.warn('Map container not found!');
         return;
     }
 
-    // Ako mapa već postoji, ukloni je da izbegnemo sivu mapu
-    if (window._leafletMap) {
-        window._leafletMap.remove();
-        window._leafletMap = null;
-        userMarker = null;
-    }
-
-    // Kreiraj novu Leaflet mapu
+    // Kreiraj Leaflet mapu samo jednom
     map = L.map('map').setView([45.2671, 19.8335], 13);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -67,13 +66,25 @@ function initMap() {
         attribution: '© OpenStreetMap'
     }).addTo(map);
 
+    // Sačuvaj globalno za ponovnu upotrebu
     window._leafletMap = map;
 
-    // Dodaj korisnika marker
+    // Dodaj marker korisnika
     updateUserLocation();
+
+    // Opcionalno: dodaj Routing Machine odmah
+    L.Routing.control({
+        waypoints: [
+            L.latLng(45.2671, 19.8335),
+            L.latLng(45.2540, 19.8450)
+        ],
+        routeWhileDragging: true
+    }).addTo(map);
 }
 
 function updateUserLocation() {
+    if (!map) return; // osiguranje da mapa postoji
+
     navigator.geolocation.getCurrentPosition(
         function(position) {
             const lat = position.coords.latitude;
