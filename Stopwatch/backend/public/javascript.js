@@ -42,7 +42,7 @@ let rotationDegree = 0;
 let myInterval;
 let selectedPolyline = null;
 
-let map;
+let map = null;
 let userMarker = null;
 let routingControl = null;
 
@@ -50,63 +50,48 @@ function initMap() {
     const mapContainer = document.getElementById('map');
     if (!mapContainer) return;
 
-    // Ako je mapa već kreirana, samo ažuriraj lokaciju
+    // Ako mapa već postoji, samo ažuriraj lokaciju i waypoint-e
     if (map) {
         updateUserLocation();
         return;
     }
 
-    // Pokušaj da dobiješ geolokaciju korisnika
+    // Pokušaj prvo geolokaciju
     navigator.geolocation.getCurrentPosition(
         function(position) {
             const lat = position.coords.latitude;
             const lng = position.coords.longitude;
 
-            // Kreiraj mapu na tvojoj lokaciji
-            map = L.map('map').setView([lat, lng], 15);
-
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '© OpenStreetMap'
-            }).addTo(map);
-
-            window._leafletMap = map;
-
-            // Marker korisnika
-            userMarker = L.marker([lat, lng]).addTo(map);
-
-            // Routing Machine
-            routingControl = L.Routing.control({
-                waypoints: [
-                    L.latLng(lat, lng),
-                    L.latLng(45.2540, 19.8450) // primer destinacije
-                ],
-                routeWhileDragging: true
-            }).addTo(map);
+            createMap(lat, lng);  // kreiramo mapu na tvojoj lokaciji
         },
         function() {
-            // fallback Novi Sad
-            map = L.map('map').setView([45.2671, 19.8335], 13);
-
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '© OpenStreetMap'
-            }).addTo(map);
-
-            window._leafletMap = map;
-
-            // Routing Machine sa default koordinatama
-            routingControl = L.Routing.control({
-                waypoints: [
-                    L.latLng(45.2671, 19.8335),
-                    L.latLng(45.2540, 19.8450)
-                ],
-                routeWhileDragging: true
-            }).addTo(map);
+            // fallback na Novi Sad
+            createMap(45.2671, 19.8335);
         }
     );
 }
 
+// Funkcija koja kreira Leaflet mapu SAMO JEDNOM
+function createMap(lat, lng) {
+    map = L.map('map').setView([lat, lng], 15);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    userMarker = L.marker([lat, lng]).addTo(map);
+
+    routingControl = L.Routing.control({
+        waypoints: [
+            L.latLng(lat, lng),
+            L.latLng(45.2540, 19.8450) // destinacija primer
+        ],
+        routeWhileDragging: true
+    }).addTo(map);
+}
+
+// Funkcija koja bezbedno ažurira lokaciju korisnika
 function updateUserLocation() {
     if (!map) return;
 
@@ -118,14 +103,13 @@ function updateUserLocation() {
             if (!userMarker) userMarker = L.marker([lat, lng]).addTo(map);
             else userMarker.setLatLng([lat, lng]);
 
-            // Opcionalno ažuriranje startnog waypoint-a u Routing Machine
+            map.setView([lat, lng], 15);
+
             if (routingControl) {
                 const waypoints = routingControl.getWaypoints();
-                waypoints[0] = L.latLng(lat, lng); // startna tačka
+                waypoints[0] = L.latLng(lat, lng); // ažuriraj startnu tačku
                 routingControl.setWaypoints(waypoints);
             }
-
-            map.setView([lat, lng], 15);
         },
         function() {
             map.setView([45.2671, 19.8335], 13);
