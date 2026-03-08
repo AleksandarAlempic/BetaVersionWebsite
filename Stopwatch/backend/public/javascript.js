@@ -44,12 +44,19 @@ let selectedPolyline = null;
 
 let map;
 let userMarker = null;
+let routingControl = null;
 
 function initMap() {
     const mapContainer = document.getElementById('map');
     if (!mapContainer) return;
 
-    // Pokušaj prvo da dobiješ geolokaciju
+    // Ako je mapa već kreirana, samo ažuriraj lokaciju
+    if (map) {
+        updateUserLocation();
+        return;
+    }
+
+    // Pokušaj da dobiješ geolokaciju korisnika
     navigator.geolocation.getCurrentPosition(
         function(position) {
             const lat = position.coords.latitude;
@@ -65,11 +72,11 @@ function initMap() {
 
             window._leafletMap = map;
 
-            // Dodaj marker korisnika
+            // Marker korisnika
             userMarker = L.marker([lat, lng]).addTo(map);
 
-            // Dodaj Routing Machine
-            L.Routing.control({
+            // Routing Machine
+            routingControl = L.Routing.control({
                 waypoints: [
                     L.latLng(lat, lng),
                     L.latLng(45.2540, 19.8450) // primer destinacije
@@ -78,7 +85,7 @@ function initMap() {
             }).addTo(map);
         },
         function() {
-            // fallback na Novi Sad ako geolokacija ne radi
+            // fallback Novi Sad
             map = L.map('map').setView([45.2671, 19.8335], 13);
 
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -88,8 +95,8 @@ function initMap() {
 
             window._leafletMap = map;
 
-            // Dodaj Routing Machine sa default koordinatama
-            L.Routing.control({
+            // Routing Machine sa default koordinatama
+            routingControl = L.Routing.control({
                 waypoints: [
                     L.latLng(45.2671, 19.8335),
                     L.latLng(45.2540, 19.8450)
@@ -100,7 +107,6 @@ function initMap() {
     );
 }
 
-// Više nije potrebno, jer je marker dodat odmah pri inicijalizaciji
 function updateUserLocation() {
     if (!map) return;
 
@@ -112,13 +118,22 @@ function updateUserLocation() {
             if (!userMarker) userMarker = L.marker([lat, lng]).addTo(map);
             else userMarker.setLatLng([lat, lng]);
 
+            // Opcionalno ažuriranje startnog waypoint-a u Routing Machine
+            if (routingControl) {
+                const waypoints = routingControl.getWaypoints();
+                waypoints[0] = L.latLng(lat, lng); // startna tačka
+                routingControl.setWaypoints(waypoints);
+            }
+
             map.setView([lat, lng], 15);
+        },
+        function() {
+            map.setView([45.2671, 19.8335], 13);
         }
     );
 }
 
 document.addEventListener('DOMContentLoaded', initMap);
-
 
 
 // Dole u javascript.js
