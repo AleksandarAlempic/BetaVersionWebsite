@@ -47,31 +47,26 @@ let userMarker = null;
 let routingControl = null;
 
 function initMap() {
+    // Proveri da li mapa već postoji
+    if (map) return updateUserLocation();
+
     const mapContainer = document.getElementById('map');
     if (!mapContainer) return;
 
-    // Ako mapa već postoji, samo ažuriraj lokaciju i waypoint-e
-    if (map) {
-        updateUserLocation();
-        return;
-    }
-
-    // Pokušaj prvo geolokaciju
+    // Pokušaj geolokaciju
     navigator.geolocation.getCurrentPosition(
         function(position) {
             const lat = position.coords.latitude;
             const lng = position.coords.longitude;
-
-            createMap(lat, lng);  // kreiramo mapu na tvojoj lokaciji
+            createMap(lat, lng);
         },
         function() {
-            // fallback na Novi Sad
+            // fallback Novi Sad
             createMap(45.2671, 19.8335);
         }
     );
 }
 
-// Funkcija koja kreira Leaflet mapu SAMO JEDNOM
 function createMap(lat, lng) {
     map = L.map('map').setView([lat, lng], 15);
 
@@ -91,7 +86,6 @@ function createMap(lat, lng) {
     }).addTo(map);
 }
 
-// Funkcija koja bezbedno ažurira lokaciju korisnika
 function updateUserLocation() {
     if (!map) return;
 
@@ -107,7 +101,7 @@ function updateUserLocation() {
 
             if (routingControl) {
                 const waypoints = routingControl.getWaypoints();
-                waypoints[0] = L.latLng(lat, lng); // ažuriraj startnu tačku
+                waypoints[0] = L.latLng(lat, lng); // ažuriraj start
                 routingControl.setWaypoints(waypoints);
             }
         },
@@ -117,8 +111,8 @@ function updateUserLocation() {
     );
 }
 
+// SAMO JEDAN listener, ne više
 document.addEventListener('DOMContentLoaded', initMap);
-
 
 // Dole u javascript.js
 function syncOfflineRoutes() {
