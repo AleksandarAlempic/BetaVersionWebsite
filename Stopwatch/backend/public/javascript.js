@@ -43,7 +43,7 @@ let myInterval;
 let selectedPolyline = null;
 
 let map;
-let userMarker;
+let userMarker = null;
 
 function initMap() {
     const mapContainer = document.getElementById('map');
@@ -52,45 +52,42 @@ function initMap() {
         return;
     }
 
-    if (mapContainer._leaflet_id && window._leafletMap) {
+    // Ako mapa već postoji, koristi je
+    if (window._leafletMap) {
         map = window._leafletMap;
         console.log('Leaflet map already initialized');
-
-        navigator.geolocation.getCurrentPosition(
-            function(position) {
-                const lat = position.coords.latitude;
-                const lng = position.coords.longitude;
-
-                if (!userMarker) userMarker = L.marker([lat, lng]).addTo(map);
-                else userMarker.setLatLng([lat, lng]);
-
-                map.setView([lat, lng], 15);
-            },
-            function() {
-                map.setView([45.2671, 19.8335], 13);
-            }
-        );
-
+        updateUserLocation();
         return;
     }
 
+    // Kreiraj novu Leaflet mapu
     map = L.map('map').setView([45.2671, 19.8335], 13);
+
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '© OpenStreetMap'
     }).addTo(map);
 
     window._leafletMap = map;
-    userMarker = null;
 
+    // Dodaj korisnika marker
+    updateUserLocation();
+}
+
+// Funkcija za postavljanje / ažuriranje korisnikovog markera
+function updateUserLocation() {
     navigator.geolocation.getCurrentPosition(
         function(position) {
             const lat = position.coords.latitude;
             const lng = position.coords.longitude;
-            userMarker = L.marker([lat, lng]).addTo(map);
+
+            if (!userMarker) userMarker = L.marker([lat, lng]).addTo(map);
+            else userMarker.setLatLng([lat, lng]);
+
             map.setView([lat, lng], 15);
         },
         function() {
+            // fallback koordinata ako geolokacija ne radi
             map.setView([45.2671, 19.8335], 13);
         }
     );
