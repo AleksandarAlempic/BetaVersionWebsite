@@ -344,11 +344,11 @@
                     // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
 
             
-                    const routeControl = L.Routing.control({
-                        waypoints: [],  // Start with an empty route
-                        routeWhileDragging: true,  // Allow dragging the route
-                        createMarker: function() { return null; }  // Prevent creating markers for waypoints
-                    }).addTo(map);
+                    // const routeControl = L.Routing.control({
+                    //     waypoints: [],  // Start with an empty route
+                    //     routeWhileDragging: true,  // Allow dragging the route
+                    //     createMarker: function() { return null; }  // Prevent creating markers for waypoints
+                    // }).addTo(map);
             
                     let currentLocation = [defaultLat, defaultLon];  // Default to Begeč
                     let currentLocationMarker = L.marker([currentLocation[0], currentLocation[1]]).addTo(map);
@@ -725,7 +725,7 @@ if ('serviceWorker' in navigator) {
 
 
 
- <script>
+ <!-- <script>
      let map;
 function initMap(){
 
@@ -742,7 +742,7 @@ function initMap(){
 
   console.log("✅ MAP INITIALIZED");
 }
-    </script>  
+    </script>   -->
             
 <script>
 window.addEventListener('load', () => {
