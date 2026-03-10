@@ -351,7 +351,8 @@
                     // }).addTo(map);
             
                     let currentLocation = [defaultLat, defaultLon];  // Default to Begeč
-                    let currentLocationMarker = L.marker([currentLocation[0], currentLocation[1]]).addTo(map);
+                    // let currentLocationMarker = L.marker([currentLocation[0], currentLocation[1]]).addTo(map);
+                    let currentLocationMarker = null;
             
                     let routeStarted = false;  // Initially, the route is not started
                     let waypoints = [];
@@ -366,7 +367,11 @@
         const lon = position.coords.longitude;
 
         // Update the location marker to the new coordinates
-        currentLocationMarker.setLatLng([lat, lon]);
+       if (!currentLocationMarker) {
+        currentLocationMarker = L.marker([lat, lon]).addTo(map);
+        } else {
+         currentLocationMarker.setLatLng([lat, lon]);
+        }
 
         // Only add new waypoints and update polyline if the route has started
         if (routeStarted) {
