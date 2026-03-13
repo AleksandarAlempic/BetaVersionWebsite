@@ -42,9 +42,72 @@ let rotationDegree = 0;
 let myInterval;
 let selectedPolyline = null;
 
-let map = null;
-let userMarker = null;
-let routingControl = null;
+// let map = null;
+// let userMarker = null;
+// let routingControl = null;
+let map;
+let routeControl;
+let currentLocationMarker;
+let polyline;
+
+
+function createMap(lat, lng) {
+    if (map) {
+        map.remove();
+        map = null;
+    }
+
+    map = L.map("map").setView([lat, lng], 15);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: "© OpenStreetMap"
+    }).addTo(map);
+
+    userMarker = L.marker([lat, lng]).addTo(map);
+
+    setTimeout(() => {
+        map.invalidateSize();
+
+        // inicijalno prazni waypoints
+        routingControl = L.Routing.control({
+            waypoints: [],
+            routeWhileDragging: true,
+            show: false,
+            createMarker: () => null
+        }).addTo(map);
+
+    }, 300);
+}
+
+function updateUserLocation() {
+    if (!map) return;
+
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+
+            if (userMarker) {
+                userMarker.setLatLng([lat, lng]);
+            } else {
+                userMarker = L.marker([lat, lng]).addTo(map);
+            }
+
+            map.setView([lat, lng], map.getZoom());
+
+            if (routingControl) {
+                const waypoints = routingControl.getWaypoints();
+                waypoints[0] = L.latLng(lat, lng);
+                routingControl.setWaypoints(waypoints);
+            }
+        },
+        () => {
+            // fallback Ruma
+            map.setView([45.0483, 19.8361], 13);
+        }
+    );
+}
 
 function initMap() {
     const mapContainer = document.getElementById("map");
@@ -63,8 +126,8 @@ function initMap() {
             createMap(lat, lng);
         },
         () => {
-            // fallback Novi Sad
-            createMap(45.2671, 19.8335);
+            // fallback Ruma
+            createMap(45.0483, 19.8361);
         },
         {
             enableHighAccuracy: true,
@@ -74,76 +137,7 @@ function initMap() {
     );
 }
 
-function createMap(lat, lng) {
 
-    if (map) {
-        map.remove();
-        map = null;
-    }
-
-    map = L.map("map").setView([lat, lng], 15);
-
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 19,
-        attribution: "© OpenStreetMap"
-    }).addTo(map);
-
-    userMarker = L.marker([lat, lng]).addTo(map);
-
-    // ⭐ OVO JE KLJUČNO
-    setTimeout(() => {
-        map.invalidateSize();
-    }, 300);
-
-    setTimeout(() => {
-
-        routingControl = L.Routing.control({
-            waypoints: [
-                L.latLng(lat, lng),
-                L.latLng(45.2540, 19.8450)
-            ],
-            routeWhileDragging: true,
-            show: false
-        }).addTo(map);
-
-    }, 400);
-
-}
-
-function updateUserLocation() {
-
-    if (!map) return;
-
-    navigator.geolocation.getCurrentPosition(
-        (position) => {
-
-            const lat = position.coords.latitude;
-            const lng = position.coords.longitude;
-
-            if (userMarker) {
-                userMarker.setLatLng([lat, lng]);
-            } else {
-                userMarker = L.marker([lat, lng]).addTo(map);
-            }
-
-            map.setView([lat, lng], map.getZoom());
-
-            if (routingControl) {
-
-                const waypoints = routingControl.getWaypoints();
-
-                waypoints[0] = L.latLng(lat, lng);
-
-                routingControl.setWaypoints(waypoints);
-
-            }
-
-        },
-        () => {
-            map.setView([45.2671, 19.8335], 13);
-        }
-    );
-}
 
 document.addEventListener("DOMContentLoaded", initMap);
 
