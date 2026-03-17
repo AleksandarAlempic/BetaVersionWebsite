@@ -596,6 +596,21 @@ checkboxRoot.addEventListener('click', () => {
   addTrainingButton.style.display = checkboxRoot.checked ? "none" : "block";
   playListBtn.style.display = checkboxRoot.checked ? "none" : "block";
 });
+window.addEventListener('load', () => {
+  // 1️⃣ Pokreni mapu
+  initMap();
+
+  // 2️⃣ Pozovi event listener checkboxRoot 2 puta
+  if (checkboxRoot) {
+    // prvo pozivanje
+    checkboxRoot.dispatchEvent(new Event('click'));
+
+    // drugo pozivanje sa malim delay da DOM završi render
+    setTimeout(() => {
+      checkboxRoot.dispatchEvent(new Event('click'));
+    }, 50); // 50ms je dovoljno
+  }
+});
 // =================== ICON DEFINITIONS ===================
 const runnerIcon = L.icon({
   iconUrl: '/images/MarkersAndRoute.png',
