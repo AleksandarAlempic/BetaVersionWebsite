@@ -367,12 +367,13 @@ window.map = null;
             
                     // Function to update the user's location and update the route
                     function updateLocation(position) {
+                        if (!window.map) return;
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
 
         // Update the location marker to the new coordinates
        if (!currentLocationMarker) {
-        currentLocationMarker = L.marker([lat, lon]).addTo(map);
+        currentLocationMarker = L.marker([lat, lon]).addTo(window.map);
         } else {
          currentLocationMarker.setLatLng([lat, lon]);
         }
@@ -400,7 +401,7 @@ window.map = null;
         }
 
         // Optionally, update the map view if the user moves a significant distance
-        if (map.getCenter().distanceTo([lat, lon]) > 50) {
+        if (window.map.getCenter().distanceTo([lat, lon]) > 50) {
             map.setView([lat, lon], map.getZoom());  // Keep the current zoom level
         }
     }
@@ -747,7 +748,7 @@ function initMap(){
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19
-  }).addTo(map);
+  }).addTo(window.map);
 
   console.log("✅ MAP INITIALIZED");
 }
