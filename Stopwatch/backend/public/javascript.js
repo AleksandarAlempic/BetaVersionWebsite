@@ -18,7 +18,7 @@ const fetchNearbyTrainingsButton = document.getElementById("fetchNearbyTrainings
 const addTrainingButton = document.getElementById("fetchAddTrainingButton");
 const addTrainingPopup = document.getElementById("addTrainingPopup");
 const playListBtn = document.querySelector('.addPlaylistButton');
- 
+ m
 const Root = document.getElementById("map-content");
 const Map = document.getElementById("map");
 const mapContent = document.getElementById("map-content");
@@ -601,16 +601,18 @@ window.addEventListener('load', () => {
   // 1️⃣ Pokreni mapu
   initMap();
 
-  // 2️⃣ Pozovi event listener checkboxRoot 2 puta
-  if (checkboxRoot) {
-    // prvo pozivanje
-    checkboxRoot.dispatchEvent(new Event('click'));
-
-    // drugo pozivanje sa malim delay da DOM završi render
-    setTimeout(() => {
+  // 2️⃣ Pozovi event listener checkboxRoot nakon 2 sekunde
+  setTimeout(() => {
+    if (checkboxRoot) {
+      // prvo pozivanje
       checkboxRoot.dispatchEvent(new Event('click'));
-    }, 50); // 50ms je dovoljno
-  }
+
+      // drugo pozivanje sa malim delay da DOM završi render
+      setTimeout(() => {
+        checkboxRoot.dispatchEvent(new Event('click'));
+      }, 50); // 50ms je dovoljno
+    }
+  }, 2000); // 2 sekunde kašnjenja
 });
 // =================== ICON DEFINITIONS ===================
 const runnerIcon = L.icon({
