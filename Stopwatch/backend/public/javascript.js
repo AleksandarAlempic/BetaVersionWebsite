@@ -49,6 +49,7 @@ let map;
 let routeControl;
 let currentLocationMarker;
 let polyline;
+let userMarker;
 
 
 function createMap(lat, lng) {
@@ -726,7 +727,8 @@ routes.forEach(route => {
     });
 
     poly.bringToFront();
-    marker.bringToFront();
+    // marker.bringToFront();
+   marker.setZIndexOffset(1000);
    
     window.selectedPolyline = poly;
   };
