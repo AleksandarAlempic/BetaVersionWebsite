@@ -698,7 +698,8 @@ routes.forEach(route => {
   const marker = L.marker(latlngs[0], {
     icon: runnerIcon,
     interactive: true,
-    pane: 'markersPane'
+    pane: 'markersPane',
+    zIndexOffset: 1000 // 🔥 OVO DODAJ
   }).addTo(map);
 
   marker.options.routeData = route;
@@ -725,7 +726,7 @@ routes.forEach(route => {
       opacity: 1
     });
 
-    poly.bringToFront();
+    // poly.bringToFront();
     window.selectedPolyline = poly;
   };
 
