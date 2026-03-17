@@ -714,8 +714,8 @@ routes.forEach(route => {
   const marker = L.marker(latlngs[0], {
     icon: runnerIcon,
     interactive: true,
-    pane: 'markersPane', 
-   zIndexOffset: 1000  // Dodajemo zIndexOffset da marker bude iznad drugih slojeva
+    pane: 'markersPane'
+   // zIndexOffset: 1000  // Dodajemo zIndexOffset da marker bude iznad drugih slojeva
   }).addTo(map);
 
   marker.options.routeData = route;
