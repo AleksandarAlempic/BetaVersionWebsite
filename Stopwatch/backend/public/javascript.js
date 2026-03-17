@@ -726,6 +726,8 @@ routes.forEach(route => {
     });
 
     poly.bringToFront();
+    marker.bringToFront();
+   
     window.selectedPolyline = poly;
   };
 
