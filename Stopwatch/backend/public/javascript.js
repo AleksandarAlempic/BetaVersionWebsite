@@ -45,7 +45,8 @@ let selectedPolyline = null;
 // let map = null;
 // let userMarker = null;
 // let routingControl = null;
-let map;
+// let map;
+
 let routeControl;
 let currentLocationMarker;
 let polyline;
@@ -58,7 +59,7 @@ function createMap(lat, lng) {
         map = null;
     }
 
-    map = L.map("map").setView([lat, lng], 15);
+    window.map = L.map("map").setView([lat, lng], 15);
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
