@@ -598,19 +598,26 @@ checkboxRoot.addEventListener('click', () => {
   playListBtn.style.display = checkboxRoot.checked ? "none" : "block";
 });
 window.addEventListener('load', () => {
-  // 1️⃣ Pokreni mapu
-  initMap();
 
-  // 2️⃣ Pozovi event listener checkboxRoot 2 puta
-  if (checkboxRoot) {
-    // prvo pozivanje
-    checkboxRoot.dispatchEvent(new Event('click'));
+  setTimeout(() => {
+    // 1️⃣ Pokreni mapu
+    initMap();
 
-    // drugo pozivanje sa malim delay da DOM završi render
-    setTimeout(() => {
+    // 2️⃣ Pozovi event listener checkboxRoot 2 puta
+    if (checkboxRoot) {
+
+      // prvi klik
       checkboxRoot.dispatchEvent(new Event('click'));
-    }, 50); // 50ms je dovoljno
-  }
+
+      // drugi klik (ostaje 50ms kao što je RADILO)
+      setTimeout(() => {
+        checkboxRoot.dispatchEvent(new Event('click'));
+      }, 50);
+
+    }
+
+  }, 2000); // ⬅️ SAMO OVO JE DODATO
+
 });
 // =================== ICON DEFINITIONS ===================
 const runnerIcon = L.icon({
