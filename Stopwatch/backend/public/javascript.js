@@ -616,7 +616,7 @@ window.addEventListener('load', () => {
 
     }
 
-  }, 2000); // ⬅️ SAMO OVO JE DODATO
+  }, 2800); // ⬅️ SAMO OVO JE DODATO
 
 });
 // =================== ICON DEFINITIONS ===================
