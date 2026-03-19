@@ -750,7 +750,7 @@ routes.forEach(route => {
       opacity: 1
     });
 
-    poly.bringToFront();
+    // poly.bringToFront();
     // marker.bringToFront();
    marker.setZIndexOffset(1000);
    
