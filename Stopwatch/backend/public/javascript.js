@@ -735,27 +735,29 @@ routes.forEach(route => {
     🏃‍♂️ ${route.routeName || translations[currentLanguage].unnamedRoute}
   `);
 
-  const selectPolyline = () => {
-    if (window.selectedPolyline) {
-      window.selectedPolyline.setStyle({
-        color: 'blue',
-        weight: 4,
-        opacity: 0.8
-      });
-    }
+const selectPolyline = () => {
 
-    poly.setStyle({
-      color: '#00ff88',
-      weight: 6,
-      opacity: 1
+  if (window.selectedPolyline) {
+    window.selectedPolyline.setStyle({
+      color: 'blue',
+      weight: 4,
+      opacity: 0.8
     });
+  }
 
-    // poly.bringToFront();
-    // marker.bringToFront();
-   marker.setZIndexOffset(1000);
-   
-    window.selectedPolyline = poly;
-  };
+  poly.setStyle({
+    color: '#00ff88',
+    weight: 6,
+    opacity: 1
+  });
+
+  // 🔥 NAJBITNIJE — VRATI MARKER IZNAD
+  setTimeout(() => {
+    marker.setZIndexOffset(10000);
+  }, 0);
+
+  window.selectedPolyline = poly;
+};
 
   // Klik na liniju
   poly.on('click', selectPolyline);
