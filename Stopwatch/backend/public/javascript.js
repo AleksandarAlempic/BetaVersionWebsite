@@ -715,14 +715,14 @@ routes.forEach(route => {
     color: 'blue',
     weight: 4,
     opacity: 0.8,
-    interactive: true,
-    pane: 'routesPane'
+    interactive: true
+    // pane: 'routesPane'
   }).addTo(map);
 
   const marker = L.marker(latlngs[0], {
     icon: runnerIcon,
-    interactive: true,
-    pane: 'markersPane'
+    interactive: true
+    // pane: 'markersPane'
    // zIndexOffset: 1000  // Dodajemo zIndexOffset da marker bude iznad drugih slojeva
   }).addTo(map);
 
@@ -752,9 +752,7 @@ const selectPolyline = () => {
   });
 
   // 🔥 NAJBITNIJE — VRATI MARKER IZNAD
-  setTimeout(() => {
-    marker.setZIndexOffset(10000);
-  }, 0);
+marker.setZIndexOffset(1000);
 
   window.selectedPolyline = poly;
 };
