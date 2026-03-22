@@ -764,6 +764,7 @@ marker.setZIndexOffset(1000);
   marker.on('click', () => {
     marker.openPopup();
     selectPolyline();
+     L.DomEvent.stopPropagation(e); // sprečava konflikt sa mapom
   });
 
   window.currentRouteMarkers.push(marker);
