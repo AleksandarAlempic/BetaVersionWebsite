@@ -1,5 +1,5 @@
 {
-  "name": "Tvoja Aplikacija",
+  "name": "KV Fit",
   "short_name": "App",
   "start_url": "/index.html",
   "display": "standalone",
@@ -24,7 +24,7 @@
 
     // 💥 Veliki splash (ne diramo)
     {
-      "src": "/icons/SplashKVFit.png",
+      "src": "/icons/SmallKVFit.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
