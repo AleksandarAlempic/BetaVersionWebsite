@@ -6,20 +6,20 @@
   "background_color": "#ffffff",
   "theme_color": "#ffffff",
   "icons": [
-    // 🌟 Launcher icon (nova mala ikona)
+    // 🌟 Launcher icon (samo maskable)
     {
       "src": "/icons/SmallKVFit1.png",
       "sizes": "192x192 512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "maskable"
     },
 
-    // ⚡ Native splash (ostaje tvoja postojeća mala splash)
+    // ⚡ Native splash (samo any)
     {
       "src": "/icons/SmallKVFit.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
 
     // 💥 Veliki splash (ne diramo)
