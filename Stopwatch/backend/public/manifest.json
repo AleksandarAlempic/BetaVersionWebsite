@@ -1,24 +1,33 @@
 {
-  "name": "KV Fit",
-  "short_name": "KV Fit",
-  "start_url": "/",
-  "scope": "/",
+  "name": "Tvoja Aplikacija",
+  "short_name": "App",
+  "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#000000",
-  "orientation": "portrait",
+  "theme_color": "#ffffff",
   "icons": [
+    // 🌟 Launcher icon (nova mala ikona)
+    {
+      "src": "/icons/SmallKVFit1.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+
+    // ⚡ Native splash (ostaje tvoja postojeća mala splash)
     {
       "src": "/icons/SmallKVFit.png",
-      "sizes": "192x192",
+      "sizes": "512x512",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any maskable"
     },
+
+    // 💥 Veliki splash (ne diramo)
     {
-  "src": "/icons/SplashKVFit.png",
-  "sizes": "512x512",
-  "type": "image/png",
-  "purpose": "any maskable"
-}
+      "src": "/icons/SplashKVFit.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ]
 }
