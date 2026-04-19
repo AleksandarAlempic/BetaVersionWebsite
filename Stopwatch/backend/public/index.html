@@ -15,6 +15,42 @@
             </style>
          <!-- Tvoj CSS za dugme -->
     <style>
+
+        /* OKVIR OKO MAPE */
+.map-wrapper {
+  margin-top: 100px;
+  margin-left: 5%;
+  width: 90%;
+
+  border-radius: 18px;
+  overflow: hidden;
+
+  background: #f3e2c7;          /* svetla topla podloga */
+  border: 1px solid #e0c9a6;
+
+  box-shadow: 
+    0 10px 25px rgba(0,0,0,0.12),
+    0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* MAPA */
+#map {
+  width: 100%;
+  height: 300px; /* promeni po potrebi */
+}
+
+/* LEAFLET FIX (zaobljene ivice rade kako treba) */
+.map-wrapper .leaflet-container {
+  border-radius: 18px;
+}
+
+/* BLAGI “paper/vintage” efekat */
+.map-wrapper .leaflet-container {
+  filter: 
+    saturate(0.85)
+    contrast(0.95)
+    brightness(1.05);
+}
     #testCustomBtn {
         padding: 10px 20px;
         background-color: #4CAF50;
@@ -341,8 +377,10 @@ window.map = null;
                 <strong>Avg Speed:</strong> <span id="averageSpeedValue">0.00</span> km/h
             </div>
             <div class="Root" id="map-content" style="display:none;">
-                <div id="map" style="margin-top: 100px; margin-left: 5%" class="trackDiv"></div>
-            
+                <!-- <div id="map" style="margin-top: 100px; margin-left: 5%" class="trackDiv"></div> -->
+                <div class="map-wrapper">
+                    <div id="map" class="trackDiv"></div>
+                </div>        
                 <!-- Leaflet JS -->
                 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
             
