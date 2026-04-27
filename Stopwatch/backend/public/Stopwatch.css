@@ -88,7 +88,8 @@
     box-shadow: 0 0 0 10px rgba(255,255,255, 0.08);
     animation: rotate 20s linear infinite;
     animation-play-state: paused;
-    margin-top: 27px;
+    margin-top: 23px;
+    margin-left: 12%;
    } 
 
 /* .disk {
@@ -1610,7 +1611,7 @@ body{
 }
 
 .displayTime{
-    margin-left: 7%;
+    margin-left: 12%;
     margin-top: 13%;
     min-width: 225px;
     min-height: 215px;
