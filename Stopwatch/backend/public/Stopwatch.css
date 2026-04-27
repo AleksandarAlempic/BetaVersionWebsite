@@ -76,7 +76,7 @@
     border-radius: 10%;
    }
 
-   /* .disk{
+    .disk{
     position: relative;
     display: block;
     margin: 40px auto;
@@ -89,9 +89,9 @@
     animation: rotate 20s linear infinite;
     animation-play-state: paused;
     margin-top: 27px;
-   } */ Poslednji
+   } 
 
-.disk {
+/* .disk {
     position: relative;
     display: block;
     margin: 40px auto;
@@ -105,7 +105,7 @@
     animation-play-state: paused;
     margin-top: 23px;
     margin-left: 12%;
-}
+} */
    
    .disk.play{
     animation-play-state: running;
