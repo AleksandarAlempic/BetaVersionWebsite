@@ -387,7 +387,7 @@ body{
     margin-left: -45%;
 }
 
-.input{
+/* .input{
     margin-top: 120%;
     margin-left: 17%;
     border-radius: 3%;
@@ -399,6 +399,23 @@ body{
     background:#FFBE00;
     color: black;
     border: 1px white solid;
+} */
+
+.input {
+    margin-top: 120%;
+    margin-left: 17%;
+    max-width: 200px;
+    min-height: 50px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 25px;
+    color: black;
+    border-radius: 3%;
+    background: #f4c066;
+    border-width: 1px;
+    border-style: solid;
+    border-color: white;
+    border-image: initial;
 }
 
 .timer{
@@ -2354,7 +2371,7 @@ body{
     top: 50%;
     transform: translateY(-50%) rotate(-90deg);
     transform-origin: left top;
-    background-color: #f39c12;
+    background-color: #f4c066;
     color: #fff;
     border: none;
     padding: 10px 20px;
