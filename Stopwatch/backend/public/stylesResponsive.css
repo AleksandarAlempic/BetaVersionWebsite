@@ -3598,7 +3598,7 @@ img { max-width: 100%; height: auto; }
         margin-left: -22%;
     }
   .addTraningButton {
-    background: orange;
+    background: #f4c066 !important;
     color: black;
     min-width: 140px;
     min-height: 70px;
@@ -3615,7 +3615,7 @@ img { max-width: 100%; height: auto; }
     bottom: 192px !important;
     right: 148px !important;
     z-index: 999999999 !important;
-    background: #fad000 !important;
+   background: #f4c066 !important;
     color: black !important;
     font-size: 18px !important;
     font-weight: 600 !important;
