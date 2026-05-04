@@ -249,10 +249,12 @@
    .songName{
     font-size: 20px;
     font-weight: 500;
+    margin-left: -20%;
    }
    
    .artistName{
     font-size: 20px;
+       margin-left: -14%;
    }
 
    
@@ -415,11 +417,17 @@ body{
 }
 
 .songNameAndArtist{
-    position:absolute; margin-top:50%; 
+       display: grid;
+    background: #fae7d9;
+    /* border: 1px solid; */
+    border-radius: 10%;
+    height: 50px;
+        position: absolute;
+    margin-top: 50%;
     list-style-type: none;
     font-weight: 700;
     min-width: 200px;
-    margin-left: -45%;
+    margin-left: -32%;
 }
 
 /* .input{
