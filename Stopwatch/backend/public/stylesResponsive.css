@@ -2771,7 +2771,7 @@ img { max-width: 100%; height: auto; }
 .songName {
   font-size: 20px;
   font-weight: 500;
-  margin-top: -10%;
+  /* margin-top: -10%; */
 }
 
 
