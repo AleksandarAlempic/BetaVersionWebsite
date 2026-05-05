@@ -422,7 +422,7 @@ body{
        display: grid;
     background: #fae7d9;
     /* border: 1px solid; */
-    border-radius: 10%;
+    border-radius: 4%;
     height: 50px;
         position: absolute;
     margin-top: 43%;
