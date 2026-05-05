@@ -6,7 +6,7 @@
             <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.35.6/dist/umd/supabase.min.js"></script>
             <meta name="viewport" content="width=device-width, initial-scale=0.5, user-scalable=no">
             <link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#000000">mus
             <style>
                 #map table, #map h2, #map h3 {
                     visibility: hidden;
@@ -15,6 +15,15 @@
             </style>
          <!-- Tvoj CSS za dugme -->
     <style>
+        
+        .music-icon {
+    font-size: 28px;
+    color: #d68b1f;
+
+    text-shadow: 
+        0 1px 0 #fff,
+        0 2px 3px rgba(0,0,0,0.25);
+}
 
         /* OKVIR OKO MAPE */
 .map-wrapper {
@@ -32,8 +41,7 @@
     border-radius: 28px;
     background: #eadcc9;
     border: 8px solid rgba(255, 255, 255, 0.95);
-    height: 80%;
-    
+    height: 80%;   
 }
 
 /* MAPA */
@@ -320,6 +328,7 @@ window.map = null;
                             <input id="input" class="input" value="00:00:00">
                             <div  class="divForButtons">
                                 <ul style="display: grid;" id="songNameAndArtist" class="songNameAndArtist">
+                                     <div class="music-icon">🎵</div>
                                     <li class="songName" id="songName">Song Name</li>
                                     <li class="artistName">Artist</li>
                                 </ul>
