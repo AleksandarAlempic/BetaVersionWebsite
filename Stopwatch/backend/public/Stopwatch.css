@@ -1817,7 +1817,7 @@ body{
   }
 
   .labelForMusicSlider {
-    position: absolute; margin-left: 30%; margin-top: 148.4%;
+    position: absolute; margin-left: 30%; margin-top: 145%;
   }
 
   .labelForMusicPlayer{
@@ -1825,7 +1825,7 @@ body{
   }
 
   .labelForRootSlider {
-    position: absolute; margin-left: 65%; margin-top: 148.4%;
+    position: absolute; margin-left: 65%; margin-top: 145%;
   }
 
   .labelForMusicRoot{
