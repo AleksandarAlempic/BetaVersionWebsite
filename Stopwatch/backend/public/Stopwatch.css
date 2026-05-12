@@ -1817,19 +1817,19 @@ body{
   }
 
   .labelForMusicSlider {
-    position: absolute; margin-left: 30%; margin-top: 145%;
+    position: absolute; margin-left: 30%; margin-top: 146%;
   }
 
   .labelForMusicPlayer{
-    position: absolute; margin-left: 3%; margin-top: 154%;
+    position: absolute; margin-left: 3%; margin-top: 149%;
   }
 
   .labelForRootSlider {
-    position: absolute; margin-left: 65%; margin-top: 145%;
+    position: absolute; margin-left: 65%; margin-top: 146%;
   }
 
   .labelForMusicRoot{
-    position: absolute; margin-left: 53%; margin-top: 152%;
+    position: absolute; margin-left: 53%; margin-top: 149%;
   }
   #map-content {
     width: 100%;   /* Ensure map container takes full width */
