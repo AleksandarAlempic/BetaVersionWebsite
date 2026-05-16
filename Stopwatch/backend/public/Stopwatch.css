@@ -510,7 +510,8 @@ body{
 
 .divForButtons{
     position: absolute;
-    margin-top: 3.5%;
+    /* margin-top: 3.5%; */
+    margin-top: -10.5%;
     margin-left: 25%;
 }
 
@@ -1825,8 +1826,8 @@ body{
 
     position: absolute;
     margin-left: 36.3%;
-    margin-top: 147%;
-
+    /* margin-top: 147%; */
+      margin-top: 164%;
     width: 26px;
     height: 26px;
 
@@ -1889,11 +1890,11 @@ body{
 }
 
   .labelForMusicPlayer{
-    position: absolute; margin-left: 3%; margin-top: 148.5%;
+    position: absolute; margin-left: 3%; margin-top: 165.5%;
   }
 
   .labelForRootSlider {
-    position: absolute; margin-left: 65%; margin-top: 145.5%;
+    position: absolute; margin-left: 65%; margin-top: 163.5%;
   }
 
   .labelForMusicRoot{
