@@ -1891,6 +1891,7 @@ body{
 
   .labelForMusicPlayer{
     position: absolute;  margin-top: 165.5%;
+     margin-left: 5%;
   }
 
   .labelForRootSlider {
