@@ -1822,17 +1822,15 @@ body{
   } */
 /* MUSIC PLAYER CHECKBOX */
 
-.labelForMusicSlider{
-
+.labelForMusicSlider {
     position: absolute;
-    margin-left: 41.3%;
+    margin-left: 25.3%;
     /* margin-top: 147%; */
-      margin-top: 164%;
+    margin-top: 83%;
     width: 26px;
     height: 26px;
-
     display: inline-block;
-      z-index: 999999999999999999999999;
+    z-index: 999999999999999999999999;
     cursor: pointer;
 }
 
@@ -1889,18 +1887,23 @@ body{
     color: #f4c066;
 }
 
-  .labelForMusicPlayer{
-    position: absolute;  margin-top: 165.5%;
-     margin-left: 7.95%;
-  }
+.labelForMusicPlayer {
+    position: absolute;
+    margin-top: 85.5%;
+    margin-left: -35.05%;
+}
 
-  .labelForRootSlider {
-    position: absolute; margin-left: 65%; margin-top: 163.5%;
-  }
+.labelForRootSlider {
+    position: absolute;
+    margin-left: 75%;
+    margin-top: 81.5%;
+}
 
-  .labelForMusicRoot{
-    position: absolute; margin-left: 53%; margin-top: 166%;
-  }
+.labelForMusicRoot {
+    position: absolute;
+    margin-left: 50%;
+    margin-top: 87%;
+}
   #map-content {
     width: 100%;   /* Ensure map container takes full width */
     height: 100vh; /* Ensure map container takes full height */
