@@ -1824,9 +1824,9 @@ body{
 
 .labelForMusicSlider {
     position: absolute;
-    margin-left: 33.5%;
+    margin-left: 34.5%;
     /* margin-top: 147%; */
-    margin-top: 86%;
+    margin-top: 87%;
     width: 26px;
     height: 26px;
     display: inline-block;
@@ -1888,21 +1888,21 @@ body{
 }
 
 .labelForMusicPlayer {
-  position: absolute;
-    margin-top: 88.5%;
-    margin-left: -34.05%;
+    position: absolute;
+    margin-top: 89.5%;
+    margin-left: -32.05%;
 }
 
 .labelForRootSlider {
     position: absolute;
     margin-left: 85%;
-    margin-top: 83.5%;
+    margin-top: 84.5%;
 }
 
 .labelForMusicRoot {
     position: absolute;
     margin-left: 59%;
-    margin-top: 88%;
+    margin-top: 89%;
 }
   #map-content {
     width: 100%;   /* Ensure map container takes full width */
