@@ -2550,13 +2550,14 @@ img { max-width: 100%; height: auto; }
         margin-top: 2%;
     }
 
-    .stopwatchDiv {
+      .stopwatchDiv {
         background: lightgray;
         min-width: 300px;
         min-height: 560px;
         tr0ansform: scale(2.2);
-        margin-top: 45.5%;
+        margin-top: 50.5%;
         margin-left: 26.7%;
+        border-radius: 1.5%;
     }
   
   .nearbyTrainingsButton {
