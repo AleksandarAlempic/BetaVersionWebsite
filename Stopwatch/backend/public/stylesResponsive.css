@@ -3597,6 +3597,25 @@ img { max-width: 100%; height: auto; }
         transform: scale(0.82);
         margin-left: -22%;
     }
+
+  .map-wrapper {
+    margin-top: 80px;
+    margin-left: 10%;
+    width: 62%;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #f3e2c7;
+    border: 10px solid white;
+    /* box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12), 0 4px 10px rgba(0, 0, 0, 0.08); */
+    position: relative;
+    padding: 5.5px 5.5px 30px 5.5px;
+    padding-right: 0.00001px;
+    border-radius: 28px;
+    background: #eadcc9;
+    border: 8px solid rgba(255, 255, 255, 0.95);
+    height: 80%;
+}
+  
   .addTraningButton {
     background: #f4c066 !important;
     color: black;
