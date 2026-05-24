@@ -1,6 +1,8 @@
 
 
-
+.bottomButtons{
+  bottom: -1px !important;
+}
 
         /* OKVIR OKO MAPE */
 .map-wrapper {
