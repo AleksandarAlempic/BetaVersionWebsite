@@ -26,10 +26,10 @@
 .audioContainer {
     position: absolute;
     float: left;
-    /* margin-left: 113.5px; */
-    margin-top: 32.2%;
-    min-width: 77px;
-    min-height: 77px;
+    margin-left: 77.5px !important;
+    margin-top: 31.2%;
+    min-width: 78px;
+    min-height: 78px;
     opacity: 1;
     border-radius: 50%;
     overflow: hidden;
