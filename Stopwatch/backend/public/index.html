@@ -110,6 +110,7 @@
 }
 
       .displayTime {
+    position: relative; /* OBAVEZNO da overlay radi */
     background:
 radial-gradient(circle at center,
 #f7cc68 0%,
@@ -122,7 +123,26 @@ radial-gradient(circle at center,
     outline-offset: 1px;
 }
         
+/* CRNE SEKUNDE - NOVI SLOJ */
+.displayTime::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
 
+  /* 60 tankih crnih crtica */
+  background: repeating-conic-gradient(
+    from 0deg,
+    black 0deg 0.4deg,
+    transparent 0.4deg 6deg
+  );
+
+  /* da budu SAMO uz ivicu (kao na satu) */
+  -webkit-mask: radial-gradient(circle, transparent 74%, black 75%);
+  mask: radial-gradient(circle, transparent 74%, black 75%);
+
+  pointer-events: none;
+}
 /* Fade-out efekat */
 /* #custom-splash.fade-out {
   opacity: 0;
