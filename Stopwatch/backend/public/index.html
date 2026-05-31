@@ -121,6 +121,24 @@ radial-gradient(circle at center,
     outline: 7px solid #f4c066;
     outline-offset: 1px;
 }
+
+        .clock-seconds {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+
+  background: repeating-conic-gradient(
+    from 0deg,
+    black 0deg 0.4deg,
+    transparent 0.4deg 6deg
+  );
+
+  -webkit-mask: radial-gradient(circle, transparent 74%, black 75%);
+  mask: radial-gradient(circle, transparent 74%, black 75%);
+
+  pointer-events: none;
+  z-index: 5;
+}
         
 /* CRNE SEKUNDE - NOVI SLOJ */
 .displayTime::after {
@@ -177,6 +195,7 @@ window.map = null;
                         <td>
                             <div class="stopwatchDiv">
                             <div id="displayTime" class="displayTime"> 
+                                <div class="clock-seconds"></div>
                                 <div id="audioContainer" class="audioContainer"> </div>
                                      <div class="audioContainer1">
                                     <div class="disk play "></div>
