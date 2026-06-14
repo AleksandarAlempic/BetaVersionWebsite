@@ -47,7 +47,7 @@ let selectedPolyline = null;
 // let routingControl = null;
 // let map;
 
-let routeControl;
+let routingControl;
 let currentLocationMarker;
 let polyline;
 let userMarker;
