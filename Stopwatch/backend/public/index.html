@@ -470,7 +470,7 @@ window.map = null;
             if (waypoints.length === 0 || waypoints[waypoints.length - 1].lat !== lat || waypoints[waypoints.length - 1].lng !== lon) {
                 // Add new waypoint to the array
                 waypoints.push(L.latLng(lat, lon));
-                routeControl.setWaypoints(waypoints);  // Update the route with new waypoints
+                // routeControl.setWaypoints(waypoints);  // Update the route with new waypoints
 
                 // If the polyline is not yet created, create it
                 if (!polyline) {
@@ -555,7 +555,7 @@ window.map = null;
             routeStarted = true;  // Set the route as started
             waypoints = [];  // Clear any existing waypoints before starting
             waypoints.push(L.latLng(currentLocation[0], currentLocation[1]));  // Start route at the current location
-            routeControl.setWaypoints(waypoints);  // Initialize route control with the first waypoint
+            // routeControl.setWaypoints(waypoints);  // Initialize route control with the first waypoint
             console.log("Route started at:", currentLocation);  // Debugging log
             routeStartTime = new Date();  // Record the time when the route started
             alert("Route started! Moving now will update the route.");
