@@ -430,16 +430,16 @@ window.map = null;
                     const defaultLat = 45.2764;
                     const defaultLon = 19.8244;
             
-                    // const map = L.map('map').setView([defaultLat, defaultLon], 13);
+                    const map = L.map('map').setView([defaultLat, defaultLon], 13);
             
-                    // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
 
             
-                    // const routeControl = L.Routing.control({
-                    //     waypoints: [],  // Start with an empty route
-                    //     routeWhileDragging: true,  // Allow dragging the route
-                    //     createMarker: function() { return null; }  // Prevent creating markers for waypoints
-                    // }).addTo(map);
+                    const routeControl = L.Routing.control({
+                        waypoints: [],  // Start with an empty route
+                        routeWhileDragging: true,  // Allow dragging the route
+                        createMarker: function() { return null; }  // Prevent creating markers for waypoints
+                    }).addTo(map);
             
                     let currentLocation = [defaultLat, defaultLon];  // Default to Begeč
                     // let currentLocationMarker = L.marker([currentLocation[0], currentLocation[1]]).addTo(map);
@@ -470,7 +470,7 @@ window.map = null;
             if (waypoints.length === 0 || waypoints[waypoints.length - 1].lat !== lat || waypoints[waypoints.length - 1].lng !== lon) {
                 // Add new waypoint to the array
                 waypoints.push(L.latLng(lat, lon));
-                // routeControl.setWaypoints(waypoints);  // Update the route with new waypoints
+                routeControl.setWaypoints(waypoints);  // Update the route with new waypoints
 
                 // If the polyline is not yet created, create it
                 if (!polyline) {
@@ -555,7 +555,7 @@ window.map = null;
             routeStarted = true;  // Set the route as started
             waypoints = [];  // Clear any existing waypoints before starting
             waypoints.push(L.latLng(currentLocation[0], currentLocation[1]));  // Start route at the current location
-            // routeControl.setWaypoints(waypoints);  // Initialize route control with the first waypoint
+            routeControl.setWaypoints(waypoints);  // Initialize route control with the first waypoint
             console.log("Route started at:", currentLocation);  // Debugging log
             routeStartTime = new Date();  // Record the time when the route started
             alert("Route started! Moving now will update the route.");
