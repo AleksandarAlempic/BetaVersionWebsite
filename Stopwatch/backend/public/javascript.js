@@ -1942,3 +1942,4 @@ window.addEventListener('online', () => {
 });
 
 window.saveTraining = saveTraining;
+window.initMap = initMap;
