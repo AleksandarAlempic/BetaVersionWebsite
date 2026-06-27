@@ -1,5 +1,25 @@
 import { safeSave } from './safe-save.js';
 
+let serverWokenUp = false;
+
+async function wakeUpServer() {
+  if (serverWokenUp) return;
+
+  try {
+    console.log("🔥 Waking up server...");
+
+    await fetch("https://betaversionwebsite.onrender.com/", {
+      method: "GET",
+      cache: "no-store"
+    });
+
+    serverWokenUp = true;
+    console.log("✅ Server is awake");
+  } catch (err) {
+    console.log("⚠️ Wake up failed:", err);
+  }
+}
+
 // =================== ELEMENT REFERENCES =====================
 const musicPlayer = document.getElementById("checkboxMusicPlayer");
 const checkboxRoot = document.getElementById("checkboxRoot");
@@ -139,9 +159,15 @@ function initMap() {
     );
 }
 
-
-
 document.addEventListener("DOMContentLoaded", initMap);
+
+// window.addEventListener("load", async () => {
+//   await wakeUpServer();
+// });
+
+window.addEventListener("load", () => {
+  setTimeout(wakeUpServer, 1000);
+});
 
 // Dole u javascript.js
 function syncOfflineRoutes() {
