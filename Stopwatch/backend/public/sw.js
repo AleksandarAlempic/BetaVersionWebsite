@@ -36,6 +36,12 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") return;
 
+    const url = event.request.url;
+    // 🔥 MP3 BYPASS - ide direktno sa GitHub-a --------- resenje za 503
+  if (url.includes(".mp3")) {
+    event.respondWith(fetch(event.request));
+    return;
+  }
   event.respondWith((async () => {
     const cache = await caches.open(CACHE_NAME);
     const cachedResponse = await cache.match(event.request);
