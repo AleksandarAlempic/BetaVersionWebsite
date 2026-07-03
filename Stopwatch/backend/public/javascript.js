@@ -161,7 +161,7 @@ function initMap() {
     );
 }
 
-document.addEventListener("DOMContentLoaded", initMap);
+// document.addEventListener("DOMContentLoaded", initMap);
 
 // window.addEventListener("load", async () => {
 //   await wakeUpServer();
@@ -628,23 +628,23 @@ checkboxRoot.addEventListener('click', () => {
 window.addEventListener('load', () => {
 
   setTimeout(() => {
+
     // 1️⃣ Pokreni mapu
     initMap();
 
-    // 2️⃣ Pozovi event listener checkboxRoot 2 puta
+    // 2️⃣ Siguran checkbox toggle (ako postoji)
     if (checkboxRoot) {
-
-      // prvi klik
       checkboxRoot.dispatchEvent(new Event('click'));
-
-      // drugi klik (ostaje 50ms kao što je RADILO)
-      setTimeout(() => {
-        checkboxRoot.dispatchEvent(new Event('click'));
-      }, 50);
-
     }
 
-  }, 2800); // ⬅️ SAMO OVO JE DODATO
+    // 3️⃣ Stabilan Leaflet resize (posle rendera)
+    setTimeout(() => {
+      if (window.map) {
+        window.map.invalidateSize();
+      }
+    }, 400);
+
+  }, 2800);
 
 });
 // =================== ICON DEFINITIONS ===================
