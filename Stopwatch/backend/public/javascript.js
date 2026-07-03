@@ -132,6 +132,8 @@ function updateUserLocation() {
 }
 
 function initMap() {
+    console.log("INIT MAP");
+  
     const mapContainer = document.getElementById("map");
     if (!mapContainer) return; // Ako nema DOM elementa, izlazi
 
