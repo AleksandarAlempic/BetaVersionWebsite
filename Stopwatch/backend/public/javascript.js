@@ -93,7 +93,10 @@ function createMap(lat, lng) {
 
         // inicijalno prazni waypoints
         routingControl = L.Routing.control({
-            waypoints: [],
+            waypoints: [
+    L.latLng(lat, lng),
+    L.latLng(lat + 0.001, lng + 0.001)
+],
             routeWhileDragging: true,
             show: false,
             createMarker: () => null
