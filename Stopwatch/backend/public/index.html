@@ -431,6 +431,7 @@ window.map = null;
                     const defaultLon = 19.8244;
             
                     const map = L.map('map').setView([defaultLat, defaultLon], 13);
+                    window.map = map;
             
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
 
