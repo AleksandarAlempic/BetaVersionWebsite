@@ -810,7 +810,55 @@ marker.setZIndexOffset(1000);
   }
 }
 
+// =================== GROUP TRAININGS BY LOCATION ===================
+function groupTrainingsByLocation(trainings, radiusMeters = 20) {
 
+  const groups = [];
+
+  trainings.forEach(training => {
+
+    let foundGroup = null;
+
+    for (const group of groups) {
+
+      const distance = map.distance(
+        [training.latitude, training.longitude],
+        [group.latitude, group.longitude]
+      );
+
+      if (distance <= radiusMeters) {
+        foundGroup = group;
+        break;
+      }
+    }
+
+    if (foundGroup) {
+
+      foundGroup.trainings.push(training);
+
+      // malo pomeranje centra grupe
+      foundGroup.latitude =
+        foundGroup.trainings.reduce((sum, t) => sum + t.latitude, 0) /
+        foundGroup.trainings.length;
+
+      foundGroup.longitude =
+        foundGroup.trainings.reduce((sum, t) => sum + t.longitude, 0) /
+        foundGroup.trainings.length;
+
+    } else {
+
+      groups.push({
+        latitude: training.latitude,
+        longitude: training.longitude,
+        trainings: [training]
+      });
+
+    }
+
+  });
+
+  return groups;
+}
 
 // =================== FETCH NEARBY TRAININGS ===================
 async function retrieveNearbyTrainings() {
@@ -869,21 +917,111 @@ if (navigator.serviceWorker) {
     }
 
     // 4️⃣ Dodajemo treninge na mapu
-    window.currentTrainingMarkers = [];
-    trainings.forEach(t => {
-      if (t.latitude && t.longitude) {
-        const marker = L.marker([t.latitude, t.longitude], { icon: dumbbellIcon });
-        marker.options.trainingData = t;
-        marker.addTo(map).bindPopup(`
-          <b>${t.trainingName || translations[currentLanguage].unnamedTraining}</b><br>
-          🏋️‍♂️ ${translations[currentLanguage].addTrainingPopupLabels.pushUps}: ${t.pushUps || 0}<br>
-          💪 ${translations[currentLanguage].addTrainingPopupLabels.pullUps}: ${t.pullUps || 0}<br>
-          🧍 ${translations[currentLanguage].addTrainingPopupLabels.sitUps}: ${t.sitUps || 0}<br>
-          ⏱ ${translations[currentLanguage].addTrainingPopupLabels.duration}: ${t.duration || 0} min
-        `);
-        window.currentTrainingMarkers.push(marker);
-      }
+   // 4️⃣ Grupisanje treninga
+window.currentTrainingMarkers = [];
+
+const trainingGroups = groupTrainingsByLocation(trainings, 20);
+
+
+trainingGroups.forEach(group => {
+
+
+  // ==========================
+  // DO 6 TRENINGA
+  // ==========================
+  if (group.trainings.length <= 6) {
+
+
+    group.trainings.forEach(t => {
+
+      const marker = L.marker(
+        [t.latitude, t.longitude],
+        { icon: dumbbellIcon }
+      );
+
+
+      marker.options.trainingData = t;
+
+
+      marker.addTo(map).bindPopup(`
+        <b>${t.trainingName || translations[currentLanguage].unnamedTraining}</b><br>
+        🏋️‍♂️ ${translations[currentLanguage].addTrainingPopupLabels.pushUps}: ${t.pushUps || 0}<br>
+        💪 ${translations[currentLanguage].addTrainingPopupLabels.pullUps}: ${t.pullUps || 0}<br>
+        🧍 ${translations[currentLanguage].addTrainingPopupLabels.sitUps}: ${t.sitUps || 0}<br>
+        ⏱ ${translations[currentLanguage].addTrainingPopupLabels.duration}: ${t.duration || 0} min
+      `);
+
+
+      window.currentTrainingMarkers.push(marker);
+
     });
+
+
+  }
+
+  // ==========================
+  // VIŠE OD 6 TRENINGA
+  // ==========================
+  else {
+
+
+    const marker = L.marker(
+      [group.latitude, group.longitude],
+      {
+        icon: dumbbellIcon
+      }
+    );
+
+
+    marker.options.trainingGroup = group;
+
+
+    marker.addTo(map).bindPopup(`
+      <b>🏋️ Treninzi</b><br>
+      Ukupno: ${group.trainings.length}<br><br>
+      Klikni za poslednjih 6 treninga
+    `);
+
+
+    marker.on("click", () => {
+
+      const lastSix = group.trainings
+        .slice()
+        .sort((a,b) => new Date(b.created_at) - new Date(a.created_at))
+        .slice(0,6);
+
+
+      let html = `<b>🏋️ Poslednjih 6 treninga</b><br><br>`;
+
+
+      lastSix.forEach(t => {
+
+        html += `
+          <b>${t.trainingName || "Training"}</b><br>
+          ⏱ ${t.duration || 0} min<br><br>
+        `;
+
+      });
+
+
+      html += `
+        <button onclick="">
+          Prikaži svih ${group.trainings.length}
+        </button>
+      `;
+
+
+      marker.setPopupContent(html);
+      marker.openPopup();
+
+    });
+
+
+    window.currentTrainingMarkers.push(marker);
+
+  }
+
+});
 
   } catch (err) {
     console.error("Could not retrieve nearby trainings:", err);
