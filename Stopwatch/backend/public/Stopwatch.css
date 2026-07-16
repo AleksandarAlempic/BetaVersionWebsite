@@ -15,6 +15,13 @@
   min-width: 240px;
 }
 
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: white;
+    color: #333;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+    min-width: 240px;
+}
+
 .map-popup .leaflet-popup-content-wrapper {
     border-radius: 12px;
 }
