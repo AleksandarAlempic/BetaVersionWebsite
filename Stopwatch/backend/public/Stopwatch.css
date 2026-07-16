@@ -16,6 +16,10 @@
   font-size: larger;
 }
 
+.buttonCenter {
+        margin-left: 18%;
+}
+
 .leaflet-popup-content-wrapper, .leaflet-popup-tip {
     background: white;
     color: #333;
