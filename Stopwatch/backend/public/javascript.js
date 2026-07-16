@@ -920,7 +920,7 @@ if (navigator.serviceWorker) {
    // 4️⃣ Grupisanje treninga
 window.currentTrainingMarkers = [];
 
-const trainingGroups = groupTrainingsByLocation(trainings, 20);
+const trainingGroups = groupTrainingsByLocation(trainings, 120);
 
 
 trainingGroups.forEach(group => {
