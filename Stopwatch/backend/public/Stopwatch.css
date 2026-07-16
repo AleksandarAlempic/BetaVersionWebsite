@@ -12,6 +12,7 @@
     overflow-y: auto;
     margin: 14px;
     line-height: 1.5;
+  min-width: 240px;
 }
 
 .map-popup .leaflet-popup-content-wrapper {
