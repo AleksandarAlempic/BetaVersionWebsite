@@ -4,6 +4,20 @@
   bottom: -1px !important;
 }
 
+/* =================== MAP POPUP =================== */
+
+.map-popup .leaflet-popup-content {
+    width: 360px !important;
+    max-height: 350px;
+    overflow-y: auto;
+    margin: 14px;
+    line-height: 1.5;
+}
+
+.map-popup .leaflet-popup-content-wrapper {
+    border-radius: 12px;
+}
+
         /* OKVIR OKO MAPE */
 .map-wrapper {
        margin-top: 80px;
