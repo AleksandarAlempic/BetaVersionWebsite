@@ -1008,11 +1008,11 @@ trainingGroups.forEach(group => {
       });
 
 
-      html += `
-        <button onclick="">
-          Prikaži svih ${group.trainings.length}
-        </button>
-      `;
+     html += `
+    <button class="buttonCenter" onclick="">
+        Prikaži svih ${group.trainings.length}
+    </button>
+`;
 
 
       marker.setPopupContent(html);
