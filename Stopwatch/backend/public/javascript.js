@@ -904,9 +904,6 @@ function showAllTrainings(group, marker) {
 
 // =================== FETCH NEARBY TRAININGS ===================
 
-let trainingCurrentPage = 1;
-const trainingPageSize = 8;
-
 async function retrieveNearbyTrainings() {
   try {
     // 1️⃣ Čekamo geolokaciju
