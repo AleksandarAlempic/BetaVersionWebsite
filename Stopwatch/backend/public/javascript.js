@@ -862,6 +862,9 @@ function groupTrainingsByLocation(trainings, radiusMeters = 20) {
 
 // =================== SHOW ALL TRAININGS ===================
 
+let trainingCurrentPage = 1;
+const trainingPageSize = 8;
+
 function showAllTrainings(group, marker) {
 
   let html = `
@@ -869,10 +872,18 @@ function showAllTrainings(group, marker) {
     <br><br>
   `;
 
-  group.trainings
+
+  const sortedTrainings = group.trainings
     .slice()
-    .sort((a,b) => new Date(b.created_at) - new Date(a.created_at))
-    .slice(0,8)
+    .sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
+
+
+  const start = (trainingCurrentPage - 1) * trainingPageSize;
+  const end = start + trainingPageSize;
+
+
+  sortedTrainings
+    .slice(start, end)
     .forEach(t => {
 
       html += `
@@ -892,6 +903,10 @@ function showAllTrainings(group, marker) {
 }
 
 // =================== FETCH NEARBY TRAININGS ===================
+
+let trainingCurrentPage = 1;
+const trainingPageSize = 8;
+
 async function retrieveNearbyTrainings() {
   try {
     // 1️⃣ Čekamo geolokaciju
