@@ -893,12 +893,49 @@ function showAllTrainings(group, marker) {
         </div>
         <hr>
       `;
-
     });
+const totalPages = Math.ceil(group.trainings.length / trainingPageSize);
 
+if (totalPages > 1) {
+
+  html += `<div class="pagination">`;
+
+  for (let i = 1; i <= totalPages; i++) {
+
+    html += `
+      <button class="pageButton" data-page="${i}">
+        ${i}
+      </button>
+    `;
+
+  }
+
+  html += `</div>`;
+
+}
 
   marker.setPopupContent(html);
   marker.openPopup();
+
+  setTimeout(() => {
+
+  const buttons = marker.getPopup()
+    .getElement()
+    ?.querySelectorAll(".pageButton");
+
+  buttons?.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      trainingCurrentPage = Number(button.dataset.page);
+
+      showAllTrainings(group, marker);
+
+    });
+
+  });
+
+}, 0);
   
 }
 
