@@ -861,6 +861,7 @@ function groupTrainingsByLocation(trainings, radiusMeters = 20) {
 }
 
 // =================== SHOW ALL TRAININGS ===================
+
 function showAllTrainings(group, marker) {
 
   let html = `
@@ -868,23 +869,25 @@ function showAllTrainings(group, marker) {
     <br><br>
   `;
 
-  group.trainings.forEach(t => {
+  group.trainings
+    .slice()
+    .sort((a,b) => new Date(b.created_at) - new Date(a.created_at))
+    .slice(0,8)
+    .forEach(t => {
 
-    html += `
-      <div class="training-item">
-        <b>${t.trainingName || "Training"}</b><br>
-        ⏱ ${t.duration || 0} min
-      </div>
-      <hr>
-    `;
+      html += `
+        <div class="training-item">
+          <b>${t.trainingName || "Training"}</b><br>
+          ⏱ ${t.duration || 0} min
+        </div>
+        <hr>
+      `;
 
-  });
+    });
 
 
   marker.setPopupContent(html);
   marker.openPopup();
-  
-  
   
 }
 
