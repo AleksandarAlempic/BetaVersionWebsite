@@ -860,6 +860,34 @@ function groupTrainingsByLocation(trainings, radiusMeters = 20) {
   return groups;
 }
 
+// =================== SHOW ALL TRAININGS ===================
+function showAllTrainings(group, marker) {
+
+  let html = `
+    <b>🏋️ Svi treninzi (${group.trainings.length})</b>
+    <br><br>
+  `;
+
+  group.trainings.forEach(t => {
+
+    html += `
+      <div class="training-item">
+        <b>${t.trainingName || "Training"}</b><br>
+        ⏱ ${t.duration || 0} min
+      </div>
+      <hr>
+    `;
+
+  });
+
+
+  marker.setPopupContent(html);
+  marker.openPopup();
+  
+  
+  
+}
+
 // =================== FETCH NEARBY TRAININGS ===================
 async function retrieveNearbyTrainings() {
   try {
@@ -1008,16 +1036,32 @@ trainingGroups.forEach(group => {
       });
 
 
-     html += `
-    <button class="buttonCenter" onclick="">
-        Prikaži svih ${group.trainings.length}
-    </button>
+    html += `
+    <div id="showAllContainer">
+        <button class="buttonCenter">
+            Prikaži svih ${group.trainings.length}
+        </button>
+    </div>
 `;
 
 
       marker.setPopupContent(html);
       marker.openPopup();
+      
+      setTimeout(() => {
 
+    const button = marker.getPopup()
+        .getElement()
+        ?.querySelector(".buttonCenter");
+
+    if (button) {
+        button.addEventListener("click", () => {
+            showAllTrainings(group, marker);
+        });
+    }
+
+}, 0);
+       
     });
 
 
