@@ -865,7 +865,9 @@ function groupTrainingsByLocation(trainings, radiusMeters = 20) {
 let trainingCurrentPage = 1;
 const trainingPageSize = 8;
 
+
 function showAllTrainings(group, marker) {
+
 
   let html = `
     <b>🏋️ Svi treninzi (${group.trainings.length})</b>
@@ -873,69 +875,159 @@ function showAllTrainings(group, marker) {
   `;
 
 
+
   const sortedTrainings = group.trainings
     .slice()
     .sort((a,b) => new Date(b.created_at) - new Date(a.created_at));
 
 
+
   const start = (trainingCurrentPage - 1) * trainingPageSize;
+
   const end = start + trainingPageSize;
+
 
 
   sortedTrainings
     .slice(start, end)
     .forEach(t => {
 
-     html += `
-    <div class="training-item" data-id="${t.id}">
-      <b>${t.trainingName || "Training"}</b><br>
-      ⏱ ${t.duration || 0} min
-    </div>
-    <hr>
-`;
-const totalPages = Math.ceil(group.trainings.length / trainingPageSize);
 
-if (totalPages > 1) {
+      html += `
 
-  html += `<div class="pagination">`;
+        <div class="training-item" data-id="${t.id}">
 
-  for (let i = 1; i <= totalPages; i++) {
+          <b>${t.trainingName || "Training"}</b><br>
 
-    html += `
-      <button class="pageButton" data-page="${i}">
-        ${i}
-      </button>
-    `;
+          ⏱ ${t.duration || 0} min
 
-  }
+        </div>
 
-  html += `</div>`;
+        <hr>
 
-}
+      `;
 
-  marker.setPopupContent(html);
-  marker.openPopup();
-
-  setTimeout(() => {
-
-  const buttons = marker.getPopup()
-    .getElement()
-    ?.querySelectorAll(".pageButton");
-
-  buttons?.forEach(button => {
-
-    button.addEventListener("click", () => {
-
-      trainingCurrentPage = Number(button.dataset.page);
-
-      showAllTrainings(group, marker);
 
     });
 
-  });
 
-}, 0);
-  
+
+  // ================= PAGINATION =================
+
+
+  const totalPages = Math.ceil(
+    group.trainings.length / trainingPageSize
+  );
+
+
+  if (totalPages > 1) {
+
+
+    html += `<div class="pagination">`;
+
+
+    for (let i = 1; i <= totalPages; i++) {
+
+
+      html += `
+
+        <button class="pageButton" data-page="${i}">
+
+          ${i}
+
+        </button>
+
+      `;
+
+
+    }
+
+
+    html += `</div>`;
+
+  }
+
+
+
+  marker.setPopupContent(html);
+
+  marker.openPopup();
+
+
+
+  // ================= EVENT LISTENERS =================
+
+
+  setTimeout(() => {
+
+
+    const popup = marker.getPopup()
+      .getElement();
+
+
+
+    // PAGE BUTTONS
+
+    const buttons = popup
+      ?.querySelectorAll(".pageButton");
+
+
+    buttons?.forEach(button => {
+
+
+      button.addEventListener("click", () => {
+
+
+        trainingCurrentPage = Number(
+          button.dataset.page
+        );
+
+
+        showAllTrainings(group, marker);
+
+
+      });
+
+
+    });
+
+
+
+    // TRAINING DETAILS CLICK
+
+    const trainingItems = popup
+      ?.querySelectorAll(".training-item");
+
+
+    trainingItems?.forEach(item => {
+
+
+      item.addEventListener("click", () => {
+
+
+        const trainingId = item.dataset.id;
+
+
+        console.log(
+          "Opening training details:",
+          trainingId
+        );
+
+
+        window.location.href =
+          `training-details.html?id=${trainingId}`;
+
+
+      });
+
+
+    });
+
+
+
+  }, 0);
+
+
 }
 
 // =================== FETCH NEARBY TRAININGS ===================
