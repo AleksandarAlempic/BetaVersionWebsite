@@ -886,14 +886,13 @@ function showAllTrainings(group, marker) {
     .slice(start, end)
     .forEach(t => {
 
-      html += `
-        <div class="training-item">
-          <b>${t.trainingName || "Training"}</b><br>
-          ⏱ ${t.duration || 0} min
-        </div>
-        <hr>
-      `;
-    });
+     html += `
+    <div class="training-item" data-id="${t.id}">
+      <b>${t.trainingName || "Training"}</b><br>
+      ⏱ ${t.duration || 0} min
+    </div>
+    <hr>
+`;
 const totalPages = Math.ceil(group.trainings.length / trainingPageSize);
 
 if (totalPages > 1) {
