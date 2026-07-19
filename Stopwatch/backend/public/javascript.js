@@ -993,8 +993,6 @@ function showAllTrainings(group, marker) {
 
 
 
-    // TRAINING DETAILS CLICK
-
  // TRAINING CLICK
 
 const trainingItems = popup
@@ -1013,11 +1011,11 @@ trainingItems?.forEach(item => {
       t => t.id == trainingId
     );
 
-
-    console.log(
-      "Selected training:",
-      training
-    );
+openTrainingPopup(training);
+    // console.log(
+    //   "Selected training:",
+    //   training
+    // );
 
 
   });
