@@ -995,33 +995,34 @@ function showAllTrainings(group, marker) {
 
     // TRAINING DETAILS CLICK
 
-    const trainingItems = popup
-      ?.querySelectorAll(".training-item");
+ // TRAINING CLICK
+
+const trainingItems = popup
+  ?.querySelectorAll(".training-item");
 
 
-    trainingItems?.forEach(item => {
+trainingItems?.forEach(item => {
+
+  item.addEventListener("click", () => {
 
 
-      item.addEventListener("click", () => {
+    const trainingId = item.dataset.id;
 
 
-        const trainingId = item.dataset.id;
+    const training = group.trainings.find(
+      t => t.id == trainingId
+    );
 
 
-        console.log(
-          "Opening training details:",
-          trainingId
-        );
+    console.log(
+      "Selected training:",
+      training
+    );
 
 
-        window.location.href =
-          `training-details.html?id=${trainingId}`;
+  });
 
-
-      });
-
-
-    });
+});
 
 
 
