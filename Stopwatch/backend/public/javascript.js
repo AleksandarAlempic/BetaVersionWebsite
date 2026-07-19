@@ -1031,6 +1031,55 @@ trainingItems?.forEach(item => {
 
 }
 
+// =================== OPEN TRAINING POPUP ===================
+
+function openTrainingPopup(training) {
+
+    console.log("Opening training popup:", training);
+
+
+    document.getElementById("addTrainingPopup").style.display = "block";
+
+
+    document.getElementById("trainingName").value =
+        training.trainingName || "";
+
+
+    document.getElementById("userName").value =
+        training.userName || "";
+
+
+    document.getElementById("pushUps").value =
+        training.pushUps || 0;
+
+
+    document.getElementById("pullUps").value =
+        training.pullUps || 0;
+
+
+    document.getElementById("sitUps").value =
+        training.sitUps || 0;
+
+
+    if(document.getElementById("absCount")) {
+        document.getElementById("absCount").value =
+            training.absCount || 0;
+    }
+
+
+    if(document.getElementById("otherExercise")) {
+        document.getElementById("otherExercise").value =
+            training.otherExercise || "";
+    }
+
+
+    if(document.getElementById("duration")) {
+        document.getElementById("duration").value =
+            training.duration || 0;
+    }
+
+}
+
 // =================== FETCH NEARBY TRAININGS ===================
 
 async function retrieveNearbyTrainings() {
