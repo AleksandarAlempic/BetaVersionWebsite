@@ -1333,9 +1333,13 @@ stopwatch.addEventListener('click', () => {
 playListBtn.addEventListener('click', () => {
     Root.style.setProperty("z-index", "1000000", "important");
 });
+
 // =================== CLOSE POPUP ===================
 function closePage() {
-  addTrainingPopup.style.display = "none";
+
+  document.getElementById("addTrainingPopup")
+  .style.display = "none";
+
 }
 
 // =================== INITIAL LANGUAGE SETUP ===================
