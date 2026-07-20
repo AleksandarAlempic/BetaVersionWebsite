@@ -1037,6 +1037,9 @@ openTrainingPopup(training);
 function openTrainingPopup(training) {
     trainingPopupMode = "view";
 
+  document.getElementById("trainingPopupTitle").innerHTML =
+    "Training Details";
+
     console.log("Opening training popup:", training);
             
             
@@ -1092,6 +1095,9 @@ document.getElementById("fetchAddTrainingButton").addEventListener("click", () =
     document.querySelector(".saveButtonTraining").style.display = "inline-block";
 
     document.getElementById("addTrainingPopup").style.display = "block";
+
+  document.getElementById("trainingPopupTitle").innerHTML =
+    "Add Training";
 
 });
 
