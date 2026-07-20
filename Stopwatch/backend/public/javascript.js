@@ -462,6 +462,23 @@ function updateTrainingPopupLanguage(lang) {
   document.querySelector('label[for="otherExercise"]').textContent = trainingTranslations[lang].otherExerciseLabel;
   document.querySelector(".saveButtonTraining").textContent = trainingTranslations[lang].saveButton;
   document.querySelector(".cancelButtonTraining").textContent = trainingTranslations[lang].cancelButton;
+
+
+  // =================== TRAINING POPUP TITLE ===================
+
+  const title = document.getElementById("trainingPopupTitle");
+
+  if (title) {
+
+    if (trainingPopupMode === "view") {
+      title.textContent = trainingTranslations[lang].trainingDetailsTitle;
+    } 
+    else {
+      title.textContent = trainingTranslations[lang].addTrainingButton;
+    }
+
+  }
+
 }
 
 // =================== STOPWATCH LOGIC ===================
