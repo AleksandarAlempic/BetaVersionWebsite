@@ -1335,12 +1335,12 @@ playListBtn.addEventListener('click', () => {
 });
 
 // =================== CLOSE POPUP ===================
-function closePage() {
+window.closePage = function() {
 
   document.getElementById("addTrainingPopup")
   .style.display = "none";
 
-}
+};
 
 // =================== INITIAL LANGUAGE SETUP ===================
 updateInterfaceLanguage();
