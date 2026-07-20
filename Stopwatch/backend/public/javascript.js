@@ -1257,14 +1257,23 @@ trainingGroups.forEach(group => {
       let html = `<b>🏋️ Poslednjih 6 treninga</b><br><br>`;
 
 
-      lastSix.forEach(t => {
+     lastSix.forEach(t => {
 
-        html += `
-          <b>${t.trainingName || "Training"}</b><br>
-          ⏱ ${t.duration || 0} min<br><br>
-        `;
+  html += `
 
-      });
+    <div class="training-item" data-id="${t.id}">
+
+      <b>${t.trainingName || "Training"}</b><br>
+
+      ⏱ ${t.duration || 0} min
+
+    </div>
+
+    <hr>
+
+  `;
+
+});
 
 
     html += `
@@ -1278,6 +1287,41 @@ trainingGroups.forEach(group => {
 
       marker.setPopupContent(html);
       marker.openPopup();
+
+      setTimeout(() => {
+
+  const popup = marker.getPopup()
+      .getElement();
+
+
+  const trainingItems = popup
+      ?.querySelectorAll(".training-item");
+
+
+  trainingItems?.forEach(item => {
+
+
+    item.addEventListener("click", () => {
+
+
+      const trainingId = item.dataset.id;
+
+
+      const training = group.trainings.find(
+        t => t.id == trainingId
+      );
+
+
+      openTrainingPopup(training);
+
+
+    });
+
+
+  });
+
+
+}, 0);
       
       setTimeout(() => {
 
