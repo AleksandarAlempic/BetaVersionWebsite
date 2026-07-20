@@ -1202,16 +1202,45 @@ trainingGroups.forEach(group => {
       marker.options.trainingData = t;
 
 
-     marker.addTo(map).bindPopup(`
-    <b>${t.trainingName || translations[currentLanguage].unnamedTraining}</b><br>
-    🏋️‍♂️ ${translations[currentLanguage].addTrainingPopupLabels.pushUps}: ${t.pushUps || 0}<br>
-    💪 ${translations[currentLanguage].addTrainingPopupLabels.pullUps}: ${t.pullUps || 0}<br>
-    🧍 ${translations[currentLanguage].addTrainingPopupLabels.sitUps}: ${t.sitUps || 0}<br>
-    ⏱ ${translations[currentLanguage].addTrainingPopupLabels.duration}: ${t.duration || 0} min
+    marker.addTo(map).bindPopup(`
+
+<div class="training-item" data-id="${t.id}">
+
+<b>${t.trainingName || translations[currentLanguage].unnamedTraining}</b><br>
+
+🏋️‍♂️ ${translations[currentLanguage].addTrainingPopupLabels.pushUps}: ${t.pushUps || 0}<br>
+
+💪 ${translations[currentLanguage].addTrainingPopupLabels.pullUps}: ${t.pullUps || 0}<br>
+
+🧍 ${translations[currentLanguage].addTrainingPopupLabels.sitUps}: ${t.sitUps || 0}<br>
+
+⏱ ${translations[currentLanguage].addTrainingPopupLabels.duration}: ${t.duration || 0} min
+
+</div>
+
 `, {
     minWidth: 360,
     maxWidth: 460,
     className: "map-popup"
+});
+
+   marker.on("popupopen", () => {
+
+  const popup = marker.getPopup()
+    .getElement();
+
+  const item = popup?.querySelector(".training-item");
+
+  if(item){
+
+    item.addEventListener("click", () => {
+
+      openTrainingPopup(t);
+
+    });
+
+  }
+
 });
 
 
