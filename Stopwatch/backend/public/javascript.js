@@ -864,7 +864,7 @@ function groupTrainingsByLocation(trainings, radiusMeters = 20) {
 
 let trainingCurrentPage = 1;
 const trainingPageSize = 8;
-
+let trainingPopupMode = "add";
 
 function showAllTrainings(group, marker) {
 
@@ -1032,10 +1032,11 @@ openTrainingPopup(training);
 // =================== OPEN TRAINING POPUP ===================
 
 function openTrainingPopup(training) {
+    trainingPopupMode = "view";
 
     console.log("Opening training popup:", training);
-
-
+            
+            
     document.getElementById("addTrainingPopup").style.display = "block";
 
 
@@ -1075,6 +1076,9 @@ function openTrainingPopup(training) {
         document.getElementById("duration").value =
             training.duration || 0;
     }
+
+  document.querySelector(".saveButtonTraining")
+.style.display = "none";
 
 }
 
