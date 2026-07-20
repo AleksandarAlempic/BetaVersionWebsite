@@ -423,6 +423,7 @@ const trainingTranslations = {
   en: {
     addTrainingButton: "Add Training",
     trainingNameLabel: "Training Name",
+    trainingDetailsTitle: "Training Details",
     userNameLabel: "User Name",
     pushUpsLabel: "Push Ups",
     pullUpsLabel: "Pull Ups",
@@ -436,6 +437,7 @@ const trainingTranslations = {
   sr: {
     addTrainingButton: "Dodaj Trening",
     trainingNameLabel: "Naziv treninga",
+    trainingDetailsTitle: "Trening detalji",
     userNameLabel: "Ime korisnika",
     pushUpsLabel: "Sklekovi",
     pullUpsLabel: "Zgibovi",
@@ -447,8 +449,6 @@ const trainingTranslations = {
     cancelButton: "X"
   }
 };
-
-
 
 function updateTrainingPopupLanguage(lang) {
   document.getElementById("fetchAddTrainingButton").textContent = trainingTranslations[lang].addTrainingButton;
@@ -1037,8 +1037,8 @@ openTrainingPopup(training);
 function openTrainingPopup(training) {
     trainingPopupMode = "view";
 
-  document.getElementById("trainingPopupTitle").innerHTML =
-    "Training Details";
+ document.getElementById("trainingPopupTitle").textContent =
+    trainingTranslations[currentLanguage].trainingDetailsTitle;
 
     console.log("Opening training popup:", training);
             
