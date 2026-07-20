@@ -448,6 +448,8 @@ const trainingTranslations = {
   }
 };
 
+
+
 function updateTrainingPopupLanguage(lang) {
   document.getElementById("fetchAddTrainingButton").textContent = trainingTranslations[lang].addTrainingButton;
   document.querySelector('label[for="trainingName"]').textContent = trainingTranslations[lang].trainingNameLabel;
@@ -866,6 +868,7 @@ let trainingCurrentPage = 1;
 const trainingPageSize = 8;
 let trainingPopupMode = "add";
 
+
 function showAllTrainings(group, marker) {
 
 
@@ -1081,6 +1084,16 @@ function openTrainingPopup(training) {
 .style.display = "none";
 
 }
+
+document.getElementById("fetchAddTrainingButton").addEventListener("click", () => {
+
+    trainingPopupMode = "add";
+
+    document.querySelector(".saveButtonTraining").style.display = "inline-block";
+
+    document.getElementById("addTrainingPopup").style.display = "block";
+
+});
 
 // =================== FETCH NEARBY TRAININGS ===================
 
