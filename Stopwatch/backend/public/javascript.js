@@ -1175,8 +1175,7 @@ if (navigator.serviceWorker) {
       return;
     }
 
-    // 4️⃣ Dodajemo treninge na mapu
-   // 4️⃣ Grupisanje treninga
+// 4️⃣ Grupisanje treninga
 window.currentTrainingMarkers = [];
 
 const trainingGroups = groupTrainingsByLocation(trainings, 120);
@@ -1186,23 +1185,59 @@ trainingGroups.forEach(group => {
 
 
   // ==========================
-  // DO 6 TRENINGA
+  // DO 6 TRENINGA - SPIDER RASPORED
   // ==========================
+
   if (group.trainings.length <= 6) {
 
 
-    group.trainings.forEach(t => {
+    group.trainings.forEach((t, index) => {
+
+
+      let lat = group.latitude;
+      let lng = group.longitude;
+
+
+      // Spider raspored samo ako ih ima više
+      if (group.trainings.length > 1) {
+
+
+        const angle =
+          (2 * Math.PI * index) / group.trainings.length;
+
+
+        const radius =
+          group.trainings.length <= 3
+            ? 0.00010
+            : 0.00014;
+
+
+        lat =
+          group.latitude +
+          Math.cos(angle) * radius;
+
+
+        lng =
+          group.longitude +
+          Math.sin(angle) * radius;
+
+      }
+
+
 
       const marker = L.marker(
-        [t.latitude, t.longitude],
-        { icon: dumbbellIcon }
+        [lat, lng],
+        {
+          icon: dumbbellIcon
+        }
       );
 
 
       marker.options.trainingData = t;
 
 
-    marker.addTo(map).bindPopup(`
+
+      marker.addTo(map).bindPopup(`
 
 <div class="training-item" data-id="${t.id}">
 
@@ -1219,37 +1254,52 @@ trainingGroups.forEach(group => {
 </div>
 
 `, {
-    minWidth: 360,
-    maxWidth: 460,
-    className: "map-popup"
-});
+        minWidth: 360,
+        maxWidth: 460,
+        className: "map-popup"
+      });
 
-   marker.on("popupopen", () => {
 
-  const popup = marker.getPopup()
-    .getElement();
 
-  const item = popup?.querySelector(".training-item");
+      marker.on("popupopen", () => {
 
-  if(item){
 
-    item.addEventListener("click", () => {
+        const popup =
+          marker.getPopup()
+          .getElement();
 
-      openTrainingPopup(t);
 
-    });
+        const item =
+          popup?.querySelector(".training-item");
 
-  }
 
-});
+        if (item) {
+
+
+          item.addEventListener("click", () => {
+
+
+            openTrainingPopup(t);
+
+
+          });
+
+
+        }
+
+
+      });
+
 
 
       window.currentTrainingMarkers.push(marker);
 
+
     });
 
 
   }
+
 
   // ==========================
   // VIŠE OD 6 TRENINGA
