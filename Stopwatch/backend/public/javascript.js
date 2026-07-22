@@ -1183,7 +1183,7 @@ const trainingGroups = groupTrainingsByLocation(trainings, 120);
     const zoom = map.getZoom();
 
     console.log("CURRENT ZOOM:", zoom);
-    console.log("TRAININGS:", group.trainings.length);
+    // console.log("TRAININGS:", group.trainings.length);
 
 
 trainingGroups.forEach(group => {
@@ -1195,7 +1195,7 @@ trainingGroups.forEach(group => {
 
   if (group.trainings.length <= 6) {
 
-    if (zoom <= 12) {
+    if (zoom <= 13) {
 
 
     const marker = L.marker(
