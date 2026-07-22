@@ -1206,10 +1206,18 @@ trainingGroups.forEach(group => {
           (2 * Math.PI * index) / group.trainings.length;
 
 
-        const radius =
-          group.trainings.length <= 3
-            ? 0.00010
-            : 0.00014;
+    const zoom = map.getZoom();
+
+// Osnovni radius koji se menja sa zoom-om
+let radius = 0.00018 * Math.pow(2, 15 - zoom);
+
+// Ograničenja da ne bude ni premali ni preveliki
+radius = Math.max(0.00005, Math.min(radius, 0.00080));
+
+// Malo povećanje za veće grupe
+if (group.trainings.length >= 4) {
+    radius *= 1.25;
+}
 
 
         lat =
