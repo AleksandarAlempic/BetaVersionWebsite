@@ -1190,6 +1190,47 @@ trainingGroups.forEach(group => {
 
   if (group.trainings.length <= 6) {
 
+    if (zoom <= 12) {
+
+
+    const marker = L.marker(
+        [group.latitude, group.longitude],
+        {
+            icon: dumbbellIcon
+        }
+    );
+
+
+    marker.addTo(map);
+
+
+    const countMarker = L.marker(
+        [group.latitude, group.longitude],
+        {
+            icon: L.divIcon({
+                className: "training-count",
+                html: `
+                    <div class="training-count-number">
+                        ${group.trainings.length}
+                    </div>
+                `,
+                iconSize: [30, 20],
+                iconAnchor: [15, -10]
+            }),
+            interactive: false
+        }
+    );
+
+
+    countMarker.addTo(map);
+
+
+    window.currentTrainingMarkers.push(marker);
+    window.currentTrainingMarkers.push(countMarker);
+
+
+}
+else {
 
     group.trainings.forEach((t, index) => {
 
@@ -1310,7 +1351,7 @@ else if (group.trainings.length >= 4) {
 
 
   }
-
+  }
 
   // ==========================
   // VIŠE OD 6 TRENINGA
