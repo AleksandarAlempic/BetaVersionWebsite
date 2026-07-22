@@ -1180,6 +1180,8 @@ window.currentTrainingMarkers = [];
 
 const trainingGroups = groupTrainingsByLocation(trainings, 120);
 
+    const zoom = map.getZoom();
+
 
 trainingGroups.forEach(group => {
 
@@ -1247,7 +1249,7 @@ else {
           (2 * Math.PI * index) / group.trainings.length;
 
 
- const zoom = map.getZoom();
+ // const zoom = map.getZoom();
 
 // manji osnovni radius
 let radius = 0.00010 * Math.pow(2, 15 - zoom);
