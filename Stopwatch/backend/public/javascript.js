@@ -1209,15 +1209,15 @@ trainingGroups.forEach(group => {
     const zoom = map.getZoom();
 
 // Osnovni radius koji se menja sa zoom-om
-let radius = 0.00012 * Math.pow(2, 15 - zoom);
+let radius = 0.00018 * Math.pow(2, 15 - zoom);
 
-radius = Math.max(0.00004, Math.min(radius, 0.00060));
+radius = Math.max(0.00005, Math.min(radius, 0.00080));
 
 if (group.trainings.length >= 8) {
-    radius *= 1.35;
+    radius *= 1.30;
 }
 else if (group.trainings.length >= 4) {
-    radius *= 1.20;
+    radius *= 1.25;
 }
 
 
