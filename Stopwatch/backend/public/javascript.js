@@ -1182,6 +1182,9 @@ const trainingGroups = groupTrainingsByLocation(trainings, 120);
 
     const zoom = map.getZoom();
 
+    console.log("CURRENT ZOOM:", zoom);
+    console.log("TRAININGS:", group.trainings.length);
+
 
 trainingGroups.forEach(group => {
 
