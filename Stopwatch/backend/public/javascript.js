@@ -1215,13 +1215,11 @@ const trainingGroups = groupTrainingsByLocation(trainings, 120);
 trainingGroups.forEach(group => {
 
 
-  // ==========================
-  // DO 6 TRENINGA - SPIDER RASPORED
-  // ==========================
+ // ==========================
+// DO 6 TRENINGA - GRUPNI TEG
+// ==========================
 
-  if (group.trainings.length <= 6) {
-
-    if (zoom <= 13) {
+if (group.trainings.length <= 6) {
 
 
     const marker = L.marker(
@@ -1230,9 +1228,6 @@ trainingGroups.forEach(group => {
             icon: dumbbellIcon
         }
     );
-
-
-    marker.addTo(map);
 
 
     const countMarker = L.marker(
@@ -1245,15 +1240,39 @@ trainingGroups.forEach(group => {
                         ${group.trainings.length}
                     </div>
                 `,
-                iconSize: [30, 20],
-                iconAnchor: [15, -10]
+                iconSize: [30,20],
+                iconAnchor: [15,-10]
             }),
-            interactive: false
+            interactive:false
         }
     );
 
 
+    marker.addTo(map);
     countMarker.addTo(map);
+
+
+    // čuvamo grupu za klik
+    marker.options.trainingGroup = group;
+
+
+   marker.on("click", () => {
+
+
+    map.removeLayer(marker);
+    map.removeLayer(countMarker);
+
+
+    window.currentTrainingMarkers =
+        window.currentTrainingMarkers.filter(
+            m => m !== marker && m !== countMarker
+        );
+
+
+    createTrainingSpider(group);
+
+
+});
 
 
     window.currentTrainingMarkers.push(marker);
@@ -1261,134 +1280,6 @@ trainingGroups.forEach(group => {
 
 
 }
-else {
-
-    group.trainings.forEach((t, index) => {
-
-
-      let lat = group.latitude;
-      let lng = group.longitude;
-
-
-      // Spider raspored samo ako ih ima više
-      if (group.trainings.length > 1) {
-
-
-        const angle =
-          (2 * Math.PI * index) / group.trainings.length;
-
-
- // const zoom = map.getZoom();
-
-// manji osnovni radius
-let radius = 0.00010 * Math.pow(2, 15 - zoom);
-
-// granice
-radius = Math.max(0.000025, Math.min(radius, 0.00055));
-
-
-// Na najvećem zoom-u malo širi spider
-if (zoom >= 15) {
-    radius *= 1.50;
-}
-
-
-if (group.trainings.length >= 8) {
-    radius *= 1.20;
-}
-else if (group.trainings.length >= 4) {
-    radius *= 1.10;
-}
-
-
-        lat =
-          group.latitude +
-          Math.cos(angle) * radius;
-
-
-        lng =
-          group.longitude +
-          Math.sin(angle) * radius;
-
-      }
-
-
-
-      const marker = L.marker(
-        [lat, lng],
-        {
-          icon: dumbbellIcon
-        }
-      );
-
-
-      marker.options.trainingData = t;
-
-
-
-      marker.addTo(map).bindPopup(`
-
-<div class="training-item" data-id="${t.id}">
-
-<b>${t.trainingName || translations[currentLanguage].unnamedTraining}</b><br>
-
-🏋️‍♂️ ${translations[currentLanguage].addTrainingPopupLabels.pushUps}: ${t.pushUps || 0}<br>
-
-💪 ${translations[currentLanguage].addTrainingPopupLabels.pullUps}: ${t.pullUps || 0}<br>
-
-🧍 ${translations[currentLanguage].addTrainingPopupLabels.sitUps}: ${t.sitUps || 0}<br>
-
-⏱ ${translations[currentLanguage].addTrainingPopupLabels.duration}: ${t.duration || 0} min
-
-</div>
-
-`, {
-        minWidth: 360,
-        maxWidth: 460,
-        className: "map-popup"
-      });
-
-
-
-      marker.on("popupopen", () => {
-
-
-        const popup =
-          marker.getPopup()
-          .getElement();
-
-
-        const item =
-          popup?.querySelector(".training-item");
-
-
-        if (item) {
-
-
-          item.addEventListener("click", () => {
-
-
-            openTrainingPopup(t);
-
-
-          });
-
-
-        }
-
-
-      });
-
-
-
-      window.currentTrainingMarkers.push(marker);
-
-
-    });
-
-
-  }
-  }
 
   // ==========================
   // VIŠE OD 6 TRENINGA
@@ -1523,6 +1414,92 @@ else if (group.trainings.length >= 4) {
     retrievingTrainings = false;
 
 }
+}
+
+function createTrainingSpider(group) {
+
+
+    const zoom = map.getZoom();
+
+
+    group.trainings.forEach((t,index)=>{
+
+
+        const angle =
+            (2 * Math.PI * index) / group.trainings.length;
+
+
+        let radius = 0.00010 * Math.pow(2, 15 - zoom);
+
+        radius = Math.max(0.000025, Math.min(radius, 0.00055));
+
+
+        if (zoom >= 15) {
+            radius *= 1.50;
+        }
+
+
+        const lat =
+            group.latitude +
+            Math.cos(angle) * radius;
+
+
+        const lng =
+            group.longitude +
+            Math.sin(angle) * radius;
+
+
+
+        const marker = L.marker(
+            [lat,lng],
+            {
+                icon:dumbbellIcon
+            }
+        );
+
+
+        marker.options.trainingData = t;
+
+
+        marker.addTo(map).bindPopup(`
+
+        <div class="training-item" data-id="${t.id}">
+
+        <b>${t.trainingName || translations[currentLanguage].unnamedTraining}</b><br>
+
+        🏋️ ${t.pushUps || 0}<br>
+        💪 ${t.pullUps || 0}<br>
+        ⏱ ${t.duration || 0} min
+
+        </div>
+
+        `);
+
+
+        marker.on("popupopen",()=>{
+
+            const item =
+            marker.getPopup()
+            .getElement()
+            ?.querySelector(".training-item");
+
+
+            if(item){
+
+                item.onclick=()=>{
+                    openTrainingPopup(t);
+                };
+
+            }
+
+        });
+
+
+        window.currentTrainingMarkers.push(marker);
+
+
+    });
+
 }
 
 // =================== BUTTON LISTENERS ===================
