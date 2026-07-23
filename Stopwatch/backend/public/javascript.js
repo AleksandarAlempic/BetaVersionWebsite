@@ -1121,6 +1121,21 @@ document.getElementById("fetchAddTrainingButton").addEventListener("click", () =
 // =================== FETCH NEARBY TRAININGS ===================
 
 async function retrieveNearbyTrainings() {
+
+  // Očisti sve prethodne training markere
+if (window.currentTrainingMarkers?.length) {
+
+    window.currentTrainingMarkers.forEach(marker => {
+        if (map.hasLayer(marker)) {
+            map.removeLayer(marker);
+        }
+    });
+
+}
+
+window.currentTrainingMarkers = [];
+
+  
   try {
     // 1️⃣ Čekamo geolokaciju
   const position = await new Promise((resolve, reject) => {
@@ -1138,11 +1153,11 @@ async function retrieveNearbyTrainings() {
     const { latitude, longitude } = position.coords;
     const radius = 35000;
 
-    // 2️⃣ Uklanjamo stare markere
-    if (window.currentTrainingMarkers) {
-      window.currentTrainingMarkers.forEach(marker => map.removeLayer(marker));
-      window.currentTrainingMarkers = [];
-    }
+    // // 2️⃣ Uklanjamo stare markere
+    // if (window.currentTrainingMarkers) {
+    //   window.currentTrainingMarkers.forEach(marker => map.removeLayer(marker));
+    //   window.currentTrainingMarkers = [];
+    // }
 
    const url = `/api/nearby-trainings?lat=${latitude}&lng=${longitude}&radius=${radius}`;
 
@@ -1176,7 +1191,7 @@ if (navigator.serviceWorker) {
     }
 
 // 4️⃣ Grupisanje treninga
-window.currentTrainingMarkers = [];
+// window.currentTrainingMarkers = [];
 
 const trainingGroups = groupTrainingsByLocation(trainings, 120);
 
