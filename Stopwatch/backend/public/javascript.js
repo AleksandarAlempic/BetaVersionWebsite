@@ -1,5 +1,9 @@
 import { safeSave } from './safe-save.js';
 
+let retrievingTrainings = false;
+
+
+
 let serverWokenUp = false;
 
 async function wakeUpServer() {
@@ -1122,6 +1126,13 @@ document.getElementById("fetchAddTrainingButton").addEventListener("click", () =
 
 async function retrieveNearbyTrainings() {
 
+    if (retrievingTrainings) {
+        console.log("Already retrieving trainings...");
+        return;
+    }
+
+    retrievingTrainings = true;
+
   // Očisti sve prethodne training markere
 if (window.currentTrainingMarkers?.length) {
 
@@ -1501,6 +1512,11 @@ else if (group.trainings.length >= 4) {
     console.error("Could not retrieve nearby trainings:", err);
     alert(translations[currentLanguage].couldNotGetLocation + (err.message || ""));
   }
+  finally {
+
+    retrievingTrainings = false;
+
+}
 }
 
 // =================== BUTTON LISTENERS ===================
