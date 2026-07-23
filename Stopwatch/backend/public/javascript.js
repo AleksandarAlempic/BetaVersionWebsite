@@ -1287,6 +1287,12 @@ let radius = 0.00010 * Math.pow(2, 15 - zoom);
 radius = Math.max(0.000025, Math.min(radius, 0.00055));
 
 
+// Na najvećem zoom-u malo širi spider
+if (zoom >= 15) {
+    radius *= 1.15;
+}
+
+
 if (group.trainings.length >= 8) {
     radius *= 1.20;
 }
