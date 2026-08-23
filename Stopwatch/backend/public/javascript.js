@@ -1233,25 +1233,46 @@ routes.forEach(route => {
   route._routePolyline = poly;
 
   // Klik na poliliniju → selektuj rutu
-  poly.on('click', () => {
+ poly.on('click', () => {
 
-    if (window.selectedPolyline) {
-      window.selectedPolyline.setStyle({
-        color: 'blue',
-        weight: 4,
-        opacity: 0.8
-      });
-    }
-
-    poly.setStyle({
-      color: '#00ff88',
-      weight: 6,
-      opacity: 1
+  // Vrati prethodnu poliliniju na normalno stanje
+  if (window.selectedPolyline) {
+    window.selectedPolyline.setStyle({
+      color: 'blue',
+      weight: 4,
+      opacity: 0.8
     });
+  }
 
-    window.selectedPolyline = poly;
-
+  // Selektuj trenutnu poliliniju
+  poly.setStyle({
+    color: '#00ff88',
+    weight: 6,
+    opacity: 1
   });
+
+  window.selectedPolyline = poly;
+
+
+  // Otvori detalje rute
+  const coords =
+    JSON.parse(route.polyline);
+
+  if (coords.length) {
+
+    L.popup()
+      .setLatLng([
+        coords[0].lat,
+        coords[0].lng
+      ])
+      .setContent(
+        getRoutePopupContent(route)
+      )
+      .openOn(map);
+
+  }
+
+});
 
 }); // <-- kraj routes.forEach
 
@@ -1427,38 +1448,47 @@ routeGroups.forEach(group => {
           .querySelectorAll('.route-item')
           .forEach(item => {
 
-            item.addEventListener('click', () => {
+          item.addEventListener('click', () => {
 
-              const routeId = item.dataset.id;
+  const routeId = item.dataset.id;
 
-              const route =
-                group.routes.find(
-                  r => r.id == routeId
-                );
+  const route =
+    group.routes.find(
+      r => r.id == routeId
+    );
 
-              if (!route) return;
+  if (!route) return;
 
-              if (route._routePolyline) {
 
-                if (window.selectedPolyline) {
-                  window.selectedPolyline.setStyle({
-                    color: 'blue',
-                    weight: 4,
-                    opacity: 0.8
-                  });
-                }
+  // Selektuj poliliniju
+  if (route._routePolyline) {
 
-                route._routePolyline.setStyle({
-                  color: '#00ff88',
-                  weight: 6,
-                  opacity: 1
-                });
+    selectRoutePolyline(
+      route._routePolyline
+    );
 
-                window.selectedPolyline =
-                  route._routePolyline;
-              }
+  }
 
-            });
+
+  // Otvori detalje rute
+  const coords =
+    JSON.parse(route.polyline);
+
+  if (coords.length) {
+
+    L.popup()
+      .setLatLng([
+        coords[0].lat,
+        coords[0].lng
+      ])
+      .setContent(
+        getRoutePopupContent(route)
+      )
+      .openOn(map);
+
+  }
+
+});
 
           });
 
