@@ -688,6 +688,459 @@ const dumbbellIcon = L.icon({
   popupAnchor: [0, -40]
 });
 
+
+// =================== GROUP ROUTES BY LOCATION ===================
+
+function groupRoutesByLocation(routes, radiusMeters = 120) {
+
+  const groups = [];
+
+  routes.forEach(route => {
+
+    const latlngs = JSON.parse(route.polyline).map(c =>
+      L.latLng(c.lat, c.lng)
+    );
+
+    if (!latlngs.length) return;
+
+    const latitude = latlngs[0].lat;
+    const longitude = latlngs[0].lng;
+
+    let foundGroup = null;
+
+    for (const group of groups) {
+
+      const distance = map.distance(
+        [latitude, longitude],
+        [group.latitude, group.longitude]
+      );
+
+      if (distance <= radiusMeters) {
+        foundGroup = group;
+        break;
+      }
+
+    }
+
+    if (foundGroup) {
+
+      foundGroup.routes.push(route);
+
+      // pomeramo centar grupe
+      foundGroup.latitude =
+        foundGroup.routes.reduce((sum, r) => {
+
+          const coords = JSON.parse(r.polyline);
+
+          return sum + coords[0].lat;
+
+        }, 0) / foundGroup.routes.length;
+
+
+      foundGroup.longitude =
+        foundGroup.routes.reduce((sum, r) => {
+
+          const coords = JSON.parse(r.polyline);
+
+          return sum + coords[0].lng;
+
+        }, 0) / foundGroup.routes.length;
+
+    } else {
+
+      groups.push({
+
+        latitude,
+        longitude,
+
+        routes: [route]
+
+      });
+
+    }
+
+  });
+
+  return groups;
+}
+
+
+// =================== ROUTE PAGINATION ===================
+
+let routeCurrentPage = 1;
+const routePageSize = 8;
+
+
+// =================== ROUTE COUNT ICON ===================
+
+function createRouteCountIcon(count) {
+
+  return L.divIcon({
+
+    className: "route-count",
+
+    html: `
+      <div class="route-count-number">
+        ${count}
+      </div>
+    `,
+
+    iconSize: [30, 20],
+    iconAnchor: [15, -10]
+
+  });
+
+}
+
+
+// =================== SELECT ROUTE POLYLINE ===================
+
+function selectRoutePolyline(poly, marker = null) {
+
+  if (window.selectedPolyline) {
+
+    window.selectedPolyline.setStyle({
+
+      color: 'blue',
+      weight: 4,
+      opacity: 0.8
+
+    });
+
+  }
+
+  poly.setStyle({
+
+    color: '#00ff88',
+    weight: 6,
+    opacity: 1
+
+  });
+
+
+  if (marker) {
+    marker.setZIndexOffset(1000);
+  }
+
+
+  window.selectedPolyline = poly;
+
+}
+
+
+// =================== ROUTE POPUP CONTENT ===================
+
+function getRoutePopupContent(route) {
+
+  return `
+
+    <b>
+      ${route.username ||
+        translations[currentLanguage].unknownUser}
+    </b>
+
+    <br>
+
+    🧭 ${translations[currentLanguage].distance}:
+    ${Number(route.distance).toFixed(2)} km
+
+    <br>
+
+    ⏱ ${translations[currentLanguage].speed}:
+    ${Number(route.speed).toFixed(2)} km/h
+
+    <br>
+
+    🏃‍♂️
+    ${route.routeName ||
+      translations[currentLanguage].unnamedRoute}
+
+  `;
+
+}
+
+
+// =================== SHOW ALL ROUTES ===================
+
+function showAllRoutes(group, marker) {
+
+  let html = `
+
+    <b>🏃‍♂️ Sve rute (${group.routes.length})</b>
+
+    <br><br>
+
+  `;
+
+
+  const sortedRoutes = group.routes
+    .slice()
+    .sort((a, b) =>
+      new Date(b.created_at) -
+      new Date(a.created_at)
+    );
+
+
+  const start =
+    (routeCurrentPage - 1) * routePageSize;
+
+
+  const end =
+    start + routePageSize;
+
+
+  sortedRoutes
+    .slice(start, end)
+    .forEach(route => {
+
+      html += `
+
+        <div
+          class="route-item"
+          data-id="${route.id}"
+          style="cursor:pointer;"
+        >
+
+          <b>
+            ${route.routeName ||
+              translations[currentLanguage].unnamedRoute}
+          </b>
+
+          <br>
+
+          🧭
+          ${Number(route.distance).toFixed(2)} km
+
+          <br>
+
+          ⏱
+          ${Number(route.speed).toFixed(2)} km/h
+
+        </div>
+
+        <hr>
+
+      `;
+
+    });
+
+
+  // ================= PAGINATION =================
+
+  const totalPages = Math.ceil(
+    group.routes.length / routePageSize
+  );
+
+
+  if (totalPages > 1) {
+
+    html += `<div class="pagination">`;
+
+    for (let i = 1; i <= totalPages; i++) {
+
+      html += `
+
+        <button
+          class="routePageButton"
+          data-page="${i}"
+        >
+          ${i}
+        </button>
+
+      `;
+
+    }
+
+    html += `</div>`;
+
+  }
+
+
+  marker.setPopupContent(html);
+  marker.openPopup();
+
+
+  // ================= EVENT LISTENERS =================
+
+  setTimeout(() => {
+
+    const popup =
+      marker.getPopup()?.getElement();
+
+
+    if (!popup) return;
+
+
+    // PAGE BUTTONS
+
+    popup
+      .querySelectorAll(".routePageButton")
+      .forEach(button => {
+
+        button.addEventListener("click", () => {
+
+          routeCurrentPage =
+            Number(button.dataset.page);
+
+          showAllRoutes(group, marker);
+
+        });
+
+      });
+
+
+    // ROUTE ITEMS
+
+    popup
+      .querySelectorAll(".route-item")
+      .forEach(item => {
+
+        item.addEventListener("click", () => {
+
+          const routeId =
+            item.dataset.id;
+
+
+          const route =
+            group.routes.find(
+              r => r.id == routeId
+            );
+
+
+          if (!route) return;
+
+
+          // pronađi polyline
+
+          const polyline =
+            route._routePolyline;
+
+
+          if (polyline) {
+
+            selectRoutePolyline(
+              polyline
+            );
+
+          }
+
+
+          // prikaži Route popup na početku rute
+
+          const coords =
+            JSON.parse(route.polyline);
+
+
+          if (coords.length) {
+
+            L.popup()
+
+              .setLatLng([
+                coords[0].lat,
+                coords[0].lng
+              ])
+
+              .setContent(
+                getRoutePopupContent(route)
+              )
+
+              .openOn(map);
+
+          }
+
+        });
+
+      });
+
+  }, 0);
+
+}
+
+
+// =================== CREATE ROUTE SPIDER ===================
+
+function createRouteSpider(group) {
+
+  const zoom = map.getZoom();
+
+
+  group.routes.forEach((route, index) => {
+
+    const angle =
+      (2 * Math.PI * index) /
+      group.routes.length;
+
+
+    let radius =
+      0.00010 *
+      Math.pow(2, 15 - zoom);
+
+
+    radius =
+      Math.max(
+        0.000025,
+        Math.min(radius, 0.00055)
+      );
+
+
+    if (zoom >= 15) {
+      radius *= 1.50;
+    }
+
+
+    const lat =
+      group.latitude +
+      Math.cos(angle) * radius;
+
+
+    const lng =
+      group.longitude +
+      Math.sin(angle) * radius;
+
+
+    const marker =
+      L.marker(
+        [lat, lng],
+        {
+          icon: runnerIcon
+        }
+      );
+
+
+    marker.options.routeData = route;
+
+    marker.options.routePolyline =
+      route._routePolyline;
+
+
+    marker
+      .addTo(map)
+      .bindPopup(
+        getRoutePopupContent(route)
+      );
+
+
+    marker.on("click", () => {
+
+      if (route._routePolyline) {
+
+        selectRoutePolyline(
+          route._routePolyline,
+          marker
+        );
+
+      }
+
+    });
+
+
+    window.currentRouteMarkers.push(
+      marker
+    );
+
+  });
+
+}
 // =================== FETCH NEARBY ROUTES ===================
 async function retrieveNearbyRoutes() {
   let latitude, longitude;
@@ -773,58 +1226,261 @@ routes.forEach(route => {
     // pane: 'routesPane'
   }).addTo(map);
 
-  const marker = L.marker(latlngs[0], {
-    icon: runnerIcon,
-    interactive: true
-    // pane: 'markersPane'
-   // zIndexOffset: 1000  // Dodajemo zIndexOffset da marker bude iznad drugih slojeva
-  }).addTo(map);
+  // Sačuvaj polyline uz rutu
+  route._routePolyline = poly;
 
-  marker.options.routeData = route;
+  // Klik na poliliniju → selektuj rutu
+  poly.on('click', () => {
 
-  marker.bindPopup(`
-    <b>${route.username || translations[currentLanguage].unknownUser}</b><br>
-    🧭 ${translations[currentLanguage].distance}: ${Number(route.distance).toFixed(2)} km<br>
-    ⏱ ${translations[currentLanguage].speed}: ${Number(route.speed).toFixed(2)} km/h<br>
-    🏃‍♂️ ${route.routeName || translations[currentLanguage].unnamedRoute}
-  `);
+    if (window.selectedPolyline) {
+      window.selectedPolyline.setStyle({
+        color: 'blue',
+        weight: 4,
+        opacity: 0.8
+      });
+    }
 
-const selectPolyline = () => {
-
-  if (window.selectedPolyline) {
-    window.selectedPolyline.setStyle({
-      color: 'blue',
-      weight: 4,
-      opacity: 0.8
+    poly.setStyle({
+      color: '#00ff88',
+      weight: 6,
+      opacity: 1
     });
+
+    window.selectedPolyline = poly;
+
+  });
+
+}); // <-- kraj routes.forEach
+
+//   const marker = L.marker(latlngs[0], {
+//     icon: runnerIcon,
+//     interactive: true
+//     // pane: 'markersPane'
+//    // zIndexOffset: 1000  // Dodajemo zIndexOffset da marker bude iznad drugih slojeva
+//   }).addTo(map);
+
+//   marker.options.routeData = route;
+
+//   marker.bindPopup(`
+//     <b>${route.username || translations[currentLanguage].unknownUser}</b><br>
+//     🧭 ${translations[currentLanguage].distance}: ${Number(route.distance).toFixed(2)} km<br>
+//     ⏱ ${translations[currentLanguage].speed}: ${Number(route.speed).toFixed(2)} km/h<br>
+//     🏃‍♂️ ${route.routeName || translations[currentLanguage].unnamedRoute}
+//   `);
+
+// const selectPolyline = () => {
+
+//   if (window.selectedPolyline) {
+//     window.selectedPolyline.setStyle({
+//       color: 'blue',
+//       weight: 4,
+//       opacity: 0.8
+//     });
+//   }
+
+//   poly.setStyle({
+//     color: '#00ff88',
+//     weight: 6,
+//     opacity: 1
+//   });
+
+//   // 🔥 NAJBITNIJE — VRATI MARKER IZNAD
+// marker.setZIndexOffset(1000);
+
+//   window.selectedPolyline = poly;
+// };
+
+//   // Klik na liniju
+//   poly.on('click', selectPolyline);
+
+//   // Klik na marker → popup + zelena linija
+//   marker.on('click', () => {
+//     marker.openPopup();
+//     selectPolyline();
+//      L.DomEvent.stopPropagation(e); // sprečava konflikt sa mapom
+//   });
+
+//   window.currentRouteMarkers.push(marker);
+    
+   const routeGroups = groupRoutesByLocation(routes, 120);
+
+routeGroups.forEach(group => {
+
+  // 1–6 ruta
+  if (group.routes.length <= 6) {
+
+    const marker = L.marker(
+      [group.latitude, group.longitude],
+      {
+        icon: runnerIcon
+      }
+    );
+
+    const countMarker = L.marker(
+      [group.latitude, group.longitude],
+      {
+        icon: createRouteCountIcon(group.routes.length),
+        interactive: false
+      }
+    );
+
+    marker.addTo(map);
+    countMarker.addTo(map);
+
+    marker.options.routeGroup = group;
+
+    marker.on('click', () => {
+
+      map.removeLayer(marker);
+      map.removeLayer(countMarker);
+
+      window.currentRouteMarkers =
+        window.currentRouteMarkers.filter(
+          m => m !== marker && m !== countMarker
+        );
+
+      createRouteSpider(group);
+
+    });
+
+    window.currentRouteMarkers.push(marker);
+    window.currentRouteMarkers.push(countMarker);
+
   }
 
-  poly.setStyle({
-    color: '#00ff88',
-    weight: 6,
-    opacity: 1
-  });
+  // 7+ ruta
+  else {
 
-  // 🔥 NAJBITNIJE — VRATI MARKER IZNAD
-marker.setZIndexOffset(1000);
+    const marker = L.marker(
+      [group.latitude, group.longitude],
+      {
+        icon: runnerIcon
+      }
+    );
 
-  window.selectedPolyline = poly;
-};
+    marker.options.routeGroup = group;
 
-  // Klik na liniju
-  poly.on('click', selectPolyline);
+    marker.addTo(map);
 
-  // Klik na marker → popup + zelena linija
-  marker.on('click', () => {
-    marker.openPopup();
-    selectPolyline();
-     L.DomEvent.stopPropagation(e); // sprečava konflikt sa mapom
-  });
+    marker.on('click', () => {
 
-  window.currentRouteMarkers.push(marker);
+      const lastSix = group.routes
+        .slice()
+        .sort(
+          (a, b) =>
+            new Date(b.created_at) -
+            new Date(a.created_at)
+        )
+        .slice(0, 6);
 
-}); // <-- SAMO JEDAN završetak forEach
-   
+      let html = `
+        <b>🏃‍♂️ Poslednjih 6 ruta</b>
+        <br><br>
+      `;
+
+      lastSix.forEach(route => {
+
+        html += `
+          <div
+            class="route-item"
+            data-id="${route.id}"
+            style="cursor:pointer;"
+          >
+            <b>
+              ${route.routeName ||
+                translations[currentLanguage].unnamedRoute}
+            </b>
+            <br>
+            🧭 ${Number(route.distance).toFixed(2)} km
+            <br>
+            ⏱ ${Number(route.speed).toFixed(2)} km/h
+          </div>
+          <hr>
+        `;
+
+      });
+
+      html += `
+        <div id="showAllRoutesContainer">
+          <button class="buttonCenter">
+            Prikaži svih ${group.routes.length}
+          </button>
+        </div>
+      `;
+
+      marker.setPopupContent(html);
+      marker.openPopup();
+
+      setTimeout(() => {
+
+        const popup =
+          marker.getPopup()?.getElement();
+
+        if (!popup) return;
+
+        popup
+          .querySelectorAll('.route-item')
+          .forEach(item => {
+
+            item.addEventListener('click', () => {
+
+              const routeId = item.dataset.id;
+
+              const route =
+                group.routes.find(
+                  r => r.id == routeId
+                );
+
+              if (!route) return;
+
+              if (route._routePolyline) {
+
+                if (window.selectedPolyline) {
+                  window.selectedPolyline.setStyle({
+                    color: 'blue',
+                    weight: 4,
+                    opacity: 0.8
+                  });
+                }
+
+                route._routePolyline.setStyle({
+                  color: '#00ff88',
+                  weight: 6,
+                  opacity: 1
+                });
+
+                window.selectedPolyline =
+                  route._routePolyline;
+              }
+
+            });
+
+          });
+
+        const button =
+          popup.querySelector('.buttonCenter');
+
+        if (button) {
+
+          button.addEventListener('click', () => {
+
+            routeCurrentPage = 1;
+
+            showAllRoutes(group, marker);
+
+          });
+
+        }
+
+      }, 0);
+
+    });
+
+    window.currentRouteMarkers.push(marker);
+
+  }
+
+});
     console.log("✅ ROUTES FETCH → SW TTL ACTIVE");
 
   } catch (err) {
