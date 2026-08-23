@@ -1363,10 +1363,12 @@ routeGroups.forEach(group => {
 
     marker.options.routeGroup = group;
 
-    marker.addTo(map);
+    marker.addTo(map).bindPopup('');
 
     marker.on('click', () => {
-
+      
+      console.log("🔥 ROUTE GROUP CLICKED", group.routes.length);
+      
       const lastSix = group.routes
         .slice()
         .sort(
