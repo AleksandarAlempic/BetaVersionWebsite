@@ -1131,6 +1131,9 @@ function createRouteSpider(group) {
 
       }
 
+      // Otvori popup
+      marker.openPopup();
+
     });
 
 
