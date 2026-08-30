@@ -1059,7 +1059,6 @@ function createRouteSpider(group) {
 
   const zoom = map.getZoom();
 
-
   group.routes.forEach((route, index) => {
 
     const angle =
@@ -1068,14 +1067,14 @@ function createRouteSpider(group) {
 
 
     let radius =
-      0.00010 *
+      0.00015 *
       Math.pow(2, 15 - zoom);
 
 
     radius =
       Math.max(
-        0.000025,
-        Math.min(radius, 0.00055)
+        0.0000375,
+        Math.min(radius, 0.000825)
       );
 
 
@@ -1127,7 +1126,6 @@ function createRouteSpider(group) {
 
       }
 
-      // Otvori popup
       marker.openPopup();
 
     });
