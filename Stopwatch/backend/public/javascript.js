@@ -911,10 +911,6 @@ function showAllRoutes(group, marker) {
           🧭
           ${Number(route.distance).toFixed(2)} km
 
-          <br>
-
-          ⏱
-          ${Number(route.speed).toFixed(2)} km/h
 
         </div>
 
