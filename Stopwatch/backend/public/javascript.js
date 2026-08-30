@@ -1418,8 +1418,6 @@ routeGroups.forEach(group => {
             </b>
             <br>
             🧭 ${Number(route.distance).toFixed(2)} km
-            <br>
-            ⏱ ${Number(route.speed).toFixed(2)} km/h
           </div>
           <hr>
         `;
@@ -1476,7 +1474,9 @@ routeGroups.forEach(group => {
 
   if (coords.length) {
 
-    L.popup()
+    L.popup({
+    minWidth: 220,
+})
       .setLatLng([
         coords[0].lat,
         coords[0].lng
