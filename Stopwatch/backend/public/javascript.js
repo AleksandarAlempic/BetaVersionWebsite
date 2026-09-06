@@ -1387,73 +1387,35 @@ routes.forEach(route => {
 //   });
 
 //   window.currentRouteMarkers.push(marker);
-    
-   const routeGroups = groupRoutesByLocation(routes, 120);
+    const routeGroups = groupRoutesByLocation(routes, 120);
 
 routeGroups.forEach(group => {
 
-  // 1–6 ruta
+  // =========================
+  // 1–6 RUTA
+  // =========================
   if (group.routes.length <= 6) {
 
-  const marker = L.marker(
-    [group.latitude, group.longitude],
-    {
-      icon: createRouteMarkerIcon(
-        group.routes.length
-      )
-    }
-  );
+    const marker = L.marker(
+      [group.latitude, group.longitude],
+      {
+        icon: createRouteMarkerIcon(
+          group.routes.length
+        )
+      }
+    );
 
-  marker.addTo(map);
-
-  marker.options.routeGroup = group;
-
-  marker.on('click', () => {
-
-    map.removeLayer(marker);
-
-    window.currentRouteMarkers =
-      window.currentRouteMarkers.filter(
-        m => m !== marker
-      );
-
-    createRouteSpider(group);
-
-  });
-
-  window.currentRouteMarkers.push(marker);
-
-}
-  // if (group.routes.length <= 6) {
-
-  //   const marker = L.marker(
-  //     [group.latitude, group.longitude],
-  //     {
-  //       icon: runnerIcon
-  //     }
-  //   );
-
-  //   const countMarker = L.marker(
-  //     [group.latitude, group.longitude],
-  //     {
-  //       icon: createRouteCountIcon(group.routes.length),
-  //       interactive: false
-  //     }
-  //   );
-
-  //   marker.addTo(map);
-  //   countMarker.addTo(map);
+    marker.addTo(map);
 
     marker.options.routeGroup = group;
 
     marker.on('click', () => {
 
       map.removeLayer(marker);
-      map.removeLayer(countMarker);
 
       window.currentRouteMarkers =
         window.currentRouteMarkers.filter(
-          m => m !== marker && m !== countMarker
+          m => m !== marker
         );
 
       createRouteSpider(group);
@@ -1461,11 +1423,12 @@ routeGroups.forEach(group => {
     });
 
     window.currentRouteMarkers.push(marker);
-    window.currentRouteMarkers.push(countMarker);
 
   }
 
-  // 7+ ruta
+  // =========================
+  // 7+ RUTA
+  // =========================
   else {
 
     const marker = L.marker(
@@ -1480,9 +1443,12 @@ routeGroups.forEach(group => {
     marker.addTo(map).bindPopup('');
 
     marker.on('click', () => {
-      
-      console.log("🔥 ROUTE GROUP CLICKED", group.routes.length);
-      
+
+      console.log(
+        "🔥 ROUTE GROUP CLICKED",
+        group.routes.length
+      );
+
       const lastSix = group.routes
         .slice()
         .sort(
@@ -1539,49 +1505,47 @@ routeGroups.forEach(group => {
           .querySelectorAll('.route-item')
           .forEach(item => {
 
-          item.addEventListener('click', () => {
+            item.addEventListener('click', () => {
 
-  const routeId = item.dataset.id;
+              const routeId = item.dataset.id;
 
-  const route =
-    group.routes.find(
-      r => r.id == routeId
-    );
+              const route =
+                group.routes.find(
+                  r => r.id == routeId
+                );
 
-  if (!route) return;
+              if (!route) return;
 
+              // Selektuj poliliniju
+              if (route._routePolyline) {
 
-  // Selektuj poliliniju
-  if (route._routePolyline) {
+                selectRoutePolyline(
+                  route._routePolyline
+                );
 
-    selectRoutePolyline(
-      route._routePolyline
-    );
+              }
 
-  }
+              // Otvori detalje rute
+              const coords =
+                JSON.parse(route.polyline);
 
+              if (coords.length) {
 
-  // Otvori detalje rute
-  const coords =
-    JSON.parse(route.polyline);
+                L.popup({
+                  minWidth: 220
+                })
+                  .setLatLng([
+                    coords[0].lat,
+                    coords[0].lng
+                  ])
+                  .setContent(
+                    getRoutePopupContent(route)
+                  )
+                  .openOn(map);
 
-  if (coords.length) {
+              }
 
-    L.popup({
-    minWidth: 220,
-})
-      .setLatLng([
-        coords[0].lat,
-        coords[0].lng
-      ])
-      .setContent(
-        getRoutePopupContent(route)
-      )
-      .openOn(map);
-
-  }
-
-});
+            });
 
           });
 
@@ -1609,6 +1573,9 @@ routeGroups.forEach(group => {
   }
 
 });
+
+console.log("✅ ROUTES FETCH → SW TTL ACTIVE");
+
     console.log("✅ ROUTES FETCH → SW TTL ACTIVE");
 
   } catch (err) {
