@@ -675,7 +675,7 @@ window.addEventListener('load', () => {
 });
 // =================== ICON DEFINITIONS ===================
 const runnerIcon = L.icon({
-  iconUrl: '/images/MarkersAndRoute.png',
+  iconUrl: '/images/dynamic-route-marker.png',
   iconSize: [40, 40],
   iconAnchor: [20, 40],
   popupAnchor: [0, -40]
@@ -1091,7 +1091,7 @@ function createRouteMarkerIcon(count) {
       >
 
         <img
-          src="/images/MarkersAndRoute.png"
+          src="/images/dynamic-route-marker.png"
           class="route-marker-image"
           style="
             width:${size}px;
@@ -1395,23 +1395,54 @@ routeGroups.forEach(group => {
   // 1–6 ruta
   if (group.routes.length <= 6) {
 
-    const marker = L.marker(
-      [group.latitude, group.longitude],
-      {
-        icon: runnerIcon
-      }
-    );
+  const marker = L.marker(
+    [group.latitude, group.longitude],
+    {
+      icon: createRouteMarkerIcon(
+        group.routes.length
+      )
+    }
+  );
 
-    const countMarker = L.marker(
-      [group.latitude, group.longitude],
-      {
-        icon: createRouteCountIcon(group.routes.length),
-        interactive: false
-      }
-    );
+  marker.addTo(map);
 
-    marker.addTo(map);
-    countMarker.addTo(map);
+  marker.options.routeGroup = group;
+
+  marker.on('click', () => {
+
+    map.removeLayer(marker);
+
+    window.currentRouteMarkers =
+      window.currentRouteMarkers.filter(
+        m => m !== marker
+      );
+
+    createRouteSpider(group);
+
+  });
+
+  window.currentRouteMarkers.push(marker);
+
+}
+  // if (group.routes.length <= 6) {
+
+  //   const marker = L.marker(
+  //     [group.latitude, group.longitude],
+  //     {
+  //       icon: runnerIcon
+  //     }
+  //   );
+
+  //   const countMarker = L.marker(
+  //     [group.latitude, group.longitude],
+  //     {
+  //       icon: createRouteCountIcon(group.routes.length),
+  //       interactive: false
+  //     }
+  //   );
+
+  //   marker.addTo(map);
+  //   countMarker.addTo(map);
 
     marker.options.routeGroup = group;
 
