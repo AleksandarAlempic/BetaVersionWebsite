@@ -1,4 +1,39 @@
+.dynamic-route-marker {
+  background: transparent !important;
+  border: none !important;
+}
 
+.route-marker-container {
+  position: relative;
+  display: block;
+}
+
+.route-marker-image {
+  display: block;
+  object-fit: contain;
+}
+
+.route-marker-badge {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+
+  background: #ff5a1f;
+  color: white;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: bold;
+
+  border: 2px solid white;
+
+  box-sizing: border-box;
+}
 
 .bottomButtons{
   bottom: -1px !important;
