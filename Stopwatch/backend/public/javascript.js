@@ -1059,7 +1059,7 @@ function createRouteMarkerIcon(count) {
 let size;
 
 if (count <= 2) {
-  size = 61;
+  size = 60;
 } 
 else if (count <= 4) {
   size = 64;
@@ -1068,7 +1068,7 @@ else if (count <= 6) {
   size = 67;
 } 
 else {
-  size = 70;
+  size = 73;
 }
 
   const badgeSize = Math.round(size * 0.32);
