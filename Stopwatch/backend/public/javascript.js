@@ -1059,19 +1059,19 @@ function createRouteMarkerIcon(count) {
   let size;
 
   if (count <= 2) {
-    size = 45;
-  } 
-  else if (count <= 4) {
     size = 52;
   } 
-  else if (count <= 7) {
+  else if (count <= 4) {
     size = 60;
   } 
+  else if (count <= 7) {
+    size = 69;
+  } 
   else if (count <= 12) {
-    size = 70;
+    size = 81;
   } 
   else {
-    size = 78;
+    size = 90;
   }
 
   const badgeSize = Math.round(size * 0.32);
@@ -1120,7 +1120,6 @@ function createRouteMarkerIcon(count) {
   });
 
 }
-
 // =================== CREATE ROUTE SPIDER ===================
 
 function createRouteSpider(group) {
