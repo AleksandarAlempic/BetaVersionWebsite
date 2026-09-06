@@ -1056,23 +1056,20 @@ function showAllRoutes(group, marker) {
 
 function createRouteMarkerIcon(count) {
 
-  let size;
+let size;
 
-  if (count <= 2) {
-    size = 52;
-  } 
-  else if (count <= 4) {
-    size = 60;
-  } 
-  else if (count <= 7) {
-    size = 69;
-  } 
-  else if (count <= 12) {
-    size = 81;
-  } 
-  else {
-    size = 90;
-  }
+if (count <= 2) {
+  size = 52;
+} 
+else if (count <= 4) {
+  size = 60;
+} 
+else if (count <= 6) {
+  size = 75;
+} 
+else {
+  size = 90;
+}
 
   const badgeSize = Math.round(size * 0.32);
   const fontSize = Math.round(badgeSize * 0.55);
@@ -1408,18 +1405,23 @@ routeGroups.forEach(group => {
 
     marker.options.routeGroup = group;
 
-    marker.on('click', () => {
+  marker.on('click', () => {
 
-      map.removeLayer(marker);
+  // Ukloni originalni marker sa mape
+  if (map.hasLayer(marker)) {
+    map.removeLayer(marker);
+  }
 
-      window.currentRouteMarkers =
-        window.currentRouteMarkers.filter(
-          m => m !== marker
-        );
+  // Ukloni ga i iz liste aktivnih markera
+  window.currentRouteMarkers =
+    window.currentRouteMarkers.filter(
+      m => m !== marker
+    );
 
-      createRouteSpider(group);
+  // Tek sada napravi spider
+  createRouteSpider(group);
 
-    });
+});
 
     window.currentRouteMarkers.push(marker);
 
@@ -1433,7 +1435,7 @@ routeGroups.forEach(group => {
     const marker = L.marker(
       [group.latitude, group.longitude],
       {
-        icon: runnerIcon
+       icon: createRouteMarkerIcon(group.routes.length)
       }
     );
 
