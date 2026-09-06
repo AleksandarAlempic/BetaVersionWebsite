@@ -1052,6 +1052,74 @@ function showAllRoutes(group, marker) {
 
 }
 
+// =================== CREATE DYNAMIC ROUTE MARKER ===================
+
+function createRouteMarkerIcon(count) {
+
+  let size;
+
+  if (count <= 2) {
+    size = 45;
+  } 
+  else if (count <= 4) {
+    size = 52;
+  } 
+  else if (count <= 7) {
+    size = 60;
+  } 
+  else if (count <= 12) {
+    size = 70;
+  } 
+  else {
+    size = 78;
+  }
+
+  const badgeSize = Math.round(size * 0.32);
+  const fontSize = Math.round(badgeSize * 0.55);
+
+  return L.divIcon({
+
+    className: 'dynamic-route-marker',
+
+    html: `
+      <div
+        class="route-marker-container"
+        style="
+          width:${size}px;
+          height:${size}px;
+        "
+      >
+
+        <img
+          src="/images/MarkersAndRoute.png"
+          class="route-marker-image"
+          style="
+            width:${size}px;
+            height:${size}px;
+          "
+        >
+
+        <div
+          class="route-marker-badge"
+          style="
+            width:${badgeSize}px;
+            height:${badgeSize}px;
+            font-size:${fontSize}px;
+          "
+        >
+          ${count}
+        </div>
+
+      </div>
+    `,
+
+    iconSize: [size, size],
+    iconAnchor: [size / 2, size],
+    popupAnchor: [0, -size]
+
+  });
+
+}
 
 // =================== CREATE ROUTE SPIDER ===================
 
