@@ -80,14 +80,13 @@ let userMarker;
 function createMap(lat, lng) {
 
   console.log("CREATE MAP POZVAN", lat, lng);
-    if (map) {
-        map.remove();
-        map = null;
-    }
 
+  if (map) {
+      console.log("MAPA VEĆ POSTOJI - NE KREIRAM PONOVO");
+      return;
+  }
 
-  
-    window.map = L.map("map").setView([lat, lng], 15);
+  map = L.map("map").setView([lat, lng], 15);
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
