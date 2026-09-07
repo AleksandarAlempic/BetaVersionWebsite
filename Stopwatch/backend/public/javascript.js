@@ -66,7 +66,7 @@ let rotationDegree = 0;
 let myInterval;
 let selectedPolyline = null;
 
-// let map = null;
+let map = null;
 // let userMarker = null;
 // let routingControl = null;
 // let map;
