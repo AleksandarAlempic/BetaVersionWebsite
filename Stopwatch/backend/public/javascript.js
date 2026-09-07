@@ -109,7 +109,7 @@ function createMap(lat, lng) {
     }, 300);
 }
 
-function updateUserLocation() {
+function updateUserLocation(centerMap = false) {
     if (!map) return;
 
     navigator.geolocation.getCurrentPosition(
@@ -123,7 +123,9 @@ function updateUserLocation() {
                 userMarker = L.marker([lat, lng]).addTo(map);
             }
 
-            map.setView([lat, lng], map.getZoom());
+            if (centerMap) {
+                map.setView([lat, lng], map.getZoom());
+            }
 
             if (routingControl) {
                 const waypoints = routingControl.getWaypoints();
@@ -133,7 +135,9 @@ function updateUserLocation() {
         },
         () => {
             // fallback Ruma
-            map.setView([45.0483, 19.8361], 13);
+            if (centerMap) {
+                map.setView([45.0483, 19.8361], 13);
+            }
         }
     );
 }
