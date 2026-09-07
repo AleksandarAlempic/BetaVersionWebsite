@@ -146,15 +146,16 @@ function updateUserLocation(centerMap = false) {
     );
 }
 
+let initialLocationSet = false;
+
 function initMap() {
     console.log("INIT MAP");
-  
-    const mapContainer = document.getElementById("map");
-    if (!mapContainer) return; // Ako nema DOM elementa, izlazi
 
-    // Ako mapa već postoji, samo update lokaciju
-    if (map) {
-        updateUserLocation();
+    const mapContainer = document.getElementById("map");
+    if (!mapContainer) return;
+
+    // Početnu lokaciju postavljamo samo jednom
+    if (initialLocationSet) {
         return;
     }
 
@@ -162,15 +163,22 @@ function initMap() {
         (position) => {
             const lat = position.coords.latitude;
             const lng = position.coords.longitude;
+
+            console.log("INITIAL LOCATION:", lat, lng);
+
+            initialLocationSet = true;
+
             createMap(lat, lng);
         },
         () => {
             // fallback Ruma
+            initialLocationSet = true;
+
             createMap(45.0483, 19.8361);
         },
         {
             enableHighAccuracy: true,
-            timeout: 5000,
+            timeout: 10000,
             maximumAge: 0
         }
     );
