@@ -520,9 +520,9 @@ window.map = null;
         }
 
         // Optionally, update the map view if the user moves a significant distance
-        if (window.map.getCenter().distanceTo([lat, lon]) > 50) {
-            map.setView([lat, lon], map.getZoom());  // Keep the current zoom level
-        }
+        // if (window.map.getCenter().distanceTo([lat, lon]) > 50) {
+        //     map.setView([lat, lon], map.getZoom());  // Keep the current zoom level
+        // }
     }
                     // Function to calculate distance between two geographical points (in meters) using the Haversine formula
                     function haversine(lat1, lon1, lat2, lon2) {
