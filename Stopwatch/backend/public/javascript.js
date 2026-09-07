@@ -66,7 +66,7 @@ let rotationDegree = 0;
 let myInterval;
 let selectedPolyline = null;
 
-let map = null;
+// let map = null;
 // let userMarker = null;
 // let routingControl = null;
 // let map;
@@ -80,13 +80,14 @@ let userMarker;
 function createMap(lat, lng) {
 
   console.log("CREATE MAP POZVAN", lat, lng);
+    if (map) {
+        map.remove();
+        map = null;
+    }
 
-  if (map) {
-      console.log("MAPA VEĆ POSTOJI - NE KREIRAM PONOVO");
-      return;
-  }
 
-  map = L.map("map").setView([lat, lng], 15);
+  
+    window.map = L.map("map").setView([lat, lng], 15);
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19,
@@ -130,11 +131,11 @@ function updateUserLocation(centerMap = false) {
                 map.setView([lat, lng], map.getZoom());
             }
 
-            if (routingControl) {
-                const waypoints = routingControl.getWaypoints();
-                waypoints[0] = L.latLng(lat, lng);
-                routingControl.setWaypoints(waypoints);
-            }
+            // if (routingControl) {
+            //     const waypoints = routingControl.getWaypoints();
+            //     waypoints[0] = L.latLng(lat, lng);
+            //     routingControl.setWaypoints(waypoints);
+            // }
         },
         () => {
             // fallback Ruma
@@ -145,16 +146,15 @@ function updateUserLocation(centerMap = false) {
     );
 }
 
-let initialLocationSet = false;
-
 function initMap() {
     console.log("INIT MAP");
-
+  
     const mapContainer = document.getElementById("map");
-    if (!mapContainer) return;
+    if (!mapContainer) return; // Ako nema DOM elementa, izlazi
 
-    // Početnu lokaciju postavljamo samo jednom
-    if (initialLocationSet) {
+    // Ako mapa već postoji, samo update lokaciju
+    if (map) {
+        updateUserLocation();
         return;
     }
 
@@ -162,22 +162,15 @@ function initMap() {
         (position) => {
             const lat = position.coords.latitude;
             const lng = position.coords.longitude;
-
-            console.log("INITIAL LOCATION:", lat, lng);
-
-            initialLocationSet = true;
-
             createMap(lat, lng);
         },
         () => {
             // fallback Ruma
-            initialLocationSet = true;
-
             createMap(45.0483, 19.8361);
         },
         {
             enableHighAccuracy: true,
-            timeout: 10000,
+            timeout: 5000,
             maximumAge: 0
         }
     );
@@ -670,7 +663,7 @@ window.addEventListener('load', () => {
 
   setTimeout(() => {
 
-    // // 1️⃣ Pokreni mapu
+    // 1️⃣ Pokreni mapu
     initMap();
 
     // 2️⃣ Siguran checkbox toggle (ako postoji)
@@ -1252,12 +1245,6 @@ async function retrieveNearbyRoutes() {
 
   const radius = 35000;
 
-if (!map) {
-    console.warn("⚠️ MAPA JOŠ NIJE INICIJALIZOVANA");
-    return;
-}
-
-  
   // uklanjanje starih markera
   if (window.currentRouteMarkers) {
     window.currentRouteMarkers.forEach(marker => map.removeLayer(marker));
