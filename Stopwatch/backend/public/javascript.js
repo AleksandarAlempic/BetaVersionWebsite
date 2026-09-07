@@ -131,11 +131,11 @@ function updateUserLocation(centerMap = false) {
                 map.setView([lat, lng], map.getZoom());
             }
 
-            // if (routingControl) {
-            //     const waypoints = routingControl.getWaypoints();
-            //     waypoints[0] = L.latLng(lat, lng);
-            //     routingControl.setWaypoints(waypoints);
-            // }
+            if (routingControl) {
+                const waypoints = routingControl.getWaypoints();
+                waypoints[0] = L.latLng(lat, lng);
+                routingControl.setWaypoints(waypoints);
+            }
         },
         () => {
             // fallback Ruma
