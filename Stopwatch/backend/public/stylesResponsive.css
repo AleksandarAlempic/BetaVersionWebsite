@@ -3695,6 +3695,7 @@ img { max-width: 100%; height: auto; }
 @media screen and (min-width: 821px) and (max-width: 900px) and (min-height: 1601px) and (max-height: 1750px) {
     .addTrainingPopup {
         background: #f7cc68 !important;
+        margin-left: 1%;
     }
 }
 
