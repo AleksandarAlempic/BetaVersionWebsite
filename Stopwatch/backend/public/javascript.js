@@ -1253,6 +1253,12 @@ async function retrieveNearbyRoutes() {
 
   const radius = 35000;
 
+if (!map) {
+    console.warn("⚠️ MAPA JOŠ NIJE INICIJALIZOVANA");
+    return;
+}
+
+  
   // uklanjanje starih markera
   if (window.currentRouteMarkers) {
     window.currentRouteMarkers.forEach(marker => map.removeLayer(marker));
