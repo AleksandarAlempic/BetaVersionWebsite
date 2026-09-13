@@ -2263,9 +2263,33 @@ function createTrainingSpider(group) {
 }
 
 // =================== BUTTON LISTENERS ===================
-fetchNearbyRoutesButton.addEventListener("click", retrieveNearbyRoutes);
-fetchNearbyTrainingsButton.addEventListener("click", retrieveNearbyTrainings);
+fetchNearbyRoutesButton.addEventListener("click", () => {
+    retrieveRoutesPopup.style.display = "flex";
+});
+
+fetchNearbyTrainingsButton.addEventListener("click", () => {
+    retrieveTrainingsPopup.style.display = "flex";
+});
 addTrainingButton.addEventListener('click', () => addTrainingPopup.style.display = "block");
+
+retrieveAllRoutesButton.addEventListener("click", () => {
+    retrieveRoutesPopup.style.display = "none";
+    retrieveNearbyRoutes();
+});
+
+retrieveAllTrainingsButton.addEventListener("click", () => {
+    retrieveTrainingsPopup.style.display = "none";
+    retrieveNearbyTrainings();
+});
+
+closeRetrieveRoutesPopup.addEventListener("click", () => {
+    retrieveRoutesPopup.style.display = "none";
+});
+
+closeRetrieveTrainingsPopup.addEventListener("click", () => {
+    retrieveTrainingsPopup.style.display = "none";
+});
+
 
 // =================== UPDATE MARKERS LANGUAGE ===================
 function updateRouteMarkersLanguage(lang) {
