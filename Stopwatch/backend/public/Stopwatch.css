@@ -2786,3 +2786,7 @@ input, textarea {
     font-size: 18px;
     margin: 12px 0;
 }
+
+.retrievePopupTitle {
+    font-size: 28px;
+}
