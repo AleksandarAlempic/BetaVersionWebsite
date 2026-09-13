@@ -1,3 +1,76 @@
+/* ================= RETRIEVE POPUPS ================= */
+
+.retrievePopup {
+    display: none;
+    position: fixed;
+    z-index: 999999999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35);
+
+    justify-content: center;
+    align-items: center;
+}
+
+.retrievePopupContent {
+    background: white;
+    width: 70%;
+    max-width: 500px;
+    min-height: 220px;
+
+    border-radius: 15px;
+    padding: 35px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 20px;
+
+    box-sizing: border-box;
+}
+
+.retrievePopupButton {
+    width: 90%;
+    min-height: 55px;
+
+    background: #f4c066;
+    color: black;
+
+    border: none;
+    border-radius: 10px;
+
+    font-size: 22px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.retrievePopupButton:active {
+    transform: scale(0.98);
+}
+
+.retrievePopupClose {
+    margin-top: 5px;
+
+    width: 50px;
+    height: 45px;
+
+    background: #ddd;
+    color: black;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 22px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
 .dynamic-route-marker {
   background: transparent !important;
   border: none !important;
