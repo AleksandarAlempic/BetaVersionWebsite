@@ -2264,36 +2264,42 @@ function createTrainingSpider(group) {
 
 // =================== BUTTON LISTENERS ===================
 fetchNearbyRoutesButton.addEventListener("click", () => {
-  mapContent.style.display = "none";
+    mapContent.style.display = "none";
     retrieveRoutesPopup.style.display = "flex";
+    hideMainButtons();
 });
 
 fetchNearbyTrainingsButton.addEventListener("click", () => {
-  mapContent.style.display = "none";
+    mapContent.style.display = "none";
     retrieveTrainingsPopup.style.display = "flex";
+    hideMainButtons();
 });
+
 addTrainingButton.addEventListener('click', () => addTrainingPopup.style.display = "block");
 
 retrieveAllRoutesButton.addEventListener("click", () => {
     retrieveRoutesPopup.style.display = "none";
-   mapContent.style.display = "block";
+    mapContent.style.display = "block";
+    showMainButtons();
     retrieveNearbyRoutes();
 });
 
 retrieveAllTrainingsButton.addEventListener("click", () => {
     retrieveTrainingsPopup.style.display = "none";
-   mapContent.style.display = "block";
+    mapContent.style.display = "block";
+    showMainButtons();
     retrieveNearbyTrainings();
 });
 
 closeRetrieveRoutesPopup.addEventListener("click", () => {
     retrieveRoutesPopup.style.display = "none";
     mapContent.style.display = "block";
+    showMainButtons();
 });
-
 closeRetrieveTrainingsPopup.addEventListener("click", () => {
     retrieveTrainingsPopup.style.display = "none";
     mapContent.style.display = "block";
+    showMainButtons();
 });
 
 
