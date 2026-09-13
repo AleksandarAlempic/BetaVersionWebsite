@@ -3351,5 +3351,33 @@ window.addEventListener('online', () => {
     syncOfflineTrainings();
 });
 
+// ================= RETRIEVE POPUP BUTTON VISIBILITY =================
+
+const mainButtonsToHide = [
+    document.getElementById("startRouteButton"),
+    document.getElementById("stopRouteButton"),
+    document.getElementById("fetchNearbyRoutesButton"),
+    document.getElementById("fetchNearbyTrainingsButton"),
+    document.getElementById("fetchCustomPlaylistButton")
+];
+
+// Sakrij glavne dugmiće
+function hideMainButtons() {
+    mainButtonsToHide.forEach(button => {
+        if (button) {
+            button.style.display = "none";
+        }
+    });
+}
+
+// Vrati glavne dugmiće
+function showMainButtons() {
+    mainButtonsToHide.forEach(button => {
+        if (button) {
+            button.style.display = "";
+        }
+    });
+}
+
 window.saveTraining = saveTraining;
 window.initMap = initMap;
