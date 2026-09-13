@@ -2264,30 +2264,36 @@ function createTrainingSpider(group) {
 
 // =================== BUTTON LISTENERS ===================
 fetchNearbyRoutesButton.addEventListener("click", () => {
+  mapContent.style.display = "none";
     retrieveRoutesPopup.style.display = "flex";
 });
 
 fetchNearbyTrainingsButton.addEventListener("click", () => {
+  mapContent.style.display = "none";
     retrieveTrainingsPopup.style.display = "flex";
 });
 addTrainingButton.addEventListener('click', () => addTrainingPopup.style.display = "block");
 
 retrieveAllRoutesButton.addEventListener("click", () => {
     retrieveRoutesPopup.style.display = "none";
+   mapContent.style.display = "block";
     retrieveNearbyRoutes();
 });
 
 retrieveAllTrainingsButton.addEventListener("click", () => {
     retrieveTrainingsPopup.style.display = "none";
+   mapContent.style.display = "block";
     retrieveNearbyTrainings();
 });
 
 closeRetrieveRoutesPopup.addEventListener("click", () => {
     retrieveRoutesPopup.style.display = "none";
+    mapContent.style.display = "block";
 });
 
 closeRetrieveTrainingsPopup.addEventListener("click", () => {
     retrieveTrainingsPopup.style.display = "none";
+    mapContent.style.display = "block";
 });
 
 
