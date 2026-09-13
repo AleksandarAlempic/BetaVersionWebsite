@@ -3364,7 +3364,8 @@ const mainButtonsToHide = [
     document.getElementById("stopRouteButton"),
     document.getElementById("fetchNearbyRoutesButton"),
     document.getElementById("fetchNearbyTrainingsButton"),
-    document.getElementById("fetchCustomPlaylistButton")
+    document.getElementById("fetchCustomPlaylistButton"),
+    document.getElementById("addTrainingButton")
 ];
 
 // Sakrij glavne dugmiće
