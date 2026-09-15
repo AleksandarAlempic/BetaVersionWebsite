@@ -271,12 +271,20 @@ const translations = {
 
 translations.en.retrieve = {
   routes: "Retrieve Routes",
-  trainings: "Retrieve Trainings"
+  trainings: "Retrieve Trainings",
+    allRoutes: "Retrieve All Routes",
+  myRoutes: "Retrieve My Routes",
+  allTrainings: "Retrieve All Trainings",
+  myTrainings: "Retrieve My Trainings"
 };
 
 translations.sr.retrieve = {
-  routes: "Povuci rute",
-  trainings: "Povuci treninge"
+   routes: "Povuci rute",
+  trainings: "Povuci treninge",
+  allRoutes: "Povuci sve rute",
+  myRoutes: "Povuci moje rute",
+  allTrainings: "Povuci sve treninge",
+  myTrainings: "Povuci moje treninge"
 };
 
 // =================== YOUTUBE POPUP TRANSLATIONS ===================
@@ -450,6 +458,17 @@ if (retrieveRoutesTitle) {
 if (retrieveTrainingsTitle) {
   retrieveTrainingsTitle.innerText = translations[currentLanguage].retrieve.trainings;
 }
+retrieveAllRoutesButton.innerText =
+  translations[currentLanguage].retrieve.allRoutes;
+
+retrieveMyRoutesButton.innerText =
+  translations[currentLanguage].retrieve.myRoutes;
+
+retrieveAllTrainingsButton.innerText =
+  translations[currentLanguage].retrieve.allTrainings;
+
+retrieveMyTrainingsButton.innerText =
+  translations[currentLanguage].retrieve.myTrainings;
 }
 
 // =================== TRAINING POPUP TRANSLATIONS ===================
