@@ -267,6 +267,17 @@ const translations = {
   }
 };
 
+// =================== RETRIEVE TRANSLATIONS ===================
+
+translations.en.retrieve = {
+  routes: "Retrieve Routes",
+  trainings: "Retrieve Trainings"
+};
+
+translations.sr.retrieve = {
+  routes: "Povuci rute",
+  trainings: "Povuci treninge"
+};
 
 // =================== YOUTUBE POPUP TRANSLATIONS ===================
 translations.en.youtubePopup = {
@@ -428,6 +439,17 @@ function updateInterfaceLanguage() {
       label.innerText = translations[currentLanguage].addTrainingPopupLabels[key];
     }
   });
+
+  const retrieveRoutesTitle = retrieveRoutesPopup.querySelector(".retrievePopupTitle");
+const retrieveTrainingsTitle = retrieveTrainingsPopup.querySelector(".retrievePopupTitle");
+
+if (retrieveRoutesTitle) {
+  retrieveRoutesTitle.innerText = translations[currentLanguage].retrieve.routes;
+}
+
+if (retrieveTrainingsTitle) {
+  retrieveTrainingsTitle.innerText = translations[currentLanguage].retrieve.trainings;
+}
 }
 
 // =================== TRAINING POPUP TRANSLATIONS ===================
