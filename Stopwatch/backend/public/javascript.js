@@ -3561,7 +3561,6 @@ showMainButtons();
 
 });
 
-
 retrieveMyRoutesButton.addEventListener("click", async () => {
 
     const userUUID = getUserUUID();
@@ -3587,9 +3586,9 @@ retrieveMyRoutesButton.addEventListener("click", async () => {
 
         }
 
-      document.getElementById("retrieveRoutesPopup").style.display = "none";
-mapContent.style.display = "block";
-showMainButtons();
+        document.getElementById("retrieveRoutesPopup").style.display = "none";
+        mapContent.style.display = "block";
+        showMainButtons();
 
         // Očisti prethodne rute sa mape
         if (window.currentRouteLayers?.length) {
@@ -3616,27 +3615,27 @@ showMainButtons();
             let coordinates;
 
             try {
-                coordinates = JSON.parse(route.polyline);
+
+                coordinates = JSON.parse(route.polyline)[0];
+
             } catch (error) {
+
                 console.error(
                     "❌ Could not parse route polyline:",
                     route,
                     error
                 );
+
                 return;
             }
 
-            // Postojeći format je [ [lat,lng], [lat,lng], ... ]
-            // Ako je dodatno upakovan, uzimamo prvi element
-            if (
-                Array.isArray(coordinates) &&
-                Array.isArray(coordinates[0]) &&
-                Array.isArray(coordinates[0][0])
-            ) {
-                coordinates = coordinates[0];
-            }
-
             if (!Array.isArray(coordinates) || coordinates.length === 0) {
+
+                console.warn(
+                    "⚠️ Empty route coordinates:",
+                    route
+                );
+
                 return;
             }
 
