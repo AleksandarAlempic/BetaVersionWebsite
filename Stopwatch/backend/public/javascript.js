@@ -3612,22 +3612,37 @@ retrieveMyRoutesButton.addEventListener("click", async () => {
                 return;
             }
 
-            let coordinates;
+     let coordinates;
 
-            try {
+try {
 
-                coordinates = JSON.parse(route.polyline)[0];
+    const parsedPolyline = JSON.parse(route.polyline);
 
-            } catch (error) {
+    console.log("🔍 MY ROUTE POLYLINE RAW:", route.polyline);
+    console.log("🔍 MY ROUTE POLYLINE PARSED:", parsedPolyline);
 
-                console.error(
-                    "❌ Could not parse route polyline:",
-                    route,
-                    error
-                );
+    coordinates = parsedPolyline;
 
-                return;
-            }
+} catch (error) {
+
+    console.error(
+        "❌ Could not parse route polyline:",
+        route,
+        error
+    );
+
+    return;
+}
+
+if (!Array.isArray(coordinates) || coordinates.length === 0) {
+
+    console.warn(
+        "⚠️ Empty route coordinates:",
+        route
+    );
+
+    return;
+}
 
             if (!Array.isArray(coordinates) || coordinates.length === 0) {
 
