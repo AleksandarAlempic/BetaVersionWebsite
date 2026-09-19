@@ -3460,12 +3460,18 @@ retrieveMyTrainingsButton.addEventListener("click", async () => {
 
         console.log("✅ My trainings:", trainings);
 
+     
         if (!Array.isArray(trainings) || trainings.length === 0) {
 
             alert("You don't have any trainings yet.");
             return;
 
         }
+
+       document.getElementById("retrieveTrainingsPopup").style.display = "none";
+mapContent.style.display = "block";
+showMainButtons();
+
 
         // Očisti prethodne training markere
         if (window.currentTrainingMarkers?.length) {
@@ -3580,6 +3586,10 @@ retrieveMyRoutesButton.addEventListener("click", async () => {
             return;
 
         }
+
+      document.getElementById("retrieveRoutesPopup").style.display = "none";
+mapContent.style.display = "block";
+showMainButtons();
 
         // Očisti prethodne rute sa mape
         if (window.currentRouteLayers?.length) {
