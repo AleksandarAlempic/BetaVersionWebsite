@@ -30,7 +30,8 @@ const checkboxRoot = document.getElementById("checkboxRoot");
 const audioContainer = document.getElementById("audioContainer");
 const newNextAndPreviousButtons = document.getElementById("newNextAndPreviousButtons");
 const songNameAndArtist = document.getElementById("songNameAndArtist");
-
+const retrieveMyTrainingsButton = document.getElementById("retrieveMyTrainingsButton");
+const retrieveMyRoutesButton = document.getElementById("retrieveMyRoutesButton");
 const stopwatchDiv = document.getElementById("StopwatchOptions");
 const timerDiv = document.getElementById("TimerOptions");
 const input = document.getElementById("input");
@@ -3440,6 +3441,56 @@ window.getUserUUID = function () {
     return userUUID;
 };
 console.log("USER UUID:", getUserUUID());
+
+retrieveMyTrainingsButton.addEventListener("click", async () => {
+    const userUUID = getUserUUID();
+
+    try {
+        const response = await fetch(
+            `/api/my-trainings?user_uuid=${encodeURIComponent(userUUID)}`
+        );
+
+        if (!response.ok) {
+            throw new Error("Failed to retrieve my trainings");
+        }
+
+        const trainings = await response.json();
+
+        console.log("✅ My trainings:", trainings);
+
+        // Za sada samo proveravamo da endpoint vraća podatke
+        alert(`Found ${trainings.length} training(s).`);
+
+    } catch (error) {
+        console.error("❌ Error retrieving my trainings:", error);
+        alert("Failed to retrieve your trainings.");
+    }
+});
+
+retrieveMyRoutesButton.addEventListener("click", async () => {
+    const userUUID = getUserUUID();
+
+    try {
+        const response = await fetch(
+            `/api/my-routes?user_uuid=${encodeURIComponent(userUUID)}`
+        );
+
+        if (!response.ok) {
+            throw new Error("Failed to retrieve my routes");
+        }
+
+        const routes = await response.json();
+
+        console.log("✅ My routes:", routes);
+
+        // Za sada samo proveravamo da endpoint vraća podatke
+        alert(`Found ${routes.length} route(s).`);
+
+    } catch (error) {
+        console.error("❌ Error retrieving my routes:", error);
+        alert("Failed to retrieve your routes.");
+    }
+});
 
 window.saveTraining = saveTraining;
 window.initMap = initMap;
