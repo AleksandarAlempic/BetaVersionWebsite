@@ -3443,9 +3443,11 @@ window.getUserUUID = function () {
 console.log("USER UUID:", getUserUUID());
 
 retrieveMyTrainingsButton.addEventListener("click", async () => {
+
     const userUUID = getUserUUID();
 
     try {
+
         const response = await fetch(
             `/api/my-trainings?user_uuid=${encodeURIComponent(userUUID)}`
         );
@@ -3458,19 +3460,108 @@ retrieveMyTrainingsButton.addEventListener("click", async () => {
 
         console.log("✅ My trainings:", trainings);
 
-        // Za sada samo proveravamo da endpoint vraća podatke
-        alert(`Found ${trainings.length} training(s).`);
+        if (!Array.isArray(trainings) || trainings.length === 0) {
+
+            alert("You don't have any trainings yet.");
+            return;
+
+        }
+
+        // Očisti prethodne training markere
+        if (window.currentTrainingMarkers?.length) {
+
+            window.currentTrainingMarkers.forEach(marker => {
+
+                if (map.hasLayer(marker)) {
+                    map.removeLayer(marker);
+                }
+
+            });
+
+        }
+
+        window.currentTrainingMarkers = [];
+
+        // Grupisanje
+        const trainingGroups =
+            groupTrainingsByLocation(trainings, 120);
+
+        console.log(
+            "📍 My training groups:",
+            trainingGroups
+        );
+
+        // Prikaz grupa na mapi
+        trainingGroups.forEach(group => {
+
+            const marker = L.marker(
+                [group.latitude, group.longitude],
+                {
+                    icon: dumbbellIcon
+                }
+            );
+
+            marker.options.trainingGroup = group;
+
+            marker.addTo(map);
+
+            marker.bindPopup(`
+                <b>🏋️ Moji treninzi</b><br>
+                Ukupno: ${group.trainings.length}<br><br>
+                Klikni za prikaz
+            `);
+
+            marker.on("click", () => {
+
+                if (group.trainings.length <= 6) {
+
+                    map.removeLayer(marker);
+
+                    window.currentTrainingMarkers =
+                        window.currentTrainingMarkers.filter(
+                            m => m !== marker
+                        );
+
+                    createTrainingSpider(group);
+
+                } else {
+
+                    marker.setPopupContent(`
+                        <b>🏋️ Moji treninzi</b><br>
+                        Ukupno: ${group.trainings.length}<br><br>
+                        Klikni za poslednjih 6 treninga
+                    `);
+
+                    marker.openPopup();
+
+                }
+
+            });
+
+            window.currentTrainingMarkers.push(marker);
+
+        });
 
     } catch (error) {
-        console.error("❌ Error retrieving my trainings:", error);
+
+        console.error(
+            "❌ Error retrieving my trainings:",
+            error
+        );
+
         alert("Failed to retrieve your trainings.");
+
     }
+
 });
 
+
 retrieveMyRoutesButton.addEventListener("click", async () => {
+
     const userUUID = getUserUUID();
 
     try {
+
         const response = await fetch(
             `/api/my-routes?user_uuid=${encodeURIComponent(userUUID)}`
         );
@@ -3483,14 +3574,98 @@ retrieveMyRoutesButton.addEventListener("click", async () => {
 
         console.log("✅ My routes:", routes);
 
-        // Za sada samo proveravamo da endpoint vraća podatke
-        alert(`Found ${routes.length} route(s).`);
+        if (!Array.isArray(routes) || routes.length === 0) {
+
+            alert("You don't have any routes yet.");
+            return;
+
+        }
+
+        // Očisti prethodne rute sa mape
+        if (window.currentRouteLayers?.length) {
+
+            window.currentRouteLayers.forEach(layer => {
+
+                if (map.hasLayer(layer)) {
+                    map.removeLayer(layer);
+                }
+
+            });
+
+        }
+
+        window.currentRouteLayers = [];
+
+        // Prikaži moje rute
+        routes.forEach(route => {
+
+            if (!route.polyline) {
+                return;
+            }
+
+            let coordinates;
+
+            try {
+                coordinates = JSON.parse(route.polyline);
+            } catch (error) {
+                console.error(
+                    "❌ Could not parse route polyline:",
+                    route,
+                    error
+                );
+                return;
+            }
+
+            // Postojeći format je [ [lat,lng], [lat,lng], ... ]
+            // Ako je dodatno upakovan, uzimamo prvi element
+            if (
+                Array.isArray(coordinates) &&
+                Array.isArray(coordinates[0]) &&
+                Array.isArray(coordinates[0][0])
+            ) {
+                coordinates = coordinates[0];
+            }
+
+            if (!Array.isArray(coordinates) || coordinates.length === 0) {
+                return;
+            }
+
+            const polyline = L.polyline(
+                coordinates,
+                {
+                    color: "#00ff88",
+                    weight: 6,
+                    opacity: 0.9
+                }
+            ).addTo(map);
+
+            polyline.bindPopup(`
+                <b>🏃 Moja ruta</b><br><br>
+                📏 ${Number(route.distance || 0).toFixed(2)} km
+            `);
+
+            window.currentRouteLayers.push(polyline);
+
+        });
+
+        console.log(
+            "📍 My routes displayed:",
+            window.currentRouteLayers.length
+        );
 
     } catch (error) {
-        console.error("❌ Error retrieving my routes:", error);
+
+        console.error(
+            "❌ Error retrieving my routes:",
+            error
+        );
+
         alert("Failed to retrieve your routes.");
+
     }
+
 });
+
 
 window.saveTraining = saveTraining;
 window.initMap = initMap;
