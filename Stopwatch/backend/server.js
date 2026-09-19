@@ -229,13 +229,50 @@ app.get('/api/nearby-trainings', async (req, res) => {
   }
 });
 
+// Retrieve only trainings belonging to the current UUID
+app.get('/api/my-trainings', async (req, res) => {
+  const { user_uuid } = req.query;
 
-// ---------------- FRONTEND ---------------- //
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  if (!user_uuid) {
+    return res.status(400).json({ error: "User UUID is required" });
+  }
+
+  try {
+    const { data, error } = await supabase
+      .from('training')
+      .select('*')
+      .eq('user_uuid', user_uuid)
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+
+    res.json(data);
+  } catch (err) {
+    console.error("❌ Error fetching my trainings:", err);
+    res.status(500).json({ error: "Failed to retrieve my trainings" });
+  }
 });
 
-// ---------------- START SERVER ---------------- //
-app.listen(port, () => {
-  console.log(`🚀 Server is running on http://localhost:${port}`);
+// Retrieve only routes belonging to the current UUID
+app.get('/api/my-routes', async (req, res) => {
+  const { user_uuid } = req.query;
+
+  if (!user_uuid) {
+    return res.status(400).json({ error: "User UUID is required" });
+  }
+
+  try {
+    const { data, error } = await supabase
+      .from('runs')
+      .select('*')
+      .eq('user_uuid', user_uuid)
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+
+    res.json(data);
+  } catch (err) {
+    console.error("❌ Error fetching my routes:", err);
+    res.status(500).json({ error: "Failed to retrieve my routes" });
+  }
 });
