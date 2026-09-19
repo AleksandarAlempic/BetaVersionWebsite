@@ -655,6 +655,7 @@ function submitRoute() {
             body: JSON.stringify({
                 user_id: 1, // po potrebi promeni
                 root: "Vojvodina Trčanje",
+                user_uuid: getUserUUID(),
                 distance: data.distance,
                 speed: data.speed,
                 time: data.time,
@@ -679,6 +680,7 @@ function submitRoute() {
         offlineRoutes.push({
             user_id: 1,
             root: "Vojvodina Trčanje",
+            user_uuid: getUserUUID(),
             distance: data.distance,
             speed: data.speed,
             time: data.time,
