@@ -3429,7 +3429,7 @@ function showMainButtons() {
     });
 }
 
-function getUserUUID() {
+window.getUserUUID = function () {
     let userUUID = localStorage.getItem("userUUID");
 
     if (!userUUID) {
@@ -3438,7 +3438,7 @@ function getUserUUID() {
     }
 
     return userUUID;
-}
+};
 console.log("USER UUID:", getUserUUID());
 
 window.saveTraining = saveTraining;
