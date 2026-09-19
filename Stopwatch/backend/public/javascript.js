@@ -3329,6 +3329,8 @@ function saveTrainingOnline(trainingData) {
 // ===============================
 function saveTraining(trainingData) {
 
+    trainingData.user_uuid = getUserUUID();
+
     if (navigator.onLine) {
         saveTrainingOnline(trainingData)
             .then(data => {
