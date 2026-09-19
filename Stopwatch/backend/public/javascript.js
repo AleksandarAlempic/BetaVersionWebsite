@@ -3427,5 +3427,17 @@ function showMainButtons() {
     });
 }
 
+function getUserUUID() {
+    let userUUID = localStorage.getItem("userUUID");
+
+    if (!userUUID) {
+        userUUID = crypto.randomUUID();
+        localStorage.setItem("userUUID", userUUID);
+    }
+
+    return userUUID;
+}
+console.log("USER UUID:", getUserUUID());
+
 window.saveTraining = saveTraining;
 window.initMap = initMap;
