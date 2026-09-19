@@ -36,25 +36,26 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Snimanje trčanja
 app.post('/api/save-run', async (req, res) => {
-  const { user_id, username, root, distance, speed, time, polyline, startLat, startLng, location = "Unknown Location" } = req.body;
+  const { user_id, user_uuid, username, root, distance, speed, time, polyline, startLat, startLng, location = "Unknown Location" } = req.body;
 
   if (!user_id || !username) {
     return res.status(400).json({ error: "User ID and Username are required" });
   }
 
   try {
-    const { data, error } = await supabase.from('runs').insert([{
-      user_id,
-      username,
-      distance,
-      time_seconds: time,
-      speed,
-      route: root,
-      polyline: JSON.stringify(polyline),
-      location,
-      start_lat: startLat,
-      start_lng: startLng
-    }]);
+  const { data, error } = await supabase.from('runs').insert([{
+  user_id,
+  user_uuid,
+  username,
+  distance,
+  time_seconds: time,
+  speed,
+  route: root,
+  polyline: JSON.stringify(polyline),
+  location,
+  start_lat: startLat,
+  start_lng: startLng
+}]);
 
     if (error) throw error;
     res.status(201).json({ message: "Run saved successfully.", data });
@@ -66,7 +67,8 @@ app.post('/api/save-run', async (req, res) => {
 
 // Snimanje treninga
 app.post('/api/save-training', async (req, res) => {
-  const {
+const {
+    user_uuid,
     userName,
     trainingName,
     pushUps,
@@ -77,7 +79,7 @@ app.post('/api/save-training', async (req, res) => {
     duration,
     latitude,
     longitude
-  } = req.body;
+} = req.body;
 
   const safeUserName = userName && userName.trim() !== "" ? userName.trim() : "Anonymous";
   const safeTrainingName = trainingName && trainingName.trim() !== "" ? trainingName.trim() : "Unnamed Training";
@@ -88,18 +90,19 @@ app.post('/api/save-training', async (req, res) => {
   }
 
   try {
-    const { data, error } = await supabase.from('training').insert([{
-      trainingName: safeTrainingName,
-      userName: safeUserName,
-      pushUps: pushUps ?? 0,
-      pullUps: pullUps ?? 0,
-      sitUps: sitUps ?? 0,
-      absCount: absCount ?? 0,
-      otherExercise: otherExercise ?? "",
-      duration: duration ?? 0,
-      latitude: latitude ?? null,
-      longitude: longitude ?? null
-    }]);
+const { data, error } = await supabase.from('training').insert([{
+    user_uuid,
+    trainingName: safeTrainingName,
+    userName: safeUserName,
+    pushUps: pushUps ?? 0,
+    pullUps: pullUps ?? 0,
+    sitUps: sitUps ?? 0,
+    absCount: absCount ?? 0,
+    otherExercise: otherExercise ?? "",
+    duration: duration ?? 0,
+    latitude: latitude ?? null,
+    longitude: longitude ?? null
+}]);
 
     if (error) throw error;
 
