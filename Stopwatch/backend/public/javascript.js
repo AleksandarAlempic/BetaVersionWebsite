@@ -3612,37 +3612,34 @@ retrieveMyRoutesButton.addEventListener("click", async () => {
                 return;
             }
 
-     let coordinates;
+            let coordinates;
 
-try {
+            try {
 
-    const parsedPolyline = JSON.parse(route.polyline);
+                const parsedPolyline = JSON.parse(route.polyline);
 
-    console.log("🔍 MY ROUTE POLYLINE RAW:", route.polyline);
-    console.log("🔍 MY ROUTE POLYLINE PARSED:", parsedPolyline);
+                console.log(
+                    "🔍 MY ROUTE POLYLINE RAW:",
+                    route.polyline
+                );
 
-    coordinates = parsedPolyline;
+                console.log(
+                    "🔍 MY ROUTE POLYLINE PARSED:",
+                    parsedPolyline
+                );
 
-} catch (error) {
+                coordinates = parsedPolyline[0];
 
-    console.error(
-        "❌ Could not parse route polyline:",
-        route,
-        error
-    );
+            } catch (error) {
 
-    return;
-}
+                console.error(
+                    "❌ Could not parse route polyline:",
+                    route,
+                    error
+                );
 
-if (!Array.isArray(coordinates) || coordinates.length === 0) {
-
-    console.warn(
-        "⚠️ Empty route coordinates:",
-        route
-    );
-
-    return;
-}
+                return;
+            }
 
             if (!Array.isArray(coordinates) || coordinates.length === 0) {
 
@@ -3689,6 +3686,7 @@ if (!Array.isArray(coordinates) || coordinates.length === 0) {
     }
 
 });
+
 
 
 window.saveTraining = saveTraining;
