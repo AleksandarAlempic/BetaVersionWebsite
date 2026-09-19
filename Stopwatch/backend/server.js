@@ -276,3 +276,13 @@ app.get('/api/my-routes', async (req, res) => {
     res.status(500).json({ error: "Failed to retrieve my routes" });
   }
 });
+
+// ---------------- FRONTEND ---------------- //
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// ---------------- START SERVER ---------------- //
+app.listen(port, () => {
+  console.log(`🚀 Server is running on http://localhost:${port}`);
+});
