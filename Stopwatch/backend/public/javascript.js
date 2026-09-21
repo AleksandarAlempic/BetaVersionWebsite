@@ -1293,6 +1293,19 @@ async function retrieveNearbyRoutes() {
     window.currentRouteMarkers = [];
   }
 
+  // uklanjanje starih route polilinija
+if (window.currentRouteLayers) {
+  window.currentRouteLayers.forEach(layer => {
+
+    if (map.hasLayer(layer)) {
+      map.removeLayer(layer);
+    }
+
+  });
+
+  window.currentRouteLayers = [];
+}
+
   // **Dodavanje TTL provere pre slanja FETCH zahteva**
   if (navigator.serviceWorker) {
     const swRegistration = await navigator.serviceWorker.ready;
@@ -1311,13 +1324,15 @@ async function retrieveNearbyRoutes() {
     }
 
 window.currentRouteMarkers = [];
-    window.currentRouteLayers = [];
+
 
 // Kreiraj pane samo ako ne postoji
 if (!map.getPane('routesPane')) {
   map.createPane('routesPane');
   map.getPane('routesPane').style.zIndex = 400;
 }
+
+    
 
 if (!map.getPane('markersPane')) {
   map.createPane('markersPane');
