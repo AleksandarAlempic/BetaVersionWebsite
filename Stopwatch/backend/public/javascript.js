@@ -3567,6 +3567,10 @@ retrieveMyRoutesButton.addEventListener("click", async () => {
 
     try {
 
+        // =====================================================
+        // 1. RETRIEVE MY ROUTES
+        // =====================================================
+
         const response = await fetch(
             `/api/my-routes?user_uuid=${encodeURIComponent(userUUID)}`
         );
@@ -3586,11 +3590,22 @@ retrieveMyRoutesButton.addEventListener("click", async () => {
 
         }
 
+
+        // =====================================================
+        // 2. CLOSE POPUP / SHOW MAP
+        // =====================================================
+
         document.getElementById("retrieveRoutesPopup").style.display = "none";
+
         mapContent.style.display = "block";
+
         showMainButtons();
 
-        // Očisti prethodne moje rute
+
+        // =====================================================
+        // 3. REMOVE PREVIOUS ROUTES
+        // =====================================================
+
         if (window.currentRouteLayers?.length) {
 
             window.currentRouteLayers.forEach(layer => {
@@ -3605,64 +3620,110 @@ retrieveMyRoutesButton.addEventListener("click", async () => {
 
         window.currentRouteLayers = [];
 
-        // Prikaži moje rute
+
+        // =====================================================
+        // 4. REMOVE PREVIOUS ROUTE MARKERS
+        // =====================================================
+
+        if (window.currentRouteMarkers?.length) {
+
+            window.currentRouteMarkers.forEach(marker => {
+
+                if (map.hasLayer(marker)) {
+                    map.removeLayer(marker);
+                }
+
+            });
+
+        }
+
+        window.currentRouteMarkers = [];
+
+
+        // =====================================================
+        // 5. CREATE ROUTE POLYLINES
+        //    ISTA LOGIKA KAO RETRIEVE ALL ROUTES
+        // =====================================================
+
         routes.forEach(route => {
 
             if (!route.polyline || route.polyline === "[]") {
+
                 console.warn(
                     "⚠️ Route has no polyline:",
                     route.id
                 );
+
                 return;
+
             }
 
             try {
 
-                // ISTI način parsiranja kao Retrieve All Routes
                 const latlngs = JSON.parse(route.polyline).map(c =>
                     L.latLng(c.lat, c.lng)
                 );
 
                 if (!latlngs.length) {
+
                     console.warn(
                         "⚠️ Empty route coordinates:",
                         route.id
                     );
+
                     return;
+
                 }
 
                 const poly = L.polyline(latlngs, {
+
                     color: "blue",
                     weight: 4,
                     opacity: 0.8,
                     interactive: true
+
                 }).addTo(map);
 
-                // Klik na moju rutu
+
+                // Sačuvaj polyline uz rutu
+                route._routePolyline = poly;
+
+
+                // =================================================
+                // Klik na poliliniju
+                // =================================================
+
                 poly.on("click", () => {
 
-                    // Vrati prethodno selektovanu rutu
                     if (window.selectedPolyline) {
 
                         window.selectedPolyline.setStyle({
+
                             color: "blue",
                             weight: 4,
                             opacity: 0.8
+
                         });
 
                     }
 
-                    // Selektuj ovu rutu
+
                     poly.setStyle({
+
                         color: "#00ff88",
                         weight: 6,
                         opacity: 1
+
                     });
+
 
                     window.selectedPolyline = poly;
 
-                    // Otvori popup
-                    const coords = JSON.parse(route.polyline);
+
+                    // Otvori detalje rute
+                    const coords =
+                        JSON.parse(route.polyline);
+
 
                     if (coords.length) {
 
@@ -3671,15 +3732,15 @@ retrieveMyRoutesButton.addEventListener("click", async () => {
                                 coords[0].lat,
                                 coords[0].lng
                             ])
-                            .setContent(`
-                                <b>🏃 Moja ruta</b><br><br>
-                                📏 ${Number(route.distance || 0).toFixed(2)} km
-                            `)
+                            .setContent(
+                                getRoutePopupContent(route)
+                            )
                             .openOn(map);
 
                     }
 
                 });
+
 
                 window.currentRouteLayers.push(poly);
 
@@ -3695,9 +3756,336 @@ retrieveMyRoutesButton.addEventListener("click", async () => {
 
         });
 
+
+        // =====================================================
+        // 6. GROUP ROUTES BY LOCATION
+        //    ISTA FUNKCIJA KAO RETRIEVE ALL ROUTES
+        // =====================================================
+
+        const routeGroups =
+            groupRoutesByLocation(routes, 120);
+
+
+        // =====================================================
+        // 7. CREATE MARKERS / SPIDER / POPUP / PAGINATION
+        // =====================================================
+
+        routeGroups.forEach(group => {
+
+
+            // =================================================
+            // 1–6 RUTA
+            // =================================================
+
+            if (group.routes.length <= 6) {
+
+                const marker = L.marker(
+
+                    [
+                        group.latitude,
+                        group.longitude
+                    ],
+
+                    {
+                        icon: createRouteMarkerIcon(
+                            group.routes.length
+                        )
+                    }
+
+                );
+
+
+                marker.addTo(map);
+
+                marker.options.routeGroup = group;
+
+
+                // =============================================
+                // Klik na marker → spider
+                // =============================================
+
+                marker.on("click", () => {
+
+                    // Ukloni originalni marker
+                    if (map.hasLayer(marker)) {
+
+                        map.removeLayer(marker);
+
+                    }
+
+
+                    // Ukloni iz aktivnih markera
+                    window.currentRouteMarkers =
+                        window.currentRouteMarkers.filter(
+                            m => m !== marker
+                        );
+
+
+                    // Napravi spider
+                    createRouteSpider(group);
+
+                });
+
+
+                window.currentRouteMarkers.push(marker);
+
+            }
+
+
+            // =================================================
+            // 7+ RUTA
+            // =================================================
+
+            else {
+
+                const marker = L.marker(
+
+                    [
+                        group.latitude,
+                        group.longitude
+                    ],
+
+                    {
+                        icon: createRouteMarkerIcon(
+                            group.routes.length
+                        )
+                    }
+
+                );
+
+
+                marker.options.routeGroup = group;
+
+
+                marker
+                    .addTo(map)
+                    .bindPopup("");
+
+
+                // =============================================
+                // Klik na marker
+                // =============================================
+
+                marker.on("click", () => {
+
+                    console.log(
+                        "🔥 MY ROUTE GROUP CLICKED",
+                        group.routes.length
+                    );
+
+
+                    const lastSix =
+                        group.routes
+                            .slice()
+                            .sort(
+                                (a, b) =>
+                                    new Date(b.created_at) -
+                                    new Date(a.created_at)
+                            )
+                            .slice(0, 6);
+
+
+                    let html = `
+                        <b>🏃‍♂️ Poslednjih 6 ruta</b>
+                        <br><br>
+                    `;
+
+
+                    lastSix.forEach(route => {
+
+                        html += `
+
+                            <div
+                                class="route-item"
+                                data-id="${route.id}"
+                                style="cursor:pointer;"
+                            >
+
+                                <b>
+                                    ${
+                                        route.routeName ||
+                                        translations[currentLanguage]
+                                            .unnamedRoute
+                                    }
+                                </b>
+
+                                <br>
+
+                                🧭 ${
+                                    Number(route.distance || 0)
+                                        .toFixed(2)
+                                } km
+
+                            </div>
+
+                            <hr>
+
+                        `;
+
+                    });
+
+
+                    html += `
+
+                        <div id="showAllRoutesContainer">
+
+                            <button class="buttonCenter">
+
+                                Prikaži svih ${group.routes.length}
+
+                            </button>
+
+                        </div>
+
+                    `;
+
+
+                    marker.setPopupContent(html);
+
+                    marker.openPopup();
+
+
+                    setTimeout(() => {
+
+                        const popup =
+                            marker
+                                .getPopup()
+                                ?.getElement();
+
+
+                        if (!popup) return;
+
+
+                        // =====================================
+                        // Klik na pojedinačnu rutu
+                        // =====================================
+
+                        popup
+                            .querySelectorAll(".route-item")
+                            .forEach(item => {
+
+                                item.addEventListener(
+                                    "click",
+                                    () => {
+
+                                        const routeId =
+                                            item.dataset.id;
+
+
+                                        const route =
+                                            group.routes.find(
+                                                r =>
+                                                    r.id == routeId
+                                            );
+
+
+                                        if (!route) return;
+
+
+                                        // Selektuj poliliniju
+                                        if (
+                                            route._routePolyline
+                                        ) {
+
+                                            selectRoutePolyline(
+                                                route._routePolyline
+                                            );
+
+                                        }
+
+
+                                        // Otvori detalje
+                                        const coords =
+                                            JSON.parse(
+                                                route.polyline
+                                            );
+
+
+                                        if (coords.length) {
+
+                                            L.popup({
+
+                                                minWidth: 220
+
+                                            })
+
+                                                .setLatLng([
+
+                                                    coords[0].lat,
+                                                    coords[0].lng
+
+                                                ])
+
+                                                .setContent(
+
+                                                    getRoutePopupContent(
+                                                        route
+                                                    )
+
+                                                )
+
+                                                .openOn(map);
+
+                                        }
+
+                                    }
+                                );
+
+                            });
+
+
+                        // =====================================
+                        // "Prikaži svih N"
+                        // =====================================
+
+                        const button =
+                            popup.querySelector(
+                                ".buttonCenter"
+                            );
+
+
+                        if (button) {
+
+                            button.addEventListener(
+                                "click",
+                                () => {
+
+                                    routeCurrentPage = 1;
+
+                                    showAllRoutes(
+                                        group,
+                                        marker
+                                    );
+
+                                }
+                            );
+
+                        }
+
+                    }, 0);
+
+                });
+
+
+                window.currentRouteMarkers.push(marker);
+
+            }
+
+        });
+
+
+        // =====================================================
+        // 8. FINAL LOG
+        // =====================================================
+
         console.log(
             "📍 My routes displayed:",
             window.currentRouteLayers.length
+        );
+
+        console.log(
+            "📍 My route groups:",
+            routeGroups.length
         );
 
     } catch (error) {
@@ -3712,8 +4100,6 @@ retrieveMyRoutesButton.addEventListener("click", async () => {
     }
 
 });
-
-
 
 window.saveTraining = saveTraining;
 window.initMap = initMap;
