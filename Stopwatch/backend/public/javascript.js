@@ -3590,7 +3590,7 @@ retrieveMyRoutesButton.addEventListener("click", async () => {
         mapContent.style.display = "block";
         showMainButtons();
 
-        // Očisti prethodne rute sa mape
+        // Očisti prethodne moje rute
         if (window.currentRouteLayers?.length) {
 
             window.currentRouteLayers.forEach(layer => {
@@ -3608,64 +3608,90 @@ retrieveMyRoutesButton.addEventListener("click", async () => {
         // Prikaži moje rute
         routes.forEach(route => {
 
-            if (!route.polyline) {
+            if (!route.polyline || route.polyline === "[]") {
+                console.warn(
+                    "⚠️ Route has no polyline:",
+                    route.id
+                );
                 return;
             }
 
-            let coordinates;
-
             try {
 
-                const parsedPolyline = JSON.parse(route.polyline);
-
-                console.log(
-                    "🔍 MY ROUTE POLYLINE RAW:",
-                    route.polyline
+                // ISTI način parsiranja kao Retrieve All Routes
+                const latlngs = JSON.parse(route.polyline).map(c =>
+                    L.latLng(c.lat, c.lng)
                 );
 
-                console.log(
-                    "🔍 MY ROUTE POLYLINE PARSED:",
-                    parsedPolyline
-                );
+                if (!latlngs.length) {
+                    console.warn(
+                        "⚠️ Empty route coordinates:",
+                        route.id
+                    );
+                    return;
+                }
 
-                coordinates = parsedPolyline;
+                const poly = L.polyline(latlngs, {
+                    color: "blue",
+                    weight: 4,
+                    opacity: 0.8,
+                    interactive: true
+                }).addTo(map);
+
+                // Klik na moju rutu
+                poly.on("click", () => {
+
+                    // Vrati prethodno selektovanu rutu
+                    if (window.selectedPolyline) {
+
+                        window.selectedPolyline.setStyle({
+                            color: "blue",
+                            weight: 4,
+                            opacity: 0.8
+                        });
+
+                    }
+
+                    // Selektuj ovu rutu
+                    poly.setStyle({
+                        color: "#00ff88",
+                        weight: 6,
+                        opacity: 1
+                    });
+
+                    window.selectedPolyline = poly;
+
+                    // Otvori popup
+                    const coords = JSON.parse(route.polyline);
+
+                    if (coords.length) {
+
+                        L.popup()
+                            .setLatLng([
+                                coords[0].lat,
+                                coords[0].lng
+                            ])
+                            .setContent(`
+                                <b>🏃 Moja ruta</b><br><br>
+                                📏 ${Number(route.distance || 0).toFixed(2)} km
+                            `)
+                            .openOn(map);
+
+                    }
+
+                });
+
+                window.currentRouteLayers.push(poly);
 
             } catch (error) {
 
                 console.error(
-                    "❌ Could not parse route polyline:",
+                    "❌ Could not display my route:",
                     route,
                     error
                 );
 
-                return;
             }
-
-            if (!Array.isArray(coordinates) || coordinates.length === 0) {
-
-                console.warn(
-                    "⚠️ Empty route coordinates:",
-                    route
-                );
-
-                return;
-            }
-
-            const polyline = L.polyline(
-                coordinates,
-                {
-                    color: "#00ff88",
-                    weight: 6,
-                    opacity: 0.9
-                }
-            ).addTo(map);
-
-            polyline.bindPopup(`
-                <b>🏃 Moja ruta</b><br><br>
-                📏 ${Number(route.distance || 0).toFixed(2)} km
-            `);
-
-            window.currentRouteLayers.push(polyline);
 
         });
 
