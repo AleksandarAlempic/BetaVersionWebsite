@@ -3463,7 +3463,6 @@ retrieveMyTrainingsButton.addEventListener("click", async () => {
 
         console.log("✅ My trainings:", trainings);
 
-     
         if (!Array.isArray(trainings) || trainings.length === 0) {
 
             alert("You don't have any trainings yet.");
@@ -3471,12 +3470,21 @@ retrieveMyTrainingsButton.addEventListener("click", async () => {
 
         }
 
-       document.getElementById("retrieveTrainingsPopup").style.display = "none";
-mapContent.style.display = "block";
-showMainButtons();
+        // =====================================================
+        // CLOSE POPUP / SHOW MAP
+        // =====================================================
+
+        document.getElementById("retrieveTrainingsPopup").style.display = "none";
+
+        mapContent.style.display = "block";
+
+        showMainButtons();
 
 
-        // Očisti prethodne training markere
+        // =====================================================
+        // REMOVE PREVIOUS TRAINING MARKERS
+        // =====================================================
+
         if (window.currentTrainingMarkers?.length) {
 
             window.currentTrainingMarkers.forEach(marker => {
@@ -3491,7 +3499,11 @@ showMainButtons();
 
         window.currentTrainingMarkers = [];
 
-        // Grupisanje
+
+        // =====================================================
+        // GROUP TRAININGS BY LOCATION
+        // =====================================================
+
         const trainingGroups =
             groupTrainingsByLocation(trainings, 120);
 
@@ -3500,56 +3512,275 @@ showMainButtons();
             trainingGroups
         );
 
-        // Prikaz grupa na mapi
+
+        // =====================================================
+        // CREATE MARKERS
+        // =====================================================
+
         trainingGroups.forEach(group => {
 
-            const marker = L.marker(
-                [group.latitude, group.longitude],
-                {
-                    icon: dumbbellIcon
-                }
-            );
 
-            marker.options.trainingGroup = group;
+            // =================================================
+            // 1–6 TRAININGS → SPIDER
+            // =================================================
 
-            marker.addTo(map);
+            if (group.trainings.length <= 6) {
 
-            marker.bindPopup(`
-                <b>🏋️ Moji treninzi</b><br>
-                Ukupno: ${group.trainings.length}<br><br>
-                Klikni za prikaz
-            `);
+                const marker = L.marker(
+                    [
+                        group.latitude,
+                        group.longitude
+                    ],
+                    {
+                        icon: dumbbellIcon
+                    }
+                );
 
-            marker.on("click", () => {
+                marker.options.trainingGroup = group;
 
-                if (group.trainings.length <= 6) {
+                marker.addTo(map);
 
-                    map.removeLayer(marker);
+
+                marker.bindPopup(`
+                    <b>🏋️ Moji treninzi</b><br>
+                    Ukupno: ${group.trainings.length}<br><br>
+                    Klikni za prikaz
+                `);
+
+
+                marker.on("click", () => {
+
+                    if (map.hasLayer(marker)) {
+
+                        map.removeLayer(marker);
+
+                    }
+
 
                     window.currentTrainingMarkers =
                         window.currentTrainingMarkers.filter(
                             m => m !== marker
                         );
 
+
+                    // SPIDER
                     createTrainingSpider(group);
 
-                } else {
+                });
 
-                    marker.setPopupContent(`
-                        <b>🏋️ Moji treninzi</b><br>
-                        Ukupno: ${group.trainings.length}<br><br>
-                        Klikni za poslednjih 6 treninga
-                    `);
+
+                window.currentTrainingMarkers.push(marker);
+
+            }
+
+
+            // =================================================
+            // 7+ TRAININGS
+            // =================================================
+
+            else {
+
+                const marker = L.marker(
+                    [
+                        group.latitude,
+                        group.longitude
+                    ],
+                    {
+                        icon: dumbbellIcon
+                    }
+                );
+
+                marker.options.trainingGroup = group;
+
+                marker
+                    .addTo(map)
+                    .bindPopup("");
+
+
+                marker.on("click", () => {
+
+                    console.log(
+                        "🔥 MY TRAINING GROUP CLICKED",
+                        group.trainings.length
+                    );
+
+
+                    // =========================================
+                    // POSLEDNJIH 6 TRENINGA
+                    // =========================================
+
+                    const lastSix =
+                        group.trainings
+                            .slice()
+                            .sort(
+                                (a, b) =>
+                                    new Date(b.created_at) -
+                                    new Date(a.created_at)
+                            )
+                            .slice(0, 6);
+
+
+                    let html = `
+                        <b>🏋️ Poslednjih 6 treninga</b>
+                        <br><br>
+                    `;
+
+
+                    lastSix.forEach(training => {
+
+                        html += `
+
+                            <div
+                                class="training-item"
+                                data-id="${training.id}"
+                                style="cursor:pointer;"
+                            >
+
+                                <b>
+                                    ${
+                                        training.trainingName ||
+                                        "Training"
+                                    }
+                                </b>
+
+                                <br>
+
+                                ${
+                                    training.userName ||
+                                    ""
+                                }
+
+                            </div>
+
+                            <hr>
+
+                        `;
+
+                    });
+
+
+                    // =========================================
+                    // PRIKAŽI SVE
+                    // =========================================
+
+                    html += `
+
+                        <div id="showAllTrainingsContainer">
+
+                            <button class="buttonCenter">
+
+                                Prikaži svih ${group.trainings.length}
+
+                            </button>
+
+                        </div>
+
+                    `;
+
+
+                    marker.setPopupContent(html);
 
                     marker.openPopup();
 
-                }
 
-            });
+                    setTimeout(() => {
 
-            window.currentTrainingMarkers.push(marker);
+                        const popup =
+                            marker
+                                .getPopup()
+                                ?.getElement();
+
+
+                        if (!popup) return;
+
+
+                        // =====================================
+                        // KLIK NA POJEDINAČNI TRENING
+                        // =====================================
+
+                        popup
+                            .querySelectorAll(".training-item")
+                            .forEach(item => {
+
+                                item.addEventListener(
+                                    "click",
+                                    () => {
+
+                                        const trainingId =
+                                            item.dataset.id;
+
+
+                                        const training =
+                                            group.trainings.find(
+                                                t =>
+                                                    t.id == trainingId
+                                            );
+
+
+                                        if (!training) return;
+
+
+                                        // Ako već postoji
+                                        // tvoja funkcija za
+                                        // prikaz treninga:
+                                        openTrainingPopup(training);
+
+                                    }
+                                );
+
+                            });
+
+
+                        // =====================================
+                        // PRIKAŽI SVE TRENINGE
+                        // =====================================
+
+                        const button =
+                            popup.querySelector(
+                                ".buttonCenter"
+                            );
+
+
+                        if (button) {
+
+                            button.addEventListener(
+                                "click",
+                                () => {
+
+                                    trainingCurrentPage = 1;
+
+                                    showAllTrainings(
+                                        group,
+                                        marker
+                                    );
+
+                                }
+                            );
+
+                        }
+
+                    }, 0);
+
+                });
+
+
+                window.currentTrainingMarkers.push(marker);
+
+            }
 
         });
+
+
+        console.log(
+            "📍 My trainings displayed:",
+            trainings.length
+        );
+
+        console.log(
+            "📍 My training groups:",
+            trainingGroups.length
+        );
+
 
     } catch (error) {
 
@@ -3563,6 +3794,7 @@ showMainButtons();
     }
 
 });
+
 
 retrieveMyRoutesButton.addEventListener("click", async () => {
 
