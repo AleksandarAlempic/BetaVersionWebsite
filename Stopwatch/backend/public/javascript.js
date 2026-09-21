@@ -1311,6 +1311,7 @@ async function retrieveNearbyRoutes() {
     }
 
 window.currentRouteMarkers = [];
+    window.currentRouteLayers = [];
 
 // Kreiraj pane samo ako ne postoji
 if (!map.getPane('routesPane')) {
@@ -1336,6 +1337,8 @@ routes.forEach(route => {
     interactive: true
     // pane: 'routesPane'
   }).addTo(map);
+
+  window.currentRouteLayers.push(poly);
 
   // Sačuvaj polyline uz rutu
   route._routePolyline = poly;
