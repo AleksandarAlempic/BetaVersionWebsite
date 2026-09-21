@@ -3577,7 +3577,7 @@ retrieveMyRoutesButton.addEventListener("click", async () => {
 
         const routes = await response.json();
 
-        console.log("✅ My routes:", routes);
+        console.log("🔎 COMPLETE MY ROUTES DATA:", routes);
 
         if (!Array.isArray(routes) || routes.length === 0) {
 
@@ -3628,7 +3628,7 @@ retrieveMyRoutesButton.addEventListener("click", async () => {
                     parsedPolyline
                 );
 
-                coordinates = parsedPolyline[0];
+                coordinates = parsedPolyline;
 
             } catch (error) {
 
