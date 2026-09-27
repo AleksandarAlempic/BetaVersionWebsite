@@ -149,25 +149,29 @@ function updateUserLocation(centerMap = false) {
 
 function initMap() {
     console.log("INIT MAP");
-  
-    const mapContainer = document.getElementById("map");
-    if (!mapContainer) return; // Ako nema DOM elementa, izlazi
 
-    // Ako mapa već postoji, samo update lokaciju
-    if (map) {
-        updateUserLocation();
-        return;
-    }
+    const mapContainer = document.getElementById("map");
+    if (!mapContainer) return;
 
     navigator.geolocation.getCurrentPosition(
         (position) => {
             const lat = position.coords.latitude;
             const lng = position.coords.longitude;
-            createMap(lat, lng);
+
+            console.log("GPS LOCATION:", lat, lng);
+
+            if (map) {
+                map.setView([lat, lng], 15);
+                updateUserLocation();
+            } else {
+                createMap(lat, lng);
+            }
         },
         () => {
             // fallback Ruma
-            createMap(45.0483, 19.8361);
+            if (!map) {
+                createMap(45.0483, 19.8361);
+            }
         },
         {
             enableHighAccuracy: true,
