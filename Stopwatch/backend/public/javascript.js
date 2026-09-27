@@ -706,7 +706,7 @@ window.addEventListener('load', () => {
   setTimeout(() => {
 
     // 1️⃣ Pokreni mapu
-    initMap();
+    // initMap();
 
     // 2️⃣ Siguran checkbox toggle (ako postoji)
     if (checkboxRoot) {
