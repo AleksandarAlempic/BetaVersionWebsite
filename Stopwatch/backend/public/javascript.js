@@ -171,7 +171,7 @@ function initMap() {
         },
         {
             enableHighAccuracy: true,
-            timeout: 5000,
+            timeout: 13000,
             maximumAge: 0
         }
     );
