@@ -1328,7 +1328,7 @@ if (window.currentRouteLayers) {
     }
 
 window.currentRouteMarkers = [];
-
+window.currentRouteLayers = [];
 
 // Kreiraj pane samo ako ne postoji
 if (!map.getPane('routesPane')) {
