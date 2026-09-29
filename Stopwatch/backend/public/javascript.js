@@ -3689,11 +3689,36 @@ retrieveMyTrainingsButton.addEventListener("click", async () => {
                 marker.addTo(map);
 
 
-                marker.bindPopup(`
-                    <b>🏋️ Moji treninzi</b><br>
-                    Ukupno: ${group.trainings.length}<br><br>
-                    Klikni za prikaz
-                `);
+              if (group.trainings.length === 1) {
+
+    const t = group.trainings[0];
+
+    marker.options.trainingData = t;
+
+    marker.bindPopup(`
+
+        <div class="training-item" data-id="${t.id}">
+
+            <b>${t.trainingName || translations[currentLanguage].unnamedTraining}</b><br>
+
+            🏋️‍♂️ ${translations[currentLanguage].addTrainingPopupLabels.pushUps}: ${t.pushUps || 0}<br>
+            💪 ${translations[currentLanguage].addTrainingPopupLabels.pullUps}: ${t.pullUps || 0}<br>
+            🧍 ${translations[currentLanguage].addTrainingPopupLabels.sitUps}: ${t.sitUps || 0}<br>
+            ⏱ ${translations[currentLanguage].addTrainingPopupLabels.duration}: ${t.duration || 0} min
+
+        </div>
+
+    `);
+
+} else {
+
+    marker.bindPopup(`
+        <b>🏋️ Moji treninzi</b><br>
+        Ukupno: ${group.trainings.length}<br><br>
+        Klikni za prikaz
+    `);
+
+}
 
 
            marker.on("click", () => {
@@ -3704,44 +3729,7 @@ retrieveMyTrainingsButton.addEventListener("click", async () => {
 
     if (group.trainings.length === 1) {
 
-        const t = group.trainings[0];
-
-        marker.options.trainingData = t;
-
-        marker.setPopupContent(`
-
-            <div class="training-item" data-id="${t.id}">
-
-                <b>${t.trainingName || translations[currentLanguage].unnamedTraining}</b><br>
-
-                🏋️‍♂️ ${translations[currentLanguage].addTrainingPopupLabels.pushUps}: ${t.pushUps || 0}<br>
-                💪 ${translations[currentLanguage].addTrainingPopupLabels.pullUps}: ${t.pullUps || 0}<br>
-                🧍 ${translations[currentLanguage].addTrainingPopupLabels.sitUps}: ${t.sitUps || 0}<br>
-                ⏱ ${translations[currentLanguage].addTrainingPopupLabels.duration}: ${t.duration || 0} min
-
-            </div>
-
-        `);
-
-        marker.off("popupopen");
-
-        marker.on("popupopen", () => {
-
-            const item =
-                marker.getPopup()
-                .getElement()
-                ?.querySelector(".training-item");
-
-            if (item) {
-
-                item.onclick = () => {
-                    openTrainingPopup(t);
-                };
-
-            }
-
-        });
-
+       
         return;
     }
 
