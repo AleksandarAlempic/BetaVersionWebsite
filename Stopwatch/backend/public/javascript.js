@@ -1950,74 +1950,75 @@ openTrainingPopup(training);
 
 }
 
-// =================== OPEN TRAINING POPUP ===================
+// =================== OPEN TRAINING POPUP =================== 
+ 
+function openTrainingPopup(training) { 
+    trainingPopupMode = "view"; 
+ 
+    document.getElementById("trainingPopupTitle").textContent = 
+        trainingTranslations[currentLanguage].trainingDetailsTitle; 
+ 
+    console.log("Opening training popup:", training); 
+             
+    document.getElementById("addTrainingPopup").style.display = "block"; 
+ 
+    document.getElementById("trainingName").value = 
+        training.trainingName || ""; 
+ 
+    document.getElementById("userName").value = 
+        training.userName || ""; 
+ 
+    document.getElementById("pushUps").value = 
+        training.pushUps || 0; 
+ 
+    document.getElementById("pullUps").value = 
+        training.pullUps || 0; 
+ 
+    document.getElementById("sitUps").value = 
+        training.sitUps || 0; 
+ 
+    if(document.getElementById("absCount")) { 
+        document.getElementById("absCount").value = 
+            training.absCount || 0; 
+    } 
+ 
+    if(document.getElementById("otherExercise")) { 
+        document.getElementById("otherExercise").value = 
+            training.otherExercise || ""; 
+    } 
+ 
+    if(document.getElementById("duration")) { 
+        document.getElementById("duration").value = 
+            training.duration || 0; 
+    } 
 
-function openTrainingPopup(training) {
-    trainingPopupMode = "view";
+    // =================== READ ONLY ===================
 
- document.getElementById("trainingPopupTitle").textContent =
-    trainingTranslations[currentLanguage].trainingDetailsTitle;
-
-    console.log("Opening training popup:", training);
-            
-            
-    document.getElementById("addTrainingPopup").style.display = "block";
-
-
-    document.getElementById("trainingName").value =
-        training.trainingName || "";
-
-
-    document.getElementById("userName").value =
-        training.userName || "";
-
-
-    document.getElementById("pushUps").value =
-        training.pushUps || 0;
-
-
-    document.getElementById("pullUps").value =
-        training.pullUps || 0;
-
-
-    document.getElementById("sitUps").value =
-        training.sitUps || 0;
-
+    document.getElementById("trainingName").readOnly = true;
+    document.getElementById("userName").readOnly = true;
+    document.getElementById("pushUps").readOnly = true;
+    document.getElementById("pullUps").readOnly = true;
+    document.getElementById("sitUps").readOnly = true;
 
     if(document.getElementById("absCount")) {
-        document.getElementById("absCount").value =
-            training.absCount || 0;
+        document.getElementById("absCount").readOnly = true;
     }
-
 
     if(document.getElementById("otherExercise")) {
-        document.getElementById("otherExercise").value =
-            training.otherExercise || "";
+        document.getElementById("otherExercise").readOnly = true;
     }
-
 
     if(document.getElementById("duration")) {
-        document.getElementById("duration").value =
-            training.duration || 0;
+        document.getElementById("duration").readOnly = true;
     }
 
-  document.querySelector(".saveButtonTraining")
-.style.display = "none";
+    // =================== HIDE SAVE ===================
 
-}
+    document.querySelector(".saveButtonTraining").style.display = "none"; 
+ 
+} 
 
-document.getElementById("fetchAddTrainingButton").addEventListener("click", () => {
 
-    trainingPopupMode = "add";
-
-    document.querySelector(".saveButtonTraining").style.display = "inline-block";
-
-    document.getElementById("addTrainingPopup").style.display = "block";
-
-  document.getElementById("trainingPopupTitle").innerHTML =
-    "Add Training";
-
-});
 
 // =================== FETCH NEARBY TRAININGS ===================
 
