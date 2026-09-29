@@ -2797,3 +2797,10 @@ input, textarea {
     font-weight: bold;
     font-size: large;
 }
+
+.routePopup .leaflet-popup-content-wrapper{
+  width: 250px !important;
+    height: 145px !important;
+    font-weight: bold;
+    font-size: large;
+}
