@@ -2790,3 +2790,10 @@ input, textarea {
 .retrievePopupTitle {
     font-size: 28px;
 }
+
+.routePopup .leaflet-popup-content {
+    width: 250px;
+    height: 145px;
+    font-weight: bold;
+    font-size: large;
+}
