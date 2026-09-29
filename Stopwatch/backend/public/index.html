@@ -489,6 +489,7 @@ window.map = null;
                         if (!window.map) return;
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
+                        currentLocation = [lat, lon];
 
         // Update the location marker to the new coordinates
        if (!currentLocationMarker) {
