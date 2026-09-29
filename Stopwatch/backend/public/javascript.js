@@ -3618,9 +3618,9 @@ retrieveMyTrainingsButton.addEventListener("click", async () => {
 
                 marker.options.trainingGroup = group;
 
-                marker
-                    .addTo(map)
-                    .bindPopup("");
+                marker.addTo(map).bindPopup("", {
+        className: "largeTrainingPopup"
+    });
 
 
                 marker.on("click", () => {
@@ -4118,9 +4118,9 @@ retrieveMyRoutesButton.addEventListener("click", async () => {
                 marker.options.routeGroup = group;
 
 
-                marker
-                    .addTo(map)
-                    .bindPopup("");
+                 marker.addTo(map).bindPopup("", {
+        className: "largeTrainingPopup"
+    });
 
 
                 // =============================================
