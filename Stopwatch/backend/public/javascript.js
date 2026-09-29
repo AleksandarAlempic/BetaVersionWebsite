@@ -904,6 +904,9 @@ function getRoutePopupContent(route) {
     ${Number(route.speed).toFixed(2)} km/h
 
     <br>
+⏱ ${translations[currentLanguage].time}:
+${(Number(route.time_seconds) / 60).toFixed(2)} min
+    <br>
 
     🏃‍♂️
     ${route.routeName ||
