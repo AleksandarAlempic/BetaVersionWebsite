@@ -2800,3 +2800,12 @@ input, textarea {
     font-size: large;
 }
 
+.largeTrainingPopup .leaflet-popup-content {
+    background: white;
+    color: #333;
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
+    width: 300px !important;
+    max-height: 400px;
+    overflow-y: auto;
+    font-size: large;
+}
