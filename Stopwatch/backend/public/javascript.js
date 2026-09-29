@@ -3661,233 +3661,322 @@ retrieveMyTrainingsButton.addEventListener("click", async () => {
         );
 
 
-        // =====================================================
-        // CREATE MARKERS
-        // =====================================================
+    // =====================================================
+// CREATE MARKERS
+// =====================================================
 
-    
+trainingGroups.forEach(group => {
 
-            // =================================================
-            // 7+ TRAININGS
-            // =================================================
+    // =================================================
+    // 1–6 TRAININGS
+    // =================================================
 
-            else {
+    if (group.trainings.length <= 6) {
 
-                const marker = L.marker(
-                    [
-                        group.latitude,
-                        group.longitude
-                    ],
-                    {
-                        icon: dumbbellIcon
-                    }
-                );
+        const marker = L.marker(
+            [
+                group.latitude,
+                group.longitude
+            ],
+            {
+                icon: dumbbellIcon
+            }
+        );
 
-                marker.options.trainingGroup = group;
+        marker.options.trainingGroup = group;
 
-                marker.addTo(map).bindPopup("", {
-        className: "largeTrainingPopup"
-    });
+        marker.addTo(map);
 
 
-                marker.on("click", () => {
+        // =============================================
+        // 1 TRAINING → DIRECT SMALL POPUP
+        // =============================================
 
-                    console.log(
-                        "🔥 MY TRAINING GROUP CLICKED",
-                        group.trainings.length
+        if (group.trainings.length === 1) {
+
+            const t = group.trainings[0];
+
+            marker.options.trainingData = t;
+
+            marker.bindPopup(`
+
+                <div class="training-item" data-id="${t.id}">
+
+                    <b>
+                        ${t.trainingName ||
+                        translations[currentLanguage].unnamedTraining}
+                    </b><br>
+
+                    🏋️‍♂️
+                    ${translations[currentLanguage]
+                        .addTrainingPopupLabels.pushUps}:
+                    ${t.pushUps || 0}<br>
+
+                    💪
+                    ${translations[currentLanguage]
+                        .addTrainingPopupLabels.pullUps}:
+                    ${t.pullUps || 0}<br>
+
+                    🧍
+                    ${translations[currentLanguage]
+                        .addTrainingPopupLabels.sitUps}:
+                    ${t.sitUps || 0}<br>
+
+                    ⏱
+                    ${translations[currentLanguage]
+                        .addTrainingPopupLabels.duration}:
+                    ${t.duration || 0} min
+
+                </div>
+
+            `);
+
+            marker.on("popupopen", () => {
+
+                const item =
+                    marker.getPopup()
+                    .getElement()
+                    ?.querySelector(".training-item");
+
+                if (item) {
+
+                    item.onclick = () => {
+                        openTrainingPopup(t);
+                    };
+
+                }
+
+            });
+
+        }
+
+
+        // =============================================
+        // 2–6 TRAININGS → SPIDER
+        // =============================================
+
+        else {
+
+            marker.bindPopup(`
+                <b>🏋️ Moji treninzi</b><br>
+                Ukupno: ${group.trainings.length}<br><br>
+                Klikni za prikaz
+            `);
+
+            marker.on("click", () => {
+
+                if (map.hasLayer(marker)) {
+                    map.removeLayer(marker);
+                }
+
+                window.currentTrainingMarkers =
+                    window.currentTrainingMarkers.filter(
+                        m => m !== marker
                     );
 
+                createTrainingSpider(group);
 
-                    // =========================================
-                    // POSLEDNJIH 6 TRENINGA
-                    // =========================================
+            });
 
-                    const lastSix =
-                        group.trainings
-                            .slice()
-                            .sort(
-                                (a, b) =>
-                                    new Date(b.created_at) -
-                                    new Date(a.created_at)
-                            )
-                            .slice(0, 6);
+        }
 
 
-                    let html = `
-                        <b>🏋️ Poslednjih 6 treninga</b>
-                        <br><br>
-                    `;
+        window.currentTrainingMarkers.push(marker);
+
+    }
 
 
-                    lastSix.forEach(training => {
+    // =================================================
+    // 7+ TRAININGS
+    // =================================================
 
-                        html += `
+    else {
 
-                            <div
-                                class="training-item"
-                                data-id="${training.id}"
-                                style="cursor:pointer;"
-                            >
+        const marker = L.marker(
+            [
+                group.latitude,
+                group.longitude
+            ],
+            {
+                icon: dumbbellIcon
+            }
+        );
 
-                                <b>
-                                    ${
-                                        training.trainingName ||
-                                        "Training"
-                                    }
-                                </b>
+        marker.options.trainingGroup = group;
 
-                                <br>
+        marker.addTo(map).bindPopup("", {
+            className: "largeTrainingPopup"
+        });
 
-                                ${
-                                    training.userName ||
-                                    ""
-                                }
 
-                            </div>
+        marker.on("click", () => {
 
-                            <hr>
+            console.log(
+                "🔥 MY TRAINING GROUP CLICKED",
+                group.trainings.length
+            );
 
-                        `;
+
+            // =========================================
+            // POSLEDNJIH 6 TRENINGA
+            // =========================================
+
+            const lastSix =
+                group.trainings
+                    .slice()
+                    .sort(
+                        (a, b) =>
+                            new Date(b.created_at) -
+                            new Date(a.created_at)
+                    )
+                    .slice(0, 6);
+
+
+            let html = `
+                <b>🏋️ Poslednjih 6 treninga</b>
+                <br><br>
+            `;
+
+
+            lastSix.forEach(training => {
+
+                html += `
+
+                    <div
+                        class="training-item"
+                        data-id="${training.id}"
+                        style="cursor:pointer;"
+                    >
+
+                        <b>
+                            ${
+                                training.trainingName ||
+                                "Training"
+                            }
+                        </b>
+
+                        <br>
+
+                        ${
+                            training.userName ||
+                            ""
+                        }
+
+                    </div>
+
+                    <hr>
+
+                `;
+
+            });
+
+
+            // =========================================
+            // PRIKAŽI SVE
+            // =========================================
+
+            html += `
+
+                <div id="showAllTrainingsContainer">
+
+                    <button class="buttonCenter">
+
+                        Prikaži svih ${group.trainings.length}
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            marker.setPopupContent(html);
+
+            marker.openPopup();
+
+
+            setTimeout(() => {
+
+                const popup =
+                    marker
+                        .getPopup()
+                        ?.getElement();
+
+
+                if (!popup) return;
+
+
+                // =====================================
+                // KLIK NA POJEDINAČNI TRENING
+                // =====================================
+
+                popup
+                    .querySelectorAll(".training-item")
+                    .forEach(item => {
+
+                        item.addEventListener(
+                            "click",
+                            () => {
+
+                                const trainingId =
+                                    item.dataset.id;
+
+
+                                const training =
+                                    group.trainings.find(
+                                        t =>
+                                            t.id == trainingId
+                                    );
+
+
+                                if (!training) return;
+
+                                openTrainingPopup(training);
+
+                            }
+                        );
 
                     });
 
 
-                    // =========================================
-                    // PRIKAŽI SVE
-                    // =========================================
+                // =====================================
+                // PRIKAŽI SVE TRENINGE
+                // =====================================
 
-                    html += `
-
-                        <div id="showAllTrainingsContainer">
-
-                            <button class="buttonCenter">
-
-                                Prikaži svih ${group.trainings.length}
-
-                            </button>
-
-                        </div>
-
-                    `;
+                const button =
+                    popup.querySelector(
+                        ".buttonCenter"
+                    );
 
 
-                    marker.setPopupContent(html);
+                if (button) {
 
-                    marker.openPopup();
+                    button.addEventListener(
+                        "click",
+                        () => {
 
+                            trainingCurrentPage = 1;
 
-                    setTimeout(() => {
-
-                        const popup =
-                            marker
-                                .getPopup()
-                                ?.getElement();
-
-
-                        if (!popup) return;
-
-
-                        // =====================================
-                        // KLIK NA POJEDINAČNI TRENING
-                        // =====================================
-
-                        popup
-                            .querySelectorAll(".training-item")
-                            .forEach(item => {
-
-                                item.addEventListener(
-                                    "click",
-                                    () => {
-
-                                        const trainingId =
-                                            item.dataset.id;
-
-
-                                        const training =
-                                            group.trainings.find(
-                                                t =>
-                                                    t.id == trainingId
-                                            );
-
-
-                                        if (!training) return;
-
-
-                                        // Ako već postoji
-                                        // tvoja funkcija za
-                                        // prikaz treninga:
-                                        openTrainingPopup(training);
-
-                                    }
-                                );
-
-                            });
-
-
-                        // =====================================
-                        // PRIKAŽI SVE TRENINGE
-                        // =====================================
-
-                        const button =
-                            popup.querySelector(
-                                ".buttonCenter"
-                            );
-
-
-                        if (button) {
-
-                            button.addEventListener(
-                                "click",
-                                () => {
-
-                                    trainingCurrentPage = 1;
-
-                                    showAllTrainings(
-                                        group,
-                                        marker
-                                    );
-
-                                }
+                            showAllTrainings(
+                                group,
+                                marker
                             );
 
                         }
+                    );
 
-                    }, 0);
+                }
 
-                });
-
-
-                window.currentTrainingMarkers.push(marker);
-
-            }
+            }, 0);
 
         });
 
 
-        console.log(
-            "📍 My trainings displayed:",
-            trainings.length
-        );
-
-        console.log(
-            "📍 My training groups:",
-            trainingGroups.length
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "❌ Error retrieving my trainings:",
-            error
-        );
-
-        alert("Failed to retrieve your trainings.");
+        window.currentTrainingMarkers.push(marker);
 
     }
 
 });
-
 
 retrieveMyRoutesButton.addEventListener("click", async () => {
 
