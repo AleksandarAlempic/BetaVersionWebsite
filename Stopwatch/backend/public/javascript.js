@@ -1530,20 +1530,40 @@ routeGroups.forEach(group => {
 
     marker.options.routeGroup = group;
 
-  marker.on('click', () => {
+ marker.on('click', () => {
 
-  // Ukloni originalni marker sa mape
+  // =========================
+  // 1 RUTA → DIREKTNO POPUP
+  // =========================
+
+  if (group.routes.length === 1) {
+
+    createRouteSpider(group);
+
+    map.removeLayer(marker);
+
+    window.currentRouteMarkers =
+      window.currentRouteMarkers.filter(
+        m => m !== marker
+      );
+
+    return;
+  }
+
+
+  // =========================
+  // 2+ RUTA → SPIDER
+  // =========================
+
   if (map.hasLayer(marker)) {
     map.removeLayer(marker);
   }
 
-  // Ukloni ga i iz liste aktivnih markera
   window.currentRouteMarkers =
     window.currentRouteMarkers.filter(
       m => m !== marker
     );
 
-  // Tek sada napravi spider
   createRouteSpider(group);
 
 });
@@ -3676,25 +3696,74 @@ retrieveMyTrainingsButton.addEventListener("click", async () => {
                 `);
 
 
-                marker.on("click", () => {
+           marker.on("click", () => {
 
-                    if (map.hasLayer(marker)) {
+    // =========================
+    // 1 TRENING → DIREKTNO POPUP
+    // =========================
 
-                        map.removeLayer(marker);
+    if (group.trainings.length === 1) {
 
-                    }
+        const t = group.trainings[0];
+
+        marker.options.trainingData = t;
+
+        marker.setPopupContent(`
+
+            <div class="training-item" data-id="${t.id}">
+
+                <b>${t.trainingName || translations[currentLanguage].unnamedTraining}</b><br>
+
+                🏋️‍♂️ ${translations[currentLanguage].addTrainingPopupLabels.pushUps}: ${t.pushUps || 0}<br>
+                💪 ${translations[currentLanguage].addTrainingPopupLabels.pullUps}: ${t.pullUps || 0}<br>
+                🧍 ${translations[currentLanguage].addTrainingPopupLabels.sitUps}: ${t.sitUps || 0}<br>
+                ⏱ ${translations[currentLanguage].addTrainingPopupLabels.duration}: ${t.duration || 0} min
+
+            </div>
+
+        `);
+
+        marker.off("popupopen");
+
+        marker.on("popupopen", () => {
+
+            const item =
+                marker.getPopup()
+                .getElement()
+                ?.querySelector(".training-item");
+
+            if (item) {
+
+                item.onclick = () => {
+                    openTrainingPopup(t);
+                };
+
+            }
+
+        });
+
+        return;
+    }
 
 
-                    window.currentTrainingMarkers =
-                        window.currentTrainingMarkers.filter(
-                            m => m !== marker
-                        );
+    // =========================
+    // 2+ TRENIGA → SPIDER
+    // =========================
 
+    if (map.hasLayer(marker)) {
 
-                    // SPIDER
-                    createTrainingSpider(group);
+        map.removeLayer(marker);
 
-                });
+    }
+
+    window.currentTrainingMarkers =
+        window.currentTrainingMarkers.filter(
+            m => m !== marker
+        );
+
+    createTrainingSpider(group);
+
+});
 
 
                 window.currentTrainingMarkers.push(marker);
