@@ -886,6 +886,8 @@ function selectRoutePolyline(poly, marker = null) {
 
 function getRoutePopupContent(route) {
 
+  console.log(route);
+
   return `
 
     <b>
