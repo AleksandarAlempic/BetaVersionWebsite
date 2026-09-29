@@ -130,7 +130,7 @@ app.get('/api/routes-nearby', async (req, res) => {
   try {
     const { data: routes, error } = await supabase
       .from('runs')
-      .select('id, username, distance, speed, polyline, start_lat, start_lng');
+      .select('id, username, distance, speed, time_seconds, polyline, start_lat, start_lng');
 
     if (error) throw error;
     if (!routes || routes.length === 0) return res.json([]);
