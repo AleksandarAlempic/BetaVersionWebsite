@@ -3978,6 +3978,25 @@ trainingGroups.forEach(group => {
 
 });
 
+
+
+// =====================================================
+// ERROR HANDLING
+// =====================================================
+
+    } catch (error) {
+
+        console.error(
+            "❌ Error retrieving my trainings:",
+            error
+        );
+
+        alert("Failed to retrieve your trainings.");
+
+    }
+
+});
+
 retrieveMyRoutesButton.addEventListener("click", async () => {
 
     const userUUID = getUserUUID();
