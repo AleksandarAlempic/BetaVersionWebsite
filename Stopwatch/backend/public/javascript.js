@@ -2292,19 +2292,20 @@ function createTrainingSpider(group) {
         marker.options.trainingData = t;
 
 
-        marker.addTo(map).bindPopup(`
+      marker.addTo(map).bindPopup(`
 
-        <div class="training-item" data-id="${t.id}">
+    <div class="training-item" data-id="${t.id}">
 
         <b>${t.trainingName || translations[currentLanguage].unnamedTraining}</b><br>
 
-        🏋️ ${t.pushUps || 0}<br>
-        💪 ${t.pullUps || 0}<br>
-        ⏱ ${t.duration || 0} min
+        🏋️‍♂️ ${translations[currentLanguage].addTrainingPopupLabels.pushUps}: ${t.pushUps || 0}<br>
+        💪 ${translations[currentLanguage].addTrainingPopupLabels.pullUps}: ${t.pullUps || 0}<br>
+        🧍 ${translations[currentLanguage].addTrainingPopupLabels.sitUps}: ${t.sitUps || 0}<br>
+        ⏱ ${translations[currentLanguage].addTrainingPopupLabels.duration}: ${t.duration || 0} min
 
-        </div>
+    </div>
 
-        `);
+`);
 
 
         marker.on("popupopen",()=>{
@@ -2380,16 +2381,17 @@ function updateRouteMarkersLanguage(lang) {
     window.currentRouteMarkers.forEach(marker => {
       const route = marker.options.routeData;
       if (!route) return;
+
       marker.setPopupContent(`
         <b>${route.username || translations[lang].unknownUser}</b><br>
         🛣 ${translations[lang].distance} ${route.distance.toFixed(2)} km<br>
         ⏱ ${translations[lang].speed} ${route.speed.toFixed(2)} km/h<br>
+        ⏱ ${translations[lang].time} ${(Number(route.time_seconds) / 60).toFixed(2)} min<br>
         🏃‍♂️ ${translations[lang].routeName}: ${route.routeName || translations[lang].unnamedRoute}
       `);
     });
   }
 }
-
 function updateTrainingMarkersLanguage(lang) {
   if (window.currentTrainingMarkers) {
     window.currentTrainingMarkers.forEach(marker => {
