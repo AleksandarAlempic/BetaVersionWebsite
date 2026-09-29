@@ -2422,6 +2422,8 @@ addTrainingButton.addEventListener('click', () => {
     document.getElementById("pullUps").readOnly = false;
     document.getElementById("sitUps").readOnly = false;
 
+   document.querySelector(".saveButtonTraining").style.display = "inline-block";
+
     addTrainingPopup.style.display = "block";
 
 });
