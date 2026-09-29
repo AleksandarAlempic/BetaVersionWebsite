@@ -544,33 +544,70 @@ window.map = null;
                     let lastLatLng = null;
             
                     function calculateDistanceAndSpeed(lat, lon) {
-                        // Ensure we have a valid previous position to calculate the distance from
-                        if (lastLatLng) {
-                            const distance = haversine(lastLatLng.lat, lastLatLng.lng, lat, lon); // Calculate distance between last and current position in meters
-                            totalDistance += distance; // Add to the total distance
-            
-                            // Calculate speed: distance / time (in km/h)
-                            const currentTime = new Date();
-                            if (lastTime) {
-                                const timeDiff = (currentTime - lastTime) / 1000; // Time difference in seconds
-                                if (timeDiff > 0) {  // Ensure timeDiff is not zero
-                                    const speed = (distance / timeDiff) * 3.6; // Speed in km/h
-                                    // Only update speed if it's above a threshold (e.g., 0.5 km/h)
-                                    if (speed > 0.5) {
-                                        document.getElementById('speedValue').textContent = speed.toFixed(2); // Update speed dynamically
-                                    } else {
-                                        document.getElementById('speedValue').textContent = "0.00"; // Speed is 0 if stationary or moving slowly
-                                    }
-                                }
-                            }
-                            lastTime = currentTime;  // Store the current time for the next update
-                        }
-            
-                        lastLatLng = { lat: lat, lng: lon }; // Update the last position
-            
-                        // Update total distance in meters (or kilometers if preferred)
-                        document.getElementById('distanceValue').textContent = (totalDistance / 1000).toFixed(2); // Display distance in kilometers
-                    }
+
+    if (lastLatLng) {
+
+        const distance = haversine(
+            lastLatLng.lat,
+            lastLatLng.lng,
+            lat,
+            lon
+        );
+
+        // Ignore unrealistic GPS jumps
+        // 50 meters between two GPS updates is already a very large jump
+        if (distance > 50) {
+            console.warn(
+                "Ignoring GPS jump:",
+                distance.toFixed(2),
+                "meters"
+            );
+
+            return;
+        }
+
+        totalDistance += distance;
+
+        const currentTime = new Date();
+
+        if (lastTime) {
+
+            const timeDiff =
+                (currentTime - lastTime) / 1000;
+
+            if (timeDiff > 0) {
+
+                const speed =
+                    (distance / timeDiff) * 3.6;
+
+                if (speed > 0.5 && speed < 40) {
+
+                    document.getElementById(
+                        'speedValue'
+                    ).textContent = speed.toFixed(2);
+
+                } else {
+
+                    document.getElementById(
+                        'speedValue'
+                    ).textContent = "0.00";
+                }
+            }
+        }
+
+        lastTime = currentTime;
+    }
+
+    lastLatLng = {
+        lat: lat,
+        lng: lon
+    };
+
+    document.getElementById(
+        'distanceValue'
+    ).textContent =
+        (totalDistance / 1000).toFixed(2);
+}
             
                     // Function to handle geolocation errors
                     function handleError(error) {
@@ -583,8 +620,14 @@ window.map = null;
 
     // Function to start the route manually
     function startRoute() {
+
+        
         if (!routeStarted) {
             routeStarted = true;  // Set the route as started
+            totalDistance = 0;
+lastLatLng = null;
+lastTime = null;
+totalTime = 0;
             waypoints = [];  // Clear any existing waypoints before starting
             waypoints.push(L.latLng(currentLocation[0], currentLocation[1]));  // Start route at the current location
             routeControl.setWaypoints(waypoints);  // Initialize route control with the first waypoint
