@@ -1605,7 +1605,7 @@ routeGroups.forEach(group => {
               if (coords.length) {
 
                 L.popup({
-                  minWidth: 220
+                  className: 'routePopup'
                 })
                   .setLatLng([
                     coords[0].lat,
@@ -4259,7 +4259,7 @@ retrieveMyRoutesButton.addEventListener("click", async () => {
 
                                             L.popup({
 
-                                                minWidth: 220
+                                               className: 'routePopup'
 
                                             })
 
