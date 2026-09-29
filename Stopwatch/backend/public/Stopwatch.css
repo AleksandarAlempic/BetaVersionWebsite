@@ -2792,8 +2792,8 @@ input, textarea {
 }
 
 .routePopup .leaflet-popup-content {
-    width: 250px;
-    height: 145px;
+  width: 250px !important;
+    height: 145px !important;
     font-weight: bold;
     font-size: large;
 }
