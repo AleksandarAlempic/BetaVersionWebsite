@@ -1186,50 +1186,46 @@ function createRouteSpider(group) {
 
   // =================== ONE ROUTE ===================
 
-  if (group.routes.length === 1) {
+ if (group.routes.length === 1) {
 
     const route = group.routes[0];
 
     const marker =
-      L.marker(
-        [group.latitude, group.longitude],
-        {
-          icon: runnerIcon
-        }
-      );
+        L.marker(
+            [group.latitude, group.longitude],
+            {
+                icon: runnerIcon
+            }
+        );
 
     marker.options.routeData = route;
 
     marker.options.routePolyline =
-      route._routePolyline;
+        route._routePolyline;
 
     marker
-      .addTo(map)
-      .bindPopup(
-        getRoutePopupContent(route)
-      );
+        .addTo(map)
+        .bindPopup(
+            getRoutePopupContent(route)
+        );
 
     marker.on("click", () => {
 
-      if (route._routePolyline) {
+        if (route._routePolyline) {
 
-        selectRoutePolyline(
-          route._routePolyline,
-          marker
-        );
+            selectRoutePolyline(
+                route._routePolyline,
+                marker
+            );
 
-      }
-
-      marker.openPopup();
+        }
 
     });
 
-    window.currentRouteMarkers.push(
-      marker
-    );
+    window.currentRouteMarkers.push(marker);
 
     return;
-  }
+}
 
 
   // =================== SPIDER ===================
@@ -2304,61 +2300,57 @@ function createTrainingSpider(group) {
 
     // =================== ONE TRAINING ===================
 
-    if (group.trainings.length === 1) {
+  // =================== ONE TRAINING ===================
 
-        const t = group.trainings[0];
+if (group.trainings.length === 1) {
 
-        const marker = L.marker(
-            [group.latitude, group.longitude],
-            {
-                icon: dumbbellIcon
-            }
-        );
+    const t = group.trainings[0];
 
+    const marker = L.marker(
+        [group.latitude, group.longitude],
+        {
+            icon: dumbbellIcon
+        }
+    );
 
-        marker.options.trainingData = t;
+    marker.options.trainingData = t;
 
+    marker.addTo(map).bindPopup(`
 
-        marker.addTo(map).bindPopup(`
+        <div class="training-item" data-id="${t.id}">
 
-            <div class="training-item" data-id="${t.id}">
+            <b>${t.trainingName || translations[currentLanguage].unnamedTraining}</b><br>
 
-                <b>${t.trainingName || translations[currentLanguage].unnamedTraining}</b><br>
+            🏋️‍♂️ ${translations[currentLanguage].addTrainingPopupLabels.pushUps}: ${t.pushUps || 0}<br>
+            💪 ${translations[currentLanguage].addTrainingPopupLabels.pullUps}: ${t.pullUps || 0}<br>
+            🧍 ${translations[currentLanguage].addTrainingPopupLabels.sitUps}: ${t.sitUps || 0}<br>
+            ⏱ ${translations[currentLanguage].addTrainingPopupLabels.duration}: ${t.duration || 0} min
 
-                🏋️‍♂️ ${translations[currentLanguage].addTrainingPopupLabels.pushUps}: ${t.pushUps || 0}<br>
-                💪 ${translations[currentLanguage].addTrainingPopupLabels.pullUps}: ${t.pullUps || 0}<br>
-                🧍 ${translations[currentLanguage].addTrainingPopupLabels.sitUps}: ${t.sitUps || 0}<br>
-                ⏱ ${translations[currentLanguage].addTrainingPopupLabels.duration}: ${t.duration || 0} min
+        </div>
 
-            </div>
+    `);
 
-        `);
+    marker.on("popupopen", () => {
 
+        const item =
+            marker.getPopup()
+            .getElement()
+            ?.querySelector(".training-item");
 
-        marker.on("popupopen", () => {
+        if (item) {
 
-            const item =
-                marker.getPopup()
-                .getElement()
-                ?.querySelector(".training-item");
+            item.onclick = () => {
+                openTrainingPopup(t);
+            };
 
+        }
 
-            if (item) {
+    });
 
-                item.onclick = () => {
-                    openTrainingPopup(t);
-                };
+    window.currentTrainingMarkers.push(marker);
 
-            }
-
-        });
-
-
-        window.currentTrainingMarkers.push(marker);
-
-        return;
-    }
-
+    return;
+}
 
     // =================== MULTIPLE TRAININGS / SPIDER ===================
 
