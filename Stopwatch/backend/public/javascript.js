@@ -2414,7 +2414,17 @@ fetchNearbyTrainingsButton.addEventListener("click", () => {
     hideMainButtons();
 });
 
-addTrainingButton.addEventListener('click', () => addTrainingPopup.style.display = "block");
+addTrainingButton.addEventListener('click', () => {
+
+    document.getElementById("trainingName").readOnly = false;
+    document.getElementById("userName").readOnly = false;
+    document.getElementById("pushUps").readOnly = false;
+    document.getElementById("pullUps").readOnly = false;
+    document.getElementById("sitUps").readOnly = false;
+
+    addTrainingPopup.style.display = "block";
+
+});
 
 retrieveAllRoutesButton.addEventListener("click", () => {
     retrieveRoutesPopup.style.display = "none";
