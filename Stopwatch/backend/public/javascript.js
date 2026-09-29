@@ -2423,6 +2423,8 @@ addTrainingButton.addEventListener('click', () => {
     document.getElementById("sitUps").readOnly = false;
 
    document.querySelector(".saveButtonTraining").style.display = "inline-block";
+  document.getElementById("trainingPopupTitle").textContent =
+        "Add Training";
 
     addTrainingPopup.style.display = "block";
 
