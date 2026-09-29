@@ -133,8 +133,10 @@
     color: #333;
     box-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
     /* max-width: 220px; */
-  font-size: larger;
-  min-width: 220px;
+  width: 250px !important;
+    height: 145px !important;
+    font-weight: bold;
+    font-size: large;
 }
 
 .map-popup .leaflet-popup-content-wrapper {
@@ -2798,9 +2800,3 @@ input, textarea {
     font-size: large;
 }
 
-.routePopup .leaflet-popup-content-wrapper{
-  width: 250px !important;
-    height: 145px !important;
-    font-weight: bold;
-    font-size: large;
-}
