@@ -1088,7 +1088,7 @@ function showAllRoutes(group, marker) {
 
           if (coords.length) {
 
-            L.popup()
+L.popup({ className: 'routePopup' })
 
               .setLatLng([
                 coords[0].lat,
@@ -1395,7 +1395,7 @@ routes.forEach(route => {
 
   if (coords.length) {
 
-    L.popup()
+  L.popup({ className: 'routePopup' })
       .setLatLng([
         coords[0].lat,
         coords[0].lng
@@ -3986,7 +3986,7 @@ retrieveMyRoutesButton.addEventListener("click", async () => {
 
                     if (coords.length) {
 
-                        L.popup()
+                       L.popup({ className: 'routePopup' })
                             .setLatLng([
                                 coords[0].lat,
                                 coords[0].lng
