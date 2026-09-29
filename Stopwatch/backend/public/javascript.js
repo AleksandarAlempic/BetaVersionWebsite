@@ -2416,13 +2416,23 @@ fetchNearbyTrainingsButton.addEventListener("click", () => {
 
 addTrainingButton.addEventListener('click', () => {
 
+  trainingPopupMode = "add";
+
     document.getElementById("trainingName").readOnly = false;
     document.getElementById("userName").readOnly = false;
     document.getElementById("pushUps").readOnly = false;
     document.getElementById("pullUps").readOnly = false;
     document.getElementById("sitUps").readOnly = false;
+  
 
    document.querySelector(".saveButtonTraining").style.display = "inline-block";
+
+ document.getElementById("trainingName").value = "";
+    document.getElementById("userName").value = "";
+    document.getElementById("pushUps").value = 0;
+    document.getElementById("pullUps").value = 0;
+    document.getElementById("sitUps").value = 0;
+  
   document.getElementById("trainingPopupTitle").textContent =
         "Add Training";
 
