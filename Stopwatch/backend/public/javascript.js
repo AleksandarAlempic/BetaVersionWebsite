@@ -2318,60 +2318,6 @@ function createTrainingSpider(group) {
     const zoom = map.getZoom();
 
 
-    // =================== ONE TRAINING ===================
-
-  // =================== ONE TRAINING ===================
-
-if (group.trainings.length === 1) {
-
-    const t = group.trainings[0];
-
-    const marker = L.marker(
-        [group.latitude, group.longitude],
-        {
-            icon: dumbbellIcon
-        }
-    );
-
-    marker.options.trainingData = t;
-
-    marker.addTo(map).bindPopup(`
-
-        <div class="training-item" data-id="${t.id}">
-
-            <b>${t.trainingName || translations[currentLanguage].unnamedTraining}</b><br>
-
-            🏋️‍♂️ ${translations[currentLanguage].addTrainingPopupLabels.pushUps}: ${t.pushUps || 0}<br>
-            💪 ${translations[currentLanguage].addTrainingPopupLabels.pullUps}: ${t.pullUps || 0}<br>
-            🧍 ${translations[currentLanguage].addTrainingPopupLabels.sitUps}: ${t.sitUps || 0}<br>
-            ⏱ ${translations[currentLanguage].addTrainingPopupLabels.duration}: ${t.duration || 0} min
-
-        </div>
-
-    `);
-
-    marker.on("popupopen", () => {
-
-        const item =
-            marker.getPopup()
-            .getElement()
-            ?.querySelector(".training-item");
-
-        if (item) {
-
-            item.onclick = () => {
-                openTrainingPopup(t);
-            };
-
-        }
-
-    });
-
-    window.currentTrainingMarkers.push(marker);
-
-    return;
-}
-
     // =================== MULTIPLE TRAININGS / SPIDER ===================
 
     group.trainings.forEach((t,index)=>{
