@@ -1217,7 +1217,10 @@ marker.on("popupopen", () => {
 
     popupElement.addEventListener("click", () => {
 
-        openRouteDetailsPopup(route);
+        openRouteDetailsPopup(
+            route,
+            marker.getLatLng()
+        );
 
     }, { once: true });
 
@@ -1324,9 +1327,10 @@ marker.on("popupopen", () => {
 
 }
 
+
 // =================== ROUTE DETAILS POPUP ===================
 
-function openRouteDetailsPopup(route) {
+function openRouteDetailsPopup(route, latLng) {
 
     const username =
         route.username ||
@@ -1377,21 +1381,10 @@ function openRouteDetailsPopup(route) {
         autoClose: true,
         closeOnClick: true
     })
-    .setLatLng([
-        route.latitude,
-        route.longitude
-    ])
+    .setLatLng(latLng)
     .setContent(content)
     .openOn(map);
 }
-
-
-
-
-
-
-
-
 
 
 // =================== FETCH NEARBY ROUTES ===================
