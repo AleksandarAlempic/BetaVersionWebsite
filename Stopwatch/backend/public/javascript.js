@@ -883,7 +883,11 @@ function selectRoutePolyline(poly, marker = null) {
 
 }
 
+let currentRouteForDetails = null;
+
 function getRoutePopupContent(route) {
+
+  currentRouteForDetails = route;
 
   console.log(route);
 
@@ -917,16 +921,22 @@ function getRoutePopupContent(route) {
 
     <br><br>
 
-    <button
-      onclick='openRouteDetailsPopup(${JSON.stringify(route)})'
-    >
+    <button onclick="openCurrentRouteDetails()">
       Route Details
     </button>
 
   `;
-
 }
 
+function openCurrentRouteDetails() {
+
+  if (!currentRouteForDetails) {
+    console.error("No route selected.");
+    return;
+  }
+
+  openRouteDetailsPopup(currentRouteForDetails);
+}
 
 // =================== SHOW ALL ROUTES ===================
 
@@ -1216,22 +1226,6 @@ function createRouteSpider(group) {
         getRoutePopupContent(route)
     );
 
-marker.on("popupopen", () => {
-
-    const popupElement = marker.getPopup().getElement();
-
-    if (!popupElement) return;
-
-    popupElement.addEventListener("click", () => {
-
-        openRouteDetailsPopup(
-            route,
-            marker.getLatLng()
-        );
-
-    }, { once: true });
-
-});
 
     marker.on("click", () => {
 
@@ -1338,18 +1332,46 @@ marker.on("popupopen", () => {
 
 function openRouteDetailsPopup(route) {
 
-    // =================== SAVE ROUTE DATA ===================
+    const username =
+        route.username ||
+        translations[currentLanguage].unknownUser;
 
-    localStorage.setItem(
-        "selectedRouteDetails",
-        JSON.stringify(route)
-    );
+    const speed =
+        route.speed != null
+            ? Number(route.speed).toFixed(2) + " km/h"
+            : "-";
 
-    // =================== OPEN DETAILS PAGE ===================
+    const time =
+        route.time_seconds != null
+            ? (Number(route.time_seconds) / 60).toFixed(2) + " min"
+            : route.time != null
+                ? route.time
+                : "-";
 
-    window.location.href = "route-details.html";
+    const distance =
+        route.distance != null
+            ? Number(route.distance).toFixed(2) + " km"
+            : "-";
+
+    document.getElementById("detailsUsername").textContent =
+        username;
+
+    document.getElementById("detailsSpeed").textContent =
+        speed;
+
+    document.getElementById("detailsTime").textContent =
+        time;
+
+    document.getElementById("detailsDistance").textContent =
+        distance;
+
+    document.getElementById("detailsRouteName").textContent =
+        route.routeName ||
+        translations[currentLanguage].unnamedRoute;
+
+    document.getElementById("routeDetailsPopup").style.display =
+        "block";
 }
-
 // =================== FETCH NEARBY ROUTES ===================
 
 
