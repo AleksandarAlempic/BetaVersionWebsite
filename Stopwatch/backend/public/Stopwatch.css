@@ -2811,8 +2811,8 @@ input, textarea {
 }
 
 #routeDetailsPopup {
-    width: 598px;
-    max-width: 598px;
+    width: 526px;
+    max-width: 526px;
     min-height: 530px;
     background-color: #f4c066;
     position: fixed !important;
@@ -2822,6 +2822,10 @@ input, textarea {
     padding: 20px;
     box-sizing: border-box;
     display: none;
+}
+
+#detailsRouteName {
+    text-align: center;
 }
 
 #routeDetailsPopup .route-detail-field {
