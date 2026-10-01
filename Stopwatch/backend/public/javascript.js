@@ -231,6 +231,7 @@ const translations = {
     time: "Time:",
     routeName: "Route Name",
     unknownUser: "Unknown User",
+    username: "Korisničko ime",
     pushUps: "PushUps",
     pullUps: "PullUps",
     sitUps: "SitUps",
@@ -256,6 +257,7 @@ const translations = {
     time: "Vreme",
     routeName: "Naziv rute",
     unknownUser: "Nepoznat korisnik",
+    username: "Username",
     pushUps: "Sklekovi",
     pullUps: "Zgibovi",
     sitUps: "Trbušnjaci",
@@ -1197,158 +1199,161 @@ else {
 
 function createRouteSpider(group) {
 
-  const zoom = map.getZoom();
+    const zoom = map.getZoom();
 
-  // =================== ONE ROUTE ===================
+    // =================== ONE ROUTE ===================
 
- if (group.routes.length === 1) {
+    if (group.routes.length === 1) {
 
-    const route = group.routes[0];
+        const route = group.routes[0];
 
-    const marker =
-        L.marker(
-            [group.latitude, group.longitude],
-            {
-                icon: runnerIcon
-            }
-        );
-
-    marker.options.routeData = route;
-
-    marker.options.routePolyline =
-        route._routePolyline;
-
- marker
-    .addTo(map)
-    .bindPopup(
-        getRoutePopupContent(route)
-    );
-
-marker.on("popupopen", () => {
-
-    const popupElement =
-        marker.getPopup().getElement();
-
-    if (!popupElement) return;
-
-    popupElement.addEventListener("click", () => {
-
-        openRouteDetailsPopup(route);
-
-    }, { once: true });
-
-});
-    marker.on("click", () => {
-
-        if (route._routePolyline) {
-
-            selectRoutePolyline(
-                route._routePolyline,
-                marker
+        const marker =
+            L.marker(
+                [group.latitude, group.longitude],
+                {
+                    icon: runnerIcon
+                }
             );
 
-        }
+        marker.options.routeData = route;
 
-    });
+        marker.options.routePolyline =
+            route._routePolyline;
 
-    window.currentRouteMarkers.push(marker);
+        marker
+            .addTo(map)
+            .bindPopup(
+                getRoutePopupContent(route)
+            );
 
-    return;
-}
+        marker.on("popupopen", () => {
 
+            const popupElement =
+                marker.getPopup().getElement();
 
-  // =================== SPIDER ===================
+            if (!popupElement) return;
 
-  group.routes.forEach((route, index) => {
+            popupElement.addEventListener("click", () => {
 
-    const angle =
-      (2 * Math.PI * index) /
-      group.routes.length;
+                openRouteDetailsPopup(route);
 
+            }, { once: true });
 
-    let radius =
-      0.00015 *
-      Math.pow(2, 15 - zoom);
+        });
 
+        marker.on("click", () => {
 
-    radius =
-      Math.max(
-        0.0000375,
-        Math.min(radius, 0.000825)
-      );
+            if (route._routePolyline) {
 
+                selectRoutePolyline(
+                    route._routePolyline,
+                    marker
+                );
 
-    if (zoom >= 15) {
-      radius *= 1.50;
+            }
+
+        });
+
+        window.currentRouteMarkers.push(marker);
+
+        return;
     }
 
 
-    const lat =
-      group.latitude +
-      Math.cos(angle) * radius;
+    // =================== MULTIPLE ROUTES / SPIDER ===================
 
+    group.routes.forEach((route, index) => {
 
-    const lng =
-      group.longitude +
-      Math.sin(angle) * radius;
+        const angle =
+            (2 * Math.PI * index) /
+            group.routes.length;
 
+        let radius =
+            0.00015 *
+            Math.pow(2, 15 - zoom);
 
-    const marker =
-      L.marker(
-        [lat, lng],
-        {
-          icon: runnerIcon
+        radius =
+            Math.max(
+                0.0000375,
+                Math.min(radius, 0.000825)
+            );
+
+        if (zoom >= 15) {
+            radius *= 1.50;
         }
-      );
+
+        const lat =
+            group.latitude +
+            Math.cos(angle) * radius;
+
+        const lng =
+            group.longitude +
+            Math.sin(angle) * radius;
+
+        const marker =
+            L.marker(
+                [lat, lng],
+                {
+                    icon: runnerIcon
+                }
+            );
+
+        // ================= ROUTE DATA =================
+
+        marker.options.routeData = route;
+
+        marker.options.routePolyline =
+            route._routePolyline;
 
 
-    marker.options.routeData = route;
+        // ================= SMALL ROUTE POPUP =================
 
-    marker.options.routePolyline =
-      route._routePolyline;
+        marker
+            .addTo(map)
+            .bindPopup(
+                getRoutePopupContent(route)
+            );
 
 
-    marker
-      .addTo(map)
-      .bindPopup(
-        getRoutePopupContent(route)
-      );
-marker.on("popupopen", () => {
+        // ================= POPUP CLICK =================
 
-  const popupElement =
-    marker.getPopup().getElement();
+        marker.on("popupopen", () => {
 
-  if (!popupElement) return;
+            const popupElement =
+                marker.getPopup().getElement();
 
-  popupElement.addEventListener("click", () => {
+            if (!popupElement) return;
 
-    openRouteDetailsPopup(route);
+            popupElement.addEventListener("click", () => {
 
-  }, { once: true });
+                openRouteDetailsPopup(route);
 
-});
+            }, { once: true });
 
-    marker.on("click", () => {
+        });
 
-      if (route._routePolyline) {
 
-        selectRoutePolyline(
-          route._routePolyline,
-          marker
-        );
+        // ================= MARKER CLICK =================
 
-      }
+        marker.on("click", () => {
 
-      marker.openPopup();
+            if (route._routePolyline) {
+
+                selectRoutePolyline(
+                    route._routePolyline,
+                    marker
+                );
+
+            }
+
+            marker.openPopup();
+
+        });
+
+
+        window.currentRouteMarkers.push(marker);
 
     });
-
-
-    window.currentRouteMarkers.push(
-      marker
-    );
-
-  });
 
 }
 
@@ -1403,6 +1408,13 @@ popup.style.left = "49%";
 popup.style.transform = "translate(-50%, -50%)";
 popup.style.zIndex = "2147483647";
 }
+
+document.getElementById("routeDetailsCloseButton").addEventListener("click", function () {
+
+    document.getElementById("routeDetailsPopup").style.display = "none";
+
+});
+
 // =================== FETCH NEARBY ROUTES ===================
 
 
