@@ -2822,3 +2822,17 @@ input, textarea {
     box-sizing: border-box;
     display: none;
 }
+
+#routeDetailsPopup .route-detail-field {
+    background: white;
+    padding: 12px;
+    margin: 15px 0;
+    border-radius: 6px;
+    font-size: 19.5px;
+    font-weight: 800;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+#routeDetailsPopup .route-detail-field span {
+    margin-left: 10px;
+}
