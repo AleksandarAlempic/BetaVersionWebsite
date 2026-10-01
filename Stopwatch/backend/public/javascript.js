@@ -1389,12 +1389,19 @@ function openRouteDetailsPopup(route) {
     document.getElementById("detailsDistance").textContent =
         distance;
 
-    document.getElementById("detailsRouteName").textContent =
-        route.routeName ||
-        translations[currentLanguage].unnamedRoute;
+document.getElementById("detailsRouteName").textContent =
+    currentLanguage === "sr"
+        ? "Detalji rute"
+        : "Route Details";
 
-    document.getElementById("routeDetailsPopup").style.display =
-        "block";
+   const popup = document.getElementById("routeDetailsPopup");
+
+popup.style.display = "block";
+popup.style.position = "fixed";
+popup.style.top = "50%";
+popup.style.left = "50%";
+popup.style.transform = "translate(-50%, -50%)";
+popup.style.zIndex = "200000000000";
 }
 // =================== FETCH NEARBY ROUTES ===================
 
