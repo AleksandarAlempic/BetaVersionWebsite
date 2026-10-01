@@ -232,6 +232,7 @@ const translations = {
     routeName: "Route Name",
     unknownUser: "Unknown User",
     username: "Korisničko ime",
+    routeDetailsTitle: "Detalji rute",
     pushUps: "PushUps",
     pullUps: "PullUps",
     sitUps: "SitUps",
@@ -258,6 +259,7 @@ const translations = {
     routeName: "Naziv rute",
     unknownUser: "Nepoznat korisnik",
     username: "Username",
+    routeDetailsTitle: "Route Details",
     pushUps: "Sklekovi",
     pullUps: "Zgibovi",
     sitUps: "Trbušnjaci",
@@ -1382,6 +1384,9 @@ function openRouteDetailsPopup(route) {
             ? Number(route.distance).toFixed(2) + " km"
             : "-";
 
+
+    // ================= ROUTE DATA =================
+
     document.getElementById("detailsUsername").textContent =
         username;
 
@@ -1394,27 +1399,55 @@ function openRouteDetailsPopup(route) {
     document.getElementById("detailsDistance").textContent =
         distance;
 
-document.getElementById("detailsRouteName").textContent =
-    currentLanguage === "sr"
-        ? "Detalji rute"
-        : "Route Details";
 
-   const popup = document.getElementById("routeDetailsPopup");
+    // ================= TRANSLATION =================
 
-popup.style.display = "block";
-popup.style.position = "fixed";
-popup.style.top = "40%";
-popup.style.left = "49%";
-popup.style.transform = "translate(-50%, -50%)";
-popup.style.zIndex = "2147483647";
+    document.getElementById("detailsRouteName").textContent =
+        translations[currentLanguage].routeDetailsTitle;
+
+    document.getElementById("detailsUsernameLabel").textContent =
+        translations[currentLanguage].username + ":";
+
+    document.getElementById("detailsSpeedLabel").textContent =
+        translations[currentLanguage].speed;
+
+    document.getElementById("detailsTimeLabel").textContent =
+        translations[currentLanguage].time;
+
+    document.getElementById("detailsDistanceLabel").textContent =
+        translations[currentLanguage].distance;
+
+
+    // ================= SHOW POPUP =================
+
+    const popup =
+        document.getElementById("routeDetailsPopup");
+
+    popup.style.display = "block";
+
+    popup.style.position = "fixed";
+
+    popup.style.top = "40%";
+
+    popup.style.left = "49%";
+
+    popup.style.transform =
+        "translate(-50%, -50%)";
+
+    popup.style.zIndex =
+        "2147483647";
 }
 
-document.getElementById("routeDetailsCloseButton").addEventListener("click", function () {
 
-    document.getElementById("routeDetailsPopup").style.display = "none";
+// ================= ROUTE DETAILS CLOSE =================
 
-});
+document.getElementById("routeDetailsCloseButton")
+    .addEventListener("click", function () {
 
+        document.getElementById("routeDetailsPopup")
+            .style.display = "none";
+
+    });
 // =================== FETCH NEARBY ROUTES ===================
 
 
