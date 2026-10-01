@@ -921,9 +921,7 @@ function getRoutePopupContent(route) {
 
     <br><br>
 
-    <button onclick="openCurrentRouteDetails()">
-      Route Details
-    </button>
+
 
   `;
 }
@@ -1226,7 +1224,20 @@ function createRouteSpider(group) {
         getRoutePopupContent(route)
     );
 
+marker.on("popupopen", () => {
 
+    const popupElement =
+        marker.getPopup().getElement();
+
+    if (!popupElement) return;
+
+    popupElement.addEventListener("click", () => {
+
+        openRouteDetailsPopup(route);
+
+    }, { once: true });
+
+});
     marker.on("click", () => {
 
         if (route._routePolyline) {
@@ -1302,7 +1313,20 @@ function createRouteSpider(group) {
       .bindPopup(
         getRoutePopupContent(route)
       );
+marker.on("popupopen", () => {
 
+  const popupElement =
+    marker.getPopup().getElement();
+
+  if (!popupElement) return;
+
+  popupElement.addEventListener("click", () => {
+
+    openRouteDetailsPopup(route);
+
+  }, { once: true });
+
+});
 
     marker.on("click", () => {
 
