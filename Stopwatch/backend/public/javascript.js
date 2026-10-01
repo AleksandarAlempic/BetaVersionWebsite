@@ -1398,10 +1398,10 @@ document.getElementById("detailsRouteName").textContent =
 
 popup.style.display = "block";
 popup.style.position = "fixed";
-popup.style.top = "50%";
-popup.style.left = "50%";
+popup.style.top = "40%";
+popup.style.left = "49%";
 popup.style.transform = "translate(-50%, -50%)";
-popup.style.zIndex = "200000000000";
+popup.style.zIndex = "2147483647";
 }
 // =================== FETCH NEARBY ROUTES ===================
 
