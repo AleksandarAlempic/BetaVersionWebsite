@@ -1328,63 +1328,116 @@ marker.on("popupopen", () => {
 }
 
 
-// =================== ROUTE DETAILS POPUP ===================
+// =================== ROUTE DETAILS ===================
 
-function openRouteDetailsPopup(route, latLng) {
+function openRouteDetailsPopup(route) {
 
-    const username =
-        route.username ||
-        translations[currentLanguage].unknownUser;
+    const routeData = {
 
-    const speed =
-        route.speed != null
-            ? Number(route.speed).toFixed(2)
-            : "-";
+        username:
+            route.username ||
+            translations[currentLanguage].unknownUser,
 
-    const time =
-        route.time != null
-            ? route.time
-            : "-";
+        speed:
+            route.speed != null
+                ? Number(route.speed).toFixed(2)
+                : "-",
 
-    const distance =
-        route.distance != null
-            ? Number(route.distance).toFixed(2)
-            : "-";
+        time:
+            route.time != null
+                ? route.time
+                : route.time_seconds != null
+                    ? route.time_seconds
+                    : "-",
 
-    const content = `
+        distance:
+            route.distance != null
+                ? Number(route.distance).toFixed(2)
+                : "-"
+    };
 
-        <div class="routeDetailsPopup">
+    localStorage.setItem(
+        "routeDetails",
+        JSON.stringify(routeData)
+    );
 
-            <b>${username}</b>
-
-            <br><br>
-
-            ⚡ ${translations[currentLanguage].speed}:
-            ${speed}
-
-            <br>
-
-            ⏱ ${translations[currentLanguage].time}:
-            ${time}
-
-            <br>
-
-            🧭 ${translations[currentLanguage].distance}:
-            ${distance}
-
-        </div>
-
-    `;
-
-    L.popup({
-        closeButton: true,
-        autoClose: true,
-        closeOnClick: true
-    })
-    .setLatLng(latLng)
-    .setContent(content)
-    .openOn(map);
+    window.location.href = "routeDetails.html";
 }
+
+// =================== ROUTE DETAILS PAGE ===================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const routeData =
+        localStorage.getItem("routeDetails");
+
+    if (!routeData) {
+        return;
+    }
+
+    const route = JSON.parse(routeData);
+
+    // =================== USERNAME ===================
+
+    const usernameElement =
+        document.getElementById("detailsUsername");
+
+    if (usernameElement) {
+        usernameElement.textContent =
+            route.username || "-";
+    }
+
+
+    // =================== SPEED ===================
+
+    const speedElement =
+        document.getElementById("detailsSpeed");
+
+    if (speedElement) {
+        speedElement.textContent =
+            route.speed || "-";
+    }
+
+
+    // =================== TIME ===================
+
+    const timeElement =
+        document.getElementById("detailsTime");
+
+    if (timeElement) {
+        timeElement.textContent =
+            route.time || "-";
+    }
+
+
+    // =================== DISTANCE ===================
+
+    const distanceElement =
+        document.getElementById("detailsDistance");
+
+    if (distanceElement) {
+        distanceElement.textContent =
+            route.distance || "-";
+    }
+
+
+    // =================== BACK BUTTON ===================
+
+    const backButton =
+        document.getElementById("backButton");
+
+    if (backButton) {
+
+        backButton.addEventListener(
+            "click",
+            () => {
+                history.back();
+            }
+        );
+
+    }
+
+});
 
 
 // =================== FETCH NEARBY ROUTES ===================
