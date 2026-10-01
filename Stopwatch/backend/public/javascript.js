@@ -230,12 +230,12 @@ const translations = {
     speed: "Speed:",
     time: "Time:",
     routeName: "Route Name",
-    unknownUser: "Unknown User",
-    username: "Korisničko ime",
+    unknownUser: "Unknown User",    
     routeDetailsTitle: "Detalji rute",
     pushUps: "PushUps",
     pullUps: "PullUps",
     sitUps: "SitUps",
+     username: "Username",
     duration: "Duration",
     unnamedTraining: "Unnamed Training",
     unnamedRoute: "Unnamed",
@@ -258,7 +258,7 @@ const translations = {
     time: "Vreme",
     routeName: "Naziv rute",
     unknownUser: "Nepoznat korisnik",
-    username: "Username",
+    username: "Korisničko ime",
     routeDetailsTitle: "Route Details",
     pushUps: "Sklekovi",
     pullUps: "Zgibovi",
@@ -434,13 +434,13 @@ languageSelect.addEventListener("change", (e) => {
 const routeDetailsPopup =
       document.getElementById("routeDetailsPopup");
 
-  if (
-      routeDetailsPopup &&
-      routeDetailsPopup.style.display !== "none" &&
-      currentRouteForDetails
-  ) {
-      openRouteDetailsPopup(currentRouteForDetails);
-  }
+if (
+    routeDetailsPopup &&
+    routeDetailsPopup.style.display !== "none" &&
+    currentRouteForDetails
+) {
+    updateRouteDetailsLanguage();
+}
   
 });
 
@@ -492,6 +492,26 @@ retrieveAllTrainingsButton.innerText =
 
 retrieveMyTrainingsButton.innerText =
   translations[currentLanguage].retrieve.myTrainings;
+}
+
+function updateRouteDetailsLanguage() {
+
+    const lang = translations[currentLanguage];
+
+    document.getElementById("detailsRouteName").textContent =
+        lang.routeDetailsTitle;
+
+    document.getElementById("detailsUsernameLabel").textContent =
+        lang.username + ":";
+
+    document.getElementById("detailsSpeedLabel").textContent =
+        lang.speed;
+
+    document.getElementById("detailsTimeLabel").textContent =
+        lang.time;
+
+    document.getElementById("detailsDistanceLabel").textContent =
+        lang.distance;
 }
 
 // =================== TRAINING POPUP TRANSLATIONS ===================
