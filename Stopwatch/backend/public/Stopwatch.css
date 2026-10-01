@@ -2811,17 +2811,19 @@ input, textarea {
 }
 
 #routeDetailsPopup {
-    width: 526px;
-    max-width: 526px;
-    min-height: 530px;
-    background-color: #f4c066;
-    position: fixed !important;
-    z-index: 1000000000000 !important;
-    border-radius: 3%;
-    margin: 0 !important;
-    padding: 20px;
-    box-sizing: border-box;
-    display: none;
+
+width: 598px;
+max-width: 490px;
+min-height: 530px;
+background-color: #f4c066;
+position: fixed !important;
+z-index: 1000000000000 !important;
+border-radius: 3%;
+margin: 0 !important;
+padding: 20px;
+box-sizing: border-box;
+display: none;
+
 }
 
 #detailsRouteName {
