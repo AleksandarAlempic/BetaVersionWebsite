@@ -883,9 +883,6 @@ function selectRoutePolyline(poly, marker = null) {
 
 }
 
-
-// =================== ROUTE POPUP CONTENT ===================
-
 function getRoutePopupContent(route) {
 
   console.log(route);
@@ -908,13 +905,23 @@ function getRoutePopupContent(route) {
     ${Number(route.speed).toFixed(2)} km/h
 
     <br>
-⏱ ${translations[currentLanguage].time}:
-${(Number(route.time_seconds) / 60).toFixed(2)} min
+
+    ⏱ ${translations[currentLanguage].time}:
+    ${(Number(route.time_seconds) / 60).toFixed(2)} min
+
     <br>
 
     🏃‍♂️
     ${route.routeName ||
       translations[currentLanguage].unnamedRoute}
+
+    <br><br>
+
+    <button
+      onclick='openRouteDetailsPopup(${JSON.stringify(route)})'
+    >
+      Route Details
+    </button>
 
   `;
 
@@ -1327,118 +1334,21 @@ marker.on("popupopen", () => {
 
 }
 
-
 // =================== ROUTE DETAILS ===================
 
 function openRouteDetailsPopup(route) {
 
-    const routeData = {
-
-        username:
-            route.username ||
-            translations[currentLanguage].unknownUser,
-
-        speed:
-            route.speed != null
-                ? Number(route.speed).toFixed(2)
-                : "-",
-
-        time:
-            route.time != null
-                ? route.time
-                : route.time_seconds != null
-                    ? route.time_seconds
-                    : "-",
-
-        distance:
-            route.distance != null
-                ? Number(route.distance).toFixed(2)
-                : "-"
-    };
+    // =================== SAVE ROUTE DATA ===================
 
     localStorage.setItem(
-        "routeDetails",
-        JSON.stringify(routeData)
+        "selectedRouteDetails",
+        JSON.stringify(route)
     );
 
-    window.location.href = "routeDetails.html";
+    // =================== OPEN DETAILS PAGE ===================
+
+    window.location.href = "route-details.html";
 }
-
-// =================== ROUTE DETAILS PAGE ===================
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const routeData =
-        localStorage.getItem("routeDetails");
-
-    if (!routeData) {
-        return;
-    }
-
-    const route = JSON.parse(routeData);
-
-    // =================== USERNAME ===================
-
-    const usernameElement =
-        document.getElementById("detailsUsername");
-
-    if (usernameElement) {
-        usernameElement.textContent =
-            route.username || "-";
-    }
-
-
-    // =================== SPEED ===================
-
-    const speedElement =
-        document.getElementById("detailsSpeed");
-
-    if (speedElement) {
-        speedElement.textContent =
-            route.speed || "-";
-    }
-
-
-    // =================== TIME ===================
-
-    const timeElement =
-        document.getElementById("detailsTime");
-
-    if (timeElement) {
-        timeElement.textContent =
-            route.time || "-";
-    }
-
-
-    // =================== DISTANCE ===================
-
-    const distanceElement =
-        document.getElementById("detailsDistance");
-
-    if (distanceElement) {
-        distanceElement.textContent =
-            route.distance || "-";
-    }
-
-
-    // =================== BACK BUTTON ===================
-
-    const backButton =
-        document.getElementById("backButton");
-
-    if (backButton) {
-
-        backButton.addEventListener(
-            "click",
-            () => {
-                history.back();
-            }
-        );
-
-    }
-
-});
-
 
 // =================== FETCH NEARBY ROUTES ===================
 
