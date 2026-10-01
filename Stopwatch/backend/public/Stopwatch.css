@@ -2811,9 +2811,10 @@ input, textarea {
 }
 
 #routeDetailsPopup {
-    max-width: 460px;
+    width: 598px;
+    max-width: 598px;
     min-height: 530px;
-    background: #fad000;
+    background-color: #f4c066;
     position: fixed !important;
     z-index: 1000000000000 !important;
     border-radius: 3%;
@@ -2828,11 +2829,22 @@ input, textarea {
     padding: 12px;
     margin: 15px 0;
     border-radius: 6px;
-    font-size: 19.5px;
+    font-size: 22.4px;
     font-weight: 800;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 #routeDetailsPopup .route-detail-field span {
     margin-left: 10px;
+}
+
+#routeDetailsCloseButton {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: 800;
+    background: transparent;
+    border: none;
+    cursor: pointer;
 }
