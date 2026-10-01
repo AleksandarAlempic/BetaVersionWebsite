@@ -2809,3 +2809,16 @@ input, textarea {
     overflow-y: auto;
     font-size: large;
 }
+
+#routeDetailsPopup {
+    max-width: 460px;
+    min-height: 530px;
+    background: #fad000;
+    position: fixed !important;
+    z-index: 1000000000000 !important;
+    border-radius: 3%;
+    margin: 0 !important;
+    padding: 20px;
+    box-sizing: border-box;
+    display: none;
+}
