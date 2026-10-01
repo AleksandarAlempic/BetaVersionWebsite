@@ -1203,11 +1203,25 @@ function createRouteSpider(group) {
     marker.options.routePolyline =
         route._routePolyline;
 
-    marker
-        .addTo(map)
-        .bindPopup(
-            getRoutePopupContent(route)
-        );
+ marker
+    .addTo(map)
+    .bindPopup(
+        getRoutePopupContent(route)
+    );
+
+marker.on("popupopen", () => {
+
+    const popupElement = marker.getPopup().getElement();
+
+    if (!popupElement) return;
+
+    popupElement.addEventListener("click", () => {
+
+        openRouteDetailsPopup(route);
+
+    }, { once: true });
+
+});
 
     marker.on("click", () => {
 
@@ -1309,7 +1323,80 @@ function createRouteSpider(group) {
   });
 
 }
+
+// =================== ROUTE DETAILS POPUP ===================
+
+function openRouteDetailsPopup(route) {
+
+    const username =
+        route.username ||
+        translations[currentLanguage].unknownUser;
+
+    const speed =
+        route.speed != null
+            ? Number(route.speed).toFixed(2)
+            : "-";
+
+    const time =
+        route.time != null
+            ? route.time
+            : "-";
+
+    const distance =
+        route.distance != null
+            ? Number(route.distance).toFixed(2)
+            : "-";
+
+    const content = `
+
+        <div class="routeDetailsPopup">
+
+            <b>${username}</b>
+
+            <br><br>
+
+            ⚡ ${translations[currentLanguage].speed}:
+            ${speed}
+
+            <br>
+
+            ⏱ ${translations[currentLanguage].time}:
+            ${time}
+
+            <br>
+
+            🧭 ${translations[currentLanguage].distance}:
+            ${distance}
+
+        </div>
+
+    `;
+
+    L.popup({
+        closeButton: true,
+        autoClose: true,
+        closeOnClick: true
+    })
+    .setLatLng([
+        route.latitude,
+        route.longitude
+    ])
+    .setContent(content)
+    .openOn(map);
+}
+
+
+
+
+
+
+
+
+
+
 // =================== FETCH NEARBY ROUTES ===================
+
+
 async function retrieveNearbyRoutes() {
   let latitude, longitude;
 
