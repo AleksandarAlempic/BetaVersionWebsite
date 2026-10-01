@@ -430,6 +430,18 @@ languageSelect.addEventListener("change", (e) => {
   updateTrainingMarkersLanguage(currentLanguage);
   updateFeedbackPopupLanguage()
    updateYoutubePopupLanguage(); 
+
+const routeDetailsPopup =
+      document.getElementById("routeDetailsPopup");
+
+  if (
+      routeDetailsPopup &&
+      routeDetailsPopup.style.display !== "none" &&
+      currentRouteForDetails
+  ) {
+      openRouteDetailsPopup(currentRouteForDetails);
+  }
+  
 });
 
 // =================== UPDATE UI LANGUAGE ===================
