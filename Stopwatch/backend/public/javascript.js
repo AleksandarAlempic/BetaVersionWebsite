@@ -3097,6 +3097,8 @@ saveYoutubeBtn && saveYoutubeBtn.addEventListener("click", async () => {
 //     }
 // });
 
+  
+
   // --- Add Music dugme ---
 document.getElementById("fetchCustomPlaylistButton")?.addEventListener("click", () => {
 
@@ -3104,6 +3106,19 @@ document.getElementById("fetchCustomPlaylistButton")?.addEventListener("click", 
 
     if (addMusicPopup) {
         addMusicPopup.style.display = "block";
+    }
+});
+
+// --- Add Music dugme ---
+document.getElementById("addMusicButton")?.addEventListener("click", () => {
+ 
+    updateNextPrevVisibility();
+    if (addPlaylistPopup) {
+        addPlaylistPopup.style.display = "block";
+        ytInput.value = "";
+        selectedSongForAdd = null;
+        suggestionsBox.innerHTML = "";
+        ytInput.focus();
     }
 });
 
