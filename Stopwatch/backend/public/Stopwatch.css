@@ -2854,3 +2854,30 @@ display: none;
     border: none;
     cursor: pointer;
 }
+
+/* ================= ADD MUSIC POPUP ================= */
+
+.addMusicContent {
+    background: white;
+    text-align: center;
+}
+
+.addMusicContent .h2Youtube {
+    margin-bottom: 25px;
+}
+
+.addMusicButtons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.addMusicButtons button {
+    background: #f4c066 !important;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
