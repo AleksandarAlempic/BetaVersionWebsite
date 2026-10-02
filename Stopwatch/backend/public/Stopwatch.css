@@ -2908,3 +2908,26 @@ display: none;
     height: 55px;
     object-fit: contain;
 }
+
+.addMusicContent {
+    position: relative;
+    background: white;
+    text-align: center;
+    border: 2px solid #000;
+}
+
+.popupCloseButton {
+    position: absolute;
+    top: 5px;
+    right: 8px;
+
+    background: transparent;
+    border: none;
+
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 1;
+
+    cursor: pointer;
+    color: #000;
+}
