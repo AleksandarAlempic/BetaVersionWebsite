@@ -3109,17 +3109,18 @@ document.getElementById("fetchCustomPlaylistButton")?.addEventListener("click", 
     }
 });
 
-// --- Add Music dugme ---
-document.getElementById("addMusicButton")?.addEventListener("click", () => {
- 
-    updateNextPrevVisibility();
-    if (addPlaylistPopup) {
-        addPlaylistPopup.style.display = "block";
-        ytInput.value = "";
-        selectedSongForAdd = null;
-        suggestionsBox.innerHTML = "";
-        ytInput.focus();
-    }
+// --- Add Playlist Choice ---
+document.getElementById("addPlaylistChoice")?.addEventListener("click", () => { 
+  
+    updateNextPrevVisibility(); 
+
+    if (addPlaylistPopup) { 
+        addPlaylistPopup.style.display = "block"; 
+        ytInput.value = ""; 
+        selectedSongForAdd = null; 
+        suggestionsBox.innerHTML = ""; 
+        ytInput.focus(); 
+    } 
 });
 
 // --- Cancel dugme ---
