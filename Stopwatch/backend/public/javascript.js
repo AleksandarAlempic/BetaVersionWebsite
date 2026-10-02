@@ -3085,15 +3085,25 @@ saveYoutubeBtn && saveYoutubeBtn.addEventListener("click", async () => {
 
   
 // --- Add playlist dugme ---
-document.getElementById("fetchCustomPlaylistButton")?.addEventListener("click", () => {
+// document.getElementById("fetchCustomPlaylistButton")?.addEventListener("click", () => {
  
-    updateNextPrevVisibility();
-    if (addPlaylistPopup) {
-        addPlaylistPopup.style.display = "block";
-        ytInput.value = "";
-        selectedSongForAdd = null;
-        suggestionsBox.innerHTML = "";
-        ytInput.focus();
+//     updateNextPrevVisibility();
+//     if (addPlaylistPopup) {
+//         addPlaylistPopup.style.display = "block";
+//         ytInput.value = "";
+//         selectedSongForAdd = null;
+//         suggestionsBox.innerHTML = "";
+//         ytInput.focus();
+//     }
+// });
+
+  // --- Add Music dugme ---
+document.getElementById("fetchCustomPlaylistButton")?.addEventListener("click", () => {
+
+    const addMusicPopup = document.getElementById("addMusicPopup");
+
+    if (addMusicPopup) {
+        addMusicPopup.style.display = "block";
     }
 });
 
