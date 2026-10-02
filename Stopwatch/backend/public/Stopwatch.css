@@ -2913,13 +2913,13 @@ display: none;
     position: relative;
     background: white;
     text-align: center;
-    border: 2px solid #000;
+    /* border: 2px solid #000; */
 }
 
 .popupCloseButton {
     position: absolute;
     top: 5px;
-    right: 8px;
+       right: -16px;
 
     background: transparent;
     border: none;
