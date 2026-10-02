@@ -104,8 +104,8 @@
   font-weight: bold;
 
   border: 2px solid white;
-
   box-sizing: border-box;
+    
 }
 
 .bottomButtons{
@@ -2545,6 +2545,7 @@ body{
     max-height: 335px;
     z-index: 500000000000000 !important;
     position: fixed !important;
+    border: 2px solid #000;
 }
 
 .popup-content {
@@ -2860,6 +2861,7 @@ display: none;
 .addMusicContent {
     background: white;
     text-align: center;
+    border: 2px solid #000;
 }
 
 .addMusicContent .h2Youtube {
