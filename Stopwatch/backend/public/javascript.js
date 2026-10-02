@@ -3109,6 +3109,16 @@ document.getElementById("fetchCustomPlaylistButton")?.addEventListener("click", 
     }
 });
 
+  document.getElementById("closeAddMusicPopup")?.addEventListener("click", () => {
+
+    const addMusicPopup = document.getElementById("addMusicPopup");
+
+    if (addMusicPopup) {
+        addMusicPopup.style.display = "none";
+    }
+
+});
+
 // --- Add Playlist Choice ---
 document.getElementById("addPlaylistChoice")?.addEventListener("click", () => { 
   
