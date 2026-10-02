@@ -2861,7 +2861,7 @@ display: none;
 .addMusicContent {
     background: white;
     text-align: center;
-    border: 2px solid #000;
+    /* border: 2px solid #000; */
 }
 
 .addMusicContent .h2Youtube {
