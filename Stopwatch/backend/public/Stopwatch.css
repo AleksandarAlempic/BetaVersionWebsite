@@ -2904,7 +2904,7 @@ display: none;
 }
 
 .addMusicButtons button img {
-    width: 24px;
-    height: 24px;
+    width: 55px;
+    height: 55px;
     object-fit: contain;
 }
