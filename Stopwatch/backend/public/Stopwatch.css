@@ -2975,6 +2975,8 @@ display: none;
 }
 
 
+
+
 /* HEADER */
 
 #radioPopup .radioHeader {
@@ -2997,7 +2999,7 @@ display: none;
 
     color: #000;
 
-    font-size: 25px;
+    font-size: 35px;
     font-weight: bold;
 }
 
@@ -3090,6 +3092,7 @@ display: none;
     flex-direction: column;
 
     justify-content: center;
+    
 
     flex: 1;
 
@@ -3098,19 +3101,17 @@ display: none;
 
 
 #radioPopup .radioStationName {
-    color: #000;
-
-    font-size: 18px;
+  color: #000;
+    font-size: 28px;
     font-weight: bold;
-
     margin-bottom: 4px;
 }
 
 
 #radioPopup .radioStationGenre {
-    color: #555;
-
-    font-size: 14px;
+       color: #555;
+    font-size: 24px;
+    font-weight: 800;
 }
 
 
@@ -3181,7 +3182,7 @@ display: none;
 
     color: #000;
 
-    font-size: 18px;
+    font-size: 21px;
     font-weight: bold;
 
     cursor: pointer;
