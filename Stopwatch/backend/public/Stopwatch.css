@@ -2815,7 +2815,7 @@ input, textarea {
 
 width: 598px;
 max-width: 490px;
-min-height: 530px;
+min-height: 440px;
 background-color: #f4c066;
 position: fixed !important;
 z-index: 1000000000000 !important;
