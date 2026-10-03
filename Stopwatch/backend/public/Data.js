@@ -260,6 +260,12 @@ let narodnjaciSongs = [
     artist: 'Vesna Zmijanac',
     cover: 'images/audio/MaloPoMalo.jpg'
   },
+    {
+    name: 'Na putu za ludilo',
+    path: 'audio/Mile%20Ignjatovi%C4%87%20-%20Na%20putu%20za%20ludilo%20-%20%28Audio%201996%29.mp3',
+    artist: 'Mile Ignjatović',
+    cover: 'images/audio/MileIgnjatovicjpg.jpg'
+},
   {
     name: 'Ej, dragi, dragi',
     path: 'audio/Cakana - Ej, dragi, dragi - (Audio 2009).mp3',
@@ -439,23 +445,17 @@ playLists.push(danceSongs);
 playLists.push(rockSongs);
 
 let BalkanSongs = [
-   {
+ {
     name: 'OD 4 DO 7',
-    path: 'audio/OD%204%20DO%207.mp3',
+    path: 'audio/DARA%20BUBAMARA%20-%20OD%204%20DO%207.mp3',
     artist: 'Dara Bubamara',
-    cover: 'images/audio/DaraBubamara.jpg'
+    cover: 'images/audio/Od4Do7.jpg'
 },
 {
     name: 'Boing 747',
-    path: 'audio/Boing%20747.mp3',
+    path: 'audio/MINISTARKE%20-%20Boing%20747.mp3',
     artist: 'Ministarke',
-    cover: 'images/audio/Boing%20747.jpg'
-},
-{
-    name: 'Na putu za Ludilo',
-    path: 'audio/Na%20putu%20za%20Ludilo.mp3',
-    artist: 'Mile Ignjatovic',
-    cover: 'images/audio/MileIgnjatovic.jpg'
+    cover: 'images/audio/Boing747.jpg'
 },
    {
     name: 'Legitimno',
