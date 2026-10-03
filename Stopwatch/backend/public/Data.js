@@ -440,29 +440,48 @@ playLists.push(rockSongs);
 
 let BalkanSongs = [
    {
+    name: 'OD 4 DO 7',
+    path: 'audio/OD%204%20DO%207.mp3',
+    artist: 'Dara Bubamara',
+    cover: 'images/audio/DaraBubamara.jpg'
+},
+{
+    name: 'Boing 747',
+    path: 'audio/Boing%20747.mp3',
+    artist: 'Ministarke',
+    cover: 'images/audio/Boing%20747.jpg'
+},
+{
+    name: 'Na putu za Ludilo',
+    path: 'audio/Na%20putu%20za%20Ludilo.mp3',
+    artist: 'Mile Ignjatovic',
+    cover: 'images/audio/MileIgnjatovic.jpg'
+},
+   {
     name: 'Legitimno',
     path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20LEGITIMNO%20(OFFICIAL%20VIDEO%202020).mp3',
     artist: 'Aleksandra Prijović',
     cover: 'images/audio/Legitimno.jpg'
   },
+      {
+      name: 'Devet Zivota',
+      path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20DEVET%20ZIVOTA%20(OFFICIAL%20VIDEO).mp3',
+      artist: 'Aleksandra Prijovic',
+      cover: 'images/audio/AleksandraPrijovic.jpg'
+   },
   {
     name: 'Placebo',
     path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20PLACEBO%20(OFFICIAL%20VIDEO)%20(1).mp3',
     artist: 'Aleksandra Prijović',
     cover: 'images/audio/Placebo.jpg'
   },
-   //    {
-   //    name: 'Devet Zivota',
-   //    path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20DEVET%20ZIVOTA%20(OFFICIAL%20VIDEO).mp3',
-   //    artist: 'Aleksandra Prijovic',
-   //    cover: 'images/audio/AleksandraPrijovic.jpg'
-   // },
-  {
-    name: 'U inat prošlosti',
-    path: 'audio/Aleksandra%20Radovic%20&%20The%20Beatshakers%20-%20Who%20Gonna%20Stop%20Me%20Now%20(Official%20HD%20Video).mp3',
-    artist: 'Aleksandra Radović',
-    cover: 'images/audio/AleksandraRadovic.jpg'
-  }
+    
+  // {
+  //   name: 'U inat prošlosti',
+  //   path: 'audio/Aleksandra%20Radovic%20&%20The%20Beatshakers%20-%20Who%20Gonna%20Stop%20Me%20Now%20(Official%20HD%20Video).mp3',
+  //   artist: 'Aleksandra Radović',
+  //   cover: 'images/audio/AleksandraRadovic.jpg'
+  // }
 ]
 
 playLists.push(BalkanSongs);
