@@ -499,3 +499,38 @@ playLists.push(BalkanSongs);
 // ];
 
 // playLists.push(customSongs);
+
+// =================== RADIO STATIONS ===================
+
+const radioStations = [
+    {
+        name: "Naxi Radio",
+        genre: "Pop / Rock",
+        logo: "images/radio/Naxi.png",
+        stream: "https://naxi128ssl.streaming.rs:9152/"
+    },
+    {
+        name: "Naxi EX YU",
+        genre: "Ex-Yu / Rock",
+        logo: "images/radio/NaxiEXYU.png",
+        stream: "https://naxidigital-exyu128ssl.streaming.rs:8000/;stream.nsv"
+    },
+    {
+        name: "Naxi 80-e",
+        genre: "80s",
+        logo: "images/radio/Naxi80.png",
+        stream: "https://naxidigital-80s128ssl.streaming.rs:8042/;"
+    },
+    {
+        name: "Naxi 90-e",
+        genre: "90s / Pop",
+        logo: "images/radio/Naxi90.png",
+        stream: "https://naxidigital-90s128ssl.streaming.rs:8040/;stream.nsv"
+    },
+    {
+        name: "OK Radio",
+        genre: "Pop / Folk",
+        logo: "images/radio/OKRadio.png",
+        stream: "https://sslstream.okradio.net/;?type=http&nocache=8804"
+    }
+];
