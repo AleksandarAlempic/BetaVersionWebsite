@@ -3119,6 +3119,40 @@ document.getElementById("fetchCustomPlaylistButton")?.addEventListener("click", 
 
 });
 
+  // =================== RADIO POPUP ===================
+
+document.getElementById("addRadioChoice")?.addEventListener("click", () => {
+
+    const radioPopup = document.getElementById("radioPopup");
+
+    if (radioPopup) {
+        radioPopup.style.display = "flex";
+    }
+
+});
+
+
+document.getElementById("closeRadioPopup")?.addEventListener("click", () => {
+
+    const radioPopup = document.getElementById("radioPopup");
+
+    if (radioPopup) {
+        radioPopup.style.display = "none";
+    }
+
+});
+
+
+document.getElementById("closeRadioPopupBottom")?.addEventListener("click", () => {
+
+    const radioPopup = document.getElementById("radioPopup");
+
+    if (radioPopup) {
+        radioPopup.style.display = "none";
+    }
+
+});
+
 // --- Add Playlist Choice ---
 document.getElementById("addPlaylistChoice")?.addEventListener("click", () => { 
   
