@@ -3153,6 +3153,58 @@ document.getElementById("closeRadioPopupBottom")?.addEventListener("click", () =
 
 });
 
+  // =================== RADIO STATIONS LIST ===================
+
+function renderRadioStations() {
+
+    const list = document.getElementById("radioStationsList");
+
+    if (!list) return;
+
+    list.innerHTML = "";
+
+    radioStations.forEach((station) => {
+
+        const stationElement = document.createElement("div");
+
+        stationElement.className = "radioStation";
+
+        stationElement.innerHTML = `
+            <img src="${station.logo}" alt="${station.name}">
+
+            <div class="radioStationInfo">
+
+                <div class="radioStationName">
+                    ${station.name}
+                </div>
+
+                <div class="radioStationGenre">
+                    ${station.genre}
+                </div>
+
+            </div>
+
+            <div class="radioSelect"></div>
+        `;
+
+        stationElement.addEventListener("click", () => {
+
+            document
+                .querySelectorAll("#radioPopup .radioStation")
+                .forEach(item => {
+                    item.classList.remove("selected");
+                });
+
+            stationElement.classList.add("selected");
+
+        });
+
+        list.appendChild(stationElement);
+    });
+}
+
+renderRadioStations();
+
 // --- Add Playlist Choice ---
 document.getElementById("addPlaylistChoice")?.addEventListener("click", () => { 
   
