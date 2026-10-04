@@ -14,6 +14,10 @@
     align-items: center;
 }
 
+.AddMusicPopupColor{
+ background: #f4c066 !important;
+}
+
 .retrievePopupContent {
     background: white;
     width: 70%;
