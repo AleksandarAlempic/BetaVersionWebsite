@@ -2859,7 +2859,7 @@ display: none;
 /* ================= ADD MUSIC POPUP ================= */
 
 .addMusicContent {
-    background: white;
+   background: #f4c066 !important;
     text-align: center;
     /* border: 2px solid #000; */
 }
