@@ -3145,6 +3145,8 @@ document.getElementById("closeRadioPopup")?.addEventListener("click", () => {
 
 document.getElementById("closeRadioPopupBottom")?.addEventListener("click", () => {
 
+   event.preventDefault();
+
     const radioPopup = document.getElementById("radioPopup");
 
     if (radioPopup) {
