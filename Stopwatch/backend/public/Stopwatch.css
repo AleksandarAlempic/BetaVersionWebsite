@@ -3171,6 +3171,8 @@ display: none;
 /* ZATVORI */
 
 #radioPopup #closeRadioPopupBottom {
+   display: inline-block;
+
     min-width: 180px;
 
     padding: 12px 30px;
@@ -3182,10 +3184,15 @@ display: none;
 
     color: #000;
 
-    font-size: 21px;
+    font-size: 18px;
     font-weight: bold;
 
+    text-decoration: none;
+    text-align: center;
+
     cursor: pointer;
+
+    box-sizing: border-box;
 }
 
 
