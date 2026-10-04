@@ -507,13 +507,13 @@ const radioStations = [
         name: "Naxi Radio",
         genre: "Pop / Rock",
         logo: "radio/Naxi.png",
-        stream: "https://naxi128ssl.streaming.rs:9152/"
+        stream: "http://naxi128.streaming.rs:9150/"
     },
     {
         name: "Naxi EX YU",
         genre: "Ex-Yu / Rock",
         logo: "radio/NaxiEXYU.png",
-        stream: "https://naxidigital-exyu128ssl.streaming.rs:8000/;stream.nsv"
+        stream: "https://naxidigital-exyu128ssl.streaming.rs:8242/;stream.nsv"
     },
     {
         name: "Naxi 80-e",
@@ -525,7 +525,7 @@ const radioStations = [
         name: "Naxi 90-e",
         genre: "90s / Pop",
         logo: "radio/Naxi90.png",
-        stream: "https://naxidigital-90s128ssl.streaming.rs:8040/;stream.nsv"
+        stream: "https://naxidigital-90s128ssl.streaming.rs:8282/;stream.nsv"
     },
     {
         name: "OK Radio",
