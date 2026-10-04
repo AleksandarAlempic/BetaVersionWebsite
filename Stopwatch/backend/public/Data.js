@@ -530,21 +530,21 @@ const radioStations = [
         stream: "https://stream.radios.rs:9000/stream"
     },
 
-    // {
-    //     name: "Narodni radio",
-    //     genre: "Narodna",
-    //     category: "Default",
-    //     logo: "radio/Narodni.png",
-    //     stream: "https://stream.radios.rs:9016/;*.mp3"
-    // },
-
     {
-        name: "Radio S Južni",
+        name: "Narodni radio",
         genre: "Narodna",
         category: "Default",
-        logo: "radio/RadioSJuzni.png",
-        stream: "https://stream.radios.rs:9038/;*.mp3"
+        logo: "radio/Narodni.png",
+        stream: "https://stream.radios.rs:9016/;*.mp3"
     },
+
+    // {
+    //     name: "Radio S Južni",
+    //     genre: "Narodna",
+    //     category: "Default",
+    //     logo: "radio/RadioSJuzni.png",
+    //     stream: "https://stream.radios.rs:9038/;*.mp3"
+    // },
 
     {
         name: "Radio Lola",
