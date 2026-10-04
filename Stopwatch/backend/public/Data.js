@@ -605,7 +605,7 @@ const radioStations = [
         genre: "Classical",
         category: "Classic",
         logo: "radio/NaxiClassic.png",
-        stream: "https://stream.radios.rs:9074/stream"
+        stream: "http://naxidigital-classic128.streaming.rs:8030/"
     },
 
     {
