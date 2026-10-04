@@ -526,7 +526,7 @@ const radioStations = [
         name: "Radio S",
         genre: "Pop / Hits",
         category: "Default",
-        logo: "radio/RadioS.png",
+        logo: "radio/RadioS.jpg",
         stream: "https://stream.radios.rs:9000/stream"
     },
 
