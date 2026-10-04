@@ -511,7 +511,7 @@ const radioStations = [
         genre: "Pop / Rock",
         category: "Default",
         logo: "radio/Naxi.png",
-        stream: "https://naxi128ssl.streaming.rs:9152/"
+        stream: "https://naxi64ssl.streaming.rs:9162/;"
     },
 
     {
@@ -594,7 +594,7 @@ const radioStations = [
         genre: "Pop / Rock",
         category: "Rock",
         logo: "radio/Karolina.png",
-        stream: "http://streaming.karolina.rs:8000/karolina"
+        stream: "https://streaming.karolina.rs/karolina.mp3"
     },
 
 
