@@ -503,34 +503,117 @@ playLists.push(BalkanSongs);
 // =================== RADIO STATIONS ===================
 
 const radioStations = [
+
+    // ================= DEFAULT =================
+
     {
         name: "Naxi Radio",
         genre: "Pop / Rock",
+        category: "Default",
         logo: "radio/Naxi.png",
-        stream: "http://naxi128.streaming.rs:9150/"
+        stream: "https://naxi128ssl.streaming.rs:9152/"
     },
+
     {
-        name: "Naxi EX YU",
-        genre: "Ex-Yu / Rock",
-        logo: "radio/NaxiEXYU.png",
-        stream: "https://naxidigital-exyu128ssl.streaming.rs:8242/;stream.nsv"
+        name: "TDI Radio",
+        genre: "Pop / Hits",
+        category: "Default",
+        logo: "radio/TDI.png",
+        stream: "https://streaming.tdiradio.com/tdiradio.mp3"
     },
+
     {
-        name: "Naxi 80-e",
-        genre: "80s",
-        logo: "radio/Naxi80.png",
-        stream: "https://naxidigital-80s128ssl.streaming.rs:8042/;"
+        name: "Radio S",
+        genre: "Pop / Hits",
+        category: "Default",
+        logo: "radio/RadioS.png",
+        stream: "https://stream.radios.rs:9000/stream"
     },
+
+    // {
+    //     name: "Narodni radio",
+    //     genre: "Narodna",
+    //     category: "Default",
+    //     logo: "radio/Narodni.png",
+    //     stream: "https://stream.radios.rs:9016/;*.mp3"
+    // },
+
     {
-        name: "Naxi 90-e",
-        genre: "90s / Pop",
-        logo: "radio/Naxi90.png",
-        stream: "https://naxidigital-90s128ssl.streaming.rs:8282/;stream.nsv"
+        name: "Radio S Južni",
+        genre: "Narodna",
+        category: "Default",
+        logo: "radio/RadioSJuzni.png",
+        stream: "https://stream.radios.rs:9038/;*.mp3"
     },
+
+    {
+        name: "Radio Lola",
+        genre: "Domaća",
+        category: "Default",
+        logo: "radio/RadioLola.png",
+        stream: "https://streaming.tdiradio.com/radiolola.mp3"
+    },
+
     {
         name: "OK Radio",
         genre: "Pop / Folk",
+        category: "Default",
         logo: "radio/OKRadio.png",
         stream: "https://sslstream.okradio.net/;?type=http&nocache=8804"
+    },
+
+    {
+        name: "Radio In",
+        genre: "Pop / Folk",
+        category: "Default",
+        logo: "radio/RadioIn.png",
+        stream: "https://radioinnis-naxinacional.streaming.rs:8622/;"
+    },
+
+
+    // ================= ROCK =================
+
+    {
+        name: "Naxi EX YU",
+        genre: "Ex-Yu / Rock",
+        category: "Rock",
+        logo: "radio/NaxiEXYU.png",
+        stream: "https://naxidigital-exyu128ssl.streaming.rs:8242/;stream.nsv"
+    },
+
+    {
+        name: "Naxi 80-e",
+        genre: "80s",
+        category: "Rock",
+        logo: "radio/Naxi80.png",
+        stream: "https://naxidigital-80s128ssl.streaming.rs:8042/;"
+    },
+
+    {
+        name: "Karolina",
+        genre: "Pop / Rock",
+        category: "Rock",
+        logo: "radio/Karolina.png",
+        stream: "http://streaming.karolina.rs:8000/karolina"
+    },
+
+
+    // ================= CLASSIC =================
+
+    {
+        name: "Naxi Classic",
+        genre: "Classical",
+        category: "Classic",
+        logo: "radio/NaxiClassic.png",
+        stream: "https://stream.radios.rs:9074/stream"
+    },
+
+    {
+        name: "Radio S Classic",
+        genre: "Classical",
+        category: "Classic",
+        logo: "radio/RadioSClassic.png",
+        stream: "https://stream.radios.rs:9074/stream"
     }
+
 ];
