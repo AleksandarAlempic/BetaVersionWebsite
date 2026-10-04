@@ -3124,9 +3124,14 @@ document.getElementById("fetchCustomPlaylistButton")?.addEventListener("click", 
 document.getElementById("addRadioChoice")?.addEventListener("click", () => {
 
     const radioPopup = document.getElementById("radioPopup");
+    const addMusicPopup = document.getElementById("addMusicPopup");
 
     if (radioPopup) {
         radioPopup.style.display = "flex";
+    }
+
+    if (addMusicPopup) {
+        addMusicPopup.style.setProperty("border", "none", "important");
     }
 
 });
@@ -3135,22 +3140,32 @@ document.getElementById("addRadioChoice")?.addEventListener("click", () => {
 document.getElementById("closeRadioPopup")?.addEventListener("click", () => {
 
     const radioPopup = document.getElementById("radioPopup");
+    const addMusicPopup = document.getElementById("addMusicPopup");
 
     if (radioPopup) {
         radioPopup.style.display = "none";
     }
 
+    if (addMusicPopup) {
+        addMusicPopup.style.removeProperty("border");
+    }
+
 });
 
 
-document.getElementById("closeRadioPopupBottom")?.addEventListener("click", () => {
+document.getElementById("closeRadioPopupBottom")?.addEventListener("click", (event) => {
 
-   event.preventDefault();
+    event.preventDefault();
 
     const radioPopup = document.getElementById("radioPopup");
+    const addMusicPopup = document.getElementById("addMusicPopup");
 
     if (radioPopup) {
         radioPopup.style.display = "none";
+    }
+
+    if (addMusicPopup) {
+        addMusicPopup.style.removeProperty("border");
     }
 
 });
