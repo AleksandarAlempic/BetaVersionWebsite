@@ -3204,17 +3204,28 @@ function renderRadioStations() {
             <div class="radioSelect"></div>
         `;
 
-        stationElement.addEventListener("click", () => {
+      stationElement.addEventListener("click", () => {
 
-            document
-                .querySelectorAll("#radioPopup .radioStation")
-                .forEach(item => {
-                    item.classList.remove("selected");
-                });
+    document.querySelectorAll("#radioPopup .radioStation")
+        .forEach(item => item.classList.remove("selected"));
 
-            stationElement.classList.add("selected");
+    stationElement.classList.add("selected");
 
+    const radioAudio = document.getElementById("radioAudio");
+
+    if (!radioAudio) return;
+
+    radioAudio.src = station.stream;
+
+    radioAudio.play()
+        .then(() => {
+            console.log("Radio playing:", station.name);
+        })
+        .catch(error => {
+            console.error("Radio playback error:", error);
         });
+
+});
 
         list.appendChild(stationElement);
     });
