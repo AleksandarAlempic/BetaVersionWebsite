@@ -2545,7 +2545,7 @@ body{
     max-height: 335px;
     z-index: 500000000000000 !important;
     position: fixed !important;
-    border: 2px solid #000;
+    /* border: 2px solid #000; */
 }
 
 .popup-content {
