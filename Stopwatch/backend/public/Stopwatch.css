@@ -2837,6 +2837,7 @@ display: none;
 
 #detailsRouteName {
     text-align: center;
+    font-size: 34px;
 }
 
 #routeDetailsPopup .route-detail-field {
@@ -3269,4 +3270,5 @@ display: none;
     background: none;
     box-shadow: none;
     cursor: pointer;
+    font-size: 35px;
 }
