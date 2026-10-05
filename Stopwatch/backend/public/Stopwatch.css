@@ -2530,6 +2530,10 @@ body{
   z-index: 9999;
 }
 
+.borderForAddMusiModal{
+    border: 2px solid #000;
+}
+
 .popup-overlay {
     display: block;
     inset: 0;
