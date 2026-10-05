@@ -3271,4 +3271,6 @@ display: none;
     box-shadow: none;
     cursor: pointer;
     font-size: 35px;
+    font-weight: bold;
+}    
 }
