@@ -3258,3 +3258,15 @@ display: none;
 
     border-radius: 10px;
 }
+
+.popupCloseLink {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    color: #000;
+    text-decoration: none;
+    border: none;
+    background: none;
+    box-shadow: none;
+    cursor: pointer;
+}
