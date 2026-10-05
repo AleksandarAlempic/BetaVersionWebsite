@@ -3180,7 +3180,7 @@ display: none;
 
 /* ZATVORI */
 
-#radioPopup #closeRadioPopupBottom {
+/* #radioPopup #closeRadioPopupBottom { Beli popup
     display: inline-block;
 
     min-width: 180px;
@@ -3203,9 +3203,9 @@ display: none;
     cursor: pointer;
 
     box-sizing: border-box;
-}
+} */
  
-/* #radioPopup #closeRadioPopupBottom { Ovo je klasican Zatvori isti kao i na prvoj stranici za Dizajn - ostavljam ovde.
+   #radioPopup #closeRadioPopupBottom {
    display: inline-block;
 
     min-width: 180px;
@@ -3214,7 +3214,6 @@ display: none;
 
     /* background: #fff; */
 
-    /* border: 3px solid #000; */
     border-radius: 10px;
 
     color: #000;
@@ -3228,7 +3227,7 @@ display: none;
     cursor: pointer;
 
     box-sizing: border-box;
-} */
+} 
 
 
 /* #radioPopup #closeRadioPopupBottom:hover {
