@@ -2902,12 +2902,11 @@ display: none;
     align-items: center;
     justify-content: center;
     gap: 8px;
-
      background: white !important;
     border: none;
     border-radius: 8px;
     padding: 12px 20px;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
     cursor: pointer;
 }
