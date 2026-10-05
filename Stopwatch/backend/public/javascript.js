@@ -4831,5 +4831,18 @@ retrieveMyRoutesButton.addEventListener("click", async () => {
 
 });
 
+document.getElementById("closeAddMusicPopupLink")?.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    document.getElementById("addMusicPopup").style.display = "none";
+});
+
+
+document.getElementById("routeDetailsCloseLink")?.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    document.getElementById("routeDetailsPopup").style.display = "none";
+});
+
 window.saveTraining = saveTraining;
 window.initMap = initMap;
