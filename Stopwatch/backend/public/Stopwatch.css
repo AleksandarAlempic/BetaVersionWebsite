@@ -16,6 +16,7 @@
 
 .AddMusicPopupColor{
  background: #f4c066 !important;
+ border: 2px solid black;
 }
 
 .retrievePopupContent {
@@ -2773,6 +2774,7 @@ input, textarea {
     max-width: 700px;
     margin: 30px auto;
     padding: 20px;
+    border: 2px solid black;
 }
 
 #backButton {
