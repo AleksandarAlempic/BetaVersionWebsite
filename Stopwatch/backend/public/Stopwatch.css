@@ -2587,13 +2587,13 @@ body{
     padding: 10px 15px;
     border-radius: 10px;
     font-size: 24px;
-    margin-top: 6%;
+    margin-top: 0%;
 }
 
 .popup-cancel {
     color: white;
     font-size: 23.5px;
-    margin-top: 6%;
+    margin-top: 0%;
     margin-left: 58% !important;
     background: rgb(217, 83, 79);
     padding: 10px 15px;
