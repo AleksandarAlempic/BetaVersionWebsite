@@ -35,6 +35,8 @@
     background: #f4c066 !important;
 
     gap: 20px;
+        border: 1px solid;
+    margin-top: -36%;
 
     box-sizing: border-box;
 }
