@@ -1047,12 +1047,12 @@ window.addEventListener('load', () => {
   }, 2500); // povećano trajanje splash-a
 });
 </script>
- <!-- Retrieve Routes Popup -->
+<!-- Retrieve Routes Popup -->
 <div id="retrieveRoutesPopup" class="retrievePopup">
     <div class="retrievePopupContent">
 
         <h3 class="retrievePopupTitle">Retrieve Routes</h3>
-        
+
         <button id="retrieveAllRoutesButton" class="retrievePopupButton">
             Retrieve All Routes
         </button>
@@ -1061,7 +1061,14 @@ window.addEventListener('load', () => {
             Retrieve My Routes
         </button>
 
-        <button id="closeRetrieveRoutesPopup" class="popupCloseLink">Close</button>
+        <button id="closeRetrieveRoutesPopup" class="popupCloseButton">
+            ×
+        </button>
+
+        <a href="#" id="closeRetrieveRoutesPopupLink" class="popupCloseLink">
+            Close
+        </a>
+
     </div>
 </div>
 
@@ -1071,7 +1078,7 @@ window.addEventListener('load', () => {
     <div class="retrievePopupContent">
 
         <h3 class="retrievePopupTitle">Retrieve Trainings</h3>
-        
+
         <button id="retrieveAllTrainingsButton" class="retrievePopupButton">
             Retrieve All Trainings
         </button>
@@ -1079,7 +1086,11 @@ window.addEventListener('load', () => {
         <button id="retrieveMyTrainingsButton" class="retrievePopupButton">
             Retrieve My Trainings
         </button>
- <button id="closeRetrieveRoutesPopup" class="popupCloseLink">Close</button>
+
+        <a href="#" id="closeRetrieveTrainingsPopupLink" class="popupCloseLink">
+            Close
+        </a>
+
     </div>
 </div>
             <audio id="radioAudio" preload="none"></audio>
