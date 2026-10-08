@@ -40,6 +40,7 @@
     min-height: 5%;
     margin-left: 51%;
     margin-top: 210%;
+            border: 1px solid;
 }
 }
 
@@ -2153,6 +2154,7 @@ img { max-width: 100%; height: auto; }
         font-weight: 800;
         background: #fad000;
         margin-top: 2%;
+               border: 1px solid;
     }
 
 
@@ -2168,6 +2170,7 @@ img { max-width: 100%; height: auto; }
         margin-left: 21%;
         position: relative;
         z-index: 100000000000;
+                    border: 1px solid;
     }
     
  .nearbyTrainingsButton {
@@ -2197,6 +2200,7 @@ img { max-width: 100%; height: auto; }
     position: absolute;
     margin-top: -127%;
     margin-left: 42%;
+               border: 1px solid;
 }
 
   .form-group{
@@ -2225,6 +2229,7 @@ img { max-width: 100%; height: auto; }
     background: white;
     margin-left: 4%;
     border-radius: 5%;
+            border: 1px solid;
   }
 
   .trainingName{
@@ -2349,14 +2354,17 @@ img { max-width: 100%; height: auto; }
 
    .startRoute{
     z-index: 1000000000; position: absolute;  color: black; font-size: 20px; font-weight: 600; margin-left: 20%; background: #fad000; min-height: 5%;
+             border: 1px solid;
    }
 
    .stopRoute{
     z-index: 1000000000; position: absolute; color: black;font-size: 20px; font-weight: 600; margin-left:43.5%; background: #fad000; min-height: 5%;
+             border: 1px solid;
    }
 
    .showNearbyRoutes1{
     z-index: 1000000000; position: absolute; color: black;font-size: 20px; font-weight: 600;  background: #fad000; min-height: 5%;
+             border: 1px solid;
    }
 
 
@@ -2440,6 +2448,7 @@ img { max-width: 100%; height: auto; }
         margin-left: 20%;
         min-height: 50px;
         margin-top: 15.5%;
+             border: 1px solid;
     }
 
         #stopRouteButton {
@@ -2454,6 +2463,7 @@ img { max-width: 100%; height: auto; }
         margin-left: 37%;
         min-height: 50px;
         margin-top: 15.5%;
+                  border: 1px solid;
     }
 
      .nearbyRouteButton {
@@ -2464,6 +2474,8 @@ img { max-width: 100%; height: auto; }
         min-height: 5%;
         margin-left: 54%;
         margin-top: 15.5%;
+               border: 1px solid;
+       
     }
   
   .addTraningButton, .addTrainingButton {
@@ -2475,6 +2487,7 @@ img { max-width: 100%; height: auto; }
         margin-left: 35% !important;
         position: relative !important;
         z-index: 100000000000 !important;
+            border: 1px solid;
     }
 
          .stopwatchDiv {
@@ -2496,6 +2509,7 @@ img { max-width: 100%; height: auto; }
         background: #fad000 !important;
         min-height: 5% !important;
         margin-left: 48% !important;
+            border: 1px solid;
     }
 
       .addTrainingPopup {
@@ -2548,6 +2562,7 @@ img { max-width: 100%; height: auto; }
         font-weight: 800;
         background: #fad000;
         margin-top: 2%;
+              border: 1px solid;
     }
 
       .stopwatchDiv {
@@ -2570,6 +2585,7 @@ img { max-width: 100%; height: auto; }
         background: #fad000 !important;
         min-height: 5% !important;
         margin-left: 48% !important;
+            border: 1px solid;
     }
 
       .addTrainingPopup {
@@ -2618,6 +2634,7 @@ img { max-width: 100%; height: auto; }
         margin-left: 63.5%;
         position: relative;
         z-index: 100000000000;
+                 border: 1px solid;
     }
    #map {
        pointer-events: none; /* Prevent interaction with the map */
@@ -2635,6 +2652,7 @@ img { max-width: 100%; height: auto; }
         margin-left: 20%;
         min-height: 50px;
         margin-top: 9%;
+           border: 1px solid;
     }
 
    .speed {
@@ -2665,6 +2683,7 @@ img { max-width: 100%; height: auto; }
         margin-left: 38%;
         min-height: 50px;
         margin-top: 9%;
+           border: 1px solid;
     }
   
 } 
@@ -2680,6 +2699,7 @@ img { max-width: 100%; height: auto; }
         background: #fad000 !important;
         min-height: 5% !important;
         margin-left: 56% !important;
+               border: 1px solid;
     }
 }
 
@@ -2736,6 +2756,7 @@ img { max-width: 100%; height: auto; }
   margin-left: 21%;
   position: relative;
   z-index: 100000000000;
+          border: 1px solid;
 }
 /*
 .nearbyTrainingsButton {
@@ -2767,6 +2788,7 @@ img { max-width: 100%; height: auto; }
     border-radius: 8px !important;
     min-width: 140px;
     text-align: center;
+          border: 1px solid;
 }
 
 .songName {
@@ -2787,6 +2809,7 @@ img { max-width: 100%; height: auto; }
     .nearbyTrainingsButton {
         margin-top: 140% !important; /* prilagođeno */
         font-size: 18px !important;
+              border: 1px solid;
     }
 }
 
@@ -2795,6 +2818,7 @@ img { max-width: 100%; height: auto; }
     .nearbyTrainingsButton {
         margin-top: 150% !important;
         font-size: 18px !important;
+              border: 1px solid;
     }
 }
 
@@ -2803,6 +2827,7 @@ img { max-width: 100%; height: auto; }
     .nearbyTrainingsButton {
         margin-top: 155% !important;
         font-size: 19px !important;
+              border: 1px solid;
     }
   .addTraningButton {
   background: orange;
@@ -2815,6 +2840,7 @@ img { max-width: 100%; height: auto; }
   margin-left: 21%;
   position: relative;
   z-index: 100000000000;
+            border: 1px solid;
 }
 }
 
@@ -2826,6 +2852,7 @@ img { max-width: 100%; height: auto; }
         position: absolute !important;
         bottom: 0px !important;
         right: 130px !important;
+                  border: 1px solid;
     }
 
   .addTraningButton {
@@ -2839,6 +2866,7 @@ img { max-width: 100%; height: auto; }
   margin-left: 21%;
   position: relative;
   z-index: 100000000000;
+            border: 1px solid;
 }
 }
 
@@ -2850,6 +2878,7 @@ img { max-width: 100%; height: auto; }
         position: absolute !important;
         bottom: 0px !important;
         right: 130px !important;
+               border: 1px solid;
     }
   .addTraningButton {
   background: orange;
@@ -2862,6 +2891,7 @@ img { max-width: 100%; height: auto; }
   margin-left: 21%;
   position: relative;
   z-index: 100000000000;
+            border: 1px solid;
 }
 }
 
@@ -2870,6 +2900,7 @@ img { max-width: 100%; height: auto; }
     .nearbyTrainingsButton {
         margin-top: 50% !important;
         font-size: 18px !important;
+              border: 1px solid;
     }
 }
 
@@ -2878,6 +2909,7 @@ img { max-width: 100%; height: auto; }
     .nearbyTrainingsButton {
         margin-top: 48% !important;
         font-size: 19px !important;
+              border: 1px solid;
     }
 }
 
@@ -2903,6 +2935,7 @@ img { max-width: 100%; height: auto; }
         bottom: 83% !important;
         right: 12% !important;
         font-weight: 50 !important;
+                 border: 1px solid;
     }
     
 
@@ -2917,6 +2950,7 @@ img { max-width: 100%; height: auto; }
         min-width: 50px;
         min-height: 35px;
         font-size: 15px;
+              border: 1px solid;
     }
 #map-content {  
     z-index: 10000000000;
@@ -2931,6 +2965,7 @@ img { max-width: 100%; height: auto; }
     background: #fad000 !important;
     min-width: 60px;
     min-height: 30px;
+             border: 1px solid;
    }
   
 }
@@ -2949,6 +2984,7 @@ img { max-width: 100%; height: auto; }
         color: black !important;
         border: 2px solid yellow !important;
         font-size: 18px !important;
+              border: 1px solid;
     }
       .stopwatchLabel {
         margin-top: 3%;
@@ -2967,6 +3003,7 @@ img { max-width: 100%; height: auto; }
     position: relative;
     z-index: 100000000000;
     bottom: 192px;
+             border: 1px solid;
 }
   .nearbyTrainingsButton {
     position: absolute !important;
@@ -2981,6 +3018,7 @@ img { max-width: 100%; height: auto; }
     border-radius: 8px !important;
     min-width: 140px;
     text-align: center;
+            border: 1px solid;
 }
 }
 
@@ -3010,6 +3048,7 @@ img { max-width: 100%; height: auto; }
     position: relative;
     z-index: 100000000000;
     bottom: 192px;
+             border: 1px solid;
 }
   .nearbyTrainingsButton {
     position: absolute !important;
@@ -3024,6 +3063,7 @@ img { max-width: 100%; height: auto; }
     border-radius: 8px !important;
     min-width: 140px;
     text-align: center;
+            border: 1px solid;
 }
 }
 
@@ -3035,11 +3075,13 @@ img { max-width: 100%; height: auto; }
         color: black !important;
         border: 2px solid yellow !important;
         font-size: 18px !important;
+              border: 1px solid;v
     }
        .stopwatchLabel {
         margin-top: 3%;
         transform: scale(0.82);
         margin-left: -22%;
+                 border: 1px solid;
     }
    .addTraningButton {
     background: orange;
@@ -3053,6 +3095,7 @@ img { max-width: 100%; height: auto; }
     position: relative;
     z-index: 100000000000;
     bottom: 192px;
+             border: 1px solid;
 }
   .nearbyTrainingsButton {
     position: absolute !important;
@@ -3067,6 +3110,7 @@ img { max-width: 100%; height: auto; }
     border-radius: 8px !important;
     min-width: 140px;
     text-align: center;
+            border: 1px solid;
 }
 }
 
@@ -3078,11 +3122,13 @@ img { max-width: 100%; height: auto; }
         color: black !important;
         border: 2px solid yellow !important;
         font-size: 18px !important;
+              border: 1px solid;
     }
        .stopwatchLabel {
         margin-top: 3%;
         transform: scale(0.82);
         margin-left: -22%;
+         
     }
    .addTraningButton {
     background: orange;
@@ -3096,6 +3142,7 @@ img { max-width: 100%; height: auto; }
     position: relative;
     z-index: 100000000000;
     bottom: 192px;
+             border: 1px solid;
 }
   .nearbyTrainingsButton {
     position: absolute !important;
@@ -3110,6 +3157,7 @@ img { max-width: 100%; height: auto; }
     border-radius: 8px !important;
     min-width: 140px;
     text-align: center;
+            border: 1px solid;
 }
 }
 
@@ -3139,6 +3187,7 @@ img { max-width: 100%; height: auto; }
     position: relative;
     z-index: 100000000000;
     bottom: 192px;
+             border: 1px solid;
 }
   .nearbyTrainingsButton {
     position: absolute !important;
@@ -3153,6 +3202,7 @@ img { max-width: 100%; height: auto; }
     border-radius: 8px !important;
     min-width: 140px;
     text-align: center;
+            border: 1px solid;
 }
 }
 
@@ -3164,11 +3214,13 @@ img { max-width: 100%; height: auto; }
         color: black !important;
         border: 2px solid yellow !important;
         font-size: 18px !important;
+              border: 1px solid;
     }
         .stopwatchLabel {
         margin-top: 3%;
         transform: scale(0.82);
         margin-left: -22%;
+                  border: 1px solid;
     }
    .addTraningButton {
     background: orange;
@@ -3182,6 +3234,7 @@ img { max-width: 100%; height: auto; }
     position: relative;
     z-index: 100000000000;
     bottom: 192px;
+             border: 1px solid;
 }
   .nearbyTrainingsButton {
     position: absolute !important;
@@ -3196,6 +3249,7 @@ img { max-width: 100%; height: auto; }
     border-radius: 8px !important;
     min-width: 140px;
     text-align: center;
+            border: 1px solid;
 }
 }
 
@@ -3207,11 +3261,13 @@ img { max-width: 100%; height: auto; }
         color: black !important;
         border: 2px solid yellow !important;
         font-size: 18px !important;
+              border: 1px solid;
     }
         .stopwatchLabel {
         margin-top: 3%;
         transform: scale(0.82);
         margin-left: -22%;
+                  border: 1px solid;
     }
    .addTraningButton {
     background: orange;
@@ -3225,6 +3281,7 @@ img { max-width: 100%; height: auto; }
     position: relative;
     z-index: 100000000000;
     bottom: 192px;
+             border: 1px solid;
 }
   .nearbyTrainingsButton {
     position: absolute !important;
@@ -3239,6 +3296,7 @@ img { max-width: 100%; height: auto; }
     border-radius: 8px !important;
     min-width: 140px;
     text-align: center;
+            border: 1px solid;
 }
 }
 
@@ -3250,11 +3308,13 @@ img { max-width: 100%; height: auto; }
         color: black !important;
         border: 2px solid yellow !important;
         font-size: 18px !important;
+              border: 1px solid;
     }
         .stopwatchLabel {
         margin-top: 3%;
         transform: scale(0.82);
         margin-left: -22%;
+                  border: 1px solid;
     }
    .addTraningButton {
     background: orange;
@@ -3268,6 +3328,7 @@ img { max-width: 100%; height: auto; }
     position: relative;
     z-index: 100000000000;
     bottom: 192px;
+             border: 1px solid;
 }
   .nearbyTrainingsButton {
     position: absolute !important;
@@ -3282,6 +3343,7 @@ img { max-width: 100%; height: auto; }
     border-radius: 8px !important;
     min-width: 140px;
     text-align: center;
+            border: 1px solid;
 }
 }
 
