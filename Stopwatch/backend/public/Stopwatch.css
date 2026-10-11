@@ -2568,9 +2568,9 @@ body{
   padding: 20px;
   border-radius: 14px;
   width: 90%;
-  max-width: 380px;
+  max-width: 500px;
   text-align: center;
-   max-height: 280px;
+   max-height: 350px;
 }
 
 .popup-content input {
@@ -2880,6 +2880,8 @@ display: none;
    background: #f7cc68 !important;
     text-align: center;
     /* border: 2px solid #000; */
+    width: 450px;
+    height: 350px;
 }
 
 .addMusicContent .h2Youtube {
@@ -2937,7 +2939,7 @@ display: none;
 .popupCloseButton {
     position: absolute;
     top: 5px;
-       right: -16px;
+       right: 0px;
 
     background: transparent;
     border: none;
@@ -3300,5 +3302,21 @@ display: none;
 #addMusicPopup,
 #radioPopup {
     box-shadow: 0 0 250px 250px rgba(0, 0, 0, 0.6);
+}
+
+#addMusicPopup {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: rgba(0, 0, 0, 0.6) !important;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 500000000000000 !important;
 }
 
