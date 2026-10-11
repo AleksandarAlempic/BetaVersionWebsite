@@ -3098,13 +3098,19 @@ saveYoutubeBtn && saveYoutubeBtn.addEventListener("click", async () => {
 // });
 
   
-
 // --- Add Music popup ---
 document.getElementById("fetchCustomPlaylistButton")?.addEventListener("click", () => {
     const popup = document.getElementById("addMusicPopup");
+    const mapContent = document.getElementById("mapContent");
 
     if (!popup) return;
 
+    // Sakrij mapu
+    if (mapContent) {
+        mapContent.style.display = "none";
+    }
+
+    // Sakrij glavne dugmiće
     [
         "startRouteButton",
         "stopRouteButton",
@@ -3122,8 +3128,16 @@ document.getElementById("fetchCustomPlaylistButton")?.addEventListener("click", 
 
 function closeAddMusicPopup() {
     const popup = document.getElementById("addMusicPopup");
+    const mapContent = document.getElementById("mapContent");
+
     if (popup) popup.style.display = "none";
 
+    // Vrati mapu
+    if (mapContent) {
+        mapContent.style.display = "block";
+    }
+
+    // Vrati glavne dugmiće
     [
         "startRouteButton",
         "stopRouteButton",
@@ -3137,13 +3151,15 @@ function closeAddMusicPopup() {
     });
 }
 
-document.getElementById("closeAddMusicPopup")?.addEventListener("click", closeAddMusicPopup);
+document.getElementById("closeAddMusicPopup")?.addEventListener(
+    "click",
+    closeAddMusicPopup
+);
 
 document.getElementById("closeAddMusicPopupLink")?.addEventListener("click", event => {
     event.preventDefault();
     closeAddMusicPopup();
 });
-
   // =================== RADIO POPUP ===================
 
 document.getElementById("addRadioChoice")?.addEventListener("click", () => {
