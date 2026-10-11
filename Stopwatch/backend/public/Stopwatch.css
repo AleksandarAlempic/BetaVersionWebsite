@@ -3284,5 +3284,9 @@ display: none;
     width: 25%;
     height: 8%;
     margin-top: 8%;
-}    
+}
+#routeDetailsPopup.route-details-radial-overlay {
+    box-shadow: 0 0 100px 80px rgba(0, 0, 0, 0.35);
+}
+
 }
