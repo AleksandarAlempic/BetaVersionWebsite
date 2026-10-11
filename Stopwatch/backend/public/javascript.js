@@ -3099,34 +3099,49 @@ saveYoutubeBtn && saveYoutubeBtn.addEventListener("click", async () => {
 
   
 
-// --- Add Music dugme ---
+// --- Add Music popup ---
 document.getElementById("fetchCustomPlaylistButton")?.addEventListener("click", () => {
-    const addMusicPopup = document.getElementById("addMusicPopup");
+    const popup = document.getElementById("addMusicPopup");
 
-    if (addMusicPopup) {
-        addMusicPopup.style.display = "flex";
-        hideMainButtons();
-    }
+    if (!popup) return;
+
+    [
+        "startRouteButton",
+        "stopRouteButton",
+        "fetchNearbyRoutesButton",
+        "fetchNearbyTrainingsButton",
+        "fetchCustomPlaylistButton",
+        "fetchAddTrainingButton"
+    ].forEach(id => {
+        const button = document.getElementById(id);
+        if (button) button.style.setProperty("display", "none", "important");
+    });
+
+    popup.style.display = "flex";
 });
 
-document.getElementById("closeAddMusicPopup")?.addEventListener("click", () => {
-    const addMusicPopup = document.getElementById("addMusicPopup");
+function closeAddMusicPopup() {
+    const popup = document.getElementById("addMusicPopup");
+    if (popup) popup.style.display = "none";
 
-    if (addMusicPopup) {
-        addMusicPopup.style.display = "none";
-        showMainButtons();
-    }
-});
+    [
+        "startRouteButton",
+        "stopRouteButton",
+        "fetchNearbyRoutesButton",
+        "fetchNearbyTrainingsButton",
+        "fetchCustomPlaylistButton",
+        "fetchAddTrainingButton"
+    ].forEach(id => {
+        const button = document.getElementById(id);
+        if (button) button.style.removeProperty("display");
+    });
+}
 
-document.getElementById("closeAddMusicPopupLink")?.addEventListener("click", (event) => {
+document.getElementById("closeAddMusicPopup")?.addEventListener("click", closeAddMusicPopup);
+
+document.getElementById("closeAddMusicPopupLink")?.addEventListener("click", event => {
     event.preventDefault();
-
-    const addMusicPopup = document.getElementById("addMusicPopup");
-
-    if (addMusicPopup) {
-        addMusicPopup.style.display = "none";
-        showMainButtons();
-    }
+    closeAddMusicPopup();
 });
 
   // =================== RADIO POPUP ===================
