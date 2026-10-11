@@ -2176,7 +2176,7 @@ body{
     border-radius: 3%;
     margin-top: -37.9%;
     display: none;
-    
+    box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.73);
     /* margin-bottom: 50%;  */
   }
 
