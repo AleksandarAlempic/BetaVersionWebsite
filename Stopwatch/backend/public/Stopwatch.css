@@ -2938,8 +2938,8 @@ display: none;
 
 .popupCloseButton {
     position: absolute;
-    top: 5px;
-       right: 0px;
+    top: 6px;
+       right: 6px;
 
     background: transparent;
     border: none;
@@ -3317,5 +3317,6 @@ display: none;
     justify-content: center;
     align-items: center;
     z-index: 500000000000000 !important;
+    margin-top: -20% !important;
 }
 
