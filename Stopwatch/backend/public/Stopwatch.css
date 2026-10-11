@@ -19,6 +19,10 @@
  border: 2px solid black;
 }
 
+#addMusicPopup {
+    box-shadow: 0 0 100px 80px rgba(0, 0, 0, 0.35);
+}
+
 .retrievePopupContent {
     background: white;
     width: 70%;
