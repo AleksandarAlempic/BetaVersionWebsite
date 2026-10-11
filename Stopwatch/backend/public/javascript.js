@@ -3099,24 +3099,34 @@ saveYoutubeBtn && saveYoutubeBtn.addEventListener("click", async () => {
 
   
 
-  // --- Add Music dugme ---
+// --- Add Music dugme ---
 document.getElementById("fetchCustomPlaylistButton")?.addEventListener("click", () => {
-
     const addMusicPopup = document.getElementById("addMusicPopup");
 
     if (addMusicPopup) {
-        addMusicPopup.style.display = "block";
+        addMusicPopup.style.display = "flex";
+        hideMainButtons();
     }
 });
 
-  document.getElementById("closeAddMusicPopup")?.addEventListener("click", () => {
+document.getElementById("closeAddMusicPopup")?.addEventListener("click", () => {
+    const addMusicPopup = document.getElementById("addMusicPopup");
+
+    if (addMusicPopup) {
+        addMusicPopup.style.display = "none";
+        showMainButtons();
+    }
+});
+
+document.getElementById("closeAddMusicPopupLink")?.addEventListener("click", (event) => {
+    event.preventDefault();
 
     const addMusicPopup = document.getElementById("addMusicPopup");
 
     if (addMusicPopup) {
         addMusicPopup.style.display = "none";
+        showMainButtons();
     }
-
 });
 
   // =================== RADIO POPUP ===================
