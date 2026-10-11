@@ -19,9 +19,7 @@
  border: 2px solid black;
 }
 
-#addMusicPopup {
-    box-shadow: 0 0 100px 80px rgba(0, 0, 0, 0.35);
-}
+
 
 .retrievePopupContent {
     background: white;
@@ -3290,7 +3288,11 @@ display: none;
     margin-top: 8%;
 }
 #routeDetailsPopup.route-details-radial-overlay {
-    box-shadow: 0 0 100px 80px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 250px 250px rgba(0, 0, 0, 0.4);
+}
+
+#addMusicPopup {
+   box-shadow: 0 0 250px 250px rgba(0, 0, 0, 0.4);
 }
 
 }
