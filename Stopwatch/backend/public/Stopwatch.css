@@ -41,6 +41,7 @@
     margin-top: -36%;
 
     box-sizing: border-box;
+    box-shadow: 0 0 250px 250px rgba(0, 0, 0, 0.73) !important;
 }
 
 .retrievePopupButton {
