@@ -3299,9 +3299,8 @@ display: none;
 /* Isti efekat senke na svim glavnim popup-ovima */
 
 #routeDetailsPopup,
-#addMusicPopup,
-#radioPopup {
-    box-shadow: 0 0 250px 250px rgba(0, 0, 0, 0.6);
+#addMusicPopup {
+    box-shadow: 0 0 250px 250px rgba(0, 0, 0, 0.73);
 }
 
 #addMusicPopup {
