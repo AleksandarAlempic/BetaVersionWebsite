@@ -3320,3 +3320,5 @@ display: none;
     margin-top: -20% !important;
 }
 
+#addMusicPopup {     box-shadow: 0 0 250px 250px rgba(0, 0, 0, 0.4) !important; }
+
