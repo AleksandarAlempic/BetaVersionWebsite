@@ -234,6 +234,18 @@ const translations = {
     routeDetailsTitle: "Route Details",
     pushUps: "PushUps",
     pullUps: "PullUps",
+        routeDetailsPopup: {
+      title: "Route Details",
+      close: "Close"
+    },
+    addMusicPopup: {
+      title: "Add Music",
+      close: "Close"
+    },
+    addRadioPopup: {
+      title: "Choose Radio",
+      close: "Close"
+    },
     sitUps: "SitUps",
      username: "Username",
     duration: "Duration",
@@ -256,6 +268,18 @@ const translations = {
     distance: "Rastojanje:",
     speed: "Brzina:",
     time: "Vreme",
+       routeDetailsPopup: {
+      title: "Detalji rute",
+      close: "Zatvori"
+    },
+    addMusicPopup: {
+      title: "Dodaj muziku",
+      close: "Zatvori"
+    },
+    addRadioPopup: {
+      title: "Izaberi radio",
+      close: "Zatvori"
+    },
     routeName: "Naziv rute",
     unknownUser: "Nepoznat korisnik",
     username: "Korisničko ime",
@@ -492,26 +516,45 @@ retrieveAllTrainingsButton.innerText =
 
 retrieveMyTrainingsButton.innerText =
   translations[currentLanguage].retrieve.myTrainings;
-}
 
-function updateRouteDetailsLanguage() {
 
-    const lang = translations[currentLanguage];
+  // =================== ROUTE DETAILS, ADD MUSIC & RADIO TRANSLATIONS ===================
+  const routeDetailsTitle = document.querySelector("#detailsRouteName");
+  if (routeDetailsTitle) {
+    routeDetailsTitle.textContent =
+      translations[currentLanguage].routeDetailsPopup.title;
+  }
 
-    document.getElementById("detailsRouteName").textContent =
-        lang.routeDetailsTitle;
+  const routeDetailsClose = document.querySelector("#routeDetailsCloseButton");
+  if (routeDetailsClose) {
+    routeDetailsClose.textContent =
+      translations[currentLanguage].routeDetailsPopup.close;
+  }
 
-    document.getElementById("detailsUsernameLabel").textContent =
-        lang.username + ":";
+  const addMusicTitle = document.querySelector("#addMusicPopup .h2Youtube");
+  if (addMusicTitle) {
+    addMusicTitle.textContent =
+      translations[currentLanguage].addMusicPopup.title;
+  }
 
-    document.getElementById("detailsSpeedLabel").textContent =
-        lang.speed;
+  const addMusicClose = document.querySelector("#closeAddMusicPopupLink");
+  if (addMusicClose) {
+    addMusicClose.textContent =
+      translations[currentLanguage].addMusicPopup.close;
+  }
 
-    document.getElementById("detailsTimeLabel").textContent =
-        lang.time;
+  // Add Radio
+  const addRadioTitle = document.querySelector("#addRadioPopup .h2Youtube");
+  if (addRadioTitle) {
+    addRadioTitle.textContent =
+      translations[currentLanguage].addRadioPopup.title;
+  }
 
-    document.getElementById("detailsDistanceLabel").textContent =
-        lang.distance;
+  const addRadioClose = document.querySelector("#closeAddRadioPopupLink");
+  if (addRadioClose) {
+    addRadioClose.textContent =
+      translations[currentLanguage].addRadioPopup.close;
+  }
 }
 
 // =================== TRAINING POPUP TRANSLATIONS ===================
@@ -523,6 +566,7 @@ const trainingTranslations = {
     userNameLabel: "User Name",
     pushUpsLabel: "Push Ups",
     pullUpsLabel: "Pull Ups",
+    sitUpsLabel: "Sit Ups",
     sitUpsLabel: "Sit Ups",
     absCountLabel: "Abs",
     durationLabel: "Duration (min)",
