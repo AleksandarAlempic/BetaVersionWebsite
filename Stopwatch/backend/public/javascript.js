@@ -238,10 +238,12 @@ const translations = {
       title: "Route Details",
       close: "Close"
     },
-    addMusicPopup: {
-      title: "Add Music",
-      close: "Close"
-    },
+  addMusicPopup: {
+  title: "Add Music",
+  close: "Close",
+  addPlaylist: "Add Playlist",
+  addRadio: "Add Radio"
+},
     addRadioPopup: {
       title: "Choose Radio",
       close: "Close"
@@ -272,10 +274,12 @@ const translations = {
       title: "Detalji rute",
       close: "Zatvori"
     },
-    addMusicPopup: {
-      title: "Dodaj muziku",
-      close: "Zatvori"
-    },
+   addMusicPopup: {
+  title: "Dodaj muziku",
+  close: "Zatvori",
+  addPlaylist: "Dodaj plejlistu",
+  addRadio: "Dodaj radio"
+},
     addRadioPopup: {
       title: "Izaberi radio",
       close: "Zatvori"
@@ -525,7 +529,7 @@ retrieveMyTrainingsButton.innerText =
       translations[currentLanguage].routeDetailsPopup.title;
   }
 
-  const routeDetailsClose = document.querySelector("#routeDetailsCloseButton");
+  const routeDetailsClose = document.querySelector("#routeDetailsCloseLink");
   if (routeDetailsClose) {
     routeDetailsClose.textContent =
       translations[currentLanguage].routeDetailsPopup.close;
