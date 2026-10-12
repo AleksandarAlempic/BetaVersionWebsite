@@ -548,16 +548,28 @@ retrieveMyTrainingsButton.innerText =
   }
 
   // Add Radio
-  const addRadioTitle = document.querySelector("#addRadioPopup .h2Youtube");
+  const addRadioTitle = document.querySelector("#radioPopup .radioHeader h2");
   if (addRadioTitle) {
     addRadioTitle.textContent =
       translations[currentLanguage].addRadioPopup.title;
   }
 
-  const addRadioClose = document.querySelector("#closeAddRadioPopupLink");
+  const addRadioClose = document.getElementById("closeRadioPopupBottom");
   if (addRadioClose) {
     addRadioClose.textContent =
       translations[currentLanguage].addRadioPopup.close;
+  }
+  
+  const addPlaylistButton = document.querySelector("#addPlaylistChoice");
+  if (addPlaylistButton) {
+    addPlaylistButton.lastChild.textContent =
+      currentLanguage === "en" ? " Add Playlist" : " Dodaj plejlistu";
+  }
+
+  const addRadioButton = document.querySelector("#addRadioChoice");
+  if (addRadioButton) {
+    addRadioButton.lastChild.textContent =
+      currentLanguage === "en" ? " Add Radio" : " Dodaj radio";
   }
 }
 
