@@ -383,11 +383,19 @@ function updateYoutubePopupLanguage() {
   // Dugme koje otvara popup
   const openPopupBtn = document.getElementById("fetchCustomPlaylistButton");
 
+
+
+  
+
   if (title) title.innerText = t.title;
   if (input) input.placeholder = t.placeholder;
   if (saveBtn) saveBtn.innerText = t.save;
   if (cancelBtn) cancelBtn.innerText = t.cancel;
-  if (openPopupBtn) openPopupBtn.innerText = t.openButton;
+if (openPopupBtn) {
+  openPopupBtn.innerText = currentLanguage === "en"
+    ? "Add Music"
+    : "Dodaj muziku";
+}
 }
 
 let currentLanguage = localStorage.getItem("selectedLanguage") || "en";
