@@ -1046,36 +1046,43 @@ window.addEventListener('load', () => {
   }, 2500); // povećano trajanje splash-a
 });
 </script>
+
 <!-- Retrieve Routes Popup -->
+
 <div id="retrieveRoutesPopup" class="retrievePopup">
-    <div class="retrievePopupContent">
+    <div class="retrievePopupContent popup-content">
 
-        <h3 class="retrievePopupTitle">Retrieve Routes</h3>
+    <button type="button"
+            id="retrieveRoutesCloseButton"
+            class="popupCloseButton"
+            aria-label="Close">×</button>
 
-        <button id="retrieveAllRoutesButton" class="retrievePopupButton">
-            Retrieve All Routes
-        </button>
+    <h3 class="retrievePopupTitle">Retrieve Routes</h3>
 
-        <button id="retrieveMyRoutesButton" class="retrievePopupButton">
-            Retrieve My Routes
-        </button>
+    <button id="retrieveAllRoutesButton" class="retrievePopupButton">
+        Retrieve All Routes
+    </button>
+
+    <button id="retrieveMyRoutesButton" class="retrievePopupButton">
+        Retrieve My Routes
+    </button>
 
     <a href="#" id="closeRetrieveRoutesPopup" class="popupCloseLink">
-    Close
-</a>
-        <button type="button"
-     id="retrieveRoutesCloseButton"
-     class="popupXButton"
-     aria-label="Close">
-×
-</button>
-    </div>
+        Close
+    </a>
+
 </div>
 
+</div>
 <!-- Retrieve Trainings Popup -->
 
 <div id="retrieveTrainingsPopup" class="retrievePopup">
-    <div class="retrievePopupContent">
+    <div class="retrievePopupContent popup-content">
+
+    <button type="button"
+            id="retrieveTrainingsCloseButton"
+            class="popupCloseButton"
+            aria-label="Close">×</button>
 
     <h3 class="retrievePopupTitle">Retrieve Trainings</h3>
 
@@ -1091,14 +1098,8 @@ window.addEventListener('load', () => {
         Close
     </a>
 
-    <button type="button"
-            id="retrieveTrainingsCloseButton"
-            class="popupXButton"
-            aria-label="Close">
-        ×
-    </button>
-
 </div>
+
 </div>
             <audio id="radioAudio" preload="none"></audio>
         </body>
