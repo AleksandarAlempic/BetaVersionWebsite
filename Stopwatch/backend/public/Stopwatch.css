@@ -3322,18 +3322,25 @@ display: none;
 
 #retrieveRoutesPopup .popupCloseButton,
 #retrieveTrainingsPopup .popupCloseButton {
-display: block !important;
-visibility: visible !important;
-opacity: 1 !important;
-position: static !important;
-margin-left: auto !important;
-margin-right: 0 !important;
-color: #000 !important;
-background: transparent !important;
-border: none !important;
-font-size: 28px !important;
-font-weight: bold !important;
-line-height: 1 !important;
-cursor: pointer;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 32px !important;
+    height: 32px !important;
+    padding: 0 !important;
+
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+
+    font-size: 26px !important;
+    line-height: 1 !important;
+    color: #000 !important;
+    background: transparent !important;
+    border: none !important;
+
+    cursor: pointer !important;
+    z-index: 9999 !important;
 }
 
