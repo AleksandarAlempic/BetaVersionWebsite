@@ -3320,3 +3320,20 @@ display: none;
 
 #addMusicPopup {     box-shadow: 0 0 250px 350px rgba(0, 0, 0, 0.74) !important; }
 
+#retrieveRoutesPopup .popupCloseButton,
+#retrieveTrainingsPopup .popupCloseButton {
+display: block !important;
+visibility: visible !important;
+opacity: 1 !important;
+position: static !important;
+margin-left: auto !important;
+margin-right: 0 !important;
+color: #000 !important;
+background: transparent !important;
+border: none !important;
+font-size: 28px !important;
+font-weight: bold !important;
+line-height: 1 !important;
+cursor: pointer;
+}
+
