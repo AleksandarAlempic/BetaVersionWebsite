@@ -3066,7 +3066,7 @@ display: none;
     overflow-y: auto;
     overflow-x: hidden;
 
-    background: #fffdf5;
+    background: #E7D9B7;
 }
 
 
@@ -3170,7 +3170,7 @@ display: none;
 /* HOVER */
 
 #radioPopup .radioStation:hover {
-    background: #E7D9B7;
+    background: white;
 }
 
 
