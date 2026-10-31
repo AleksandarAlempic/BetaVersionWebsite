@@ -444,12 +444,30 @@ const supabase = createClient(
   window.location.href = '/';
 });
 
-    document.getElementById('forgot-link').addEventListener('click', (event) => {
-      event.preventDefault();
-      showMessage(
-        'Poveži ovaj link sa procedurom za resetovanje lozinke kada backend bude spreman.'
-      );
-    });
+    document.getElementById('forgot-link').addEventListener('click', async (event) => {
+  event.preventDefault();
+
+  const email = document.getElementById('email').value.trim();
+
+  if (!email) {
+    showMessage('Prvo unesi svoju email adresu.');
+    document.getElementById('email').focus();
+    return;
+  }
+
+  showMessage('Šaljemo link za resetovanje lozinke...');
+
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: 'https://betaversionwebsite.onrender.com/reset-password.html'
+  });
+
+  if (error) {
+    showMessage('Greška: ' + error.message);
+    return;
+  }
+
+  showMessage('Ako nalog postoji, poslali smo email sa linkom za resetovanje lozinke.');
+});
 
    document.getElementById('signup-link').addEventListener('click', async (event) => {
   event.preventDefault();
