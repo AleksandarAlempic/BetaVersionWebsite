@@ -11,6 +11,17 @@ const supabase = createClient(
     SUPABASE_ANON_KEY
 );
 
+supabase.auth.getSession()
+    .then(({ data, error }) => {
+        if (error) {
+            console.error("❌ Supabase connection error:", error);
+            return;
+        }
+
+        console.log("✅ Supabase connected!");
+        console.log("Current session:", data.session);
+    });
+
 let retrievingTrainings = false;
 
 
