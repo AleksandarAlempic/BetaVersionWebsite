@@ -412,12 +412,28 @@
       status.classList.add('visible');
     }
 
-    document.getElementById('login-form').addEventListener('submit', (event) => {
-      event.preventDefault();
-      showMessage(
-        'Izgled prijave je spreman, ali autentifikacija još nije povezana sa backendom.'
-      );
-    });
+   document.getElementById('login-form').addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const email = document.getElementById('email').value.trim();
+  const passwordValue = password.value;
+
+  showMessage('Prijavljivanje u toku...');
+
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: email,
+    password: passwordValue
+  });
+
+  if (error) {
+    showMessage('Greška: ' + error.message);
+    return;
+  }
+
+  showMessage('Uspešno ste prijavljeni!');
+
+  window.location.href = '/';
+});
 
     document.getElementById('forgot-link').addEventListener('click', (event) => {
       event.preventDefault();
