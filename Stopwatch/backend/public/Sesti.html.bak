@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4c066">
+  <title>KV Fit — Old School Login</title>
+
+  <style>
+    :root {
+      --kv-orange: #f4c066;
+      --kv-orange-deep: #e9a938;
+      --ink: #191713;
+      --paper: #fffaf0;
+      --muted: #6f675b;
+      --line: #2b261e;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      min-height: 100%;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(255,255,255,.45) 0 2px, transparent 3px),
+        radial-gradient(circle at 82% 24%, rgba(25,23,19,.07) 0 2px, transparent 3px),
+        var(--kv-orange);
+      background-size: 29px 29px, 37px 37px, auto;
+      font-family: Impact, Haettenschweiler, "Arial Narrow Bold", "Arial Narrow", sans-serif;
+      letter-spacing: .2px;
+      display: grid;
+      place-items: center;
+      padding: 24px 16px;
+    }
+
+    .page {
+      width: min(100%, 440px);
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 2px 13px;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 18px;
+      letter-spacing: 1.4px;
+      font-weight: 900;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      background: var(--paper);
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+
+    .brand-mark svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .edition {
+      border: 1.5px solid var(--ink);
+      padding: 7px 9px;
+      transform: rotate(2deg);
+      background: rgba(255,250,240,.45);
+      white-space: nowrap;
+    }
+
+    .login-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--paper);
+      border: 3px solid var(--ink);
+      box-shadow: 9px 9px 0 var(--ink);
+    }
+
+    .top-stripe {
+      height: 11px;
+      background: repeating-linear-gradient(
+        135deg,
+        var(--ink) 0 8px,
+        var(--kv-orange) 8px 16px
+      );
+      border-bottom: 3px solid var(--ink);
+    }
+
+    .card-content {
+      padding: 27px 25px 24px;
+    }
+
+    .login-logo {
+      display: block;
+      width: 280px;
+      max-width: 100%;
+      max-height: 150px;
+      height: auto;
+      object-fit: contain;
+      margin: 0 auto 22px;
+    }
+
+    .intro {
+      margin: 0 0 23px;
+      font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      font-size: clamp(25px, 7vw, 32px);
+      line-height: 1.05;
+      letter-spacing: -.4px;
+      font-weight: 900;
+      text-transform: uppercase;
+      text-align: center;
+      color: var(--ink);
+    }
+
+    form {
+      display: grid;
+      gap: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+    }
+
+    .field {
+      position: relative;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      min-height: 49px;
+      padding: 13px 14px;
+      border: 2px solid var(--ink);
+      border-radius: 0;
+      outline: none;
+      background: #fffdf8;
+      color: var(--ink);
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+    }
+
+    input:focus {
+      box-shadow: 4px 4px 0 var(--kv-orange-deep);
+      background: #fff;
+    }
+
+    .password-input {
+      padding-right: 78px;
+    }
+
+    .show-password {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      border: 0;
+      padding: 6px 2px;
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .form-meta {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: -5px;
+    }
+
+    a {
+      color: var(--ink);
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+    }
+
+    .submit {
+      width: 100%;
+      min-height: 54px;
+      margin-top: 3px;
+      border: 2px solid var(--ink);
+      border-radius: 0;
+      background: var(--ink);
+      color: var(--paper);
+      cursor: pointer;
+      font: 900 16px Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      box-shadow: 5px 5px 0 var(--kv-orange-deep);
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+
+    .submit:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 3px 3px 0 var(--kv-orange-deep);
+    }
+
+    .submit:active {
+      transform: translate(5px, 5px);
+      box-shadow: none;
+    }
+
+    .status {
+      display: none;
+      padding: 11px 12px;
+      border: 1.5px solid var(--ink);
+      background: #fff1cd;
+      font: 12px/1.45 Arial, sans-serif;
+    }
+
+    .status.visible {
+      display: block;
+    }
+
+    .bottom-rule {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 1.7px;
+      text-transform: uppercase;
+    }
+
+    .bottom-rule::before,
+    .bottom-rule::after {
+      content: "";
+      height: 2px;
+      flex: 1;
+      background: #d7cdbb;
+    }
+
+    .signup {
+      margin: 17px 0 0;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      color: #514a40;
+    }
+
+    .signup a {
+      margin-left: 4px;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 19px 2px 0;
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .footer span:last-child {
+      text-align: right;
+    }
+
+    @media (max-width: 380px) {
+      body {
+        padding: 18px 12px;
+      }
+
+      .card-content {
+        padding: 23px 19px 21px;
+      }
+
+      .edition {
+        font-size: 10px;
+        letter-spacing: 1.2px;
+      }
+
+      .brand {
+        font-size: 16px;
+      }
+
+      .footer {
+        font-size: 9px;
+      }
+
+      .login-logo {
+        width: 250px;
+        max-height: 130px;
+      }
+
+      .intro {
+        font-size: 25px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <div class="brand-row">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.4"
+            stroke-linecap="square"
+          >
+            <path d="M3 9v6M6 6v12M9 10v4M15 10v4M18 6v12M21 9v6M6 12h12"/>
+          </svg>
+        </span>
+
+        <span>KingsVillage Fit</span>
+      </div>
+
+      <span class="edition">EST. KV FIT</span>
+    </div>
+
+    <section class="login-card" aria-labelledby="page-title">
+
+      <div class="top-stripe" aria-hidden="true"></div>
+
+      <div class="card-content">
+
+        <img
+          class="login-logo"
+          src="KVLogo.png"
+          alt="KingsVillage Fit Logo"
+        >
+
+        <p class="intro" id="page-title">
+          Old School.<br>
+          Real Strength.
+        </p>
+
+        <form id="login-form">
+
+          <div class="field">
+            <label for="email">Email adresa</label>
+
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="ime@email.com"
+              autocomplete="email"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="password">Lozinka</label>
+
+            <input
+              class="password-input"
+              id="password"
+              name="password"
+              type="password"
+              placeholder="Unesi lozinku"
+              autocomplete="current-password"
+              required
+            >
+
+            <button
+              class="show-password"
+              id="toggle-password"
+              type="button"
+              aria-label="Prikaži lozinku"
+            >
+              PRIKAŽI
+            </button>
+          </div>
+
+          <div class="form-meta">
+            <a href="#" id="forgot-link">
+              Zaboravljena lozinka?
+            </a>
+          </div>
+
+          <button class="submit" type="submit">
+            Uđi u KV Fit&nbsp; →
+          </button>
+
+          <div
+            class="status"
+            id="status"
+            role="status"
+            aria-live="polite"
+          ></div>
+
+        </form>
+
+        <div class="bottom-rule">
+          Train hard · Stay humble
+        </div>
+
+        <p class="signup">
+          Nemaš nalog?
+          <a href="#" id="signup-link">Pridruži se</a>
+        </p>
+
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>Built the old-school way.</span>
+
+      <span>
+        KingsVillage Fit © <span id="year"></span>
+      </span>
+    </footer>
+
+  </main>
+
+  <script>
+    const password = document.getElementById('password');
+    const toggle = document.getElementById('toggle-password');
+    const status = document.getElementById('status');
+
+    toggle.addEventListener('click', () => {
+      const show = password.type === 'password';
+
+      password.type = show ? 'text' : 'password';
+      toggle.textContent = show ? 'SAKRIJ' : 'PRIKAŽI';
+
+      toggle.setAttribute(
+        'aria-label',
+        show ? 'Sakrij lozinku' : 'Prikaži lozinku'
+      );
+    });
+
+    function showMessage(message) {
+      status.textContent = message;
+      status.classList.add('visible');
+    }
+
+    document.getElementById('login-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      showMessage(
+        'Izgled prijave je spreman, ali autentifikacija još nije povezana sa backendom.'
+      );
+    });
+
+    document.getElementById('forgot-link').addEventListener('click', (event) => {
+      event.preventDefault();
+
+      showMessage(
+        'Poveži ovaj link sa procedurom za resetovanje lozinke kada backend bude spreman.'
+      );
+    });
+
+    document.getElementById('signup-link').addEventListener('click', (event) => {
+      event.preventDefault();
+
+      showMessage(
+        'Poveži ovaj link sa stranicom za registraciju kada bude spremna.'
+      );
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
