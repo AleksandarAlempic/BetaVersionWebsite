@@ -451,12 +451,29 @@ const supabase = createClient(
       );
     });
 
-    document.getElementById('signup-link').addEventListener('click', (event) => {
-      event.preventDefault();
-      showMessage(
-        'Poveži ovaj link sa stranicom za registraciju kada bude spremna.'
-      );
-    });
+   document.getElementById('signup-link').addEventListener('click', async (event) => {
+  event.preventDefault();
+
+  const emailInput = document.getElementById('email');
+
+  if (!emailInput.reportValidity() || !password.reportValidity()) {
+    return;
+  }
+
+  showMessage('Kreiranje naloga u toku...');
+
+  const { data, error } = await supabase.auth.signUp({
+    email: emailInput.value.trim(),
+    password: password.value
+  });
+
+  if (error) {
+    showMessage('Greška: ' + error.message);
+    return;
+  }
+
+  showMessage('Uspešna registracija! Proveri email i potvrdi svoj nalog.');
+});
 
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
