@@ -1,7 +1,17 @@
 import { safeSave } from './safe-save.js';
 
-let retrievingTrainings = false;
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
+const SUPABASE_URL = 'https://mcuhtmzkszuhhyhydivj.supabase.co';
+
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1jdWh0bXprc3p1aGh5aHlkaXZqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM5NTIzMDIsImV4cCI6MjA1OTUyODMwMn0.UYL-lVnxir4WBpbU-MWRwP1jAl7S21S-z_mVwUgt8xE';
+
+const supabase = createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+);
+
+let retrievingTrainings = false;
 
 
 let serverWokenUp = false;
