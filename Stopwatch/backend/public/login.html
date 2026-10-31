@@ -392,10 +392,19 @@
     </footer>
   </main>
 
-  <script>
+ <script type="module">
     const password = document.getElementById('password');
     const toggle = document.getElementById('toggle-password');
     const status = document.getElementById('status');
+
+    const { createClient } = await import(
+  'https://esm.sh/@supabase/supabase-js@2'
+);
+
+const supabase = createClient(
+  'https://mcuhtmzkszuhhyhydivj.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1jdWh0bXprc3p1aGh5aHlkaXZqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM5NTIzMDIsImV4cCI6MjA1OTUyODMwMn0.UYL-lVnxir4WBpbU-MWRwP1jAl7S21S-z_mVwUgt8xE'
+);
 
     toggle.addEventListener('click', () => {
       const show = password.type === 'password';
