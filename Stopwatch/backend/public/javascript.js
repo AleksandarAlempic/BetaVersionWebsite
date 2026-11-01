@@ -24,6 +24,33 @@ supabase.auth.getSession()
 
 let retrievingTrainings = false;
 
+// =================== KV FIT LOGOUT ===================
+
+const logoutButton = document.getElementById("logoutButton");
+
+if (logoutButton) {
+    logoutButton.addEventListener("click", async () => {
+
+        logoutButton.disabled = true;
+        logoutButton.textContent = "Logging out...";
+
+        const { error } = await supabase.auth.signOut();
+
+        if (error) {
+            console.error("Logout failed:", error);
+
+            alert("Logout failed. Please try again.");
+
+            logoutButton.disabled = false;
+            logoutButton.textContent = "↪ Logout";
+
+            return;
+        }
+
+        window.location.href = "/login.html";
+    });
+}
+
 
 let serverWokenUp = false;
 
