@@ -5,6 +5,13 @@ const playLists = [];
 // playLists.push(customSongs);
 
 let introSongs = [
+
+       {
+    name: 'Na putu za ludilo',
+    path: 'audio/Mile%20Ignjatovi%C4%87%20-%20Na%20putu%20za%20ludilo%20-%20%28Audio%201996%29.mp3',
+    artist: 'Mile Ignjatović',
+    cover: 'images/audio/MileIgnjatovicjpg.jpg'
+},
     
    {
       name: 'Jutro je',
@@ -242,6 +249,12 @@ let narodnjaciSongs = [
     artist: 'Sneki',
     cover: 'images/audio/TakniMeTakni.jpg'
   },
+     {
+    name: 'Znam',
+    path: 'audio/Ceca - Znam - (Audio 1995) HD.mp3',
+    artist: 'Ceca',
+    cover: 'images/audio/CecaZnam.png'
+  },
   {
     name: 'Pristajem na sve',
     path: 'audio/Semsa Suljakovic i Juzni Vetar - Pristajem na sve (Audio 1986).mp3',
@@ -439,6 +452,12 @@ playLists.push(danceSongs);
 playLists.push(rockSongs);
 
 let BalkanSongs = [
+     {
+    name: 'Placebo',
+    path: 'audio/ALEKSANDRA%20PRIJOVIC%20-%20PLACEBO%20(OFFICIAL%20VIDEO)%20(1).mp3',
+    artist: 'Aleksandra Prijović',
+    cover: 'images/audio/Placebo.jpg'
+  },
 
         {
     name: 'Na putu za ludilo',
