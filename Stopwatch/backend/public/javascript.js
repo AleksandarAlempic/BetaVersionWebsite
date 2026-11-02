@@ -11,16 +11,33 @@ const supabase = createClient(
     SUPABASE_ANON_KEY
 );
 
-supabase.auth.getSession()
-    .then(({ data, error }) => {
-        if (error) {
-            console.error("❌ Supabase connection error:", error);
-            return;
-        }
+// supabase.auth.getSession()
+//     .then(({ data, error }) => {
+//         if (error) {
+//             console.error("❌ Supabase connection error:", error);
+//             return;
+//         }
 
-        console.log("✅ Supabase connected!");
-        console.log("Current session:", data.session);
-    });
+//         console.log("✅ Supabase connected!");
+//         console.log("Current session:", data.session);
+//     });
+
+// =================== KV FIT AUTH GUARD ===================
+
+const { data: { session }, error } = await supabase.auth.getSession();
+
+if (error) {
+    console.error("❌ Session verification failed:", error);
+    throw error;
+}
+
+if (!session) {
+    console.warn("⚠️ No active session. Redirecting to login...");
+    window.location.replace("/login.html");
+    throw new Error("KV Fit: Authentication required.");
+}
+
+console.log("✅ Authenticated user:", session.user.id);
 
 let retrievingTrainings = false;
 
