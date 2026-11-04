@@ -277,21 +277,47 @@ window.addEventListener("load", () => {
 });
 
 // Dole u javascript.js
-function syncOfflineRoutes() {
-    const offlineRoutes = JSON.parse(localStorage.getItem("offlineRoutes") || "[]");
+// ===============================
+// OFFLINE ROUTE SYNC
+// ===============================
+async function syncOfflineRoutes() {
+
+    const offlineRoutes = JSON.parse(
+        localStorage.getItem("offlineRoutes") || "[]"
+    );
+
     if (offlineRoutes.length === 0) return;
 
+    // Get current Supabase session
+    const { data: { session: currentSession }, error } =
+        await supabase.auth.getSession();
+
+    if (error || !currentSession) {
+        console.error("❌ Cannot sync routes: No active session.");
+        return;
+    }
+
     offlineRoutes.forEach(route => {
+
         fetch('https://betaversionwebsite.onrender.com/api/save-run', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(route),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${currentSession.access_token}`
+            },
+            body: JSON.stringify(route)
         })
-        .then(res => res.json())
+        .then(res => {
+            if (!res.ok) throw new Error("Server responded " + res.status);
+            return res.json();
+        })
         .then(() => {
-            console.log("Offline route synced:", route);
+            console.log("✅ Offline route synced:", route);
         })
-        .catch(err => console.error("Failed to sync offline route:", err));
+        .catch(err => {
+            console.error("❌ Failed to sync offline route:", err);
+        });
+
     });
 
     localStorage.removeItem("offlineRoutes");
@@ -3950,11 +3976,20 @@ function saveTrainingOffline(trainingData) {
 // ===============================
 // ONLINE SAVE
 // ===============================
-function saveTrainingOnline(trainingData) {
+async function saveTrainingOnline(trainingData) {
+
+    const { data: { session: currentSession }, error } =
+        await supabase.auth.getSession();
+
+    if (error || !currentSession) {
+        throw new Error("KV Fit: Authentication required.");
+    }
+
     return fetch('https://betaversionwebsite.onrender.com/api/save-training', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${currentSession.access_token}`
         },
         body: JSON.stringify(trainingData)
     })
@@ -3969,7 +4004,7 @@ function saveTrainingOnline(trainingData) {
 // ===============================
 function saveTraining(trainingData) {
 
-    trainingData.user_uuid = getUserUUID();
+
 
     if (navigator.onLine) {
         saveTrainingOnline(trainingData)
@@ -3990,48 +4025,62 @@ function saveTraining(trainingData) {
 // ===============================
 // OFFLINE TRAINING SYNC
 // ===============================
-function syncOfflineTrainings() {
-    const offlineTrainings = JSON.parse(localStorage.getItem("offline_trainings") || "[]");
+async function syncOfflineTrainings() {
+
+    const offlineTrainings = JSON.parse(
+        localStorage.getItem("offline_trainings") || "[]"
+    );
+
     if (offlineTrainings.length === 0) return;
 
-   offlineTrainings.forEach(training => {
+    const { data: { session: currentSession }, error } =
+        await supabase.auth.getSession();
 
-  const payload = {
-    trainingName: String(training.trainingName || ""),
-    userName: String(training.userName || ""),
-    pushUps: Number(training.pushUps) || 0,
-    pullUps: Number(training.pullUps) || 0,
-    sitUps: Number(training.sitUps) || 0,
-    absCount: Number(training.absCount) || 0,
-    otherExercise: String(training.otherExercise || ""),
-    duration: Number(training.duration) || 0,
-    latitude: Number(training.latitude),
-    longitude: Number(training.longitude)
-  };
+    if (error || !currentSession) {
+        console.error("❌ No active Supabase session.");
+        return;
+    }
 
-  console.log("📤 CLEAN TRAINING PAYLOAD:", payload);
+    offlineTrainings.forEach(training => {
 
-  fetch("https://betaversionwebsite.onrender.com/api/save-training", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload)
-  })
-  .then(res => {
-    if (!res.ok) throw new Error("Server responded " + res.status);
-    return res.json();
-  })
-  .then(() => {
-    console.log("✅ Offline training synced:", payload.trainingName);
-  })
-  .catch(err => {
-    console.error("❌ Sync failed:", err);
-  });
+        const payload = {
+            trainingName: String(training.trainingName || ""),
+            userName: String(training.userName || ""),
+            pushUps: Number(training.pushUps) || 0,
+            pullUps: Number(training.pullUps) || 0,
+            sitUps: Number(training.sitUps) || 0,
+            absCount: Number(training.absCount) || 0,
+            otherExercise: String(training.otherExercise || ""),
+            duration: Number(training.duration) || 0,
+            latitude: Number(training.latitude),
+            longitude: Number(training.longitude)
+        };
 
-});
+        console.log("📤 CLEAN TRAINING PAYLOAD:", payload);
+
+        fetch("https://betaversionwebsite.onrender.com/api/save-training", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${currentSession.access_token}`
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(res => {
+            if (!res.ok) throw new Error("Server responded " + res.status);
+            return res.json();
+        })
+        .then(() => {
+            console.log("✅ Offline training synced:", payload.trainingName);
+        })
+        .catch(err => {
+            console.error("❌ Sync failed:", err);
+        });
+
+    });
 
     localStorage.removeItem("offline_trainings");
 }
-
 // ===============================
 // AUTOMATSKI EVENT KADA DOĐE ONLINE
 // ===============================
@@ -4103,17 +4152,27 @@ console.log("USER UUID:", getUserUUID());
 
 retrieveMyTrainingsButton.addEventListener("click", async () => {
 
-    const userUUID = getUserUUID();
-
     try {
 
-        const response = await fetch(
-            `/api/my-trainings?user_uuid=${encodeURIComponent(userUUID)}`
-        );
+        const { data: { session: currentSession }, error } =
+            await supabase.auth.getSession();
 
-        if (!response.ok) {
-            throw new Error("Failed to retrieve my trainings");
+        if (error || !currentSession) {
+            throw new Error("KV Fit: Authentication required.");
         }
+
+        const response = await fetch("/api/my-trainings", {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${currentSession.access_token}`
+            }
+        });
+
+        
+// OVDE DODAJEŠ PROVERU
+if (!response.ok) {
+    throw new Error("Failed to retrieve my trainings");
+}
 
         const trainings = await response.json();
 
@@ -4507,17 +4566,21 @@ trainingGroups.forEach(group => {
 
 retrieveMyRoutesButton.addEventListener("click", async () => {
 
-    const userUUID = getUserUUID();
-
     try {
 
-        // =====================================================
-        // 1. RETRIEVE MY ROUTES
-        // =====================================================
+        const { data: { session: currentSession }, error } =
+            await supabase.auth.getSession();
 
-        const response = await fetch(
-            `/api/my-routes?user_uuid=${encodeURIComponent(userUUID)}`
-        );
+        if (error || !currentSession) {
+            throw new Error("KV Fit: Authentication required.");
+        }
+
+        const response = await fetch("/api/my-routes", {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${currentSession.access_token}`
+            }
+        });
 
         if (!response.ok) {
             throw new Error("Failed to retrieve my routes");
