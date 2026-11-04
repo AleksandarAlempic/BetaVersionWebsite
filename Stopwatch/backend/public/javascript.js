@@ -11,6 +11,8 @@ const supabase = createClient(
     SUPABASE_ANON_KEY
 );
 
+window.supabase = supabase;
+
 // supabase.auth.getSession()
 //     .then(({ data, error }) => {
 //         if (error) {
