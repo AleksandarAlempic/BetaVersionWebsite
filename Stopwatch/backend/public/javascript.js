@@ -41,6 +41,26 @@ console.log("✅ Authenticated user:", session.user.id);
 
 let retrievingTrainings = false;
 
+// =================== SUPABASE USER UUID ===================
+
+let authenticatedUserUUID = session.user.id;
+
+supabase.auth.onAuthStateChange((event, newSession) => {
+    authenticatedUserUUID = newSession?.user?.id ?? null;
+});
+
+window.getUserUUID = function () {
+    if (!authenticatedUserUUID) {
+        throw new Error("KV Fit: No authenticated user UUID.");
+    }
+
+    return authenticatedUserUUID;
+};
+
+console.log("SUPABASE USER UUID:", getUserUUID());
+
+
+
 // =================== KV FIT LOGOUT ===================
 
 const logoutButton = document.getElementById("logoutButton");
@@ -4049,16 +4069,36 @@ function showMainButtons() {
     });
 }
 
-window.getUserUUID = function () {
-    let userUUID = localStorage.getItem("userUUID");
+// window.getUserUUID = function () {
+//     let userUUID = localStorage.getItem("userUUID");
 
-    if (!userUUID) {
-        userUUID = crypto.randomUUID();
-        localStorage.setItem("userUUID", userUUID);
+//     if (!userUUID) {
+//         userUUID = crypto.randomUUID();
+//         localStorage.setItem("userUUID", userUUID);
+//     }
+
+//     return userUUID;
+// };
+
+// =================== SUPABASE USER UUID ===================
+
+let authenticatedUserUUID = session.user.id;
+
+supabase.auth.onAuthStateChange((event, newSession) => {
+    authenticatedUserUUID = newSession?.user?.id ?? null;
+});
+
+window.getUserUUID = function () {
+    if (!authenticatedUserUUID) {
+        throw new Error("KV Fit: No authenticated user UUID.");
     }
 
-    return userUUID;
+    return authenticatedUserUUID;
 };
+
+console.log("SUPABASE USER UUID:", getUserUUID());
+
+
 console.log("USER UUID:", getUserUUID());
 
 retrieveMyTrainingsButton.addEventListener("click", async () => {
