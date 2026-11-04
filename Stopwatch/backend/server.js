@@ -30,45 +30,98 @@ const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+// ================= SUPABASE AUTH MIDDLEWARE =================
+
+async function authenticateUser(req, res, next) {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        return res.status(401).json({
+            error: "Missing authentication token"
+        });
+    }
+
+    const token = authHeader.split(" ")[1];
+
+    try {
+        const { data: { user }, error } = await supabase.auth.getUser(token);
+
+        if (error || !user) {
+            return res.status(401).json({
+                error: "Invalid or expired authentication token"
+            });
+        }
+
+        req.user = user;
+        next();
+
+    } catch (err) {
+        console.error("Authentication error:", err);
+
+        return res.status(401).json({
+            error: "Authentication failed"
+        });
+    }
+}
+
 // require("dotenv").config();
 
 // ---------------- API ROUTES ---------------- //
 
 // Snimanje trčanja
-app.post('/api/save-run', async (req, res) => {
-  const { user_id, user_uuid, username, root, distance, speed, time, polyline, startLat, startLng, location = "Unknown Location" } = req.body;
+app.post('/api/save-run', authenticateUser, async (req, res) => {
+  const {
+    user_id,
+    username,
+    root,
+    distance,
+    speed,
+    time,
+    polyline,
+    startLat,
+    startLng,
+    location = "Unknown Location"
+  } = req.body;
 
   if (!user_id || !username) {
-    return res.status(400).json({ error: "User ID and Username are required" });
+    return res.status(400).json({
+      error: "User ID and Username are required"
+    });
   }
 
   try {
-  const { data, error } = await supabase.from('runs').insert([{
-  user_id,
-  user_uuid,
-  username,
-  distance,
-  time_seconds: time,
-  speed,
-  route: root,
-  polyline: JSON.stringify(polyline),
-  location,
-  start_lat: startLat,
-  start_lng: startLng
-}]);
+    const { data, error } = await supabase.from('runs').insert([{
+      user_id,
+      user_uuid: req.user.id,
+      username,
+      distance,
+      time_seconds: time,
+      speed,
+      route: root,
+      polyline: JSON.stringify(polyline),
+      location,
+      start_lat: startLat,
+      start_lng: startLng
+    }]);
 
     if (error) throw error;
-    res.status(201).json({ message: "Run saved successfully.", data });
+
+    res.status(201).json({
+      message: "Run saved successfully.",
+      data
+    });
+
   } catch (err) {
     console.error("❌ Error saving run:", err);
-    res.status(500).json({ error: "Failed to save run" });
+    res.status(500).json({
+      error: "Failed to save run"
+    });
   }
 });
 
 // Snimanje treninga
-app.post('/api/save-training', async (req, res) => {
-const {
-    user_uuid,
+app.post('/api/save-training', authenticateUser, async (req, res) => {
+  const {
     userName,
     trainingName,
     pushUps,
@@ -79,7 +132,7 @@ const {
     duration,
     latitude,
     longitude
-} = req.body;
+  } = req.body;
 
   const safeUserName = userName && userName.trim() !== "" ? userName.trim() : "Anonymous";
   const safeTrainingName = trainingName && trainingName.trim() !== "" ? trainingName.trim() : "Unnamed Training";
@@ -90,29 +143,32 @@ const {
   }
 
   try {
-const { data, error } = await supabase.from('training').insert([{
-    user_uuid,
-    trainingName: safeTrainingName,
-    userName: safeUserName,
-    pushUps: pushUps ?? 0,
-    pullUps: pullUps ?? 0,
-    sitUps: sitUps ?? 0,
-    absCount: absCount ?? 0,
-    otherExercise: otherExercise ?? "",
-    duration: duration ?? 0,
-    latitude: latitude ?? null,
-    longitude: longitude ?? null
-}]);
+    const { data, error } = await supabase.from('training').insert([{
+      user_uuid: req.user.id,
+      trainingName: safeTrainingName,
+      userName: safeUserName,
+      pushUps: pushUps ?? 0,
+      pullUps: pullUps ?? 0,
+      sitUps: sitUps ?? 0,
+      absCount: absCount ?? 0,
+      otherExercise: otherExercise ?? "",
+      duration: duration ?? 0,
+      latitude: latitude ?? null,
+      longitude: longitude ?? null
+    }]);
 
     if (error) throw error;
 
-    res.status(201).json({ message: "Training saved successfully.", data });
+    res.status(201).json({
+      message: "Training saved successfully.",
+      data
+    });
+
   } catch (err) {
     console.error("❌ Error saving training:", err);
     res.status(500).json({ error: "Failed to save training" });
   }
 });
-
 
 app.get('/api/routes-nearby', async (req, res) => {
   const { lat, lng, radius = 35000 } = req.query; // default 50km
@@ -229,13 +285,10 @@ app.get('/api/nearby-trainings', async (req, res) => {
   }
 });
 
-// Retrieve only trainings belonging to the current UUID
-app.get('/api/my-trainings', async (req, res) => {
-  const { user_uuid } = req.query;
+// Retrieve only trainings belonging to the authenticated user
+app.get('/api/my-trainings', authenticateUser, async (req, res) => {
 
-  if (!user_uuid) {
-    return res.status(400).json({ error: "User UUID is required" });
-  }
+  const user_uuid = req.user.id;
 
   try {
     const { data, error } = await supabase
@@ -247,19 +300,17 @@ app.get('/api/my-trainings', async (req, res) => {
     if (error) throw error;
 
     res.json(data);
+
   } catch (err) {
     console.error("❌ Error fetching my trainings:", err);
     res.status(500).json({ error: "Failed to retrieve my trainings" });
   }
 });
 
-// Retrieve only routes belonging to the current UUID
-app.get('/api/my-routes', async (req, res) => {
-  const { user_uuid } = req.query;
+// Retrieve only routes belonging to the authenticated user
+app.get('/api/my-routes', authenticateUser, async (req, res) => {
 
-  if (!user_uuid) {
-    return res.status(400).json({ error: "User UUID is required" });
-  }
+  const user_uuid = req.user.id;
 
   try {
     const { data, error } = await supabase
@@ -271,6 +322,7 @@ app.get('/api/my-routes', async (req, res) => {
     if (error) throw error;
 
     res.json(data);
+
   } catch (err) {
     console.error("❌ Error fetching my routes:", err);
     res.status(500).json({ error: "Failed to retrieve my routes" });
