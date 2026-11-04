@@ -822,50 +822,78 @@ function stopRoute() {
 }
 
 // Funkcija koja se poziva kad korisnik unese ime i klikne "Save Route"
-function submitRoute() {
+async function submitRoute() {
+
     const username = document.getElementById("usernameInput").value.trim();
+
     if (!username) {
         alert("Username is required.");
         return;
     }
 
     document.getElementById("usernamePopup").style.display = "none";
+
     const data = window.routeDataToSave;
 
     if (navigator.onLine) {
-        // ONLINE save - ostaje isto
-        fetch('https://betaversionwebsite.onrender.com/api/save-run', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                user_id: 1, // po potrebi promeni
-                root: "Vojvodina Trčanje",
-                user_uuid: getUserUUID(),
-                distance: data.distance,
-                speed: data.speed,
-                time: data.time,
-                polyline: data.polyline,
-                startLat: data.startLat,
-                startLng: data.startLng,
-                location: data.location,
-                username: username
-            }),
-        })
-        .then(response => response.json())
-        .then(data => {
+
+        try {
+
+            const { data: { session: currentSession }, error } =
+                await supabase.auth.getSession();
+
+            if (error || !currentSession) {
+                throw new Error("KV Fit: Authentication required.");
+            }
+
+            const response = await fetch(
+                'https://betaversionwebsite.onrender.com/api/save-run',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${currentSession.access_token}`
+                    },
+                    body: JSON.stringify({
+                        user_id: 1,
+                        root: "Vojvodina Trčanje",
+                        distance: data.distance,
+                        speed: data.speed,
+                        time: data.time,
+                        polyline: data.polyline,
+                        startLat: data.startLat,
+                        startLng: data.startLng,
+                        location: data.location,
+                        username: username
+                    })
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error("Server responded " + response.status);
+            }
+
+            await response.json();
+
             alert("Route saved successfully!");
-        })
-        .catch(error => {
+
+        } catch (error) {
+
             console.error('Error saving route:', error);
             alert("Failed to save route.");
-        });
+
+        }
+
     } else {
+
         // OFFLINE save
-        const offlineRoutes = JSON.parse(localStorage.getItem("offlineRoutes") || "[]");
+        const offlineRoutes = JSON.parse(
+            localStorage.getItem("offlineRoutes") || "[]"
+        );
+
         offlineRoutes.push({
             user_id: 1,
             root: "Vojvodina Trčanje",
-            user_uuid: getUserUUID(),
             distance: data.distance,
             speed: data.speed,
             time: data.time,
@@ -876,8 +904,14 @@ function submitRoute() {
             username: username,
             timestamp: Date.now()
         });
-        localStorage.setItem("offlineRoutes", JSON.stringify(offlineRoutes));
+
+        localStorage.setItem(
+            "offlineRoutes",
+            JSON.stringify(offlineRoutes)
+        );
+
         alert("No internet connection. Route saved offline!");
+
         console.log("Offline route saved:", offlineRoutes);
     }
 }
