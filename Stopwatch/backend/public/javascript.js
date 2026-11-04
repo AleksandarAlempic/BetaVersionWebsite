@@ -41,23 +41,23 @@ console.log("✅ Authenticated user:", session.user.id);
 
 let retrievingTrainings = false;
 
-// =================== SUPABASE USER UUID ===================
+// // =================== SUPABASE USER UUID ===================
 
-let authenticatedUserUUID = session.user.id;
+// let authenticatedUserUUID = session.user.id;
 
-supabase.auth.onAuthStateChange((event, newSession) => {
-    authenticatedUserUUID = newSession?.user?.id ?? null;
-});
+// supabase.auth.onAuthStateChange((event, newSession) => {
+//     authenticatedUserUUID = newSession?.user?.id ?? null;
+// });
 
-window.getUserUUID = function () {
-    if (!authenticatedUserUUID) {
-        throw new Error("KV Fit: No authenticated user UUID.");
-    }
+// window.getUserUUID = function () {
+//     if (!authenticatedUserUUID) {
+//         throw new Error("KV Fit: No authenticated user UUID.");
+//     }
 
-    return authenticatedUserUUID;
-};
+//     return authenticatedUserUUID;
+// };
 
-console.log("SUPABASE USER UUID:", getUserUUID());
+// console.log("SUPABASE USER UUID:", getUserUUID());
 
 
 
