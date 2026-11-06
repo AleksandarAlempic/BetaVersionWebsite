@@ -3349,8 +3349,8 @@ display: none;
 .radio-disk-image {
     display: none;
     position: absolute;
-    width: 32px;
-    height: 32px;
+    min-width: 80px;
+    min-height: 80px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
