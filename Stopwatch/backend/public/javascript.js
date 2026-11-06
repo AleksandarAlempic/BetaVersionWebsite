@@ -3655,7 +3655,14 @@ const tabElements = [
 
 // --- Kada se klikne na Custom Playlist tab ---
 tabElements[6].addEventListener("click", () => {
+
+    if (window.clearRadioDisk) {
+        window.clearRadioDisk();
+    }
+
+
     window.activePlayer = "custom";
+    
     if (customPlaylistElement) {
         customPlaylistElement.style.display = "block";
         customPlaylistElement.innerText = "Custom Playlist";
