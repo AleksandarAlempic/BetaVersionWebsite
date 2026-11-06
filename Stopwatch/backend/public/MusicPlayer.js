@@ -194,9 +194,15 @@ previousBtn.addEventListener('click', () => {
 
 
 const setPlaylist = (i) => {
+
+    if (window.clearRadioDisk) {
+        window.clearRadioDisk();
+    }
+
     if (window.disableCustomPlayer) {
         window.disableCustomPlayer();
     }
+
     let play = playLists[i];
     currentPlayList = i;
 };
