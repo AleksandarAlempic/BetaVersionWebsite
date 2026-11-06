@@ -15,6 +15,50 @@ const kindOfMusic = document.querySelector('.kindOfMusic');
 const nextBtnPlayList = document.querySelector('.next-btnPlayList');
 const previousBtnPlayList = document.querySelector('.previous-btnPlayList');
 
+const radioAudio = document.getElementById("radioAudio");
+const radioDiskImage = document.getElementById("radioDiskImage");
+
+// Prikaz radio logotipa na disku
+window.showRadioOnDisk = function (logo) {
+    if (!radioDiskImage) return;
+
+    radioDiskImage.src = logo;
+    radioDiskImage.style.display = "block";
+
+    music.pause();
+    disk.classList.add('play');
+};
+
+// Uklanjanje radio logotipa i zaustavljanje radija
+window.clearRadioDisk = function () {
+    if (radioAudio) {
+        radioAudio.pause();
+    }
+
+    if (radioDiskImage) {
+        radioDiskImage.src = "";
+        radioDiskImage.style.display = "none";
+    }
+
+    disk.classList.remove('play');
+};
+
+// Klik na logo: Radio Play / Pause
+radioDiskImage?.addEventListener("click", (event) => {
+    event.stopPropagation();
+
+    if (!radioAudio || !radioAudio.src) return;
+
+    if (radioAudio.paused) {
+        radioAudio.play()
+            .then(() => disk.classList.add('play'))
+            .catch(error => console.error("Radio playback error:", error));
+    } else {
+        radioAudio.pause();
+        disk.classList.remove('play');
+    }
+});
+
 let songList1 = document.getElementById("kindOfMusic1");
 let songList2 = document.getElementById("kindOfMusic2");
 let songList3 = document.getElementById("kindOfMusic3");
