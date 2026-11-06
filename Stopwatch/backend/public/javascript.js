@@ -3438,6 +3438,9 @@ function renderRadioStations() {
     if (!radioAudio) return;
 
     radioAudio.src = station.stream;
+          if (window.showRadioOnDisk) {
+    window.showRadioOnDisk(station.logo);
+}
 
     radioAudio.play()
         .then(() => {
