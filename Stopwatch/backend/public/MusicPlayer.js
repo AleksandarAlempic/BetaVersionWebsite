@@ -26,6 +26,10 @@ window.showRadioOnDisk = function (logo) {
     radioDiskImage.style.display = "block";
 
     music.pause();
+
+    playBtn.classList.remove('play');
+    playBtn.classList.add('pause');
+
     disk.classList.add('play');
 };
 
