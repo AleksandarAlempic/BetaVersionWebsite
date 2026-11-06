@@ -55,10 +55,17 @@ radioDiskImage?.addEventListener("click", (event) => {
 
     if (radioAudio.paused) {
         radioAudio.play()
-            .then(() => disk.classList.add('play'))
+            .then(() => {
+                playBtn.classList.remove('pause');
+                playBtn.classList.add('play');
+                disk.classList.add('play');
+            })
             .catch(error => console.error("Radio playback error:", error));
     } else {
         radioAudio.pause();
+
+        playBtn.classList.remove('play');
+        playBtn.classList.add('pause');
         disk.classList.remove('play');
     }
 });
@@ -99,16 +106,46 @@ music.volume = 0.25;
 
 playBtn.addEventListener('click', () => {
 
-    // ⬅ Ako je Custom player aktivan – IGNORIŠI klik
     if (window.activePlayer === "custom") return;
 
+    // RADIO PLAYER
+    if (radioDiskImage && radioDiskImage.style.display === "block") {
+
+        if (radioAudio.paused) {
+
+            radioAudio.play()
+                .then(() => {
+                    playBtn.classList.remove('pause');
+                    playBtn.classList.add('play');
+                    disk.classList.add('play');
+                })
+                .catch(error => console.error("Radio playback error:", error));
+
+        } else {
+
+            radioAudio.pause();
+
+            playBtn.classList.remove('play');
+            playBtn.classList.add('pause');
+            disk.classList.remove('play');
+        }
+
+        return;
+    }
+
+    // STATIC MUSIC PLAYER
     if (music.paused) {
+
         music.play();
+
         playBtn.classList.remove('pause');
         playBtn.classList.add('play');
         disk.classList.add('play');
+
     } else {
+
         music.pause();
+
         playBtn.classList.remove('play');
         playBtn.classList.add('pause');
         disk.classList.remove('play');
