@@ -48,27 +48,13 @@ window.clearRadioDisk = function () {
 };
 
 // Klik na logo: Radio Play / Pause
+
 radioDiskImage?.addEventListener("click", (event) => {
-    console.log("KLIK NA RADIO LOGO");
     event.stopPropagation();
 
-    if (!radioAudio || !radioAudio.src) return;
+    if (window.activePlayer === "custom") return;
 
-    if (radioAudio.paused) {
-        radioAudio.play()
-            .then(() => {
-                playBtn.classList.remove('pause');
-                playBtn.classList.add('play');
-                disk.classList.add('play');
-            })
-            .catch(error => console.error("Radio playback error:", error));
-    } else {
-        radioAudio.pause();
-
-        playBtn.classList.remove('play');
-        playBtn.classList.add('pause');
-        disk.classList.remove('play');
-    }
+    toggleRadioPlayback();
 });
 
 let songList1 = document.getElementById("kindOfMusic1");
@@ -110,29 +96,11 @@ playBtn.addEventListener('click', () => {
     if (window.activePlayer === "custom") return;
 
     // RADIO PLAYER
-    if (radioDiskImage && radioDiskImage.style.display === "block") {
-
-        if (radioAudio.paused) {
-
-            radioAudio.play()
-                .then(() => {
-                    playBtn.classList.remove('pause');
-                    playBtn.classList.add('play');
-                    disk.classList.add('play');
-                })
-                .catch(error => console.error("Radio playback error:", error));
-
-        } else {
-
-            radioAudio.pause();
-
-            playBtn.classList.remove('play');
-            playBtn.classList.add('pause');
-            disk.classList.remove('play');
-        }
-
-        return;
-    }
+  // RADIO PLAYER
+if (radioDiskImage && radioDiskImage.style.display === "block") {
+    toggleRadioPlayback();
+    return;
+}
 
     // STATIC MUSIC PLAYER
     if (music.paused) {
@@ -454,6 +422,26 @@ function handleCustomPlaylistToggleFromStatic() {
         if (typeof window.disableCustomPlayer === "function") {
             window.disableCustomPlayer();
         }
+    }
+}
+
+function toggleRadioPlayback() {
+    if (!radioAudio || !radioAudio.src) return;
+
+    if (radioAudio.paused) {
+        radioAudio.play()
+            .then(() => {
+                playBtn.classList.remove('pause');
+                playBtn.classList.add('play');
+                disk.classList.add('play');
+            })
+            .catch(error => console.error("Radio playback error:", error));
+    } else {
+        radioAudio.pause();
+
+        playBtn.classList.remove('play');
+        playBtn.classList.add('pause');
+        disk.classList.remove('play');
     }
 }
 
