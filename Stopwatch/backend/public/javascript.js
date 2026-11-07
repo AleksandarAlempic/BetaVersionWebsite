@@ -5161,5 +5161,10 @@ function closeAllPopupsAndMap() {
     }
 }
 
+radioDiskImage?.addEventListener("click", (event) => {
+    event.stopPropagation();
+    playBtn.click();
+});
+
 window.saveTraining = saveTraining;
 window.initMap = initMap;
