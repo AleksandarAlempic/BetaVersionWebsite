@@ -49,6 +49,7 @@ window.clearRadioDisk = function () {
 
 // Klik na logo: Radio Play / Pause
 radioDiskImage?.addEventListener("click", (event) => {
+    console.log("KLIK NA RADIO LOGO");
     event.stopPropagation();
 
     if (!radioAudio || !radioAudio.src) return;
