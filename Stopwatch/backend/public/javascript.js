@@ -5166,5 +5166,11 @@ radioDiskImage?.addEventListener("click", (event) => {
     playBtn.click();
 });
 
+radioDiskImage?.addEventListener('click', () => {
+    if (window.activePlayer === "custom") return;
+
+    playBtn.dispatchEvent(new Event('click'));
+});
+
 window.saveTraining = saveTraining;
 window.initMap = initMap;
