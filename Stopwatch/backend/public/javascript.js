@@ -3428,6 +3428,8 @@ function renderRadioStations() {
 
       stationElement.addEventListener("click", () => {
 
+          closeAllPopupsAndMap();
+
     document.querySelectorAll("#radioPopup .radioStation")
         .forEach(item => item.classList.remove("selected"));
 
@@ -5132,6 +5134,32 @@ document.getElementById("routeDetailsCloseLink")?.addEventListener("click", func
 
     document.getElementById("routeDetailsPopup").style.display = "none";
 });
+
+function closeAllPopupsAndMap() {
+    const popupIds = [
+        "addMusicPopup",
+        "radioPopup",
+        "addPlaylistPopup",
+        "feedbackPopup",
+        "retrieveRoutesPopup",
+        "retrieveTrainingsPopup",
+        "routeDetailsPopup",
+        "usernamePopup"
+    ];
+
+    popupIds.forEach(id => {
+        const popup = document.getElementById(id);
+        if (popup) {
+            popup.style.display = "none";
+        }
+    });
+
+    const mapContainer = document.getElementById("map-content");
+
+    if (mapContainer) {
+        mapContainer.style.display = "none";
+    }
+}
 
 window.saveTraining = saveTraining;
 window.initMap = initMap;
