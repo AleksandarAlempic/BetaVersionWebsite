@@ -41,6 +41,10 @@ if (!session) {
 
 console.log("✅ Authenticated user:", session.user.id);
 
+if (typeof window.startPromoMusic === "function") {
+    window.startPromoMusic();
+}
+
 let retrievingTrainings = false;
 
 // // =================== SUPABASE USER UUID ===================
