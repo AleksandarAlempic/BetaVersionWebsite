@@ -5,19 +5,18 @@ const playLists = [];
 // playLists.push(customSongs);
 
 let introSongs = [
-
-         {
-    name: 'Znam',
-    path: 'audio/Ceca - Znam - (Audio 1995) HD.mp3',
-    artist: 'Ceca',
-    cover: 'images/audio/CecaZnam.png'
-  },
-                 {
+    {
     name: 'Na putu za ludilo',
     path: 'audio/Mile%20Ignjatovi%C4%87%20-%20Na%20putu%20za%20ludilo%20-%20%28Audio%201996%29.mp3',
     artist: 'Mile Ignjatović',
     cover: 'images/audio/MileIgnjatovicjpg.jpg'
 },
+         {
+    name: 'Znam',
+    path: 'audio/Ceca - Znam - (Audio 1995) HD.mp3',
+    artist: 'Ceca',
+    cover: 'images/audio/CecaZnam.png'
+  },      
 {
       name: 'Malo po malo',
       path: 'audio/Vesna Zmijanac - Malo po malo - (Official Video 1995).mp3',
