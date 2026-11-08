@@ -445,6 +445,35 @@ function toggleRadioPlayback() {
     }
 }
 
+// =================== KV FIT PROMO AUTOPLAY ===================
+
+window.startPromoMusic = function () {
+
+    // Aktiviraj Promo playlistu
+    const promoIndex = playlistTitles.findIndex(
+        title => title.trim() === "Promo"
+    );
+
+    if (promoIndex === -1) {
+        console.error("Promo playlist nije pronađena.");
+        return;
+    }
+
+    currentPlayList = promoIndex;
+    currentMusic = 0;
+
+    setPlaylist(promoIndex);
+    setMusic(0);
+
+    // Aktiviraj statički player
+    window.activePlayer = "static";
+
+    // Pokreni prvu promo pesmu
+    playMusic();
+
+    console.log("KV Fit: Promo music activated.");
+};
+
 // Ovo pozovi svaki put kada korisnik menja playlist tab
 nextBtnPlayList.addEventListener('click', handleCustomPlaylistToggleFromStatic);
 previousBtnPlayList.addEventListener('click', handleCustomPlaylistToggleFromStatic);
