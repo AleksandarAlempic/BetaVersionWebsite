@@ -23,6 +23,12 @@ let introSongs = [
       artist: 'Vesna Zmijanac',
       cover: 'images/audio/MaloPoMalo.jpg'
    },
+     {
+    name: 'Lijte Kiše',
+    path: 'audio/Zorica Marković - Lijte Kiše.mp3',
+    artist: 'Zorica Marković',
+    cover: 'images/audio/LijteKise.png'
+  },
           {
       name: 'Jutro je',
       path: 'audio/Nada%20Topcagic%20-%20Jutro%20je%20-%20(Audio%201990)%20HD%20(128%20kbps).mp3',
@@ -254,6 +260,12 @@ let narodnjaciSongs = [
     cover: 'images/audio/TakniMeTakni.jpg'
   },
      {
+    name: 'Lijte Kiše',
+    path: 'audio/Zorica Marković - Lijte Kiše.mp3',
+    artist: 'Zorica Marković',
+    cover: 'images/audio/LijteKise.png'
+  },
+    {
     name: 'Znam',
     path: 'audio/Ceca - Znam - (Audio 1995) HD.mp3',
     artist: 'Ceca',
@@ -265,17 +277,18 @@ let narodnjaciSongs = [
     artist: 'Šemsa Suljaković',
     cover: 'images/audio/SemsaSuljakovic.jpg'
   },
-  {
-    name: 'Kazni me',
-    path: 'audio/Vesna%20Zmijanac%20-%20Kazni%20me%20-%20(Audio%201989)%20HD%20(mp3cut.net).mp3',
-    artist: 'Vesna Zmijanac',
-    cover: 'images/audio/KazniMeKazni.jpg'
-  },
+
   {
     name: 'Malo po malo',
     path: 'audio/Vesna Zmijanac - Malo po malo - (Official Video 1995).mp3',
     artist: 'Vesna Zmijanac',
     cover: 'images/audio/MaloPoMalo.jpg'
+  },
+      {
+    name: 'Kazni me',
+    path: 'audio/Vesna%20Zmijanac%20-%20Kazni%20me%20-%20(Audio%201989)%20HD%20(mp3cut.net).mp3',
+    artist: 'Vesna Zmijanac',
+    cover: 'images/audio/KazniMeKazni.jpg'
   },
   {
     name: 'Ej, dragi, dragi',
