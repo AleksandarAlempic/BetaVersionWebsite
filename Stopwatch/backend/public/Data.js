@@ -16,74 +16,95 @@ let introSongs = [
     path: 'audio/Ceca - Znam - (Audio 1995) HD.mp3',
     artist: 'Ceca',
     cover: 'images/audio/CecaZnam.png'
-  },      
-{
-      name: 'Malo po malo',
-      path: 'audio/Vesna Zmijanac - Malo po malo - (Official Video 1995).mp3',
-      artist: 'Vesna Zmijanac',
-      cover: 'images/audio/MaloPoMalo.jpg'
-   },
+  },  
      {
     name: 'Lijte Kiše',
     path: 'audio/Zorica Marković - Lijte Kiše.mp3',
     artist: 'Zorica Marković',
     cover: 'images/audio/LijteKise.png'
   },
+     {
+    name: 'Opet imam razloga da živim',
+    path: 'audio/Ana Bekuta - Opet imam razloga da zivim.mp3',
+    artist: 'Ana Bekuta',
+    cover: 'images/audio/AnaBekuta1.jpg'
+  },
+{
+      name: 'Malo po malo',
+      path: 'audio/Vesna Zmijanac - Malo po malo - (Official Video 1995).mp3',
+      artist: 'Vesna Zmijanac',
+      cover: 'images/audio/MaloPoMalo.jpg'
+   },
           {
       name: 'Jutro je',
       path: 'audio/Nada%20Topcagic%20-%20Jutro%20je%20-%20(Audio%201990)%20HD%20(128%20kbps).mp3',
       artist: 'Nada Topcagic',
       cover: 'images/audio/NadaTopcagic.jpg'
    },
-       {
-      name: 'Ej, dragi, dragi',
-      path: 'audio/Cakana - Ej, dragi, dragi - (Audio 2009).mp3',
-      artist: 'Cakana',
-      cover: 'images/audio/EjDragi.jpg'
-   },
+   //     {
+   //    name: 'Ej, dragi, dragi',
+   //    path: 'audio/Cakana - Ej, dragi, dragi - (Audio 2009).mp3',
+   //    artist: 'Cakana',
+   //    cover: 'images/audio/EjDragi.jpg'
+   // },
   
-   {
-      name: 'Waka waka',
-      path: 'audio/WakaWaka.mp3',
-      artist: 'Shakira',
-      cover: 'images/audio/WakaWaka.jpg'
-   },
-   {
-      name: 'La la la',
-      path: 'audio/Shakira%20-%20La%20La%20La%20(Brazil%202014)%20ft.%20Carlinhos%20Brown.mp3',
-      artist: 'Shakira ft. Carlinhos Brown',
-      cover: 'images/audio/Shakira.jpg'
-   },
+   // {
+   //    name: 'Waka waka',
+   //    path: 'audio/WakaWaka.mp3',
+   //    artist: 'Shakira',
+   //    cover: 'images/audio/WakaWaka.jpg'
+   // },
+   // {
+   //    name: 'La la la',
+   //    path: 'audio/Shakira%20-%20La%20La%20La%20(Brazil%202014)%20ft.%20Carlinhos%20Brown.mp3',
+   //    artist: 'Shakira ft. Carlinhos Brown',
+   //    cover: 'images/audio/Shakira.jpg'
+   // },
    // {
    //    name: 'Wavin Flag',
    //    path: 'audio/Wavin%20Flag%20(Spanish%20Version)%20-%20Knaan%20&%20David%20Bisbal%20-%20World%20Cup%202010%20theme%20song%20(128%20kbps).mp3',
    //    artist: 'Knaan & David Bisbal',
    //    cover: 'images/audio/World%20Cup%202010%20theme%20song.jpg'
    // },
-   {
-      name: 'We Are One',
-      path: 'audio/We%20Are%20One%20(Ole%20Ola)%20%5BThe%20Official%202014%20FIFA%20World%20Cup%20Song%5D.mp3',
-      artist: 'Pitbull feat J.Lopez&C.Leitte ',
-      cover: 'images/audio/WeAreOne.jpg'
+   // {
+   //    name: 'We Are One',
+   //    path: 'audio/We%20Are%20One%20(Ole%20Ola)%20%5BThe%20Official%202014%20FIFA%20World%20Cup%20Song%5D.mp3',
+   //    artist: 'Pitbull feat J.Lopez&C.Leitte ',
+   //    cover: 'images/audio/WeAreOne.jpg'
+   // },
+     {
+      name: 'Gimme! Gimme!',
+      path: 'audio/ABBA%20-%20Gimme!%20Gimme!%20Gimme!%20(A%20Man%20After%20Midnight).mp3',
+      artist: 'ABBA',
+      cover: 'images/audio/ABBA-GimmeGimmeGimme-video.png'
    },
+       {
+      name: 'Out of Touch',
+      path: 'audio/Hall%20&%20Oates%20-%20Out%20of%20Touch.mp3',
+      artist: 'Hall & Oates',
+      cover: 'images/audio/Hall%20&%20Oates.jpg'
+   },
+     {
+      name: 'Say It Right',
+      path: 'audio/Nelly%20Furtado%20-%20Say%20It%20Right%20(Official%20Music%20Video).mp3',
+      artist: 'Nelly Furtado',
+      cover: 'images/audio/NellyFurtado.jpg'
+   },
+   
+     
+   // {
+   //    name: 'Alive',
+   //    path: 'audio/Sia%20-%20Alive%20(Official%20Video).mp3',
+   //    artist: 'Sia',
+   //    cover: 'images/audio/Alive.jpg'
+   // },
    {
       name: 'Walk',
       path: 'audio/Kwabs%20-%20Walk%20(Official%20Video).mp3',
       artist: 'Kwabs',
       cover: 'images/audio/Kwabs.jpg'
    },
-   {
-      name: 'Say It Right',
-      path: 'audio/Nelly%20Furtado%20-%20Say%20It%20Right%20(Official%20Music%20Video).mp3',
-      artist: 'Nelly Furtado',
-      cover: 'images/audio/NellyFurtado.jpg'
-   },
-   {
-      name: 'Out of Touch',
-      path: 'audio/Hall%20&%20Oates%20-%20Out%20of%20Touch.mp3',
-      artist: 'Hall & Oates',
-      cover: 'images/audio/Hall%20&%20Oates.jpg'
-   },
+ 
    {
       name: 'The Power Of Love',
       path: 'audio/IL%20DIVO%20-%20The%20Power%20Of%20Love%20(La%20Fuerza%20Mayor)%20(Live%20Video).mp3',
@@ -139,18 +160,7 @@ let introSongs = [
    //    artist: 'Sean Paul',
    //    cover: 'images/audio/SeanPaul.jpg'
    // },
-   {
-      name: 'Gimme! Gimme!',
-      path: 'audio/ABBA%20-%20Gimme!%20Gimme!%20Gimme!%20(A%20Man%20After%20Midnight).mp3',
-      artist: 'ABBA',
-      cover: 'images/audio/ABBA-GimmeGimmeGimme-video.png'
-   },
-   {
-      name: 'Alive',
-      path: 'audio/Sia%20-%20Alive%20(Official%20Video).mp3',
-      artist: 'Sia',
-      cover: 'images/audio/Alive.jpg'
-   },
+ 
 ];
 
 playLists.push(introSongs);
@@ -271,12 +281,7 @@ let narodnjaciSongs = [
     artist: 'Ceca',
     cover: 'images/audio/CecaZnam.png'
   },
-  {
-    name: 'Pristajem na sve',
-    path: 'audio/Semsa Suljakovic i Juzni Vetar - Pristajem na sve (Audio 1986).mp3',
-    artist: 'Šemsa Suljaković',
-    cover: 'images/audio/SemsaSuljakovic.jpg'
-  },
+
 
   {
     name: 'Malo po malo',
@@ -285,17 +290,35 @@ let narodnjaciSongs = [
     cover: 'images/audio/MaloPoMalo.jpg'
   },
       {
+    name: 'Opet imam razloga da živim',
+    path: 'audio/Ana Bekuta - Opet imam razloga da zivim.mp3',
+    artist: 'Ana Bekuta',
+    cover: 'images/audio/AnaBekuta1.jpg'
+  },
+      {
+    name: 'Imam jedan život',
+    path: 'audio/Ana%20Bekuta%20-%20Imam%20jedan%20zivot%20(Sava%20Centar%2022.02.2012.).mp3',
+    artist: 'Ana Bekuta',
+    cover: 'images/audio/AnaBekuta.jpg'
+  },
+      {
     name: 'Kazni me',
     path: 'audio/Vesna%20Zmijanac%20-%20Kazni%20me%20-%20(Audio%201989)%20HD%20(mp3cut.net).mp3',
     artist: 'Vesna Zmijanac',
     cover: 'images/audio/KazniMeKazni.jpg'
   },
-  {
-    name: 'Ej, dragi, dragi',
-    path: 'audio/Cakana - Ej, dragi, dragi - (Audio 2009).mp3',
-    artist: 'Cakana',
-    cover: 'images/audio/EjDragi.jpg'
+      {
+    name: 'Pristajem na sve',
+    path: 'audio/Semsa Suljakovic i Juzni Vetar - Pristajem na sve (Audio 1986).mp3',
+    artist: 'Šemsa Suljaković',
+    cover: 'images/audio/SemsaSuljakovic.jpg'
   },
+  // {
+  //   name: 'Ej, dragi, dragi',
+  //   path: 'audio/Cakana - Ej, dragi, dragi - (Audio 2009).mp3',
+  //   artist: 'Cakana',
+  //   cover: 'images/audio/EjDragi.jpg'
+  // },
   {
     name: 'Srpkinja je mene majka rodila',
     path: 'audio/Cakana & Sastav Svitanje - Srpkinja je mene majka rodila.mp3',
@@ -315,29 +338,17 @@ let narodnjaciSongs = [
     cover: 'images/audio/SemsaSuljakovic.jpg'
   },
   {
-    name: 'Opet imam razloga da živim',
-    path: 'audio/Ana Bekuta - Opet imam razloga da zivim.mp3',
-    artist: 'Ana Bekuta',
-    cover: 'images/audio/AnaBekuta1.jpg'
-  },
-  {
-    name: 'Imam jedan život',
-    path: 'audio/Ana%20Bekuta%20-%20Imam%20jedan%20zivot%20(Sava%20Centar%2022.02.2012.).mp3',
-    artist: 'Ana Bekuta',
-    cover: 'images/audio/AnaBekuta.jpg'
-  },
-  {
     name: 'Molitva',
     path: 'audio/MARIJA%20SERIFOVIC%20-%20MOLITVA%20-%20(OFFICIAL%20VIDEO%202020).mp3',
     artist: 'Marija Šerifović',
     cover: 'images/audio/MarijaSerifovic.jpg'
   },
-  {
-    name: 'Ružo rumena',
-    path: 'audio/RUZO%20RUMENA%20-%20Dragan%20Jovanovic.mp3',
-    artist: 'Dragan Jovanović',
-    cover: 'images/audio/RuzoRumena.jpeg'
-  }
+  // {
+  //   name: 'Ružo rumena',
+  //   path: 'audio/RUZO%20RUMENA%20-%20Dragan%20Jovanovic.mp3',
+  //   artist: 'Dragan Jovanović',
+  //   cover: 'images/audio/RuzoRumena.jpeg'
+  // }
 ];
 
 playLists.push(narodnjaciSongs);
