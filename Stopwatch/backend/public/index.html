@@ -6,14 +6,11 @@
             <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/> 
             <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.35.6/dist/umd/supabase.min.js"></script>
             <meta name="viewport" content="width=device-width, initial-scale=0.5, user-scalable=no">
-             
-            
+
    <!--  <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
 
-           
     <title>Training Details</title>
 
- 
             <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#000000">
 
@@ -43,11 +40,11 @@
                 #map table, #map h2, #map h3 {
                     visibility: hidden;
                 }
-                
+
             </style>
          <!-- Tvoj CSS za dugme -->
     <style>
-        
+
         .music-icon {
              font-size: 28px;
     color: #f4c066;
@@ -109,7 +106,7 @@
         transform: translateY(0);
         box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
- 
+
             /* Fullscreen kvadratni splash */
 /* Fullscreen root layer */
 
@@ -135,7 +132,7 @@
   transform: translate3d(0,0,0);
 }
 
-      
+
 body {
     margin: 0;
     background-image: url('/images/kv-fit-background.jpg');
@@ -192,7 +189,7 @@ radial-gradient(circle at center,
   -webkit-mask: radial-gradient(circle, transparent 74%, black 75%);
   mask: radial-gradient(circle, transparent 74%, black 75%);
 }
-        
+
 /* Fade-out efekat */
 /* #custom-splash.fade-out {
   opacity: 0;
@@ -204,7 +201,7 @@ radial-gradient(circle at center,
   transition: opacity 0.5s ease;
 }
 
-    
+
     </style>
             <script>
 window.APP_READY = false;
@@ -288,7 +285,7 @@ window.map = null;
                                  <div class="seconds-ring">
                                      <div class="clock-seconds"></div>
                                     </div>
-                               
+
                                 <div id="audioContainer" class="audioContainer"> </div>
                                      <div class="audioContainer1">
                                     <div class="disk play ">
@@ -303,7 +300,7 @@ window.map = null;
                                         <button class="btn next-btn"><img src="images/audio/NextButton.png"></button>
                                     </div>
                                     </div> 
-                           
+
                                 <!-- YouTube iFrame player container -->
 <div id="audioContainer" style="display:none;"></div>
                             <div id="newNextAndPreviousButtons" class="newNextAndPreviousButtons">
@@ -348,7 +345,7 @@ window.map = null;
                                 <h3 class=" secondTwentyEight"></h3>
                                 <h3 class=" secondTwentyNine"></h3>
                                 <h3 class=" secondThirty"></h3>
-                                <h3 class="secondThirtyOne"></h3>
+                                                                <h3 class="secondThirtyOne"></h3>
                                 <h3 class="secondThirtyTwo"></h3>
                                 <h3 class="secondThirtyThree"></h3>
                                 <h3 class="secondThirtyFour"></h3>
@@ -408,7 +405,7 @@ window.map = null;
         <h3>Send Feedback</h3>
          <!-- Ime i prezime u jednom redu -->
     <div class="name-fields">
-   
+
     <!-- Tabela za First Name i Last Name -->
     <table class="name-table">
       <tr>
@@ -430,7 +427,7 @@ window.map = null;
         </div>
     </div>
 </div>
-                        
+
                             <input id="input" class="input" value="00:00:00">
                             <div  class="divForButtons">
                                    <table>
@@ -440,7 +437,7 @@ window.map = null;
                                     <input class="checkboxMusicPlayer" id="checkboxMusicPlayer" type="checkbox">
                                     <span class="slider round"></span>
                                 </label>
-                            
+
                                 <p style="color: rgb(244, 192, 102);"  class="labelForMusicPlayer">Music Player</p>
                             </td>
                                 <td><label style="z-index: 10000000;" class="switch labelForRootSlider">
@@ -512,7 +509,7 @@ window.map = null;
     </div>
 </div>
 
-            
+
 <!-- RADIO POPUP -->
 <div id="radioPopup" class="popup-overlay" style="display: none;">
 
@@ -539,7 +536,7 @@ window.map = null;
     </div>
 
 </div>
-            
+
             <!-- POPUP ZA CUSTOM PLAYLIST -->
 <div id="addPlaylistPopup" class="popup-overlay" style="display: none;">
     <div class="popup-content">
@@ -551,7 +548,7 @@ window.map = null;
             placeholder="Paste YouTube link or type song name..."
         />
 <div id="youtubeSuggestions" class="suggestions-box"></div>
-        
+
         <p id="customPlaylistLimitMsg" class="limit-msg"></p>
 
         <div class="popup-buttons">
@@ -602,39 +599,39 @@ window.map = null;
                 </div>        
                 <!-- Leaflet JS -->
                 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-            
+
                 <!-- Leaflet Routing Machine JS -->
                 <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
-            
+
                 <script>
 
                     document.getElementById('averageSpeed').style = "display: none";
 
                     const defaultLat = 45.2764;
                     const defaultLon = 19.8244;
-            
+
                     const map = L.map('map').setView([defaultLat, defaultLon], 13);
                     window.map = map;
-            
+
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
 
-            
+
                     const routeControl = L.Routing.control({
                         waypoints: [],  // Start with an empty route
                         routeWhileDragging: true,  // Allow dragging the route
                         createMarker: function() { return null; }  // Prevent creating markers for waypoints
                     }).addTo(map);
-            
+
                     let currentLocation = [defaultLat, defaultLon];  // Default to Begeč
                     // let currentLocationMarker = L.marker([currentLocation[0], currentLocation[1]]).addTo(map);
                     let currentLocationMarker = null;
-            
+
                     let routeStarted = false;  // Initially, the route is not started
                     let waypoints = [];
                     let polyline;
-            
+
                     let totalDistance = 0;  // To store the total distance traveled
-            
+
                     // GPS TRACKING
                     // Distance is accumulated only from accepted GPS fixes.
                     const GPS_MAX_ACCURACY = 25;       // Ignore fixes worse than 25 metres
@@ -698,7 +695,7 @@ window.map = null;
                     }
 
                     function calculateDistanceAndSpeed(position) {
-                        const lat = position.coords.latitude;
+                                                const lat = position.coords.latitude;
                         const lon = position.coords.longitude;
                         const accuracy = Number(position.coords.accuracy);
                         const timestamp = Number(position.timestamp) || Date.now();
@@ -819,91 +816,150 @@ window.map = null;
                         console.error('Error fetching location: ', error);
                         alert("Error retrieving your location.");
                     }
-            
-                    let totalTime = 0;  // Track the total time in seconds
-    let routeStartTime = null;  // Time when the route started
 
-    // Start a new route and reset all GPS measurement state.
-    function startRoute() {
-        if (routeStarted) return;
+                    let totalTime = 0;
+                    let routeStartTime = null;
+                    let routeTimerInterval = null;
 
-        routeStarted = true;
-        totalDistance = 0;
-        totalTime = 0;
-        lastAcceptedPosition = null;
-        displayedSpeed = 0;
+                    // Update the route timer displayed in the stopwatch input.
+                    function updateRouteTimer() {
+                        if (!routeStartTime) return;
 
-        // Clear the previous route drawing.
-        if (polyline) {
-            window.map.removeLayer(polyline);
-            polyline = null;
-        }
+                        const elapsedSeconds = Math.max(
+                            0,
+                            Math.floor((Date.now() - routeStartTime) / 1000)
+                        );
 
-        waypoints = [];
-        routeControl.setWaypoints([]);
-        routeStartTime = Date.now();
+                        const hours = String(
+                            Math.floor(elapsedSeconds / 3600)
+                        ).padStart(2, '0');
 
-        setDistance();
-        setSpeed(0);
+                        const minutes = String(
+                            Math.floor((elapsedSeconds % 3600) / 60)
+                        ).padStart(2, '0');
 
-        document.getElementById('speed').style.display = "block";
-        document.getElementById('averageSpeed').style.display = "none";
+                        const seconds = String(
+                            elapsedSeconds % 60
+                        ).padStart(2, '0');
 
-        alert("Route started! Waiting for an accurate GPS signal.");
-    }
+                        const timeInput = document.getElementById('input');
 
-    function stopRoute() {
-        if (!routeStarted) return;
+                        if (timeInput) {
+                            timeInput.value = `${hours}:${minutes}:${seconds}`;
+                        }
+                    }
 
-        routeStarted = false;
+                    // Start a new route and reset all GPS measurement state.
+                    function startRoute() {
+                        if (routeStarted) return;
 
-        const routeEndTime = Date.now();
-        totalTime = routeStartTime
-            ? Math.max(0, (routeEndTime - routeStartTime) / 1000)
-            : 0;
+                        routeStarted = true;
+                        totalDistance = 0;
+                        totalTime = 0;
+                        lastAcceptedPosition = null;
+                        displayedSpeed = 0;
 
-        document.getElementById("speed").style.display = "none";
+                        // Clear the previous route drawing.
+                        if (polyline) {
+                            window.map.removeLayer(polyline);
+                            polyline = null;
+                        }
 
-        const averageSpeed = totalTime > 0
-            ? (totalDistance / 1000) / (totalTime / 3600)
-            : 0;
+                        waypoints = [];
+                        routeControl.setWaypoints([]);
+                        routeStartTime = Date.now();
 
-        document.getElementById('averageSpeedValue').textContent =
-            averageSpeed.toFixed(2);
-        document.getElementById('averageSpeed').style.display = "block";
+                        // Reset the displayed route time.
+                        const timeInput = document.getElementById('input');
 
-        let polylineCoordinates = [];
-        let startLat = null;
-        let startLng = null;
+                        if (timeInput) {
+                            timeInput.value = "00:00:00";
+                        }
 
-        if (polyline instanceof L.Polyline) {
-            polylineCoordinates = polyline.getLatLngs().map(point => ({
-                lat: point.lat,
-                lng: point.lng
-            }));
+                        // Reset distance and speed.
+                        setDistance();
+                        setSpeed(0);
 
-            if (polylineCoordinates.length > 0) {
-                startLat = polylineCoordinates[0].lat;
-                startLng = polylineCoordinates[0].lng;
-            }
+                        // Show live speed and distance immediately.
+                        document.getElementById('speed').style.display = "block";
+                        document.getElementById('distance').style.display = "block";
+                        document.getElementById('averageSpeed').style.display = "none";
 
-            polyline.remove();
-            polyline = null;
-        }
+                        // Start the route timer.
+                        if (routeTimerInterval) {
+                            clearInterval(routeTimerInterval);
+                        }
 
-        // Keep the existing save-route popup and payload structure.
-        document.getElementById("usernamePopup").style.display = "block";
+                        updateRouteTimer();
+                        routeTimerInterval = setInterval(updateRouteTimer, 1000);
 
-        window.routeDataToSave = {
-            distance: totalDistance / 1000,
-            speed: averageSpeed,
-            time: totalTime,
-            polyline: polylineCoordinates,
-            startLat: startLat,
-            startLng: startLng,
-            location: "Unknown"
-        };
-    }
+                        alert("Route started! Waiting for an accurate GPS signal.");
+                    }
+
+                    function stopRoute() {
+                        if (!routeStarted) return;
+
+                        routeStarted = false;
+
+                        const routeEndTime = Date.now();
+
+                        totalTime = routeStartTime
+                            ? Math.max(0, (routeEndTime - routeStartTime) / 1000)
+                            : 0;
+
+                        // Stop the route timer and preserve the final time.
+                        if (routeTimerInterval) {
+                            clearInterval(routeTimerInterval);
+                            routeTimerInterval = null;
+                        }
+
+                        updateRouteTimer();
+
+                        // Hide live speed but keep distance visible.
+                        document.getElementById("speed").style.display = "none";
+                        document.getElementById("distance").style.display = "block";
+
+                        const averageSpeed = totalTime > 0
+                            ? (totalDistance / 1000) / (totalTime / 3600)
+                            : 0;
+
+                        document.getElementById('averageSpeedValue').textContent =
+                            averageSpeed.toFixed(2);
+
+                        document.getElementById('averageSpeed').style.display = "block";
+
+                        let polylineCoordinates = [];
+                        let startLat = null;
+                        let startLng = null;
+
+                        if (polyline instanceof L.Polyline) {
+                            polylineCoordinates = polyline.getLatLngs().map(point => ({
+                                lat: point.lat,
+                                lng: point.lng
+                            }));
+
+                            if (polylineCoordinates.length > 0) {
+                                startLat = polylineCoordinates[0].lat;
+                                startLng = polylineCoordinates[0].lng;
+                            }
+
+                            polyline.remove();
+                            polyline = null;
+                        }
+
+                        // Keep the existing save-route popup and payload structure.
+                        document.getElementById("usernamePopup").style.display = "block";
+
+                        window.routeDataToSave = {
+                            distance: totalDistance / 1000,
+                            speed: averageSpeed,
+                            time: totalTime,
+                            polyline: polylineCoordinates,
+                            startLat: startLat,
+                            startLng: startLng,
+                            location: "Unknown"
+                        };
+                    }
 
 // Funkcija koja se poziva kad korisnik unese ime i klikne "Save Route"
 async function submitRoute() {
@@ -998,13 +1054,13 @@ async function submitRoute() {
 
         console.log("Offline route saved:", offlineRoutes);
     }
-}
+    }
                     // Add event listener for the Start Route button click
                     document.getElementById("startRouteButton").addEventListener("click", startRoute);
-            
+
                     // Add event listener for the Stop Route button click
                     document.getElementById("stopRouteButton").addEventListener("click", stopRoute);
-            
+
 
     //                 document.getElementById("fetchNearbyRoutesButton").addEventListener("click", () => {
     //     navigator.geolocation.getCurrentPosition((position) => {
@@ -1038,9 +1094,8 @@ async function submitRoute() {
     <label class="trainingName" for="userName">User name:</label><br>
     <input type="text" class="userName" id="userName" name="userName"><br><br>
 
-   
 
-   
+
     <label class="absCount" for="absCount">Sit ups:</label><br>
     <input type="number" class="absCount" id="absCount" name="absCount"><br><br>
      <label class="trainingName" for="duration">Duration (min):</label><br>
@@ -1064,7 +1119,7 @@ async function submitRoute() {
     <label class="trainingName sitUps" for="sitUps">Squats:</label><br>
     <input type="number" class="pushUps sitUpsInput" id="sitUps" name="sitUps"><br><br>
 
-    
+
   </div>
 
   <div style="width: 100%; text-align: center;">
@@ -1126,7 +1181,7 @@ document.getElementById("trainingForm").addEventListener("submit", function(e) {
     </script>
 
 
-            
+
         </div>
         <div id="usernamePopup" style="display: none; position: fixed; top: 40%; left: 49%; min-height: 130px; transform: translateX(-50%); background: white; padding: 20px; z-index: 200000000001; box-shadow: 0px 0px 10px rgba(0,0,0,0.5); border-radius: 8px;">
             <label for="usernameInput" style="font-size: 24px;"> Enter Name </label>
@@ -1180,33 +1235,44 @@ function initMap(){
   console.log("✅ MAP INITIALIZED");
 }
     </script>   -->
-            
+
 <script>
 window.addEventListener('load', () => {
-  const splash = document.getElementById('custom-splash');
-  const splashRoot = document.getElementById('splash-root');
-  const mapContent = document.getElementById('map-content');
-  const addButton = document.getElementById('fetchAddTrainingButton');
+    const splash = document.getElementById('custom-splash');
+    const splashRoot = document.getElementById('splash-root');
+    const mapContent = document.getElementById('map-content');
+    const addButton = document.getElementById('fetchAddTrainingButton');
 
-  // sakrij mapu i dugme dok splash traje
-  mapContent.style.display = 'none';
-  addButton.style.display = 'none';
+    // Sakrij mapu i dugme dok splash traje
+    mapContent.style.display = 'none';
+    addButton.style.display = 'none';
 
-  // delay da se splash vidi (2500ms = 1.5 + 1sek duže)
-  setTimeout(() => {
-
-    // fade efekat
-    splash.classList.add('fade-out');
-
-    // fallback timer (ne zavisi od transitionend)
+    // Sačekaj da se splash prikaže
     setTimeout(() => {
-      splashRoot.remove();                  // ukloni splash
-      mapContent.style.display = 'block';   // prikaži mapu
-      addButton.style.display = 'inline-block'; // prikaži dugme
-      initMap();                            // 🔥 startuj mapu
-    }, 600); // mora biti > CSS transition (0.5s)
 
-  }, 2500); // povećano trajanje splash-a
+        // Fade efekat
+        splash.classList.add('fade-out');
+
+        // Nakon završetka fade efekta
+        setTimeout(() => {
+
+            // Ukloni splash
+            splashRoot.remove();
+
+            // Prikaži mapu i dugme
+            mapContent.style.display = 'block';
+            addButton.style.display = 'inline-block';
+
+            // Osveži dimenzije već postojeće Leaflet mape
+            setTimeout(() => {
+                if (window.map) {
+                    window.map.invalidateSize(true);
+                }
+            }, 100);
+
+        }, 600);
+
+    }, 2500);
 });
 </script>
 
