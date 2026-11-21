@@ -680,22 +680,25 @@ window.map = null;
                     }
 
                     function addAcceptedPointToMap(lat, lon) {
-                        const point = L.latLng(lat, lon);
-                        waypoints.push(point);
+    const point = L.latLng(lat, lon);
+    waypoints.push(point);
 
-                        if (!polyline) {
-                            polyline = L.polyline([[lat, lon]], {
-                                color: 'blue',
-                                weight: 5,
-                                opacity: 0.7
-                            }).addTo(window.map);
-                        } else {
-                            polyline.addLatLng(point);
-                        }
+    if (!polyline) {
+        polyline = L.polyline([[lat, lon]], {
+            color: 'blue',
+            weight: 5,
+            opacity: 0.7
+        }).addTo(window.map);
+    } else {
+        polyline.addLatLng(point);
+    }
 
-                        // Keep the existing route-control behaviour.
-                        routeControl.setWaypoints(waypoints);
-                    }
+    // Prati GPS lokaciju na mapi
+    window.map.panTo(point);
+
+    // Zadrži postojeće ponašanje route-control-a
+    routeControl.setWaypoints(waypoints);
+}
 
                     function calculateDistanceAndSpeed(position) {
                         const lat = position.coords.latitude;
@@ -848,6 +851,7 @@ window.map = null;
 
         document.getElementById('speed').style.display = "block";
         document.getElementById('averageSpeed').style.display = "none";
+        document.getElementById('distance').style.display = "block";
 
         alert("Route started! Waiting for an accurate GPS signal.");
     }
@@ -1183,30 +1187,34 @@ function initMap(){
             
 <script>
 window.addEventListener('load', () => {
-  const splash = document.getElementById('custom-splash');
-  const splashRoot = document.getElementById('splash-root');
-  const mapContent = document.getElementById('map-content');
-  const addButton = document.getElementById('fetchAddTrainingButton');
+    const splash = document.getElementById('custom-splash');
+    const splashRoot = document.getElementById('splash-root');
+    const mapContent = document.getElementById('map-content');
+    const addButton = document.getElementById('fetchAddTrainingButton');
 
-  // sakrij mapu i dugme dok splash traje
-  mapContent.style.display = 'none';
-  addButton.style.display = 'none';
+    mapContent.style.display = 'none';
+    addButton.style.display = 'none';
 
-  // delay da se splash vidi (2500ms = 1.5 + 1sek duže)
-  setTimeout(() => {
-
-    // fade efekat
-    splash.classList.add('fade-out');
-
-    // fallback timer (ne zavisi od transitionend)
     setTimeout(() => {
-      splashRoot.remove();                  // ukloni splash
-      mapContent.style.display = 'block';   // prikaži mapu
-      addButton.style.display = 'inline-block'; // prikaži dugme
-      initMap();                            // 🔥 startuj mapu
-    }, 600); // mora biti > CSS transition (0.5s)
 
-  }, 2500); // povećano trajanje splash-a
+        splash.classList.add('fade-out');
+
+        setTimeout(() => {
+
+            splashRoot.remove();
+
+            mapContent.style.display = 'block';
+            addButton.style.display = 'inline-block';
+
+            setTimeout(() => {
+                if (window.map) {
+                    window.map.invalidateSize(true);
+                }
+            }, 200);
+
+        }, 600);
+
+    }, 2500);
 });
 </script>
 
