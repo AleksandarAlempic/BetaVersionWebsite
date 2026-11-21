@@ -696,76 +696,62 @@ window.map = null;
             
                     let lastLatLng = null;
             
-                    function calculateDistanceAndSpeed(lat, lon) {
-                     
-                        console.log("DISTANCE FUNCTION CALLED", lat, lon);
-    console.log("distanceValue element:", document.getElementById('distanceValue'));
-           
-    if (lastLatLng) {
+                  function calculateDistanceAndSpeed(lat, lon) {
+    const currentTime = Date.now();
 
-        const distance = haversine(
-            lastLatLng.lat,
-            lastLatLng.lng,
-            lat,
-            lon
-        );
-
-        // Ignore unrealistic GPS jumps
-        // 50 meters between two GPS updates is already a very large jump
-        if (distance > 50) {
-            console.warn(
-                "Ignoring GPS jump:",
-                distance.toFixed(2),
-                "meters"
-            );
-
-            return;
-        }
-
-        totalDistance += distance;
-
-       document.getElementById('distance').textContent =
-    'Distance: ' + totalDistance.toFixed(2) + ' m';
-
-        const currentTime = new Date();
-
-        if (lastTime) {
-
-            const timeDiff =
-                (currentTime - lastTime) / 1000;
-
-            if (timeDiff > 0) {
-
-                const speed =
-                    (distance / timeDiff) * 3.6;
-
-                if (speed > 0.5 && speed < 40) {
-
-                    document.getElementById(
-                        'speedValue'
-                    ).textContent = speed.toFixed(2);
-
-                } else {
-
-                    document.getElementById(
-                        'speedValue'
-                    ).textContent = "0.00";
-                }
-            }
-        }
-
+    // Prvi GPS podatak – postavljanje početne pozicije i vremena
+    if (!lastLatLng) {
+        lastLatLng = {
+            lat: lat,
+            lng: lon
+        };
         lastTime = currentTime;
+        return;
     }
 
+    const distance = haversine(
+        lastLatLng.lat,
+        lastLatLng.lng,
+        lat,
+        lon
+    );
+
+    // Ignoriši nerealne GPS skokove
+    if (!Number.isFinite(distance) || distance > 50) {
+        lastLatLng = {
+            lat: lat,
+            lng: lon
+        };
+        lastTime = currentTime;
+        return;
+    }
+
+    // Ukupna distanca u metrima
+    totalDistance += distance;
+
+    // Prikaz ukupne distance u kilometrima
+    document.getElementById('distanceValue').textContent =
+        (totalDistance / 1000).toFixed(2);
+
+    // Izračunavanje trenutne brzine u km/h
+    const timeDiff = (currentTime - lastTime) / 1000;
+
+    if (timeDiff > 0) {
+        const speed = (distance / timeDiff) * 3.6;
+
+        document.getElementById('speedValue').textContent =
+            (speed >= 0.5 && speed <= 40)
+                ? speed.toFixed(2)
+                : "0.00";
+    }
+
+    // Ažuriranje poslednje pozicije i vremena
     lastLatLng = {
         lat: lat,
         lng: lon
     };
 
-    document.getElementById(
-        'distanceValue'
-    ).textContent =
-        (totalDistance / 1000).toFixed(2);
+    lastTime = currentTime;
 }
             
                     // Function to handle geolocation errors
