@@ -568,7 +568,7 @@ window.map = null;
                 <strong>Speed:</strong> <span style="color: rgb(244, 192, 102);" id="speedValue">0.00</span> km/h
             </div>
             <div style="color: white;" id="distance" class="distance">
-                <strong>Distance:</strong> <span style="color: rgb(244, 192, 102);" id="distanceValue">0.00</span> m
+                <strong>Distance:</strong> <span style="color: rgb(244, 192, 102);" id="distanceValue">0.00</span> km
             </div>
             <div style="color: white;"  id="averageSpeed" class="speed">
                 <strong>Speed:</strong> <span style="color: white;" id="averageSpeedValue">0.00</span> km/h
@@ -633,141 +633,187 @@ window.map = null;
                     let waypoints = [];
                     let polyline;
             
-                    let lastTime = null;  // To store the timestamp of the last position update
                     let totalDistance = 0;  // To store the total distance traveled
             
-                    // Function to update the user's location and update the route
+                    // GPS TRACKING
+                    // Distance is accumulated only from accepted GPS fixes.
+                    const GPS_MAX_ACCURACY = 25;       // Ignore fixes worse than 25 metres
+                    const GPS_MAX_SPEED_KMH = 35;      // Reject impossible GPS jumps
+                    const GPS_MAX_GAP_SECONDS = 20;    // Re-anchor after a long GPS interruption
+                    const EARTH_RADIUS_METERS = 6371000;
+
+                    let lastAcceptedPosition = null;
+                    let displayedSpeed = 0;
+
+                    function haversine(lat1, lon1, lat2, lon2) {
+                        const toRadians = value => value * Math.PI / 180;
+                        const phi1 = toRadians(lat1);
+                        const phi2 = toRadians(lat2);
+                        const deltaPhi = toRadians(lat2 - lat1);
+                        const deltaLambda = toRadians(lon2 - lon1);
+
+                        const a =
+                            Math.sin(deltaPhi / 2) ** 2 +
+                            Math.cos(phi1) * Math.cos(phi2) *
+                            Math.sin(deltaLambda / 2) ** 2;
+
+                        const safeA = Math.min(1, Math.max(0, a));
+                        return 2 * EARTH_RADIUS_METERS *
+                            Math.atan2(Math.sqrt(safeA), Math.sqrt(1 - safeA));
+                    }
+
+                    function setSpeed(value) {
+                        const speedElement = document.getElementById('speedValue');
+                        if (speedElement) {
+                            speedElement.textContent = Number.isFinite(value)
+                                ? value.toFixed(2)
+                                : '0.00';
+                        }
+                    }
+
+                    function setDistance() {
+                        const distanceElement = document.getElementById('distanceValue');
+                        if (distanceElement) {
+                            // Display kilometres, while totalDistance remains in metres.
+                            distanceElement.textContent = (totalDistance / 1000).toFixed(2);
+                        }
+                    }
+
+                    function addAcceptedPointToMap(lat, lon) {
+                        const point = L.latLng(lat, lon);
+                        waypoints.push(point);
+
+                        if (!polyline) {
+                            polyline = L.polyline([[lat, lon]], {
+                                color: 'blue',
+                                weight: 5,
+                                opacity: 0.7
+                            }).addTo(window.map);
+                        } else {
+                            polyline.addLatLng(point);
+                        }
+
+                        // Keep the existing route-control behaviour.
+                        routeControl.setWaypoints(waypoints);
+                    }
+
+                    function calculateDistanceAndSpeed(position) {
+                        const lat = position.coords.latitude;
+                        const lon = position.coords.longitude;
+                        const accuracy = Number(position.coords.accuracy);
+                        const timestamp = Number(position.timestamp) || Date.now();
+
+                        if (!Number.isFinite(lat) || !Number.isFinite(lon)) return false;
+                        if (!Number.isFinite(accuracy) || accuracy <= 0 || accuracy > GPS_MAX_ACCURACY) {
+                            console.warn('Ignoring inaccurate GPS fix:', accuracy);
+                            return false;
+                        }
+
+                        const current = { lat, lng: lon, accuracy, timestamp };
+
+                        // First reliable fix establishes the starting point; it adds no distance.
+                        if (!lastAcceptedPosition) {
+                            lastAcceptedPosition = current;
+                            displayedSpeed = 0;
+                            setSpeed(0);
+                            if (routeStarted) addAcceptedPointToMap(lat, lon);
+                            return true;
+                        }
+
+                        const elapsedSeconds =
+                            (timestamp - lastAcceptedPosition.timestamp) / 1000;
+
+                        // Ignore duplicate/out-of-order timestamps.
+                        if (!Number.isFinite(elapsedSeconds) || elapsedSeconds <= 0) {
+                            return false;
+                        }
+
+                        // GPS was interrupted: use this fix as a new anchor, but do not
+                        // draw or count a straight-line segment across the missing period.
+                        if (elapsedSeconds > GPS_MAX_GAP_SECONDS) {
+                            lastAcceptedPosition = current;
+                            displayedSpeed = 0;
+                            setSpeed(0);
+                            if (routeStarted) addAcceptedPointToMap(lat, lon);
+                            return true;
+                        }
+
+                        const segmentDistance = haversine(
+                            lastAcceptedPosition.lat,
+                            lastAcceptedPosition.lng,
+                            lat,
+                            lon
+                        );
+
+                        // Accuracy-adaptive movement threshold suppresses stationary GPS drift.
+                        const movementThreshold = Math.max(
+                            1.5,
+                            Math.min(4, (accuracy + lastAcceptedPosition.accuracy) * 0.12)
+                        );
+
+                        if (segmentDistance < movementThreshold) {
+                            // Keep the previous anchor so small movements can accumulate
+                            // until they represent meaningful movement.
+                            return false;
+                        }
+
+                        const segmentSpeedKmh =
+                            (segmentDistance / elapsedSeconds) * 3.6;
+
+                        // Reject sudden jumps instead of adding them to the workout.
+                        if (!Number.isFinite(segmentSpeedKmh) ||
+                            segmentSpeedKmh > GPS_MAX_SPEED_KMH) {
+                            console.warn('Ignoring GPS jump:', {
+                                distance: segmentDistance,
+                                speed: segmentSpeedKmh,
+                                accuracy
+                            });
+                            return false;
+                        }
+
+                        totalDistance += segmentDistance;
+                        lastAcceptedPosition = current;
+
+                        // Light smoothing reduces display fluctuation without changing
+                        // the distance or average-speed calculation.
+                        displayedSpeed = displayedSpeed === 0
+                            ? segmentSpeedKmh
+                            : (displayedSpeed * 0.4) + (segmentSpeedKmh * 0.6);
+
+                        setDistance();
+                        setSpeed(displayedSpeed);
+
+                        if (routeStarted) addAcceptedPointToMap(lat, lon);
+                        return true;
+                    }
+
                     function updateLocation(position) {
-                        if (!window.map) return;
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
+                        if (!window.map || !position || !position.coords) return;
+
+                        const lat = position.coords.latitude;
+                        const lon = position.coords.longitude;
+                        const accuracy = Number(position.coords.accuracy);
+
+                        // Do not move the marker or track using a poor-quality GPS fix.
+                        if (!Number.isFinite(lat) || !Number.isFinite(lon) ||
+                            !Number.isFinite(accuracy) || accuracy <= 0 ||
+                            accuracy > GPS_MAX_ACCURACY) {
+                            return;
+                        }
+
                         currentLocation = [lat, lon];
 
-        // Update the location marker to the new coordinates
-       if (!currentLocationMarker) {
-        currentLocationMarker = L.marker([lat, lon]).addTo(window.map);
-        } else {
-         currentLocationMarker.setLatLng([lat, lon]);
-        }
+                        if (!currentLocationMarker) {
+                            currentLocationMarker = L.marker([lat, lon]).addTo(window.map);
+                        } else {
+                            currentLocationMarker.setLatLng([lat, lon]);
+                        }
 
-        // Only add new waypoints and update polyline if the route has started
-        if (routeStarted) {
-            if (waypoints.length === 0 || waypoints[waypoints.length - 1].lat !== lat || waypoints[waypoints.length - 1].lng !== lon) {
-                // Add new waypoint to the array
-                waypoints.push(L.latLng(lat, lon));
-                routeControl.setWaypoints(waypoints);  // Update the route with new waypoints
-
-                // If the polyline is not yet created, create it
-                if (!polyline) {
-        polyline = L.polyline([ [lat, lon] ], {
-            color: 'blue',
-            weight: 5,
-            opacity: 0.7    
-        }).addTo(map);  // Add polyline to map
-    } else {
-        polyline.addLatLng([lat, lon]);  // Add new point to existing polyline
-    }
-
-                calculateDistanceAndSpeed(lat, lon);
-            }
-        }
-
-        // Optionally, update the map view if the user moves a significant distance
-        // if (window.map.getCenter().distanceTo([lat, lon]) > 50) {
-        //     map.setView([lat, lon], map.getZoom());  // Keep the current zoom level
-        // }
-    }
-                    // Function to calculate distance between two geographical points (in meters) using the Haversine formula
-                    function haversine(lat1, lon1, lat2, lon2) {
-                        const R = 6371e3; // Radius of Earth in meters
-                        const φ1 = lat1 * Math.PI / 180; // Latitude in radians
-                        const φ2 = lat2 * Math.PI / 180; // Latitude in radians
-                        const Δφ = (lat2 - lat1) * Math.PI / 180; // Difference in latitude in radians
-                        const Δλ = (lon2 - lon1) * Math.PI / 180; // Difference in longitude in radians
-            
-                        // Haversine formula
-                        const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-                            Math.cos(φ1) * Math.cos(φ2) *
-                            Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
-                        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-                        const distance = R * c; // Distance in meters
-                        return distance;
+                        if (routeStarted) {
+                            calculateDistanceAndSpeed(position);
+                        }
                     }
-            
-                    let lastLatLng = null;
-            
-                    function calculateDistanceAndSpeed(lat, lon) {
-                     
-                        console.log("DISTANCE FUNCTION CALLED", lat, lon);
-    console.log("distanceValue element:", document.getElementById('distanceValue'));
-           
-    if (lastLatLng) {
 
-        const distance = haversine(
-            lastLatLng.lat,
-            lastLatLng.lng,
-            lat,
-            lon
-        );
-
-        // Ignore unrealistic GPS jumps
-        // 50 meters between two GPS updates is already a very large jump
-        if (distance > 50) {
-            console.warn(
-                "Ignoring GPS jump:",
-                distance.toFixed(2),
-                "meters"
-            );
-
-            return;
-        }
-
-        totalDistance += distance;
-
-       document.getElementById('distance').textContent =
-    'Distance: ' + totalDistance.toFixed(2) + ' m';
-
-        const currentTime = new Date();
-
-        if (lastTime) {
-
-            const timeDiff =
-                (currentTime - lastTime) / 1000;
-
-            if (timeDiff > 0) {
-
-                const speed =
-                    (distance / timeDiff) * 3.6;
-
-                if (speed > 0.5 && speed < 40) {
-
-                    document.getElementById(
-                        'speedValue'
-                    ).textContent = speed.toFixed(2);
-
-                } else {
-
-                    document.getElementById(
-                        'speedValue'
-                    ).textContent = "0.00";
-                }
-            }
-        }
-
-        lastTime = currentTime;
-    }
-
-    lastLatLng = {
-        lat: lat,
-        lng: lon
-    };
-
-    document.getElementById(
-        'distanceValue'
-    ).textContent =
-        (totalDistance / 1000).toFixed(2);
-}
-            
                     // Function to handle geolocation errors
                     function handleError(error) {
                         console.error('Error fetching location: ', error);
@@ -777,66 +823,87 @@ window.map = null;
                     let totalTime = 0;  // Track the total time in seconds
     let routeStartTime = null;  // Time when the route started
 
-    // Function to start the route manually
+    // Start a new route and reset all GPS measurement state.
     function startRoute() {
+        if (routeStarted) return;
 
-        
-        if (!routeStarted) {
-            routeStarted = true;  // Set the route as started
-            totalDistance = 0;
-lastLatLng = null;
-lastTime = null;
-totalTime = 0;
-            waypoints = [];  // Clear any existing waypoints before starting
-            waypoints.push(L.latLng(currentLocation[0], currentLocation[1]));  // Start route at the current location
-            routeControl.setWaypoints(waypoints);  // Initialize route control with the first waypoint
-            console.log("Route started at:", currentLocation);  // Debugging log
-            routeStartTime = new Date();  // Record the time when the route started
-            alert("Route started! Moving now will update the route.");
+        routeStarted = true;
+        totalDistance = 0;
+        totalTime = 0;
+        lastAcceptedPosition = null;
+        displayedSpeed = 0;
 
-            document.getElementById('speed').style = "display: block";
-            document.getElementById('averageSpeed').style = "display: none";
+        // Clear the previous route drawing.
+        if (polyline) {
+            window.map.removeLayer(polyline);
+            polyline = null;
         }
+
+        waypoints = [];
+        routeControl.setWaypoints([]);
+        routeStartTime = Date.now();
+
+        setDistance();
+        setSpeed(0);
+
+        document.getElementById('speed').style.display = "block";
+        document.getElementById('averageSpeed').style.display = "none";
+
+        alert("Route started! Waiting for an accurate GPS signal.");
     }
 
-function stopRoute() {
-    if (!routeStarted) return;
+    function stopRoute() {
+        if (!routeStarted) return;
 
-    routeStarted = false;
+        routeStarted = false;
 
-    const routeEndTime = new Date();
-    totalTime = (routeEndTime - routeStartTime) / 1000;
+        const routeEndTime = Date.now();
+        totalTime = routeStartTime
+            ? Math.max(0, (routeEndTime - routeStartTime) / 1000)
+            : 0;
 
-    document.getElementById('speed').style.display = "none";
+        document.getElementById("speed").style.display = "none";
 
-    const averageSpeed = (totalDistance / 1000) / (totalTime / 3600);
-    document.getElementById('averageSpeedValue').textContent = averageSpeed.toFixed(2);
-    document.getElementById('averageSpeed').style.display = "block";
+        const averageSpeed = totalTime > 0
+            ? (totalDistance / 1000) / (totalTime / 3600)
+            : 0;
 
-    let polylineCoordinates = [];
-    let startLat = null, startLng = null;
+        document.getElementById('averageSpeedValue').textContent =
+            averageSpeed.toFixed(2);
+        document.getElementById('averageSpeed').style.display = "block";
 
-    if (polyline instanceof L.Polyline) {
-        polylineCoordinates = polyline.getLatLngs();
-        startLat = waypoints[0].lat;
-        startLng = waypoints[0].lng;
-        polyline.remove();
+        let polylineCoordinates = [];
+        let startLat = null;
+        let startLng = null;
+
+        if (polyline instanceof L.Polyline) {
+            polylineCoordinates = polyline.getLatLngs().map(point => ({
+                lat: point.lat,
+                lng: point.lng
+            }));
+
+            if (polylineCoordinates.length > 0) {
+                startLat = polylineCoordinates[0].lat;
+                startLng = polylineCoordinates[0].lng;
+            }
+
+            polyline.remove();
+            polyline = null;
+        }
+
+        // Keep the existing save-route popup and payload structure.
+        document.getElementById("usernamePopup").style.display = "block";
+
+        window.routeDataToSave = {
+            distance: totalDistance / 1000,
+            speed: averageSpeed,
+            time: totalTime,
+            polyline: polylineCoordinates,
+            startLat: startLat,
+            startLng: startLng,
+            location: "Unknown"
+        };
     }
-
-    // Uvek prikazi popup
-    document.getElementById("usernamePopup").style.display = "block";
-
-    // Sačuvaj rutu privremeno da popup može proslediti
-    window.routeDataToSave = {
-        distance: totalDistance / 1000,
-        speed: averageSpeed,
-        time: totalTime,
-        polyline: polylineCoordinates,
-        startLat: startLat,
-        startLng: startLng,
-        location: "Unknown"  // fallback ako offline
-    };
-}
 
 // Funkcija koja se poziva kad korisnik unese ime i klikne "Save Route"
 async function submitRoute() {
