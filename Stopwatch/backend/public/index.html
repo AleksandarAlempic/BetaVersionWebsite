@@ -696,78 +696,7 @@ window.map = null;
             
                     let lastLatLng = null;
             
-                 function calculateDistanceAndSpeed(lat, lon, accuracy) {
-    const currentTime = Date.now();
-
-    // Odbaci GPS očitavanja sa lošom preciznošću
-    if (!Number.isFinite(accuracy) || accuracy > 25) {
-        console.log("GPS accuracy too low:", accuracy);
-        return;
-    }
-
-    // Prvo GPS očitavanje – početna pozicija
-    if (!lastLatLng) {
-        lastLatLng = {
-            lat: lat,
-            lng: lon
-        };
-
-        lastTime = currentTime;
-        return;
-    }
-
-    const distance = haversine(
-        lastLatLng.lat,
-        lastLatLng.lng,
-        lat,
-        lon
-    );
-
-    // Odbaci neispravne GPS podatke
-    if (!Number.isFinite(distance) || distance > 50) {
-        console.warn("Ignoring GPS jump:", distance);
-        return;
-    }
-
-    // Minimalno pomeranje u odnosu na GPS preciznost
-    const minDistance = Math.max(5, accuracy);
-
-    // Ne sabiraj mala GPS odstupanja.
-    // Zadrži prethodnu prihvaćenu poziciju da se
-    // stvarno kretanje akumulira do praga.
-    if (distance < minDistance) {
-        return;
-    }
-
-    const timeDiff = (currentTime - lastTime) / 1000;
-
-    if (timeDiff <= 0) {
-        return;
-    }
-
-    // Ukupna distanca u metrima
-    totalDistance += distance;
-
-    // Prikaz distance u kilometrima
-    document.getElementById('distanceValue').textContent =
-        (totalDistance / 1000).toFixed(2);
-
-    // Brzina u km/h
-    const speed = (distance / timeDiff) * 3.6;
-
-    document.getElementById('speedValue').textContent =
-        (speed >= 0.5 && speed <= 40)
-            ? speed.toFixed(2)
-            : "0.00";
-
-    // Ažuriraj poslednju prihvaćenu GPS poziciju
-    lastLatLng = {
-        lat: lat,
-        lng: lon
-    };
-
-    lastTime = currentTime;
-}
+                
             
                     // Function to handle geolocation errors
                     function handleError(error) {
@@ -778,6 +707,115 @@ window.map = null;
                     let totalTime = 0;  // Track the total time in seconds
     let routeStartTime = null;  // Time when the route started
 
+function calculateDistanceAndSpeed(lat, lon, accuracy) {
+    const currentTime = Date.now();
+
+    // Odbaci neispravne GPS koordinate
+    if (
+        !Number.isFinite(lat) ||
+        !Number.isFinite(lon) ||
+        !Number.isFinite(accuracy) ||
+        accuracy <= 0 ||
+        accuracy > 25
+    ) {
+        lastLatLng = null;
+        lastTime = null;
+        document.getElementById('speedValue').textContent = "0.00";
+        return;
+    }
+
+    // Prvo pouzdano GPS očitavanje
+    if (!lastLatLng || lastTime === null) {
+        lastLatLng = {
+            lat: lat,
+            lng: lon,
+            accuracy: accuracy
+        };
+
+        lastTime = currentTime;
+        return;
+    }
+
+    const timeDiff = (currentTime - lastTime) / 1000;
+
+    // Ne obrađuj prekratke intervale
+    if (timeDiff < 3) {
+        return;
+    }
+
+    // Resetuj referentnu tačku ako je GPS pauzirao
+    if (timeDiff > 15) {
+        lastLatLng = {
+            lat: lat,
+            lng: lon,
+            accuracy: accuracy
+        };
+
+        lastTime = currentTime;
+        document.getElementById('speedValue').textContent = "0.00";
+        return;
+    }
+
+    const distance = haversine(
+        lastLatLng.lat,
+        lastLatLng.lng,
+        lat,
+        lon
+    );
+
+    const averageAccuracy =
+        (accuracy + lastLatLng.accuracy) / 2;
+
+    // Minimalna distanca za odbacivanje GPS šuma
+    const minDistance = Math.max(
+        4,
+        averageAccuracy * 0.7
+    );
+
+    const speed = (distance / timeDiff) * 3.6;
+
+    // Uvek ažuriraj referentnu tačku
+    lastLatLng = {
+        lat: lat,
+        lng: lon,
+        accuracy: accuracy
+    };
+
+    lastTime = currentTime;
+
+    // Odbaci GPS šum i fizički nerealne brzine
+    if (
+        !Number.isFinite(distance) ||
+        !Number.isFinite(speed) ||
+        distance < minDistance ||
+        speed > 35
+    ) {
+        document.getElementById('speedValue').textContent = "0.00";
+        return;
+    }
+
+    // Dodaj pređenu distancu u metrima
+    totalDistance += distance;
+
+    // Prikaži ukupnu distancu u kilometrima
+    document.getElementById('distanceValue').textContent =
+        (totalDistance / 1000).toFixed(2);
+
+    // Prikaži trenutnu brzinu u km/h
+    document.getElementById('speedValue').textContent =
+        speed.toFixed(2);
+
+    console.log("GPS calculation:", {
+        distance: distance.toFixed(2),
+        speed: speed.toFixed(2),
+        accuracy: accuracy,
+        totalDistance: totalDistance.toFixed(2)
+    });
+}
+
+
+
+                    
     // Function to start the route manually
     function startRoute() {
 
