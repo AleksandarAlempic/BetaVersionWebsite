@@ -843,7 +843,7 @@ function stopRoute() {
     if (!routeStarted) return;
 
     routeStarted = false;
-
+    routeControl.hide();
     const routeEndTime = new Date();
     totalTime = (routeEndTime - routeStartTime) / 1000;
 
