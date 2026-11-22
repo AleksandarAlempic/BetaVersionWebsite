@@ -2122,7 +2122,7 @@ body{
     margin-top: 23%;
 }
 
-.speed{
+/* .speed{
     margin-left: 10%;
     position: absolute;
     margin-left: 1%; margin-top: 6%; font-weight: bold;
@@ -2144,6 +2144,26 @@ body{
     margin-top: 40%;
     font-size: 30px;
     position: fixed;
+} */
+
+.speed {
+    position: absolute;
+    font-weight: bold;
+    font-size: 30px;
+    margin-left: 41%;
+    margin-top: 42.5%;
+    display: none;
+    z-index: 1000000;
+}
+
+.distance {
+    position: absolute;
+    font-weight: bold;
+    font-size: 30px;
+    margin-left: 41%;
+    margin-top: 40%;
+    display: none;
+    z-index: 1000000;
 }
 
 .nearbyRouteButton{
