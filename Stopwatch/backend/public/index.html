@@ -768,8 +768,8 @@ function calculateDistanceAndSpeed(lat, lon, accuracy) {
 
     // Minimalna distanca za odbacivanje GPS šuma
     const minDistance = Math.max(
-        4,
-        averageAccuracy * 0.7
+         1.5,
+    Math.min(3, averageAccuracy * 0.2)
     );
 
     const speed = (distance / timeDiff) * 3.6;
