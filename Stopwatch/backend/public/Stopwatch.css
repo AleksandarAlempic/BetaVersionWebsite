@@ -2362,9 +2362,7 @@ body{
         position: relative;
         z-index: 100000000000;
     }
-   #map {
-       pointer-events: none; /* Prevent interaction with the map */
-   }
+
 
  #startRouteButton {
         position: absolute;
