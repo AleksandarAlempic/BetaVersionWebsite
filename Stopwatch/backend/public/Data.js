@@ -17,30 +17,31 @@ let introSongs = [
     artist: 'Ceca',
     cover: 'images/audio/CecaZnam.png'
   },  
-     {
-    name: 'Lijte Kiše',
-    path: 'audio/Zorica Marković - Lijte Kiše.mp3',
-    artist: 'Zorica Marković',
-    cover: 'images/audio/LijteKise.png'
-  },
-     {
-    name: 'Opet imam razloga da živim',
-    path: 'audio/Ana Bekuta - Opet imam razloga da zivim.mp3',
-    artist: 'Ana Bekuta',
-    cover: 'images/audio/AnaBekuta1.jpg'
-  },
 {
       name: 'Malo po malo',
       path: 'audio/Vesna Zmijanac - Malo po malo - (Official Video 1995).mp3',
       artist: 'Vesna Zmijanac',
       cover: 'images/audio/MaloPoMalo.jpg'
    },
+      
+         {
+    name: 'Lijte Kiše',
+    path: 'audio/Zorica Marković - Lijte Kiše.mp3',
+    artist: 'Zorica Marković',
+    cover: 'images/audio/LijteKise.png'
+  },
           {
       name: 'Jutro je',
       path: 'audio/Nada%20Topcagic%20-%20Jutro%20je%20-%20(Audio%201990)%20HD%20(128%20kbps).mp3',
       artist: 'Nada Topcagic',
       cover: 'images/audio/NadaTopcagic.jpg'
    },
+       {
+    name: 'Opet imam razloga da živim',
+    path: 'audio/Ana Bekuta - Opet imam razloga da zivim.mp3',
+    artist: 'Ana Bekuta',
+    cover: 'images/audio/AnaBekuta1.jpg'
+  },
    //     {
    //    name: 'Ej, dragi, dragi',
    //    path: 'audio/Cakana - Ej, dragi, dragi - (Audio 2009).mp3',
