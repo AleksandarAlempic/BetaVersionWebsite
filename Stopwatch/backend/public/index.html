@@ -854,6 +854,7 @@ function stopRoute() {
     totalTime = (routeEndTime - routeStartTime) / 1000;
 
     document.getElementById('speed').style.display = "none";
+    document.querySelector('#speed strong').style.setProperty('color', 'white', 'important');
 
     const averageSpeed = (totalDistance / 1000) / (totalTime / 3600);
     document.getElementById('averageSpeedValue').textContent = averageSpeed.toFixed(2);
