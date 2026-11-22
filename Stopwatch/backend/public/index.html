@@ -819,7 +819,7 @@ function calculateDistanceAndSpeed(lat, lon, accuracy) {
     // Function to start the route manually
     function startRoute() {
 
-        
+     
         if (!routeStarted) {
             routeStarted = true;  // Set the route as started
             totalDistance = 0;
@@ -832,6 +832,12 @@ totalTime = 0;
             console.log("Route started at:", currentLocation);  // Debugging log
             routeStartTime = new Date();  // Record the time when the route started
             alert("Route started! Moving now will update the route.");
+
+               document.getElementById('speed').innerHTML =
+    '<strong>Speed:</strong> <span id="speedValue" style="color:white">0.00</span> km/h';
+
+document.getElementById('distance').innerHTML =
+    '<strong>Distance:</strong> <span id="distanceValue" style="color:white">0.00</span> m';
 
             document.getElementById('speed').style = "display: block";
             document.getElementById('distance').style.display = "block";
