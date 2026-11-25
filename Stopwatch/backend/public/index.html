@@ -47,6 +47,23 @@
             </style>
          <!-- Tvoj CSS za dugme -->
     <style>
+
+        .kv-kettlebell-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 0 auto;
+            line-height: 0;
+            pointer-events: none;
+        }
+
+        .kv-kettlebell-art {
+            display: block;
+            width: 150px;
+            height: 103px;
+            overflow: visible;
+        }
         
         .music-icon {
              font-size: 28px;
@@ -1010,6 +1027,32 @@ async function submitRoute() {
                  <h3 id="trainingPopupTitle" style="text-align: center; font-size: 40px; font-weight: 900 !important;">
       Add Training
    </h3>
+               <div class="kv-kettlebell-header" aria-hidden="true">
+                 <svg class="kv-kettlebell-art" viewBox="0 0 220 150" xmlns="http://www.w3.org/2000/svg">
+                   <defs>
+                     <linearGradient id="ironBody" x1="0" y1="0" x2="1" y2="1">
+                       <stop offset="0" stop-color="#55504a"/>
+                       <stop offset="0.42" stop-color="#090909"/>
+                       <stop offset="0.72" stop-color="#292521"/>
+                       <stop offset="1" stop-color="#050505"/>
+                     </linearGradient>
+                     <linearGradient id="ironEdge" x1="0" y1="0" x2="1" y2="0">
+                       <stop offset="0" stop-color="#a69a82"/>
+                       <stop offset="0.25" stop-color="#171513"/>
+                       <stop offset="0.75" stop-color="#080808"/>
+                       <stop offset="1" stop-color="#b09a70"/>
+                     </linearGradient>
+                   </defs>
+                   <path d="M76 55 C76 22 91 9 110 9 C129 9 144 22 144 55" fill="none" stroke="#090909" stroke-width="19" stroke-linecap="round"/>
+                   <path d="M76 55 C76 22 91 9 110 9 C129 9 144 22 144 55" fill="none" stroke="url(#ironEdge)" stroke-width="12" stroke-linecap="round"/>
+                   <path d="M47 62 C53 47 78 42 110 42 C142 42 167 47 173 62 C184 91 171 127 145 137 C126 144 94 144 75 137 C49 127 36 91 47 62Z" fill="url(#ironBody)" stroke="#080706" stroke-width="5"/>
+                   <path d="M55 65 C70 53 150 53 165 65" fill="none" stroke="#8d8069" stroke-opacity=".55" stroke-width="3"/>
+                   <path d="M58 121 Q110 145 162 121" fill="none" stroke="#a18d69" stroke-opacity=".45" stroke-width="2"/>
+                   <text x="110" y="91" text-anchor="middle" fill="#f4a900" font-family="Georgia,serif" font-size="20" font-style="italic" font-weight="900" transform="rotate(-8 110 91)">OLD</text>
+                   <text x="110" y="116" text-anchor="middle" fill="#f4a900" font-family="Georgia,serif" font-size="23" font-style="italic" font-weight="900" transform="rotate(-8 110 116)">SCHOOL</text>
+                   <path d="M57 132 L164 112" stroke="#e99a00" stroke-width="3" stroke-linecap="round"/>
+                 </svg>
+               </div>
                <form id="trainingForm" style="margin-top: 5%; display: flex; gap: 20px; flex-wrap: wrap;">
   <!-- LEFT COLUMN -->
   <div class="form-group" style="flex: 1; min-width: 200px;">
